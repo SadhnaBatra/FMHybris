@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Automotive Aftermarket Industry Association (AAIA)
+	http://www.aftermarket.org
+	Internet Parts Ordering (IPO) Release 1.2.1,  March 1, 2005
+	Business Object Document (BOD) Example
+	
+	Overlay for: 
+	Open Applications Group (http://www.openapplications.org)
+	OAGIS Release 8.0, 	April 05, 2002
+	
+	Name:		AcknowledgePurchaseOrder.xml
+	Comments:	The default name space is OAGIS. Therefore all AAIA elements require the aaia: prefix.
+-->
+<aaia:AcknowledgePurchaseOrder xmlns="http://www.openapplications.org/oagis" xmlns:aaia="http://www.aftermarket.org/oagis" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.aftermarket.org/oagis ../BODs/AcknowledgePurchaseOrder.xsd" revision="1.2.1" environment="Production" lang="en">
+	<!-- The ApplicationArea identifies the document and the sender. -->
+	<ApplicationArea>
+		<Sender>
+			<ReferenceId>W0013</ReferenceId>
+			<Confirmation>1</Confirmation>
+		</Sender>
+		<CreationDateTime>2003-09-08T11:34:12-06:00</CreationDateTime>
+		<BODId>609CK</BODId>
+	</ApplicationArea>
+	<!-- The DataArea contains the business information to be processed by the receiver. -->
+	<DataArea>
+		<Acknowledge>
+			<Code>Accepted</Code>
+			<Mode>FullDetail</Mode>
+		</Acknowledge>
+		<PurchaseOrder>
+			<!-- The DataArea Header contains information that applies to the entire acknowledgement. -->
+			<aaia:Header>
+				<!-- These Header fields further identify documents related to the purchase order. -->
+				<DocumentIds>
+					<CustomerDocumentId>
+						<Id>PO 11347</Id>
+						<Revision>001</Revision>
+					</CustomerDocumentId>
+					<SupplierDocumentId>
+						<Id>SO 3279</Id>
+						<Revision>001</Revision>
+					</SupplierDocumentId>
+				</DocumentIds>
+				<LastModificationDateTime>2003-09-08T17:32:58Z</LastModificationDateTime>
+				<DocumentDateTime>2003-09-08T11:32:58-06:00</DocumentDateTime>
+				<Note lang="en" author="rjones" entryDateTime="2003-09-08T17:32:58Z">Cannot ship until Wed. PM</Note>
+				<DocumentReferences>
+					<RFQDocumentReference>
+						<DocumentIds>
+							<CustomerDocumentId>
+								<Id>RFQ3094</Id>
+							</CustomerDocumentId>
+						</DocumentIds>
+					</RFQDocumentReference>
+					<QuoteDocumentReference>
+						<DocumentIds>
+							<SupplierDocumentId>
+								<Id>Q04931</Id>
+							</SupplierDocumentId>
+						</DocumentIds>
+					</QuoteDocumentReference>
+				</DocumentReferences>
+				<!-- 
+				These Header fields explain when the order is expected to ship.
+				If Code is "Modified" and Mode is "ExceptionDetail", then these fields would not appear unless
+				the seller provided different shipment/delivery dates from those on the original Process
+				PurchaseOrder BOD. If Code is "Accepted" - i.e., the seller had no changes - and Mode is
+				"ExceptionDetail", then none of these fields would appear.
+				-->
+				<PromisedDeliveryDate>2003-09-11</PromisedDeliveryDate>
+				<PromisedShipDate>2003-09-10</PromisedShipDate>
+				<ExtendedPrice currency="USD">48.96</ExtendedPrice>
+				<TotalAmount currency="USD">53.96</TotalAmount>
+				<!-- 
+				These Header fields describe the seller’s freight and payment terms.
+				If Code is "Modified" and Mode is "ExceptionDetail", then these fields would not appear unless
+				the seller provided different pricing, charges, or payment terms from those on the original
+				Process PurchaseOrder BOD.
+				-->
+				<TransportationTerm>
+					<TermCode issuingAgency="ICC">CIP</TermCode>
+					<PlaceOfOwnershipTransfer>
+						<Description lang="en" owner="bjones">Your shop</Description>
+					</PlaceOfOwnershipTransfer>
+					<FreightTerms>Prepaid &amp; Add</FreightTerms>
+				</TransportationTerm>
+				<aaia:PaymentTerms>
+					<TermId>2% 10 Net 30</TermId>
+				</aaia:PaymentTerms>
+				<Charges>
+					<AdditionalCharge>
+						<Total currency="USD">5.00</Total>
+						<Description lang="en" owner="A-DIS">Delivery</Description>
+					</AdditionalCharge>
+				</Charges>
+				<!-- 
+				These Header fields describe each of the parties who would be involved in the transaction.
+				If Code is "Modified" and Mode is "ExceptionDetail", then these fields would not appear unless
+				the seller intended to use a ShipFrom location different from that on the original Process
+				PurchaseOrder BOD, or if the seller’s business application contained different address or contact
+				information about the buyer’s locations (BillTo, ShipTo, and SoldTo).
+				-->
+				<Parties>
+					<BillToParty active="1" oneTime="0">
+						<PartyId>
+							<Id>TMA0003</Id>
+						</PartyId>
+						<Name lang="en">T&amp;M Amoco</Name>
+						<TaxExemptInd>1</TaxExemptInd>
+						<TaxId>34-1039118</TaxId>
+						<Addresses>
+							<Address>
+								<AddressLine>P. O. Box 6308</AddressLine>
+								<City>Skokie</City>
+								<StateOrProvince>IL</StateOrProvince>
+								<Country>US</Country>
+								<PostalCode>60077</PostalCode>
+								<Telephone>(847) 677-2338</Telephone>
+							</Address>
+						</Addresses>
+					</BillToParty>
+					<ShipToParty active="1" oneTime="0">
+						<PartyId>
+							<Id>TMA0003</Id>
+						</PartyId>
+						<Name lang="en">T&amp;M Amoco</Name>
+						<Addresses>
+							<Address>
+								<AddressLine>5035 Touhy Avenue</AddressLine>
+								<City>Skokie</City>
+								<StateOrProvince>IL</StateOrProvince>
+								<Country>US</Country>
+								<PostalCode>60077</PostalCode>
+								<Telephone>(847) 679-3515</Telephone>
+							</Address>
+						</Addresses>
+					</ShipToParty>
+					<ShipFromParty>
+						<PartyId>
+							<Id>CQ1004</Id>
+						</PartyId>
+						<Name lang="en">Carquest Auto Parts</Name>
+						<Addresses>
+							<Address>
+								<AddressLine>4911 Dempster St</AddressLine>
+								<City>Skokie</City>
+								<StateOrProvince>IL</StateOrProvince>
+								<Country>US</Country>
+								<PostalCode>60077</PostalCode>
+								<Telephone>(847) 675-4010</Telephone>
+							</Address>
+						</Addresses>
+						<Contacts>
+							<Contact>
+								<Person>
+									<PersonName>
+										<GivenName lang="en">Bob</GivenName>
+										<FamilyName lang="en">Jones</FamilyName>
+									</PersonName>
+								</Person>
+							</Contact>
+						</Contacts>
+					</ShipFromParty>
+				</Parties>
+				<aaia:EffectivePeriod inclusive="1">
+					<To>2003-09-18</To>
+				</aaia:EffectivePeriod>
+			</aaia:Header>
+			<!-- 
+			Each DataArea Line describes an item being requested. These fields describe the first item.
+			If Mode is "ExceptionDetail" and the seller did not (a) alter the part number, pricing, or quantity
+			on the buyer’s purchase order, or (b) provide equivalent or alternate parts as Sublines, then the
+			line would not appear. If, however, the seller did make such alterations, then the line number
+			and the altered fields would appear in this BOD and Code would be set to "Modified".
+			-->
+			<aaia:Line>
+				<LineNumber>1</LineNumber>
+				<OrderItem>
+					<aaia:ItemIds>
+						<CustomerItemId>
+							<Id>504551</Id>
+						</CustomerItemId>
+						<aaia:ManufacturerItemId>
+							<Id>88946639</Id>
+						</aaia:ManufacturerItemId>
+						<aaia:ManufacturerCode>CVC</aaia:ManufacturerCode>
+						<aaia:ManufacturerName>AC-Delco</aaia:ManufacturerName>
+					</aaia:ItemIds>
+					<Description lang="en">ABSORBER, RR LVLG SHK SILVER ROAD-RESPONSE</Description>
+				</OrderItem>
+				<OrderQuantity uom="Pack2">1</OrderQuantity>
+				<UnitPrice>
+					<Amount currency="USD">38.79</Amount>
+					<PerQuantity uom="Each">1</PerQuantity>
+				</UnitPrice>
+				<ExtendedPrice currency="USD">38.79</ExtendedPrice>
+				<TotalAmount currency="USD">38.79</TotalAmount>
+				<aaia:Vehicle>
+					<aaia:VehicleId>
+						<aaia:VIN>AB1234567890CD</aaia:VIN>
+					</aaia:VehicleId>
+					<aaia:Year>2005</aaia:Year>
+					<aaia:Make lang="en">Ford</aaia:Make>
+					<aaia:Model lang="en">Explorer</aaia:Model>
+					<aaia:SubModel>XLT</aaia:SubModel>
+					<aaia:Doors>4</aaia:Doors>
+					<aaia:ExteriorColorCode>BLK01</aaia:ExteriorColorCode>
+					<aaia:BodyStyle>Uniframe</aaia:BodyStyle>
+					<aaia:Engine>
+						<aaia:ConfigId>123456</aaia:ConfigId>
+						<aaia:BlockType>V</aaia:BlockType>
+						<aaia:Cylinders>8</aaia:Cylinders>
+						<aaia:Displacement uom="Liters">4.0</aaia:Displacement>
+						<aaia:FuelDelivery>Injected</aaia:FuelDelivery>
+						<aaia:Aspiration>None</aaia:Aspiration>
+					</aaia:Engine>
+					<aaia:FuelType>Unleaded</aaia:FuelType>
+					<aaia:Transmission>Automatic</aaia:Transmission>
+					<aaia:DriveType>4WD</aaia:DriveType>
+					<Note>Only the VIN is available at this time for this vehicle</Note>
+				</aaia:Vehicle>
+				<aaia:ListPrice>
+					<Amount currency="USD">49.99</Amount>
+					<PerQuantity uom="Each">1</PerQuantity>
+				</aaia:ListPrice>
+				<!-- SubLines for alternate items would appear here. -->
+				<aaia:SubLine>
+					<LineNumber>1</LineNumber>
+					<OrderItem>
+						<aaia:ItemIds>
+							<CustomerItemId>
+								<Id>278454</Id>
+							</CustomerItemId>
+							<aaia:ManufacturerItemId>
+								<Id>PSC</Id>
+							</aaia:ManufacturerItemId>
+						</aaia:ItemIds>
+					</OrderItem>
+					<OrderQuantity uom="EA">1.0</OrderQuantity>
+					<UnitPrice>
+						<Amount currency="USD">1.0</Amount>
+						<PerQuantity uom="EA">599.95</PerQuantity>
+					</UnitPrice>
+					<ExtendedPrice currency="USD">599.95</ExtendedPrice>
+					<TotalAmount currency="USD">599.95</TotalAmount>
+					<PromisedShipDate>2005-01-18T11:41:33-05:00</PromisedShipDate>
+					<BackOrderedInd>0</BackOrderedInd>
+					<Parties>
+						<ShipFromParty active="1" oneTime="0">
+							<PartyId>
+								<Id>TMA0003</Id>
+							</PartyId>
+							<Name lang="en">T&amp;M Amoco</Name>
+							<Addresses>
+								<Address>
+									<AddressLine>5035 Touhy Avenue</AddressLine>
+									<City>Skokie</City>
+									<StateOrProvince>IL</StateOrProvince>
+									<Country>US</Country>
+									<PostalCode>60077</PostalCode>
+									<Telephone>(847) 679-3515</Telephone>
+								</Address>
+							</Addresses>
+						</ShipFromParty>
+					</Parties>
+					<aaia:Vehicle>
+						<aaia:VehicleId>
+							<aaia:VIN>AB1234567890CD</aaia:VIN>
+						</aaia:VehicleId>
+						<Note>Only the VIN is available at this time for this vehicle</Note>
+					</aaia:Vehicle>
+				</aaia:SubLine>
+			</aaia:Line>
+			<!-- These fields describe the second item. -->
+			<aaia:Line>
+				<LineNumber>2</LineNumber>
+				<OrderItem>
+					<aaia:ItemIds>
+						<CustomerItemId>
+							<Id>AD969</Id>
+						</CustomerItemId>
+						<aaia:ManufacturerItemId>
+							<Id>F57Z181198B</Id>
+						</aaia:ManufacturerItemId>
+						<aaia:ManufacturerCode>BRH</aaia:ManufacturerCode>
+						<aaia:ManufacturerName>Motorcraft</aaia:ManufacturerName>
+					</aaia:ItemIds>
+					<Description lang="en">BUSHING, REAR STD-DUTY</Description>
+				</OrderItem>
+				<OrderQuantity uom="Each">1</OrderQuantity>
+				<UnitPrice>
+					<Amount currency="USD">10.17</Amount>
+					<PerQuantity uom="Each">1</PerQuantity>
+				</UnitPrice>
+				<TotalAmount currency="USD">10.17</TotalAmount>
+				<aaia:ListPrice>
+					<Amount currency="USD">18.50</Amount>
+					<PerQuantity uom="Each">1</PerQuantity>
+				</aaia:ListPrice>
+			</aaia:Line>
+		</PurchaseOrder>
+	</DataArea>
+</aaia:AcknowledgePurchaseOrder>

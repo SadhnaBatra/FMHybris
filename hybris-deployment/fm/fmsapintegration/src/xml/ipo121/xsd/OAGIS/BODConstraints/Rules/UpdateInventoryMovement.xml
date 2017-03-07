@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sch:schema xmlns="http://www.ascc.net/xml/schematron" xmlns:oa="http://www.openapplications.org/oagis" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ascc.net/xml/schematron ../../../Utility/Schematron/schematron1-5.xsd">
+	<sch:title>Schematron Validator for OAGI Constraints</sch:title>
+	<sch:ns prefix="oa" uri="http://www.openapplications.org/oagis"/>
+
+	<sch:pattern name="Update InventoryMovement">
+		<sch:rule context="oa:InventoryMovement">
+			<sch:assert test="oa:Header">The Update InventoryMovement must have a Header component specified</sch:assert>
+			<sch:assert test="oa:Line">The Update InventoryMovement must have at least one Line component specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+
+	<sch:pattern name="Update InventoryMovement Header">
+		<sch:rule context="oa:InventoryMovement /oa:Header">
+			<sch:assert test="oa:DocumentId/oa:Id">The  InventoryMovement Header must have a "DocumentId" and an "Id" specified</sch:assert>
+			<sch:assert test="oa:DocumentDateTime">The  InventoryMovement Header must have a "DocumentDateTime" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+
+	<sch:pattern name="Update InventoryMovement Line">
+		<sch:rule context="oa:InventoryMovement /oa:Line">
+			<sch:assert test="Source">The  InventoryMovement Line must have a "Source" component specified</sch:assert>
+			<sch:assert test="Destination">The  InventoryMovement Line must have a "Destination" component specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+
+	<sch:pattern name="Source">
+		<sch:rule context="oa:InventoryMovement /oa:Line/oa:Source">
+			<sch:assert test="oa:Item">The Source component must have an "Item"  specified</sch:assert>
+			<sch:assert test="oa:ItemQuantity">The Source component must have an "ItemQuantity" specified</sch:assert>
+			<sch:assert test="oa:Site">The Source component must have a "Site" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+
+	<sch:pattern name="Destination">
+		<sch:rule context="oa:InventoryMovement /oa:Line/oa:Destination">
+			<sch:assert test="oa:Site">The Destination component must have a "Site" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+</sch:schema>

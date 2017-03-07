@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sch:schema xmlns="http://www.ascc.net/xml/schematron" xmlns:oa="http://www.openapplications.org/oagis" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ascc.net/xml/schematron ../../../Utility/Schematron/schematron1-5.xsd">
+	<sch:title>Schematron Validator for OAGI Constraints</sch:title>
+	<sch:ns prefix="oa" uri="http://www.openapplications.org/oagis"/>
+	<sch:pattern name="Process WIPMerge">
+		<sch:rule context="oa:WIPMerge">
+			<sch:assert test="oa:Header">Process WIPMerge must have a Header component specified</sch:assert>
+			<sch:assert test="oa:Line">Process WIPMerge must have at least one Line component specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Process WIPMerge Header">
+		<sch:rule context="oa:WIPMerge/oa:Header">
+			<sch:assert test="oa:DocumentDateTime">The Process WIPMerge Header must have a "DocumentDateTime" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Process WIPMerge Line">
+		<sch:rule context="oa:WIPMerge/oa:Line">
+			<sch:assert test="oa:Source">The Process WIPMerge Line must have a "Source" component specified</sch:assert>
+			<sch:assert test="oa:Destination">The Process WIPMerge Line must have a "Destination" component specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="WIPMerge Source">
+		<sch:rule context="oa:Source">
+			<sch:assert test="oa:ProductionOrderReference">The WIPMergeSource must have a "ProductionOrderReference" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="WIPMerge Destination">
+		<sch:rule context="oa:Destination">
+			<sch:assert test="oa:ItemQuantity">The WIPMergeDestination must have a "ItemQuantity" specified</sch:assert>
+			<sch:assert test="oa:ProductionOrderReference">Must have a "ProductionOrderReference" component.</sch:assert>
+			<sch:assert test="oa:OperationReference">The WIPMergeDestination must have a "OperationReference" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Operation">
+		<sch:rule context="oa:OperationReference">
+			<sch:assert test="oa:OperationId">An OperationReference must have an "OperationId"  specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Production Order">
+		<sch:rule context="oa:ProductionOrderReference">
+			<sch:assert test="oa:DocumentId/oa:Id">A ProductionOrderReference must have a "DocumentId" and an "Id"  specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+</sch:schema>

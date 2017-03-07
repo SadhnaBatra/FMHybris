@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Verbs/GetList.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="Verb.xsd"/>
+        <xs:complexType name="GetList">
+                <xs:complexContent>
+                        <xs:extension base="RequestVerb">
+                                <xs:attribute name="list" type="xs:string" use="optional" fixed="Always"/>
+                                <xs:attribute name="maxItems" type="xs:positiveInteger" use="optional"/>
+                                <xs:attribute name="rsSave" type="xs:boolean" use="optional"/>
+                                <xs:attribute name="rsStart" type="xs:positiveInteger" use="optional"/>
+                                <xs:attribute name="rsRef" type="xs:string" use="optional"/>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:element name="GetList" type="GetList" substitutionGroup="Verb">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The purpose of the GetList verb is to enable a business software component to request summary information for one or more occurrences of a specific noun from another business software component.
+
+The GetList may be paired with most of the nouns in the OAGIS specification.The response to this request is a BOD using the List verb. The GetList is designed to retrieve multiple occurrences of data such as all of the sales orders or all of the purchase orders within a requested range.  It does not require an exact match of the key fields in order to retrieve information.  It may use a range selection criteria with a "from" and "to" selection capability.  This behavior is quite different from the Get verb, which is designed to retrieve a specific noun using a specific key field.The GetList verb also enables the retrieval of information across several documents by using selection fields.  An example of this could be requesting all sales order lines for a specific item.  This type of functionality is limited to the capabilities of the responding application and needs to be determined during the implementation project.   More details on this capability will be described below. 
+
+GetList attributes:
+o	maxitems attribute is a number that indicates the number of maximum items to be returned.
+o	rssave attribute is a Boolean flag that indicates whether the result set should be saved on the sending system if maxitems is exceeded.
+o	rsstart attribute is a number of the starting record for the next section of the result set. If it is omitted, it is to be assumed the first of the maxitems.
+o	rsref attribute is a string that represents the implementation-specific result set identifier for subsequent requests.
+
+Selection Criteria:
+There are two types of selection capabilities enabled by the BODs that use the GetList verb.
+1)  Field-Based Selection
+
+Allows the requesting system to ask for information that matches the data provided. It also allows the requestor to indicate the information that to be returned by specifying the ReturnCriteria indicated on the GetList Verb.
+
+2) Range Selection
+
+Allows the requesting system to provide a range of values for known data. This is accomplished by providing two occurances of the Noun. The first occurance indicates the "From" the second occurance indicates the "To" occurance. Again the requestor can  indicate the information that to be returned by specifying the ReturnCriteria indicated on the GetList Verb.
+</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+</xs:schema>

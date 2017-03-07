@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/ProductRequirementBase.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Components.xsd"/>
+        <xs:complexType name="ProductRequirementBase">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">This is a base type that is used for any Product Requirement or Availability scenarios</xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                        <xs:extension base="Noun">
+                                <xs:sequence>
+                                        <xs:element name="EffectiveDateTime" type="DateTime" minOccurs="0"/>
+                                        <xs:element ref="Item" minOccurs="0"/>
+                                        <xs:group ref="ItemLotSerialIdentifier" minOccurs="0"/>
+                                        <xs:element name="ItemQuantity" type="Quantity" minOccurs="0"/>
+                                        <xs:element name="RequiredDateTime" type="DateTime" minOccurs="0"/>
+                                        <xs:element name="AvailableDateTime" type="DateTime" minOccurs="0"/>
+                                        <xs:element ref="Business" minOccurs="0"/>
+                                        <xs:element ref="Site" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the location in which the Items are currently located.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="GLEntity" type="GLEntity" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the GLEntity that owns the items now.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="SubstitutionAllowedInd" type="Indicator" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates whether or not the Order Item can be substituted with a similar item.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="ProductLine" type="ProductLine" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">This is a grouping used to represent something that is sold either internally or externally.  It typically is a grouping of ITEMs.
+
+SYNONYMS:
+Commodity
+Product Family
+Kit</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element ref="DocumentReferences" minOccurs="0"/>
+                                        <xs:element ref="Note" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+</xs:schema>

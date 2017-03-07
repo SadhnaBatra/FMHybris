@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: ShowDispatchList.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Resources/Verbs/Show.xsd"/>
+        <xs:include schemaLocation="../Resources/Nouns/DispatchList.xsd"/>
+        <xs:element name="ShowDispatchList" type="ShowDispatchList">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The purpose of the ShowDispatchList is to communicate to a business application module or system the sending systems representation of dispatch list (finite schedule) information.  This request may be used as a response to a GetDispatchList request or as a push notification of an event.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="ShowDispatchList">
+                <xs:complexContent>
+                        <xs:extension base="BusinessObjectDocument">
+                                <xs:sequence>
+                                        <xs:element name="DataArea" type="ShowDispatchListDataArea">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is where the information that the BOD message carries is provided, in this case ShowDispatchList. The information consists of a Verb and one or more Nouns. The verb (Show) indicates the action to be performed on the Noun (DispatchList).</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="ShowDispatchListDataArea">
+                <xs:complexContent>
+                        <xs:extension base="DataArea">
+                                <xs:sequence>
+                                        <xs:element ref="Show"/>
+                                        <xs:element ref="DispatchList" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+</xs:schema>

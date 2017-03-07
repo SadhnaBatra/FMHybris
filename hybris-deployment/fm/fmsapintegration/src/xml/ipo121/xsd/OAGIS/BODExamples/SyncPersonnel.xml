@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group Sample XML Data
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: SyncPersonnel.xml
+-->
+<SyncPersonnel xmlns="http://www.openapplications.org/oagis" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openapplications.org/oagis ../BODs/SyncPersonnel.xsd" revision="8.0" environment="Production" lang="en-US">
+        <ApplicationArea>
+                <Sender>
+                        <LogicalId>String</LogicalId>
+                        <Component>String</Component>
+                        <Task>String</Task>
+                        <ReferenceId>String</ReferenceId>
+                        <Confirmation>0</Confirmation>
+                        <AuthorizationId>String</AuthorizationId>
+                </Sender>
+                <CreationDateTime>2001-12-17T09:30:47-05:00</CreationDateTime>
+                <Signature qualifyingAgency="String"/>
+                <BODId>String</BODId>
+                <UserArea/>
+        </ApplicationArea>
+        <DataArea>
+                <Sync confirm="Always">
+                        <SyncCriteria expressionLanguage="XPath">
+                                <SyncExpression action="Add">String</SyncExpression>
+                        </SyncCriteria>
+                </Sync>
+                <Personnel>
+                        <Employee>
+                                <EmployeeId>String</EmployeeId>
+                                <Person>
+                                        <PersonCode>String</PersonCode>
+                                        <PersonName>
+                                                <Salutation lang="en-us">String</Salutation>
+                                                <GivenName lang="en-us">String</GivenName>
+                                                <PreferredGivenName lang="en-us">String</PreferredGivenName>
+                                                <MiddleName lang="en-us">String</MiddleName>
+                                                <FamilyName lang="en-us">String</FamilyName>
+                                                <Suffix lang="en-us">String</Suffix>
+                                                <FormattedName lang="en-us">String</FormattedName>
+                                                <UserArea/>
+                                        </PersonName>
+                                        <UserArea/>
+                                </Person>
+                                <EmployeeStatus>
+                                        <Code>String</Code>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <Change>
+                                                <From>String</From>
+                                                <To>String</To>
+                                                <ChangeDate>2002-04-05</ChangeDate>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <UserArea/>
+                                        </Change>
+                                        <UserArea/>
+                                </EmployeeStatus>
+                                <Position>String</Position>
+                                <DocumentReferences>
+                                        <PurchaseOrderDocumentReference/>
+                                </DocumentReferences>
+                                <Category>String</Category>
+                                <Qualification>
+                                        <Id>String</Id>
+                                        <SkillCode>String</SkillCode>
+                                        <SkillName lang="en-us">String</SkillName>
+                                        <Competency>String</Competency>
+                                        <LastUsedDate>2002-04-05</LastUsedDate>
+                                        <TrainingDate>2002-04-05</TrainingDate>
+                                        <EffectiveTimePeriod>
+                                                <From>2002-04-05</From>
+                                                <Duration>P1Y2M3DT10H30M</Duration>
+                                        </EffectiveTimePeriod>
+                                        <UserArea/>
+                                </Qualification>
+                                <WageGroup>String</WageGroup>
+                                <WageType>String</WageType>
+                                <Attachments>
+                                        <Attachment inline="false">
+                                                <EmbeddedData encoding="base64">
+                                                        <Data>Text</Data>
+                                                </EmbeddedData>
+                                                <DocumentDate>2002-04-05</DocumentDate>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <FileType>String</FileType>
+                                                <FileSize>3.1415926535897932384626433832795</FileSize>
+                                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                <Title lang="en-us">String</Title>
+                                                <UserArea/>
+                                        </Attachment>
+                                </Attachments>
+                                <UserArea/>
+                        </Employee>
+                        <EffectivePeriod>
+                                <From>2002-04-05</From>
+                                <Duration>P1Y2M3DT10H30M</Duration>
+                        </EffectivePeriod>
+                        <JobCode>String</JobCode>
+                        <OverTimeEligibleInd>1</OverTimeEligibleInd>
+                        <Restriction>String</Restriction>
+                        <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                        <EmployeeAssignment>
+                                <GLEntity>String</GLEntity>
+                                <CostCenter>String</CostCenter>
+                                <Division>String</Division>
+                                <Department>String</Department>
+                                <WorkCenter>String</WorkCenter>
+                                <Site>
+                                        <Name lang="en-us">String</Name>
+                                        <Id>String</Id>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <PostalAddress>
+                                                <AddressId qualifyingAgency="String">String</AddressId>
+                                                <AddressLine>String</AddressLine>
+                                                <City>String</City>
+                                                <County>String</County>
+                                                <StateOrProvince>String</StateOrProvince>
+                                                <Country>String</Country>
+                                                <Region>String</Region>
+                                                <PostalCode>String</PostalCode>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <UserArea/>
+                                        </PostalAddress>
+                                        <GPSCoordinates>
+                                                <GPSSystemType>Text</GPSSystemType>
+                                                <Latitude>Text</Latitude>
+                                                <Longitude>Text</Longitude>
+                                                <UserArea/>
+                                        </GPSCoordinates>
+                                        <LocationRelationship>
+                                                <Binder>String</Binder>
+                                                <Location>
+                                                        <Name lang="en-us">String</Name>
+                                                        <Id>String</Id>
+                                                        <Description lang="en-us" owner="String">String</Description>
+                                                        <PostalAddress>
+                                                                <AddressId qualifyingAgency="String">String</AddressId>
+                                                                <AddressLine>String</AddressLine>
+                                                                <City>String</City>
+                                                                <County>String</County>
+                                                                <StateOrProvince>String</StateOrProvince>
+                                                                <Country>String</Country>
+                                                                <Region>String</Region>
+                                                                <PostalCode>String</PostalCode>
+                                                                <Description lang="en-us" owner="String">String</Description>
+                                                                <UserArea/>
+                                                        </PostalAddress>
+                                                        <GPSCoordinates>
+                                                                <GPSSystemType>Text</GPSSystemType>
+                                                                <Latitude>Text</Latitude>
+                                                                <Longitude>Text</Longitude>
+                                                                <UserArea/>
+                                                        </GPSCoordinates>
+                                                        <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                        <UserArea/>
+                                                </Location>
+                                        </LocationRelationship>
+                                        <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                        <UserArea/>
+                                </Site>
+                                <HROrganization>
+                                        <Id>String</Id>
+                                        <Name lang="en-us">String</Name>
+                                        <UserArea/>
+                                </HROrganization>
+                                <ShiftId>String</ShiftId>
+                                <ScheduleType>String</ScheduleType>
+                                <UserArea/>
+                        </EmployeeAssignment>
+                        <Attachments>
+                                <Attachment inline="false">
+                                        <EmbeddedData encoding="base64">
+                                                <Data>Text</Data>
+                                        </EmbeddedData>
+                                        <DocumentDate>2002-04-05</DocumentDate>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <FileType>String</FileType>
+                                        <FileSize>3.1415926535897932384626433832795</FileSize>
+                                        <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                        <Title lang="en-us">String</Title>
+                                        <UserArea/>
+                                </Attachment>
+                        </Attachments>
+                        <UserArea/>
+                </Personnel>
+        </DataArea>
+</SyncPersonnel>

@@ -1,0 +1,102 @@
+/**
+ * Federal Mogul Hybris Integration
+ *
+ * Key principles:
+ *  - SMACSS approach to organizing styles - https://smacss.com/
+ *  - Idiomatic CSS principles - https://github.com/necolas/idiomatic-css
+ */
+
+@import (reference) "variables.less";
+@import (reference) "mixins.less";
+
+
+/* ==========================================================================
+   Vendor
+   ========================================================================== */
+
+/**
+ * Vendor files override default vendor-specific styles
+ */
+
+@import "vendor/jquery.bt-0.9.5.less";
+@import "vendor/jquery.bxslider.less";
+@import "vendor/jquery.colorbox.less";
+@import "vendor/jquery.treeview.less";
+@import "vendor/jquery.ui.autocomplete.less";
+@import "vendor/jquery.ui.stars.less";
+
+// Legacy
+@import "../css/hybris.cms.live.edit.css";
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+/**
+ * Base rules are the defaults. They are almost exclusively single element
+ * selectors but it could include attribute selectors, pseudo-class
+ * selectors, child selectors or sibling selectors. Essentially, a base
+ * style says that wherever this element is on the page, it should look
+ * like _this_.
+ */
+
+@import "base/fonts";
+@import "base/typography";
+@import "base/block";
+@import "base/forms";
+
+
+/* ==========================================================================
+   Layout
+   ========================================================================== */
+
+/**
+ * Layout rules divide the page into sections. Layouts hold one or
+ * more modules together.
+ */
+
+@import "layout/_layout";
+@import "layout/box-model";
+@import "layout/header-nav";
+@import "layout/homepage";
+@import "layout/page";
+@import "layout/footer-nav";
+
+
+/* ==========================================================================
+   Module
+   ========================================================================== */
+
+/**
+ * Modules are the reusable, modular parts of our design. They are
+ * the callouts, the sidebar sections, the product lists and so on.
+ */
+
+// Temporary, let's hope
+@import "module/shame";
+
+@import "module/account";
+@import "module/alerts";
+@import "module/brand-bar";
+@import "module/brand-pages";
+@import "module/breadcrumbs";
+@import "module/carousel-sliders";
+@import "module/cart-checkout";
+@import "module/hover-cards";
+@import "module/learning-center";
+@import "module/loyalty";
+@import "module/marketing";
+@import "module/modal";
+@import "module/orders";
+@import "module/pagination";
+@import "module/person-cards";
+@import "module/product-detail";
+@import "module/product-filter";
+@import "module/registration";
+@import "module/reviews";
+@import "module/sidebar";
+@import "module/site-search";
+@import "module/surveys";
+@import "module/tabs";
+@import "module/where-to-buy";
+

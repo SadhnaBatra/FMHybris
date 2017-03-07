@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group Sample XML Data
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: SyncItemCrossReference.xml
+-->
+<SyncItemCrossReference xmlns="http://www.openapplications.org/oagis" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openapplications.org/oagis ../BODs/SyncItemCrossReference.xsd" revision="8.0" environment="Production" lang="en-US">
+        <ApplicationArea>
+                <Sender>
+                        <LogicalId>String</LogicalId>
+                        <Component>String</Component>
+                        <Task>String</Task>
+                        <ReferenceId>String</ReferenceId>
+                        <Confirmation>0</Confirmation>
+                        <AuthorizationId>String</AuthorizationId>
+                </Sender>
+                <CreationDateTime>2001-12-17T09:30:47-05:00</CreationDateTime>
+                <Signature qualifyingAgency="String"/>
+                <BODId>String</BODId>
+                <UserArea/>
+        </ApplicationArea>
+        <DataArea>
+                <Sync confirm="Always">
+                        <SyncCriteria expressionLanguage="XPath">
+                                <SyncExpression action="Add">String</SyncExpression>
+                        </SyncCriteria>
+                </Sync>
+                <ItemCrossReference>
+                        <ItemId>String</ItemId>
+                        <Revision>String</Revision>
+                        <Property>
+                                <NameValue name="String" type="String">String</NameValue>
+                                <Description lang="en-us" owner="String">String</Description>
+                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                <UserArea/>
+                        </Property>
+                        <PublisherParty active="false" oneTime="false">
+                                <PartyId>
+                                        <Id>String</Id>
+                                        <SCAC>String</SCAC>
+                                        <DUNS>String</DUNS>
+                                </PartyId>
+                                <Name lang="en-us">String</Name>
+                                <Business>
+                                        <Id>String</Id>
+                                        <Function>String</Function>
+                                        <Name lang="en-us">String</Name>
+                                        <RelatedUnit>
+                                                <Relationship>String</Relationship>
+                                                <Unit>
+                                                        <Id>String</Id>
+                                                        <Function>String</Function>
+                                                        <Name lang="en-us">String</Name>
+                                                        <UserArea/>
+                                                </Unit>
+                                        </RelatedUnit>
+                                        <UserArea/>
+                                </Business>
+                                <Currency>String</Currency>
+                                <Description lang="en-us" owner="String">String</Description>
+                                <GLEntity>String</GLEntity>
+                                <PaymentMethod>Credit Card</PaymentMethod>
+                                <Rating>Good</Rating>
+                                <TaxExemptInd>1</TaxExemptInd>
+                                <TaxId>String</TaxId>
+                                <TermId>String</TermId>
+                                <Addresses>
+                                        <Address>
+                                                <AddressId qualifyingAgency="String">String</AddressId>
+                                                <AddressLine>String</AddressLine>
+                                                <City>String</City>
+                                                <County>String</County>
+                                                <StateOrProvince>String</StateOrProvince>
+                                                <Country>String</Country>
+                                                <Region>String</Region>
+                                                <PostalCode>String</PostalCode>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <Telephone>String</Telephone>
+                                                <FaxNumber>String</FaxNumber>
+                                                <EMailAddress>String</EMailAddress>
+                                                <URI>http://www.xmlspy.com</URI>
+                                                <TaxJurisdiction>String</TaxJurisdiction>
+                                                <UserArea/>
+                                        </Address>
+                                </Addresses>
+                                <Contacts>
+                                        <ContactAbs>
+                                                <Person>
+                                                        <PersonCode>String</PersonCode>
+                                                        <PersonName>
+                                                                <Salutation lang="en-us">String</Salutation>
+                                                                <GivenName lang="en-us">String</GivenName>
+                                                                <PreferredGivenName lang="en-us">String</PreferredGivenName>
+                                                                <MiddleName lang="en-us">String</MiddleName>
+                                                                <FamilyName lang="en-us">String</FamilyName>
+                                                                <Suffix lang="en-us">String</Suffix>
+                                                                <FormattedName lang="en-us">String</FormattedName>
+                                                                <UserArea/>
+                                                        </PersonName>
+                                                        <UserArea/>
+                                                </Person>
+                                                <Telephone>String</Telephone>
+                                                <EMailAddress>String</EMailAddress>
+                                                <Fax>String</Fax>
+                                                <URI>http://www.xmlspy.com</URI>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <Addresses>
+                                                        <Address>
+                                                                <AddressId qualifyingAgency="String">String</AddressId>
+                                                                <AddressLine>String</AddressLine>
+                                                                <City>String</City>
+                                                                <County>String</County>
+                                                                <StateOrProvince>String</StateOrProvince>
+                                                                <Country>String</Country>
+                                                                <Region>String</Region>
+                                                                <PostalCode>String</PostalCode>
+                                                                <Description lang="en-us" owner="String">String</Description>
+                                                                <Telephone>String</Telephone>
+                                                                <FaxNumber>String</FaxNumber>
+                                                                <EMailAddress>String</EMailAddress>
+                                                                <URI>http://www.xmlspy.com</URI>
+                                                                <TaxJurisdiction>String</TaxJurisdiction>
+                                                                <UserArea/>
+                                                        </Address>
+                                                </Addresses>
+                                                <UserArea/>
+                                        </ContactAbs>
+                                </Contacts>
+                                <Attachments>
+                                        <Attachment inline="false">
+                                                <EmbeddedData encoding="base64">
+                                                        <Data>Text</Data>
+                                                </EmbeddedData>
+                                                <DocumentDate>2002-04-05</DocumentDate>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <FileType>String</FileType>
+                                                <FileSize>3.1415926535897932384626433832795</FileSize>
+                                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                <Title lang="en-us">String</Title>
+                                                <UserArea/>
+                                        </Attachment>
+                                </Attachments>
+                                <CorrespondenceLanguage>en-us</CorrespondenceLanguage>
+                                <Qualification>
+                                        <NameValue name="String" type="String">String</NameValue>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                        <UserArea/>
+                                </Qualification>
+                                <UserArea/>
+                        </PublisherParty>
+                        <Site>
+                                <Name lang="en-us">String</Name>
+                                <Id>String</Id>
+                                <Description lang="en-us" owner="String">String</Description>
+                                <PostalAddress>
+                                        <AddressId qualifyingAgency="String">String</AddressId>
+                                        <AddressLine>String</AddressLine>
+                                        <City>String</City>
+                                        <County>String</County>
+                                        <StateOrProvince>String</StateOrProvince>
+                                        <Country>String</Country>
+                                        <Region>String</Region>
+                                        <PostalCode>String</PostalCode>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <UserArea/>
+                                </PostalAddress>
+                                <GPSCoordinates>
+                                        <GPSSystemType>Text</GPSSystemType>
+                                        <Latitude>Text</Latitude>
+                                        <Longitude>Text</Longitude>
+                                        <UserArea/>
+                                </GPSCoordinates>
+                                <LocationRelationship>
+                                        <Binder>String</Binder>
+                                        <Location>
+                                                <Name lang="en-us">String</Name>
+                                                <Id>String</Id>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <PostalAddress>
+                                                        <AddressId qualifyingAgency="String">String</AddressId>
+                                                        <AddressLine>String</AddressLine>
+                                                        <City>String</City>
+                                                        <County>String</County>
+                                                        <StateOrProvince>String</StateOrProvince>
+                                                        <Country>String</Country>
+                                                        <Region>String</Region>
+                                                        <PostalCode>String</PostalCode>
+                                                        <Description lang="en-us" owner="String">String</Description>
+                                                        <UserArea/>
+                                                </PostalAddress>
+                                                <GPSCoordinates>
+                                                        <GPSSystemType>Text</GPSSystemType>
+                                                        <Latitude>Text</Latitude>
+                                                        <Longitude>Text</Longitude>
+                                                        <UserArea/>
+                                                </GPSCoordinates>
+                                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                <UserArea/>
+                                        </Location>
+                                        <UserArea/>
+                                </LocationRelationship>
+                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                <UserArea/>
+                        </Site>
+                        <RelatedItemReference>
+                                <Relationship>String</Relationship>
+                                <RelatedItem>
+                                        <ItemId>
+                                                <Id>String</Id>
+                                                <EANUCC13 url="String">String</EANUCC13>
+                                                <UPC url="String">String</UPC>
+                                                <Revision>String</Revision>
+                                        </ItemId>
+                                        <Site>
+                                                <Name lang="en-us">String</Name>
+                                                <Id>String</Id>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <PostalAddress>
+                                                        <AddressId qualifyingAgency="String">String</AddressId>
+                                                        <AddressLine>String</AddressLine>
+                                                        <City>String</City>
+                                                        <County>String</County>
+                                                        <StateOrProvince>String</StateOrProvince>
+                                                        <Country>String</Country>
+                                                        <Region>String</Region>
+                                                        <PostalCode>String</PostalCode>
+                                                        <Description lang="en-us" owner="String">String</Description>
+                                                        <UserArea/>
+                                                </PostalAddress>
+                                                <GPSCoordinates>
+                                                        <GPSSystemType>Text</GPSSystemType>
+                                                        <Latitude>Text</Latitude>
+                                                        <Longitude>Text</Longitude>
+                                                        <UserArea/>
+                                                </GPSCoordinates>
+                                                <LocationRelationship>
+                                                        <Binder>String</Binder>
+                                                        <Location>
+                                                                <Name lang="en-us">String</Name>
+                                                                <Id>String</Id>
+                                                                <Description lang="en-us" owner="String">String</Description>
+                                                                <PostalAddress>
+                                                                        <AddressId qualifyingAgency="String">String</AddressId>
+                                                                        <AddressLine>String</AddressLine>
+                                                                        <City>String</City>
+                                                                        <County>String</County>
+                                                                        <StateOrProvince>String</StateOrProvince>
+                                                                        <Country>String</Country>
+                                                                        <Region>String</Region>
+                                                                        <PostalCode>String</PostalCode>
+                                                                        <Description lang="en-us" owner="String">String</Description>
+                                                                        <UserArea/>
+                                                                </PostalAddress>
+                                                                <GPSCoordinates>
+                                                                        <GPSSystemType>Text</GPSSystemType>
+                                                                        <Latitude>Text</Latitude>
+                                                                        <Longitude>Text</Longitude>
+                                                                        <UserArea/>
+                                                                </GPSCoordinates>
+                                                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                                <UserArea/>
+                                                        </Location>
+                                                        <UserArea/>
+                                                </LocationRelationship>
+                                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                <UserArea/>
+                                        </Site>
+                                        <Property>
+                                                <NameValue name="String" type="String">String</NameValue>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                <UserArea/>
+                                        </Property>
+                                        <Parties>
+                                                <SupplierParty active="false" oneTime="false">
+                                                        <PartyId>
+                                                                <Id>String</Id>
+                                                                <SCAC>String</SCAC>
+                                                                <DUNS>String</DUNS>
+                                                        </PartyId>
+                                                </SupplierParty>
+                                        </Parties>
+                                        <Preference>String</Preference>
+                                        <UserArea/>
+                                </RelatedItem>
+                                <UserArea/>
+                        </RelatedItemReference>
+                        <AlternateItemIdReference>
+                                <ItemIds>
+                                        <ItemId>
+                                                <Id>String</Id>
+                                                <EANUCC13 url="String">String</EANUCC13>
+                                                <UPC url="String">String</UPC>
+                                                <Revision>String</Revision>
+                                        </ItemId>
+                                </ItemIds>
+                                <Site>
+                                        <Name lang="en-us">String</Name>
+                                        <Id>String</Id>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <PostalAddress>
+                                                <AddressId qualifyingAgency="String">String</AddressId>
+                                                <AddressLine>String</AddressLine>
+                                                <City>String</City>
+                                                <County>String</County>
+                                                <StateOrProvince>String</StateOrProvince>
+                                                <Country>String</Country>
+                                                <Region>String</Region>
+                                                <PostalCode>String</PostalCode>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <UserArea/>
+                                        </PostalAddress>
+                                        <GPSCoordinates>
+                                                <GPSSystemType>Text</GPSSystemType>
+                                                <Latitude>Text</Latitude>
+                                                <Longitude>Text</Longitude>
+                                                <UserArea/>
+                                        </GPSCoordinates>
+                                        <LocationRelationship>
+                                                <Binder>String</Binder>
+                                                <Location>
+                                                        <Name lang="en-us">String</Name>
+                                                        <Id>String</Id>
+                                                        <Description lang="en-us" owner="String">String</Description>
+                                                        <PostalAddress>
+                                                                <AddressId qualifyingAgency="String">String</AddressId>
+                                                                <AddressLine>String</AddressLine>
+                                                                <City>String</City>
+                                                                <County>String</County>
+                                                                <StateOrProvince>String</StateOrProvince>
+                                                                <Country>String</Country>
+                                                                <Region>String</Region>
+                                                                <PostalCode>String</PostalCode>
+                                                                <Description lang="en-us" owner="String">String</Description>
+                                                                <UserArea/>
+                                                        </PostalAddress>
+                                                        <GPSCoordinates>
+                                                                <GPSSystemType>Text</GPSSystemType>
+                                                                <Latitude>Text</Latitude>
+                                                                <Longitude>Text</Longitude>
+                                                                <UserArea/>
+                                                        </GPSCoordinates>
+                                                        <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                        <UserArea/>
+                                                </Location>
+                                                <UserArea/>
+                                        </LocationRelationship>
+                                        <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                        <UserArea/>
+                                </Site>
+                                <UserArea/>
+                        </AlternateItemIdReference>
+                        <UserArea/>
+                </ItemCrossReference>
+        </DataArea>
+</SyncItemCrossReference>

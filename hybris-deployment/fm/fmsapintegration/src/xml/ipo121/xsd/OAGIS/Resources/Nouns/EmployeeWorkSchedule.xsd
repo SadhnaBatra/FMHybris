@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/EmployeeWorkSchedule.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="TimeReporting.xsd"/>
+        <xs:complexType name="EmployeeWorkSchedule">
+                <xs:complexContent>
+                        <xs:extension base="Noun">
+                                <xs:sequence>
+                                        <xs:element name="Id" type="Id" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the WorkSchedule identifier.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="EffectivePeriod" type="TimePeriod" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the effective period of the WorkSchedule.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:group ref="CommonTimeReporting" minOccurs="0"/>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:element name="EmployeeWorkSchedule" type="EmployeeWorkSchedule" substitutionGroup="Noun">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Represents data related to the planned work hours for an employee. A work schedule typically includes relatively static employee information, such as employee ID and name.  It will also include schedule-specific information such as dates and amount of time to be worked.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+</xs:schema>

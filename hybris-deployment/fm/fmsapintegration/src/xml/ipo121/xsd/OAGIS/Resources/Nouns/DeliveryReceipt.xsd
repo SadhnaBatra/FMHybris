@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/DeliveryReceipt.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="SupplyChainExecution.xsd"/>
+        <xs:complexType name="DeliveryReceipt">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">A DeliveryReceipt is a Noun that details the receipt of goods by a customer or consignee destination from a supplier business partner via the services of a transportation provider (carrier).  The DeliveryReceipt Noun has been modeled for use in conjunction with the Shipment Noun when issued by the shipping business partner as an Advance Shipment Notification (see OAGIS BOD ShowShipment for more information).
+
+DeliveryReceipt was designed to support the physical process of receiving of goods from a carrier and is not biased toward receiving against a particular purchase, transfer or sales order reference document.  This feature enables the receiving of goods simultaneously across multiple orders that were consolidated for shipping efficiency. 
+
+The DeliveryReceipt Noun is modeled to extend and accommodate the following existing business object design work:
+-  ANSI X12 EDI #861 Receiving Advice/Acceptance Certificate
+-  ANSI X12 EDI #944 Warehouse Stock Transfer Receipt Advice
+-  RosettaNet Cluster 4, Segment 4B, Notification of Shipment Receipt
+
+Note that the DeliveryReceipt Nooun contains additional structures to record various detail and discrepancy information against the contents of a shipment.   This information is owned by the receiving party, and thus requires a new Business Object Document apart from Shipment to describe the delivery of the shipment from the receiver’s business process point-of-view.</xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                        <xs:extension base="Noun">
+                                <xs:sequence>
+                                        <xs:element ref="Header" minOccurs="0"/>
+                                        <xs:choice minOccurs="0">
+                                                <xs:element ref="ReceiptLine" maxOccurs="unbounded"/>
+                                                <xs:element ref="ReceiptUnit" maxOccurs="unbounded"/>
+                                        </xs:choice>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:element name="DeliveryReceipt" type="DeliveryReceipt" substitutionGroup="Noun">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Represents a transaction for the receiving of goods or services.  It may be used to indicate receipt of goods in conjunction with a purchase order system.</xs:documentation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The DELIVERY document contains CHARGE and DISTRIBUTN elements at various levels to support the assessment of receiving service or compliance penalty charges.  Several large retailers that demand receiving efficiency commonly assess penalty charges for supplier deliveries that are not compliant with the retailer’s policies.  Charges may be incurred for deliveries, ship units or items that contain discrepancies from what was ordered or electronically manifested, for improper labeling of items and ship units and the incorrect packing or loading of ship units.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Header" type="DeliveryReceiptHeader">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Provides general information about the DeliveryReceipt receipt document that is used to receive a specific quantity of material goods from a supplier.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="DeliveryReceiptHeader">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Provides general information about the DeliveryReceipt document that is used to receive a specific quantity of material goods</xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                        <xs:extension base="SCEHeader">
+                                <xs:sequence>
+                                        <xs:element ref="Status" minOccurs="0"/>
+                                        <xs:element ref="Type" minOccurs="0"/>
+                                        <xs:element ref="Disposition" minOccurs="0"/>
+                                        <xs:element name="ReceivedBy" type="UserAccount" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies who signed off on the receipt of the Delivery.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="DockId" type="Id" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the Dock in which the delivery was made.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element ref="Site" minOccurs="0"/>
+                                        <xs:element name="DistributionCenter" type="Location" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the identifier or location in which the shipment was shipped from by the supplier.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element ref="DeliverToContact" minOccurs="0"/>
+                                        <xs:element name="ContainersShippedQuantity" type="Quantity" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Contains the quantity of units or things shipped. This represents the container(s), not the product shipped.  An example of this is “4 truck loads” or “2 wooden crates”.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="ShippedDateTime" type="DateTime" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the date the shipment was shipped.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="ReceivedDateTime" type="DateTime" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Date and Time that the Delivery was Received.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="EffectivePeriod" type="TimePeriod" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the effective time period of the DeliveryReceipt.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="ScheduledDeliveryDateTime" type="DateTime" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the Date and Time in which the delivery was scheduled to occur.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="ActualDeliveryDateTime" type="DateTime" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the date and time that the delivery actually occured.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:group ref="ReceiptIdReferences" minOccurs="0"/>
+                                        <xs:element ref="Parties" minOccurs="0"/>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="ReceiptLine">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">ReceiptLine represents the goods line item detail of the receipt document. THis can be used by itself for traditional receiving against Purchase Orders or other line-item oriented buisness documents, or in conjunction with the ReceiptUnit element to summarize ship unit item detail at line level</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                        <xs:element name="LineNumber" type="LineNumber" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the unique identifier of the ReciptLine.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="ItemIds" minOccurs="0"/>
+                        <xs:element name="PackingMaterial" type="PackingMaterial" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indentifies the Packing Material used to ship this line item.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="OwnershipCode" minOccurs="0"/>
+                        <xs:element name="ImportLicenseRequired" type="Indicator" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Communicates the need for an import license on a good or service. Valid values are '0' for no license required, and '1' for license required.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="HazardousMaterial" minOccurs="0"/>
+                        <xs:element ref="FreightClass" minOccurs="0"/>
+                        <xs:element ref="ItemDisposition" minOccurs="0"/>
+                        <xs:element name="ReceiptQuantity" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the total quantity of item received</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ActualDeliveryDateTime" type="DateTime" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the actual delivery date and time.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ReceiptValue" type="Amounts" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the value of the received line. The acutal provides the transactional amount the converted provides the functional amount in the currency of the organizations general ledger.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="ReceiptDisposition" minOccurs="0"/>
+                        <xs:element ref="CatchWeightQuantity" minOccurs="0"/>
+                        <xs:element ref="CatchWeightConversionFactor" minOccurs="0"/>
+                        <xs:element name="OrderedQuantity" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the number of items ordered.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ShippedQuantity" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the total number of items actually shipped as counted by the receiver.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="PackingQuantity" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">This is the total quantity of ITEM shipped as listed on the packing list(s). It contains the supplier's shipment quantity as indicated by asociated paperwork if no ASN information was transmitted about the delivery</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ReturnedQuantity" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">This is the quantity of the Item for which the customer refused delivery</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="OpenQuantity" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">This is the current unfulfilled order quantity for ITEM</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="NetWeight" minOccurs="0"/>
+                        <xs:element name="BackOrderedQuantity" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the number of Items on back order.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="Lot" minOccurs="0"/>
+                        <xs:element ref="Site" minOccurs="0"/>
+                        <xs:element name="OriginationCountry" type="Country" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the country of origin for thie Item.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="ReceiptDiscrepancy" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="InventoryDetail" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="Charges" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="DocumentReferences" minOccurs="0"/>
+                        <xs:element ref="Attachments" minOccurs="0"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="ReceiptDiscrepancy">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">This identifies discrepancy information for the receipt</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                        <xs:element name="Type" type="Type" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">This is an exception classification that codifies the general problem encountered during a business process, such as receiving goods</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ReasonCode" type="Code" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the reason for the discrepancy.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ItemQuantity" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">If the discrepancy applies to specific quantities of the item, then the quantity can be specified. If no quantity is specified, the discrepancy applies to the inventory occurence as a whole</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="Note" type="Note" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="ReceiptItem">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Provides information about a specific quantity of goods inventory contained within a shipping unit. RECEIPTITM is used to provide a detailed breakdown of RECEIPTLN inventory for inventory discrepancies or compliance charges for a particular shipping unit</xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                        <xs:extension base="SCEItem">
+                                <xs:sequence>
+                                        <xs:element name="PackingSlipQuantity" type="Quantity" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">This is the quantity that is shown on the Packing Slip when goods are received from a supplier. THis information is obtained from the supplier's Advance Ship Notice (ASN) or manually entered on receipt</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="ReceivedQuantity" type="Quantity" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the quantity of items received as counted by receiving.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element ref="ReceiptDiscrepancy" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element ref="InventoryDetail" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="ReceiptUnit">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Provides information that identifies and describes a particular shipping unit being received.  This information usually directly references a SHIPUNIT on an OAGIS SHIPMENT BOD or other shipping   document.  May also be used to provide context to adequately detail inventory discrepancies or compliance charges for a particular shipping unit</xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                        <xs:extension base="SCEUnit">
+                                <xs:sequence>
+                                        <xs:element name="DeclaredValueAmount" type="Amount" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the declared monetary value of the contents of a shipping unit or a delivery for insurance purposes.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="ActualDeliveryDateTime" type="DateTime" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">The Datetime of receipt of the shipment</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="ScheduledDeliveryDateTime" type="DateTime" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">The Date on which the delivery was scheduled to be received</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="ImportLicenseRequired" type="Indicator" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Communicates the need for an import license on a good or service. Valid values are '0' for no license required, and '1' for license required.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element ref="Parties" minOccurs="0"/>
+                                        <xs:element ref="ReceiptDiscrepancy" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element ref="ReceiptItem" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:element name="ReceiptLine">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Provides general information about the item inventory being delivered, including the requested and actual quantities.  This information usually directly references a line item or shipment schedule line on a sales order, purchase order or other inventory transfer document.  </xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                        <xs:complexContent>
+                                <xs:extension base="ReceiptLine"/>
+                        </xs:complexContent>
+                </xs:complexType>
+        </xs:element>
+        <xs:element name="ReceiptDiscrepancy" type="ReceiptDiscrepancy">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Provides receiving discrepancy information for the DeliveryReceipt header as a whole, for a particular ReceiptLine, for the receipt of a shipping unit as a whole  ReceiptLine, or to a particular item within the shipping unit (ReceiptUnit).</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="ReceiptItem">
+                <xs:complexType>
+                        <xs:complexContent>
+                                <xs:extension base="ReceiptItem"/>
+                        </xs:complexContent>
+                </xs:complexType>
+        </xs:element>
+        <xs:element name="ReceiptUnit" type="ReceiptUnit"/>
+        <xs:element name="ReceiptDisposition" type="Disposition"/>
+        <xs:element name="ItemDisposition" type="Disposition">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the disposition of the Item being received.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+</xs:schema>

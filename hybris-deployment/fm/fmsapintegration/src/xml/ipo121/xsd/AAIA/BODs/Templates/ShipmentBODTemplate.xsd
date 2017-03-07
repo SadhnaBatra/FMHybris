@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Automotive Aftermarket Industry Association (AAIA)
+	http://www.aftermarket.org
+	Internet Parts Ordering (IPO) Release 1.2.1,  March 1, 2005
+	Business Object Document (BOD)
+	
+	Missing Overlay for: 
+	Open Applications Group (http://www.openapplications.org)
+	OAGIS Release 8.0, 	April 05, 2002
+	
+	Name:		ShipmentBODTemplate.xsd
+	Comments:  This BOD was created because OAGIS did not supply one.
+-->
+<xs:schema targetNamespace="http://www.openapplications.org/oagis" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<!--
+	This is an AAIA version of what would be an OAGIS document.  
+	This BOD is not included with OAGIS 8.0
+-->
+	<xs:include schemaLocation="../../../OAGIS/Resources/Verbs/Get.xsd"/>
+	<xs:include schemaLocation="../../../OAGIS/Resources/Nouns/Shipment.xsd"/>
+	<xs:element name="GetShipment" type="GetShipment"/>
+	<xs:complexType name="GetShipment">
+		<xs:complexContent>
+			<xs:extension base="BusinessObjectDocument">
+				<xs:sequence>
+					<xs:element name="DataArea" type="GetShipmentDataArea">
+                                        </xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="GetShipmentDataArea">
+		<xs:complexContent>
+			<xs:extension base="DataArea">
+				<xs:sequence>
+					<xs:element ref="Get"/>
+					<xs:element ref="Shipment" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sch:schema xmlns="http://www.ascc.net/xml/schematron" xmlns:oa="http://www.openapplications.org/oagis" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ascc.net/xml/schematron ../../../Utility/Schematron/schematron1-5.xsd">
+	<sch:title>Schematron Validator for OAGI Constraints</sch:title>
+	<sch:ns prefix="oa" uri="http://www.openapplications.org/oagis"/>
+
+	<sch:pattern name="Update InventoryIssue">
+		<sch:rule context="oa:InventoryIssue">
+			<sch:assert test="oa:Header">The Update InventoryIssuemust have a Header component specified</sch:assert>
+			<sch:assert test="oa:Line">The Update InventoryIssue must have at least one Line component specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+
+	<sch:pattern name="Update InventoryIssue Header">
+		<sch:rule context="oa:InventoryMovement /oa:Header">
+			<sch:assert test="oa:DocumentReferences">The  InventoryIssue Header must have a "DocumentReferences" specified</sch:assert>
+			<sch:assert test="oa:DocumentDateTime">The  InventoryIssue Header must have a "DocumentDateTime" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+		
+	<sch:pattern name="Update InventoryIssue Line">
+		<sch:rule context="oa:InventoryIssue /oa:Line">
+			<sch:assert test="oa:ItemQuantity">The  Update InventoryIssue Line must have an "ItemQuantity" specified</sch:assert>
+			<sch:assert test="oa:Item">The Update  InventoryIssue Line must have an "Item"  specified</sch:assert>
+			<sch:assert test="oa:Site">The Update InventoryIssue Line must have a "Site" specified</sch:assert>
+			<sch:assert test="oa:Site">The Update InventoryIssue Line must have a "ReasonCode" specified</sch:assert>
+
+		</sch:rule>
+	</sch:pattern>
+</sch:schema>

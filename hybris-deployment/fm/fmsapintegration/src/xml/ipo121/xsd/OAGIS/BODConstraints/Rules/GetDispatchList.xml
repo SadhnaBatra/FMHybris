@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sch:schema xmlns="http://www.ascc.net/xml/schematron" xmlns:oa="http://www.openapplications.org/oagis" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ascc.net/xml/schematron ../../../Utility/Schematron/schematron1-5.xsd">
+	<sch:title>Schematron Validator for OAGI Constraints</sch:title>
+	<sch:ns prefix="oa" uri="http://www.openapplications.org/oagis"/>
+	<sch:pattern name="Noun Level">
+		<sch:rule context="oa:DispatchList">
+			<sch:assert test="oa:Header">Must have a Header component.</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Header Level">
+		<sch:rule context="oa:Header">
+			<sch:assert test="oa:Id">Must have a Identifier</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Line Level">
+		<sch:rule context="oa:Line">
+			<sch:assert test="oa:LineNumber">Must have a Line Number</sch:assert>
+			<sch:assert test="oa:OperationReference">Must have a reference to an Operation.</sch:assert>
+			<sch:assert test="oa:ProductionOrderReference">Must have a reference to a ProductionOrderReference</sch:assert>
+			<sch:assert test="oa:ItemQuantity">Must have an ItemQuantity</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+</sch:schema>

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/PlanningSchedule.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="ShipmentPlanningSchedule.xsd"/>
+        <xs:complexType name="PlanningSchedule">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates a demand forecast sent from a customer to a supplier, or a supply schedule sent from a supplier to a customer.
+Since collaboration between a customer and a supplier can potentially go through several rounds of negotiations, both parties can use the same BOD to communicate their current demand or supply schedule in response to what they received from the other party.  Either party can indicate detailed exception descriptions along with reason code and action code to the other party why the original demand/supply requirements need to be adjusted using the optional Data Type PlanScheduleLineException.
+The purpose of the PlanningSchedule is to communicate requirement information (part number, quantity, etc.) between a customer and their supplier on a regular basis, for example daily, weekly etc, or for a user-defined time bucket type definition (Data Type PlanningScheduleFlexigleBucket) that is sent as part of this PlanningSchedule.</xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                        <xs:extension base="Noun">
+                                <xs:sequence>
+                                        <xs:element ref="Header" minOccurs="0"/>
+                                        <xs:element ref="Line" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element ref="Bucket" minOccurs="0" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="PlanningScheduleHeader">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Information that applies to the entire planning schedule.</xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                        <xs:extension base="ShipmentPlanningScheduleHeader">
+                                <xs:sequence>
+                                        <xs:element ref="Bucket" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="PlanningScheduleLine">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Represents the detail lines of the PlanningSchedule. It includes the demand/supply requirement with quantity, price and descriptive information. The requirement must be identified by one of the following levels: item, commodity code, or functional specifications. Attachment intended for Drawing. DocumentReferences intended to include PuchaseOrder and SalesOrder, Explicit RespondingScheduleReference used.</xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                        <xs:extension base="ShipmentPlanningScheduleLine">
+                                <xs:sequence>
+                                        <xs:element name="MaximumQuantity" type="Quantity" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">The customer’s actual requested amount of the item to be shipped.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="MinimumQuantity" type="Quantity" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">The customer’s actual requested amount of the item to be shipped.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element ref="FeatureValue" minOccurs="0"/>
+                                        <xs:element ref="Detail" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element ref="Exception" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="PlanningScheduleDetail">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Detailed requirement information regarding the demand/supply schedule for the line item. It represents the additional details concerning the demand requirement or supply response on the Line. ScheduleDetail can be used to describe different quantity of the required item over various time periods as indicated by the specific time bucket type with various EffectivePeriods or quantity of the required item periodically for a specific time bucket type with an Effective period.</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                        <xs:element name="LineNumber" type="LineNumber" minOccurs="0"/>
+                        <xs:element name="EffectivePeriod" type="TimePeriodAny" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">The effective dates for the schedule represents the schedule horizon dates and times . This is derived based on demand contained within the schedule if not specified. This can be a date or a time depending on the granularity of the manufacturing process.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ItemQuantity" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">The customer’s actual requested amount of the item to be shipped.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="MaximumQuantity" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">The customer’s actual requested amount of the item to be shipped.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="MinimumQuantity" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">The customer’s actual requested amount of the item to be shipped.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="PriorQuantity" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the quantity recieved.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Authorization" type="AuthorizationId" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Represents a list of codes that specify status values for the acknowledgment.
+Valid codes are:
+- Purchase Release
+- Manufacturing Release
+- Shipment Release</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Priority" type="Priority" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Priority of a document, task, or activity. Could be used for production orders, sales orders, purchase orders, etc.
+When used within the context of Schedules, priorities specify the urgency of the demand schedule, the higher the number the lower the priority.
+Examples of values for this field include:
+1, 2, 3
+or
+Highest Priority, Lower, Least.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="PlanningLineNumber" type="LineNumber" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the line number for a schedule detail within a plan schedule. This is used for communicating validation error, and for reference in a responding plan schedule.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="RespondingLineNumber" type="LineNumber" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the schedule LineNumber of a previously received schedule document that this newly created schedule line is responding to as a reference.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="Exception" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="BucketName" type="BucketName" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies a bucket defined above for the type of buckets the plan has requested. Examples of values for this field include Days, Weeks (Starting Monday for 5 Days), Calendar Months, Lunar Months (Starting Jan 1st 28 Days per period, Balance on Last Period), Quarters (Starting Jan 1st. 3 Calendar Months Each.) or some other user defined and named value.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="FlexibleBucket">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">This Data Type is used to communicate a flexible bucket definition. The value of Identifier can be taken from predefined values such as Day, Week, etc. or it can hold a user defined identifier with a specific time period. In any case the actual time period and Identifier must be used.</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                        <xs:element name="TimePeriod" type="TimePeriodAny" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">An explicit period of time for the bucket.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="BucketName" type="BucketName" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">The identifying name for the bucket.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:element name="PlanningSchedule" type="PlanningSchedule" substitutionGroup="Noun">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates a demand forecast sent from a customer to a supplier, or a supply schedule sent from a supplier to a customer.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Header" type="PlanningScheduleHeader">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Header level information for the schedule.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Line" type="PlanningScheduleLine">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Line level information for the schedule.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Detail" type="PlanningScheduleDetail">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Additional detail for each line item.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Exception" type="ShipmentPlanningScheduleException">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Exception detail for Detail or Lline information.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Bucket" type="FlexibleBucket">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">All time bucket definitions used within the schedule.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+</xs:schema>

@@ -1,0 +1,1954 @@
+/* ==========================
+    Shopping Cart & Checkout
+============================= */
+.addCart {
+    margin-left: 74px;
+    margin-top: 4px;
+}
+.shoppingCartHead h2, .shoppingCartBold{ 
+    display:inline;
+}
+
+.shoppingCartsubHead{
+    margin-top: 5px;
+    margin-top: 0.5rem;
+    h4{
+        margin-bottom: 0;
+    }
+    span{
+        font-size:14px;
+        font-size:1.4rem;
+    }
+}
+
+.shoppingCartsubHeadMargin{
+    margin-left: 20px;
+    margin-left: 2.0rem;
+}
+    
+.shoppingCartHeading{
+    margin-bottom: 30px;
+    margin-bottom: 3.0rem;
+    margin-top: 25px;
+    margin-top: 2.5rem;
+} 
+
+.shoppingCartHead{
+    padding-left: 0px 22px;
+    padding-left: 0rem 2.2rem;
+
+    .userTable>table>thead>tr>th {
+        font-weight:bold;
+        text-transform:uppercase;
+        vertical-align:middle;
+    }
+}
+
+.shoppingCartHead .userTable > table > tbody > tr > td,
+.prodList .userTable > table > tbody > tr > td{
+    vertical-align: top;
+    font-size:14px;
+    font-size:1.4rem;
+}
+.shoppingCartHead .list-group {
+    margin-bottom: 0;
+}
+
+.shoppingCartSubPanel{
+    margin-top: 14px;
+    margin-top: 1.4rem;
+    background: none repeat scroll 0 0 @grey-lighter;
+    border-radius: 4px;
+    border-radius: 0.4rem;
+    padding:9px; 
+    padding:0.9rem;
+    width:auto
+}
+.shoppingCartSubPanel.shoppingCartInfo{
+    background: none repeat scroll 0 0 #d5ebd2;
+}
+.shoppingCartSubPanelLast{
+    background: none repeat scroll 0 0 #ffdbdb;
+    border-radius: 4px;
+    border-radius: 0.4rem;
+    margin-top: 14px;
+    margin-top: 1.4rem;
+    padding: 10px;
+    padding: 1.0rem;
+}
+
+.shoppingCartSubPanelmiddle{
+    background-color:transparent;
+}
+.shoppingCartID,
+.shoppingCartHeading .zipcode,
+.shoppingCartRate, .shoppingSubTotal{
+    font-size:18px;
+    font-size:1.8rem;
+}
+.shoppingCartRate {
+    font-weight:bold;
+}
+.shoppingCartTotal{
+    font-size:24px;
+    font-size:2.4rem;
+    font-weight:bold;
+}
+
+.shoppingCartCheckOut{
+    margin-left: 22px;
+    margin-left: 2.2rem;
+}
+
+.shoppingCartFotter{
+    margin: 30px 0px;
+    margin: 3.0rem 0rem;
+}
+
+.shoppingCartSubTotal{
+    padding-right: 47px;
+    padding-right: 4.7rem;
+}
+.subtotal{
+    border-bottom: 1px solid #e2e2e2;
+    border-bottom: 0.1rem solid #e2e2e2;
+    border-top: 0 none;
+    font-size: 12px;
+    font-size: 1.2rem;
+    padding-bottom: 16px;
+    padding-bottom: 1.6rem;
+    padding-top: 16px;
+    padding-top: 1.6rem;
+    vertical-align: middle;
+}
+
+.shoppingCartFaSCart{
+    padding-right: 15px;
+    padding-right: 1.5rem;
+}
+
+.priceColumn{margin-top:50%; text-align:center}
+.shoppingCartQuantityLink{  
+    font-size:14px;
+    font-size:1.4rem;
+}
+.shoppingCartQuantityLink .addNewAddLink {
+    font-weight:bold;
+    line-height: 18px; 
+    line-height: 1.8rem;
+}
+
+.shopCartQty .form-control{
+    display:inline;
+}
+.shoppingCartDisplay{
+    display:block;
+    line-height: 14px;
+    line-height: 1.4rem;
+}
+
+.ShoppingCartInfo {
+    color: @red;
+    padding-top: 6px;
+    padding-top: 0.6rem;
+    width: 6%;
+}
+
+.productDetailPage .shoppingCartHead .billingShippingPopUpB2B tr{border-top:none;}
+.productDetailPage .shoppingCartHead .billingShippingPopUpB2B .form-group {margin-bottom:0;}
+
+.productDetailPage .shoppingCartHead th{
+    
+}
+
+.priceColumn .width58{
+    margin-bottom:10px;
+    margin-bottom:1rem;
+}
+
+.additionalFitCriteria{padding:15px; padding:1.5rem; background:@grey-lighter; border-radius:4px; border-radius:4px; border-radius:0.4rem;}
+.shoppingCartCheck {color:#55b842;}
+.shoppingCartNotes, .shoppingCartNotes .shoppingCartInfo, .shoppingCartNotes a {color:@white;}
+.shoppingCartNotes .shoppingCartInfo{font-size:24px;font-size:2.4rem; width:10%;}
+
+
+.findPopupLocation .userTable > table > tbody > tr > td {
+    font-size: 14px; font-size: 1.4rem;
+    vertical-align: top;
+}
+.findPopupLocation .modal-header{
+     border-bottom: none;
+}
+.findPopupLocation .modal-content {
+     border-radius:0
+}
+
+input[type='checkbox'].customerPickup {
+    width: 20px;
+    height: 20px;
+    vertical-align: bottom;
+    margin-right: 5px; 
+}
+
+@media screen and (max-width: @bp_mobile_max) { 
+  .shoppingCartHead .table-responsive{border:none;}
+  .shoppingCartHead .userTable > table > tbody > tr > td:nth-child(1),.shoppingCartHead .userTable > table > tbody > tr > td:nth-child(2),.shoppingCartHead .userTable > table > tbody > tr > td:nth-child(3){float:left;}
+  .shoppingCartHead .userTable > table > tbody > tr > td:nth-child(3){border-bottom: 1px solid @grey-light;border-bottom: 0.1rem solid @grey-light;}
+  .shoppingCartHead .userTable > table > tbody > tr > td {border:none;}
+  .shoppingCartHead .userTable > table > tbody > tr > td:last-child {border-bottom: 1px solid @grey-light;border-bottom: 0.1rem solid @grey-light;}
+  .shoppingCartsubHead, .shoppingCartSubPanel, .shoppingCartSubPanelLast{margin-left: 18px;margin-left: 1.8rem;white-space: normal;}
+  .shoppingCartHeading h2,.shoppingSubTotal, .shoppingCartTotal{font-size:16px;font-size:1.6rem;}
+  .shoppingCartID, .shipToInfo{font-size:12px;font-size:1.2rem;}
+  .shoppingCartCheckOut{margin-left:0;}
+  .offsetXs {margin-left: 32%;}
+  .shoppingCartDelete{padding-top:8px;padding-top:0.8rem;padding-bottom:8px;padding-bottom:0.8rem;}
+  .shoppingCartHead{padding-bottom:15px;padding-bottom:1.5rem;}
+
+  .shoppingCartHeading h2,.shoppingSubTotal, .shoppingCartTotal{font-size:16px;font-size:1.6rem;}
+  .shoppingCartXs{padding:0;}
+  .shoppingCartHead a{text-decoration:none;}
+}
+.billingShippingPopUpB2B  .manageUserPanel  .addressBookFillDetailsPanelFirst .table-responsive .shoppingCartCheckOut {padding-top:0.6rem;padding-bottom:0.4rem;padding-top:6px;padding-bottom:4px;}
+
+.checkoutB2bSmall .panel-frm .panel-body ,.shipmentMethodB2C .panel-frm .panel-body, .reviewPlaceOrderB2C .panel-frm .panel-body, .confirmationB2C .panel-frm .panel-body{padding: 0 15px 0 0;padding:0 1.5rem 0 0;}
+.reviewPlaceOrderB2C .panel-frm .panel-body.rgtPad_0, .confirmationB2C .panel-frm .panel-body.rgtPad_0{padding:0;}
+/*
+
+    Cart Modal
+*****************/
+.cart_popup .title {
+    overflow: hidden;
+}
+
+.cart_popup dl dt {
+    min-width: inherit;
+}
+
+.cart_popup .title h3 {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+.cart_popup .title a.close {
+    display: block;
+    float: right;
+    margin: 0;
+    padding: 0;
+}
+
+.cart_popup .cart_modal_popup {
+    overflow: hidden;
+}
+
+.cart_popup .legend a {
+    display: inline-block;
+    margin-left: 10px;
+    text-decoration: underline;
+}
+
+.cart_popup .cart_modal_popup .prod_image {
+    min-height: 0;
+    float: left;
+}
+
+.cart_popup .cart_modal_popup .prod_info {
+    float: left;
+    padding-left: 10px;
+    width: 200px;
+    position: relative;
+}
+
+.cart_popup .cart_modal_popup .prod_info .prod_price {
+    position: absolute;
+    top: 0;
+    right: -60px;
+    font-weight: bold;
+}
+
+.cart_popup .prod_cart-total {
+    margin: 10px;
+    font-weight: bold;
+}
+
+.cart_popup span.prod_color {
+    display: block;
+    margin-top: 3px;
+}
+
+.cart_popup span.prod_color img {
+    margin-left: 4px;
+    vertical-align: middle;
+}
+
+.cart_popup span.prod_size {
+    display: block;
+}
+
+.cart_popup .cart_modal_popup .prod_info p {
+    margin-bottom: 5px;
+}
+
+.cart_popup .cart_modal_popup .prod_info dl {
+    margin-bottom: 5px;
+}
+
+.cart_popup .cart_modal_popup .prod_info dl dt {
+    float: left;
+    width: 60px;
+}
+
+.cart_popup .links button {
+    font-size: 1em;
+    width: 143px;
+}
+
+.cart_popup .links button img {
+    height: 12px;
+}
+
+.cart_popup .content_slot {
+    height: 45px;
+    margin: 20px 15px 0 15px;
+    overflow: hidden;
+}
+
+#cart_popup {
+    display: none;
+    position: fixed;
+    left: 50%;
+    margin-left: 93px;
+    top: 77px;
+    z-index: 2147483647;
+}
+
+#cart_content {
+    cursor: pointer;
+}
+
+#rollover_cart_popup {
+    /*display:none;*/
+    position: absolute;
+    left: 650px;
+    top: 75px;
+    z-index: 2147483647;
+}
+
+.cart_popup_error_msg {
+    line-height: 1.5em;
+    color: #FFFFFF;
+    margin-bottom: 5px;
+    font-weight: bold
+}
+
+/********** B2B section *****************/
+
+.cartInfo{
+    padding-left: 0;
+     padding-right:0;
+}
+.cartInfo h2{
+}
+
+.cartInfo .reviewPlaceOrderFirstPanel label{
+     font-size:1.4rem; font-size:14px;
+    }
+    
+.cartInfo .userTable > table > thead > tr > th, .cartInfo .reviewPlaceOrderFirstPanel p{
+    font-size:14px; font-size:1.4rem;
+
+}
+.cartInfo .reviewPlaceOrderFirstPanel .reviewPlaceOrderTableTwo p,  .cartInfo .userTable > table > thead > tr > th{
+    font-size:14px; font-size:1.4rem;
+}
+
+.changeShipTo input, .changeShipTo input:focus {
+    border: 1px solid @grey-light;
+    border: 0.1rem solid @grey-light;
+    border-right: 0 none;
+    box-shadow: none;
+}
+.changeShipTo .btn, .changeShipTo .btn:hover {
+    background: none;
+    border-color: @grey-light;
+    border-left: 0 none;
+}
+.cartInfo .subTitle,
+.reviewPlaceOrderB2C  .subTitle,
+.confirmationB2C .subTitle {
+    background: @grey-lighter;
+    font-weight:bold;
+    padding:8px 8px 8px 10px;
+    padding:0.8rem 0.8rem 0.8rem 1rem;
+    min-height: 36px;
+    min-height: 3.6rem;
+    margin-bottom:20px;
+    margin-bottom:2rem;
+}
+
+/*
+
+    Cart Page
+*****************/
+.cart_total {
+    float: right;
+    padding-right: 20px;
+}
+
+#your_cart dl dt {
+    min-width: 50px;
+}
+
+#your_cart .quantity img {
+    float: right;
+    margin: 0;
+}
+
+/* readded lost styles from rev 1428 */
+#your_cart .quantity input[type="image"] {
+    float: right;
+    margin: 0;
+}
+
+/* readded lost styles from rev 1428 */
+#your_cart .quantity input.qty {
+    margin-right: 10px;
+}
+
+#your_cart p {
+    float: left;
+    margin-right: 30px;
+    margin-right: 20px;
+    padding-left: 12px;
+}
+
+#your_cart .product_image {
+}
+
+#your_cart .product_details {
+    border-left: 0 none;
+    width: 205px;
+}
+
+ul.cart-promotions {
+    clear:both;
+    margin-top:10px;
+    width: 100%;
+}
+
+ul.cart-promotions li {
+    line-height: 1.2em;
+    margin-bottom: 6px;
+}
+
+.cart-promotions-potential {
+    padding-bottom: 6px;
+    border-bottom: 1px solid #eee;
+}
+
+.cart_id {
+    font-weight: normal;
+    font-size: 100%;
+    margin-bottom: -23px;
+    display: block;
+}
+
+/*
+    Checkout Summary Flow
+*****************/
+.checkout_summary_flow {
+    position: relative;
+}
+
+.checkout_summary_flow .item_container_holder .title_holder h2 span {
+    position: absolute;
+}
+
+.checkout_summary_flow_b button.form {
+    position: absolute;
+}
+
+.checkout_summary_flow_b {
+    position: absolute;
+}
+
+.checkout_summary_flow form dl dt {
+    float: none;
+    min-width: 130px;
+}
+
+.place-order:disabled {
+    cursor: default;
+    opacity: 0.6;
+}
+
+/*
+    Payment Details Page and Modal
+*****************/
+#payment_details,
+#payment_details_modal {
+    margin-top: 20px;
+}
+
+#payment_details th,
+#payment_details_modal th {
+    padding: 10px;
+}
+
+
+
+#delivery_modes_dl dt.left label {
+    line-height: 1.2em;
+    float: left;
+    width: 640px;
+}
+
+#delivery_modes_dl dt.left {
+    margin-bottom: 3px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #ddd;
+}
+
+.deliverymode-description {
+    max-height: 96px;
+    overflow: hidden;
+    cursor: help;
+    line-height: 1.2em;
+    font-size: 0.95em;
+}
+
+.payment_method {
+    overflow: hidden;
+}
+/*CSS for partial payment count*/
+.partialShipment .userTable > table > tbody > tr >td{border: none}
+.partialShipment .userTable > table > tbody > tr{ padding-top:16px; padding-top:1.6rem; padding-bottom:16px; padding-bottom: 1.6rem; 
+border-top: 0; border-bottom: 1px solid #e2e2e2;}
+
+
+/**************************************Review Place Order******************************************/
+
+.reviewPlaceOrderImgPanel, .ConfirmationImgPanel{
+    margin-top:10px;
+    margin-top:1.0rem;
+}
+
+.reviewPlaceOrderImg, .ConfirmationImg{
+    margin-right:24px;
+    margin-right:2.4rem;
+}
+
+.reviewPlaceOrderFirstPanel .reviewPlaceOrderTableTwo{
+     border-top: @grey-light solid 1px;
+     border-top: @grey-light solid 0.1rem;
+}
+
+.ConfirmationFirstPanel .ConfirmationTableTwo{
+     border-bottom: @grey-light solid 1px;
+     border-bottom: @grey-light solid 0.1rem;
+}
+.fm_fnt_Blue{
+    color:@blue;
+}
+
+.reviewOrderNestedTable tr, .reviewOrderNestedTable th, .reviewOrderNestedTable td{
+     border: @grey-light solid 1px;
+     border: @grey-light solid 0.1rem;
+     padding:6px 10px;
+     padding:0.6rem 1.0rem;
+}
+
+.reviewOrderNestedTable .fa-2x {font-size:14px;font-size:1.4rem;}
+
+.reviewOrderNestedTable th, .ConfirmationNestedTable th{
+     background-color:@grey-table-light;
+}
+
+.reviewPlaceOrderB2B .userTable > table > tbody > tr > td, .reviewPlaceOrderB2C .userTable > table > tbody > tr > td, .confirmationB2C .userTable > table > tbody > tr > td, .ConfirmationB2B .userTable > table > tbody > tr > td{
+    vertical-align: top;
+}
+
+.reviewPlaceOrderB2C .reviewPlaceOrderFirstPanel .reviewPlaceOrderTableTwo td, 
+.confirmationB2C  .reviewPlaceOrderFirstPanel .reviewPlaceOrderTableTwo td{
+    border-bottom:none;
+}
+.reviewPlaceOrderB2B h2, .reviewPlaceOrderBold, .reviewPlaceOrderB2C h2, .ConfirmationB2B h2, .ConfirmationBold, .confirmationB2C h2, .reviewPlaceOrderB2C  .subTitle, .confirmationB2C .subTitle{
+    
+}
+
+
+.reviewPlaceOrderB2B h2, .reviewPlaceOrderB2C h2{
+    margin-top: 53px;
+    margin-top: 5.3rem;
+}
+.confirmationB2C h2{
+    margin-top: 3px;
+    margin-top: 0.3rem;
+}
+.reviewPlaceOrderB2B h4 {margin:0}
+.reviewPlaceOrderMargin {
+    margin-bottom:10px;
+    margin-bottom:1.0rem;
+}
+.reviewPlaceOrderB2C, .confirmationB2C {
+    padding-left: 6px;
+     padding-right: 6px;
+    padding-left: 0.6rem;
+     padding-right: 0.6rem;
+}
+
+.reviewFirstPanelMargin,
+.confirmationB2C{
+    margin-bottom:20px;
+    margin-bottom:2.0rem;
+}
+.shipToForm .reviewFirstPanelMargin,
+.soldToForm  .reviewFirstPanelMargin {
+    margin-bottom:16px;
+    margin-bottom:1.6rem;
+}
+.shipToForm .form-group ,
+.soldToForm  .form-group  {
+    margin-bottom:10px;
+    margin-bottom:1rem;
+}
+.reviewPlaceOrderFirstPanel{
+    padding-top:15px;
+    padding-top:1.5rem;
+    padding-left:15px;
+    padding-left:1.5rem;
+    padding-right:15px;
+    padding-right:1.5rem;
+}
+
+.reviewPlaceOrderBtn{
+    margin-bottom: 22px;
+    margin-bottom: 2.2rem;
+    margin-right: 0;
+    margin-top: 35px;
+    margin-top: 3.5rem;
+
+}
+
+.reviewPlaceOrderB2B .userTable > table > thead > tr > th, .reviewPlaceOrderB2B .reviewPlaceOrderFirstPanel p, .reviewPlaceOrderB2C .userTable > table > thead > tr > th, .reviewPlaceOrderB2C .reviewPlaceOrderFirstPanel p{
+    font-size:14px; font-size:1.4rem;
+}
+
+.reviewPlaceOrderFirstPanel p.shoppingCartTotal{
+    font-size:24px;
+    font-size:2.4rem;
+}
+.reviewPlaceOrderImgPanel strong{
+    font-size:16px; font-size:1.6rem;
+}
+
+.reviewPlaceOrderTableTwo p{
+    
+}
+
+
+.reviewNestedTableFooter{
+    background-color: #e7ecf4;
+    
+    font-size:14px; font-size:1.4rem;
+}
+
+.reviewTAbleTwoTotal{
+    font-size:20px;
+    font-size:2rem;
+    
+    border-top: @grey-light solid 1px;
+     border-top: @grey-light solid 0.1rem;
+}
+
+.reviewPlaceOrderB2C .reviewPlaceOrderFirstPanel .reviewPlaceOrderTableTwo p, .confirmationB2C .reviewPlaceOrderFirstPanel .reviewPlaceOrderTableTwo p, .confirmationB2C .userTable > table > thead > tr > th{
+    font-size:14px; font-size:1.4rem;
+}
+
+/*
+.reviewOrderNestedTable td{
+    text-align:center;
+}
+*/
+.reviewPlaceOrderB2B .userTable > table > thead > tr > th, .reviewPlaceOrderB2B .reviewPlaceOrderFirstPanel p, .reviewPlaceOrderB2C .userTable > table > thead > tr > th, .reviewPlaceOrderB2C .userTable > table > tbody > tr > td,
+.confirmationB2C .userTable > table > tbody > tr > td{
+    font-size:14px;font-size:1.4rem;
+}
+
+.reviewOrderNestedTable tr, .reviewOrderNestedTable th, .reviewOrderNestedTable td.emptycol{
+ /* border-right:none;*/
+  border-bottom:none;
+}
+.reviewOrderNestedTable {
+    width: 100%;
+    text-align:left;
+}
+.reviewOrderNestedTable th {
+    text-transform:capitalize;
+}
+.reviewPlaceOrderFirstPanel .noBorder {
+    border-bottom:none;
+}
+
+.confirmationB2C .subTitle {
+    margin-top:15px;
+    margin-top:1.5rem;
+}
+.shipmentTable.table > tbody > tr.tableBottomTitle > th {border-top: 0 none;}
+
+/**************************************Billing Shipping POPUP********************************************/
+
+.billingShippingPopUpB2B{
+    padding: 0 30px;
+    margin-left:45px;
+    padding: 0 3rem;
+    margin-left:4.5rem;
+}
+
+.billingShippingPopUpName{
+    margin-top: 0;   
+}
+
+.billingShippingPopUp h4{
+    margin-bottom: 0;
+}
+
+.billingPopUp .billingShippingPopUp span{
+    font-size:14px;
+    font-size:1.4rem;
+}
+
+.billingShippingPopUp h2, .billingShippingPopUpBold{    
+    display:inline;
+}
+.billingShippingPopUpB2B h2{
+    margin-top: 13px;
+    margin-top: 1.3rem;
+}
+.billingShippingPopUpB2B .modal-header,
+.billingShippingPopUpB2B .userTable > table > tbody > tr > td, .createOrderReturns .userTable > table > tbody > tr:last-child > td {
+    border-bottom: 0 none;
+}
+.backOrderTabTable .table > tbody > tr:last-child, .uploadOrderTabTable .table > tbody > tr:last-child {
+    border-bottom: 0 none;
+}
+.billingShippingPopUpB2B .reviewPlaceOrderFirstPanel{
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+}
+
+.billingShippingPopUpB2B tr{
+    border-bottom: 1px solid @grey-light;
+    border-bottom: 0.1rem solid @grey-light;
+}
+
+.ConfirmationBtn{
+    margin-bottom: 22px;
+    margin-bottom: 2.2rem;
+    margin-right: 0px;
+    margin-right: 0rem;
+    margin-top: 35px;
+    margin-top: 3.5rem;
+
+}
+.ConfirmationHeadingRedPanel{
+    background-color: @red;
+    margin-top: 19px;
+    margin-top: 1.9rem;
+    margin-bottom: 9px;
+    margin-bottom: 0.9rem;
+    color: @white;
+    padding: 8px;
+    padding: 0.8rem;
+    width:550px;
+    width:55rem;
+    font-size:16px;
+    font-size:1.6rem;
+    border-radius: 3px;
+    border-radius: 0.3rem;
+}
+.reviewPlaceOrderB2C .fa-info-circle, .confirmationB2C .fa-info-circle, .orderPackingSlipDetails .fa-info-circle, .infoDiv .fa-info-circle {
+    font-size:48px;
+    font-size:4.8rem; 
+}
+
+@media (max-width: @bp_mobile_max){ 
+    .ConfirmationHeadingRedPanel{
+        width:100%;
+    }
+    
+    .reviewPlaceOrderB2C,
+    .confirmationB2C{
+        padding-left: 20px;
+        padding-left: 2rem;
+        padding-right: 20px;
+        padding-right: 2rem; 
+    }
+    .reviewPlaceOrderB2C .table-responsive,
+    .confirmationB2C .table-responsive {
+        border: 0 none;
+    }
+}
+
+
+.freeFrieghtTotal{
+    text-align:left;
+} 
+
+
+/**************************************************
+        B2B Billing & Shipping Address  CSS 
+**************************************************/
+.checkoutB2B .reqField {
+    font-size: 14px;
+    font-size: 1.4rem;
+    margin-top: 14px;
+    margin-top: 1.4rem;
+}
+.checkoutSubTitle {
+    padding: 4px 10px;
+    padding: 0.4rem 1.0rem;
+    background:@grey;
+    .ff-primary-bold;
+    color:@white;
+    margin-bottom:4px;
+    margin-bottom:0.4rem;
+    margin-top:22px;
+    margin-top:2.2rem;
+}
+.checkoutSubSubTitle {
+    
+    margin-top:16px;
+    margin-top:1.6rem;
+}
+.checkoutB2B .nameCol{  
+    margin-bottom:18px;
+    margin-bottom:1.8rem;
+}
+.checkoutB2B .searchStatus{ 
+    color:@green;
+}
+
+
+.chekoutBillingShippingAddress h4 {
+    
+    margin-top: 20px;
+    margin-top: 2rem;
+    margin-bottom: 15px;
+    margin-bottom: 1.5rem;
+}
+.chekoutBillingShippingAddress h4.needHelpTitle {
+    margin-top: 65px;
+    margin-top: 6.5rem;
+}
+.needHelpLinks {
+    
+    color: @blue;
+}
+.checkoutBtnHolder {margin-top:52px; margin-top:5.2rem;margin-bottom: 18px; margin-bottom: 1.8rem;}
+
+
+
+/**************************************************
+        B2C Billing & Shipping Address  CSS 
+**************************************************/
+
+.chekoutBillingShippingAddress h2 {
+    
+    margin-top: 0;
+}
+.chekoutBilling {
+    padding-left:8%;
+    padding-bottom: 22px;
+    padding-bottom: 2.2rem;
+}
+.chekoutShipping {
+    border-right: 1px solid @grey-light;
+    border-right: 0.1rem solid @grey-light;
+    padding-left:5%;
+    padding-bottom: 22px;
+    padding-bottom: 2.2rem;
+}
+.chekoutShippingWithNoBorder {
+    border-right: 0 solid @grey-light;
+}
+@media (max-width: 640px) {
+    .chekoutShipping {
+        border-right: 0 none;
+    }
+    
+    .chekoutBillingShippingAddress .width270 {
+        width: 100%;
+    }   
+}
+.checkoutB2bSmall .chekoutShipping {
+    border-right: 0 none;
+}
+
+.checkoutB2bSmall .chekoutBilling {
+    border-left: 1px solid @grey-light;
+    border-left: 0.1rem solid @grey-light;
+}
+@media (max-width: 640px) {
+    .checkoutB2bSmall .chekoutBilling {
+        border-left: 0 none;
+    }   
+}
+.chekoutBillingShippingAddress {
+    padding-top: 57px;
+    padding-top: 5.7rem;
+    padding-bottom: 24px;
+    padding-bottom: 2.4rem;
+}
+.btn-fm-Grey, .btn-fm-Grey:hover {
+    background-color: @grey;
+    border-color: @grey;
+    margin-right:20px;
+    margin-right:2rem;
+}
+@media (max-width: 640px) {
+    .btn-fm-Grey, .btn-fm-Grey:hover {
+        margin-top:20px;
+        margin-top:2rem;
+        margin-right:0;
+    }   
+}
+.smallb2bChekoutBilling {
+    margin-top: 0;
+}
+
+/**************************************************
+         CHECKOUT SHIPPING METHOD  CSS 
+**************************************************/
+
+/***************    B2B  SHIPPING METHOD (checkout steps - 3)  ****************************************************/
+
+.shipmentMethodB2B .shipmentMethodPanelFirst h2, .shipmentMethodBold, .shipmentMethodPanelSecond h4, .shipmentMethodB2C  .shipmentMethodPanelFirst h2, .checkoutB2bSmall .shipmentMethodPanelFirst h2, .checkoutB2bSmall .shipmentMethodPanelFirst h3{
+    
+}
+.shipmentMethodPanelSpan
+{
+    margin-top: -26px;    margin-top: -2.6rem;
+    font-size: 15px;    font-size: 1.5rem;
+    margin-right: -15px;    margin-right: -1.5rem;
+}
+
+.shipmentMethodPanelFirst{
+    padding-left:70px;
+    padding-left:7.0rem;
+    padding-top:36px;
+    padding-top:3.6rem;
+}
+@media screen and (max-width: 768px) {
+.shipmentMethodPanelFirst{
+    padding-left:30px;
+    padding-left:3rem;
+    padding-right:30px;
+    padding-right:3rem;
+}
+}
+.shipmentMethodHeading{
+    color:@white;
+    background-color:#808080;
+    
+    padding: 4px 10px;
+    padding: 0.4rem 1.0rem;
+}
+
+.shipmentMethodSubHeading{
+    padding-top:26px;
+    padding-top:2.6rem;
+}
+
+.shipmentMethodInfo{
+    margin-top:16px;
+    margin-top:1.6rem;
+    margin-bottom:16px;
+    margin-bottom:1.6rem;
+}
+
+.shipmentMethodSubHeadingFirst{
+    padding-bottom:15px;
+    padding-bottom:1.5rem;
+}
+
+.registrationContent .panel-heading span, .shipmentMethodSubHeadingFirst .panel-heading span {
+    font-size: 1.5rem;
+    margin-right: -1.5rem;
+    margin-top: -2.6rem;
+}
+
+.shipmentMethodPanelSecond{
+    padding-right: 76px;
+    padding-right: 7.6rem;
+    padding-top: 150px;
+    padding-top: 15.0rem;
+}
+
+ .checkoutB2bSmall .bgwhite .shipmentMethodPanelSecond {padding-top: 90px !important; padding-top: 9rem !important;}
+
+@media screen and (max-width: 768px) {
+.shipmentMethodPanelSecond{
+    padding-left:30px;
+    padding-left:3rem;
+    padding-right:30px;
+    padding-right:3rem;
+}
+}
+
+.shipmentMethodPanelSecond p{
+    margin-bottom:65px;
+    margin-bottom:6.5rem;
+}
+
+.shipmentMethodPanelSecond li a {
+    color: @blue;
+    
+}
+.shipmentMethodPanelSecond ul {
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
+    text-transform: capitalize;
+}
+
+.shipmentMethodPanelSecond ul li{
+    margin-bottom:10px;
+    margin-bottom:1.0rem;
+}
+
+.shipmentMethodTr{
+    background-color:@grey-table-light;
+    border-right:1px solid @white;
+    border-right:0.1rem solid @white;
+    font-size:12px;
+    font-size:1.2rem;
+}
+
+.shipmentMethodSubHeadingFirst td{
+    font-size:12px;
+    font-size:1.2rem;
+    border-bottom:1px solid #e2e2e2;
+    border-bottom:0.1rem solid #e2e2e2;
+}
+.shipmentMethodB2B .table > thead > tr > th {
+    border-bottom: 0;
+}
+.shipmentMethodB2B .table > tbody > tr > td {
+    border-top: 0;
+}
+.shipmentMethodBtn{
+    margin-bottom: 22px;
+    margin-bottom: 2.2rem;
+    margin-right: 35px;
+    margin-right: 3.5rem;
+    margin-top: 78px;
+    margin-top: 7.8rem;
+}
+
+.shipmentMethodPanelFirst > p{
+    margin-top:25px;
+    margin-top:2.5rem;
+    margin-bottom:30px;
+    margin-bottom:3.0rem;
+}
+
+.shipmentMethodMargin {
+    margin-bottom:10px;
+    margin-bottom:1.0rem;
+}
+
+@media screen and (min-width: 768px) {
+
+.shipmentMethodPanelFirst .width165{
+    width:100%;
+}
+}
+
+.shipmentMethodSubHeadingFirst .panel-frm-filled:before {
+  content: '';
+}
+
+
+/***************    B2C  SHIPPING METHOD (checkout steps - 3)  ****************************************************/
+.shipmentMethodB2C .shipmentMethodPanelFirst > p {
+    margin-bottom: 20px;
+    margin-bottom: 2rem;
+    margin-top: 5px;
+    margin-top: 0.5rem;
+}
+
+.myCartLabel,
+.shipmentTable h5,
+.shipmentMethodB2C h3,
+.shipmentMethodB2C h5,
+.chooseShipMethod .shipmentPrice,
+.chooseShipMethod .shipmentPlace, .chooseShipMethod  .carrier, .chooseShipMethod  .shipMethod, .chooseShipMethod  .carAccCode{
+    
+}
+.chooseShipMethod label{
+    font-weight:normal;
+    
+}
+.myCartId {
+    padding-left:24px;
+    padding-left:2.4rem;
+}
+
+.chooseShipMethod > div{
+    padding-right:0;
+    margin-top:12px;
+    margin-top:1.2rem;
+}
+@media screen and (max-width: 768px) {
+
+.chooseShipMethod > div{
+    padding-right:15px;
+    padding-right:1.5rem;
+}
+}
+.chooseShipMethod span, .chooseShipMethod label{
+    padding-top:8px;
+    padding-top:0.8rem;
+    display:inline-block;
+}
+.chooseShipMethod .shipmentPrice  span {
+    padding-top:0;
+}
+.shipmentTable.table > thead > tr > th {
+    border-bottom: 0;
+}
+.shipmentTable.table > tbody > tr > td {
+    border-top: 0;
+    padding-top: 17px;
+    padding-top: 1.7rem;
+    font-size:14px;
+    font-size:1.4rem;
+}
+.shipmentTable.table > thead > tr > th:first-child{
+    padding-left:10px;
+    padding-left:1rem;
+}
+.shipmentMethodSubHeadingFirst .shipmentTable tr:last-child td,
+.shoppingCartHead .userTable > table > tbody > tr:last-child > td{
+    border-bottom:0;
+}
+.shipmentTable .img {
+    border:1px solid @grey-light;
+    width: 72px;
+    width: 7.2rem;
+    height: 72px;
+    height: 7.2rem;
+    margin-right: 20px;
+    margin-right: 2rem;
+    margin-left: 3px;
+    margin-left: 0.3rem;
+}
+.shipmentTable h5 {
+    margin: 0;
+}
+.shipmentTable .img,
+.shipmentTable .prodDetail {
+    display: inline-block;
+    vertical-align: top;
+}
+.shipmentMethodB2C .shipmentMethodPanelSecond {
+    padding-top: 100px;
+    padding-top: 10rem;
+}
+@media (max-width: 640px) {
+.shipmentMethodB2C .shipmentMethodPanelSecond {
+    padding-top: 30px;
+    padding-top: 3rem;
+}
+}
+.orderSummary {
+    background:@grey-table-light;
+    padding:24px;
+    padding:2.4rem;
+    margin-bottom: 40px;
+    margin-bottom: 4rem;
+}
+.orderSummary h3 {
+    margin: 0 0 20px;
+    margin: 0 0 2rem;
+}
+.orderSummaryTable {
+    font-size:16px;
+    font-size:1.6rem;
+    width: 100%;
+}
+.orderSummaryTable td {
+    padding-bottom:8px;
+    padding-bottom:0.8rem;
+}
+.orderSummaryTable tr td:first-child,
+.estTotal td {
+    
+}
+.estTotal  {
+    font-size:18px;
+    font-size:1.8rem;
+}
+.estTotal td {
+    padding-top:14px;
+    padding-top:1.4rem;
+    padding-bottom:2px;
+    padding-bottom:0.2rem;
+    border-top: 1px solid @grey-light;
+    border-top: 0.1rem solid @grey-light;
+}
+
+.shipmentMethodB2C .regFormFieldGroup .height200{height:75px !important; height:7.5rem !important;}
+
+/***************    B2C PAYMENT METHOD (checkout steps - 3)  ****************************************************/
+
+.saveInfo {
+    color: @green;
+}
+.paymentCard {
+    font-size:28px;
+    font-size:2.8rem;
+}
+.paymentCard p {
+    font-size:12px;
+    font-size:1.2rem;
+    line-height:14px;
+    line-height:1.4rem;
+}
+.cvvImg {
+    margin-top: 26px;
+    margin-top: 2.6rem;
+}
+.paymentCardInfo {
+    margin-top: 4px;
+    margin-top: 0.4rem;
+}
+.newCardTitle{
+    border-top: 1px solid @grey-light;
+    border-top: 0.1rem solid @grey-light;
+    margin-top: 10px;
+    margin-top: 1rem;
+    padding-top: 20px;
+    padding-top: 2rem;
+    padding-bottom: 20px;
+    padding-bottom: 2rem;
+}
+.smallb2bChekoutBilling .newCardTitle{
+    border-top: 0 ;
+    margin:0;
+}
+/**************************************************
+         CHECKOUT Billing & Shipping Address  CSS 
+**************************************************/
+
+
+/***************    Billing Address (checkout steps -2)  ****************************************************/
+
+.checkoutSteps .nav-pills {
+    background:#282828;
+    
+    font-size:15px;
+    font-size:1.5rem;
+    border: 0 none;
+    border-radius: 0;
+    padding: 0;
+}
+.checkoutSteps .nav-pills > li a {
+    margin-right:2px;
+    margin-right:0.2rem;
+    border-radius: 0;
+}
+.checkoutSteps .nav-pills > li:last-child a {
+    margin-right:0;
+}
+.checkoutSteps .nav-pills > li.active > a, 
+.checkoutSteps .nav-pills > li.active > a:hover, 
+.checkoutSteps .nav-pills > li.active > a:focus,
+.checkoutSteps .nav-pills > li.complete.active a {
+    background:@white;
+    color:@red;
+}
+.checkoutSteps .nav-pills > li a,
+.checkoutSteps .nav-pills > li.disabled a {
+    background:#3b3b3b;
+    color:#afafaf;
+}
+
+.checkoutSteps .nav-pills > li .chevron {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: transparent transparent transparent #282828;
+    border-image: none;
+    border-style: solid none solid solid;
+    border-width:22px 0 21px 17px;
+    border-width:2.2rem 0 2.1rem 1.7rem;
+    display: block;
+    position: absolute;
+    right:-17px;
+    right:-1.7rem;
+    top:-1px;
+    top:-0.1rem;
+}
+.checkoutSteps .nav-pills > li .chevron:before {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: transparent transparent transparent #3b3b3b;
+    border-image: none;
+    border-style: solid none solid solid;
+    border-width:22px 0 21px 17px;
+    border-width:2.2rem 0 2.1rem 1.7rem;
+    content: "";
+    display: block;
+    position: absolute;
+    right: 3px;
+    right: 0.3rem;
+    top: -22px;
+    top: -2.2rem;
+}
+
+.checkoutSteps .nav-pills > li.complete a {
+    background: #8b8b8b;
+    color: @white;
+}
+.checkoutSteps .nav-pills > li.complete .chevron:before {
+    border-left: 17px solid #8b8b8b;
+    border-left: 1.7rem solid #8b8b8b;
+}
+.checkoutSteps .nav-pills > li.active .chevron:before {
+    border-left: 17px solid @white;
+    border-left: 1.7rem solid @white;
+}
+
+@media screen and (max-width: 768px) {
+    .checkoutSteps .nav-pills > li .chevron {
+        display:none;
+    }
+}
+.checkoutSteps .nav-pills > li:nth-child(1) {
+    z-index: 10;
+}
+.checkoutSteps .nav-pills > li:nth-child(2) {
+    z-index: 9;
+}
+.checkoutSteps .nav-pills > li:nth-child(3) {
+    z-index: 8;
+}
+.checkoutSteps .nav-pills > li:nth-child(4) {
+    z-index: 7;
+}
+.checkoutSteps .nav-pills > li:nth-child(5) {
+    z-index: 6;
+}
+.checkoutSteps .nav-pills > li:nth-child(6) {
+    z-index: 5;
+}
+.checkoutSteps .nav-pills > li:nth-child(7) {
+    z-index: 4;
+}
+.checkoutSteps .nav-pills > li:nth-child(8) {
+    z-index: 3;
+}
+.checkoutSteps .nav-pills > li:nth-child(9) {
+    z-index: 2;
+}
+.checkoutSteps .nav-pills > li:nth-child(10) {
+    z-index: 1;
+}
+
+/*
+## cartItems
+********************************************************************/
+
+#cartItems{
+    width:100%;
+    margin-bottom: 30px;
+}
+
+#cartItems .headline{
+    border-bottom:1px solid #a5a5a5;
+    height:40px;
+    line-height:40px;
+    text-transform:uppercase;
+    font-weight:bold;
+    font-size:1.2em;
+}
+
+#cartItems .headline .cartId{
+    color:#c7c7c7;
+    font-weight:normal;
+    font-size:0.8em;
+    margin:0 0 0 20px;
+}
+
+#cartItems table.cart{
+    width:100%;
+}
+
+#cartItems thead th{
+    border-bottom:1px dotted #a5a5a5;
+    height:30px;
+    line-height:30px;
+    text-transform:uppercase;
+    font-weight:bold;
+    font-size:1em;
+}
+#cartItems thead th#header3,
+#cartItems thead th#header4{
+    text-align:center;
+}
+
+#cartItems thead th#header6{
+    text-align:right;
+}
+#cartItems .cartItem td{
+    vertical-align:top;
+    border-bottom:1px dotted #a5a5a5;
+    padding:20px 0 0 0;
+}
+#cartItems .cartItem td.thumb{
+    border-bottom:0;
+    padding-right:20px;
+    width:96px;
+}
+
+#cartItems .cartItem td.itemPrice,
+#cartItems .cartItem td.total,
+#cartItems .cartItem td.quantity{
+    width:115px;
+}
+
+
+#cartItems .cartItem td.quantity form{
+    margin:0 0 10px 0;
+}
+
+#cartItems .cartItem td.quantity .qty{
+    display:block;
+    margin:0 auto;
+    text-align:center;
+    width:40px;
+    
+}
+
+#cartItems .cartItem td.quantity .updateQuantityProduct,
+#cartItems .cartItem td.quantity .submitRemoveProduct{
+    text-decoration:underline;
+    display:block;
+    text-align:center;
+}
+#cartItems .cartItem td.shipping{
+    width:200px;
+}
+
+
+#cartItems .cartItem td.shipping .pointOfServiceName{
+    font-size:11px;
+    color:#999;
+}
+
+#cartItems .cartItem td.shipping .pickupInStoreButton{
+    text-decoration:underline;
+}
+#cartItems .cartItem td.itemPrice{
+    width:96px;
+    text-align:center;
+}
+#cartItems .cartItem td.total{
+    width:96px;
+    text-align:right;
+}
+
+
+.expressCheckoutBox .headline{
+    border-bottom: 1px solid #A5A5A5;
+    font-size: 1.2em;
+    font-weight: bold;
+    height: 30px;
+    line-height: 30px;
+    text-transform: uppercase;
+}
+
+.expressCheckoutBox .description{
+    line-height:30px;
+}
+
+
+.expressCheckoutBox ul li{
+    list-style: disc outside none;
+    margin: 0 0 5px 13px;
+}
+
+button.doCheckoutBut {
+    font-size: 140%;
+    margin-top: 20px;
+}
+
+.span-5 .promo_top{
+    position: relative;
+    top: -22px;
+}
+
+.quote_pos{
+    position: relative;
+    top: -90px;
+}
+
+.deliveryCartItems td.priceRow {
+    text-align: center;
+}
+/*
+## checkoutOrderDetails
+********************************************************************/
+
+
+#checkoutOrderDetails .deliveryCartItems{
+    width:100%;
+    margin:40px 0 ;
+}
+
+#checkoutOrderDetails .deliveryCartItems thead td{
+    border-bottom:1px solid #a5a5a5;
+    height:30px;
+    line-height:30px;
+    text-transform:uppercase;
+    font-weight:bold;
+    font-size:1.2em;
+    padding-left: 5px;
+    background-color: #f6f6f6;
+}
+
+#checkoutOrderDetails .deliveryCartItems .thumb{
+    width:50px;
+    padding:20px 10px 0 0;
+    vertical-align:top;
+}
+
+#checkoutOrderDetails .deliveryCartItems .thumb img {
+    width:50px;
+}
+
+#checkoutOrderDetails .deliveryCartItems .desc{
+    vertical-align:top;
+    padding:20px 0 0 0;
+    width: 100%;
+}
+
+#checkoutOrderDetails .deliveryCartItems .name{
+    font-weight:bold;
+}
+
+
+#checkoutOrderDetails .deliveryCartItems .priceRow{
+    width:15%;
+}
+/*
+## checkoutContentPanel
+********************************************************************/
+
+#checkoutContentPanel .description{
+    margin:0 0 20px 0;
+}
+
+#checkoutContentPanel .contentPanelRight,
+#checkoutContentPanel .contentPanelLeft{
+    width:244px;
+}
+
+#checkoutContentPanel .contentPanelLeft{
+    margin:0 20px 0 0;
+}
+
+#checkoutContentPanel .savedPaymentItem{
+    border: 1px dotted #A5A5A5;
+    margin:0 0 10px 0;
+}
+
+#checkoutContentPanel .i18nAddressForm,
+#checkoutContentPanel .billingAddressForm,
+#checkoutContentPanel .cardForm{
+    margin-right:-20px;
+}
+#checkoutContentPanel .control-group{
+    float:left;
+    width:244px;
+    margin-right:20px;
+}
+
+#checkoutContentPanel .form-actions{
+    position:absolute;
+    bottom:-60px;
+    right:0;
+    left: 0;
+}
+
+#checkoutContentPanel .form-actions button.positive{
+    margin-right:0;
+}
+
+#checkoutContentPanel .form-additionals .control-group{
+    width:100%;
+}
+#checkoutContentPanel .form-additionals button{
+    clear:both;
+    width:50%;
+}
+
+#checkoutContentPanel{
+    margin: 0 0 20px 0;
+}
+
+#checkoutContentPanel .summarySection{
+    border: 1px dotted #A5A5A5;
+    margin:  0 20px 0 0;
+    padding: 10px;
+    min-height: 173px;
+    position: relative;
+    width: 172px;
+    float: left;
+}
+
+#checkoutContentPanel .summarySection:after{
+    content:"";
+    display: block;
+    width: 10px;
+    height: 20px;
+    background: url("../images/checkoutStepArrow.png") no-repeat center center;
+    position: absolute;
+    right: -11px; /* margin + border */
+    top: 50%;
+    margin: -10px 0 0 0;
+
+}
+
+#checkoutContentPanel .summarySection.summaryDeliveryMode{
+    margin:  0;
+}
+
+#checkoutContentPanel .summarySection.summaryDeliveryMode:after{
+    display: none;
+}
+
+#checkoutContentPanel .summarySection.summaryCostCenter,
+#checkoutContentPanel .summarySection.summaryPayment{
+    width: 286px;
+}
+
+#checkoutContentPanel .summarySection .contentSection {
+    margin-bottom: 20px;
+}
+#checkoutContentPanel .summarySection .contentSection .headline{
+    font-weight: bold;
+    line-height: 2em;
+    margin: 0 0 10px 0;
+}
+
+
+#checkoutContentPanel .summarySection .headline .number{
+    font-weight: bold;
+    font-size: 2em;
+    vertical-align: bottom;
+    margin-right: 0.5em;
+}
+
+#checkoutContentPanel .editButton{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 20px;
+    font-weight: normal;
+    text-transform: none;
+    border:0;
+    padding: 0 5px;
+
+
+}
+
+#savedAddressListHolder,
+#savedPaymentListHolder{
+    display:none;
+}
+
+/*
+simplifyPickupPanel
+*/
+
+.simplifyPickupPanel{
+    border: 1px dotted #A5A5A5;
+    padding:0 20px 20px 20px;
+    margin:0 0 20px 0;
+    position:relative;
+    background:#F6F6F6;
+}
+
+.simplifyPickupPanel .headline{
+    border-bottom: 1px dotted #A5A5A5;
+    font-size: 1em;
+    font-weight: bold;
+    line-height: 17px;
+    padding-bottom: 5px;
+    margin:10px 0 20px 0;
+}
+.simplifyPickupPanel .description{
+    margin:0 0 20px 0;
+}
+
+.simplifyPickupPanel .content span{
+    display:block;
+    font-weight:normal;
+}
+
+.simplifyPickupPanel .content span.strong{
+
+    font-weight:bold;
+}
+
+.simplifyPickupPanel .content input{
+    float:left;
+}
+
+.simplifyPickupPanel .content span.pickupAdressList{
+    margin:0 0 0 30px;
+}
+
+.simplifyPickupPanel .footline{
+    clear:both;
+    margin:20px 0 0 0;
+    padding:5px 0 0 0;
+    border-top: 1px dotted #A5A5A5;
+
+}
+
+.simplifyPickupPanel .footlineText{
+    float:left;
+    width:50%;
+    padding:8px 0 0 0;
+
+}
+
+#checkoutContentPanel .control-group.security{
+    width:150px;
+    margin:0;
+}
+
+
+#checkoutContentPanel .control-group.security label{
+    font-size: 12px;
+}
+
+#checkoutContentPanel input.security{
+    width:50px;
+    height: 20px;
+    min-height: 20px;
+    float:left;
+}
+#checkoutContentPanel .security_code_what{
+    float:left;
+    display:block;
+    margin:0 7px;
+    line-height:20px;
+}
+fieldset.cardDate{
+    width:244px;
+    float:left;
+    margin:0 20px 0 0;
+}
+
+fieldset.cardDate legend{
+    border: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    margin: 0 0 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 244px;
+}
+
+fieldset.cardDate label{
+    display:none;
+}
+
+#checkoutContentPanel fieldset.cardDate .control-group{
+    width:111px ;
+    margin:0 0 0 20px;
+}
+
+#checkoutContentPanel fieldset.cardDate legend + .control-group{
+    margin:0;
+}
+
+#checkoutContentPanel hr{
+    background:0;
+    border:0;
+    border-bottom: 1px dotted #A5A5A5;
+    margin:0 0 20px 0;
+}
+
+#checkoutContentPanel.summaryFlow strong{
+    margin:0 0 5px 0;
+    display:block;
+}
+
+.summaryOverlay {
+    padding:20px;
+}
+
+.summaryOverlay .headline{
+    border-bottom: 1px dotted #A5A5A5;
+    font-size: 1.2em;
+    font-weight: bold;
+    height: 39px;
+    line-height: 39px;
+    text-transform: uppercase;
+    margin:0 0 20px 0;
+}
+
+.summaryOverlay .description{
+    margin:0 0 20px 0;
+}
+
+.summaryOverlay form{
+    margin-right:-20px;
+}
+
+.summaryOverlay .control-group{
+    float:left;
+    width:387px;
+    margin-right:20px;
+}
+.summaryOverlay .form-actions{
+ clear: both;
+ width: 800px;
+}
+
+.summaryOverlay #summaryDeliveryAddressBook{
+    display:none;
+}
+.summaryPaymentOverlay form{
+    margin:0;
+}
+
+.summaryOverlay fieldset.cardDate{
+    width:387px;
+    float:left;
+    margin:0 20px 0 0;
+}
+ 
+.summaryOverlay fieldset.cardDate legend{
+    border: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    margin: 0 0 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 387px;
+}
+
+.summaryOverlay fieldset.cardDate .control-group{
+    width:183px ;
+    margin:0 0 0 20px;
+}
+
+.summaryOverlay fieldset.cardDate legend + .control-group{
+    margin:0;
+}
+
+.summaryOverlay fieldset.cardDate .control-group select{
+    margin-top:2px;
+}
+
+#summaryDeliveryAddressBook .addressList{
+
+    margin:0 -20px 0 0;
+}
+
+#summaryDeliveryAddressBook .addressEntry{
+    float:left;
+    width:387px;
+    margin:0 20px 20px 0;
+    border-bottom: 1px dotted #A5A5A5;
+    padding: 0 0 20px 0;
+}
+
+#summaryDeliveryAddressBook .addressEntry.default{
+    background:#f8f8f8;
+}
+
+#summaryDeliveryAddressBook .addressEntry button{
+    float:none;
+}
+
+.edit_add_area{
+    padding: 5px;
+}
+
+#savedAddressList .addressList{
+    margin:0 -20px 0 0;
+}
+
+#savedAddressList .addressEntry{
+    float:left;
+    width:387px;
+    margin:0 20px 20px 0;
+    border-bottom: 1px dotted #A5A5A5;
+    padding: 0 0 20px 0;
+}
+
+#savedAddressList .addressEntry.default{
+    background:#EDFDEB;
+    color: #666666;
+}
+.addressEntry .edit {
+    clear: both;
+}
+
+#savedPaymentList .paymentList{
+    margin:0 -20px 0 0;
+    max-height: 350px;
+    overflow: auto;
+}
+
+#savedPaymentList .paymentEntry{
+    float:left;
+    width:387px;
+    margin:0 20px 20px 0;
+    border-bottom: 1px dotted #A5A5A5;
+    padding: 0 0 20px 0;
+}
+#savedPaymentList .paymentEntry ul{
+    float:left;
+}
+
+#savedPaymentList .paymentEntry form{
+    clear:right;
+}
+
+#savedPaymentList .paymentEntry button{
+    margin: 0 20px 20px 20px;   
+}
+
+button.place-order {
+    font-size: 140%;
+    margin-top: 0;
+}
+
+
+.shipmentConfirmationH5 {
+    margin-bottom: 0 !important;
+    margin-top: 15px; margin-top: 1.5rem;
+}
+
+.shipmentMethodB2C .shipmentMethodPanelFirst {
+    padding-left:  16px !important; padding-left:  1.6rem !important;
+    padding-top: 2.6rem !important; padding-top: 26px !important;
+}
+.shipmentMethodB2C .shipmentMethodPanelSecond {
+    padding-right: 1.6rem !important; padding-right: 16px !important;
+}

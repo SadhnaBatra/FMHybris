@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="1.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+	<!-- <persistence-unit name="db2" transaction-type="JTA"> -->
+	<persistence-unit name="db2" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+ 		<non-jta-data-source>java:comp/env/jdbc/wom/db2</non-jta-data-source>
+		<properties>
+			<!--  		 			
+				<property name="javax.persistence.jdbc.driver" value="com.ibm.db2.jcc.DB2Driver"/> 
+				<property name="javax.persistence.jdbc.url" value="jdbc:db2://sfldmims403.federalmogul.com:50000/DB2T01"/> 
+				<property name="javax.persistence.jdbc.user" value="WOM0001" /> 
+				<property name="javax.persistence.jdbc.password" value="IMSWEB" />
+			-->
+			<property name="hibernate.show_sql" value="false" />
+			<property name="hibernate.cache.use_second_level_cache" value="false" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.DB2Dialect" />
+			<property name="hibernate.format_sql" value="false" />
+			<!-- <property name="hibernate.transaction.factory_class" value="org.hibernate.ejb.transaction.JoinableCMTTransactionFactory"/> 
+				<property name="hibernate.transaction.manager_lookup_class" value="org.hibernate.transaction.JOTMTransactionManagerLookup"/> -->
+		</properties>
+	</persistence-unit>
+	<!--    
+	<persistence-unit name="hybrisOracle" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<non-jta-data-source>java:comp/env/jdbc/hybris/oracle</non-jta-data-source>
+		<properties>
+				<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.driver.OracleDriver"/> 
+				<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@cdcvilax022.federalmogul.com:1521:HYBQ"/> 
+				<property name="javax.persistence.jdbc.user" value="hybris" /> 
+				<property name="javax.persistence.jdbc.password" value="bris10914" />
+				
+			<property name="hibernate.show_sql" value="false" />
+			<property name="hibernate.cache.use_second_level_cache" value="false" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle9Dialect" />
+			<property name="hibernate.format_sql" value="false" />
+		</properties>
+	</persistence-unit>
+	-->
+</persistence>

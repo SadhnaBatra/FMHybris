@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/EngineeringChangeDocument.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../MfgComponents.xsd"/>
+        <xs:complexType name="EngineeringChangeDocument">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Is the Engineering Change Document. </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                        <xs:extension base="Noun">
+                                <xs:sequence>
+                                        <xs:element ref="Header" minOccurs="0"/>
+                                        <xs:element ref="RevisedBOM" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element ref="RevisedRouteHeader" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element ref="Attachments" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="EngineeringChangeDocHeader">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">This information applies to the entire Engineering Change Document.</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                        <xs:element name="DocumentId" type="GenericIdType" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the Engineering Change Document Identifier. The revision here allows for different revisions ot this document. While the EngineeringChangeRevision Component allows a revision to be discussed and modified as need with in a single document and revision.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Priority" type="Priority" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the Priority in which the Engineering Change should receive.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="Status" minOccurs="0"/>
+                        <xs:element name="ApprovalDate" type="DateTimeAny" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the date in which the order is approved.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="EstimatedEngineeringCost" type="Amount" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">The esitmated cost to engineering to make the proposed change.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="EstimatedManufacturingCost" type="Amount" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">The estimated cost to manufacturing to make the proposed change.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ImplementationDateTime" type="DateTime" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the date on which the changes will be implemented,</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ApprovalRequiredByDate" type="DateTimeAny" minOccurs="0"/>
+                        <xs:element name="Requester" type="Someone" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies who requested the change. Often times an end user may indicate the need to change an item. This request must be approved by an employee of the company. In these instances there may be multiple requesters.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="UserId" type="Id" minOccurs="0"/>
+                        <xs:element ref="Site" minOccurs="0"/>
+                        <xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Free-form Description of teh Engineering Change Document.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Note" type="Note" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Free form Note on the Engineering Change Document. These can be used by the reviewers to provide comments about the Engineering Change Document.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="EngineeringChangeRevision" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="EngineeringChangeReviewer" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:element name="EngineeringChangeDocument" type="EngineeringChangeDocument" substitutionGroup="Noun">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">An EngineeringChangeDocument can be used to request a change to an manufactured item. This document allows the Change to progress through the different states from being a request and going through the review process to becoming an approved EngineeringChangeOrder.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="EngineeringChangeRevision">
+                <xs:sequence>
+                        <xs:element name="Revision" type="Revision" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the unique revision number of the Engineering Change Document. This allows for different options to be proposed for the change.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ProposedBy" type="Someone" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies who proposed this revision. This maybe someone with in the company or from someone in the companies Supply Chain.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="Site" minOccurs="0"/>
+                        <xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="Note" type="Note" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Free-form Note or comments about the revision.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="CreationDateTime" type="DateTime" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the timestamp for when the revision was created.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ApprovalDateTime" type="DateTime" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Timestamp indicating when the revision was approved.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="RejectedDateTime" type="DateTime" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Timestamp indicating when the revision was rejected.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="RevisedRouteHeader">
+                <xs:sequence>
+                        <xs:element ref="RouteDocumentReference" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the Routing</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="EffectivePeriod" type="TimePeriod" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">The effective time period of the Routing being referenced.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ImplementationDateTime" type="DateTime" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">The implementation date of the Route being referenced.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="RevisedRouteOperation" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="Note" type="Note" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="RevisedRouteOperation">
+                <xs:sequence>
+                        <xs:element ref="OperationReference" minOccurs="0"/>
+                        <xs:element name="EffectivePeriod" type="TimePeriod" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Effective Time Period of the revised operation.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ImplementationDateTime" type="DateTime" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Date and time in which the operation is implemented.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="Note" type="Note" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="EngineeringChangeReview">
+                <xs:sequence>
+                        <xs:element ref="Reviewer" minOccurs="0"/>
+                        <xs:element ref="Status" minOccurs="0"/>
+                        <xs:element name="ApprovalEffectivePeriod" type="TimePeriodAny" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the time period in which the approval is valid.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Description of EngineeringChangeAppover.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Note" type="Note" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Free-form note from the EngineeringChange Approver about the Engineering Change.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="RevisedBOM">
+                <xs:sequence>
+                        <xs:element ref="BOMDocumentReference" minOccurs="0"/>
+                        <xs:element name="EffectiveDateTime" type="DateTime" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the datetime when the Bill-Of-Material becomes effective</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ImplementationDateTime" type="DateTime" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the timestamp in which the revised Bill-Of-Material.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="CancelDateTime" type="DateTime" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the date and tme in which the Bill-Of-Material was canceled.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="Disposition" minOccurs="0"/>
+                        <xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="Note" type="Note" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="InMRPPlanInd" type="Indicator" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates that the changed BOM is in the MRP system plan or not.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="IncludeInPlanInd" type="Indicator" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates whether the MRP planning process should plan for an ECO revised item. This lets you order material and plan resources that you need to build a future revision in advance.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="UpdateWIPInd" type="Indicator" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicate whether to update WIP requirements for unreleased jobs or schedules when the revised item is implemented.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="NewRevisionInd" type="Indicator" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is used to indicate that whether this change represents a new revision on the BOM.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="UseUpInventoryInd" type="Indicator" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates whether it is possible to use up the existing inventory before replaceing with items for the new revision of the BOM and resulting Item.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="OldItemRevision" type="Revision" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the old revision code for an ITEM.  The revision code is commonly used to indicate engineering changes to the item or product.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="NewItemRevision" type="Revision" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the new revision code for an ITEM.  The revision code is commonly used to indicate engineering changes to the item or product.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="RevisedItemStatus" type="Status" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is a classification you can use to track and control a revised item's life cycle. Revised item statuses include Open, Released, Scheduled, Hold, Implemented and Cancelled.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="Site" minOccurs="0"/>
+                        <xs:element name="UseUpItemId" type="ItemIdType" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is a revised component whose MRP-planned order date and lead time offset determine the effective date of the revised item.
+
+Indicates the component or raw-material that is to be used up before the new component or raw-material can be used.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="RevisedBOMComponent" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="RevisedBOMComponent">
+                <xs:sequence>
+                        <xs:element ref="Item" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the Item in the BOM.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="OperationSequence" type="OperationSequenceCode" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the operation sequence code for the item.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="EffectivePeriod" type="TimePeriod" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates when this Component item is effective.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ImplementationDateTime" type="DateTime" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the Implementation Date of this change.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="RevisedItemRevision" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="RevisedSubstitute" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="RevisedReferenceDesignator" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="RevisedItemRevision">
+                <xs:sequence>
+                        <xs:element ref="Item" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the item record of the proposed change.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="OperationSequence" type="OperationSequenceCode" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the operation sequence code of where the change is being made.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="EffectivePeriod" type="TimePeriod" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the effective time period of the change.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ImplementationDateTime" type="DateTime" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">is the timestamp that the revision will be made.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="RevisedSubstitute">
+                <xs:sequence>
+                        <xs:element ref="Item" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the Revised Substitute Item.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ItemQuantity" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Number of Items.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="EffectivePeriod" type="TimePeriod" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the effective time period for the subsittiution.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="Note" type="Note" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="RevisedReferenceDesignator">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Describes the Location on the Drawing or Blueprint that the Bill of Material Component item is used. </xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                        <xs:element name="ReferenceDesignatorId" type="Id" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the reference designator on a Drawing or BluePrint where the BOM is used.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="Note" type="Note" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="Attachments" minOccurs="0"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:element name="RevisedRouteOperation" type="RevisedRouteOperation">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Information specifying the operations and there order for the specified routing.  </xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Reviewer" type="Employee">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the Reviewer of the EngineeringChangeDocument.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="RevisedBOMComponent" type="RevisedBOMComponent">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Describes any Bill of Material that may be impacted by a given Engineering Change</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="RevisedItemRevision" type="RevisedItemRevision"/>
+        <xs:element name="RevisedSubstitute" type="RevisedSubstitute">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Describes the changes to valid substitution that can be made for any Bill of Material Component.  </xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="RevisedReferenceDesignator" type="RevisedReferenceDesignator">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Describes the Location on the Drawing or Blueprint that the Bill of Material Component item is used. </xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Header" type="EngineeringChangeDocHeader">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Engineering Change Header information.  </xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="EngineeringChangeRevision" type="EngineeringChangeRevision">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Engineering Change Revision information.  </xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="EngineeringChangeReviewer" type="EngineeringChangeReview">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Describes the reviewers of the engineering change. It is these peoples responsiblity to either approve or reject the engineering change document.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="RevisedBOM" type="RevisedBOM">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Describes the components of a Bill of Material that will be effected by a given engineering Change. </xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="RevisedRouteHeader" type="RevisedRouteHeader">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Information that generally describes the routing. </xs:documentation>
+                </xs:annotation>
+        </xs:element>
+</xs:schema>

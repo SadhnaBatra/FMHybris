@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/Consumption.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../MfgComponents.xsd"/>
+        <xs:complexType name="Consumption">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">This is used to share a consumer's usage information about an item or product with the supplier of the item or product</xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                        <xs:extension base="Noun">
+                                <xs:sequence>
+                                        <xs:element ref="Header" minOccurs="0"/>
+                                        <xs:element ref="Line" minOccurs="0" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="ConsumptionHeader">
+                <xs:sequence>
+                        <xs:element ref="DocumentId" minOccurs="0"/>
+                        <xs:element name="ConsumptionDateTime" type="DateTime" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Datetime at which the item consumption is reported</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Site" type="Location" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the organizational heirarchy of the location in which the items are delivered to.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="ConsumptionLocation" minOccurs="0"/>
+                        <xs:element ref="Parties" minOccurs="0"/>
+                        <xs:element ref="DocumentReferences" minOccurs="0"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="ConsumptionLine">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">This represents the detail lines of the consumption advice</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                        <xs:element name="LineNumber" type="LineNumber" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the unique LineNumber of the Consumption.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="OrderItem" minOccurs="0"/>
+                        <xs:element name="ShipUnitQuantity" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">This contains the quantity of units or things shipped. This represents the container(s), not the product shipped.  An example of this is “4 truck loads” or “2 wooden crates”</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ItemQuantity" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">This is the reduction in on-hand quantity of acceptable items at the end of the current reporting period (for example, at the end of the day, or at point of sale) due to consumption of the items</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ConsumptionDateTime" type="DateTime" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">This is the datetime at which hte quantity is consumed</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Site" type="Location" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the Site in which the items are delivered to,</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="FreightClass" type="FreightClass" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Classifies the items being consumed for transportation.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="ConsumptionLocation" minOccurs="0"/>
+                        <xs:group ref="Notes" minOccurs="0"/>
+                        <xs:element ref="DocumentReferences" minOccurs="0"/>
+                        <xs:element ref="LotSerial" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="Distribution" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="Charges" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:element name="Consumption" type="Consumption" substitutionGroup="Noun">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The process whereby a certain amount or quantity of inventory, resources or product is utilized which likely lead to the need for some form of replenishment. </xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Header" type="ConsumptionHeader"/>
+        <xs:element name="Line" type="ConsumptionLine"/>
+        <xs:element name="ConsumptionLocation" type="Location">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Describes the line side shelf or retail shelf address and the  route taken to move the items there. This is the location at which the items are consumed</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+</xs:schema>

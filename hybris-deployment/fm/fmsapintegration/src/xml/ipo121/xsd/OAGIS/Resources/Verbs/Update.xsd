@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Verbs/Update.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="Verb.xsd"/>
+        <xs:complexType name="UpdateExpressionCriteria">
+                <xs:sequence>
+                        <xs:element name="Expression" maxOccurs="unbounded">
+                                <xs:complexType>
+                                        <xs:simpleContent>
+                                                <xs:extension base="Expression">
+                                                        <xs:attribute name="action" use="required">
+                                                                <xs:simpleType>
+                                                                        <xs:restriction base="xs:string">
+                                                                                <xs:enumeration value="Add"/>
+                                                                                <xs:enumeration value="Change"/>
+                                                                                <xs:enumeration value="Delete"/>
+                                                                                <xs:enumeration value="Replace"/>
+                                                                        </xs:restriction>
+                                                                </xs:simpleType>
+                                                        </xs:attribute>
+                                                        <xs:attribute name="lock" type="xs:boolean"/>
+                                                </xs:extension>
+                                        </xs:simpleContent>
+                                </xs:complexType>
+                        </xs:element>
+                </xs:sequence>
+                <xs:attribute name="expressionLanguage" default="XPath"/>
+        </xs:complexType>
+        <xs:complexType name="Update">
+                <xs:complexContent>
+                        <xs:extension base="Verb">
+                                <xs:sequence>
+                                        <xs:element name="UpdateCriteria" type="UpdateExpressionCriteria"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:element name="Update" type="Update" substitutionGroup="Verb">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The Update verb is used to describe specific processing in a more fine-grained manner beyond add, change or delete processing.  An example is the update of inspection information from one business application to another.  The event is not adding a document, or changing fields per se, it is communicating the occurrence of an event as well as the corresponding data that accompanies the event.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+</xs:schema>

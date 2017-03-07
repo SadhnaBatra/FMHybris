@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2000-2013 hybris AG
+ All rights reserved.
+
+ This software is the confidential and proprietary information of hybris
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with hybris.
+-->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
+
+    <bean class="com.federalmogul.core.product.data.SolrFirstVariantCategoryEntryData">
+        <property name="categoryName" type="String"/>
+        <property name="variantCode" type="String"/>
+    </bean>
+
+    <bean class="de.hybris.platform.commercefacades.product.data.ProductData">
+        <property name="firstCategoryNameList" type="java.util.List&lt;com.federalmogul.core.product.data.SolrFirstVariantCategoryEntryData&gt;"/>
+    </bean>
+
+<bean
+		class="de.hybris.platform.commercefacades.storelocator.data.PointOfServiceData">
+		<property name="brand" type="String" />
+		<property name="shopType" type="String" />
+		<property name="preferredVendor" type="boolean" />
+		<property name="active" type="boolean" />
+		<property name="storeWebsite" type="String" />
+		<property type="java.util.List&lt;java.lang.String>" name="brandList"/>
+		<property name="scheduleAppointmentUrl" type="String" />
+	</bean>
+
+</beans>

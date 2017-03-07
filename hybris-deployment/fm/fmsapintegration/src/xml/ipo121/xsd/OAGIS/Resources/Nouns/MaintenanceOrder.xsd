@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/MaintenanceOrder.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:saxon="http://icl.com/saxon" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../MfgComponents.xsd"/>
+        <xs:complexType name="MaintenanceOrder">
+                <xs:complexContent>
+                        <xs:extension base="Noun">
+                                <xs:sequence>
+                                        <xs:element ref="Header" minOccurs="0"/>
+                                        <xs:element ref="MaintenanceOperation" minOccurs="0" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="MaintenanceOrderHeader">
+                <xs:sequence>
+                        <xs:element name="DocumentId" type="PartyGenericIdType" minOccurs="0"/>
+                        <xs:element ref="Status" minOccurs="0"/>
+                        <xs:element name="Priority" type="Priority" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the priority of the MaintenanceOrder</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ParentMaintenanceOrderId" type="PartyGenericIdType" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the maintenance order that proceeded this order or from which this maintenance order originated after further investigation or work was performed.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Description of the mainternance order.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="DocumentDateTime" type="DateTime" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the timestamp of when the Maintenance order was created in the integrated system.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="RespondByDateTime" type="DateTime" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the date by which a response is expected for this maintenance order</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ResponsePeriod" type="TimePeriod" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the Time Period in which a response can be expected for the MaintenanceOrder. When the MaintenanceOrder is initially created the Start response date should be the DocumentDateTime. Subsequent updates may cause this to be modified.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ChangeDateTime" type="DateTime" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Timestamp in which the maintenance order was changed.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="FailureDateTime" type="DateTime" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the timestamp when the machine failed or broke down such that it was no longer useable.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ReportedDateTime" type="DateTime" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies when the work to be done in this work order was reported</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="PlannedPeriod" type="TimePeriod" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the Planned TimePeriod in which the maintenance order is planned to be performed.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ScheduledPeriod" type="TimePeriod" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the TimePeriod in which the work is Scheduled to be performed.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ActualPeriod" type="TimePeriod" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the TimePeriod in which the work was actually done. There maybe multiple occurances of this compound if part of the work was completed and the remainder performed at another time. This may happen when a part needs to be ordered.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="BudgetedAmount" type="Amount" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the monatary amount budgeted for the MaintenanceOrder.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ActualAmount" type="Amount" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the ActualAmount of the MaintenanceOrder.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="EstimatedAmount" type="Amount" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the EstimatedAmouint of the MaintenanceOrder.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ActualWorkTime" type="Duration" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the total time spent working on the MaintenanceOrder. Is all of the sum of all the occurances of the ActualTimePeriod.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="Machine" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the status of the machine.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="Site" minOccurs="0"/>
+                        <xs:element name="Planner" type="Employee" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates who planner of the Maintenance Order.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="JobPlanId" type="Id" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is a identifier that describes the specific type of job sequence being performed/requested.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="PreventitiveMaintenanceId" type="Id" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Describes the specific type of preventive maintenance sequence being performed/requested.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="CalendarId" type="Id" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the maintenance calendar used when scheduling this maintenance order</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="RemainingWorkTime" type="Duration" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Time needed to complete the MaintenanceOrder.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="EstimatedWorkTime" type="Time" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is an estimate as to how long it will take to complete the MaintenanceOrder.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="SplitOperationsInd" type="Indicator" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates whether an operation in a maintenance order have to be performed all at once or can be split into non-contiguous work segments.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="Supervisor" minOccurs="0"/>
+                        <xs:element ref="Requestor" minOccurs="0"/>
+                        <xs:element ref="DocumentReferences" minOccurs="0"/>
+                        <xs:element ref="Distribution" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="Resources" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="Hazard" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="FailureNote" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="Attachments" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="MaintenanceOperation">
+                <xs:sequence>
+                        <xs:element name="OperationId" type="Id" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the operation identifier.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="Status" minOccurs="0"/>
+                        <xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Free-form description of the operation.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ActualWorkTime" type="Duration" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the total time spent working on the MaintenanceOrder. Is all of the sum of all the occurances of the ActualTimePeriod.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="RemainingWorkTime" type="Duration" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Time needed to complete the MaintenanceOrder.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="EstimatedWorkTime" type="Time" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is an estimate as to how long it will take to complete the MaintenanceOrder.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Requestor" type="Someone" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the person that requested the MaintenanceOrder.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="CompletionDateTime" type="DateTime" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the timestamp that indicates when the MaintenanceOrder was completed.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="Inspector" minOccurs="0"/>
+                        <xs:element ref="Measurement" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="Hazard" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="FailureNote" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="Distribution" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="Resources" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="Attachments" minOccurs="0"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:element name="MaintenanceOrder" type="MaintenanceOrder" substitutionGroup="Noun">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">A Maintenance Order is an order for a machine, building, tooling or fixed asset to be repaired or for preventitive maintenance to be performed.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Header" type="MaintenanceOrderHeader">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Information that generally describes the maintenance order</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="MaintenanceOperation" type="MaintenanceOperation"/>
+        <xs:complexType name="FailureNote">
+                <xs:sequence>
+                        <xs:element name="Id" type="Id" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the unique identifier of the Failure Note.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Type" type="Type" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates different types of Failures.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Classification" type="Classification" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is a further classification of failures beyond type.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">A free-form description of the failure.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="Note" minOccurs="0"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:element name="Inspector" type="Someone">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Is the person that inspected the wotk performed by the MaintenanceOrder Operation.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="MeasurementType">
+                <xs:sequence>
+                        <xs:element name="ValueQuantity" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the measurement value of the maintenance operation.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="RecordedDateTime" type="DateTime" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the timestamp in which the measurement was recorded.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:element name="Measurement" type="MeasurementType">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the measurement and when it was taken.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="FailureNote" type="FailureNote">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Information on failure, cause or remedy.  This Component could be very complex depending on the level of detailed failure analysis required. That is, this Component itself could be a hierarchical document in itself. Failure class identifies unique categories of failures. Within a category, failure types determine levels of failure analysis. Failure type provides the hierarchical structure of the failure analysis. In the simplest form, failures are reported only at one level, e.g., just failures. Causes and/or remedies could be reported against a failure in a multi-level hierarchical reporting. For example, failure analysis could be recorded as follows; for failure A, causes P and Q are the factors and remedies X, Y and Z are to be taken. The information here is more for failure analysis reporting. This may occur at the maintenance order header or at the operation level. </xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Requestor" type="Someone">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Is the person that requested the MaintenanceOrder.</xs:documentation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Is the person that requested the MaintenanceOrder.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Supervisor" type="Employee">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Is the person supervising/managing the maintenance work being performed/requested.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+</xs:schema>

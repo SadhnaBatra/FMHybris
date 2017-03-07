@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sch:schema xmlns="http://www.ascc.net/xml/schematron" xmlns:oa="http://www.openapplications.org/oagis" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ascc.net/xml/schematron ../../../Utility/Schematron/schematron1-5.xsd">
+	<sch:title>Schematron Validator for OAGI Constraints</sch:title>
+	<sch:ns prefix="oa" uri="http://www.openapplications.org/oagis"/>
+	<sch:pattern name="Sync ElectronicCatalog">
+		<sch:rule context="oa:ElectronicCatalog">
+			<sch:assert test="oa:Header">Sync ElectronicCatalog must have a Header component</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="ElectronicCatalog Header">
+		<sch:rule context="oa:ElectronicCatalog/oa:Header">
+			<sch:assert test="oa:DocumentId/oa:Id">The ElectronicCatalog Header must have a "DocumentId" and "Id" specified</sch:assert>
+			<sch:assert test="oa:PublisherReference | oa:Business">The ElectronicCatalog Header must have a "PublisherParty" or a "Business" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Catalog Classification Scheme">
+		<sch:rule context="oa:ClassificationScheme">
+			<sch:assert test="oa:ClassificationSchemeId">The ClassificationScheme must have a "ClassificationSchemeId" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Catalog Classification Master">
+		<sch:rule context="oa:ClassificationMaster">
+			<sch:assert test="oa:ClassificationId">The ClassificationMaster must have a "ClassificationId" element.</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Catalog Classification Structure">
+		<sch:rule context="oa:ClassificationStructure">
+			<sch:assert test="oa:ClassificationId"> The Classification Structure must have at least one "ClassificationId" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Feature">
+		<sch:rule context="oa:Feature">
+			<sch:assert test="oa:NameValue">Must have a "NameValue" element.</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="ElectronicCatalog Item Line">
+		<sch:rule context="oa:ElectronicCatalog/oa:CatalogItemLine">
+			<sch:assert test="oa:ItemId">The Catalog Line must have an "ItemId" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="ElectronicCatalog Commodity Line">
+		<sch:rule context="oa:CatalogCommodityLine">
+			<sch:assert test="oa:CommodityCode">The Catalog Line must have a "CommodityCode" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="ElectronicCatalog Line Item Price">
+		<sch:rule context="oa:ElectronicCatalog/oa:CatalogItemLine/oa:ItemPrice">
+			<sch:assert test="oa:UnitPrice | oa:PriceCode">The ItemPrice must have a "UnitPrice" or "PriceCode" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="ElectronicCatalog Line Item Price Break">
+		<sch:rule context="oa:LinePriceBreak">
+			<sch:assert test="oa:PriceCode | oa:DiscountValue | oa:DiscountPercent | OverRidePrice">The LinePriceBreak must have a "PriceCode" or "DiscountValue" or "DiscountPercent" or "OverRide Price" specified</sch:assert>
+			<sch:assert test="oa:PriceBreakQuantity | oa:PriceBreakAmount">The LinePriceBreak must have a "PriceBreakQuantity" or "PriceBreakAmount" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="ElectronicCatalog Line Item Classification">
+		<sch:rule context="oa:ElectronicCatalog/oa:CatalogItemLine/oa:ItemClassification">
+			<sch:assert test="oa:ClassificationStructureId | oa:ClassificationId">The ItemClassification must have a "ClassificationStructureId" or "ClassificationId" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+</sch:schema>

@@ -1,0 +1,40 @@
+# Harvest Package Name: FAL-378 - IPO - ImpEx Script
+# Release Date:		July/22/2016
+# ==================================================
+
+
+# Add 'FM Standard Shipping' and 'Truck Delivery' Shipping Methods for all TSCs:
+# ------------------------------------------------------------------------------
+INSERT_UPDATE FMDCShipping;DIST_CNTR_CD;DIST_CNTR_ID;CARRIER_SHIPMTHD_ID;DC_CARRIER_SHIPMTHD_ID[unique=true];CARRIER_ID;DIST_CNTR_NAME;CARRIER_CD;SHIP_MTHD_CD;SHIP_MTHD_DESC;CARRIER_NAME;EMERG_SHIP_CD;NORMAL_SHIP_CD;STOCK_SHIP_CD;SAP_CARRIER_CD;INCO_TERMS;ROUTE;ISO_CNTRY_CD;FROM_ISO_CNTRY_CD;TO_ISO_CNTRY_CD;SORT_ORDER;ACTIVE_FLG
+;4506;79;43;2016005;8;Local DC - Atlanta;OTH;FMSTD;FM Standard Shipping;Other;;;;0006000739;ZPA;030601;US;US;US;365;Y;
+;4506;79;43;2016006;8;Local DC - Atlanta;OTH;PKDELI;Truck Delivery;Other;;;;0006001839;ZPD;010801  ;US;US;US;365;Y;
+;4507;80;43;2016007;8;Local DC - Baltimore;OTH;FMSTD;FM Standard Shipping;Other;;;;0006000739;ZPA;030601;US;US;US;365;Y;
+;4507;80;43;2016008;8;Local DC - Baltimore;OTH;PKDELI;Truck Delivery;Other;;;;0006001839;ZPD;010801  ;US;US;US;365;Y;
+;4516;86;43;2016009;8;Local DC - Boston;OTH;FMSTD;FM Standard Shipping;Other;;;;0006000739;ZPA;030601;US;US;US;365;Y;
+;4516;86;43;2016010;8;Local DC - Boston;OTH;PKDELI;Truck Delivery;Other;;;;0006001839;ZPD;010801  ;US;US;US;365;Y;
+;4505;78;43;2016011;8;Local DC - Bronx;OTH;FMSTD;FM Standard Shipping;Other;;;;0006000739;ZPA;030601;US;US;US;365;Y;
+;4505;78;43;2016012;8;Local DC - Bronx;OTH;PKDELI;Truck Delivery;Other;;;;0006001839;ZPD;010801  ;US;US;US;365;Y;
+;4508;81;43;2016013;8;Local DC - Dallas;OTH;FMSTD;FM Standard Shipping;Other;;;;0006000739;ZPA;030601;US;US;US;365;Y;
+;4508;81;43;2016014;8;Local DC - Dallas;OTH;PKDELI;Truck Delivery;Other;;;;0006001839;ZPD;010801  ;US;US;US;365;Y;
+;4515;85;43;2016015;8;Local DC - Houston;OTH;FMSTD;FM Standard Shipping;Other;;;;0006000739;ZPA;030601;US;US;US;365;Y;
+;4515;85;43;2016016;8;Local DC - Houston;OTH;PKDELI;Truck Delivery;Other;;;;0006001839;ZPD;010801  ;US;US;US;365;Y;
+;4509;83;43;2016017;8;Local DC - Miramar;OTH;FMSTD;FM Standard Shipping;Other;;;;0006000739;ZPA;030601;US;US;US;365;Y;
+;4509;83;43;2016018;8;Local DC - Miramar;OTH;PKDELI;Truck Delivery;Other;;;;0006001839;ZPD;010801  ;US;US;US;365;Y;
+;4503;76;43;2016019;8;Local DC - Rancho Dom, CA;OTH;FMSTD;FM Standard Shipping;Other;;;;0006000739;ZPA;030601;US;US;US;365;Y;
+;4503;76;43;2016020;8;Local DC - Rancho Dom, CA;OTH;PKDELI;Truck Delivery;Other;;;;0006001839;ZPD;010801  ;US;US;US;365;Y;
+;4502;75;43;2016021;8;Local DC - Skokie;OTH;FMSTD;FM Standard Shipping;Other;;;;0006000739;ZPA;030601;US;US;US;365;Y;
+;4502;75;43;2016022;8;Local DC - Skokie;OTH;PKDELI;Truck Delivery;Other;;;;0006001839;ZPD;010801  ;US;US;US;365;Y;
+;4513;84;43;2016023;8;Local DC - Southfield;OTH;FMSTD;FM Standard Shipping;Other;;;;0006000739;ZPA;030601;US;US;US;365;Y;
+;4513;84;43;2016024;8;Local DC - Southfield;OTH;PKDELI;Truck Delivery;Other;;;;0006001839;ZPD;010801  ;US;US;US;365;Y;
+;4514;82;43;2016025;8;Local DC - St Louis;OTH;FMSTD;FM Standard Shipping;Other;;;;0006000739;ZPA;030601;US;US;US;365;Y;
+;4514;82;43;2016026;8;Local DC - St Louis;OTH;PKDELI;Truck Delivery;Other;;;;0006001839;ZPD;010801  ;US;US;US;365;Y;
+;4501;74;43;2016003;8;Local DC - Van Nuys, CA;OTH;FMSTD;FM Standard Shipping;Other;;;;0006000739;ZPA;030601;US;US;US;365;Y;
+;4501;74;43;2016004;8;Local DC - Van Nuys, CA;OTH;PKDELI;Truck Delivery;Other;;;;0006001839;ZPD;010801  ;US;US;US;365;Y;
+
+
+# Map 'Pickup', 'FM Standard Shipping' and 'Truck Delivery' Shipping Methods to 'Auto Plus' (a.k.a. Uni-Select USA) Trading Partner:
+# ----------------------------------------------------------------------------------------------------------------------------------
+INSERT_UPDATE FMtpcarriershipmethods;TP_CARRIER_SHIPMTHD_ID[unique=true];CARRIER_SHIPMTHD_ID;TP_ID;SCAC_CD;CARRIER_CD;SHIP_MTHD_CD;TRNSPRT_MTHD_CD;ACTIVE_FLG
+;1996;43;97;OTHFMSTD;OTH;FMSTD;G;Y;
+;1997;43;97;OTHPKDELI;OTH;PKDELI;G;Y;
+;1998;43;97;OTHPKUP;OTH;PKUP;G;Y;

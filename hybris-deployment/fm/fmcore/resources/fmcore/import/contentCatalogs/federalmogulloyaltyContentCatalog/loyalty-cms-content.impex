@@ -1,0 +1,974 @@
+#
+# Import the CMS content for the FederalMogul site
+#
+
+$contentCatalog=federalmogulContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=federalmogulloyaltyProductCatalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$jarResourceCms=jar:com.federalmogul.core.setup.CoreSystemSetup&/fmcore/import/cockpits/cmscockpit
+$siteResource=jar:com.federalmogul.core.setup.CoreSystemSetup&/fmcore/import/contentCatalogs/$contentCatalog
+
+$lang=en
+
+# Content catalog for CMS contents
+INSERT_UPDATE ContentCatalog;id[unique=true]
+;$contentCatalog
+
+# Catalog versions for content catalogs
+INSERT_UPDATE CatalogVersion;catalog(id)[unique=true];version[unique=true];active;languages(isoCode);writePrincipals(uid);readPrincipals(uid);
+;$contentCatalog;Staged;false;$lang;cmsmanagergroup,cmsmanager;cmsmanagergroup,cmsmanager;
+;$contentCatalog;Online;true;$lang;cmsmanagergroup,cmsmanager;cmsmanagergroup,cmsmanager;
+
+
+INSERT_UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];name;frontendTemplateName;restrictedPageTypes(code);active[default=true]
+#eCatalog
+;;LoyaltyHomePageTemplate;FederalMogul Loyalty Home Page Template;layout/loyalty/loyaltyHomePage;CategoryPage,ContentPage
+;;LoyaltyProductGridPageTemplate;FM Loyalty Product Grid Page Template;category/loyalty/loyaltyProductGridPage;CategoryPage,ProductPage
+;;LoyaltyCheckoutPageTemplate;FM Loyalty Checkout Page Template;pages/loyalty/LoyaltyCheckoutPage;ContentPage
+;;LoyaltyProductDetailsPageTemplate;FM Loyalty Product Details Page Templae;loyalty/rewardsProductDetailPage;ContentPage,ProductPage 
+;;LoyaltyAccountPageTemplate;Manage Account Page Template;pages/loyalty/loyaltyHistoryPage;ContentPage
+;;LoyaltyWaysToEarnPointsTemplate;FM Loyalty Way to Earn Points Template;loyalty/rewardsWaysToEarnPoints;ContentPage
+;;LoyaltySearchResultsListPageTemplate;FederalMogul Product List Page Template;search/loyalty/loyaltysearchGridPage;CategoryPage,ProductPage
+;;LoyaltyCartPageTemplate;FM Loyalty Cart Page Template;pages/cart/loyalty/fmLoyaltyCartPage;ContentPage
+
+INSERT_UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+#eCatalog
+;;LoyaltyHomePageTemplate;$jarResourceCms/structure-view/structure_loyaltyHomePageTemplate.vm
+;;LoyaltyProductGridPageTemplate;$jarResourceCms/structure-view/structure_FMsearchResultsGridPageTemplate.vm
+;;LoyaltyCheckoutPageTemplate;$jarResourceCms/structure-view/structure_multiStepCheckoutPageTemplate.vm
+;;LoyaltyProductDetailsPageTemplate;$jarResourceCms/structure-view/structure_productDetailsPageTemplate.vm
+;;LoyaltyAccountPageTemplate;$jarResourceCms/structure-view/structure_fmManageAccountPageTemplate.vm
+;;LoyaltyWaysToEarnPointsTemplate;$jarResourceCms/structure-view/structure_FMsearchResultsGridPageTemplate.vm
+;;LoyaltySearchResultsListPageTemplate;$jarResourceCms/structure-view/structure_FMsearchResultsListPageTemplate.vm
+;;LoyaltyCartPageTemplate;$jarResourceCms/structure-view/structure_cartPageTemplate.vm
+
+
+#################################### Media For Home Page #####################################
+
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];&imageRef;altText
+;;loyalty_homebanner.jpg;$siteResource/images/banners/homepage/loyalty_homebanner.jpg;;loyalty_homebanner.jpg;"Loyalty Homepage banner"
+;;rewards_homebanner.jpg;$siteResource/images/banners/homepage/rewards_homebanner.jpg;;rewards_homebanner.jpg;"rewards Homepage banner"
+;;reward_bannergrid.jpg;$siteResource/images/banners/homepage/reward_bannergrid.jpg;;reward_bannergrid.jpg;"reward product Grid banner"
+;;wayToPoints_banner.jpg;$siteResource/images/banners/homepage/wayToPoints_banner.jpg;;wayToPoints_banner.jpg;"reward points banner"
+;;rewards_champion.jpg;$siteResource/images/banners/homepage/rewards_champion.jpg;;rewards_champion.jpg;"rewards champion"
+;;rewards_cap.jpg;$siteResource/images/banners/homepage/rewards_cap.jpg;;rewards_cap.jpg;"rewards cap"
+;;rewards_shirt.jpg;$siteResource/images/banners/homepage/rewards_shirt.jpg;;rewards_shirt.jpg;"rewards shirt"
+
+
+# Media
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];&imageRef;altText
+#Images for BrandStrip
+;;logo-abex.jpg;$siteResource/images/banners/homepage/logo-abex.png;;logo-abex.jpg;"Abex"
+;;logo-anco.jpg;$siteResource/images/banners/homepage/logo-anco.png;;logo-anco.jpg;"Anco"
+;;logo-champion.jpg;$siteResource/images/banners/homepage/logo-champion.png;;logo-champion.jpg;"champion"
+;;logo-fel-pro.jpg;$siteResource/images/banners/homepage/logo-fel-pro.png;;logo-fel-pro.jpg;"felPro"
+;;logo-ferodo.jpg;$siteResource/images/banners/homepage/logo-ferodo.png;;logo-ferodo.jpg;"ferodo"
+;;logo-fp-diesel.jpg;$siteResource/images/banners/homepage/logo-fp-diesel.png;;logo-fp-diesel.jpg;"fp-diesel"
+;;logo-moog.jpg;$siteResource/images/banners/homepage/logo-moog.png;;logo-moog.jpg;"Moog"
+;;logo-national.jpg;$siteResource/images/banners/homepage/logo-national.png;;logo-national.jpg;"national"
+;;logo-sealed-power.jpg;$siteResource/images/banners/homepage/logo-sealed-power.png;;logo-sealed-power.jpg;"sealed-power"
+;;logo-speed-pro.jpg;$siteResource/images/banners/homepage/logo-speed-pro.png;;logo-speed-pro.jpg;"speed-pro"
+#;;logo-wagner.jpg;$siteResource/images/banners/homepage/logo-wagner.png;;logo-wagner.jpg;"wagner"
+;;logo-wagner-brake.jpg;$siteResource/images/banners/homepage/logo-wagner-brake.png;;logo-wagner-brake.jpg;"wagner-brake"
+;;logo-wagner-lighting.jpg;$siteResource/images/banners/homepage/logo-wagner-lighting.png;;logo-wagner-lighting.jpg;"wagner-lighting"
+
+
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];altText
+;;/images/theme/logo-hybris.png;logo-hybris.png;$siteResource/images/theme/logo-hybris.png;image/png;hybris Accelerator
+
+######################################### Site Logo ###############################################
+
+INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlLink
+;;SiteLogoComponent;Site Logo Component;SiteLogoComponent;/?site=loyalty
+;;LightboxHomeDeliveryBannerComponent;Lightbox Home Delivery Banner Component;LightboxHomeDeliveryBannerComponent;
+
+INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
+;;SiteLogoComponent;/images/theme/logo-hybris.png
+
+
+# CMS SearchBox Components
+INSERT_UPDATE SearchBoxComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+;;SearchBox;Search Box;SearchBox
+;;FMSearchBox;Search Box;FMSearchBox
+
+
+# CMS Mini Cart Component
+INSERT_UPDATE MiniCartComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;totalDisplay(code);shownProductCount;lightboxBannerComponent(&componentRef)
+;;MiniCart;Mini Cart;MiniCart;TOTAL;3;LightboxHomeDeliveryBannerComponent
+
+########################################## Bandstrip Logo ############################################
+
+INSERT_UPDATE FMBannerComponent;$contentCV[unique=true];uid[unique=true];headline[lang=en];$picture[lang=$lang];content[lang=en]
+#Image Banner for BrandStrip
+;;abex;Abex;logo-abex.jpg;;
+;;anco;Anco;logo-anco.jpg;;
+;;champion;Champion;logo-champion.jpg;;
+;;fel-pro;FelPro;logo-fel-pro.jpg;;
+;;ferodo;Ferodo;logo-ferodo.jpg;;
+;;fp-diesel;Fp Diesel;logo-fp-diesel.jpg;;
+;;moog;Moog;logo-moog.jpg;;
+;;national;National;logo-national.jpg;;
+;;sealed-power;Sealed Power;logo-sealed-power.jpg;;
+;;speed-pro;SpeedPro;logo-speed-pro.jpg;;
+#;;wagner;Wagner;logo-wagner.jpg;;
+;;wagnerbrake;Wagner Brake;logo-wagner-brake.jpg;;
+;;wagnerlighting;Wgner Lighting;logo-wagner-lighting.jpg;;
+
+INSERT_UPDATE FMBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlLink
+#Images for BrandStrip Links 
+;;abex;Abex;abex;;
+;;anco;Anco;anco;;
+;;champion;champion;champion;;
+;;fel-pro;felPro;fel-pro;;
+;;ferodo;Ferodo;ferodo;;
+;;sealed-power;sealedPower Banner;sealed-power;;
+;;fp-diesel;fpDiesel Banner;fp-diesel;;
+;;moog;Moog;moog;;
+;;national;National;national;;
+;;wagnerbrake;WangerBrake Brake;wagnerbrake;;
+;;wagnerlighting;wangerLighting;wagnerlighting;;
+;;speed-pro;speedPro Banner;speed-pro;;
+#;;wagner;Wagner;wagner;;
+
+############################################ Banner in Home Page #########################################
+
+INSERT_UPDATE FMBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlLink
+;;loyaltyHomePageBanner;loyalty Home Page Banner;loyaltyHomePageBanner;
+;;RewardsHomePageBanner;Rewards Home Page Banner;RewardsHomePageBanner;
+;;RewardGridBanner;Reward Grid Banner;RewardGridBanner;
+;;wayToPointsBanner;way To Points Banner;wayToPointsBanner;
+#;;EarnPointsBanner1;Earn Points Banner1;EarnPointsBanner1;
+;;RewardsChampionBanner0;Rewards Champion Banner;RewardsChampionBanner0;
+;;RewardsCapBanner0;Rewards Cap Banner;RewardsCapBanner0;
+;;RewardsShirtBanner0;Rewards Shirt Banner;RewardsShirtBanner0;
+;;RewardsChampionBanner1;Rewards Champion Banner;RewardsChampionBanner1;
+;;RewardsCapBanner1;Rewards Cap Banner;RewardsCapBanner1;
+;;RewardsShirtBanner1;Rewards Shirt Banner;RewardsShirtBanner1;
+
+
+INSERT_UPDATE FMBannerComponent;$contentCV[unique=true];uid[unique=true];headline[lang=en];$picture[lang=$lang];content[lang=en]
+;;loyaltyHomePageBanner;My Rewards;loyalty_homebanner.jpg;<p>Reward yourself. Our thanks to you,<br> for being our loyal customer</p>
+;;RewardsHomePageBanner;latest ways to learn;rewards_homebanner.jpg;<div class=""><ul><li><a href="#" class="text-capitalize">Lorem ipsum Tech Questions <span class="linkarow fa fa-angle-right "></span></a></li> <li><a href="#" class="text-capitalize">Suspendisse Downloads <span class="linkarow fa fa-angle-right "></span></a></li><li><a href="#" class="text-capitalize">tristique bulletins <span class="linkarow fa fa-angle-right "></span></a></li><li><a href="#" class="text-capitalize">cras at POP asset porttitor mattis <span class="linkarow fa fa-angle-right "></span></a></li><li><a href="#" class="text-capitalize">donnec dignissim ornare tortor <span class="linkarow fa fa-angle-right "></span></a></li><li><a href="#" class="text-capitalize">Suspendisse Downloads <span class="linkarow fa fa-angle-right "></span></a></li><li><a href="#" class="text-capitalize">tristique bulletins <span class="linkarow fa fa-angle-right "></span></a></li><li><a href="#" class="text-capitalize">cras at POP asset porttitor mattis <span class="linkarow fa fa-angle-right "></span></a></li><li><a href="#" class="text-capitalize">donnec dignissim ornare tortor <span class="linkarow fa fa-angle-right "></span></a></li></ul> <a  href="#" class="btn  btn-sm btn-fmDefault text-uppercase topMargn_20">view complete list</a><div class="topMargn_20 btmMrgn_30">Earn maximum 10,000 points per year</div></div>
+;;RewardGridBanner;Reward;reward_bannergrid.jpg;<div class=""></div>
+;;wayToPointsBanner;Way to Points Banner;wayToPoints_banner.jpg;<div class=""></div>
+#;;EarnPointsBanner1;Earn Points Banner1;;<div class="slide bx-clone" style="float: left"></div>
+
+;;RewardsShirtBanner0;"Champion&reg; Classic logo Tee";rewards_shirt.jpg;<div class=""><p>iItem#: <span class="itemNum">8250-LG</span></p> <p>Lorem ipsum dolor sit amet, sed do eiusmod tempor.</p> </div>
+;;RewardsCapBanner0;"Champion&reg; trucker hat";rewards_cap.jpg;<div class=""><p>iItem#:<span class="itemNum">8460</span></p> <p>Lorem ipsum dolor sit amet, sed do eiusmod tempor.</p> </div>
+;;RewardsChampionBanner0; "Champion&reg; $100 gift certificate";rewards_champion.jpg;<div class=""><p>iItem#: <span class="itemNum">G3</span></p><p>Lorem ipsum dolor sit amet, sed do eiusmod tempor.</p></div>
+;;RewardsShirtBanner1;"Champion&reg; Classic logo Tee";rewards_shirt.jpg; <div class=""><p>iItem#: <span class="itemNum">8250-LG</span></p> <p>Lorem ipsum dolor sit amet, sed do eiusmod tempor.</p> </div>
+;;RewardsCapBanner1;"Champion&reg; trucker hat";rewards_cap.jpg;<div class=""><p>iItem#:<span class="itemNum">8460</span></p> <p>Lorem ipsum dolor sit amet, sed do eiusmod tempor.</p> </div>
+;;RewardsChampionBanner1; "Champion&reg; $100 gift certificate";rewards_champion.jpg;<div class=""><p>iItem#: <span class="itemNum">G3</span></p><p>Lorem ipsum dolor sit amet, sed do eiusmod tempor.</p></div>
+
+INSERT_UPDATE FMBannerComponent;$contentCV[unique=true];uid[unique=true];carouselcontainer[lang=en];sequenceId;color
+;;RewardsChampionBanner0;;1;;
+;;RewardsCapBanner0;;;;
+;;RewardsShirtBanner0;;;;
+;;RewardsChampionBanner1;;;;
+;;RewardsCapBanner1;;;;
+;;RewardsShirtBanner1;;;;
+
+############################################ Banner in Footer  #########################################
+
+INSERT_UPDATE FMBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlLink
+#;;abex;abex;abex;
+;;anco;anco;anco;
+;;champion;champion Banner;champion;
+;;fel-pro;fel-pro Banner;felPro;
+#;;sealed-power;sealed-power Banner;sealedPower;
+#;;fp-diesel;fp-diesel Banner;fpDiesel;
+#;;speed-pro;speed-pro Banner;speedPro;
+;;moog;moog Banner;moog;
+;;wagnerbrake;Wagner Banner;wagnerbrake;
+
+########################################## Paragraph component for Home Page ####################################
+
+INSERT_UPDATE FMParagraphComponent;$contentCV[unique=true];uid[unique=true];name;content;subContent;&componentRef
+;;rewardparagraph;reward paragraph;<div class="panel-body"><h1 class="panel-title topMargn_8"><span class="fa fa-certificate"></span> <span class=" text-uppercase">My rewards</span></h1><div class="topMargn_10">Lorem ipsum dolor sit amet, sed do eiusmod tempor.</div> <div class="rewardsPoints"><i class="fa fa-wrench"></i><strong>3,254<sub>pts</sub></strong></div><form id="rewardsform" class="form-horizontal rewardsPanelForm" role="form"><div class="controls clearfix"> <a id="btn-login" href="rewardsPointsHistory.html" class="btn  btn-sm btn-fmDefault pull-rightn text-uppercase">redeem</a></div></form><div class="viewall text-center btmMrgn_30"><a href="loyalty/history" class="text-capitalize">view points history <span class="fa fa-angle-right fm_fntRed"></span></a></div></div></div></div>";;rewardparagraph
+;;FAQparagraph;FAQ paragraph;<div class="techforumCol col-lg-6"><h3 class="panel-title text-uppercase"><span class="text-uppercase">FAQs</span></h3> <ul><li>Lorem ipsum dolor sit amet, Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</li><li>Lorem ipsum dolor sit amet, Consectetur adipisicing elit, sed do eiusmod tempors et dolore magna aliqua.</li><li>Lorem ipsum dolor sit amet, Consectetur adipisicing elit, sed do eiusmod tempor et dolore magna aliqua.</li> </ul><a  href="#" class="btn  btn-sm btn-fmDefault text-uppercase">view all support topics</a> </div><div class="col-lg-6"><h3 class="panel-title text-uppercase"><span class="text-uppercase">contact us</span></h3><p class="topMargn_20">Lorem ipsum dolor sit amet, Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p><div class="topMargn_20"><a class="viewmore fm_fnt_Blue text-capitalize"  href="#">Lorem ipsum dolor sit amet <span class="fa fa-angle-right viewmorearrow"></span></a></div> <div class="topMargn_20"><a class="viewmore fm_fnt_Blue text-capitalize" href="#">exchange and returns <span class="fa fa-angle-right viewmorearrow"></span></a></div></div>;;FAQparagraph
+;;learnparagraph;learn paragraph;<div class="panel-body"><h2 class="text-uppercase">latest ways to learn</h2><div class="btmMrgn_30 topMargn_20"> <img src="$siteResource/images/banner/homepage/rewards_homebanner.jpg" alt="" class="img-responsive">  </div><ul class=""> <li><a href="#" class="text-capitalize">Lorem ipsum Tech Questions <span class="linkarow fa fa-angle-right "></span></a></li><li><a href="#" class="text-capitalize">Suspendisse Downloads <span class="linkarow fa fa-angle-right "></span></a></li><li><a href="#" class="text-capitalize">tristique bulletins <span class="linkarow fa fa-angle-right "></span></a></li><li><a href="#" class="text-capitalize">cras at POP asset porttitor mattis <span class="linkarow fa fa-angle-right "></span></a></li><li><a href="#" class="text-capitalize">donnec dignissim ornare tortor <span class="linkarow fa fa-angle-right "></span></a></li><li><a href="#" class="text-capitalize">Suspendisse Downloads <span class="linkarow fa fa-angle-right "></span></a></li><li><a href="#" class="text-capitalize">tristique bulletins <span class="linkarow fa fa-angle-right "></span></a></li><li><a href="#" class="text-capitalize">cras at POP asset porttitor mattis <span class="linkarow fa fa-angle-right "></span></a></li><li><a href="#" class="text-capitalize">donnec dignissim ornare tortor <span class="linkarow fa fa-angle-right "></span></a></li></ul><a  href="#" class="btn  btn-sm btn-fmDefault text-uppercase topMargn_20">view complete list</a><div class="topMargn_20 btmMrgn_30">Earn maximum 10,000 points per year</div></div>;;learnparagraph
+;;pointparagraph;point paragraph;<div class="clearfix"><h2 class="text-capitalize DINWebBold"><span class="fm_fntRed fa fa-star"></span> what you can do*</h2><div class="table-responsive userTable rewardsEarn"><table class="table ordeDetailsTable"><thead><tr><th class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-capitalize">activity</th><th class="col-lg-5 col-md-5 col-sm-5 col-xs-5 text-capitalize">points</th><th class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-capitalize"></th></tr></thead> <tbody><td class="text-capitalize">live training</td><td class="">1,000 X course credits</td><td><a href="#" class="text-capitalize fm_fnt_Blue">find a course <span class="linkarow fa fa-angle-right "></span></a></td></tr><tr> <td class="text-capitalize">virtual/online training</td> <td class="">1,000 X course credits</td><td><a href="#" class="text-capitalize fm_fnt_Blue">Tech academy <span class="linkarow fa fa-angle-right "></span></a></td></tr><tr><td class="text-capitalize">product reviews</td> <td class="">250</td><td><a href="#" class="text-capitalize fm_fnt_Blue">find a product <span class="linkarow fa fa-angle-right "></span></a></td> </tr><tr><td class="text-capitalize">join the loyalty program</td><td class="">250</td><td></td></tr><tr><td class="text-capitalize">complete  surveys</td><td class="">250</td><td><a href="#" class="text-capitalize fm_fnt_Blue">find a survey <span class="linkarow fa fa-angle-right "></span></a></td> </tr><tr><td class="text-capitalize">posting the most helpful response to motorparts forum</td> <td class="">100</td><td><a href="#" class="text-capitalize fm_fnt_Blue">go to forum <span class="linkarow fa fa-angle-right "></span></a></td></tr><tr><td class="text-capitalize">refer a  friend</td><td class="">50</td><td><a href="#" class="text-capitalize fm_fnt_Blue">referal form <span class="linkarow fa fa-angle-right "></span></a></td></tr><tr><td class="text-capitalize">sharing products or promotion on social media</td><td class="">25</td><td><a href="#" class="text-capitalize fm_fnt_Blue">find a product <span class="linkarow fa fa-angle-right "></span></a></td></tr><tr><td class="text-capitalize">updating contact information twice a year</td><td class="">25</td> <td><a href="#" class="text-capitalize fm_fnt_Blue">update contact <span class="linkarow fa fa-angle-right "></span></a></td> </tr></tbody> </table> </div><div class="topMargn_20">* Earn maximum 10,000 points per calendar year</div> </div>;;pointparagraph
+
+######################################### Carousel Component #######################################################
+
+INSERT_UPDATE FMHomeCarouselComponent;$contentCV[unique=true];uid[unique=true];name;fmbanners(&componentRef);&componentRef
+;;LoyaltyCarousel;Loyalty Carousel;RewardsShirtBanner0,RewardsCapBanner0,RewardsChampionBanner0,RewardsShirtBanner1,RewardsCapBanner1,RewardsChampionBanner1;LoyaltyCarousel
+
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&componentRef;target(code)[default='sameWindow'];linkName[lang=en]
+
+#Links Under eStore
+;;SearchByVechileLink;Search By Vechile Link;"#";SearchByVechileLink;;"Search By Vehicle"
+;;SearchByVINLink;Search By VIN Link;"#";SearchByVINLink;;"Search By VIN"
+;;SearchByCategoryLink;Search By Category Link;"#";SearchByCategoryLink;;"Search By Category"
+;;SearchByCompetitorLink;Search By Competitor Link;"#";SearchByCompetitorLink;;"Search By Competitor"
+
+
+#New links under eCatalog header
+;;FiltersChemicalsLink;FiltersChemicals Link;"c/Filters & Chemicals";FiltersChemicalsLink;;"Filters & Chemicals"
+;;LightingLink;Lighting Link;"c/Lighting";LightingLink;;"Lighting"
+;;EngineLink;Engine Link;"c/Engine";EngineLink;;"Engine"
+;;DrivelineLink;Driveline Link;"c/Driveline";DrivelineLink;;"Driveline"
+;;IgnitionLink;Ignition Link;"c/Ignition";IgnitionLink;;"Ignition"
+;;GasketsSealingLink;GasketsSealing Link;"c/Gaskets Sealing Systems";GasketsSealingLink;;"Gaskets & Sealing Systems"
+;;SteeringLink;Steering Link;"c/Steering";SteeringLink;;"Steering"
+;;WipersLink;Wipers Link;"c/Wipers";WipersLink;;"Wipers"
+;;ClutchLink;Clutch Link;"c/Clutch";ClutchLink;;"Clutch"
+;;BrakesLink;Brakes Link;"c/Brakes";BrakesLink;;"Brakes"
+;;SuspensionLink;Suspension Link;"c/Suspension";SuspensionLink;;"Suspension"
+
+
+#Links UnderCatalog for Footer Section
+;;FiltersChemicalsFooterLink;FiltersChemicals Link;"c/FiltersChemicals";FiltersChemicalsFooterLink;;"Filters & Chemicals"
+;;LightingFooterLink;Lighting Link;"c/Lighting";LightingFooterLink;;"Lighting"
+;;EngineFooterLink;Engine Link;"c/Engine";EngineFooterLink;;"Engine"
+;;DrivelineFooterLink;Driveline Link;"c/Driveline";DrivelineFooterLink;;"Driveline"
+;;IgnitionFooterLink;Ignition Link;"c/Ignition";IgnitionFooterLink;;"Ignition"
+;;GasketsSealingFooterLink;GasketsSealing Link;"c/GasketsSealing";GasketsSealingFooterLink;;"Gaskets & Sealing Systems"
+;;SteeringFooterLink;Steering Link;"c/Steering";SteeringFooterLink;;"Steering"
+;;WipersFooterLink;Wipers Link;"c/Wipers";WipersFooterLink;;"Wipers"
+;;ClutchFooterLink;Clutch Link;"c/Clutch";ClutchFooterLink;;"Clutch"
+;;BrakesFooterLink;Brakes Link;"c/Brakes";BrakesFooterLink;;"Brakes"
+;;SuspensionFooterLink;Suspension Link;"c/Suspension";SuspensionFooterLink;;"Suspension"
+
+#LearningCenter
+;;LCOverviewLink;Overview Link;"lc/learningCenter";LCOverviewLink;;"Overview"
+#;;OnDemandLink;On Demand Link;"#";OnDemandLink;;"OnDemand"
+#;;VechileRepairSymptomsLink;Vechile Repair Symptoms Link;"#";VechileRepairSymptomsLink;;"Vehicle Repair Symptoms"
+#;;InstallationVideosLink;Installation Videos Link;"#";InstallationVideosLink;;"Installation Videos"
+;;TrainingOptionsLink;TrainingOptions Link;"http://fmgaragegurus.com/About.aspx";TrainingOptionsLink;newWindow;"Training Options"
+;;CoursesLink;Courses Link;"http://fmgaragegurus.com/Courses.aspx";CoursesLink;newWindow;"Courses"
+;;TechTipsLink;TechTips Link;"http://fmgaragegurus.com/TechTips.aspx";TechTipsLink;newWindow;"Tech Tips"
+;;DiagnosticCenterLink;DiagnosticCenter Link;"lc/diagnostic-center";DiagnosticCenterLink;;"Diagnostic Center"
+;;BulletinsLink;Bulletins Link;"lc/bulletins";BulletinsLink;;"Bulletins"
+;;CatalogsLink;Catalogs Link;"lc/catalogs";CatalogsLink;;"Catalogs"
+;;VideoGalleryLink;VideoGallery Link;"lc/video-gallery";VideoGalleryLink;;"Video Gallery"
+;;SpecLookUpLink;SpecLookUp Link;"lc/speclookup";SpecLookUpLink;;"Specification Look-Ups"
+;;CalculatorsLink;Calculators Link;"lc/calculators";CalculatorsLink;;"Calculators"
+
+
+#Support
+;;TechnicalLineLink;Technical Line Link;"support/technical-line";TechnicalLineLink;;"Technical Line"
+;;CustomerServiceLink;Customer Service Link;"support/customer-service";CustomerServiceLink;;"Customer Service"
+;;ContactUsLink;Contact Us Link;"support/contact-us";ContactUsLink;;"Contact Us"
+;;SupplierCollaborationLink;Supplier Collaboration Link;"http://sap2222.na.fmo.com:8000/sap/bc/webdynpro/scf/snc_s?sap-language=EN";SupplierCollaborationLink;newWindow;"Supplier Collaboration"
+
+#About
+;;CompanyLink;Company Link;"about-us/company";CompanyLink;;"Company"
+;;NewsLink;News Link;"about-us/news";NewsLink;;"News"
+;;CareersLink;Careers Link;"about-us/careers";CareersLink;;"Careers"
+;;ExecutiveTeamLink;Executive Team Link;"about-us/executive";ExecutiveTeamLink;;"Executive Team"
+;;InvestorsLink;Investors Link;"about-us/investors";InvestorsLink;;"Investors"
+;;MediaSuppliersLink;Media Suppliers Link;"about-us/suppliers";MediaSuppliersLink;;"Suppliers"
+;;PrivacyAndLegalLink;Privacy And Legal Link;"about-us/privacy-legal";PrivacyAndLegalLink;;"Privacy and Legal"
+;;LoyaltyLink;Loyalty Link;"/fmstorefront/?site=loyalty";LoyaltyLink;;"Loyalty"
+
+#Brand landing Page
+;;AutomotiveSparkPlugs;Automotive Spark Plugs;"#";AutomotiveSparkPlugs;;"Automotive Spark Plugs"
+;;Lawn&GardenSparkPlugs;Lawn & Garden Spark Plugs;"#";Lawn&GardenSparkPlugs;;"Lawn & Garden Spark Plugs"
+;;MarineSparkPlugs;Marine Spark Plugs;"#";MarineSparkPlugs;;"Marine Spark Plugs"
+;;PowerSportSparkPlugs;Power Sport Spark Plugs ;"#";PowerSportSparkPlugs;;"Power Sport Spark Plugs "
+;;RacingSparkPlugs;Racing Spark Plugs;"#";RacingSparkPlugs;;"Racing Spark Plugs"
+;;AirFilters;Air Filters;"#";AirFilters;;"Air Filters"
+;;OilFilters;Oil Filters;"#";OilFilters;;"Oil Filters"
+;;Tune-UpKits;Tune-Up Kits;"#";Tune-UpKits;;"Tune-Up Kits"
+;;WiperBlades;Wiper Blades;"#";WiperBlades;;"Wiper Blades"
+;;AdditiveandLubricants;AdditiveandLubricants;"#";AdditiveandLubricants;;"Additive and Lubricants"
+
+#Abex landing Page
+;;Lining;Lining;"#";Lining;;"Lining"
+#;;AllProducts;AllProducts;"#";AllProducts;;"All Products"
+
+#Anco landing Page
+;;Blades;Blades;"c/Wipers?q=%3Acategory-asc%3Acategory%3AWipers%3Abrand%3AANCO&text=#";Blades;;"Blades"
+;;Accessories;Accessories;"c/Wipers?q=%3Acategory-asc%3Acategory%3AWipers%3Abrand%3AANCO&text=#";Accessories;;"Accessories"
+#;;AllAncoProducts;AllAncoProducts;"#";AllAncoProducts;;"All ANCO Products"
+
+#Fel-Pro landing Page
+;;ValveCoverGaskets;ValveCoverGaskets;"c/Gaskets Sealing Systems?q=%3Acategory-asc%3Acategory%3AGaskets Sealing Systems%3Abrand%3AFel-Pro&text=#";ValveCoverGaskets;;"Valve Cover Gaskets"
+;;OilPanGaskets;OilPanGaskets;"c/Gaskets Sealing Systems?q=%3Acategory-asc%3Acategory%3AGaskets Sealing Systems%3Abrand%3AFel-Pro&text=#";OilPanGaskets;;"Oil Pan Gaskets"
+;;HeadGaskets;HeadGaskets;"c/Gaskets Sealing Systems?q=%3Acategory-asc%3Acategory%3AGaskets Sealing Systems%3Abrand%3AFel-Pro&text=#";HeadGaskets;;"Head Gaskets"
+;;HeadBoltSets;HeadBoltSets;"c/Gaskets Sealing Systems?q=%3Acategory-asc%3Acategory%3AGaskets Sealing Systems%3Abrand%3AFel-Pro&text=#";HeadBoltSets;;"Head Bolt Sets"
+;;TimingCoverGaskets;TimingCoverGaskets;"c/Gaskets Sealing Systems?q=%3Acategory-asc%3Acategory%3AGaskets Sealing Systems%3Abrand%3AFel-Pro&text=#";TimingCoverGaskets;;"Timing Cover Gaskets"
+;;MarineGaskets;MarineGaskets;"c/Gaskets Sealing Systems?q=%3Acategory-asc%3Acategory%3AGaskets Sealing Systems%3Abrand%3AFel-Pro&text=#";MarineGaskets;;"Marine Gaskets"
+;;IntakeManifoldGaskets;IntakeManifoldGaskets;"c/Gaskets Sealing Systems?q=%3Acategory-asc%3Acategory%3AGaskets Sealing Systems%3Abrand%3AFel-Pro&text=#";IntakeManifoldGaskets;;"Intake Manifold Gaskets"
+;;PerformanceGaskets;PerformanceGaskets;"c/Gaskets Sealing Systems?q=%3Acategory-asc%3Acategory%3AGaskets Sealing Systems%3Abrand%3AFel-Pro&text=#";PerformanceGaskets;;"Performance Gaskets"
+#;;AllFel-ProProducts;AllFel-ProProducts;"c/Gaskets Sealing Systems?q=%3Acategory-asc%3Acategory%3AGaskets Sealing Systems%3Abrand%3AFel-Pro&text=#";AllFel-ProProducts;;"All Fel-Pro® Products"
+
+#FP Diesel Landing Page
+;;EngineBearings;EngineBearings;"#";EngineBearings;;"Engine Bearings"
+;;EngineKits;EngineKits;"#";EngineKits;;"Engine Kits"
+;;HeadGaskets;HeadGaskets;"#";HeadGaskets;;"Head Gaskets"
+;;Pistons;Pistons;"#";Pistons;;"Pistons"
+#;;AllFPDieselProducts;AllFPDieselProducts;"#";AllFPDieselProducts;;"All FP Diesel® Products"
+
+#Moog Diesel Landing Page
+;;TieRods;TieRods;"c/Steering?q=%3Acategory-asc%3Acategory%3ASteering%3Asubcategory%3ASteering Linkage%3Abrand%3AMOOG&text=#";TieRods;;"Tie Rods"
+;;SteeringStabilizers;SteeringStabilizers;"c/Steering?q=%3Acategory-asc%3Acategory%3ASteering%3Asubcategory%3ASteering Linkage%3Abrand%3AMOOG&text=#";SteeringStabilizers;;"Steering Stabilizers"
+;;AlignmentParts;AlignmentParts;"c/Steering?q=%3Acategory-asc%3Acategory%3ASteering%3Asubcategory%3ASteering Linkage%3Abrand%3AMOOG&text=#";AlignmentParts;;"Alignment Parts"
+;;IdlerArms;IdlerArms;"c/Steering?q=%3Acategory-asc%3Acategory%3ASteering%3Asubcategory%3ASteering Linkage%3Abrand%3AMOOG&text=#";IdlerArms;;"Idler Arms"
+;;SwayBarLinks;SwayBarLinks;"c/Steering?q=%3Acategory-asc%3Acategory%3ASteering%3Asubcategory%3ASteering Linkage%3Abrand%3AMOOG&text=#";SwayBarLinks;;"Sway Bar Links"
+;;Bushings;Bushings;"c/Steering?q=%3Acategory-asc%3Acategory%3ASteering%3Asubcategory%3ASteering Linkage%3Abrand%3AMOOG&text=#";Bushings;;"Bushings"
+;;BallJoints;BallJoints;"c/Steering?q=%3Acategory-asc%3Acategory%3ASteering%3Asubcategory%3ASteering Linkage%3Abrand%3AMOOG&text=#";BallJoints;;"Ball Joints"
+;;CoilSprings;CoilSprings;"c/Steering?q=%3Acategory-asc%3Acategory%3ASteering%3Asubcategory%3ASteering Linkage%3Abrand%3AMOOG&text=#";CoilSprings;;"Coil Springs"
+;;StrutMounts;StrutMounts;"c/Steering?q=%3Acategory-asc%3Acategory%3ASteering%3Asubcategory%3ASteering Linkage%3Abrand%3AMOOG&text=#";StrutMounts;;"Strut Mounts"
+;;StrutAssemblies;StrutAssemblies;"c/Steering?q=%3Acategory-asc%3Acategory%3ASteering%3Asubcategory%3ASteering Linkage%3Abrand%3AMOOG&text=#";StrutAssemblies;;"Strut Assemblies"
+;;HubAssemblies;HubAssemblies;"c/Steering?q=%3Acategory-asc%3Acategory%3ASteering%3Asubcategory%3ASteering Linkage%3Abrand%3AMOOG&text=#";HubAssemblies;;"Hub Assemblies"
+;;UniversalJoints;UniversalJoints;"c/Steering?q=%3Acategory-asc%3Acategory%3ASteering%3Asubcategory%3ASteering Linkage%3Abrand%3AMOOG&text=#";UniversalJoints;;"Universal Joints"
+#;;AllMoogProducts;AllMoogProducts;"#";AllMoogProducts;;"All Moog® Products"
+
+#Sealed Power Landing Page
+;;EngineBearings;EngineBearings;"c/Engine?q=%3Acategory-asc%3Acategory%3AEngine%3Abrand%3ASealed Power&text=#";EngineBearings;;"Engine Bearings"
+;;EngineKits;EngineKits;"c/Engine?q=%3Acategory-asc%3Acategory%3AEngine%3Abrand%3ASealed Power&text=#";EngineKits;;"Engine Kits"
+;;PistonRings;PistonRings;"c/Engine?q=%3Acategory-asc%3Acategory%3AEngine%3Abrand%3ASealed Power&text=#";PistonRings;;"Piston Rings"
+;;Pistons;Pistons;"c/Engine?q=%3Acategory-asc%3Acategory%3AEngine%3Abrand%3ASealed Power&text=#";Pistons;;"Pistons"
+#;;AllSealedPowerProducts;AllSealedPowerProducts;"#";AllSealedPowerProducts;;"All Sealed Power® Products"
+
+#Speed-Pro Landing Page
+;;EngineBearings;EngineBearings;"c/Engine?q=%3Acategory-asc%3Acategory%3AEngine%3Abrand%3ASpeed-Pro&text=#";EngineBearings;;"Engine Bearings"
+;;PistonRings;PistonRings;"c/Engine?q=%3Acategory-asc%3Acategory%3AEngine%3Abrand%3ASpeed-Pro&text=#";PistonRings;;"Piston Rings"
+;;Pistons;Pistons;"c/Engine?q=%3Acategory-asc%3Acategory%3AEngine%3Abrand%3ASpeed-Pro&text=#";Pistons;;"Pistons"
+#;;AllSpeed-ProProducts;AllSpeed-ProProducts;"#";AllSpeed-ProProducts;;"AllSpeed-Pro® Products"
+
+#Wagner Brakes Landing Page
+;;Pads&Shoes;Pads&Shoes;"c/Brakes?q=%3Acategory-asc%3Acategory%3ABrakes%3Abrand%3AWagner Brake&text=#";Pads&Shoes;;"Pads & Shoes"
+;;Rotors&Drums;Rotors&Drums;"c/Brakes?q=%3Acategory-asc%3Acategory%3ABrakes%3Abrand%3AWagner Brake&text=#";Rotors&Drums;;"Rotors & Drums"
+;;HydraulicsHardware&Fluids;HydraulicsHardware&Fluids;"c/Brakes?q=%3Acategory-asc%3Acategory%3ABrakes%3Abrand%3AWagner Brake&text=#";HydraulicsHardware&Fluids;;"Hydraulics,Hardware & Fluids"
+;;Hydraulics;Hydraulics;"c/Brakes?q=%3Acategory-asc%3Acategory%3ABrakes%3Abrand%3AWagner Brake&text=#";Hydraulics;;"Hydraulics"
+;;Fluids;Fluids;"c/Brakes?q=%3Acategory-asc%3Acategory%3ABrakes%3Abrand%3AWagner Brake&text=#";Fluids;;"Fluids"
+#;;AllWagnerBrakeProducts;AllWagnerBrakeProducts;"#";AllWagnerBrakeProducts;;"All Wagner Brake Products"
+
+#Wagner Ligting
+;;Headlamps;Headlamps;"c/Lighting?q=%3Acategory-asc%3Acategory%3ALighting%3Abrand%3AWagner Lighting&text=#";Headlamps;;"Headlamps"
+;;MiniatureLamps;MiniatureLamps;"c/Lighting?q=%3Acategory-asc%3Acategory%3ALighting%3Abrand%3AWagner Lighting&text=#";MiniatureLamps;;"Miniature Lamps"
+#;;AllWagnerLightingProducts;AllWagnerLightingProducts;"#";AllWagnerLightingProducts;;"All Wagner Lighting Products"
+
+
+#National
+;;Bearing&Seals;Bearing&Seals;"c/Lighting?q=%3Acategory-asc%3Acategory%3ALighting%3Abrand%3AWagner Lighting&text=#";Bearing&Seals;;"Bearing & Seals"
+;;OilSeals;OilSeals;"c/Lighting?q=%3Acategory-asc%3Acategory%3ALighting%3Abrand%3AWagner Lighting&text=#";OilSeals;;"Oil Seals"
+
+#Ferodo
+;;FerodoLink;FerodoLink;"c/Lighting?q=%3Acategory-asc%3Acategory%3ALighting%3Abrand%3AWagner Lighting&text=#";FerodoLink;;"abc link"
+
+
+#Home Navigation Bar Component
+;;CatalogLink;Catalog link;"#";CatalogLink;;"Catalog"
+;;LearningCenterLink;Learning Center Link;"lc/learningCenter";LearningCenterLink;;"Learning Center"
+#;;LearningCenterLink;Learning Center Link;"#";LearningCenterLink;;"Learning Center"
+;;SupportLink;Support Link;"#";SupportLink;;"Support"
+;;AboutUsLink;About Us Link;"#";AboutUsLink;;"About Us"
+#;;eStorelink;eStore link;"#";eStorelink;;"eStore"
+
+#Diksha Learning Center Links
+;;LCOverviewLink;LC Overview Link;"lc/learningCenter";LCOverviewLink;;"Overview"
+;;TrainingOptions;Training Options;"http://fmgaragegurus.com/About.aspx";TrainingOptions;newWindow;"Training Options"
+;;Courses;Courses;"http://fmgaragegurus.com/Courses.aspx";Courses;newWindow;"Courses"
+;;TechTips;Tech Tips;"http://fmgaragegurus.com/TechTips.aspx";TechTips;newWindow;"Tech Tips"
+;;DiagnosticCenter;Diagnostic Center;"lc/diagnostic-center";DiagnosticCenter;;"Diagnostic Center"
+;;BulletinsLink;Bulletins Link;"lc/bulletins";BulletinsLink;;"Bulletins" 
+;;CatalogsLink;Catalogs Link;"lc/catalogs";CatalogsLink;;"Catalogs"
+;;VideoGallery;Video Gallery;"lc/video-gallery";VideoGallery;;"Video Gallery"
+;;SpecLookUpLink;SpecLookUp Link;"lc/speclookup";SpecLookUpLink;;"Specification Look-Ups"
+;;CalculatorsLink;Calculators Link;"lc/calculators";CalculatorsLink;;"Calculators"
+
+# Sree B2B
+# Other Parts
+#;;ApplicationLookupLink;Application Lookup Link;"#";ApplicationLookupLink;;"Application Lookup"
+#;;ByCategoryLink;By Category Link;"#";ByCategoryLink;;"By Category"
+#;;InterchangeLink;Interchange Link;"#";InterchangeLink;;"Interchange"
+
+#Part Finder
+;;VehicleLink;Vehicle Link;"/catalog/partsFinderVehicleLookup";VehicleLink;;"Vehicle"
+;;LicensePlateLink;LicensePlate Link;"/catalog/partsFinderLicensePlateLookup";LicensePlateLink;;"License Plate"
+;;VinLink;Vin Link;"/catalog/partsFinderLicenseVINLookup";VinLink;;"VIN"
+;;CompetitorLink;Competitor Link;"/catalog/competitor-interchange";CompetitorLink;;"Competitor"
+;;WhereToBuyLink;WhereToBuy Link;"/where-to-buy";WhereToBuyLink;;"Where To Buy"
+
+
+
+
+# contact us
+;;YoutubeLink;Youtube Link;"http://www.youtube.com";YoutubeLink;newWindow;"Youtube"
+
+# Siva
+# Technician academy
+;;VechileRepairSymptomsLink;Vechile Repair Symptoms Link;"#";VechileRepairSymptomsLink;newWindow;"VechileRepairSymptoms"
+;;InstallationVideosLink;Installation Videos Link;"#";InstallationVideosLink;newWindow;"InstallationVideos"
+
+# Home Navigation Bar Component
+# Sree B2B
+;;OrderPartsLink;OrderParts Link;"#";OrderPartsLink;;"Order Parts"
+# Online Tools
+;;OverviewLink;Overview Link;"online-tools/overview";OverviewLink;;"Overview"
+;;MotorpartsMonitorLink;MotorParts Monitor Link;"online-tools/motorparts-monitor/";MotorpartsMonitorLink;;"MotorParts Monitor"
+#;;PublicationOrderingLink;Publication Ordering Link;"#";PublicationOrderingLink;;"Publication Ordering"
+;;FileDownloadsLink;File Downloads Link;"online-tools/FileDownloads";FileDownloadsLink;;"File Downloads"
+;;ResearchLink;Research Link;"online-tools/research/";ResearchLink;;"Research"
+;;DigitalAssetsLink;Digital Assets Link;"http://am-na-assets.idamcloud.com/";DigitalAssetsLink;newWindow;"Digital Assets"
+;;OrderPOPLink;OrderPOP Materials Link;"#";OrderPOPLink;newWindow;"Order Sales Materials"
+
+# Siva  B2b
+;;TechnicianAcademyLink;Technician Academdy Link;"#";TechnicianAcademyLink;;"Technician Academy"
+#Diksha
+#Left Navigation bar links fro Brand Page
+;;AutomotiveSparkPlugsLink;Automotive Spark Plugs Link;"c/Suspension";AutomotiveSparkPlugsLink;;"AutomotiveSparkPlugs"
+;;LCOverviewLink;LC Overview Link;"lc/learningCenter";LCOverviewLink;;"Overview"
+;;TrainingOptions;Training Options;"lc/training-options";TrainingOptions;;"Training Options"
+;;Courses;Courses;"lc/courses";Courses;;"Courses"
+;;TechTips;Tech Tips;"lc/tech-tips";TechTips;;"Tech Tips"
+;;DiagnosticCenter;Diagnostic Center;"lc/diagnostic-center";DiagnosticCenter;;"Diagnostic Center" 
+;;BulletinsLink;Bulletins Link;"lc/bulletins";BulletinsLink;;"Bulletins"
+;;CatalogsLink;Catalogs Link;"lc/catalogs";CatalogsLink;;"Catalogs"
+;;VideoGallery;Video Gallery;"lc/video-gallery";VideoGallery;;"Video Gallery"
+;;SpecLookUpLink;SpecLookUp Link;"lc/speclookup";SpecLookUpLink;;"Specification Look-Ups"
+;;CalculatorsLink;Calculators Link;"lc/calculators";CalculatorsLink;;"Calculators"
+
+##########Gear Node Link
+;;GearLink;GearLink;"/fm-GlobalError/ErrorPage";GearLink;;"Gear"
+
+
+
+# CMS Link Components For Brand Image links
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&componentRef;target(code)[default='sameWindow'];linkName[lang=en];external
+#Abex 
+;;AbexUrl;AbexUrl;"http://AlwaysAbex.com";AbexUrl;newWindow;"www.AlwaysAbex.com";true
+
+#Anco
+;;AncoUrl;AncoUrl;"http://AlwaysAnco.com";AncoUrl;newWindow;"www.AlwaysAnco.com";true
+
+#Champion
+;;ChampionUrl;ChampionUrl;"http://AlwaysChampion.com";ChampionUrl;newWindow;"www.AlwaysChampion.com";true
+
+#FelPro
+;;FelproUrl;FelproUrl;"http://AlwaysFelpro.com";FelproUrl;newWindow;"www.AlwaysFelpro.com";true
+
+#Ferodo Image
+;;FerodoUrl;FerodoUrl;"http://AlwaysFerodo.com";FerodoUrl;newWindow;"www.AlwaysFerodo.com";true
+
+#Fp-Diesel Image
+;;FpDieselUrl;FpDieselUrl;"http://AlwaysDiesel.com";FpDieselUrl;newWindow;"www.AlwaysFpDiesel.com";true
+
+#Moog Image
+;;MoogUrl;MoogUrl;"http://AlwaysMoog.com";MoogUrl;newWindow;"www.AlwaysMoog.com";true
+
+#National Image
+;;NationalUrl;NationalUrl;"http://AlwaysNational.com";NationalUrl;newWindow;"www.AlwaysNational.com";true
+
+#sealed-power Image
+;;SealedPowerUrl;SealedPowerUrl;"http://AlwaysSealedPower.com";SealedPowerUrl;newWindow;"www.AlwaysSealedPower.com";true
+
+#speed-pro Image
+;;SpeedProUrl;SpeedProUrl;"http://AlwaysSpeedPro.com";SpeedProUrl;newWindow;"www.AlwaysSpeedPro.com";true
+
+#wagner Image
+;;WagnerUrl;WagnerUrl;"http://AlwaysWagner.com";WagnerUrl;newWindow;"www.AlwaysWagner.com";true
+
+#wagner Lighting Image
+;;WagnerLightingUrl;WagnerLightingUrl;"http://AlwaysWagnerLighting.com";WagnerLightingUrl;newWindow;"www.AlwaysWagner.com";true
+
+#Online Tools external Links
+;;DigitalAssetsLink;Digital Assets Link;"http://am-na-assets.idamcloud.com/";DigitalAssetsLink;newWindow;"Digital Assets";true
+;;OrderPOPLink;OrderPOP Materials Link;"#";OrderPOPLink;newWindow;"Order Sales Materials";true
+
+#Learning Center External links
+;;TrainingOptionsLink;TrainingOptions Link;"http://fmgaragegurus.com/About.aspx";TrainingOptionsLink;newWindow;"Training Options";true
+;;CoursesLink;Courses Link;"http://fmgaragegurus.com/Courses.aspx";CoursesLink;newWindow;"Courses";true
+;;TechTipsLink;TechTips Link;"http://fmgaragegurus.com/TechTips.aspx";TechTipsLink;newWindow;"Tech Tips";true
+;;TrainingOptions;Training Options;"http://fmgaragegurus.com/About.aspx";TrainingOptions;newWindow;"Training Options";true
+;;Courses;Courses;"http://fmgaragegurus.com/Courses.aspx";Courses;newWindow;"Courses";true
+;;TechTips;Tech Tips;"http://fmgaragegurus.com/TechTips.aspx";TechTips;newWindow;"Tech Tips";true
+
+# CMS NavigationNodes For Footer 
+INSERT_UPDATE CMSNavigationNode;$contentCV[unique=true];uid[unique=true];title[lang=en]
+#;;eStoreNavNode;"eStore"
+;;CatalogNavNode;"Catalog"
+;;LearningCenterNavNode;"Learning Center"
+;;GearNavNode;"Gear"
+;;SupportNavNode;"Support"
+;;AboutUsNavNode;"About Us"
+#;;ConnectWithUsNavNode;"Connect us"
+#sree B2B
+#;;OtherPartsNavNode;"Other Parts"
+;;PartsFinderNavNode;"Parts Finder"
+;;OnlineToolsNavNode;"Online Tools"
+;;ContactUsNavNode;"Contact Us"
+#sree B2b
+;;TechnicianAcademyNavNode;"Technician Academy"
+
+
+#Header Navigation Bar Component
+;;CatalogHeaderNavNode;"Catalog"
+;;GearHeaderNavNode;"Gear"
+# Sree B2B
+;;OrderPartsHeaderNavNode;"Order Parts"
+;;CatalogHeaderNavNode;"Catalog"
+;;OnlineToolsHeaderNavNode;"Online Tools"
+;;SupportHeaderNavNode;"Support"
+;;AboutUsHeaderNavNode;"About Us"
+
+# Siva B2b
+;;TechnicianAcademyHeaderNavNode;;"Technician Academy"
+# CMS Navigation Nodes For Root 
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;children(uid,$contentCV)[mode=append]
+;root;;root;;
+
+# CMS Navigation Nodes For Federalmogul Navigation Node.
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&componentRef);&nodeRef
+;SiteRootNode;;SiteRootNode;root;;SiteRootNode
+;FederalMogulNavNode;;FederalMogul Site;SiteRootNode;;FederalMogulNavNode
+
+# CMS NavigationNodes with links For Footer 
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&componentRef);&nodeRef
+;eStoreNavNode;;FederalMogul eStores;FederalMogulNavNode;SearchByVechileLink,SearchByVINLink,SearchByCategoryLink,SearchByCompetitorLink;eStoreNavNode
+#;CatalogNavNode;;FederalMogul Catalog;FederalMogulNavNode;ACCompressorBearingsLink,AlternatorGeneratorBearingsLink,BrakeLink,ClutchMasterCylLink,DrivelineLink,EngineLink,FuelPumpsLink,IgnitionLink,LightingLink,SteeringLink,SuspensionLink,WheelBearingsSealsLink,WheelLugNutsAndStudsLink,WindshieldLink;CatalogNavNode
+;CatalogNavNode;;FederalMogul Catalog;FederalMogulNavNode;BrakesLink,ClutchLink,DrivelineLink,EngineLink,GasketsSealingLink,IgnitionLink,LightingLink,SteeringLink,SuspensionLink,WipersLink;CatalogNavNode
+#;CatalogNavNode;;FederalMogul Catalog;FederalMogulNavNode;BrakingFooterLink,DrivelineFooterLink,EngineFooterLink,LightingFooterLink,SealingFooterLink,SteeringFooterLink,SuspensionFooterLink,WipersFooterLink,ClutchFooterLink,IgnitionFooterLink,WheelBearingFooterLink,WindshieldFooterLink,WheelLugNutsFooterLink;CatalogNavNode
+#;LearningCenterNavNode;;FederalMogul Learning Center;FederalMogulNavNode;OverviewLink,OnDemandLink,VechileRepairSymptomsLink,InstallationVideosLink;LearningCenterNavNode
+;LearningCenterNavNode;;FederalMogul Learning Center;FederalMogulNavNode;LCOverviewLink,TrainingOptionsLink,CoursesLink,TechTipsLink,DiagnosticCenterLink,BulletinsLink,CatalogsLink,VideoGalleryLink,SpecLookUpLink,CalculatorsLink;LearningCenterNavNode
+;SupportNavNode;;FederalMogul Support;FederalMogulNavNode;ContactUsLink,CustomerServiceLink,TechnicalLineLink,SupplierCollaborationLink;SupportNavNode
+;AboutUsNavNode;;FederalMogul About Us;FederalMogulNavNode;CompanyLink,NewsLink,CareersLink,InvestorsLink,MediaSuppliersLink,PrivacyAndLegalLink,LoyaltyLink;AboutUsNavNode
+#;ConnectWithUsNavNode;;FederalMogul Connect Us;FederalMogulNavNode;LinkedInLink,GooglePlusLink,FacebookLink,TwitterLink;ConnectWithUsNavNode
+#;ConnectWithUsNavNode;;FederalMogul Connect Us;FederalMogulNavNode;Facebook,Google,Linkedin,Twitter;ConnectWithUsNavNode
+# Sree B2B
+#;OtherPartsNavNode;;FederalMogul Other Parts;FederalMogulNavNode;ApplicationLookupLink,ByCategoryLink,InterchangeLink;OtherPartsNavNode
+;PartsFinderNavNode;;FederalMogul Parts Finder;FederalMogulNavNode;VehicleLink,LicensePlateLink,VinLink,CompetitorLink,WhereToBuyLink;PartsFinderNavNode
+;OnlineToolsNavNode;;FederalMogul Online Tools;FederalMogulNavNode;OverviewLink,FileDownloadsLink,MotorpartsMonitorLink,ResearchLink,DigitalAssetsLink,OrderPOPLink;OnlineToolsNavNode
+#;ContactUsNavNode;;FederalMogul Connect Us;FederalMogulNavNode;Facebook,Twitter,Linkedin,Youtube;ContactUsNavNode
+# Siva B2b
+;TechnicianAcademyNavNode;;FederalMogul Technician Academy;FederalMogulNavNode;VechileRepairSymptomsLink,InstallationVideosLink;TechnicianAcademyNavNode
+
+#Diksha Brand Page
+#;LeftNavNode;;Federal Mogul Left Nav Node;FederalMogulNavNode;AutomotiveSparkPlugsLink;LeftNavNode
+
+#Header Navigation Bar Component
+#;eStoreHeaderNavNode;;estore nav node;root;eStorelink;eStoreHeaderNavNode
+#;eStoreHeaderLinksNavNode;;estore nav node Links;;;eStoreHeaderLinksNavNode
+#;CatalogHeaderNavNode;;FederalMogul Catalog;root;BrakingLink,DrivelineLink,EngineLink,LightingLink,SealingLink,SteeringLink,SuspensionLink,WipersLink,ClutchLink,IgnitionLink,WheelBearingLink,WindshieldLink,WheelLugNutsLink;CatalogHeaderNavNode
+;GearHeaderNavNode;;Gear Navigation node;root;GearLink;GearHeaderNavNode
+;LearningCenterHeaderNavNode;;learning center nav node;root;LearningCenterLink;LearningCenterHeaderNavNode
+;SupportHeaderNavNode;;support nav node;root;SupportLink;SupportHeaderNavNode
+;AboutUsHeaderNavNode;;about us nav node;root;AboutUsLink;AboutUsHeaderNavNode
+;AboutUsHeaderLinksNavNode;;about us nav node links;AboutUsHeaderNavNode;CompanyLink,CareersLink,InvestorsLink,MediaSuppliersLink,PrivacyAndLegalLink,LoyaltyLink;AboutUsHeaderLinksNavNode
+;SupportHeaderLinksNavNode;;Support Header Links NavNode;SupportHeaderNavNode;ContactUsLink,TechnicalLineLink,CustomerServiceLink;SupportHeaderLinksNavNode
+;LearningCenterHeaderLinksNavNode;;Learning Center HeaderLinks NavNode;LearningCenterHeaderNavNode;LCOverviewLink,TrainingOptionsLink,CoursesLink,TechTipsLink,DiagnosticCenterLink,BulletinsLink,CatalogsLink,VideoGalleryLink,SpecLookUpLink,CalculatorsLink;LearningCenterHeaderLinksNavNode
+
+#Moved the estore links to Catalog
+;CatalogHeaderNavNode;;FederalMogul Catalog nav node;root;;CatalogHeaderNavNode
+#;CatalogHeaderLinksNavNode;;catalog nav node Links;CatalogHeaderNavNode;BrakingLink,DrivelineLink,EngineLink,LightingLink,SealingLink,SteeringLink,SuspensionLink,WipersLink,ClutchLink,IgnitionLink,WheelBearingLink,WindshieldLink,WheelLugNutsLink;CatalogHeaderLinksNavNode
+#;CatalogHeaderLinksNavNode;;catalog nav node Links;CatalogHeaderNavNode;ACCompressorBearingsLink,AlternatorGeneratorBearingsLink,BrakeLink,ClutchMasterCylLink,DrivelineLink,EngineLink,FuelPumpsLink,IgnitionLink,LightingLink,SteeringLink,SuspensionLink,WheelBearingsSealsLink,WheelLugNutsAndStudsLink,WindshieldLink;CatalogHeaderLinksNavNode
+;CatalogHeaderLinksNavNode;;catalog nav node Links;CatalogHeaderNavNode;BrakesLink,ClutchLink,DrivelineLink,EngineLink,FiltersChemicalsLink,GasketsSealingLink,IgnitionLink,LightingLink,SteeringLink,SuspensionLink,WipersLink;CatalogHeaderLinksNavNode
+
+# Sree B2B
+;OrderPartsHeaderNavNode;;order parts nav node;root;OrderPartsLink;OrderPartsHeaderNavNode
+#;OnlineToolsHeaderNavNode;;online tools nav node;root;OnlineToolsLink;OnlineToolsHeaderNavNode
+;OnlineToolsHeaderNavNode;;FederalMogul Catalog nav node;root;;OnlineToolsHeaderNavNode
+;OnlineToolsHeaderLinksNavNode;;online tools nav node Links;OnlineToolsHeaderNavNode;OverviewLink,FileDownloadsLink,MotorpartsMonitorLink,ResearchLink,DigitalAssetsLink,OrderPOPLink;OnlineToolsHeaderLinksNavNode
+
+# Siva B2b
+;TechnicianAcademyHeaderNavNode;;FederalMogul TecnicianAcademy nav node;root;TechnicianAcademyLink;TechnicianAcademyHeaderNavNode
+
+# CMS Custom Footer(FMFooter) Component for Footer Nodes
+INSERT_UPDATE FmFooterComponent;$contentCV[unique=true];uid[unique=true];wrapAfter;&componentRef;NavigationNodes(&nodeRef);name
+;;FMFooterComponent;3;FMFooterComponent;PartsFinderNavNode,CatalogNavNode,OnlineToolsNavNode,LearningCenterNavNode,SupportNavNode,AboutUsNavNode;FM Footer Component
+
+
+# Sree B2B
+;;FMB2BFooterComponent;3;FMB2BFooterComponent;PartsFinderNavNode,CatalogNavNode,OnlineToolsNavNode,SupportNavNode,AboutUsNavNode;FM B2B Footer Component
+# Siva B2b
+#;;B2bFMFooterComponent;3;B2bFMFooterComponent;CatalogNavNode,OnlineToolsNavNode,TechnicianAcademyNavNode,SupportNavNode,AboutUsNavNode,ContactUsNavNode;FM Footer Component
+;;B2bFMFooterComponent;3;B2bFMFooterComponent;CatalogNavNode,OnlineToolsNavNode,TechnicianAcademyNavNode,SupportNavNode,AboutUsNavNode;FM Footer Component
+
+# CMS Link Components For Footer
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&componentRef;target(code)[default='sameWindow'];linkName[lang=en]
+#Links Extended footer
+;;FMCorporationRights;Federalmogul Site Rights;;FMCorporationRights;;;
+;;FMSiteMapFooterLink;FM Site Map Link;"#";FMSiteMapFooterLink;newWindow;"Site Map"
+;;FMPrivacyPolicyLink;FM Privacy and Policy Link;"about-us/privacy-legal";FMPrivacyPolicyLink;newWindow;"Privacy Policy & Legal Disclaimer"
+
+# CMS NavigationNodes For Footer 
+INSERT_UPDATE CMSNavigationNode;$contentCV[unique=true];uid[unique=true];title[lang=en]
+#Extended footer
+;;FMCorporationRightsNavNode;""
+;;FMSiteMapFooterNavNode;""
+;;FMPrivacyPolicyNavNode;""
+
+# CMS NavigationNodes with links For Footer 
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&componentRef);&nodeRef
+#Extended footer
+;FMCorporationRightsNavNode;;FederalMogul eStores;FederalMogulNavNode;;FMCorporationRightsNavNode
+;FMSiteMapFooterNavNode;;FederalMogul Catalog;FederalMogulNavNode;FMSiteMapFooterLink;FMSiteMapFooterNavNode
+;FMPrivacyPolicyNavNode;;FederalMogul Learning Center;FederalMogulNavNode;FMPrivacyPolicyLink;FMPrivacyPolicyNavNode
+
+# CMS Custom ExtendedFooter(FMFooter) Component for Footer Nodes
+INSERT_UPDATE FmExtendedFooterComponent;$contentCV[unique=true];uid[unique=true];wrapAfter;&componentRef;NavigationNodes(&nodeRef);name
+;;FMExtendedFooterComponent;3;FMExtendedFooterComponent;FMCorporationRightsNavNode,FMSiteMapFooterNavNode,FMPrivacyPolicyNavNode;FM Extended Footer Component
+
+# Navigation Bar Component
+INSERT_UPDATE FMNavigationBarComponent;$contentCV[unique=true];uid[unique=true];name;wrapAfter;link(uid, $contentCV);styleClass;navigationNode(&nodeRef);dropDownLayout(code)[default=AUTO];&componentRef
+;;catalogHeaderNavBarComponent;catalog Header Navigation Bar Component;8;CatalogLink;;CatalogHeaderNavNode;;catalogHeaderNavBarComponent
+;;LearningHeaderNavBarComponent;LearningCenter Header Navigation Bar Component;8;LearningCenterLink;;LearningCenterHeaderNavNode;;LearningHeaderNavBarComponent
+;;GearHeaderNavBarComponent;Gear Header Navigation Bar Component;8;GearLink;;GearHeaderNavNode;;GearHeaderNavBarComponent
+;;SupportHeaderNavBarComponent;Support Header Navigation Bar Component;8;SupportLink;;SupportHeaderNavNode;;SupportHeaderNavBarComponent
+;;AboutUsHeaderNavBarComponent;About Us Header Navigation Bar Component;8;AboutUsLink;;AboutUsHeaderNavNode;;AboutUsHeaderNavBarComponent
+#;;eStoreHeaderNavBarComponent;eStore Header Navigation Bar Component;8;eStorelink;;eStoreHeaderNavNode;;eStoreHeaderNavBarComponent
+# Sree B2B
+#;;OrderPartsHeaderNavBarComponent;Order Parts Header Navigation Bar Component;8;OrderPartsLink;;OrderPartsHeaderNavNode;;OrderPartsHeaderNavBarComponent
+;;OnlineToolsHeaderNavBarComponent;Online Tools Header Navigation Bar Component;8;OnlineToolsLink;;OnlineToolsHeaderNavNode;;OnlineToolsHeaderNavBarComponent
+# Siva B2b
+#;;TechnicianAcademyHeaderNavBarComponent;Technician Academy Header Navigation Bar Component;8;TechnicianAcademdyLink;;TechnicianAcademyHeaderNavNode;;TechnicianAcademyHeaderNavBarComponent
+
+################################End Footer##########################################
+
+
+############################################LOYALTY HOME PAGE#############################################
+
+# FederalMogul Landing Page Templates
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='LoyaltyHomePageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+;HomeRewardsBannerSection;;;wide
+;HomeMyRewardsSection;;;wide
+;HomeRewardsLatestProductsSection;;;wide
+;HomeRewardseLearnSection;;;wide
+;HomeRewardsFAQsSection;;;wide
+;FMBrandstrip;;;wide
+;Footer;;;footer
+
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);currentPosition
+#Anonymous Homepage Slots
+;;HomeRewardsBannerSlot;Anonymous Part Search;true;loyaltyHomePageBanner;HomeRewardsBannerSection
+;;HomeMyRewardsSlot;Anonymous Part Search;true;rewardparagraph;HomeMyRewardsSection
+;;HomeRewardsLatestProductsSlot;Anonymous Part Search;true;LoyaltyCarousel;HomeRewardsLatestProductsSection
+;;HomeRewardseLearnSlot;Anonymous Part Search;true;RewardsHomePageBanner;HomeRewardseLearnSection
+;;HomeRewardsFAQsSlot;Anonymous Part Search;true;FAQparagraph;HomeRewardsFAQsSection
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);currentPosition
+;;SiteLogoSlot;Default Site Logo Slot;true;SiteLogoComponent
+;;HomepageNavLinkSlot;Default Homepage Link;true
+;;HeaderLinksSlot;Header links;true
+;;SearchBoxSlot;Search Box;true;SearchBox;SearchBox
+;;MiniCartSlot;Mini Cart;true;MiniCart;MiniCart
+;;LoyaltyNavigationBarSlot;Navigation Bar;true;catalogHeaderNavBarComponent,OnlineToolsHeaderNavBarComponent,LearningHeaderNavBarComponent,GearHeaderNavBarComponent,SupportHeaderNavBarComponent,AboutUsHeaderNavBarComponent,FMSearchBox;NavigationBar
+;;LoyaltyBrandstripSlot;FederalMogul BrandStrip;true;abex,anco,champion,fel-pro,ferodo,fp-diesel,moog,national,sealed-power,speed-pro,wagnerbrake,wagnerlighting;FMBrandstrip
+;;LoyaltyFooterSlot;footer;true;FMFooterComponent,FMExtendedFooterComponent;Footer
+
+
+# Site-wide Homepage
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;&pageRef;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='true']
+;;LoyaltyHomePage;FederalMogul Loyalty Homepage;homepage;LoyaltyHomePageTemplate;LoyaltyHomePage;;;;
+
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='LoyaltyHomePage'];contentSlot(uid,$contentCV)[unique=true]
+;;HomeRewardsBannerSlot;HomeRewardsBannerSection;;HomeRewardsBannerSlot
+;;HomeMyRewardsSlot;HomeMyRewardsSection;;HomeMyRewardsSlot
+;;HomeRewardsLatestProductsSlot;HomeRewardsLatestProductsSection;;HomeRewardsLatestProductsSlot
+;;HomeRewardseLearnSlot;HomeRewardseLearnSection;;HomeRewardseLearnSlot
+;;HomeRewardsFAQsSlot;HomeRewardsFAQsSection;;HomeRewardsFAQsSlot
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV;uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LoyaltyHomePageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-LoyaltyPage;SiteLogo;;SiteLogoSlot;true
+;;HomepageLink-LoyaltyPage;HomepageNavLink;;HomepageNavLinkSlot;true
+;;HeaderLinks-LoyaltyPage;HeaderLinks;;HeaderLinksSlot;true
+;;SearchBox-LoyaltyPage;SearchBox;;SearchBoxSlot;true
+;;MiniCart-LoyaltyPage;MiniCart;;MiniCartSlot;true
+;;HomeRewardsBannerSection-LoyaltyPage;HomeRewardsBannerSection;;HomeRewardsBannerSlot;true
+;;NavigationBar-LoyaltyPage;NavigationBar;;LoyaltyNavigationBarSlot;true
+;;FMBrandstripSlot-LoyaltyPage;FMBrandstrip;;LoyaltyBrandstripSlot;true
+;;Footer-LoyaltyPage;Footer;;LoyaltyFooterSlot;true
+
+
+############################################LOYALTY CHECKOUT PAGE#############################################
+
+# FederalMogul Landing Page Templates
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='LoyaltyCheckoutPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+;SideContent;;;wide
+;Footer;;;footer
+;editor;;;wide
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);currentPosition
+#Anonymous Homepage Slots
+;;SideContentSlot;Checkout Page;true;;SideContent
+;;editorSlot;Editor for Checkout;true;;editor
+
+
+
+# Site-wide Homepage
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;&pageRef;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='true']
+;;loyaltyCheckoutPage;FederalMogul Loyalty Checkout;Checkout Page;LoyaltyCheckoutPageTemplate;loyaltyCheckoutPage;;;;
+
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='loyaltyCheckoutPage'];contentSlot(uid,$contentCV)[unique=true]
+;;LoyaltySideContentSlot;SideContent;;SideContentSlot
+;;LoyaltyeditorSlot;editor;;editorSlot
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV;uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LoyaltyCheckoutPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-CheckoutPage;SiteLogo;;SiteLogoSlot;true
+;;HeaderLinks-CheckoutPage;HeaderLinks;;HeaderLinksSlot;true
+;;SearchBox-CheckoutPage;SearchBox;;SearchBoxSlot;true
+;;MiniCart-CheckoutPage;MiniCart;;MiniCartSlot;true
+;;NavigationBar-CheckoutPage;NavigationBar;;LoyaltyNavigationBarSlot;true
+;;FMBrandstripSlot-CheckoutPage;FMBrandstrip;;LoyaltyBrandstripSlot;true
+;;Footer-CheckoutPage;Footer;;LoyaltyFooterSlot;true
+
+
+
+###########################################PRODUCT GRID PAGE
+# Search Results Grid Page Template
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='LoyaltyProductGridPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+;FMymmSearchSection;;;narrow
+;FMSearchGridBannerSection;;;wide
+;FMproductGridSection;;;wide
+;FMProductGridBannerSection;;;narrow
+;FMBrandstrip;;;wide
+;Footer;;;footer
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);currentPosition
+#Anonymous Homepage Slots
+;;loyaltyymmSearchSlot;Search Grid Products ymm refinements;true;;FMymmSearchSection
+;;loyaltySearchGridBannerSlot;SearchGrid Page Banner;true;RewardGridBanner;FMSearchGridBannerSection
+;;loyaltyproductGridSlot;Search Grid Products;true;;FMproductGridSection
+;;loyaltyproductGridBannerSlot;Search Grid Products brands refinements;true;;FMProductGridBannerSection
+
+
+
+# ProductList Category Pages
+INSERT_UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved']
+;;loyaltyproductGridPage;FM Product List;LoyaltyProductGridPageTemplate;true;
+
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='loyaltyproductGridPage'];contentSlot(uid,$contentCV)[unique=true]
+;;loyaltyymmSearchSlot;FMymmSearchSection;;loyaltyymmSearchSlot
+;;loyaltySearchGridBannerSlot;FMSearchGridBannerSection;;loyaltySearchGridBannerSlot
+;;loyaltyproductGridSlot;FMproductGridSection;;loyaltyproductGridSlot
+;;loyaltyproductGridBannerSlot;FMProductGridBannerSection;;loyaltyproductGridBannerSlot
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV;uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LoyaltyProductGridPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-LoyaltySearchResultsPage;SiteLogo;;SiteLogoSlot;true
+;;HeaderLinks-LoyaltySearchResultsPage;HeaderLinks;;HeaderLinksSlot;true
+;;SearchBox-LoyaltySearchResultsPage;SearchBox;;SearchBoxSlot;true
+;;MiniCart-LoyaltySearchResultsPage;MiniCart;;MiniCartSlot;true
+;;NavigationBar-LoyaltySearchResultsPage;NavigationBar;;LoyaltyNavigationBarSlot;true
+;;FMBrandstripSlot-LoyaltySearchResultsPage;FMBrandstrip;;LoyaltyBrandstripSlot;true
+;;Footer-LoyaltySearchResultsPage;Footer;;LoyaltyFooterSlot;true
+
+
+########################################### LoyaltyProductDetailsPageTemplate #############################################
+
+# FederalMogul Landing Page Templates
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='LoyaltyProductDetailsPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+;FMProductDetailsSection;;;wide
+;FMProductSpecificationSection;;;wide
+;FMBrandstrip;;;wide
+;Footer;;;footer
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);currentPosition
+#ProductDetails page Slots
+;;LoyaltyProductDetailsSlot;Product Details Search;true
+;;LoyaltyProductSpecificationSlot;Product Detail Specification;true
+
+
+
+# Product Details Page
+INSERT_UPDATE ProductPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved']
+;;LoyaltyproductDetailsPage;Loyalty Product Details;LoyaltyProductDetailsPageTemplate;true;
+
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='LoyaltyproductDetailsPage'];contentSlot(uid,$contentCV)[unique=true]
+;;LoyaltyProductDetailsSlot;FMProductDetailsSection;;LoyaltyProductDetailsSlot
+;;LoyaltyProductSpecificationSlot;FMProductSpecificationSection;;LoyaltyProductSpecificationSlot
+
+#StealAndDeals
+INSERT_UPDATE ContentSlotForTemplate;$contentCV;uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LoyaltyProductDetailsPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-LoyaltyDetailsPage;SiteLogo;;SiteLogoSlot;true
+;;HomepageLink-LoyaltyDetailsPage;HomepageNavLink;;HomepageNavLinkSlot;true
+;;HeaderLinks-LoyaltyDetailsPage;HeaderLinks;;HeaderLinksSlot;true
+;;SearchBox-LoyaltyDetailsPage;SearchBox;;SearchBoxSlot;true
+;;MiniCart-LoyaltyDetailsPage;MiniCart;;MiniCartSlot;true
+;;NavigationBar-LoyaltyDetailsPage;NavigationBar;;LoyaltyNavigationBarSlot;true
+;;FMBrandstripSlot-LoyaltyDetailsPage;FMBrandstrip;;LoyaltyBrandstripSlot;true
+;;Footer-LoyaltyDetailsPage;Footer;;LoyaltyFooterSlot;true
+
+################################   Loyalty Account Page Template    #############################################################
+
+# Basic Default Page Template
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='LoyaltyAccountPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+;ManangeAccount;;;wide
+;ManangeAccountImg1;;;wide
+;ManangeAccountImg2;;;wide
+;ManageAccountSection;;;wide
+;FMBrandstrip;;;wide
+;Footer;;;footer
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);currentPosition
+;;loyaltyAccountSlot;Manage Account;true
+;;loyaltyAccountImg1Slot;Manage Account Slot1;true;;ManangeAccountImg1
+;;loyaltyAccountImg2Slot;Manage Account Slot2;true;;ManangeAccountImg2
+;;loyaltyAccountSectionSlot;Manage Account Section;true
+
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;&pageRef;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+
+;;loyaltyAccountPage;Loyalty Account Page;loyaltyManageAccountPage;LoyaltyAccountPageTemplate;loyaltyManageAccountPage;;;;
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='loyaltyAccountPage'];contentSlot(uid,$contentCV)[unique=true]
+;;loyaltyAccountSlot;ManangeAccount;;loyaltyAccountSlot
+;;loyaltyAccountImg1Slot;ManangeAccountImg1;;loyaltyAccountImg1Slot
+;;loyaltyAccountImg2Slot;ManangeAccountImg2;;loyaltyAccountImg2Slot
+;;loyaltyAccountSectionSlot;ManageAccountSection;;loyaltyAccountSectionSlot
+
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV;uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LoyaltyAccountPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogoSlot-loyaltyAccountPage;SiteLogo;;SiteLogoSlot;true
+;;HeaderLinksSlot-loyaltyAccountPage;HeaderLinks;;HeaderLinksSlot;true
+;;SearchBoxSlot-loyaltyAccountPage;SearchBox;;SearchBoxSlot;true
+;;MiniCartSlot-loyaltyAccountPage;MiniCart;;MiniCartSlot;true
+;;NavigationBar-loyaltyAccountPage;NavigationBar;;LoyaltyNavigationBarSlot;true
+;;FMBrandstripSlot-loyaltyAccountPage;FMBrandstrip;;LoyaltyBrandstripSlot;true
+;;Footer-loyaltyAccountPage;Footer;;LoyaltyFooterSlot;true
+
+########################################### Loyalty Way To Earn Points Page ####################################
+# Search Results Grid Page Template
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='LoyaltyWaysToEarnPointsTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+;FMymmSearchSection;;;narrow
+;FMSearchGridBannerSection;;;wide
+;FMproductGridSection;;;wide
+;FMProductGridBannerSection;;;narrow
+;FMBrandstrip;;;wide
+;Footer;;;footer
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);currentPosition
+#Anonymous Homepage Slots
+;;LoyaltyWayToEarnBannerSlot;Earn Points Banner Slot;true;wayToPointsBanner;FMSearchGridBannerSection
+;;LoyaltyEarnParagraphSlot;Earn Points Paragraph Slot;true;pointparagraph;FMproductListGridSection
+
+
+# ProductList Category Pages
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;&pageRef;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='true']
+;;loyaltyWayToEarnPoints;FM Loyalty Way to Earn Points;loyaltyEarnPointsPage;LoyaltyWaysToEarnPointsTemplate;loyaltyEarnPointsPage;;;;
+
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='loyaltyWayToEarnPoints'];contentSlot(uid,$contentCV)[unique=true]
+;;LoyaltyWayToEarnBannerSlot;FMSearchGridBannerSection;;LoyaltyWayToEarnBannerSlot
+;;LoyaltyEarnParagraphSlot;FMproductListGridSection;;LoyaltyEarnParagraphSlot
+
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV;uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LoyaltyWaysToEarnPointsTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-LoyaltyEarnPointsPage;SiteLogo;;SiteLogoSlot;true
+;;HeaderLinks-LoyaltyEarnPointsPage;HeaderLinks;;HeaderLinksSlot;true
+;;SearchBox-LoyaltyEarnPointsPage;SearchBox;;SearchBoxSlot;true
+;;MiniCart-LoyaltyEarnPointsPage;MiniCart;;MiniCartSlot;true
+;;NavigationBar-LoyaltyEarnPointsPage;NavigationBar;;LoyaltyNavigationBarSlot;true
+;;FMBrandstripSlot-LoyaltyEarnPointsPage;FMBrandstrip;;LoyaltyBrandstripSlot;true
+;;Footer-LoyaltyEarnPointsPage;Footer;;LoyaltyFooterSlot;true
+
+ 
+###########################################PRODUCT SEARCH GRID PAGE#############################################
+# Search Results Grid Page Template
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='LoyaltySearchResultsListPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+;FMymmSearchGridSection;;;narrow
+;FMSearchGridBannerSection;;;wide
+;FMSearchGridSection;;;wide
+;FMbrandSearchGridSection;;;narrow
+;FMBrandstrip;;;wide
+;Footer;;;footer
+ 
+ 
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);currentPosition
+#Anonymous Homepage Slots
+;;LoyaltyymmSearchListSectionSlot;Search Grid Products ymm refinements;true
+;;LoyaltySearchListBannerSectionSlot;SearchGrid Page Banner;true;;FMSearchGridBannerSection
+;;LoyaltySearchListSectionSlot;Search Grid Products;true
+;;LoyaltybrandSearchListSectionSlot;Search Grid Products brands refinements;true
+ 
+# Functional Content Pages
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false'];previewImage(code, $contentCV)
+;;loyaltysearch;Search Results Page;LoyaltySearchResultsListPageTemplate;loyaltysearch;false
+ 
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='loyaltysearch'];contentSlot(uid,$contentCV)[unique=true]
+;;LoyaltyymmSearchListSectionSlot;FMymmSearchGridSection;;LoyaltyymmSearchListSectionSlot
+;;LoyaltySearchListBannerSectionSlot;FMSearchGridBannerSection;;LoyaltySearchListBannerSectionSlot
+;;LoyaltySearchListSectionSlot;FMSearchGridSection;;LoyaltySearchListSectionSlot
+;;LoyaltybrandSearchListSectionSlot;FMbrandSearchGridSection;;LoyaltybrandSearchListSectionSlot 
+
+#StealAndDeals
+INSERT_UPDATE ContentSlotForTemplate;$contentCV;uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LoyaltySearchResultsListPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-LoyaltyListPage;SiteLogo;;SiteLogoSlot;true
+;;HomepageLink-LoyaltyListPage;HomepageNavLink;;HomepageNavLinkSlot;true
+;;HeaderLinks-LoyaltyListPage;HeaderLinks;;HeaderLinksSlot;true
+;;SearchBox-LoyaltyListPage;SearchBox;;SearchBoxSlot;true
+;;MiniCart-LoyaltyListPage;MiniCart;;MiniCartSlot;true
+;;NavigationBar-LoyaltyListPage;NavigationBar;;LoyaltyNavigationBarSlot;true
+;;FMBrandstripSlot-LoyaltyListPage;FMBrandstrip;;LoyaltyBrandstripSlot;true
+;;Footer-LoyaltyListPage;Footer;;LoyaltyFooterSlot;true
+
+
+############################################################# Loyalty Cart Page Template #######################################################################
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='LoyaltyCartPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+;TopContent;;;wide
+;MiddleContent;;CMSParagraphComponent
+;BottomContent;;;wide
+;SideContent;;;narrow
+;Footer;;;footer
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false'];previewImage(code, $contentCV)
+;;LoyaltyCartPage;Loyalty Cart Page;LoyaltyCartPageTemplate;cart
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LoyaltyCartPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-LoyaltyCartPage;SiteLogo;;SiteLogoSlot;true
+;;HomepageLink-LoyaltyCartPage;HomepageNavLink;;HomepageNavLinkSlot;true
+;;HeaderLinks-LoyaltyCartPage;HeaderLinks;;HeaderLinksSlot;true
+;;SearchBox-LoyaltyCartPage;SearchBox;;SearchBoxSlot;true
+;;NavigationBar-LoyaltyCartPage;NavigationBar;;LoyaltyNavigationBarSlot;true
+;;MiniCart-LoyaltyCartPage;MiniCart;;MiniCartSlot;true
+;;BottomContent-LoyaltyCartPage;BottomContent;;LoyaltyBrandstripSlot;true
+;;Footer-LoyaltyCartPage;Footer;;LoyaltyFooterSlot;true
+
+

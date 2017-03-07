@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: ShowLedgerActual.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Resources/Verbs/Show.xsd"/>
+        <xs:include schemaLocation="../Resources/Nouns/LedgerActual.xsd"/>
+        <xs:element name="ShowLedgerActual" type="ShowLedgerActual">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The purpose of the ShowLedgerActual is to communicate to an enterprise application the sending systems representation of ledger information specifically requested.   This may be in response to a GetLedgerActual request or to proactively publish a listing of ledger information for a business event.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="ShowLedgerActual">
+                <xs:complexContent>
+                        <xs:extension base="BusinessObjectDocument">
+                                <xs:sequence>
+                                        <xs:element name="DataArea" type="ShowLedgerActualDataArea">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is where the information that the BOD message carries is provided, in this case ShowLedgerActual. The information consists of a Verb and one or more Nouns. The verb (Show) indicates the action to be performed on the Noun (LedgerActual).</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="ShowLedgerActualDataArea">
+                <xs:complexContent>
+                        <xs:extension base="DataArea">
+                                <xs:sequence>
+                                        <xs:element ref="Show"/>
+                                        <xs:element ref="LedgerActual" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+</xs:schema>

@@ -1,0 +1,243 @@
+/* =============
+    Search
+================ */
+
+// Portions may be removed for FM2.0
+.siteSearch form{
+  float:left;
+}
+
+.siteSearch .advanced{
+  float:left;
+  margin-left: 10px;
+  line-height: 30px;
+}
+
+.siteSearch{
+    float:right;
+}
+
+.siteSearch .control-group{
+    width:290px;
+}
+.siteSearch .siteSearchInput{
+    padding-right:35px !important;
+}
+.siteSearch .siteSearchSubmit {
+  background: url("../images/storesFacetSearchIcon.png") no-repeat scroll center center transparent;
+  border: 0 none;
+  display: block;
+  float: right;
+  height: 28px;
+  margin: 1px 1px 1px -30px;
+  padding: 0;
+  width: 28px;
+}
+
+.searchPOS {
+    margin: 20px;
+    width: auto;
+    overflow:hidden;
+    height:555px;
+
+    .headline{
+        border-bottom: 1px dotted #A5A5A5;
+        font-size: 1em;
+        font-weight: bold;
+        height: 30px;
+        line-height: 30px;
+        text-transform: uppercase;
+        margin:0 0 20px;
+    }
+    .prod_grid{
+        width:160px;
+        margin:0 20px 0 0;
+        img{
+            width:160px;
+        }
+    }
+    .searchPOSContent{
+        width:630px;
+    }
+    .searchPOSForm{
+        margin:0; 
+        button{
+            margin: 0 6px;
+            line-height: 12px;
+        }
+
+        .control-group{
+            width:378px;  
+            input{
+                margin:1px 0;
+            }
+        }
+    }
+    .searchPOSResult{
+        width:305px;
+        border-bottom: 1px dotted #A5A5A5;
+        margin:20px 20px 0 0;
+        height:120px;
+        position:relative;
+        .address{
+            width:200px;
+        }
+        .resultDistance{
+            position:absolute;
+            top:0;
+            right:0;
+        }
+        .resultForm{
+            position:absolute;
+            bottom:0;
+            right:0;
+            margin:0;
+        }
+        .resultStock{
+            position:absolute;
+            top:20px;
+            right:0;
+        }
+        .resultName{
+            font-weight:bold;
+        }
+    }
+
+    .searchPOSResultsList{
+        margin:0 -20px 0 0;
+    }
+    .searchPOSPaging {
+        form, div {
+            float:right;
+            margin:0;
+        }
+    }
+}
+
+.rhsSearchby {
+    .form-control{ padding-left:6px; padding-left:0.6rem; padding-right:6px; padding-right:0.6rem;}
+    .form-group{ padding-right:0;}
+    .subTitleHolder { margin-bottom:5px; margin-bottom:0.5rem; margin-top:16px; margin-top:1.6rem;}
+    .subTitle { font-weight:bold;}
+}
+.rhsProdCat {
+    padding-right: 15px;
+    padding-right: 1.5rem;
+}
+@media (max-width: @bp_mobile_max) {
+    .rhsSearchby .form-group {
+        padding-right: 15px;
+        padding-right: 1.5rem;
+    }
+} 
+/* 
+    Store Finder
+================== */
+
+.find-stores-near-me {
+    display: block;
+    padding: 18px 0 0 0;
+    margin: 5px 0;
+}
+
+#findStoresNearMe {
+    display: inline-block;
+}
+
+/* 
+    Part Finder
+==================== */
+.viewUnit {
+    .divider {
+        padding: 0 0.5rem;
+    }
+    p {
+        margin-top: 10px;
+        margin-top: 1rem;
+        margin-bottom: 20px;
+        margin-bottom: 2rem;
+
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+    .returnToUser {
+        display: block;
+        margin-top: 15px;
+        margin-top: 1.5rem;
+    }
+    table {
+        margin-top: 20px;
+        margin-top: 2rem;
+        margin-bottom: 20px;
+        margin-bottom: 2rem;
+    }
+    .userTable > table > tbody > tr > td {
+        font-size: 14px;
+        font-size: 1.4rem;
+    }
+}
+
+
+/*
+  jQuery ui-autocomplete 
+  Overrides 
+================== */
+
+.ui-autocomplete{
+    width:278px !important;
+    z-index:10000 !important;
+    border: 1px solid @grey-light;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    box-shadow: 0 8px 15px @grey-dark;
+    padding:5px;
+    margin:0;
+    float:none;
+    .ui-menu-item{
+        border-top: 1px solid @grey-light;
+        &:first-child {
+            border-top: 0;
+        }
+        a {
+            display:block;
+            padding: 0;
+            border-top:1px solid @white;
+            border-bottom:1px solid @white;
+            font-weight:normal !important;
+            color:@black !important;
+        }
+        .desc {
+            margin:10px 10px 0 100px;
+            .price{
+                float:right;
+                font-weight:bold;
+            }
+            .title {
+                float:left;
+                white-space: normal;
+                width: 115px;
+                display:block;
+            }
+        }   
+        &.suggestions {
+            a {
+                padding: 10px;
+                text-transform:uppercase;
+            }
+        }
+        .thumb {
+            float:left;
+            width: 76px;
+            height: 76px;
+                img {
+                    width: 100%;
+                    height: auto;
+                }
+        }
+        .ui-state-hover {
+            background: @grey-table-light;
+        }
+    }
+}

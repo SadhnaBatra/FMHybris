@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sch:schema xmlns="http://www.ascc.net/xml/schematron" xmlns:oa="http://www.openapplications.org/oagis" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ascc.net/xml/schematron ../../../Utility/Schematron/schematron1-5.xsd">
+	<sch:title>Schematron Validator for OAGI Constraints</sch:title>
+	<sch:ns prefix="oa" uri="http://www.openapplications.org/oagis"/>
+	<sch:pattern name="Sync Bill Of Material">
+		<sch:rule context="oa:BillOfMaterial">
+			<sch:assert test="oa:Header">Sync Bill Of Material must have a Header component specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Sync Bill Of Material Header">
+		<sch:rule context="oa:BillOfMaterial/oa:Header">
+			<sch:assert test="oa:DocumentId/oa:Id">The Header must have a "DocumentId" and "Id" specified</sch:assert>
+			<sch:assert test="oa:DocumentId/oa:Type">The Header must have a "DocumentId" and "Type" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Item Data">
+		<sch:rule context="oa:BillOfMaterial/oa:ItemData">
+			<sch:assert test="oa:Item">The ItemData must have an "Item" specified</sch:assert>
+			<sch:assert test="oa:ItemQuantity">The ItemData must have a "ItemQuantity" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Option">
+		<sch:rule context="oa:BillOfMaterial/oa:Option">
+			<sch:assert test="oa:Id">The Option must have an "Id" specified</sch:assert>
+			<sch:assert test="oa:Name">The Option must have a "Name" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="OptionClass">
+		<sch:rule context="oa:BillOfMaterial/oa:OptionClass">
+			<sch:assert test="oa:Id | oa:Name">The OptionClass must have an "Id" or "Name" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Item">
+		<sch:rule context="oa:Item">
+			<sch:assert test="oa:ItemId/oa:Id">An Item must have an "ItemId" and "Id" specified</sch:assert>
+			<sch:assert test="oa:Type">An Item must have an "ItemId" and "Type" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+</sch:schema>

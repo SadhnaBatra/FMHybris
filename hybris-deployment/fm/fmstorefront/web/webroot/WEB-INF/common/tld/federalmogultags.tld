@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib version="2.1"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+		http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd">
+
+	<tlib-version>1.0</tlib-version>
+	<short-name>federalmogul</short-name>
+	<uri>http://federalmogul.com/tld/federalmogultags</uri>
+	
+	<function>
+		<description>
+			Get the fitment data based on the Refinement information.
+		</description>
+		<name>fitmentParts</name>
+		<function-class>com.federalmogul.storefront.tags.FMFunctions</function-class>
+		<function-signature>com.federalmogul.facades.product.data.FMFitmentData getFitmentPart(com.federalmogul.facades.product.data.FMFitmentData,de.hybris.platform.commerceservices.search.facetdata.FacetSearchPageData)</function-signature>
+	</function>
+	
+	<function>
+		<description>
+			Get the total Application Product fits map.
+		</description>
+		<name>appProductFitmentmap</name>
+		<function-class>com.federalmogul.storefront.tags.FMFunctions</function-class>
+		<function-signature>java.util.HashMap getAppFitmentmap(java.util.List,java.lang.String,java.lang.String,java.lang.String)</function-signature>
+	</function>
+	
+	<function>
+		<description>
+			Get the total Application fits map.
+		</description>
+		<name>appFitmentmap</name>
+		<function-class>com.federalmogul.storefront.tags.FMFunctions</function-class>
+		<function-signature>java.util.HashMap getAppFitmentmap(java.util.List,de.hybris.platform.commerceservices.search.facetdata.FacetSearchPageData,java.lang.String,java.lang.String,java.lang.String)</function-signature>
+	</function>
+	<function>
+		<description>
+			Get the concatenated Fitment Criteria for Comment, ApplicationNote , InterchangeNote
+		</description>
+		<name>fitmentCriteria</name>
+		<function-class>com.federalmogul.storefront.tags.FMFunctions</function-class>
+		<function-signature>java.lang.String getFitmentCriteria(com.federalmogul.facades.product.data.FMFitmentData,java.lang.String)</function-signature>
+	</function>
+	<function>
+		<description>
+			Get the concatenated Fitment Criteria for All Comment, ApplicationNote , InterchangeNote in single String
+		</description>
+		<name>allFitmentCriteria</name>
+		<function-class>com.federalmogul.storefront.tags.FMFunctions</function-class>
+		<function-signature>java.lang.String getAllFitmentCriteria(com.federalmogul.facades.product.data.FMFitmentData)</function-signature>
+	</function>
+	
+</taglib>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: GetConsumption.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Resources/Verbs/Get.xsd"/>
+        <xs:include schemaLocation="../Resources/Nouns/Consumption.xsd"/>
+        <xs:element name="GetConsumption" type="GetConsumption">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The most common use of the GetConsumption is to request a buyer's usage information about an item or product for the supplier of such item or product.  This BOD will not create or update either buyer's or supplier's inventory records.   The receiver of the request is responsible to make effective use of this information.
+
+The BOD can be used in the following ways: 
+(1)  for a supplier of goods to request from the buyer, the consumptn status of goods
+(2)  for a vendor to request from the retailer if retail sales of goods have been made; and 
+(3)  for inventory systems to request consumptn status from plant data collection and warehouse management systems.
+
+This is an outline of the business flow that this BOD supports:
+(1)  Overall purchase, replenishment or vendor managed inventory agreement is in place and/or a Get Consumptn message is sent by the supplier.
+(2)  Show Consumptn Message is returned the to supplier, distributor or third party logistics provider, that material has been consumed.  This is done in response to events such as these (and/or the Get message), depending on implementation context:
+  ·  Material is replenished to line side at manufacturing facitliy.
+  ·  Material is assembled into final product.
+  ·  Material is purchased and removed from facility by customer.
+(3)  Supplier, distributor, third party logistics provider replenishes material, using information provided in the Show Consumptn message, the demand and shipment forecasts, and the terms of the overall purchase or vendor managed inventory agreement.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="GetConsumption">
+                <xs:complexContent>
+                        <xs:extension base="BusinessObjectDocument">
+                                <xs:sequence>
+                                        <xs:element name="DataArea" type="GetConsumptionDataArea">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is where the information that the BOD message carries is provided, in this case GetConsumption. The information consists of a Verb and one or more Nouns. The verb (Get) indicates the action to be performed on the Noun (Consumption).</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="GetConsumptionDataArea">
+                <xs:complexContent>
+                        <xs:extension base="DataArea">
+                                <xs:sequence>
+                                        <xs:element ref="Get"/>
+                                        <xs:element ref="Consumption" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+</xs:schema>

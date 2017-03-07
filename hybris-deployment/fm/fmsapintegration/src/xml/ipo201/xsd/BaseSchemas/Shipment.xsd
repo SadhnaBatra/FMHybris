@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema targetNamespace="http://www.aaiasoa.net/IPOv2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.aaiasoa.net/IPOv2" xmlns:cmn="http://www.aaiasoa.net/IPOv2/Common" elementFormDefault="qualified">
+	<xs:import namespace="http://www.aaiasoa.net/IPOv2/Common" schemaLocation="IPOv2Common.xsd"/>
+	<xs:element name="ShipmentInventoryItemType" type="ShipmentInventoryItemType"/>
+	<xs:complexType name="ShipmentInventoryItemType">
+		<xs:annotation>
+			<xs:documentation>A shipped Line Item identifier, corresponding to the Line Item on a Purchase Order.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ShipmentInventoryItemIds" type="cmn:ShipmentInventoryItemIdType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A shipped Line Item identifier, corresponding to the Line Item on a Purchase Order.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PartialShipmentInd" type="xs:boolean" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Used to indicate a Buyer acceptance of partial shipments when some of the requested Items are unavailable for shipment. Contains a Boolean value of either "1" indicating a partial shipment, or "0" indicating the entire Order was shipped complete.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ItemDescription" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The description of the shipped Item, which must match the PurchaseOrder/Line/OrderItem/Description for the Item.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OrderQuantity" type="cmn:OrderQuantityType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Quantity of the Item being ordered. The contents of the element must be the same as the content in  PurchaseOrder/Line/OrderQuantity for this Item.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ItemQuantity" type="cmn:ItemQuantityType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The amount or quantity of an item.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BackOrderedQuantity" type="cmn:BackOrderedQuantityType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The quantity of the Item on backorder, which must equal the OrderQuantity minus ItemQuantity. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ExtendedPrice" type="xs:decimal" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>This element contains the total value of all Line Items, excluding any additional charges or fees such as tax or shipping.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ShipUnitsType" type="ShipUnitsType"/>
+	<xs:complexType name="ShipUnitsType">
+		<xs:sequence>
+			<xs:element name="ShipUnit" type="ShipUnitType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="HeaderType" type="HeaderType"/>
+	<xs:complexType name="HeaderType">
+		<xs:sequence>
+			<xs:element name="Language" type="xs:token" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The two-character or three-character Language Code defined in ISO Code Tables 639-1 and 639-2.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Currency" type="xs:token" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The three-letter currency code defined in the ISO 4217 Code Table</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DimensionalUOM" type="xs:token" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The two-character code defined in ANSI Code Table 355 for dimensional measures. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WeightUOM" type="xs:token" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The two-character weight measurement code defined in ANSI Code Table 355.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DocumentDateTime" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The date and time the document was created, formatted in ISO 8601 extended format of YYYY-MM-DDThh:mm:ss, followed by the difference between the local time and Universal Time represented as ±hh:mm, or Z if there is no difference - fractional seconds may be included.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DocumentIds" type="cmn:DocumentIdsType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DocumentReferenceIds" type="cmn:DocumentReferenceIdsType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="AlternateDocumentIds" type="cmn:AlternateDocumentIdsType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>This structure contains Document Identifiers related to the Order and Shipment. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LastModificationDateTime" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Indicates when the shipment information was last modified in the host application, i.e. to change Order quantities or when supervisor approval was granted. Content must be formatted in ISO 8601 extended format of YYYY-MM-DDThh:mm:ss, followed by the difference between the local time and Universal Time represented as ±hh:mm, or Z if there is no difference - fractional seconds may be included.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Warehouse" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Describes the facility where the shipped inventory is stored, information that could be useful in third-party logistics.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PartialShipmentInd" type="xs:boolean" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Contains a Boolean value of either "1" indicating a partial shipment, or "0" indicating the entire Order was shipped complete.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ShipUnitQuantity" type="cmn:ShipUnitQuantityType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Contains the number of units or Items shipped.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Note" type="cmn:NoteType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Free form text element used to annotate the document or exchange process.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AdditionalCharges" type="cmn:AdditionalChargesType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Container element for Additional Charges.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TotalWeight" type="xs:decimal" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Weight of the ship unit.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FreightTerms" type="cmn:FreightTermsType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Container element for Freight Terms.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TotalAmount" type="xs:decimal" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Contains the total value for the Order, including additional charges, e.g. customization, shipping and handling, or tax. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FreightCost" type="xs:decimal" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Contains the amount charged to the Buyer for transporting the shipment, excluding additional charges such as handling, hazmat charges, freight forwarder fees, etc.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ActualShippedDateTime" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Contains the actual date and time a Shipment occurs. It is formatted
+in the ISO 8601 extended format of YYYY-MM-DDThh:mm:ss followed by the difference between the local time and Universal Time represented as ±hh:mm, or Z if there is no difference.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ShipToParty" type="cmn:PartyType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The content of this component describes the entity, organization, or person, to which the Ordered iItems will be shipped or delivered. The ShipToParty component structure is identical to Header/BillToParty, and in many cases the information provided here will also match the content in that component, although address and contact information is frequently different for larger organizations. Note that Shipment does not provision for more than one ShipToParty, as it's assumed every Item in an Order will be delivered to the same address.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ShipFromParty" type="cmn:PartyType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The content of this component describes the entity, organization, or person who will ship the requested items. The elements contained in the  ShipFromParty component are identical to Header/BillToParty.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HostParty" type="cmn:HostPartyType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Component describes the entity to which the document should be routed. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UserArea" type="cmn:UserAreaType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Allows the user of IPO to extend the specification in order to exchange additional information which isn't defined in the standard. This UserArea should remain the last element in the Header sequence, prior to the ShipUnits element.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ShipmentInventoryItemsType" type="ShipmentInventoryItemsType"/>
+	<xs:complexType name="ShipmentInventoryItemsType">
+		<xs:sequence>
+			<xs:element name="ShipmentInventoryItem" type="ShipmentInventoryItemType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ShipUnitType" type="ShipUnitType"/>
+	<xs:complexType name="ShipUnitType">
+		<xs:sequence>
+			<xs:element name="ShippingTrackingID" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A unique identifier used to track an individual package that may be part of a larger shipment, e.g. express parcel tracking number, SCC-18, Progressive Number, etc.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ShipUnitSequence" type="xs:positiveInteger" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Number denoting a particular ShipUnit within the shipment. This field, in conjunction with ShipUnitTotalId, communicates the same information conveyed by the phrase "Box 1 of 5".</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ShipUnitTotalId" type="xs:positiveInteger" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The total quantity of ShipUnits in the shipment.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TotalWeight" type="xs:decimal" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Weight of the ShipUnit</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TotalAmount" type="xs:decimal" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Contains the total value for the ShipUnits, including additional charges, e.g. customization, shipping and handling, or tax.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FreightCost" type="xs:decimal" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Contains the amount charged to the Buyer for transporting the shipment, excluding additional charges such as handling, hazmat charges, freight forwarder fees, etc.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FreightTerms" type="cmn:FreightTermsType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Container element for Freight Terms.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ActualShippedDateTime" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Contains the actual date and time a ShipUnit was shipped. It is formatted in the ISO 8601 extended format of YYYY-MM-DDThh:mm:ss followed by the difference between the local time and Universal Time represented as ±hh:mm, or Z if there is no difference.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ShipmentInventoryItems" type="ShipmentInventoryItemsType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Container element for Shipment Inventory Item.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ShipFrom" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Identifies the "ship from" location for individual products that may be shipped from multiple ship locations, i.e., if the buyer orders 10 units, and a supplier has 5 in one location, and 5 in another location, this element will identify the ship locations for these items.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UserArea" type="cmn:UserAreaType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Allows the user of IPO to extend the specification in order to exchange additional information which isn't defined in the standard. This UserArea should remain the last element in the ShipUnit sequence.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Shipment" type="Shipment"/>
+	<xs:complexType name="Shipment">
+		<xs:sequence>
+			<xs:element name="Header" type="HeaderType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="ShipUnits" type="ShipUnitsType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group Sample XML Data
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: ProcessResourceAllocation.xml
+-->
+<ProcessResourceAllocation xmlns="http://www.openapplications.org/oagis" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openapplications.org/oagis ../BODs/ProcessResourceAllocation.xsd" revision="8.0" environment="Production" lang="en-US">
+        <ApplicationArea>
+                <Sender>
+                        <LogicalId>String</LogicalId>
+                        <Component>String</Component>
+                        <Task>String</Task>
+                        <ReferenceId>String</ReferenceId>
+                        <Confirmation>0</Confirmation>
+                        <AuthorizationId>String</AuthorizationId>
+                </Sender>
+                <CreationDateTime>2001-12-17T09:30:47-05:00</CreationDateTime>
+                <Signature qualifyingAgency="String"/>
+                <BODId>String</BODId>
+                <UserArea/>
+        </ApplicationArea>
+        <DataArea>
+                <Process confirm="Always" acknowledge="Always"/>
+                <ResourceAllocation>
+                        <Header>
+                                <DocumentDateTime>2002-04-05T00:00:00Z</DocumentDateTime>
+                                <ReasonCode>String</ReasonCode>
+                                <Kind>
+                                        <MessageId>String</MessageId>
+                                        <MessageType>String</MessageType>
+                                        <MessageText lang="en-us">String</MessageText>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                        <Sender>
+                                                <LogicalId>String</LogicalId>
+                                                <Component>String</Component>
+                                                <Task>String</Task>
+                                                <ReferenceId>String</ReferenceId>
+                                                <Confirmation>0</Confirmation>
+                                                <AuthorizationId>String</AuthorizationId>
+                                        </Sender>
+                                        <UserArea/>
+                                </Kind>
+                                <DocumentReferences>
+                                        <ProductionOrderReference/>
+                                </DocumentReferences>
+                                <UserArea/>
+                        </Header>
+                        <Detail>
+                                <WorkCenter>String</WorkCenter>
+                                <Resources>
+                                        <MachineResource>
+                                                <Machine>
+                                                        <Id/>
+                                                </Machine>
+                                        </MachineResource>
+                                </Resources>
+                                <WIPOperation>
+                                        <OperationId>String</OperationId>
+                                        <OperationName lang="en-us">String</OperationName>
+                                        <OperationSequence>String</OperationSequence>
+                                        <SuffixId>String</SuffixId>
+                                        <StepType>String</StepType>
+                                        <UserArea/>
+                                </WIPOperation>
+                                <DocumentReferences>
+                                        <PurchaseOrderDocumentReference/>
+                                </DocumentReferences>
+                                <UserArea/>
+                        </Detail>
+                </ResourceAllocation>
+        </DataArea>
+</ProcessResourceAllocation>

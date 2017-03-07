@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: SyncEngineeringChangeDocument.xsd
+-->
+<xs:schema targetNamespace="http://www.openapplications.org/oagis" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../Resources/Verbs/Sync.xsd"/>
+	<xs:include schemaLocation="../Resources/Nouns/EngineeringChangeDocument.xsd"/>
+	<xs:element name="SyncEngineeringChangeDocument" type="SyncEngineeringChangeDocument">
+		<xs:annotation>
+			<xs:documentation source="http://www.openapplications.org/oagis">The purpose of the SyncEngineeringChangeDocument is to communicate to a business application module or system the need to initiate the creation of an Engineering Change Document.
+
+This BOD may be necessary to address the Make to Order, Assemble to Order, or Mixed Mode business ordering scenarios in a Order Management to Manufacturing application integration scenario.
+
+There are many possible business applications in several environments that may use this capability. For example, a PDM, MRP, Inventory, or Manufacturing business application could use this to communicate the requirement to synchronize a Engineering Change Document.
+</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="SyncEngineeringChangeDocument">
+		<xs:complexContent>
+			<xs:extension base="BusinessObjectDocument">
+				<xs:sequence>
+					<xs:element name="DataArea" type="SyncEngineeringChangeDocumentDataArea">
+						<xs:annotation>
+							<xs:documentation source="http://www.openapplications.org/oagis">Is where the information that the BOD message carries is provided, in this case SyncEngineeringChangeDocument. The information consists of a Verb and one or more Nouns. The verb (Sync) indicates the action to be performed on the Noun (EngineeringChangeDocument).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="SyncEngineeringChangeDocumentDataArea">
+		<xs:complexContent>
+			<xs:extension base="DataArea">
+				<xs:sequence>
+					<xs:element ref="Sync"/>
+					<xs:element ref="EngineeringChangeDocument" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

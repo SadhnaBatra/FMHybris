@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/BillOfMaterial.xsd
+-->
+<xs:schema targetNamespace="http://www.openapplications.org/oagis" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../MfgComponents.xsd"/>
+	<xs:complexType name="BillOfMaterial">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="Noun">
+				<xs:sequence>
+					<xs:element ref="Header" minOccurs="0"/>
+					<xs:element ref="ItemData" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element ref="Option" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element ref="OptionClass" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="BillOfMaterialHeader">
+		<xs:sequence>
+			<xs:element name="DocumentId" type="PartyGenericIdType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="http://www.openapplications.org/oagis">Is the identifier of the Bill-Of-Material.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Name" type="Name" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="http://www.openapplications.org/oagis">Is the Name of the Bill-Of-Material</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Usage" type="Usage" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="http://www.openapplications.org/oagis">Describes the use of The Bill of Material being defined.  Examples are Production, Rework, Engineering, Construction, and Sales</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="Status" minOccurs="0"/>
+			<xs:element ref="Item" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="http://www.openapplications.org/oagis">Identifies the Items that the Bill-Of-Material creates. There may be other items created as a by-product of this same process.
+
+The first occurance is the primary Item of this BOM.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="Site" minOccurs="0"/>
+			<xs:element name="TrackingInd" type="Indicator" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="http://www.openapplications.org/oagis">Indicates that this BOM will be tracked through its life cycle.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AlternateBOM" type="BOMDocumentReference" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation source="http://www.openapplications.org/oagis">Identifies Alternate BOM for the given BOM.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EffectivePeriod" type="TimePeriod" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="http://www.openapplications.org/oagis">Identifies the time period in which the BOM is effective.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BatchSizeQuantity" type="Quantity" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="http://www.openapplications.org/oagis">Identifies the number of items that can be produced in each run of the BOM.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Note" type="Note" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation source="http://www.openapplications.org/oagis">Free-form notes about the BOM.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="UserArea" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="BillOfMaterial" type="BillOfMaterial" substitutionGroup="Noun">
+		<xs:annotation>
+			<xs:documentation source="http://www.openapplications.org/oagis">When included in a hierarchy, the Components are position dependent for their meaning and applicability to the Bill of Material.
+
+The Bill of Material structure is broken down into three classifications or ways to represent the Item.  An Item may be included by itself as in the first sub-grouping, or an Item may be represented as part of a set of options or as an option within a class of options.
+
+An example of an option would be CD-ROM for a laptop computer.  Then each of the types of CD-ROM’s for the option would be a separate Item.
+
+An example of an option class would be memory for a laptop.  The options could then be 128, 256, or 512 megabytes of RAM.  Each of these options would then have separate Item identifiers for memory modules that makes up the appropriate amount of memory.  For 256 megabytes of RAM, this could be two 128 megabyte memory modules or one 256 megabyte.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Header" type="BillOfMaterialHeader">
+		<xs:annotation>
+			<xs:documentation source="http://www.openapplications.org/oagis">Information that generally describes the Bill of Material Structure and it’s contents.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="Option">
+		<xs:sequence>
+			<xs:element name="Id" type="Id" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="http://www.openapplications.org/oagis">Is the Option identifier.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Name" type="Name" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="http://www.openapplications.org/oagis">Is the name of the option.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation source="http://www.openapplications.org/oagis">Free-form description of the option.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DefaultInd" type="Indicator" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="http://www.openapplications.org/oagis">Identifies a default option on a Bill-Of-Material.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ExclusiveInd" type="Indicator" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="http://www.openapplications.org/oagis">Identifies within a Bill of Material structure if an OptionClass or Option conflicts with another part of the Bill of Material structure and therefore if chosen, must not be combined with any other OptionClass or Option within that branch of the Bill of Material.
+
+In other words if a given Option is choosen another Option out of the same OptionClass can not be selected.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Note" type="Note" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation source="http://www.openapplications.org/oagis">Free-form notes about the Option.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="ItemData" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="UserArea" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OptionClass">
+		<xs:sequence>
+			<xs:element name="Id" type="Id" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="http://www.openapplications.org/oagis">Is the identifier of the OptionClass.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Name" type="Name" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="http://www.openapplications.org/oagis">Is the name of the OptionClass.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ExclusiveInd" type="Indicator" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="http://www.openapplications.org/oagis">Identifies within a Bill of Material structure if an OptionClass or Option conflicts with another part of the Bill of Material structure and therefore if chosen, must not be combined with any other OptionClass or Option within that branch of the Bill of Material.
+
+In other words if a given Option is choosen another Option out of the same OptionClass can not be selected.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MandatoryIndicator" type="Indicator" minOccurs="0"/>
+			<xs:element name="Description" type="Description" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="http://www.openapplications.org/oagis">Free-form description of the OptionClass.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Note" type="Note" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation source="http://www.openapplications.org/oagis">Free-Form note about the OptionClass.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="Option" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="UserArea" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Option" type="Option">
+		<xs:annotation>
+			<xs:documentation source="http://www.openapplications.org/oagis">Information that describes the attributes of a specific Option within a classification.  </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="OptionClass" type="OptionClass">
+		<xs:annotation>
+			<xs:documentation source="http://www.openapplications.org/oagis">Information that describes the class of Option for a particular Product or Item</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

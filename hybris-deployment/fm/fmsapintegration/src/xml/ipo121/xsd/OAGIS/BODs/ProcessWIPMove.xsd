@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: ProcessWIPMove.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Resources/Verbs/Process.xsd"/>
+        <xs:include schemaLocation="../Resources/Nouns/WIPMove.xsd"/>
+        <xs:element name="ProcessWIPMove" type="ProcessWIPMove">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The purpose of the ProcessWIPMove is to notify a Manufacturing Application of the progression through the production processing steps or operations of a product being made on a production order. The business environments most likely to require this capability are any type of manufacturing scenario.
+
+This BOD communicates which processing step the product is coming from and which step it is being moved to, along with the quantity moving and the time this event occurred.
+
+This BOD assumes that the applications involved in this business scenario will have already synchronized the production item and its BOM/Routing information.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="ProcessWIPMove">
+                <xs:complexContent>
+                        <xs:extension base="BusinessObjectDocument">
+                                <xs:sequence>
+                                        <xs:element name="DataArea" type="ProcessWIPMoveDataArea">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is where the information that the BOD message carries is provided, in this case ProcessWIPMove. The information consists of a Verb and one or more Nouns. The verb (Process) indicates the action to be performed on the Noun (WIPMove).</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="ProcessWIPMoveDataArea">
+                <xs:complexContent>
+                        <xs:extension base="DataArea">
+                                <xs:sequence>
+                                        <xs:element ref="Process"/>
+                                        <xs:element ref="WIPMove" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+</xs:schema>

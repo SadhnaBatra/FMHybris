@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Verbs/List.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="Verb.xsd"/>
+        <xs:complexType name="List">
+                <xs:complexContent>
+                        <xs:extension base="ConfirmableVerb">
+                                <xs:attribute name="rsStart" type="xs:positiveInteger" use="optional"/>
+                                <xs:attribute name="rsCount" type="xs:positiveInteger" use="optional"/>
+                                <xs:attribute name="rsTotal" type="xs:positiveInteger" use="optional"/>
+                                <xs:attribute name="rsComplete" type="xs:boolean" use="optional"/>
+                                <xs:attribute name="rsRef" type="xs:string" use="optional"/>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:element name="List" type="List" substitutionGroup="Verb">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The purpose of the LIST verb is to enable a business software component to respond to a GETLIST request or to proactively send a listing of summary information containing many instances of occurrences of data for a noun to one or more other business software components.The results of a LIST may then be used as is, or they may be used to select a specific instance of a document or entity in order to issue a detail GET request.Although BODs based on this verb do not commonly cause updates to occur, there may be times when the component receiving the LIST decides to use the information it receives to update.  This is entirely the decision of the receiving software component and is not forbidden.The behavior of the LIST verb is quite straight forward with a few exceptions.  The LIST response to any GETLIST request needs to read the request carefully to ensure the response is returning the requested Data Types. The LIST needs to ensure the response to the GETLIST does not exceed the maxItems value.The LIST needs to find the specific Field Identifiers that are used for the Field-Based Selection or Range-Based Selection and process them accordingly.
+
+The attributes associated with the LIST BODs are as follows:
+o	rsstart attribute is a number that idicates the starting record for the section of the resulting set returned in the list message. This value should always match the rsstart value in the originating GetList BOD.
+o	rscount attribute is a number that indicates the number of records returned in the message. The subsequent request for additional records should have a rsstart value of rscount + 1.
+o	rstotal attribute is a number that indicates the total number of records in the result set.
+o	rscomplete attribute is a Boolean that indicates that the list provided exhaust the possible values.
+o	rsref attribute is a string that represents the implementation-specific result set identifier for subsequent requests.
+			</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+</xs:schema>

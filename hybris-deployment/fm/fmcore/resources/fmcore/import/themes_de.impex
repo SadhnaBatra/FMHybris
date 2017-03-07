@@ -1,0 +1,10 @@
+# Import Themes
+#
+# Localization de
+#
+
+$lang=de
+
+UPDATE SiteTheme;code[unique=true];name[lang=$lang]
+;green;Grün;
+;fmmp;"FMMP"

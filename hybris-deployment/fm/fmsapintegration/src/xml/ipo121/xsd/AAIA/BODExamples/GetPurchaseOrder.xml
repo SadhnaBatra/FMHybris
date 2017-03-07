@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Automotive Aftermarket Industry Association (AAIA)
+	http://www.aftermarket.org
+	Internet Parts Ordering (IPO) Release 1.2.1,  March 1, 2005
+	Business Object Document (BOD) Example
+	
+	Overlay for: 
+	Open Applications Group (http://www.openapplications.org)
+	OAGIS Release 8.0, 	April 05, 2002
+	
+	Name:		GetPurchaseOrder.xml
+	Comments:	The default name space is OAGIS. Therefore all AAIA elements require the aaia: prefix.
+-->
+<aaia:GetPurchaseOrder xmlns="http://www.openapplications.org/oagis" xmlns:aaia="http://www.aftermarket.org/oagis" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.aftermarket.org/oagis ../BODs/GetPurchaseOrder.xsd" revision="1.2.1" environment="Production" lang="en">
+	<!-- The ApplicationArea identifies the document and the sender. -->
+	<ApplicationArea>
+		<Sender>
+			<ReferenceId>W0013</ReferenceId>
+			<Confirmation>1</Confirmation>
+		</Sender>
+		<CreationDateTime>2003-09-08T13:21:47-06:00</CreationDateTime>
+		<BODId>1T78G</BODId>
+	</ApplicationArea>
+	<!-- The DataArea contains the business information to be processed by the receiver. -->
+	<aaia:DataArea>
+		<aaia:Get confirm="Always"/>
+		<PurchaseOrder>
+			<!-- The Header fields identify the purchase order that is awaiting acknowledgement by the seller. -->
+			<Header>
+				<DocumentIds>
+					<CustomerDocumentId>
+						<Id>PO 11347</Id>
+					</CustomerDocumentId>
+				</DocumentIds>
+				<DocumentDateTime>2003-09-08T17:25:00Z</DocumentDateTime>
+			</Header>
+			<!-- Line information is unnecessary to Get a purchase order. -->
+			<aaia:Line/>
+		</PurchaseOrder>
+	</aaia:DataArea>
+</aaia:GetPurchaseOrder>

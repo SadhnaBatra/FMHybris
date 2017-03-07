@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sch:schema xmlns="http://www.ascc.net/xml/schematron" xmlns:oa="http://www.openapplications.org/oagis" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ascc.net/xml/schematron ../../../Utility/Schematron/schematron1-5.xsd">
+	<sch:title>Schematron Validator for OAGI Constraints</sch:title>
+	<sch:ns prefix="oa" uri="http://www.openapplications.org/oagis"/>
+	<sch:pattern name="InventoryBalance">
+		<sch:rule context="oa:InventoryBalance">
+			<sch:assert test="oa:Item">Must have an Item component.</sch:assert>
+			<sch:assert test="oa:ItemQuantity">Must have an ItemQuantity.</sch:assert>
+			<sch:assert test="oa:Site">Must Identify the Site of the Inventory Balance</sch:assert>
+			<sch:assert test="oa:DocumentDateTime">Must have the Timestamp of the Documents creation.</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+</sch:schema>

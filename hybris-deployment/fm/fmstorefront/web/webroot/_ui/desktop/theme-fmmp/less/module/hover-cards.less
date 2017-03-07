@@ -1,0 +1,108 @@
+/* =================
+    Hover Cards 
+==================== */
+
+ 
+.lms_desc {
+    margin-bottom: 35px;
+    margin-bottom: 3.5rem;
+}
+.lms_btm_link a { 
+    color: @white; 
+    font-weight:bold;
+}
+
+.lms_intro_hover {
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    height: 200px;
+    height: 20rem;
+    .blur{
+        background-color: rgba(0,0,0,0.7);
+        height: 300px; height: 30rem;
+        z-index: 5;
+        position: absolute;
+        width: 100%;
+    }
+
+    .caption{
+        position: absolute;
+        top:150px; top: 15rem;
+        transition:all 0.3s ease-in-out;
+        width: 100%;
+        h5 {
+            margin:0 0 1.5rem 0; 
+            font-weight:bold; 
+        }
+    }
+    .caption-text{
+        z-index: 10;
+        color: @white;
+        position: absolute;
+        height: 300px; height: 30rem;
+        width: 100%;
+        padding: 10px; padding: 1rem;
+    }
+    &:hover {
+        .caption{
+            opacity: 1;
+            transform: translateY(-15rem);
+        }
+    }
+    img {
+        z-index: 4;
+
+        @media all and (min-width: @bp_small_desktop_min) {
+            width: 100%;
+        }
+    }
+}
+
+
+
+@media screen and (max-width:@bp_mobile_max) {
+    .lms_intro_hover {
+        padding: 10px 0 0 15px;
+        padding: 1rem 0 0 1.5rem;
+        background:@white;
+        .blur {
+            display:none;
+        }
+        .caption {
+            float: right;
+            position: relative;
+            top: 0;
+            transition: none;
+            h5{
+                font-size:12px;
+                font-size:1.2rem;
+            }
+        }
+        .caption-text{
+            color: @grey;
+            height: auto;
+            position:relative;
+            padding: 0 10px; padding: 0 1rem;
+        }
+        .col-xs-lms {
+            float: left;
+            width: 50%;
+        }
+        &:hover {
+            .caption {
+                opacity: 1;
+                transform:none;
+            }
+        }
+        img {
+            width:100%;
+        }
+        p {
+            display:block;
+        }
+    }
+    .productDetailPage .lms_intro_hover img {
+        border:1px solid @grey-light;
+    }
+}

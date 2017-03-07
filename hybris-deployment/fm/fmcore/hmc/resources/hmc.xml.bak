@@ -1,0 +1,761 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2000-2013 hybris AG
+ All rights reserved.
+
+ This software is the confidential and proprietary information of hybris
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with hybris.
+-->
+<configuration xmlns="hybris.de/schemas/hmc/generic"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="hybris.de/schemas/hmc/generic hmc.xsd">
+
+
+	<type name="Order" mode="append">
+		<organizer>
+			<search mode="append">
+				<condition attribute="versionID" operator="is null" />
+			</search>
+		</organizer>
+	</type>
+	<explorertree>
+		<group name="federalmogul" description="group.fmcorporate.description">
+			<typeref type="FMCorporate" description="typeref.fmcorporate.description" />
+			<typeref type="FMFitment" description="typeref.fmfitment.description" />
+			<typeref type="FMYearMakeModelVehicleType" description="typeref.fmymm.description" />
+			<typeref type="fmcustomeraccount"/>
+			<typeref type="salesorganization"/>
+			<typeref type="saleschannel"/>
+			<typeref type="fmcustomer"/>
+			<typeref type="fmb2baddress"/>
+			<typeref type="fmtaxdocument"/>
+		</group>
+	</explorertree>
+	<type name="FMCorporate" mode="append">
+		<organizer>
+			<search mode="replace">
+				<condition attribute="corpcode" />
+				<condition attribute="corpname" />
+			</search>
+			<result>
+				<listview mode="replace">
+					<itemlayout>
+						<attribute name="corpcode" width="80"/>
+						<attribute name="corpname"  width="120"/>
+						<attribute name="corptype" width="80"/>
+					</itemlayout>
+				</listview>
+			</result>
+			<editor>
+				<tab name="tab.fmcorporate.corporatedetails" position="1" mode="append">
+					<section name="section.fmcorporate.corporatedetails" mode="append">
+						<listlayout>
+							<attribute name="corpid" />
+							<attribute name="corpcode" />
+							<attribute name="corpname" />
+							<attribute name="corptype" />
+						</listlayout>
+					</section>
+				</tab>
+			</editor>
+		</organizer>
+	</type>
+	<type name="FMPart" mode="append">
+		<organizer mode="append"> 
+			<editor mode="append">
+				<tab name="tab.fmpart.properties" position="3" mode="append">
+					<section name="section.fmpart.description" mode="append">
+						<listlayout mode="append" width="">
+							<attribute name="partstatus" />
+							<attribute name="corporate" />
+							<attribute name="fitments" />
+						</listlayout>
+						<columnlayout>
+                  			<row>
+								<attribute name="partNumber"/>
+								<attribute name="pid" />
+							</row>
+							<row>
+								<attribute name="upc" />
+								<attribute name="flagcode" />
+							</row>
+							<row>
+								<attribute name="flagname" />
+								<attribute name="textcomment" />
+							</row>
+							<row>
+								<attribute name="textnote" />
+								<attribute name="textfootnote" />
+							</row>
+							<row>
+								<attribute name="warranty" />
+								<attribute name="warrantydescription" />
+							</row>
+						</columnlayout>
+					</section>
+					<section name="section.fmpartattribute.hazardous" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="hazardousClassCode"/>
+								<attribute name="hazardousMaterialDescription"/>
+							</row>
+							<row>
+								<attribute name="hazardousIndicator"/>
+								<attribute name="countryOfOriginPrimary"/>
+							</row>
+						</columnlayout>
+					</section>
+					<section name="section.fmpartattribute.package" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="packageEachLevelGTINUPC"/>
+								<attribute name="pkgLevelGTINUPCInnerPackage"/>
+							</row>
+							<row>
+								<attribute name="weightUOM"/>
+								<attribute name="packageUOM"/>
+							</row>
+							<row>
+								<attribute name="packageEachHeight"/>
+								<attribute name="packageEachWidth"/>
+							</row>
+							<row>
+								<attribute name="packageEachLength"/>
+								<attribute name="packageEachWeight"/>
+							</row>
+							<row>
+								<attribute name="heightInnerPackage"/>
+								<attribute name="widthInnerPackage"/>
+							</row>
+							<row>
+								<attribute name="lengthInnerPackage"/>
+								<attribute name="weightInnerPackage"/>
+							</row>
+							<row>
+								<attribute name="heightCase"/>
+								<attribute name="widthCase"/>
+							</row>
+							<row>
+								<attribute name="lengthCase"/>
+								<attribute name="weightCase"/>
+							</row>
+							<row>
+								<attribute name="quantityOfEachesEachPackage"/>
+								<attribute name="qtyOfEachesinPkgInnerPackage"/>
+							</row>
+							<row>
+								<attribute name="pkgLevelGTINUPCCase"/>
+								<attribute name="quantityOfEachesinPackageCase"/>
+							</row>
+							<row>
+								<attribute name="dimensionsUOM"/>
+							</row>
+						</columnlayout>
+					</section>
+					<section name="section.fmpartattribute.piesattrb" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="freightClass"/>
+								<attribute name="applicationSpecific"/>
+							</row>
+							<row>
+								<attribute name="carLightTruck"/>
+								<attribute name="mediumDutyTruck"/>
+							</row>
+							<row>
+								<attribute name="heavyDutyTruck"/>
+								<attribute name="agriculturalEquipment"/>
+							</row>
+							<row>
+								<attribute name="industrialOffHighwayEquipment"/>
+								<attribute name="motorcycleATV"/>
+							</row>
+							<row>
+								<attribute name="snowMobile"/>
+								<attribute name="personalWatercraft"/>
+							</row>
+							<row>
+								<attribute name="marine"/>
+								<attribute name="smallEngine"/>
+							</row>
+							<row>
+								<attribute name="highPerformance"/>
+								<attribute name="engineSpecific"/>
+							</row>
+							<row>
+								<attribute name="transmissionSpecific"/>
+								<attribute name="nonVehicleSpecific"/>
+							</row>
+						</columnlayout>
+					</section>
+					<section name="section.fmpartattribute.piesexpi" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="emissionCode"/>
+								<attribute name="remanufacturedPart"/>
+							</row>
+							<row>
+								<attribute name="mSDSSheetNumber"/>
+								<attribute name="mSDSSheetAvailable"/>
+							</row>
+							<row>
+								<attribute name="palletFootprintSize" />
+								<attribute name="palletFootprintSizeUOM" />
+							</row>
+							<row>
+								<attribute name="maxCasePerPalletLayer"/>
+								<attribute name="palletLayerMax"/>
+							</row>
+							<row>
+								<attribute name="harmonizedTariffCode"/>
+							</row>
+						</columnlayout>
+					</section>
+					<section name="section.fmpartattribute.pieitem" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="itemQuantitySize"/>
+								<attribute name="itemQuantitySizeUOM"/>
+							</row>
+							<row>
+								<attribute name="containerType"/>
+								<attribute name="itemLevelGTINUPC"/>
+							</row>
+							<row>
+								<attribute name="itemLevelGTINUPC"/>
+								<attribute name="itemLevelGTINQualifier"/>
+							</row>
+							
+						</columnlayout>
+					</section>
+					<section name="section.fmpartattribute.general" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="sqshPtNbr"/>
+								<attribute name="alphaNumeric"/>
+							</row>
+							<row>
+								<attribute name="availableDate"/>
+								<attribute name="brandLabel"/>
+							</row>
+							<row>
+								<attribute name="squashedPartNumber"/>
+								<attribute name="alternatePartNumber"/>
+							</row><row>	
+								<attribute name="priceSheetEffectiveDate"/>
+								<attribute name="wdNetPrice"/>
+							</row><row>
+								<attribute name="jobberPrice"/>
+								<attribute name="listPrice"/>
+							</row><row>	
+								<attribute name="longDescription"/>
+								<attribute name="popularityCode"/>
+							</row><row>	
+								<attribute name="vehicleRegistration"/>
+								<attribute name="quantityPerApplication"/>
+							</row><row>	
+								<attribute name="applicationSummaryDescription"/>
+								<attribute name="productFlag"/>
+							</row><row>	
+								<attribute name="priceSheetNumber"/>
+								<attribute name="supersededPriceSheetNumber"/>
+							</row><row>	
+								<attribute name="priceSheetExpirationDate"/>
+								<attribute name="dateRecordAddedorChanged"/>
+							</row><row>	
+								<attribute name="brandAAIAID"/>					
+								<attribute name="aaiaPartTerminologyID"/>
+							</row><row>
+								<attribute name="quantityPerApplicationQualifier"/>
+								<attribute name="quantityPerApplicationUOM"/>
+							</row><row>	
+								<attribute name="minimumOrderQuantityUOM"/>
+								<attribute name="lifeCycleStatusCode"/>
+							</row><row>	
+								<attribute name="lifeCycleStatusDescription"/>
+								<attribute name="productGroupCode"/>
+							</row><row>	
+								<attribute name="productSubGroupCode"/>
+								<attribute name="productCategoryCode"/>
+							</row><row>	
+								<attribute name="partNumberOld"/>
+								<attribute name="partNumberSupersededTo"/>
+							</row><row>	
+								<attribute name="nationalPopularityCode"/>
+								<attribute name="taxable"/>
+							</row><row>	
+								<attribute name="eachPackageBarCodeCharacters"/>
+								<attribute name="caseBarCodeCharacters"/>
+							</row><row>	
+								<attribute name="aAPSKUNumberAN68"/>
+								<attribute name="aAPPLANumberAN3"/>
+							</row><row>	
+								<attribute name="aAPPartTypeIDsmandatoryAN250"/>
+								<attribute name="advanceBuys"/>
+							</row><row>	
+								<attribute name="sentImagetoAdvance"/>
+								<attribute name="allianceBuys"/>
+							</row><row>	
+								<attribute name="oReillyBuys"/>
+								<attribute name="autoZoneBuys"/>
+							</row><row>	
+								<attribute name="autoZonePartNumber"/>
+								<attribute name="nAPABuys"/>
+							</row><row>	
+								<attribute name="nAPAPartNumber"/>
+								<attribute name="otherCustomersifany"/>
+							</row><row>	
+								<attribute name="position"/>
+								<attribute name="material"/>
+							</row><row>	
+								<attribute name="digitalAssetURL" />
+							</row>
+						</columnlayout>
+					</section>
+				</tab>
+			</editor>
+		</organizer>
+	</type>					
+
+	<type name="FMFitment" mode="append">
+		<organizer>
+			<search mode="replace">
+				<condition attribute="code" />
+				<condition attribute="ymmcode" />
+				<condition attribute="year" />
+				<condition attribute="make" />
+				<condition attribute="model" />
+			</search>
+			<result>
+				<listview mode="replace">
+					<itemlayout>
+						<attribute name="code" width="80"/>
+						<attribute name="ymmcode"  width="120"/>
+						<attribute name="vehiclesegment" width="150"/>
+						<attribute name="year" width="80"/>
+						<attribute name="make" width="80"/>
+						<attribute name="model" width="80"/>
+						<attribute name="partNumber" width="80"/>
+					</itemlayout>
+				</listview>
+			</result>
+			<editor>
+				<tab name="tab.fmfitment.fitments" position="1" mode="append">
+					<section name="section.fmfitment.fitments" mode="append">
+						<listlayout mode="append" width="">
+							<attribute name="parts" />
+						</listlayout>
+						<columnlayout>
+							<row>
+								<attribute name="code" />
+								<attribute name="ymmcode" />
+							</row><row>
+								<attribute name="vehiclesegment" />
+								<attribute name="year" />
+							</row><row>
+								<attribute name="make" />
+								<attribute name="model" />
+							</row><row>
+								<attribute name="partNumber" />
+								<attribute name="product" />
+							</row><row>
+								<attribute name="submodel" />
+								<attribute name="region" />
+							</row><row>
+								<attribute name="vehicleType" />
+								<attribute name="assetLogicalName" />
+							</row><row>
+								<attribute name="assetItemRef" />
+								<attribute name="assetItemOrder" />
+							</row><row>
+								<attribute name="assetFileName" />
+							</row>
+						</columnlayout>
+					</section>
+				</tab>
+				<tab name="tab.fmfitment.engine" position="2" mode="append">
+					<section name="section.fmfitment.engine" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="mfrLabel" />
+								<attribute name="position" />
+							</row><row>
+								<attribute name="appQuantity" />
+								<attribute name="engineBase" />
+							</row><row>
+								<attribute name="engineDesignation" />
+								<attribute name="engineVIN" />
+							</row><row>
+								<attribute name="engineVersion" />
+								<attribute name="engineMfr" />
+							</row><row>
+								<attribute name="engineValves" />
+								<attribute name="engineArrangementNumber" />
+							</row><row>
+								<attribute name="engineSerialNumber" />
+								<attribute name="engineCPLNumber" />
+							</row><row>
+								<attribute name="aspiration" />
+								<attribute name="engineCPLNumber" />
+							</row>
+						</columnlayout>
+					</section>
+				</tab>
+				<tab name="tab.fmfitment.fuel" position="3" mode="append">
+					<section name="section.fmfitment.fuel" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="cylinderHeadType" />
+								<attribute name="fuelType" />
+							</row><row>
+								<attribute name="ignitionSystemType" />
+								<attribute name="fuelDeliveryType" />
+							</row><row>
+								<attribute name="fuelDeliverySubType" />
+								<attribute name="fuelSystemControlType" />
+							</row><row>
+								<attribute name="fuelSystemDesign" />
+								<attribute name="powerOutput" />
+							</row><row>
+								<attribute name="bodyNumDoors" />
+							</row>
+						</columnlayout>
+					</section>
+				</tab>
+				<tab name="tab.fmfitment.brake" position="4" mode="append">
+					<section name="section.fmfitment.brake" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="bodyType" />
+								<attribute name="bedLength" />
+							</row><row>
+								<attribute name="bedType" />
+								<attribute name="driveType" />
+							</row><row>
+								<attribute name="mfrBodyCode" />
+								<attribute name="wheelBase" />
+							</row><row>
+								<attribute name="frontBrakeType" />
+								<attribute name="rearBrakeType" />
+							</row><row>
+								<attribute name="brakeSystem" />
+								<attribute name="brakeABS" />
+							</row><row>
+								<attribute name="frontSpringType" />
+								<attribute name="rearSpringType" />
+							</row><row>
+								<attribute name="rearSpringType" />
+								<attribute name="steeringType" />
+							</row><row>
+								<attribute name="steeringSystem" />
+								<attribute name="vehicleSeries" />
+							</row><row>
+								<attribute name="transmissionNumSpeeds" />
+								<attribute name="transmissionControlType" />
+							</row><row>
+								<attribute name="transmissionMfrCode" />
+								<attribute name="transmissionType" />
+							</row>
+						</columnlayout>
+					</section>
+				</tab>
+				<tab name="tab.fmfitment.textcomment" position="5" mode="append">
+					<section name="section.fmfitment.textcomment" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="comment1" />
+								<attribute name="comment2" />
+							</row><row>
+								<attribute name="comment3" />
+								<attribute name="comment4" />
+							</row><row>
+								<attribute name="comment5" />
+								<attribute name="comment6" />
+							</row><row>
+								<attribute name="comment7" />
+								<attribute name="comment8" />
+							</row><row>
+								<attribute name="comment9" />
+								<attribute name="comment10" />
+							</row>
+						</columnlayout>
+					</section>
+				</tab>
+				<tab name="tab.fmfitment.interchangenote" position="6" mode="append">
+					<section name="section.fmfitment.interchangenote" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="interchangeNote1" />
+								<attribute name="interchangeNote2" />
+							</row><row>
+								<attribute name="interchangeNote3" />
+								<attribute name="interchangeNote4" />
+							</row><row>
+								<attribute name="interchangeNote5" />
+								<attribute name="interchangeNote6" />
+							</row><row>
+								<attribute name="interchangeNote7" />
+								<attribute name="interchangeNote8" />
+							</row><row>
+								<attribute name="interchangeNote9" />
+								<attribute name="interchangeNote10" />
+							</row>
+						</columnlayout>
+					</section>
+				</tab>
+				<tab name="tab.fmfitment.applicationnote" position="6" mode="append">
+					<section name="section.fmfitment.applicationnote" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="applicationNote1" />
+								<attribute name="applicationNote2" />
+							</row><row>
+								<attribute name="applicationNote3" />
+								<attribute name="applicationNote4" />
+							</row><row>
+								<attribute name="applicationNote5" />
+								<attribute name="applicationNote6" />
+							</row><row>
+								<attribute name="applicationNote7" />
+								<attribute name="applicationNote8" />
+							</row><row>
+								<attribute name="applicationNote9" />
+								<attribute name="applicationNote10" />
+							</row>
+						</columnlayout>
+					</section>
+				</tab>
+			</editor>
+		</organizer>
+	</type>
+	<type name="FMYearMakeModelVehicleType" mode="append">
+		<organizer>
+			<search mode="replace">
+				<condition attribute="code" />
+				<condition attribute="year" />
+			</search>
+			<result>
+				<listview mode="replace">
+					<itemlayout>
+						<attribute name="vehicletype" width="80"/>
+						<attribute name="year"  width="120"/>
+						<attribute name="model" width="80"/>
+					</itemlayout>
+				</listview>
+			</result>
+			<editor>
+				<tab name="tab.fmymm.details" position="1" mode="append">
+					<section name="section.fmymm.details" mode="append">
+						<listlayout>
+							<attribute name="vehicletype" />
+							<attribute name="year" />
+							<attribute name="make" />
+							<attribute name="model" />
+						</listlayout>
+					</section>
+				</tab>
+			</editor>
+		</organizer>
+	</type>
+
+	<!-- Registration Page -->			
+<!-- 	
+	<type name="FMCustomer" mode="append">
+	<organizer>
+		<search mode="replace">
+			<condition attribute="lastName" />
+			<condition attribute="subscription" />
+			<condition attribute="loyaltySignup" />
+		</search>
+		<result>
+		 	<listview mode="replace">
+		  		<itemlayout>
+		 			 <attribute name="lastName" />
+					 <attribute name="subscription" />
+					 <attribute name="loyaltySignup" />
+		  		</itemlayout>
+		 	</listview>
+		</result>
+		<editor>
+			<essentials>
+                    <listlayout>
+                        <attribute name="lastName"/>
+                    </listlayout>
+             </essentials>
+              <tab name="tab.fmcustomer">
+                    <section name="section.fmcustomer.details">
+                        <listlayout>
+                            <attribute name="lastName"/>
+                            <attribute name="subscription"/>
+                            <attribute name="taxID"/>
+                            <attribute name="taxDocument"/>
+                            <attribute name="loyaltySignup"/>
+                            <attribute name="userTypeDescription"/>
+                        </listlayout>
+                    </section>
+                </tab>
+		</editor>
+	</organizer>
+</type> -->
+	<type name="FMCustomerAccount" mode="append">
+		<organizer mode="append">
+			<editor mode="append">
+				<tab name="tab.fmcustomeraccount.properties" mode="append">
+					<section name="section.fmcustomeraccount.attributes" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="prospectuid"/>
+								<attribute name="channelCode"/>
+							</row>
+						
+							<row>
+								<attribute name="nabsCode"/>
+								<attribute name="taxID"/>
+							</row>
+							<row>
+								<attribute name="viewInvoiceFlag"/>
+								<attribute name="shippingCode"/>
+							</row>
+							<row>
+								<attribute name="freeFreightAmt"/>
+								<attribute name="creditCardFlag"/>
+							</row>
+							<row>
+								<attribute name="accComments"/>
+								<attribute name="accComments2"/>
+							</row>
+							<row>
+								<attribute name="buyingAffiliationCode"/>
+								<attribute name="buyingGroup"/>
+							</row>
+							<row>
+								<attribute name="customerRegion"/>
+								<attribute name="customerTerritory"/>
+							</row>
+							<row>
+								<attribute name="customerServiceTerritory"/>
+								<attribute name="customerAccountCode"/>
+							</row>		
+							<row>
+								<attribute name="fmtaxDocument"/>
+								<attribute name="association"/>
+							</row>
+							<row>
+								<attribute name="carrierAccountCode"/>
+								<attribute name="customerGroup"/>
+							</row>																																	
+						</columnlayout>
+					</section>
+				</tab>
+			</editor>
+		</organizer>
+	</type>	
+	<type name="SalesOrganization" mode="append">
+		<organizer mode="append">
+			<editor mode="append">
+				<tab name="tab.salesorganization.properties" mode="append">
+					<section name="section.salesorganization.attributes" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="salesOrgsId"/>
+							</row>
+							<row>
+								<attribute name="soldToAccount"/>
+								<attribute name="salesOrgCode"/>
+							</row>
+							<row>
+								<attribute name="salesDivisionCode"/>
+								<attribute name="salesChannelCode"/>
+							</row>
+						</columnlayout>
+					</section>
+				</tab>
+			</editor>
+		</organizer>
+	</type>
+	<type name="SalesChannel" mode="append">
+		<organizer mode="append">
+			<editor mode="append">
+				<tab name="tab.saleschannel.properties" mode="append">
+					<section name="section.saleschannel.attributes" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="code"/>
+								<attribute name="name"/>
+							</row>
+						</columnlayout>
+					</section>
+				</tab>
+			</editor>
+		</organizer>
+	</type>
+	<type name="FMCustomer" mode="append">
+		<organizer mode="append">
+			<editor mode="append">
+				<tab name="tab.fmcustomer.properties" mode="append">
+					<section name="section.fmcustomer.attributes" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="channelCode"/>
+								<attribute name="lastName"/>
+							</row>
+							<row>
+								<attribute name="techAcademySubscription"/>
+								<attribute name="newPrductAlerts"/>
+							</row>
+							<row>
+								<attribute name="loyaltySubscription"/>
+								<attribute name="promSubscription"/>
+							</row>
+							<row>
+								<attribute name="newsLetterSubscription"/>
+								<attribute name="fmUnit"/>
+							</row>
+							<row>
+								<attribute name="b2cLoyaltyMembershipId"/>
+								<attribute name="crmCustomerID"/>
+						
+							</row>								
+						</columnlayout>
+					</section>
+				</tab>
+			</editor>
+		</organizer>
+	</type>
+	<!-- Start Sai TaxDocument hmc Layout -->
+	
+	<type name="FMTaxDocument" mode="append">
+		<organizer mode="append">
+			<editor mode="append">
+				<tab name="tab.fmtaxdocument.properties" mode="append">
+					<section name="section.fmtaxdocument.attributes" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="docname"/>
+								<attribute name="uploadedBy"/>
+
+							</row>
+						
+							<row>
+								<attribute name="state"/>
+								<attribute name="validate"/>
+							</row>
+							<row>
+								<attribute name="approvedBy"/>
+								
+							</row>
+
+																																								
+						</columnlayout>
+					</section>
+				</tab>
+			</editor>
+		</organizer>
+	</type>
+	
+	<!-- End Sai TaxDocument hmc Layout -->
+</configuration>

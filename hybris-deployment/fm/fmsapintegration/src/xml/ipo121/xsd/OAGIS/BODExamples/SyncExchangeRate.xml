@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group Sample XML Data
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: SyncExchangeRate.xml
+-->
+<SyncExchangeRate xmlns="http://www.openapplications.org/oagis" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openapplications.org/oagis ../BODs/SyncExchangeRate.xsd" revision="8.0" environment="Production" lang="en-US">
+        <ApplicationArea>
+                <Sender>
+                        <LogicalId>String</LogicalId>
+                        <Component>String</Component>
+                        <Task>String</Task>
+                        <ReferenceId>String</ReferenceId>
+                        <Confirmation>0</Confirmation>
+                        <AuthorizationId>String</AuthorizationId>
+                </Sender>
+                <CreationDateTime>2001-12-17T09:30:47-05:00</CreationDateTime>
+                <Signature qualifyingAgency="String"/>
+                <BODId>String</BODId>
+                <UserArea/>
+        </ApplicationArea>
+        <DataArea>
+                <Sync confirm="Always">
+                        <SyncCriteria expressionLanguage="XPath">
+                                <SyncExpression action="Add">String</SyncExpression>
+                        </SyncCriteria>
+                </Sync>
+                <ExchangeRate>
+                        <From>String</From>
+                        <To>String</To>
+                        <Multiplier>3.14159</Multiplier>
+                        <EffectivePeriod inclusive="true">
+                                <From>2002-04-05</From>
+                                <Duration>P1Y2M3DT10H30M</Duration>
+                        </EffectivePeriod>
+                        <Description lang="en-us" owner="String">String</Description>
+                        <GLEntitySource>String</GLEntitySource>
+                        <RateType>String</RateType>
+                        <UserArea/>
+                </ExchangeRate>
+        </DataArea>
+</SyncExchangeRate>

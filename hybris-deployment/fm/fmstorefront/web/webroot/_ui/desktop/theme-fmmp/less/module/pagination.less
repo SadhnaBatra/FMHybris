@@ -1,0 +1,86 @@
+/* ====================
+    Pagination
+====================== */
+
+.paginationBar{
+    clear:both;
+    line-height: 40px;
+    line-height:4em;
+
+    &.bottom {
+        border-top:1px dotted @grey-dark;
+    }
+    &.top {
+        border-bottom:1px dotted @grey-dark;
+    }
+    .showAll,
+    .showPagination {
+        float:left;
+        margin: 0.5em 0 0.5em 20px;
+        padding:0 20px;
+        line-height:3em;
+        border-left:1px solid @grey-light;
+        color:@grey-dark;
+    }
+    .sortForm {
+        float:left;
+        margin: 0;
+    }
+    .totalResults {
+        float:left;
+        color:@grey-dark;
+        width:180px;
+    }
+    ul.pagination {
+        float:left;
+        li {
+            float:left;
+
+            a {
+                display:block;
+                text-align:center;
+                width: 20px;
+            }
+            &.first,
+            &.last {
+                display:none;
+            }
+            &.next {
+                a {
+                    background:url("../images/pagination-next.png") no-repeat center center ;
+                    width:25px;
+                    overflow:hidden;
+                    white-space:nowrap;
+                    color:transparent;
+                }
+            }
+            &.prev {
+                a {
+                    background:url("../images/pagination-prev.png") no-repeat center center ;
+                    width:25px;
+                    overflow:hidden;
+                    white-space:nowrap;
+                    color:transparent; 
+                }
+            }
+        }
+    }
+}
+
+.pagination-centered{
+    text-align:center;
+}
+.pagination-prev-page,
+.pagination-next-page {
+    background: @grey-lighter;
+    border: 0 none;
+    height: 28px;
+    height: 2.8rem;
+    padding: 0;
+    width: 28px;
+    width: 2.8rem;
+}
+.pagination-next-page {
+    background: @red;
+    color:@white;
+}

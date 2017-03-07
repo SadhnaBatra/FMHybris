@@ -1,0 +1,26 @@
+#Delete components
+Delete FROM cmscomponent item_t0 WHERE ( item_t0.p_uid ='wagnerbrake')
+Delete FROM cmscomponent item_t0 WHERE ( item_t0.p_uid ='wagnerlighting')
+
+
+insert_update FMBannerComponent;&Item;actions(catalogVersion(catalog(id),version),uid);carouselcontainer[lang=en];catalogVersion(catalog(id),version)[unique=true,allownull=true];color;content[lang=en];external[allownull=true];fmrotatingComponent(catalogVersion(catalog(id),version),uid);headline[lang=en];name;onlyOneRestrictionMustApply[allownull=true];page(catalogVersion(catalog(id),version),uid);restrictions(catalogVersion(catalog(id),version),uid);rotatingComponent(catalogVersion(catalog(id),version),uid);sequenceId;slots(catalogVersion(catalog(id),version),uid);sourceLink;uid[unique=true,allownull=true];urlLink;visible[allownull=true]
+;Item13jurid;;;federalmogulContentCatalog:Online;;;true;;Jurid;jurid;true;;;;;federalmogulContentCatalog:Online:FMBrandstripSlot;;jurid;/jurid.html;true
+;Item14wagner;;;federalmogulContentCatalog:Online;;;true;;Wagner;wagner;true;;;;;federalmogulContentCatalog:Online:FMBrandstripSlot;;wagner;/wagner.html;true
+;Item15interfil;;;federalmogulContentCatalog:Online;;;true;;Interfil;interfil Banner;true;;;;;federalmogulContentCatalog:Online:FMBrandstripSlot;;interfil;/interfil.html;true
+
+$catalog-id=federalmogulContentCatalog
+$catalog-version=Online
+
+$catalogversion=catalogversion(catalog(id),version)[unique=true,default=$catalog-id:$catalog-version]
+insert_update FMBannerComponent;uid[unique=true];external;urlLink;$catalogversion;
+;abex;true;/abex.html;
+;anco;true;/anco.html;
+;champion;true;/champion.html;
+;fel-pro;true;/fel-pro.html;
+;ferodo;true;/ferodo.html;
+;fp-diesel;true;/fp-diesel.html;
+;moog;true;/moog.html;
+;national;true;/national.html;
+;sealed-power;true;/sealed-power.html;
+;speed-pro;true;/sealed-power.html;
+;beckarnley;true;/beck-arnley.html;

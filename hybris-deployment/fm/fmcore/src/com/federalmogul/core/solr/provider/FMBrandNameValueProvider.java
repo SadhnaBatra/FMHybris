@@ -1,0 +1,106 @@
+/*
+ * [y] hybris Platform
+ *
+ * Copyright (c) 2000-2013 hybris AG
+ * All rights reserved.
+ *
+ * This software is the confidential and proprietary information of hybris
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with hybris.
+ * 
+ *  
+ */
+package com.federalmogul.core.solr.provider;
+
+
+import de.hybris.platform.solrfacetsearch.config.IndexConfig;
+import de.hybris.platform.solrfacetsearch.config.IndexedProperty;
+import de.hybris.platform.solrfacetsearch.config.exceptions.FieldValueProviderException;
+import de.hybris.platform.solrfacetsearch.provider.FieldNameProvider;
+import de.hybris.platform.solrfacetsearch.provider.FieldValue;
+import de.hybris.platform.solrfacetsearch.provider.FieldValueProvider;
+import de.hybris.platform.solrfacetsearch.provider.impl.AbstractPropertyFieldValueProvider;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+
+import org.springframework.beans.factory.annotation.Required;
+
+import com.federalmogul.falcon.core.model.FMCorporateModel;
+import com.federalmogul.falcon.core.model.FMPartModel;
+
+
+public class FMBrandNameValueProvider extends AbstractPropertyFieldValueProvider implements FieldValueProvider, Serializable
+{
+	private FieldNameProvider fieldNameProvider;
+
+	protected FieldNameProvider getFieldNameProvider()
+	{
+		return this.fieldNameProvider;
+	}
+
+	@Required
+	public void setFieldNameProvider(final FieldNameProvider fieldNameProvider)
+	{
+		this.fieldNameProvider = fieldNameProvider;
+	}
+
+
+	@Override
+	public Collection<FieldValue> getFieldValues(final IndexConfig indexConfig, final IndexedProperty indexedProperty,
+			final Object model) throws FieldValueProviderException
+	{
+		Collection<FMCorporateModel> barnds = null;
+		if (model instanceof FMPartModel)
+		{
+			barnds = modelService.getAttributeValue(model, "corporate");
+		}
+		if (barnds != null && !barnds.isEmpty())
+		{
+			final Collection<FieldValue> fieldValues = new ArrayList<FieldValue>();
+			for (final FMCorporateModel barnd : barnds)
+			{
+				final Collection<String> fieldNames = getFieldNameProvider().getFieldNames(indexedProperty, null);
+
+				for (final String fieldName : fieldNames)
+				{
+					fieldValues.add(new FieldValue(fieldName, getPropertyValue(barnd, indexedProperty)));
+				}
+
+			}
+			return fieldValues;
+		}
+		else
+		{
+			return Collections.emptyList();
+		}
+
+	}
+
+
+	protected Object getPropertyValue(final Object model, final IndexedProperty indexedProperty)
+	{
+		String qualifier = indexedProperty.getValueProviderParameter();
+
+		if ((qualifier == null) || (qualifier.trim().isEmpty()))
+		{
+			qualifier = indexedProperty.getName();
+		}
+		//final Object result = null;
+		return this.modelService.getAttributeValue(model, qualifier);
+	}
+
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * de.hybris.platform.solrfacetsearch.provider.FieldValueProvider#getFieldValues(de.hybris.platform.solrfacetsearch
+	 * .config.IndexConfig, de.hybris.platform.solrfacetsearch.config.IndexedProperty, java.lang.Object)
+	 */
+
+
+}

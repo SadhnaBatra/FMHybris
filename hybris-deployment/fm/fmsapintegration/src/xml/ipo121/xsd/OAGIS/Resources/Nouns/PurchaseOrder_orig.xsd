@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/PurchaseOrder_orig.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:star="http://www.openapplications.org/oagis/star" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Components.xsd"/>
+<!--   Abstract elements that support substitution of various Narrowed Nouns-->
+        <xs:element name="PurchaseOrderBase" type="PurchaseOrderLax" abstract="true"/>
+        <xs:element name="PurchaseOrderHeaderBase" type="PurchaseOrderHeaderLax" abstract="true"/>
+        <xs:element name="PurchaseOrderLineBase" type="PurchaseOrderLineLax" abstract="true"/>
+<!--   PurchaseOrderLax - Common definition of all PurchaseOrder types, all parts optional-->
+        <xs:complexType name="PurchaseOrderLax">
+                <xs:complexContent>
+                        <xs:restriction base="Noun">
+                                <xs:sequence>
+                                        <xs:element ref="PurchaseOrderHeaderBase" minOccurs="0"/>
+                                        <xs:element ref="PurchaseOrderLineBase" minOccurs="0" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:restriction>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="PurchaseOrderHeaderLax">
+                <xs:sequence>
+                        <xs:element name="DocumentDate" type="DateTime" minOccurs="0"/>
+                        <xs:element name="ExtendedTransactional" type="OperationAmount" minOccurs="0"/>
+                        <xs:element name="Id" type="POId" minOccurs="0"/>
+                        <xs:element name="Type" type="POType" minOccurs="0"/>
+                        <xs:element name="AcknowledgementRequestCode" type="AcknowledgementRequestCode" minOccurs="0"/>
+                        <xs:element name="BuyerContractId" type="ContractId" minOccurs="0"/>
+                        <xs:element name="SupplierContractId" type="ContractId" minOccurs="0"/>
+                        <xs:element name="Description" type="Description" minOccurs="0"/>
+                        <xs:element name="Note" type="Note" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="OperationalAmountAuthorizationCode" type="OperationalAmountAuthorizationCode" minOccurs="0"/>
+                        <xs:element name="ReleaseId" minOccurs="0"/>
+                        <xs:element name="TaxWitholdingExempt" type="TaxWitholdingExempt" minOccurs="0"/>
+                        <xs:element name="AttachmentReference" type="AttachmentReference" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="Charge" type="Charge" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="Terms" type="Terms" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="PurchaseOrderLineLax">
+                <xs:sequence>
+                        <xs:element name="QuantityOrdered" type="Quantity" minOccurs="0"/>
+                        <xs:element name="NeedDeliveredDate" type="DateTime" minOccurs="0"/>
+                        <xs:element name="OperationAmount" type="OperationAmount" minOccurs="0"/>
+                        <xs:element name="LineNumber" type="xs:positiveInteger" minOccurs="0"/>
+                        <xs:element name="Note" type="Note" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="ItemId" type="ItemId" minOccurs="0"/>
+                        <xs:element name="SupplierItemId" type="SupplierItemId" minOccurs="0"/>
+                        <xs:element name="OrderedItem" type="OrderedItemBase" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+<!--   PurchaseOrderFull - All necessary parts required; for Process, Add, etc.-->
+        <xs:complexType name="PurchaseOrderFull">
+                <xs:complexContent>
+                        <xs:restriction base="PurchaseOrderLax">
+                                <xs:sequence>
+                                        <xs:element ref="PurchaseOrderHeaderBase"/>
+                                        <xs:element ref="PurchaseOrderLineBase"/>
+                                </xs:sequence>
+                        </xs:restriction>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="PurchaseOrderHeaderFull">
+                <xs:complexContent>
+                        <xs:restriction base="PurchaseOrderHeaderLax">
+                                <xs:sequence>
+                                        <xs:element name="DocumentDate" type="DateTime" minOccurs="0"/>
+                                        <xs:element name="ExtendedTransactional" type="OperationAmount" minOccurs="0"/>
+                                        <xs:element name="Id" type="POId"/>
+                                        <xs:element name="Type" type="POType"/>
+                                        <xs:element name="AcknowledgementRequestCode" type="AcknowledgementRequestCode" minOccurs="0"/>
+                                        <xs:element name="BuyerContractId" type="ContractId" minOccurs="0"/>
+                                        <xs:element name="SupplierContractId" type="ContractId" minOccurs="0"/>
+                                        <xs:element name="Description" type="Description" minOccurs="0"/>
+                                        <xs:element name="Note" type="Note" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element name="OperationalAmountAuthorizationCode" type="OperationalAmountAuthorizationCode" minOccurs="0"/>
+                                        <xs:element name="ReleaseId" minOccurs="0"/>
+                                        <xs:element name="TaxWitholdingExempt" type="TaxWitholdingExempt" minOccurs="0"/>
+                                        <xs:element name="AttachmentReference" type="AttachmentReference" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element name="Charge" type="Charge" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element name="Terms" type="Terms" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:restriction>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="PurchaseOrderLineFull">
+                <xs:complexContent>
+                        <xs:restriction base="PurchaseOrderLineLax">
+                                <xs:sequence>
+                                        <xs:element name="QuantityOrdered" type="Quantity"/>
+                                        <xs:element name="NeedDeliveredDate" type="DateTime" minOccurs="0"/>
+                                        <xs:element name="OperationAmount" type="OperationAmount" minOccurs="0"/>
+                                        <xs:element name="LineNumber" type="xs:positiveInteger"/>
+                                        <xs:element name="Note" type="Note" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element name="ItemId" type="ItemId"/>
+                                        <xs:element name="SupplierItemId" type="SupplierItemId" minOccurs="0"/>
+                                        <xs:element name="OrderedItem" type="OrderedItemBase" maxOccurs="unbounded"/>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:restriction>
+                </xs:complexContent>
+        </xs:complexType>
+</xs:schema>

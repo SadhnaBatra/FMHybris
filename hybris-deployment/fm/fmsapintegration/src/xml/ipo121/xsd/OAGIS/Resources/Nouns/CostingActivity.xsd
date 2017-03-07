@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/CostingActivity.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="Document.xsd"/>
+        <xs:include schemaLocation="../MfgComponents.xsd"/>
+        <xs:complexType name="CostingActivity">
+                <xs:complexContent>
+                        <xs:extension base="Document"/>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="CostingActivityHeader">
+                <xs:complexContent>
+                        <xs:extension base="DocumentHeader">
+                                <xs:sequence>
+                                        <xs:element name="GLEntity" type="GLEntity" minOccurs="0"/>
+                                        <xs:element name="EffectivePeriod" type="TimePeriodAny" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the effective timeperiod for the Activity.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="Activity">
+                <xs:complexContent>
+                        <xs:extension base="ActivityBase">
+                                <xs:sequence>
+                                        <xs:element name="ActivityType" type="Type" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Describes the type of activity produced by a cost center in an operation and indicates whether an activity is measured in time or quantity.Current possible values are:	Time,	Quantity</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element ref="Item" minOccurs="0"/>
+                                        <xs:element ref="Actual" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="ActivityDetail">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Activity is a transaction used to allocate statistical (non-monetary) information from a production or manufacturing application.  The information is input to a costing application.</xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                        <xs:extension base="ActivityBase">
+                                <xs:sequence>
+                                        <xs:element name="ResourceUsage" type="Usage" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Contains all of the information of a product or substance that is bought, sold, manufactured, delivered, or is somehow handled in similar business processes.  In many cases, only an identifier is needed; however, where item information may be needed and may otherwise not be accessible, it is possible to access all item information from this element.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element ref="Item" minOccurs="0"/>
+                                        <xs:element name="ItemQuantity" type="Quantity" minOccurs="0"/>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:element name="CostingActivity" type="CostingActivity" substitutionGroup="Noun">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">For Dual Cycle accounting applications, ACTIVITY is used to communicate the details of the activities in the Manufacturing Application that caused the entries in the Journal</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Header" type="CostingActivityHeader"/>
+        <xs:element name="Line" type="Activity"/>
+        <xs:element name="Activity" type="Activity">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Communicates the financial information about financial activity that has occurred in the source operations oriented application. </xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Actual" type="ActivityDetail">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Operational data communicating where and how much activity has been consumed.
+
+Describes the financial activity information about the operation that has occurred.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="ActivityBase">
+                <xs:complexContent>
+                        <xs:extension base="DocumentLine">
+                                <xs:sequence>
+                                        <xs:element name="CostCenter" type="CostCenter" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">An accumulator of cost information that may be an organizational unit or area of responsibility.  It is an organization code that allows a grouping of expenses and costs.SYNONYMS:	Stocking Location,	Work Group</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="ProfitCenter" type="ProfitCenter" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Accumulator of revenue information that may be an organizational unit or area of responsibility.  A profit center can be used for internal management control.  Profit centers can calculate operating profit using the cost-of-sales accounting and/or period accounting methods.SYNONYMS:	Sales Region</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="Project" type="Project" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies a set of tasks with the following attributes: a singular purpose, a start and end date, those that accumulate costs, and those that may have materials and overhead.SYNONYMS: Job, Process Model, 	Program,	Work Breakdown Structure (WBS) element</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element ref="DocumentReferences" minOccurs="0"/>
+                                        <xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element ref="Note" minOccurs="0" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+</xs:schema>

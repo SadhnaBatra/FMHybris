@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Automotive Aftermarket Industry Association (AAIA)
+	http://www.aftermarket.org
+	Internet Parts Ordering (IPO) Release 1.2.1,  March 1, 2005
+	Business Object Document (BOD) Example
+	
+	Overlay for: 
+	Open Applications Group (http://www.openapplications.org)
+	OAGIS Release 8.0, 	April 05, 2002
+	
+	Name:		GetShipment.xml (Runtime Version)
+	Comments:	The default name space is OAGIS. Therefore all AAIA elements require the aaia: prefix.
+				This example is identical to the full overylay example with the exception of the schema location.
+-->
+<aaia:GetShipment xmlns="http://www.openapplications.org/oagis" xmlns:aaia="http://www.aftermarket.org/oagis" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.aftermarket.org/oagis ../Runtime/GetShipment.xsd" revision="1.2.1" environment="Production" lang="en">
+	<!-- The ApplicationArea identifies the document and the sender. -->
+	<ApplicationArea>
+		<Sender>
+			<ReferenceId>W0013</ReferenceId>
+			<Confirmation>1</Confirmation>
+		</Sender>
+		<CreationDateTime>2003-09-10T23:25:00Z</CreationDateTime>
+		<BODId>SH934</BODId>
+	</ApplicationArea>
+	<!-- The DataArea contains the business information to be processed by the receiver. -->
+	<aaia:DataArea>
+		<aaia:Get confirm="Always"/>
+		<Shipment>
+			<Header>
+				<!-- The Header fields identify the purchase order that is awaiting delivery by the seller. -->
+				<AlternateDocumentIds>
+					<CustomerDocumentId>
+						<Id>PO 11347</Id>
+						<Revision>002</Revision>
+					</CustomerDocumentId>
+				</AlternateDocumentIds>
+				<DocumentDate>2003-09-19T23:25:00Z</DocumentDate>
+				<DocumentReferences>
+					<RFQDocumentReference>
+						<DocumentIds>
+							<CustomerDocumentId>
+								<Id>RFQ3094</Id>
+							</CustomerDocumentId>
+						</DocumentIds>
+					</RFQDocumentReference>
+					<QuoteDocumentReference>
+						<DocumentIds>
+							<SupplierDocumentId>
+								<Id>Q04931</Id>
+							</SupplierDocumentId>
+						</DocumentIds>
+					</QuoteDocumentReference>
+				</DocumentReferences>
+				<Parties>
+					<aaia:HostParty>
+						<PartyId>
+							<Id>CQ1004</Id>
+						</PartyId>
+						<Name lang="en">Carquest Auto Parts</Name>
+						<Addresses>
+							<Address>
+								<AddressLine>4911 Dempster St</AddressLine>
+								<City>Skokie</City>
+								<StateOrProvince>IL</StateOrProvince>
+								<Country>US</Country>
+								<PostalCode>60077</PostalCode>
+								<Telephone>(847) 675-4010</Telephone>
+							</Address>
+						</Addresses>
+						<Contacts>
+							<Contact>
+								<Person>
+									<PersonName>
+										<GivenName lang="en">Bob</GivenName>
+										<FamilyName lang="en">Jones</FamilyName>
+									</PersonName>
+								</Person>
+							</Contact>
+						</Contacts>
+					</aaia:HostParty>
+				</Parties>
+			</Header>
+		</Shipment>
+	</aaia:DataArea>
+</aaia:GetShipment>

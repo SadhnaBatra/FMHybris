@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sch:schema xmlns="http://www.ascc.net/xml/schematron" xmlns:oa="http://www.openapplications.org/oagis" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ascc.net/xml/schematron ../../../Utility/Schematron/schematron1-5.xsd">
+	<sch:title>Schematron Validator for OAGI Constraints</sch:title>
+	<sch:ns prefix="oa" uri="http://www.openapplications.org/oagis"/>
+	<sch:pattern name="Sync Production Order">
+		<sch:rule context="oa:ProductionOrder">
+			<sch:assert test="oa:Header">Sync Production Order must have a Header component specified</sch:assert>
+			<sch:assert test="oa:Line">Sync Production Order must have at least one Line component specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Sync Production Order Header">
+		<sch:rule context="oa:ProductionOrder/oa:Header">
+			<sch:assert test="oa:DocumentId/oa:Id">The Header must have a "DocumentId" and "Id" specified</sch:assert>
+			<sch:assert test="oa:RequiredDateTime">The Header must have a "RequiredDateTime" specified</sch:assert>
+			<sch:assert test="oa:OrderQuantity">The Header must have a "OrderQuantity" specified</sch:assert>
+			<sch:assert test="oa:Site">The Header must have a "Site" specified</sch:assert>
+			<sch:assert test="oa:BOMDocumentReference | oa:Item">The Header must have a "BOMDocumentReference" or an "Item" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Sync Production Order Line">
+		<sch:rule context="oa:ProductionOrder/oa:Line">
+			<sch:assert test="oa:LineNumber">The Line must have a "LineNumber"</sch:assert>
+			<sch:assert test="oa:OrderQuantity">The Line must have an "OrderQuantity" specified</sch:assert>
+			<sch:assert test="oa:Item">The Line must have a "Item" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Item">
+		<sch:rule context="oa:ProductionOrder/oa:Line/oa:Item">
+			<sch:assert test="oa:ItemId/oa:Id">The Item must have an "ItemId" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="OperationReference">
+		<sch:rule context="oa:ProductionOrder/oa:Line/oa:OperationReference">
+			<sch:assert test="oa:OperationId">The OperationReference must have an "OperationId" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+</sch:schema>

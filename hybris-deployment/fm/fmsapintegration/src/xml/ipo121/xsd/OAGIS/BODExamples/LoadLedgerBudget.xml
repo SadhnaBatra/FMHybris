@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group Sample XML Data
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: LoadLedgerBudget.xml
+-->
+<LoadLedgerBudget xmlns="http://www.openapplications.org/oagis" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openapplications.org/oagis ../BODs/LoadLedgerBudget.xsd" revision="8.0" environment="Production" lang="en-US">
+        <ApplicationArea>
+                <Sender>
+                        <LogicalId>String</LogicalId>
+                        <Component>String</Component>
+                        <Task>String</Task>
+                        <ReferenceId>String</ReferenceId>
+                        <Confirmation>0</Confirmation>
+                        <AuthorizationId>String</AuthorizationId>
+                </Sender>
+                <CreationDateTime>2001-12-17T09:30:47-05:00</CreationDateTime>
+                <Signature qualifyingAgency="String"/>
+                <BODId>String</BODId>
+                <UserArea/>
+        </ApplicationArea>
+        <DataArea>
+                <Load>
+                        <AdjustExpression>String</AdjustExpression>
+                        <ReplaceExpression>String</ReplaceExpression>
+                </Load>
+                <LedgerBudget>
+                        <Header>
+                                <Id>String</Id>
+                                <DocumentDateTime>2002-04-05T00:00:00Z</DocumentDateTime>
+                                <BudgetVersion>String</BudgetVersion>
+                                <BudgetStatus>Monetary</BudgetStatus>
+                                <BudgetTransaction>Replace</BudgetTransaction>
+                                <Ledger>String</Ledger>
+                                <GLEntity>String</GLEntity>
+                                <JournalEntryId>String</JournalEntryId>
+                                <TransactionAnalysis>String</TransactionAnalysis>
+                                <Description lang="en-us" owner="String">String</Description>
+                                <DocumentReferences>
+                                        <ContractDocumentReference/>
+                                </DocumentReferences>
+                                <EntryCreator>String</EntryCreator>
+                                <UserArea/>
+                        </Header>
+                        <Line>
+                                <LineNumber>String</LineNumber>
+                                <AccountingDate>2002-04-05</AccountingDate>
+                                <EntryAmount>
+                                        <Actual currency="String">3.1415926535897932384626433832795</Actual>
+                                        <Converted currency="String" conversionFactor="3.1415926535897932384626433832795">3.1415926535897932384626433832795</Converted>
+                                </EntryAmount>
+                                <DebitCreditFlag>Debit</DebitCreditFlag>
+                                <Reason>String</Reason>
+                                <Item>
+                                        <ItemId>
+                                                <Id>String</Id>
+                                                <EANUCC13 url="String">String</EANUCC13>
+                                                <UPC url="String">String</UPC>
+                                                <Revision>String</Revision>
+                                        </ItemId>
+                                        <Type>String</Type>
+                                        <Variation>String</Variation>
+                                        <Disposition>
+                                                <Code>String</Code>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <Change>
+                                                        <From>String</From>
+                                                        <To>String</To>
+                                                        <ChangeDate>2002-04-05</ChangeDate>
+                                                        <Description lang="en-us" owner="String">String</Description>
+                                                        <UserArea/>
+                                                </Change>
+                                                <UserArea/>
+                                        </Disposition>
+                                        <Property>
+                                                <NameValue name="String" type="String">String</NameValue>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                <UserArea/>
+                                        </Property>
+                                        <UserArea/>
+                                </Item>
+                                <ItemQuantity uom="NMTOKEN">3.1415926535897932384626433832795</ItemQuantity>
+                                <FixedAssetId>String</FixedAssetId>
+                                <ProductLine>String</ProductLine>
+                                <DestinationGLEntity>String</DestinationGLEntity>
+                                <Business>
+                                        <Id>String</Id>
+                                        <Function>String</Function>
+                                        <Name lang="en-us">String</Name>
+                                        <RelatedUnit>
+                                                <Relationship>String</Relationship>
+                                                <Unit>
+                                                        <Id>String</Id>
+                                                        <Function>String</Function>
+                                                        <Name lang="en-us">String</Name>
+                                                        <UserArea/>
+                                                </Unit>
+                                        </RelatedUnit>
+                                        <UserArea/>
+                                </Business>
+                                <CostCenter>String</CostCenter>
+                                <ProfitCenter>String</ProfitCenter>
+                                <Fund>String</Fund>
+                                <GLNominalAccount>String</GLNominalAccount>
+                                <GLElement>
+                                        <NameValue name="String" type="String">String</NameValue>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                        <UserArea/>
+                                </GLElement>
+                                <Project>
+                                        <Id>String</Id>
+                                        <Status>String</Status>
+                                        <EffectivePeriod inclusive="true">
+                                                <From>2002-04-05</From>
+                                                <Duration>P1Y2M3DT10H30M</Duration>
+                                        </EffectivePeriod>
+                                        <Authorization>
+                                                <Id>String</Id>
+                                                <Type>Text</Type>
+                                                <Status>
+                                                        <Code>123</Code>
+                                                </Status>
+                                                <DateAuthorized>2002-04-05</DateAuthorized>
+                                                <EffectivePeriod inclusive="true">
+                                                        <From>2002-04-05</From>
+                                                        <Duration>P1Y2M3DT10H30M</Duration>
+                                                </EffectivePeriod>
+                                                <AuthorizationCode>Text</AuthorizationCode>
+                                        </Authorization>
+                                        <TransactionType>String</TransactionType>
+                                        <TotalCost>
+                                                <Actual currency="String">3.1415926535897932384626433832795</Actual>
+                                                <Converted currency="String" conversionFactor="3.1415926535897932384626433832795">3.1415926535897932384626433832795</Converted>
+                                        </TotalCost>
+                                        <GLElement>
+                                                <NameValue name="String" type="String">String</NameValue>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                <UserArea/>
+                                        </GLElement>
+                                        <ProjectResourceCategory>String</ProjectResourceCategory>
+                                        <Activity>
+                                                <Id>String</Id>
+                                                <Status>String</Status>
+                                                <Cost>
+                                                        <Actual currency="String">3.1415926535897932384626433832795</Actual>
+                                                        <Converted currency="String" conversionFactor="3.1415926535897932384626433832795">3.1415926535897932384626433832795</Converted>
+                                                </Cost>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                <UserArea/>
+                                        </Activity>
+                                        <DocumentReferences>
+                                                <ContractDocumentReference/>
+                                        </DocumentReferences>
+                                        <Attachments>
+                                                <Attachment inline="false">
+                                                        <EmbeddedData encoding="base64">
+                                                                <Data>Text</Data>
+                                                        </EmbeddedData>
+                                                        <DocumentDate>2002-04-05</DocumentDate>
+                                                        <Description lang="en-us" owner="String">String</Description>
+                                                        <FileType>String</FileType>
+                                                        <FileSize>3.1415926535897932384626433832795</FileSize>
+                                                        <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                        <Title lang="en-us">String</Title>
+                                                        <UserArea/>
+                                                </Attachment>
+                                        </Attachments>
+                                        <UserArea/>
+                                </Project>
+                                <TransactionAnalysis>String</TransactionAnalysis>
+                                <EntryCreator>String</EntryCreator>
+                                <Description lang="en-us" owner="String">String</Description>
+                                <DocumentReferences>
+                                        <PurchaseOrderDocumentReference/>
+                                </DocumentReferences>
+                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                <UserArea/>
+                        </Line>
+                </LedgerBudget>
+        </DataArea>
+</LoadLedgerBudget>

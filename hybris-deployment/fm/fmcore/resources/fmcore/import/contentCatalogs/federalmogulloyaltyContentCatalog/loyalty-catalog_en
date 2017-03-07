@@ -1,0 +1,10 @@
+#
+# Import the Powertools Content Catalog
+#
+# Localization en
+#
+$lang=en
+$contentCatalog=federalmogulloyaltyContentCatalog
+
+UPDATE ContentCatalog;id[unique=true];name[lang=$lang];
+ ;$contentCatalog;"FederalMogul Loyalty Content Catalog";

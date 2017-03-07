@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sch:schema xmlns="http://www.ascc.net/xml/schematron" xmlns:oa="http://www.openapplications.org/oagis" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ascc.net/xml/schematron ../../../Utility/Schematron/schematron1-5.xsd">
+	<sch:title>Schematron Validator for OAGI Constraints</sch:title>
+	<sch:ns prefix="oa" uri="http://www.openapplications.org/oagis"/>
+	<sch:pattern name="Show Routing">
+		<sch:rule context="oa:Routing">
+			<sch:assert test="oa:Header">Show Routing must have a Header component specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Show Routing Header">
+		<sch:rule context="oa:Routing/oa:Header">
+			<sch:assert test="oa:DocumentId/oa:Id">The Show Routing Header must have a "DocumentId" and "Id" specified</sch:assert>
+			<sch:assert test="oa:DocumentId/oa:Revision">The Show Routing Header must have a "DocumentId" and "Revision" specified</sch:assert>
+			<sch:assert test="oa:DocumentId/oa:Type">The Show Routing Header must have a "DocumentId" and "Type" specified</sch:assert>
+			<sch:assert test="oa:RouteOperation">The Show Routing Header must have a "RouteOperation" component specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Route Operation">
+		<sch:rule context="oa:Routing/oa:Header/oa:RouteOperation">
+			<sch:assert test="oa:ItemData">The RouteOperation must have at least one "ItemData" component specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Item Data">
+		<sch:rule context="oa:Routing/oa:Header/oa:RouteOperation/oa:ItemData">
+			<sch:assert test="oa:ItemQuantity">The ItemData must have a "ItemQuantity" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Assigned Operation Groups">
+		<sch:rule context="oa:Routing/oa:Header/oa:AssignedOperationGroups">
+			<sch:assert test="oa:GroupMember">The AssignedOperationGroups must have a "GroupMember" component specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+</sch:schema>

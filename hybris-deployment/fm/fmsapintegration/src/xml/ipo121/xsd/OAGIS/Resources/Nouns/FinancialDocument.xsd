@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/FinancialDocument.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="Document.xsd"/>
+        <xs:complexType name="FinancialDocument">
+                <xs:complexContent>
+                        <xs:extension base="Document"/>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="FinancialDocumentHeader">
+                <xs:complexContent>
+                        <xs:extension base="DocumentHeader">
+                                <xs:sequence>
+                                        <xs:element name="LedgerId" type="LedgerId" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the Ledger to which this transaction entry is to be inserted</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="GLSourceEntity" type="GLEntity" minOccurs="0"/>
+                                        <xs:element name="Total" type="Amounts" minOccurs="0"/>
+                                        <xs:element ref="Parties" minOccurs="0"/>
+                                        <xs:element name="AccountingDate" type="DateTimeAny" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the date that is used to determine the accounting period the transaction is posted within.  It is also known as the effective or post date.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="AccountingPeriod" type="Period" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the accounting period the document is to post within.  The period is within a fiscal year to which a business transaction is assigned.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="AccountingYear" type="Year" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the accounting year the document is to post within.  Generally a period of 12 months for which the company regularly has to create financial statements.  A fiscal year may correspond to a calendar year.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element ref="Tax" minOccurs="0"/>
+                                        <xs:element ref="PaymentTerms" minOccurs="0"/>
+                                        <xs:element name="PaymentMethod" type="PaymentMethod" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Describes payment method on an invoice, for example, drafts, BACS, checks, or letter of credit.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="EntryCreator" type="UserId" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="FinancialDocumentLine">
+                <xs:complexContent>
+                        <xs:extension base="DocumentLine">
+                                <xs:sequence>
+                                        <xs:element name="TaxBaseAmount" type="Amounts" minOccurs="0"/>
+                                        <xs:group ref="LedgerEntryContent" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+</xs:schema>

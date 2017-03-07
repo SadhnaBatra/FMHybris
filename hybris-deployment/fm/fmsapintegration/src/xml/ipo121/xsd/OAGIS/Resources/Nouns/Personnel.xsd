@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/Personnel.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Components.xsd"/>
+        <xs:complexType name="Personnel">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Personnel information is the human resource information maintained for each employee.  It includes such data as job code, employee status, department or place in the organization, and job-related skills.  Although generally maintained in a Human Resource Management System (HRMS), this information may also be needed and updated by manufacturing applications (workforce scheduling) or project management (resource allocation).</xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                        <xs:extension base="Noun">
+                                <xs:sequence>
+                                        <xs:element ref="Employee" minOccurs="0"/>
+                                        <xs:element name="EffectivePeriod" type="TimePeriodAny" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the time in which the person works for the company. Typically the Start date is date in which the persons employment is effective and the Finish date is the the date in which the employee is terminated.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="JobCode" type="Code" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Grouping of similar job descriptions</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="OverTimeEligibleInd" type="Indicator" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">This indicates if the personnel is eligible to work overtime</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="Restriction" type="Restriction" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">This indicates any limitations to complete a job assignment based on physical, mental, legal or any other conditions</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element ref="Note" minOccurs="0"/>
+                                        <xs:element ref="EmployeeAssignment" minOccurs="0"/>
+                                        <xs:element ref="Attachments" minOccurs="0"/>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:element name="Personnel" type="Personnel" substitutionGroup="Noun"/>
+</xs:schema>

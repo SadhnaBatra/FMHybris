@@ -1,0 +1,161 @@
+/* ============
+    Homepage
+================ */
+.orderPanelsBlock,
+.lookupSignupBg,
+.customBgBlock {
+    background: url(../../images/bg-2.jpg) repeat 0 0;
+    padding-top:44px;
+    padding-top:4.4rem;
+    padding-bottom: 30px;
+    padding-bottom: 3rem;
+}
+.iframed {
+    .orderPanelsBlock,
+    .lookupSignupBg,
+    .customBgBlock {
+        background:none;
+        padding: 10px 0;
+        padding: 1rem 0;
+    }
+}
+.B2B.lookupSignupBg {
+    background: @grey-lighter;
+
+    .ymmTabHeading {
+        .panel-title {
+            color: @grey-dark;
+        }
+    }
+}
+.whyRegPoints{
+    list-style:disc;
+    padding-left: 15px; 
+    padding-left: 1.5rem; 
+    margin-bottom: 11px;
+    margin-bottom: 1.1rem;
+    li {
+        line-height: 18px;
+        line-height: 1.8rem;
+    }
+}
+.customcareerBgBlock {
+    background: url(../../images/bg-2.jpg) repeat 0 0;
+    padding-top:-6px;
+    padding-top:-0.6rem;
+    padding-bottom: -6px;
+    padding-bottom: -0.6rem;
+}
+
+// B2B Home Page
+.b2b-home-pane .panel {
+    height: 400px;
+    overflow:hidden;
+    @media all and (max-width: @bp_tablet_max) {
+        height: auto;
+    }
+}
+// Anonymous Home Page
+.home-pane {
+    .panel {
+        height: 320px;
+        overflow:hidden;
+        @media all and (max-width: @bp_tablet_max) {
+            height: auto;
+        }
+    }
+    .btnRegNow {
+        margin-top: 20px;
+    }
+    .sign-in-button { 
+        margin-bottom: 45px; 
+        margin-bottom: 4.5rem; 
+    }
+}
+.home-pane .tab-content > .tab-pane {
+    // Part Finder
+    height: 290px;
+}
+
+/* 
+    Sign in/Register Panel
+    Homepage & Sign-in Page
+========================== */
+.signupAndRegisterPanel,
+.rewadsMyclassPanel, 
+.rewardsPanelForm {
+    .btn { 
+        margin-bottom:0; 
+        height: auto; 
+        .fa { 
+            color: @white;
+        }
+    }
+    .btn-label {
+        float:right; 
+        position: relative;
+        right: -12px;right: -1rem;
+        display: inline-block;
+        padding: 14px 12px; padding: 1.4rem 1.2rem; 
+        background: @blue;
+        border-radius: 0;
+        
+        &.backToSignin {
+            background:@red;
+            color:@white;
+            &:hover{ background:@red-darker; }
+        }
+    }
+    .btn-labeled {
+        padding-top: 0;padding-bottom: 0; 
+    }
+    .forgotPassword {
+        color:@blue;
+        font-weight:bold;
+        line-height:26px;
+        line-height:2.6rem;
+    }
+    .loginBoxPanel {
+        position:relative;
+        .controls {
+            margin-bottom:11px; 
+            margin-bottom: 1.1rem;
+        }
+        .globalMessagesSpace .alert {
+            margin-bottom: 0;
+        }
+        .panel-body {
+            form .input-group { 
+                padding-bottom: 20px; padding-bottom:2rem; 
+            }
+            form .signupPageComp .input-group { padding:0; }
+        }
+        .panel-title {
+            padding-top: 5px; 
+            padding-top: 0.5rem; 
+        }
+        .regButtonHolder {
+            margin-bottom: 0; 
+            margin-top: 0;
+            position:absolute;
+            bottom: 0;
+            width: 100%;
+        }
+    }
+    
+    .signInEmailPassTextBox {
+        margin-bottom: -15px;
+        margin-top: 10px;
+        padding-top: 0;
+        color: @red;
+    }
+}
+
+@media screen and (max-width: @bp_mobile_max) {
+    .lookupSignupBg {
+        padding-top:10px;
+        padding-top:1rem;
+        padding-bottom: 10px;
+        padding-bottom: 1rem;
+    }
+}

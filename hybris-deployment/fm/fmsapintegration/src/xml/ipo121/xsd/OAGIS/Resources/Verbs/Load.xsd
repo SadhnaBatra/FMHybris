@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Verbs/Load.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="Verb.xsd"/>
+        <xs:complexType name="Load">
+                <xs:complexContent>
+                        <xs:extension base="Verb">
+                                <xs:sequence>
+                                        <xs:element name="AdjustExpression" type="Expression" minOccurs="0" maxOccurs="unbounded">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">The XPath expression detailing a field that is to be adjusted, based on the specific semantics on the Noun. In cases of LedgerBudget loading, adjust adjusts the budget amount by the corresponding specified amount.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="ReplaceExpression" type="Expression" minOccurs="0" maxOccurs="unbounded">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">The XPath expression detailing a field that is to have its value replaced by the corresponding specified amount.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:element name="Load" type="Load" substitutionGroup="Verb">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">This verb is used to initiate the adding of a document or data entity to another business application.  Generally this verb is used when maintenance to the document will then pass to the receiving application permanently.  An example of this is Load Payable or Load Receivable, where once the request is processed, the sending application has no direct control over the document or entity again.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+</xs:schema>

@@ -1,0 +1,145 @@
+/* =================================
+    Typography 
+====================================
+*/
+html {
+    font-size: 62.5%;
+}
+
+body {
+    color: @grey-dark;
+    font-family: @ff-primary-light;
+    font-size: 14px;
+    font-size: 1.4rem;
+    text-align:left;
+    -webkit-font-smoothing: antialiased;
+}
+a {
+    .ff-primary;
+    color: @blue;
+    text-decoration: none;
+    transition: all 0.3s ease 0s;
+
+    &:hover,
+    &:focus {
+        color: @blue;
+        text-decoration:underline;
+    }
+}
+
+blockquote, .blockquote {
+    border-left: 4px solid @red;
+    font-size: 16px;
+    line-height: 20px;
+    margin-bottom: 1em;
+    padding-left: 20px;
+}
+
+body h1, body h2, body h3, body h4, body h5, body h6 {
+    .ff-primary-medium;
+}
+
+body h1 {
+    font-size: 38px;
+    line-height: 41.8px; 
+}
+
+body h2 {
+    font-size: 28px;
+    line-height: 30.8px; 
+}
+
+body h3 {
+    font-size: 22px;
+    letter-spacing: 0px;
+    line-height: 24.2px;
+}
+
+body h4 {
+    font-size: 18px;
+    line-height: 19.8px;
+}
+
+body h5 {
+    font-size: 16px;
+    line-height: 17.6px;
+}
+body h6 {
+    line-height: 15.4px;
+}
+
+p {
+    .ff-primary;
+    font-size: @default-font-size;
+    line-height: 21px;
+    margin-bottom: 1.5em;
+    &.large {
+        .ff-primary-medium;
+        font-size: 18px;
+        line-height: 25px;
+    }
+}
+.lead {
+    font-size:16px;
+    font-size:1.6rem;
+    line-height: 1.4;
+}
+small, 
+.small {
+  font-size: 80%;
+}
+sub,
+sup {
+  font-size: 75%;
+}
+input,
+button,
+select,
+textarea {
+    font-size: inherit;
+}
+.textWrap{word-wrap: break-word;}
+
+
+[class^="fa-"], [class*=" fa-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    color: @red;
+    font-family: 'fontawesome' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    &.fa-file-excel-o {
+        color: @green;
+    }
+    &.fa-file-word-o {
+        color: @blue;
+    }
+} 
+
+// Common Color Selectors
+.fm_bgWhite{background:@white}
+.fm_fntRed, .fm_fntRed:hover{color: @red;}
+.fm_fntBlack, .fm_fntBlack:hover{color: @grey;}
+.fm_fntDarkBlack, .fm_fntDarkBlack:hover{color: @black;}
+.fm_fntGreen, .fm_fntGreen:hover{color: @green}
+.fm_fntGrey {color:@grey;}
+
+.productCategory h2, .newProductlistblock h4, .newProductlistblock .partNo, .newProductlistblock .review, .specLabel, .fitLabel, .newProductlistblock .tabTitle, .multiAppTitle {
+    .ff-primary-bold;
+}
+
+// Tablet Breakpoint
+@media all and (max-width: @bp_tablet_max) {
+    body h1 {
+        font-size: 30px;
+        line-height: 33px; 
+    }
+
+    body h2 {
+        font-size: 25px;
+        line-height: 27.5px; 
+    }   
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sch:schema xmlns="http://www.ascc.net/xml/schematron" xmlns:oa="http://www.openapplications.org/oagis" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ascc.net/xml/schematron ../../../Utility/Schematron/schematron1-5.xsd">
+	<sch:title>Schematron Validator for OAGI Constraints</sch:title>
+	<sch:ns prefix="oa" uri="http://www.openapplications.org/oagis"/>
+	<sch:pattern name="Noun Level">
+		<sch:rule context="oa:MatchFailure">
+			<sch:assert test="oa:Header">Must have a Header component.</sch:assert>
+			<sch:assert test="oa:Line">Must have at least one Line component.</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Header Level">
+		<sch:rule context="oa:Header">
+			<sch:assert test="oa:MatchType">Must have a MatchType to  identify the documents being matched.</sch:assert>
+			<sch:assert test="oa:Parties/oa:SupplierParty">Must have identify a "Supplier" Party.</sch:assert>
+			<sch:assert test="oa:Parties/oa:SupplierParty/oa:PartyId">"Supplier" Party must have an Identifier.</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Line Level">
+		<sch:rule context="oa:Line">
+			<sch:assert test="oa:LineNumber">Match Document must have  Line Number</sch:assert>
+			<sch:assert test="oa:MatchPoint/oa:MatchCriteria/oa:OrderItem | oa:MatchPoint/oa:MatchCriteria/oa:TotalAmount">Must match against an orderable Item or the total Amount</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+</sch:schema>

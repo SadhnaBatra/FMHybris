@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Automotive Aftermarket Industry Association (AAIA)
+	http://www.aftermarket.org
+	Internet Parts Ordering (IPO) Release 1.2.1,  March 1, 2005
+	Business Object Document (BOD) Example
+	
+	Overlay for: 
+	Open Applications Group (http://www.openapplications.org)
+	OAGIS Release 8.0, 	April 05, 2002
+	
+	Name:		ConfirmBOD.xml (Runtime Version)
+	Comments:	The default name space is OAGIS. Therefore all AAIA elements require the aaia: prefix.
+				This example is identical to the full overylay example with the exception of the schema location.
+-->
+<aaia:ConfirmBOD xmlns="http://www.openapplications.org/oagis" xmlns:aaia="http://www.aftermarket.org/oagis" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.aftermarket.org/oagis ../Runtime/ConfirmBOD.xsd" revision="1.2.1" environment="Production" lang="en">
+	<!-- The ApplicationArea identifies this document and its sender. -->
+	<ApplicationArea>
+		<Sender>
+			<ReferenceId>W0013</ReferenceId>
+			<Confirmation>0</Confirmation>
+		</Sender>
+		<CreationDateTime>2003-08-18T10:02:13-06:00</CreationDateTime>
+		<BODId>X1138</BODId>
+	</ApplicationArea>
+	<DataArea>
+		<Confirm/>
+		<BOD>
+			<Header>
+				<!-- OriginalApplicationArea contains a copy of the application area from the buyer’s original BOD. -->
+				<OriginalApplicationArea>
+					<Sender>
+						<ReferenceId>X1138</ReferenceId>
+						<Confirmation>0</Confirmation>
+					</Sender>
+					<CreationDateTime>2003-08-18T10:02:13-06:00</CreationDateTime>
+					<BODId>023TH</BODId>
+				</OriginalApplicationArea>
+				<!-- OriginalBODReference contains the document IDs from the buyer’s original BOD. -->
+				<OriginalBODReference>
+					<DocumentIds>
+						<CustomerDocumentId>
+							<Id>Q04931</Id>
+							<Revision>001</Revision>
+						</CustomerDocumentId>
+					</DocumentIds>
+					<DocumentDate>2003-08-18T09:32:58-06:00</DocumentDate>
+					<Status>
+						<Code>VALIDATED</Code>
+					</Status>
+				</OriginalBODReference>
+				<!-- The BOD outcome value indicates if the buyer’s original BOD was received without incident. -->
+				<BODSuccess/>
+			</Header>
+		</BOD>
+	</DataArea>
+</aaia:ConfirmBOD>

@@ -1,0 +1,14 @@
+# ImpEx for Importing federalMogul Store Prices
+#% impex.setLocale( Locale.GERMAN ); 
+
+$productCatalog=federalmogulProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default='$productCatalog:Staged']
+$prices=Europe1prices[translator=de.hybris.platform.europe1.jalo.impex.Europe1PricesTranslator]
+$taxGroup=Europe1PriceFactory_PTG(code)[default=us-sales-tax-full]
+
+# Set product approval status to Approved only for those products that have prices.
+$approved=approvalstatus(code)[default='approved']
+
+INSERT_UPDATE FMPart;code[unique=true];$prices;$approved;$catalogVersion;$taxGroup
+
+

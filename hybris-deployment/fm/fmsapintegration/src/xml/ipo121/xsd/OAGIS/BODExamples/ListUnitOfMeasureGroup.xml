@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group Sample XML Data
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: ListUnitOfMeasureGroup.xml
+-->
+<ListUnitOfMeasureGroup xmlns="http://www.openapplications.org/oagis" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openapplications.org/oagis ../BODs/ListUnitOfMeasureGroup.xsd" revision="8.0" environment="Production" lang="en-US">
+        <ApplicationArea>
+                <Sender>
+                        <LogicalId>String</LogicalId>
+                        <Component>String</Component>
+                        <Task>String</Task>
+                        <ReferenceId>String</ReferenceId>
+                        <Confirmation>0</Confirmation>
+                        <AuthorizationId>String</AuthorizationId>
+                </Sender>
+                <CreationDateTime>2001-12-17T09:30:47-05:00</CreationDateTime>
+                <Signature qualifyingAgency="String"/>
+                <BODId>String</BODId>
+                <UserArea/>
+        </ApplicationArea>
+        <DataArea>
+                <List confirm="Always" rsStart="2" rsCount="2" rsTotal="2" rsComplete="1" rsRef="String"/>
+                <UnitOfMeasureGroup>
+                        <Header>
+                                <UOMGroupId>String</UOMGroupId>
+                                <UOM>NMTOKEN</UOM>
+                                <UOMType>String</UOMType>
+                                <Description lang="en-us" owner="String">String</Description>
+                                <UnitPackaging>
+                                        <PackingCode>String</PackingCode>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <ShippingMaterialDescription lang="en-us" owner="String">String</ShippingMaterialDescription>
+                                        <ShippingMaterialIdentifier>String</ShippingMaterialIdentifier>
+                                        <Volume uom="NMTOKEN">3.1415926535897932384626433832795</Volume>
+                                        <Width uom="NMTOKEN">3.1415926535897932384626433832795</Width>
+                                        <Weight uom="NMTOKEN">3.1415926535897932384626433832795</Weight>
+                                        <Length uom="NMTOKEN">3.1415926535897932384626433832795</Length>
+                                        <Height uom="NMTOKEN">3.1415926535897932384626433832795</Height>
+                                        <UPCPackagingLevel>String</UPCPackagingLevel>
+                                        <UserArea/>
+                                </UnitPackaging>
+                                <UserArea/>
+                        </Header>
+                        <AlternateUOM>
+                                <UOM>NMTOKEN</UOM>
+                                <UOMType>String</UOMType>
+                                <MultiplierQuantity uom="NMTOKEN">3.1415926535897932384626433832795</MultiplierQuantity>
+                                <UPC url="String">String</UPC>
+                                <UnitPackaging>
+                                        <PackingCode>String</PackingCode>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <ShippingMaterialDescription lang="en-us" owner="String">String</ShippingMaterialDescription>
+                                        <ShippingMaterialIdentifier>String</ShippingMaterialIdentifier>
+                                        <Volume uom="NMTOKEN">3.1415926535897932384626433832795</Volume>
+                                        <Width uom="NMTOKEN">3.1415926535897932384626433832795</Width>
+                                        <Weight uom="NMTOKEN">3.1415926535897932384626433832795</Weight>
+                                        <Length uom="NMTOKEN">3.1415926535897932384626433832795</Length>
+                                        <Height uom="NMTOKEN">3.1415926535897932384626433832795</Height>
+                                        <UPCPackagingLevel>String</UPCPackagingLevel>
+                                        <UserArea/>
+                                </UnitPackaging>
+                                <UserArea/>
+                        </AlternateUOM>
+                </UnitOfMeasureGroup>
+        </DataArea>
+</ListUnitOfMeasureGroup>

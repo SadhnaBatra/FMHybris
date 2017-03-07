@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group Sample XML Data
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: GetBillOfMaterial.xml
+-->
+<GetBillOfMaterial xmlns="http://www.openapplications.org/oagis" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openapplications.org/oagis ../BODs/GetBillOfMaterial.xsd" revision="8.0" environment="Production" lang="en-US">
+        <ApplicationArea>
+                <Sender>
+                        <LogicalId>String</LogicalId>
+                        <Component>String</Component>
+                        <Task>String</Task>
+                        <ReferenceId>String</ReferenceId>
+                        <Confirmation>0</Confirmation>
+                        <AuthorizationId>String</AuthorizationId>
+                </Sender>
+                <CreationDateTime>2001-12-17T09:30:47-05:00</CreationDateTime>
+                <Signature qualifyingAgency="String"/>
+                <BODId>String</BODId>
+                <UserArea/>
+        </ApplicationArea>
+        <DataArea>
+                <Get confirm="Always" show="Always">
+                        <ReturnCriteria expressionLanguage="XPath">
+                                <SelectExpression>String</SelectExpression>
+                        </ReturnCriteria>
+                </Get>
+                <BillOfMaterial>
+                        <Header>
+                                <DocumentId>
+                                        <Id>String</Id>
+                                        <Revision>String</Revision>
+                                        <Type>String</Type>
+                                        <AssigningPartyId>
+                                                <Id>String</Id>
+                                                <SCAC>String</SCAC>
+                                                <DUNS>String</DUNS>
+                                        </AssigningPartyId>
+                                </DocumentId>
+                                <Name lang="en-us">String</Name>
+                                <Usage>String</Usage>
+                                <Status>
+                                        <Code>String</Code>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <Change>
+                                                <From>String</From>
+                                                <To>String</To>
+                                                <ChangeDate>2002-04-05</ChangeDate>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <UserArea/>
+                                        </Change>
+                                        <UserArea/>
+                                </Status>
+                                <Item>
+                                        <ItemId>
+                                                <Id>String</Id>
+                                                <EANUCC13 url="String">String</EANUCC13>
+                                                <UPC url="String">String</UPC>
+                                                <Revision>String</Revision>
+                                        </ItemId>
+                                        <Type>String</Type>
+                                        <Variation>String</Variation>
+                                        <Disposition>
+                                                <Code>String</Code>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <Change>
+                                                        <From>String</From>
+                                                        <To>String</To>
+                                                        <ChangeDate>2002-04-05</ChangeDate>
+                                                        <Description lang="en-us" owner="String">String</Description>
+                                                        <UserArea/>
+                                                </Change>
+                                                <UserArea/>
+                                        </Disposition>
+                                        <Property>
+                                                <NameValue name="String" type="String">String</NameValue>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                <UserArea/>
+                                        </Property>
+                                        <UserArea/>
+                                </Item>
+                                <TrackingInd>1</TrackingInd>
+                                <AlternateBOM>
+                                        <DocumentId>
+                                                <Id>String</Id>
+                                                <Revision>String</Revision>
+                                                <Type>String</Type>
+                                                <AssigningPartyId>
+                                                        <Id>String</Id>
+                                                        <SCAC>String</SCAC>
+                                                        <DUNS>String</DUNS>
+                                                </AssigningPartyId>
+                                        </DocumentId>
+                                        <EffectivePeriod inclusive="true">
+                                                <From>2002-04-05T00:00:00Z</From>
+                                                <Duration>P1Y2M3DT10H30M</Duration>
+                                        </EffectivePeriod>
+                                        <AlternateBOMReference>
+                                                <DocumentId>
+                                                        <Id>String</Id>
+                                                        <Revision>String</Revision>
+                                                        <Type>String</Type>
+                                                        <AssigningPartyId>
+                                                                <Id>String</Id>
+                                                                <SCAC>String</SCAC>
+                                                                <DUNS>String</DUNS>
+                                                        </AssigningPartyId>
+                                                </DocumentId>
+                                                <EffectivePeriod inclusive="true">
+                                                        <From>2002-04-05T00:00:00Z</From>
+                                                        <Duration>P1Y2M3DT10H30M</Duration>
+                                                </EffectivePeriod>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <Name lang="en-us">String</Name>
+                                                <Status>
+                                                        <Code>String</Code>
+                                                        <Description lang="en-us" owner="String">String</Description>
+                                                        <Change>
+                                                                <From>String</From>
+                                                                <To>String</To>
+                                                                <ChangeDate>2002-04-05</ChangeDate>
+                                                                <Description lang="en-us" owner="String">String</Description>
+                                                                <UserArea/>
+                                                        </Change>
+                                                        <UserArea/>
+                                                </Status>
+                                                <Usage>String</Usage>
+                                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                <UserArea/>
+                                        </AlternateBOMReference>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <Name lang="en-us">String</Name>
+                                        <Status>
+                                                <Code>String</Code>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <Change>
+                                                        <From>String</From>
+                                                        <To>String</To>
+                                                        <ChangeDate>2002-04-05</ChangeDate>
+                                                        <Description lang="en-us" owner="String">String</Description>
+                                                        <UserArea/>
+                                                </Change>
+                                                <UserArea/>
+                                        </Status>
+                                        <Usage>String</Usage>
+                                        <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                        <UserArea/>
+                                </AlternateBOM>
+                                <EffectivePeriod inclusive="true">
+                                        <From>2002-04-05T00:00:00Z</From>
+                                        <Duration>P1Y2M3DT10H30M</Duration>
+                                </EffectivePeriod>
+                                <BatchSizeQuantity uom="NMTOKEN">3.1415926535897932384626433832795</BatchSizeQuantity>
+                                <Description lang="en-us" owner="String">String</Description>
+                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                <UserArea/>
+                        </Header>
+                        <ItemData>
+                                <Item>
+                                        <ItemId>
+                                                <Id>String</Id>
+                                                <EANUCC13 url="String">String</EANUCC13>
+                                                <UPC url="String">String</UPC>
+                                                <Revision>String</Revision>
+                                        </ItemId>
+                                        <Type>String</Type>
+                                        <Variation>String</Variation>
+                                        <Disposition>
+                                                <Code>String</Code>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <Change>
+                                                        <From>String</From>
+                                                        <To>String</To>
+                                                        <ChangeDate>2002-04-05</ChangeDate>
+                                                        <Description lang="en-us" owner="String">String</Description>
+                                                        <UserArea/>
+                                                </Change>
+                                                <UserArea/>
+                                        </Disposition>
+                                        <Property>
+                                                <NameValue name="String" type="String">String</NameValue>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                <UserArea/>
+                                        </Property>
+                                        <UserArea/>
+                                </Item>
+                                <ItemQuantity uom="NMTOKEN">3.1415926535897932384626433832795</ItemQuantity>
+                                <ItemConsumption lang="en-us" owner="String">String</ItemConsumption>
+                                <EffectivePeriod inclusive="true">
+                                        <From>2002-04-05T00:00:00Z</From>
+                                        <Duration>P1Y2M3DT10H30M</Duration>
+                                </EffectivePeriod>
+                                <ExecutionPeriod inclusive="true">
+                                        <From>2002-04-05T00:00:00Z</From>
+                                        <Duration>P1Y2M3DT10H30M</Duration>
+                                </ExecutionPeriod>
+                                <FixedQuantityInd>1</FixedQuantityInd>
+                                <Lot>
+                                        <LotId>String</LotId>
+                                        <SubLotId>String</SubLotId>
+                                        <EffectivePeriod inclusive="true">
+                                                <From>2002-04-05T00:00:00Z</From>
+                                                <Duration>P1Y2M3DT10H30M</Duration>
+                                        </EffectivePeriod>
+                                        <UserArea/>
+                                </Lot>
+                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                <MaximumLotSize uom="NMTOKEN">3.1415926535897932384626433832795</MaximumLotSize>
+                                <MinimumLotSize uom="NMTOKEN">3.1415926535897932384626433832795</MinimumLotSize>
+                                <LotSizeMultiple>3.14159</LotSizeMultiple>
+                                <LeadTimeOffset>P1Y2M3DT10H30M</LeadTimeOffset>
+                                <ManufacturingReportingFlag>BackFlushed</ManufacturingReportingFlag>
+                                <PercentRequiredQuantity uom="NMTOKEN">3.1415926535897932384626433832795</PercentRequiredQuantity>
+                                <TrackingInd>1</TrackingInd>
+                                <ScrapInd>true</ScrapInd>
+                                <OperationReference>
+                                        <OperationId>String</OperationId>
+                                        <OperationName lang="en-us">String</OperationName>
+                                        <OperationSequence>String</OperationSequence>
+                                        <SuffixId>String</SuffixId>
+                                        <StepType>String</StepType>
+                                        <UserArea/>
+                                </OperationReference>
+                                <UserArea/>
+                        </ItemData>
+                        <Option>
+                                <Id>String</Id>
+                                <Name lang="en-us">String</Name>
+                                <Description lang="en-us" owner="String">String</Description>
+                                <DefaultInd>1</DefaultInd>
+                                <ExclusiveInd>1</ExclusiveInd>
+                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                <ItemData>
+                                        <Item>
+                                                <ItemId>
+                                                        <Id>String</Id>
+                                                        <EANUCC13 url="String">String</EANUCC13>
+                                                        <UPC url="String">String</UPC>
+                                                        <Revision>String</Revision>
+                                                </ItemId>
+                                                <Type>String</Type>
+                                                <Variation>String</Variation>
+                                                <Disposition>
+                                                        <Code>String</Code>
+                                                        <Description lang="en-us" owner="String">String</Description>
+                                                        <Change>
+                                                                <From>String</From>
+                                                                <To>String</To>
+                                                                <ChangeDate>2002-04-05</ChangeDate>
+                                                                <Description lang="en-us" owner="String">String</Description>
+                                                                <UserArea/>
+                                                        </Change>
+                                                        <UserArea/>
+                                                </Disposition>
+                                                <Property>
+                                                        <NameValue name="String" type="String">String</NameValue>
+                                                        <Description lang="en-us" owner="String">String</Description>
+                                                        <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                        <UserArea/>
+                                                </Property>
+                                                <UserArea/>
+                                        </Item>
+                                        <ItemQuantity uom="NMTOKEN">3.1415926535897932384626433832795</ItemQuantity>
+                                        <ItemConsumption lang="en-us" owner="String">String</ItemConsumption>
+                                        <EffectivePeriod inclusive="true">
+                                                <From>2002-04-05T00:00:00Z</From>
+                                                <Duration>P1Y2M3DT10H30M</Duration>
+                                        </EffectivePeriod>
+                                        <ExecutionPeriod inclusive="true">
+                                                <From>2002-04-05T00:00:00Z</From>
+                                                <Duration>P1Y2M3DT10H30M</Duration>
+                                        </ExecutionPeriod>
+                                        <FixedQuantityInd>1</FixedQuantityInd>
+                                        <Lot>
+                                                <LotId>String</LotId>
+                                                <SubLotId>String</SubLotId>
+                                                <EffectivePeriod inclusive="true">
+                                                        <From>2002-04-05T00:00:00Z</From>
+                                                        <Duration>P1Y2M3DT10H30M</Duration>
+                                                </EffectivePeriod>
+                                                <UserArea/>
+                                        </Lot>
+                                        <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                        <MaximumLotSize uom="NMTOKEN">3.1415926535897932384626433832795</MaximumLotSize>
+                                        <MinimumLotSize uom="NMTOKEN">3.1415926535897932384626433832795</MinimumLotSize>
+                                        <LotSizeMultiple>3.14159</LotSizeMultiple>
+                                        <LeadTimeOffset>P1Y2M3DT10H30M</LeadTimeOffset>
+                                        <ManufacturingReportingFlag>BackFlushed</ManufacturingReportingFlag>
+                                        <PercentRequiredQuantity uom="NMTOKEN">3.1415926535897932384626433832795</PercentRequiredQuantity>
+                                        <TrackingInd>1</TrackingInd>
+                                        <ScrapInd>true</ScrapInd>
+                                        <OperationReference>
+                                                <OperationId>String</OperationId>
+                                                <OperationName lang="en-us">String</OperationName>
+                                                <OperationSequence>String</OperationSequence>
+                                                <SuffixId>String</SuffixId>
+                                                <StepType>String</StepType>
+                                                <UserArea/>
+                                        </OperationReference>
+                                        <UserArea/>
+                                </ItemData>
+                                <UserArea/>
+                        </Option>
+                        <OptionClass>
+                                <Id>String</Id>
+                                <Name lang="en-us">String</Name>
+                                <ExclusiveInd>1</ExclusiveInd>
+                                <MandatoryIndicator>1</MandatoryIndicator>
+                                <Description lang="en-us" owner="String">String</Description>
+                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                <Option>
+                                        <Id>String</Id>
+                                        <Name lang="en-us">String</Name>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <DefaultInd>1</DefaultInd>
+                                        <ExclusiveInd>1</ExclusiveInd>
+                                        <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                        <ItemData>
+                                                <Item>
+                                                        <ItemId>
+                                                                <Id>String</Id>
+                                                                <EANUCC13 url="String">String</EANUCC13>
+                                                                <UPC url="String">String</UPC>
+                                                                <Revision>String</Revision>
+                                                        </ItemId>
+                                                        <Type>String</Type>
+                                                        <Variation>String</Variation>
+                                                        <Disposition>
+                                                                <Code>String</Code>
+                                                                <Description lang="en-us" owner="String">String</Description>
+                                                                <Change>
+                                                                        <From>String</From>
+                                                                        <To>String</To>
+                                                                        <ChangeDate>2002-04-05</ChangeDate>
+                                                                        <Description lang="en-us" owner="String">String</Description>
+                                                                        <UserArea/>
+                                                                </Change>
+                                                                <UserArea/>
+                                                        </Disposition>
+                                                        <Property>
+                                                                <NameValue name="String" type="String">String</NameValue>
+                                                                <Description lang="en-us" owner="String">String</Description>
+                                                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                                <UserArea/>
+                                                        </Property>
+                                                        <UserArea/>
+                                                </Item>
+                                                <ItemQuantity uom="NMTOKEN">3.1415926535897932384626433832795</ItemQuantity>
+                                                <ItemConsumption lang="en-us" owner="String">String</ItemConsumption>
+                                                <EffectivePeriod inclusive="true">
+                                                        <From>2002-04-05T00:00:00Z</From>
+                                                        <Duration>P1Y2M3DT10H30M</Duration>
+                                                </EffectivePeriod>
+                                                <ExecutionPeriod inclusive="true">
+                                                        <From>2002-04-05T00:00:00Z</From>
+                                                        <Duration>P1Y2M3DT10H30M</Duration>
+                                                </ExecutionPeriod>
+                                                <FixedQuantityInd>1</FixedQuantityInd>
+                                                <Lot>
+                                                        <LotId>String</LotId>
+                                                        <SubLotId>String</SubLotId>
+                                                        <EffectivePeriod inclusive="true">
+                                                                <From>2002-04-05T00:00:00Z</From>
+                                                                <Duration>P1Y2M3DT10H30M</Duration>
+                                                        </EffectivePeriod>
+                                                        <UserArea/>
+                                                </Lot>
+                                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                <MaximumLotSize uom="NMTOKEN">3.1415926535897932384626433832795</MaximumLotSize>
+                                                <MinimumLotSize uom="NMTOKEN">3.1415926535897932384626433832795</MinimumLotSize>
+                                                <LotSizeMultiple>3.14159</LotSizeMultiple>
+                                                <LeadTimeOffset>P1Y2M3DT10H30M</LeadTimeOffset>
+                                                <ManufacturingReportingFlag>BackFlushed</ManufacturingReportingFlag>
+                                                <PercentRequiredQuantity uom="NMTOKEN">3.1415926535897932384626433832795</PercentRequiredQuantity>
+                                                <TrackingInd>1</TrackingInd>
+                                                <ScrapInd>true</ScrapInd>
+                                                <OperationReference>
+                                                        <OperationId>String</OperationId>
+                                                        <OperationName lang="en-us">String</OperationName>
+                                                        <OperationSequence>String</OperationSequence>
+                                                        <SuffixId>String</SuffixId>
+                                                        <StepType>String</StepType>
+                                                        <UserArea/>
+                                                </OperationReference>
+                                                <UserArea/>
+                                        </ItemData>
+                                        <UserArea/>
+                                </Option>
+                                <UserArea/>
+                        </OptionClass>
+                </BillOfMaterial>
+        </DataArea>
+</GetBillOfMaterial>

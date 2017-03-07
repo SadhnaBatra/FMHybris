@@ -1,0 +1,170 @@
+<%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="template" tagdir="/WEB-INF/tags/desktop/template"%>
+<%@ taglib prefix="cms" uri="http://hybris.com/tld/cmstags"%>
+<%@ taglib prefix="common" tagdir="/WEB-INF/tags/desktop/common"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%@ taglib prefix="federalmogul"
+	tagdir="/WEB-INF/tags/desktop/federalmogul"%>
+
+<template:page pageTitle="${pageTitle}">
+
+	<section class="rewardsHomePage contentPage"> 
+	<section class="lookupSignupBg">
+    <div class="container" >
+      <div class="row">
+      <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 rewardsBanner">
+      <c:set var="fmComponentName" value="loyaltyBanner" scope="session" />
+  			<cms:pageSlot position="HomeRewardsBannerSection" var="feature">
+				<cms:component component="${feature}" />
+			</cms:pageSlot>
+		</div>
+  
+  <!-- Lookup Rewards Section -->
+        
+   
+        
+        <!--- SIGN IN AND REGISTER PANEL -->
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+          <div class="rewadsMyclassPanel redeemRewardsInfo"> 
+            <!-- SIGN IN -->
+            <div id="myrewards" class="panel panel-default rewardsPanel" >
+               <c:set var="fmComponentName" value="Reward" scope="session" />
+                <cms:pageSlot position="HomeMyRewardsSection" var="feature">
+				<cms:component component="${feature}" />
+			     </cms:pageSlot>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+   <section class="accountDetailPage pageContet" >
+         <div class="row">
+        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 internalLanding">
+          <div class="internalPage rightHandPanel clearfix">
+            <div class="clearfix">
+              <div class="bx-wrapper" style="max-width: 666px;">
+		<div class="bx-viewport" style="width: 100%; overflow: hidden; position: relative; height: 327px;">
+		   <div class="slider4 carousel" style="width: 515%; position: relative; transition-duration: 0s; transform: translate3d(-696px, 0px, 0px);"><div class="slide bx-clone" style="float: left; list-style: outside none none; position: relative; width: 202px; margin-right: 30px;">
+			 <a class="thumbnail" href="rewardsProductDetail.html"><img alt="Image" src="/fmstorefront/_ui/desktop/common/images/rewards-home-prod-img1.jpg"></a>
+                    <div class="caption">
+                      <p class="title text-capitalize">Champion&reg; Classic logo Tee</p>
+                      <p>iItem#: <span class="itemNum">8250-LG</span></p>
+                      <p>Lorem ipsum dolor sit amet, sed do eiusmod tempor.</p>
+                    </div>
+                </div><div class="slide bx-clone" style="float: left; list-style: outside none none; position: relative; width: 202px; margin-right: 30px;">
+			 <a class="thumbnail" href="rewardsProductDetail.html"><img alt="Image" src="/fmstorefront/_ui/desktop/common/images/rewards-home-prod-img2.jpg"></a>
+                  <div class="caption">
+                      <p class="title text-capitalize">Champion&reg; trucker hat</p>
+                      <p>iItem#: <span class="itemNum">8460</span></p>
+                      <p>Lorem ipsum dolor sit amet, sed do eiusmod tempor.</p>
+                  </div>
+                </div><div class="slide bx-clone" style="float: left; list-style: outside none none; position: relative; width: 202px; margin-right: 30px;">
+		  <a class="thumbnail" href="rewardsProductDetail.html"><img alt="Image" src="/fmstorefront/_ui/desktop/common/images/rewards-home-prod-img3.jpg"></a>
+                  <div class="caption">
+                      <p class="title text-capitalize">Champion&reg; $100 gift certificate</p>
+                      <p>iItem#: <span class="itemNum">G3</span></p>
+                      <p>Lorem ipsum dolor sit amet, sed do eiusmod tempor.</p>
+                  </div>
+                </div>
+                <div class="slide" style="float: left; list-style: outside none none; position: relative; width: 202px; margin-right: 30px;"> 
+		 <a class="thumbnail" href="rewardsProductDetail.html"><img alt="Image" src="/fmstorefront/_ui/desktop/common/images/rewards-home-prod-img1.jpg"></a>
+                    <div class="caption">
+                      <p class="title text-capitalize">Champion&reg; Classic logo Tee</p>
+                      <p>iItem#: <span class="itemNum">8250-LG</span></p>
+                      <p>Lorem ipsum dolor sit amet, sed do eiusmod tempor.</p>
+                    </div>
+                </div>
+                <div class="slide" style="float: left; list-style: outside none none; position: relative; width: 202px; margin-right: 30px;"> 
+			<a class="thumbnail" href="rewardsProductDetail.html"><img alt="Image" src="/fmstorefront/_ui/desktop/common/images/rewards-home-prod-img2.jpg"></a>
+                  <div class="caption">
+                      <p class="title text-capitalize">Champion&reg; trucker hat</p>
+                      <p>iItem#: <span class="itemNum">8460</span></p>
+                      <p>Lorem ipsum dolor sit amet, sed do eiusmod tempor.</p>
+                  </div>
+                </div>
+                <div class="slide" style="float: left; list-style: outside none none; position: relative; width: 202px; margin-right: 30px;"> 
+			<a class="thumbnail" href="rewardsProductDetail.html"><img alt="Image" src="/fmstorefront/_ui/desktop/common/images/rewards-home-prod-img3.jpg"></a>
+                  <div class="caption">
+                      <p class="title text-capitalize">Champion&reg; $100 gift certificate</p>
+                      <p>iItem#: <span class="itemNum">G3</span></p>
+                      <p>Lorem ipsum dolor sit amet, sed do eiusmod tempor.</p>
+                  </div>
+                </div>
+              <div class="slide bx-clone" style="float: left; list-style: outside none none; position: relative; width: 202px; margin-right: 30px;"> 
+		<a class="thumbnail" href="rewardsProductDetail.html"><img alt="Image" src="/fmstorefront/_ui/desktop/common/images/rewards-home-prod-img1.jpg"></a>
+                    <div class="caption">
+                      <p class="title text-capitalize">Champion&reg; Classic logo Tee</p>
+                      <p>iItem#: <span class="itemNum">8250-LG</span></p>
+                      <p>Lorem ipsum dolor sit amet, sed do eiusmod tempor.</p>
+                    </div>
+                </div><div class="slide bx-clone" style="float: left; list-style: outside none none; position: relative; width: 202px; margin-right: 30px;">
+		  <a class="thumbnail" href="rewardsProductDetail.html"><img alt="Image" src="/fmstorefront/_ui/desktop/common/images/rewards-home-prod-img2.jpg"></a>
+                  <div class="caption">
+                      <p class="title text-capitalize">Champion&reg; trucker hat</p>
+                      <p>iItem#: <span class="itemNum">8460</span></p>
+                      <p>Lorem ipsum dolor sit amet, sed do eiusmod tempor.</p>
+                  </div>
+                </div><div class="slide bx-clone" style="float: left; list-style: outside none none; position: relative; width: 202px; margin-right: 30px;">
+		   <a class="thumbnail" href="rewardsProductDetail.html"><img alt="Image" src="/fmstorefront/_ui/desktop/common/images/rewards-home-prod-img3.jpg"></a>
+                  <div class="caption">
+                      <p class="title text-capitalize">Champion&reg; $100 gift certificate</p>
+                      <p>iItem#: <span class="itemNum">G3</span></p>
+                      <p>Lorem ipsum dolor sit amet, sed do eiusmod tempor.</p>
+                  </div>
+                </div></div></div><div class="bx-controls bx-has-pager bx-has-controls-direction"><div class="bx-pager bx-default-pager"><div class="bx-pager-item">
+<a class="bx-pager-link active" data-slide-index="0" href="">1</a></div><div class="bx-pager-item"><a class="bx-pager-link" data-slide-index="1" href="">2</a></div>
+<div class="bx-pager-item"><a class="bx-pager-link" data-slide-index="2" href="">3</a></div></div><div class="bx-controls-direction">
+<a href="" class="bx-prev"><span class="fa fa-chevron-left"></span></a><a href="" class="bx-next"><span class="fa fa-chevron-right"></span></a></div></div></div>
+            </div>            <!--.container--> 
+           
+            
+          <section class="SmallB2b technicianQuicklinksBg">
+            <div class="row"> 
+              <!--- Technician Forum Post PANEL -->
+              <div class="col-lg-12">
+                <div class="panel panel-default technicianForumPanel rewardsForumPanel">
+                  <div class="panel-body">
+                    <div class="row">
+                      <c:set var="fmComponentName" value="FAQ" scope="session" />
+  			             <cms:pageSlot position="HomeRewardsFAQsSection" var="feature">
+				           <cms:component component="${feature}" />
+			                </cms:pageSlot>
+                      </div>
+                </div>
+              </div>
+            </div></div>
+          </section>
+        </div>
+        <!-- Starts: Manage Account Left hand side panel -->
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 contentLHS"> 
+          <!--- Order in Progress PANEL -->
+          <div class="panel panel-default manageAccountLinks clearfix" >
+         
+             <c:set var="fmComponentName" value="learn" scope="session" />
+  			             <cms:pageSlot position="HomeRewardseLearnSection" var="feature">
+  			             
+				           <cms:component component="${feature}" /> 
+			                </cms:pageSlot>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="well well-sm well-brandstrip clearfix">
+		<ul class="nav">
+			<c:set var="fmComponentName" value="brandStrip" scope="session" />
+
+			<cms:pageSlot position="FMBrandstrip" var="feature">
+				<cms:component component="${feature}" />
+			</cms:pageSlot>
+		</ul>
+	</div>
+  </section>
+</section>
+
+
+
+
+
+</template:page>

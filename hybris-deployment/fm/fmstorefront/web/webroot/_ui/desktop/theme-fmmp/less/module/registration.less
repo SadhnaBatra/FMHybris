@@ -1,0 +1,250 @@
+/* =========================
+    Login & Registration
+============================ */
+
+
+.rememberme label {
+    border-bottom: 1px dashed @grey;
+    border-bottom: 0.1rem dashed @grey;
+}
+.signInpanel{height:322px;height:32.2rem;}
+.passwordResetEmail::-moz-placeholder{color:@black !important;}
+
+.regBtnOnSign { border-radius:0; margin-top: 15px; margin-top: 1.5rem;}
+.regBtnOnReg {margin-bottom:0; border-radius:0; }
+.regBtnTxt{padding-top: 14px; padding-top: 1.4rem; font-size:100%;}
+
+
+.resetPasswordPanel .tooltip-inner {
+  text-transform: none !important;
+}
+.myclassPanel .btn-labeled {
+    margin-top:0;
+    padding:0;
+    .btn-label {
+        right: 16px;
+        right:1rem;
+    }
+}
+@media (max-width: @bp_mobile_max) {
+  .signupAndRegisterPanel .registerBoxPanel .panel-body {
+    padding: 15px 15px 0;
+    padding: 1.5rem 1.5rem 0;
+  }
+}
+#registerform { margin-top:0 !important;}
+.registrationContent .bgwhite {
+    padding: 0px 12px 78px 32px;
+    padding: 0 1.2rem 7.8rem 3.2rem;
+    @media all and (max-width: @bp_mobile_max) {
+        padding-left: 12px;
+        padding-left: 1.2rem;
+    }
+}
+
+
+.registrationfa{
+    background-color:#123b73;
+}
+.regFormFieldGroup .registrationBg {
+    background-color:#174992;
+    color:@white;
+    margin-top:0;
+    
+}
+
+.regFrm{
+    padding-right: 20px; padding-right: 2rem; 
+    @media all and (max-width: @bp_tablet_max) {
+        padding-right:0;
+    }
+}
+
+.registrationContent .panel-heading span,
+{
+    margin-top: -26px;    margin-top: -2.6rem;
+    font-size: 15px;    font-size: 1.5rem;
+    margin-right: -15px;    margin-right: -1.5rem;
+}
+
+.registrationB2b .panel:first-child{margin-top: 30px; margin-top: 3rem;}
+
+
+/*
+    Registration Confirmation
+============================== */
+
+.registrationConfirmationContent {
+    .bgwhite{
+        padding:0px 0px 11px 22px;
+        padding:0px 0px 11px 2.2rem;
+    }
+    h3{
+        padding-bottom: 20px;
+        padding-bottom: 2.0rem;
+        margin-top: 4px;
+        margin-top: 0.4rem;
+    }
+    p{
+        padding-bottom:20px;
+        padding-bottom:2.0rem;
+    }
+}
+
+
+/*
+    Password Reset
+==================== */
+
+.passwordResetBtn{margin-left:-18px;}
+.resetPasswordPanel .resetPanel .panel-body .globalMessagesSpace{margin-bottom:-65px;margin-bottom:-6.5rem;}
+
+.resetPanel .infoMessage{ margin: 30px 0 20px 0; margin: 3rem 0 2rem 0;color: #000;}
+.resetPassCol{padding:12px 0 8px; padding: 1.2rem 0 0.8rem;}
+.cantAccessEmail, .didntReceiveEmail{color: @blue; }
+.resetPanel .controls{margin: 38px 0 16px 0; margin: 3.8rem 0 1.6rem 0;}
+.resetPanel .controls .cantAccessEmail{line-height:28px;line-height:2.8rem; vertical-align:middle}
+
+.resetPanel{border-radius:0;border:0;}
+.resetPanel .panel-body{padding: 20px; padding:2rem;}
+.resetPwdTitle{ margin: 2px 0 0; margin:0.2rem 0 0;}
+.didntReceiveEmail{display:block; margin-bottom:14px; margin-bottom:1.4rem;}
+.resetQuesMsg {margin: 12px 0; margin: 1.2rem 0;}
+.resetQuest {margin-bottom: 18px; margin-bottom: 1.8rem;}
+.secretQuestCtrl {margin-top: 24px; margin-top:2.4rem}
+.hintEmail {margin: 10px 0 0;margin: 1rem 0 0;}
+.pwdSuggestion {margin-bottom: 16px; margin-bottom: 1.6rem; margin-top:10px; margin-top:1rem;}
+.resetPanel .progress {margin-bottom: 8px; margin-bottom: 0.8rem;float: left;margin-left: 20px;margin-left: 2rem;margin-top: 11px;margin-top: 1.1rem;width: 25%;}
+input#setnewpwd {
+    width: 237px;
+    float:left;
+    @media all and (max-width: @bp_small_mobile_max) {
+        width: 100%;
+    }
+}
+input#newPassword {
+    float: left;
+}
+
+.pwdMatch, .pwdNotMatch {margin-top: 6px;margin-top: 0.6rem;}
+.pwdTickIcon{font-size:25px;font-size:2.5rem;
+      color:@green;vertical-align: middle;}
+.pwdtxt{color:@green}
+.pwdCloseIcon{font-size:25px;font-size:2.5rem;color:@red;vertical-align: middle;}
+.pwdDntMatch{color:@red;}
+.checkYourMailMessage{padding-top:30px;padding-top:3rem;}
+.checkYourJunkMailMessage{padding-top:14px;padding-top:1.4rem;}
+
+
+/*password strength meter*/
+.bar{height:30px;height:3rem;border:2px;border:0.2rem;}
+.progress{height:10px;height:1rem;}  
+.progress-warning .bar, .progress .bar-warning {
+    background-color: #faa732;
+    background-image: linear-gradient(to bottom, #fbb450, #f89406);
+    background-repeat: repeat-x;
+}
+.progress-success .bar, .progress .bar-success {
+    background-color: @green-light;
+    background-image: linear-gradient(to bottom, @green-light, @green);
+    background-repeat: repeat-x;
+}
+.progress-danger .bar, .progress .bar-danger {
+    background-color: @red;
+    background-image: linear-gradient(to bottom, @red, @red-dark);
+    background-repeat: repeat-x;
+}
+.password-verdict{float:right;margin-top: 6px;margin-top: 0.6rem;}
+/**************************************************
+        MANAGE USERS PAGE
+**************************************************/
+.returnToUser{
+    color: @blue;
+    line-height:38px;
+    line-height:3.8rem;
+}
+.reqField {font-size:12px; font-size:1.2rem;}
+
+.manageUserPanel h3{
+    margin-bottom: 6px;
+    margin-bottom: 0.6rem;
+}
+
+.manageUserSection{
+    padding-left: 25px;
+    padding-left: 2.5rem;
+}
+
+.manageUserForm label{
+    font-size:12px;
+    font-size:1.2rem;
+    margin-top: 22px;
+    margin-top: 2.2rem;
+    margin-bottom: 0;
+    padding-left: 5px;
+    padding-left: 0.5rem;
+}
+.manageUserForm .toggle.btn{
+    margin-top: 22px;
+    margin-top: 2.2rem;
+}
+.manageUserForm .toggle-group label{
+    margin-top: 0;    
+    font-size:14px;
+    font-size:1.4rem;
+}
+.manageUserForm:first-child {
+    margin-top: 10px;
+    margin-top: 1.0rem;
+}
+
+.mngUserCheckbox{
+    border:1px solid @grey-light;
+    border:0.1rem solid @grey-light;
+    padding:9px 0px 9px 9px;
+    padding:0.9rem 0rem 0.9rem 0.9rem;
+}
+
+.mngUserBtn{
+    margin-bottom: 4px;
+    margin-bottom: 0.4rem;
+    margin-top: 26px;
+    margin-top: 2.6rem;
+    padding-left: 50px;
+    padding-left: 5.0rem;
+    padding-right: 50px;
+    padding-right: 5.0rem;
+}
+
+.manageUsercredential {
+    padding-left: 5px;
+    padding-left: 0.5rem;
+}
+
+.termsConditionContent {
+    height: 300px !important; height: 30rem !important;
+    overflow-y: scroll;
+}
+
+.registerRow {
+    padding-top:20px;
+    padding-top:2rem;
+}
+
+@media all and (max-width: @bp_tablet_max) {
+    .registrationB2b {
+        .col-lg-10, .lftPad_20 {
+            padding-left: 0;
+        }
+    }
+   .errorMsg {
+        clear:both;  
+    } 
+}
+@media all and (max-width: @bp_small_mobile_max) {
+    .registrationB2b {
+        .lftMrgn_20 {
+            margin-left: 0;
+        }
+    }
+}

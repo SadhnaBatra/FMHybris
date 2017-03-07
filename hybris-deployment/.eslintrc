@@ -1,0 +1,12 @@
+{
+    "env": {
+        "browser": true
+    },
+    "rules": {
+        "indent"                : ["error", "tab"],
+        "max-len"               : [2, 120, 2],
+        "camelcase"             : 0,
+        "object-curly-spacing"  : [2, "always"],
+        "keyword-spacing"       : ["error"]
+    }
+}

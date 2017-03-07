@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sch:schema xmlns="http://www.ascc.net/xml/schematron" xmlns:oa="http://www.openapplications.org/oagis" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ascc.net/xml/schematron ../../../Utility/Schematron/schematron1-5.xsd">
+	<sch:title>Schematron Validator for OAGI Constraints</sch:title>
+	<sch:ns prefix="oa" uri="http://www.openapplications.org/oagis"/>
+	<sch:pattern name="Process WIPMove">
+		<sch:rule context="oa:WIPMove">
+			<sch:assert test="oa:Header">The Process WIPMove must have a Header component specified</sch:assert>
+			<sch:assert test="oa:Line">The Process WIPMove must have at least one Line component specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Process WIPMove Header">
+		<sch:rule context="oa:WIPMove/oa:Header">
+			<sch:assert test="oa:DocumentDateTime">The Process WIPMove Header must must have a "DocumentDateTime" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Process WIPMove Line">
+		<sch:rule context="oa:WIPMove/oa:Line">
+			<sch:assert test="oa:ScrapQuantity | RejectedQuantity | WIPMoveQuantity">The Process WIPMove Line must have a "ScrapQuantity" or "RejectedQuantity" or "WIPMoveQuantity" specified</sch:assert>
+			<sch:assert test="oa:MoveFromOperation">The Process WIPMove Line must have a "MoveFromOperation" component specified</sch:assert>
+			<sch:assert test="oa:MoveToOperation">The Process WIPMove Line must have a "MoveToOperation" component specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Move From Operation">
+		<sch:rule context="oa:WIPMove/oa:Line/oa:MoveFromOperation">
+			<sch:assert test="oa:OperationReference">The MoveFromOperation must have a "OperationReference" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Move To Operation">
+		<sch:rule context="oa:WIPMove/oa:Line/oa:MoveToOperation">
+			<sch:assert test="oa:OperationReference | oa:Operation">The MoveToOperation must have a "OperationReference" or "Operation" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Operation Reference">
+		<sch:rule context="oa:OperationReference">
+			<sch:assert test="oa:OperationId">An OperationReference must have a "OperationId"  specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Operation">
+		<sch:rule context="oa:Operation">
+			<sch:assert test="oa:OperationId">An Operation must have a "OperationId"  specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Step">
+		<sch:rule context="oa:WIPMove/oa:Line/oa:MoveToOperation/oa:Step">
+			<sch:assert test="oa:Id">A Step must have an "Id" specified</sch:assert>
+			<sch:assert test="oa:StepType">A Step must have an "StepType" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Resources">
+		<sch:rule context="oa:Resources/oa:MachineResource/oa:Machine">
+			<sch:assert test="oa:Id | oa:Classification">A Machine Resource must have a "Id"  or "Classification" specified</sch:assert>
+		</sch:rule>
+		<sch:rule context="oa:Resources/oa:LaborResource/oa:Labor">
+			<sch:assert test="oa:EmployeeId | oa:Category">A Labor Resource must have a "EmployeeId"  or "Category" specified</sch:assert>
+		</sch:rule>
+		<sch:rule context="oa:Resources/oa:ToolResource/oa:Tool">
+			<sch:assert test="oa:ToolId | oa:ToolClassification">A Tool Resource must have a "ToolId"  or "ToolClassification" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Production Order Reference">
+		<sch:rule context="oa:ProductionOrderReference">
+			<sch:assert test="oa:DocumentId/oa:Id">A ProductionOrderReference must have a "DocumentId" and an "Id" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+</sch:schema>

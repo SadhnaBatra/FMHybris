@@ -1,0 +1,113 @@
+/* ==================
+    Alerts
+===================== */
+.alertContainer {
+  display:block;
+  position:fixed;
+  margin:0 auto;
+  bottom:-5%;
+  z-index:100;
+  opacity:0;
+  width:100%;
+  &.show {
+    bottom:0;
+    opacity:1;
+    transition: all  0.5s ease-in-out 0s;
+  }
+}
+.alert.alert-success {
+  margin:0;
+}
+
+.tooltip {
+  font-size: 12px;
+  font-size: 1.2rem;
+  line-height: 1.4;
+}
+.popover-title {
+  font-size: 14px;
+  font-size: 1.4rem;
+  line-height: 1.8;
+}
+
+/*
+  Information Messages
+====================== */
+.information_message {
+  position: relative;
+  margin: 20px 0 10px 0;
+  min-height: 55px;
+  p {
+    margin-left: 27px;
+    padding: 5px 10px 5px 40px;
+  }
+  span {
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    top: -4px;
+    left: 0;
+
+    &.single {
+      top: -11px;
+    }
+  }
+}
+
+/*
+  Error Messages
+================== */
+.form_field_error {
+  padding: 10px;
+  float: left;
+  margin: 5px 0;
+
+  p, .notify {
+    margin: 0;
+  }
+}
+
+/* 
+  Announcement Panel 
+====================== */
+.panelAnnouncement {
+  border-radius: 0;
+  background: linear-gradient(@red, @red-dark);
+  color:@white;
+  
+  .btn {
+    margin-bottom:10px; margin-bottom:1rem;
+  }
+  .panel-title {
+    color:@white;
+    padding: 0 0 1px 0;
+    padding: 0 0 0.1rem 0;
+    margin-top: 5px;
+    margin-top: 0.5rem;
+    font-size: 22px;
+    font-size:2.2rem;
+  }
+  .readmore { 
+    margin-bottom: 30px; margin-bottom: 3rem;
+    a { 
+      color:@white; 
+      text-decoration:none;
+    }
+  }
+  .thumbnail {
+    padding:0; 
+    border-radius:0;
+  }
+}
+@media screen and (max-width: @bp_mobile_max) {
+  .panelAnnouncement {
+    margin-top:20px;margin-top:2rem; 
+  }
+}
+
+.globalMessagesSpace {
+  .alert {
+    padding: 0;
+  }
+}
+  

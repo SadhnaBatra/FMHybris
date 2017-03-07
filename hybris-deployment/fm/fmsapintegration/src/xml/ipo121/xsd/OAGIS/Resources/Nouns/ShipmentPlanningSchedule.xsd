@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/ShipmentPlanningSchedule.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.02">
+        <xs:include schemaLocation="../MfgComponents.xsd"/>
+        <xs:include schemaLocation="Document.xsd"/>
+        <xs:complexType name="ShipmentPlanningScheduleHeader">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Information that applies to the entire planning schedule.</xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                        <xs:extension base="DocumentHeader">
+                                <xs:sequence>
+                                        <xs:element ref="RespondingScheduleReference" minOccurs="0"/>
+                                        <xs:element name="EffectivePeriod" type="TimePeriodAny" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">The effective dates for the schedule represents the schedule horizon dates and times . This is derived based on demand contained within the schedule if not specified. This can be a date or a time depending on the granularity of the manufacturing process.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="DateType" type="Type" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates whether the dates specified on the schedule are delivery based or shipment based. Valid values for this field include:
+- Ship
+- Deliver</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="ScheduleType" type="Type" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Iidentifier that describes the specific schedule and can be used in a variety of contexts. When used in the context of employee, ScheduleType refers to the specific schedule for the employee or worker. When used in the context of a Schedule, ScheduleType indicates whether the Schedule is a demand schedule from a customer or a supply schedule from a supplier. Valid values for this context are:
+- Demand
+- Supplier</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element ref="Parties" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="ShipmentPlanningScheduleLine">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Represents the detail lines of the PlanningSchedule. It includes the demand/supply requirement with quantity, price and descriptive information. The requirement must be identified by one of the following levels: item, commodity code, or functional specifications.
+Attachment intended for Drawing.
+DocumentReferences intended to include PuchaseOrder and SalesOrder
+Explicit RespondingScheduleReference used.
+</xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                        <xs:extension base="DocumentLine">
+                                <xs:sequence>
+                                        <xs:element name="LineType" type="Type" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the type of demand requested. Examples of values for this field include:
+- Forecast
+- Firm
+- Authorization
+- Past Due
+- Shipment/Receipt
+- Other</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="RespondingScheduleReference" type="DocumentReference" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the previously received plan schedule that this new schedule is responding to as a reference.  The typical scenario is a supplier uses a Sync PlanningSchedule or Sync ShipmentSchedule to respond to a customer demand schedule, and this will identify the customer demand schedule that this supplier previously received.  The date and time is also used in identifying the previously received plan schedule that the new plan schedule is responding to.  Note that the combination of document id, document date, and revision number can uniquely identify a plan schedule.</xs:documentation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">DateType indicates whether the dates specified on the schedule are delivery based or shipment based.  Dates specified on the schedule include FromDateTime and ToDateTime at Header and Line levels.
+ScheduleType indicates whether the PlanningSchedule is a demand schedule from a customer or a supply schedule from a supplier.
+For the supplier schedule to respond to the original demand schedule, the RespondingScheduleReference is used to identify the customer’s original demand schedule that it is responding to.
+</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element ref="DocumentReferences" minOccurs="0"/>
+                                        <xs:element ref="Item" minOccurs="0"/>
+                                        <xs:element name="EffectivePeriod" type="TimePeriodAny" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">The effective dates for the schedule represents the schedule horizon dates and times . This is derived based on demand contained within the schedule if not specified. This can be a date or a time depending on the granularity of the manufacturing process.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="EngineeringChangeDateTime" type="DateTimeAny" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">identifies the date on which engineering changes to the item or product is effective.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="ActualDeliveryDateTime" type="DateTimeAny" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">The actual delivery date reported by?</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="ReceivedDateTime" type="DateTimeAny" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">The recieved date reported by?</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="ShipmentDateTime" type="DateTimeAny" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the date and time an item was shipped.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="DeliveredQuantity" type="Quantity" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the quantity delivered.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="ItemQuantity" type="Quantity" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">The customer’s actual requested amount of the item to be shipped.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="PriorQuantity" type="Quantity" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the quantity recieved.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="ReceivedQuantity" type="Quantity" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the quantity recieved.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="ShippedQuantity" type="Quantity" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the quantity recieved.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element ref="Attachments" minOccurs="0"/>
+                                        <xs:element name="Authorization" type="AuthorizationId" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Represents a list of codes that specify status values for the acknowledgment.
+Valid codes are:
+- Purchase Release
+- Manufacturing Release
+- Shipment Release</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element name="Commodity" type="Commodity" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element name="LoadingDock" type="LoadingDockCode" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Itentifies the loading dock.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element ref="HazardousMaterial" minOccurs="0"/>
+                                        <xs:element name="Kanban" type="Kanban" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the reference number associated with in-plant routing information. Typically routing information specified on customer’s Kanban ship label includes and could be specified in the user area:
+facility/dock
+location build area
+part description
+first delivery location
+empty container location
+beginning kanban serial
+ending kanban serial
+pickup date/time
+·	delivery date/time
+</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element ref="Note" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element name="Packing" type="Packaging" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Represents the secondary packing code used to further identify the package of the product. Hmmm, where is the primary packing code?</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="PackingDescription" type="Description" minOccurs="0" maxOccurs="unbounded">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Contains information about the packing material, such as dimensions and description. Examples include Bubble pack and Styrofoam peanuts</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="Priority" type="xs:string" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Priority of a document, task, or activity. Could be used for production orders, sales orders, purchase orders, etc.
+When used within the context of Schedules, priorities specify the urgency of the demand schedule, the higher the number the lower the priority.
+Examples of values for this field include:
+1, 2, 3
+or
+Highest Priority, Lower, Least.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="Project" type="Project" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies a set of tasks with the following attributes: a singular purpose, a start and end date, those that accumulate costs, and those that may have materials and overhead.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="ShipperNumber" type="Id" minOccurs="0"/>
+                                        <xs:element name="Task" type="Task" minOccurs="0"/>
+                                        <xs:element ref="Parties" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="ShipmentPlanningScheduleException">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Line item exceptions based on predefined business rules or contract agreements.</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                        <xs:element name="LineNumber" type="LineNumber" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the exception line number within a schedule. This is used for communicating exception errors</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="EffectivePeriod" type="TimePeriodAny" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">The effective dates for the schedule represents the schedule horizon dates and times . This is derived based on demand contained within the schedule if not specified. This can be a date or a time depending on the granularity of the manufacturing process.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="ActionCode" type="Code" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Represents a list of codes that specify action to fix the exceptions. Examples of values for this field include:
+Reduce demand quantity
+Increase production.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ExceptionCode" type="Code" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Represents a list of codes of the possible most common exceptions.
+Examples of values for this field include:
+- Late Sales Order or Forecast Demand
+- Shortage
+- Exceeds Capacity</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ReasonCode" type="ReasonCode" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Represents a list of codes that specify reason for the exception. Examples of values for this field include:
+Out of stock 
+Rejected due to lead time compression
+</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:element name="RespondingScheduleReference" type="GenericDocumentReference">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the previously received plan schedule that this new schedule is responding to as a reference.  The typical scenario is a supplier uses a Sync PlanningSchedule or Sync ShipmentSchedule to respond to a customer demand schedule, and this will identify the customer demand schedule that this supplier previously received.  The date and time is also used in identifying the previously received plan schedule that the new plan schedule is responding to.  Note that the combination of document id, document date, and revision number can uniquely identify a plan schedule.</xs:documentation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">DateType indicates whether the dates specified on the schedule are delivery based or shipment based.  Dates specified on the schedule include FromDateTime and ToDateTime at Header and Line levels.
+ScheduleType indicates whether the PlanningSchedule is a demand schedule from a customer or a supply schedule from a supplier.
+For the supplier schedule to respond to the original demand schedule, the RespondingScheduleReference is used to identify the customer’s original demand schedule that it is responding to.
+</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+</xs:schema>

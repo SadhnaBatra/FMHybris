@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2000-2013 hybris AG
+ All rights reserved.
+
+ This software is the confidential and proprietary information of hybris
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with hybris.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/security
+		http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop.xsd"
+		>
+
+	<security:http pattern="/_ui/**" security="none" />
+
+	<!--Security config for checkout - it has its own login page-->
+	<security:http disable-url-rewriting="true" pattern="/checkout/**" use-expressions="true">
+        <security:anonymous username="anonymous" granted-authority="ROLE_ANONYMOUS" />
+		<security:access-denied-handler error-page="/login"/>
+		<security:session-management session-authentication-strategy-ref="fixation" />
+		<security:intercept-url pattern="/**" requires-channel="https" />
+
+		<security:form-login
+				login-processing-url="/checkout/j_spring_security_check"
+				login-page="/sign-in/checkout"
+				authentication-failure-handler-ref="loginCheckoutAuthenticationFailureHandler"
+				authentication-success-handler-ref="loginCheckoutGuidAuthenticationSuccessHandler" />
+
+		<security:logout logout-url="/logout" success-handler-ref="logoutSuccessHandler" />
+
+		<security:port-mappings>
+			<security:port-mapping http="#{configurationService.configuration.getProperty('tomcat.http.port')}"
+			                       https="#{configurationService.configuration.getProperty('tomcat.ssl.port')}" />
+		</security:port-mappings>
+
+		<security:request-cache ref="httpSessionRequestCache" />
+
+	</security:http>
+
+	<!-- Ignores url(s) that match paths specified in the set -->
+	<bean id="excludeUrlRequestMatcher" class="com.federalmogul.storefront.security.ExcludeUrlRequestMatcher">
+		<property name="excludeUrlSet" ref="excludeUrlSet"/>
+		<property name="pathMatcher" ref="defaultPathMatcher"/>
+	</bean>
+
+	<!-- The set of url(s) to exclude from the 'Default security config'-->
+	<bean id="excludeUrlSet" class="java.util.HashSet" />
+
+	<!-- Path matcher to use, AntPathMatcher is the default -->
+	<alias name="antPathMatcher" alias="defaultPathMatcher" />
+	<bean id="antPathMatcher" class="org.springframework.util.AntPathMatcher" />
+
+
+
+	<!-- Default security config -->
+	<security:http disable-url-rewriting="true"  request-matcher-ref="excludeUrlRequestMatcher" use-expressions="true">
+		<security:anonymous username="anonymous" granted-authority="ROLE_ANONYMOUS" />
+		<security:access-denied-handler error-page="/login"/>
+
+		<security:session-management session-authentication-strategy-ref="fixation" />
+
+		<!-- RememberMe -->
+
+		<security:remember-me key="fmstorefront" services-ref="rememberMeServices"/>
+
+		<!-- SSL / AUTHENTICATED pages -->
+		<security:intercept-url pattern="/my-account/addressform" access="hasAnyRole('ROLE_ANONYMOUS','ROLE_CUSTOMERGROUP')" requires-channel="https" />
+		<security:intercept-url pattern="/checkout/multi/billingaddressform" access="hasAnyRole('ROLE_ANONYMOUS','ROLE_CUSTOMERGROUP')" requires-channel="https" />
+		<security:intercept-url pattern="/my-account*" access="hasRole('ROLE_CUSTOMERGROUP')" requires-channel="https" />
+		<security:intercept-url pattern="/my-account/**" access="hasRole('ROLE_CUSTOMERGROUP')" requires-channel="https" />
+
+		<security:intercept-url pattern="/**" requires-channel="https" /> <!-- Everything should be secure -->
+
+		<security:form-login
+				login-page="/sign-in"
+				authentication-failure-handler-ref="loginAuthenticationFailureHandler"
+				authentication-success-handler-ref="loginGuidAuthenticationSuccessHandler"  />
+
+		<security:logout logout-url="/logout" success-handler-ref="logoutSuccessHandler" />
+
+		<security:port-mappings>
+			<security:port-mapping http="#{configurationService.configuration.getProperty('tomcat.http.port')}"
+			                       https="#{configurationService.configuration.getProperty('tomcat.ssl.port')}" />
+		</security:port-mappings>
+
+		<security:request-cache ref="httpSessionRequestCache" />
+		
+		<security:access-denied-handler ref="b2bAccessDeniedHandler"/>
+
+	</security:http>
+     
+    <security:authentication-manager alias="authenticationManager">
+		<security:authentication-provider ref="acceleratorAuthenticationProvider"/>
+	</security:authentication-manager>
+
+	<bean id="b2bAccessDeniedHandler"
+		  class="com.federalmogul.storefront.security.DefaultAccessDeniedHandler"/>
+
+	<bean id="acceleratorAuthenticationProvider"
+		  class="com.federalmogul.storefront.security.AcceleratorAuthenticationProvider">
+		<property name="bruteForceAttackCounter" ref="bruteForceAttackCounter"/>
+		<property name="cartService" ref="cartService"/>
+		<property name="userService" ref="userService"/>
+		<property name="modelService" ref="modelService"/>
+		<property name="preAuthenticationChecks" ref="rejectUserPreAuthenticationChecks"/>
+		<property name="userDetailsService" ref="originalUidUserDetailsService"/>
+		<property name="adminGroup" value="ROLE_ADMINGROUP"/>
+		<property name="b2bUserGroupProvider" ref="b2bUserGroupProvider"/>
+		<aop:scoped-proxy/>
+	</bean>
+
+	<bean id="rejectUserPreAuthenticationChecks"
+		  class="de.hybris.platform.spring.security.RejectUserPreAuthenticationChecks">
+		<property name="allowedUserTypes">
+			<list>
+				<value>B2BCustomer</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="coreUserDetailsService" class="de.hybris.platform.spring.security.CoreUserDetailsService"/>
+
+	<bean id="guidCookieStrategy"
+		  class="com.federalmogul.storefront.security.impl.DefaultGUIDCookieStrategy"
+			>
+		<property name="cookieGenerator" ref="guidCookieGenerator"/>
+	</bean>
+
+	<bean id="aemCookieStrategy" class="com.federalmogul.storefront.security.impl.DefaultAEMCookieStrategy">
+		<property name="webServiceProtocol" value="https"/>
+		<property name="webServicePort" value="443"/>
+		<property name="webServiceUri" value="/fmwebservice/oauth/token"/>
+		<property name="clientId" value="mobile_android"/>
+		<property name="clientSecret" value="secret"/>
+		<property name="grantType" value="password"/>
+		<property name="looselyVerifiedHostnames">
+			<list>
+				<value>localhost.dispatch.fmmotorparts.com</value>
+			</list>
+		</property>
+		<property name="aemCookieGenerator" ref="aemCookieGenerator"/>
+	</bean>
+
+	<bean id="aemCookieGenerator" class="com.federalmogul.storefront.security.cookie.EnhancedCookieGenerator">
+		<property name="cookieSecure" value="true"/>
+		<property name="cookieName" value="HybrisAuthToken"/>
+		<property name="httpOnly" value="true"/>
+	</bean>
+
+	<alias name="defaultGuidCookieGenerator" alias="guidCookieGenerator"/>
+	<bean id="defaultGuidCookieGenerator"
+		  class="com.federalmogul.storefront.security.cookie.EnhancedCookieGenerator">
+		<property name="cookieSecure" value="true"/>
+		<property name="cookieName" value="acceleratorSecureGUID"/>
+		<property name="httpOnly" value="true"/>
+	</bean>
+
+	<bean id="autoLoginStrategy"
+		  class="com.federalmogul.storefront.security.impl.DefaultAutoLoginStrategy">
+		<property name="authenticationManager" ref="authenticationManager"/>
+		<property name="customerFacade" ref="customerFacade"/>
+		<property name="guidCookieStrategy" ref="guidCookieStrategy"/>
+		<property name="aemCookieStrategy" ref="aemCookieStrategy"/>
+		<property name="rememberMeServices" ref="rememberMeServices"/>
+	</bean>
+
+	<bean id="httpSessionRequestCache"
+		  class="com.federalmogul.storefront.security.impl.WebHttpSessionRequestCache">
+		<property name="sessionService" ref="sessionService"/>
+	</bean>
+
+	<bean id="redirectStrategy" class="org.springframework.security.web.DefaultRedirectStrategy"/>
+
+	<bean id="fmContextlessRedirectStrategy" class="com.federalmogul.storefront.security.impl.FMSimpleContextlessRedirectStrategy"/>
+
+	 
+	<alias name="defaultFMRedirectStrategy" alias="fmRedirectStrategy"/>
+	<bean name="defaultFMRedirectStrategy" class="com.federalmogul.storefront.security.impl.DefaultFMRedirectStrategy" parent="redirectStrategy">
+
+   	</bean>
+	
+	<!-- Login Success Handlers -->
+
+	<bean id="loginGuidAuthenticationSuccessHandler"
+		  class="com.federalmogul.storefront.security.GUIDAuthenticationSuccessHandler">
+		<property name="authenticationSuccessHandler" ref="loginAuthenticationSuccessHandler"/>
+		<property name="guidCookieStrategy" ref="guidCookieStrategy"/>
+		<property name="aemCookieStrategy" ref="aemCookieStrategy"/>
+		<aop:scoped-proxy/>
+	</bean>
+
+	<bean id="loginAuthenticationSuccessHandler"
+		  class="com.federalmogul.storefront.security.StorefrontAuthenticationSuccessHandler">
+		<property name="customerFacade" ref="customerFacade"/>
+		<property name="defaultTargetUrl" value="/content/loc-na/loc-us/fmmp-corporate/en_US.html"/>
+		<property name="useReferer" value="true"/>
+		<property name="requestCache" ref="httpSessionRequestCache"/>
+		<property name="uiExperienceService" ref="uiExperienceService"/>
+		<property name="sessionService" ref="sessionService"/>
+		<property name="cartFacade" ref="cartFacade"/>
+		<property name="forceDefaultTargetForUiExperienceLevel">
+			<map key-type="de.hybris.platform.commerceservices.enums.UiExperienceLevel"
+				 value-type="java.lang.Boolean">
+				<entry key="DESKTOP" value="false"/>
+				<entry key="MOBILE" value="false"/>
+			</map>
+		</property>
+		<property name="bruteForceAttackCounter" ref="bruteForceAttackCounter"/>
+		<property name="redirectStrategy" ref="fmContextlessRedirectStrategy"/>
+	</bean>
+
+	<bean id="loginCheckoutGuidAuthenticationSuccessHandler"
+		  class="com.federalmogul.storefront.security.GUIDAuthenticationSuccessHandler">
+		<property name="authenticationSuccessHandler" ref="loginCheckoutAuthenticationSuccessHandler"/>
+		<property name="guidCookieStrategy" ref="guidCookieStrategy"/>
+		<property name="aemCookieStrategy" ref="aemCookieStrategy"/>
+		<aop:scoped-proxy/>
+	</bean>
+
+	<bean id="loginCheckoutAuthenticationSuccessHandler"
+		  class="com.federalmogul.storefront.security.StorefrontAuthenticationSuccessHandler">
+		<property name="customerFacade" ref="customerFacade"/>
+		<property name="defaultTargetUrl" value="/checkout"/>
+		<property name="uiExperienceService" ref="uiExperienceService"/>
+		<property name="sessionService" ref="sessionService"/>
+		<property name="cartFacade" ref="cartFacade"/>
+		<property name="forceDefaultTargetForUiExperienceLevel">
+			<map key-type="de.hybris.platform.commerceservices.enums.UiExperienceLevel"
+				 value-type="java.lang.Boolean">
+				<entry key="DESKTOP" value="true"/>
+				<entry key="MOBILE" value="true"/>
+			</map>
+		</property>
+		<property name="bruteForceAttackCounter" ref="bruteForceAttackCounter"/>
+		<property name="redirectStrategy" ref="fmRedirectStrategy"/>
+	</bean>
+
+
+	<!-- Login Failure Handlers -->
+	<bean id="bruteForceAttackCounter"
+		  class="com.federalmogul.storefront.security.impl.DefaultBruteForceAttackCounter">
+		<constructor-arg name="maxFailedLogins" value="3"/>
+		<constructor-arg name="cacheExpiration" value="60"/>
+		<constructor-arg name="cacheSizeLimit" value="1000"/>
+	</bean>
+
+	<!-- Login Failure Handlers -->
+
+	<bean id="loginAuthenticationFailureHandler"
+		  class="com.federalmogul.storefront.security.LoginAuthenticationFailureHandler">
+		<property name="bruteForceAttackCounter" ref="bruteForceAttackCounter"/>
+		<property name="defaultFailureUrl" value="/sign-in?error=true"/>
+		<aop:scoped-proxy/>
+	</bean>
+
+	<bean id="loginCheckoutAuthenticationFailureHandler"
+		  class="com.federalmogul.storefront.security.LoginAuthenticationFailureHandler">
+		<property name="bruteForceAttackCounter" ref="bruteForceAttackCounter"/>
+		<property name="defaultFailureUrl" value="/sign-in/checkout?error=true"/>
+		<aop:scoped-proxy/>
+	</bean>
+
+
+	<!-- Logout Success Handler -->
+
+	<bean id="logoutSuccessHandler"
+		  class="com.federalmogul.storefront.security.StorefrontLogoutSuccessHandler">
+		<property name="defaultTargetUrl" value="/content/loc-na/loc-us/fmmp-corporate/en_US.html"/>
+		<property name="guidCookieStrategy" ref="guidCookieStrategy"/>
+		<property name="aemCookieStrategy" ref="aemCookieStrategy"/>
+		<property name="useReferer" value="true"/>
+		<property name="restrictedPages">
+			<list>
+				<value>/en/USD</value>
+				<value>/my-fmaccount</value>
+				<value>/my-network</value>
+				<value>/my-company</value>
+				<value>/my-account</value>
+				<value>/fmcustomer</value>
+				<value>/checkout</value>
+			</list>
+		</property>
+		<property name="fmContextlessRedirectStrategy" ref="fmContextlessRedirectStrategy" />
+		<aop:scoped-proxy/>
+	</bean>
+
+	<!-- Remember Me -->
+
+	<bean id="rememberMeProcessingFilter"
+		  class="org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter">
+		<property name="rememberMeServices" ref="rememberMeServices"/>
+		<property name="authenticationManager" ref="authenticationManager"/>
+	</bean>
+
+	<bean id="rememberMeServices"
+		  class="com.federalmogul.storefront.security.AcceleratorRememberMeServices">
+		<property name="userDetailsService" ref="originalUidUserDetailsService"/>
+		<property name="key" value="fmstorefront"/>
+		<property name="cookieName" value="fmstorefrontRememberMe"/>
+		<property name="alwaysRemember" value="false"/>
+		<property name="userService" ref="userService"/>
+		<property name="useSecureCookie" value="false"/>
+		<property name="customerFacade" ref="customerFacade"/>
+		<property name="urlEncoderService" ref="urlEncoderService"/>
+		<property name="storeSessionFacade" ref="storeSessionFacade"/>
+		<property name="commonI18NService" ref="commonI18NService"/>
+		<property name="secureTokenService" ref="secureTokenService"/>
+		<aop:scoped-proxy/>
+	</bean>
+
+	<bean id="rememberMeAuthenticationProvider"
+		  class="org.springframework.security.authentication.RememberMeAuthenticationProvider">
+		<property name="key" value="fmstorefront"/>
+		<aop:scoped-proxy/>
+	</bean>
+
+	<!-- Define all possible roles -->
+	<bean id="b2bUserGroupProvider"
+		  class="com.federalmogul.storefront.security.impl.DefaultB2BUserGroupProvider">
+		<property name="userService" ref="userService"/>
+		<property name="b2BCustomerService" ref="defaultB2BCustomerService"/>
+		<property name="authorizedGroups">
+			<set value-type="java.lang.String">
+				<value>b2bcustomergroup</value>
+				<value>b2bmanagergroup</value>
+				<value>b2bapprovergroup</value>
+				<value>b2badmingroup</value>
+			</set>
+		</property>
+		<property name="authorizedGroupsToCheckOut">
+			<set value-type="java.lang.String">
+				<value>b2bcustomergroup</value>
+			</set>
+		</property>
+	</bean> 
+
+
+</beans>

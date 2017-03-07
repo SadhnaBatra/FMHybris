@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Automotive Aftermarket Industry Association (AAIA)
+	http://www.aftermarket.org
+	Internet Parts Ordering (IPO) Release 1.2.1,  March 1, 2005
+	Business Object Document (BOD) Example
+	
+	Overlay for: 
+	Open Applications Group (http://www.openapplications.org)
+	OAGIS Release 8.0, 	April 05, 2002
+	
+	Name:		CancelPurchaseOrder.xml
+	Comments:	The default name space is OAGIS. Therefore all AAIA elements require the aaia: prefix.
+-->
+<aaia:CancelPurchaseOrder xmlns="http://www.openapplications.org/oagis" xmlns:aaia="http://www.aftermarket.org/oagis" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.aftermarket.org/oagis ../BODs/CancelPurchaseOrder.xsd" revision="1.2.1" environment="Production" lang="en">
+	<!-- The ApplicationArea identifies the document and the sender. -->
+	<ApplicationArea>
+		<Sender>
+			<ReferenceId>W0013</ReferenceId>
+			<Confirmation>1</Confirmation>
+		</Sender>
+		<CreationDateTime>2003-09-09T10:46:13-06:00</CreationDateTime>
+		<BODId>X07R3</BODId>
+	</ApplicationArea>
+	<!-- The DataArea contains the business information to be processed by the receiver. -->
+	<DataArea>
+		<Cancel confirm="Always"/>
+		<PurchaseOrder>
+			<!-- The DataArea Header contains information that applies to the entire purchase order. -->
+			<Header>
+				<!-- These Header fields identify the purchase order being cancelled by the buyer. -->
+				<DocumentIds>
+					<CustomerDocumentId>
+						<Id>PO 11347</Id>
+					</CustomerDocumentId>
+				</DocumentIds>
+				<LastModificationDateTime>2003-09-09T16:44:18Z</LastModificationDateTime>
+				<!-- 
+				These Header fields describe the buyer’s expectations about total cost and method of payment.
+				Because only one line is being cancelled, the order totals change. If the entire purchase order
+				was being cancelled, none of the following fields would be necessary.
+				-->
+				<ExtendedPrice currency="USD">271.16</ExtendedPrice>
+				<TotalAmount currency="USD">276.16</TotalAmount>
+			</Header>
+			<!-- 
+			Each DataArea Line identifies a line being cancelled. Here only the second line is being
+			cancelled. Looks like the buyer didn’t want either headlight.
+			-->
+			<aaia:Line>
+				<LineNumber>2</LineNumber>
+				<aaia:Vehicle>
+					<aaia:VehicleId>
+						<aaia:VIN>AB1234567890CD</aaia:VIN>
+					</aaia:VehicleId>
+					<aaia:Year>2005</aaia:Year>
+					<aaia:Make lang="en">Ford</aaia:Make>
+					<aaia:Model lang="en">Explorer</aaia:Model>
+					<aaia:SubModel>XLT</aaia:SubModel>
+					<aaia:Doors>4</aaia:Doors>
+					<aaia:ExteriorColorCode>BLK01</aaia:ExteriorColorCode>
+					<aaia:BodyStyle>Uniframe</aaia:BodyStyle>
+					<aaia:Engine>
+						<aaia:ConfigId>123456</aaia:ConfigId>
+						<aaia:BlockType>V</aaia:BlockType>
+						<aaia:Cylinders>8</aaia:Cylinders>
+						<aaia:Displacement uom="Liters">4.0</aaia:Displacement>
+						<aaia:FuelDelivery>Injected</aaia:FuelDelivery>
+						<aaia:Aspiration>None</aaia:Aspiration>
+					</aaia:Engine>
+					<aaia:FuelType>Unleaded</aaia:FuelType>
+					<aaia:Transmission>Automatic</aaia:Transmission>
+					<aaia:DriveType>4WD</aaia:DriveType>
+					<Note>Only the VIN is available at this time for this vehicle</Note>
+				</aaia:Vehicle>
+			</aaia:Line>
+		</PurchaseOrder>
+	</DataArea>
+</aaia:CancelPurchaseOrder>

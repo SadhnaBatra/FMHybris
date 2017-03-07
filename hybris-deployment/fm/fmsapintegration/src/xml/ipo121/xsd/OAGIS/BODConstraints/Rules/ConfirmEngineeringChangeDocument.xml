@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sch:schema xmlns="http://www.ascc.net/xml/schematron" xmlns:oa="http://www.openapplications.org/oagis" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ascc.net/xml/schematron ../../../Utility/Schematron/schematron1-5.xsd">
+	<sch:title>Schematron Validator for OAGI Constraints</sch:title>
+	<sch:ns prefix="oa" uri="http://www.openapplications.org/oagis"/>
+	<sch:pattern name="Confirm Engineering Change Document">
+		<sch:rule context="oa:EngineeringChangeDocument">
+			<sch:assert test="oa:Header">The Confirm Engineering Change Document must have a Header component specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Confirm Engineering Change Document Header">
+		<sch:rule context="oa:EngineeringChangeDocument/oa:Header">
+			<sch:assert test="oa:DocumentId/oa:Id">The Header must have a "DocumentId" and "Id" specified</sch:assert>
+			<sch:assert test="oa:Site">The Header must have a Site specified</sch:assert>
+			<sch:assert test="oa:EngineeringChangeRevision">The Header must have an "EngineeringChangeRevision" component specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Engineering Change Revision">
+		<sch:rule context="oa:EngineeringChangeDocument/oa:Header/oa:EngineeringChangeRevision">
+			<sch:assert test="oa:Revision">The EngineeringChangeRevision must have a "Revision" specified</sch:assert>
+			<sch:assert test="oa:CreationDateTime">The EngineeringChangeRevision must have a "CreationDateTime" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Engineering Change Reviewer">
+		<sch:rule context="oa:EngineeringChangeDocument/oa:Header/oa:EngineeringChangeReviewer">
+			<sch:assert test="oa:Reviewer/oa:EmployeeId">The EngineeringChangeReviewer must have a "Reviewer" and "EmployeeId" specified</sch:assert>
+			<sch:assert test="oa:Status">The EngineeringChangeReviewer must have a "Status" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Revised BOM">
+		<sch:rule context="oa:EngineeringChangeDocument/oa:RevisedBOM">
+			<sch:assert test="oa:EffectiveDateTime">The RevisedBOM must have an "EffectiveDateTime" specified</sch:assert>
+			<sch:assert test="oa:BOMDocumentReference">The RevisedBOM must have a "BOMDocumentReference" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="BOMDocumentReference">
+		<sch:rule context="oa:BOMDocumentReference">
+			<sch:assert test="oa:DocumentId/oa:Id">The BOMDocumentReference must have a "DocumentId" and an "Id" specified</sch:assert>
+			<sch:assert test="oa:DocumentId/oa:Type">The BOMDocumentReference must have a "Type" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="RouteDocumentReference">
+		<sch:rule context="oa:RouteDocumentReference">
+			<sch:assert test="oa:DocumentId/oa:Id">The RouteDocumentReference must have a "DocumentId" and an "Id" specified</sch:assert>
+			<sch:assert test="oa:DocumentId/oa:Revision">The RouteDocumentReference must have a "Revision" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Revised BOM Component">
+		<sch:rule context="oa:EngineeringChangeDocument/oa:RevisedBOM/oa:RevisedBOMComponent">
+			<sch:assert test="oa:Item">The RevisedBOMComponent must have an "Item" specified</sch:assert>
+			<sch:assert test="oa:EffectivePeriod/oa:From">The RevisedBOMComponent must have a "From Date" specified</sch:assert>
+			<sch:assert test="oa:OperationSequence">The RevisedBOMComponent must have an Operation Sequence specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Item">
+		<sch:rule context="oa:EngineeringChangeDocument/oa:RevisedBOM/oa:RevisedBOMComponent/oa:Item">
+			<sch:assert test="oa:ItemId/oa:Id">The Item must have an"ItemId" and an "Id" specified</sch:assert>
+			<sch:assert test="oa:ItemId/oa:Revision">The Item must have a "Revision" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Revised Component Substitute">
+		<sch:rule context="oa:EngineeringChangeDocument/oa:RevisedBOM/oa:RevisedBOMComponent/oa:RevisedComponentSubstitute">
+			<sch:assert test="oa:Item/oa:ItemId/oa:Id">The RevisedComponentSubstitute must have an "Item" and "ItemId" and "Id" specified</sch:assert>
+			<sch:assert test="oa:EffectivePeriod/oa:From">The RevisedComponentSubstitute must have an "EffectivePeriod" and "FromDate" specified</sch:assert>
+			<sch:assert test="oa:ItemQuantity">The RevisedComponentSubstitute must have an "ItemQuantity" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Revised Component Revision">
+		<sch:rule context="oa:EngineeringChangeDocument/oa:RevisedBOM/oa:RevisedBOMComponent/oa:RevisedComponentRevision">
+			<sch:assert test="oa:oa:ItemRevision">The RevisedComponentRevision must have an "ItemRevision" specified</sch:assert>
+			<sch:assert test="oa:EffectivePeriod/oa:From">The RevisedComponentRevision must  have a "FromDate" specified</sch:assert>
+			<sch:assert test="oa:OperationSequence">The RevisedComponentRevision must  have an "OperationSequence" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Revised Reference Designator">
+		<sch:rule context="oa:EngineeringChangeDocument/oa:RevisedBOM/oa:RevisedBOMComponent/oa:RevisedReferenceDesignator">
+			<sch:assert test="oa:ReferenceDesignatorId">The RevisedReferenceDesignator must have an "ReferenceDesignatorId" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Revised Route Header">
+		<sch:rule context="oa:EngineeringChangeDocument/oa:RevisedRouteHeader">
+			<sch:assert test="oa:RouteDocumentReference">The RevisedRouteHeader must have a "Route Document Reference" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Operation Reference">
+		<sch:rule context="oa:OperationReference">
+			<sch:assert test="oa:OperationId | oaOperationGroupName">An OperationReference must have an  "OperationId" or an "OperationGroupName" specified</sch:assert>
+			<sch:assert test="oa:OperationSequence">An OperationReference must have an "Operation Sequence" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Revised Route Operation">
+		<sch:rule context="oa:EngineeringChangeDocument/oa:RevisedRouteHeader/oa:RevisedRouteOperation">
+			<sch:assert test="oa:OperationReference">A RevisedRouteOperation must have a "Operation Reference" specified</sch:assert>
+			<sch:assert test="oa:EffectivePeriod/oa:From">A RevisedRouteOperation must have a "From Date" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+</sch:schema>

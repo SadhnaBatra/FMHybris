@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Verbs/Cancel.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="Verb.xsd"/>
+        <xs:complexType name="Cancel">
+                <xs:complexContent>
+                        <xs:extension base="ConfirmableVerb"/>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:element name="Cancel" type="Cancel" substitutionGroup="Verb">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The CANCEL verb is used when the sender of the BOD is not the owner of the data, but is sending a request for the document to be canceled.An example is the CANCEL PO where the business implications must be calculated and a simple data processing term such as delete can not fully convey the business meaning and required processing associated with the meaning.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+</xs:schema>

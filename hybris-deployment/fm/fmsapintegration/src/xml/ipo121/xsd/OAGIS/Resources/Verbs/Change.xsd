@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Verbs/Change.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="Verb.xsd"/>
+        <xs:complexType name="Change">
+                <xs:complexContent>
+                        <xs:extension base="ConfirmableVerb"/>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:element name="Change" type="Change" substitutionGroup="Verb">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The CHANGE verb is used when the sender of the BOD is not the owner of the data, but is sending a request for the document to be changed.An example of this is CHANGE REQUISITN, where the original document needs to be changed based on a specific business event.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+</xs:schema>

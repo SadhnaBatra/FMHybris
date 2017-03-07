@@ -1,0 +1,969 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group Sample XML Data
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: ListDeliveryReceipt.xml
+-->
+<ListDeliveryReceipt xmlns="http://www.openapplications.org/oagis" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openapplications.org/oagis ../BODs/ListDeliveryReceipt.xsd" revision="8.0" environment="Production" lang="en-US">
+        <ApplicationArea>
+                <Sender>
+                        <LogicalId>String</LogicalId>
+                        <Component>String</Component>
+                        <Task>String</Task>
+                        <ReferenceId>String</ReferenceId>
+                        <Confirmation>0</Confirmation>
+                        <AuthorizationId>String</AuthorizationId>
+                </Sender>
+                <CreationDateTime>2001-12-17T09:30:47-05:00</CreationDateTime>
+                <Signature qualifyingAgency="String"/>
+                <BODId>String</BODId>
+                <UserArea/>
+        </ApplicationArea>
+        <DataArea>
+                <List confirm="Always" rsStart="2" rsCount="2" rsTotal="2" rsComplete="1" rsRef="String"/>
+                <DeliveryReceipt>
+                        <Header>
+                                <DocumentId>
+                                        <Id>String</Id>
+                                        <Revision>String</Revision>
+                                </DocumentId>
+                                <AlternateDocumentIds>
+                                        <BrokerDocumentId>
+                                                <Id>String</Id>
+                                                <Revision>String</Revision>
+                                        </BrokerDocumentId>
+                                </AlternateDocumentIds>
+                                <ActualFreightTotalCost currency="String">3.1415926535897932384626433832795</ActualFreightTotalCost>
+                                <DocumentDate>2002-10-10T00:00:00Z</DocumentDate>
+                                <LastModificationDateTime>2002-10-10T00:00:00Z</LastModificationDateTime>
+                                <EarliestShipDateTime>2002-10-10T00:00:00Z</EarliestShipDateTime>
+                                <Warehouse>String</Warehouse>
+                                <TotalFreightCost currency="String">3.1415926535897932384626433832795</TotalFreightCost>
+                                <PartialShipmentInd>1</PartialShipmentInd>
+                                <Priority>String</Priority>
+                                <ShipUnitQuantity uom="NMTOKEN">3.1415926535897932384626433832795</ShipUnitQuantity>
+                                <Route>String</Route>
+                                <RouteType>String</RouteType>
+                                <OriginationCountry>String</OriginationCountry>
+                                <EstimatedWeight uom="NMTOKEN">3.1415926535897932384626433832795</EstimatedWeight>
+                                <LoadingWeight uom="NMTOKEN">3.1415926535897932384626433832795</LoadingWeight>
+                                <NetWeight uom="NMTOKEN">3.1415926535897932384626433832795</NetWeight>
+                                <TotalWeight uom="NMTOKEN">3.1415926535897932384626433832795</TotalWeight>
+                                <TotalVolume uom="NMTOKEN">3.1415926535897932384626433832795</TotalVolume>
+                                <Description lang="en-us" owner="String">String</Description>
+                                <Note lang="en-us" author="String" entryDateTime="2002-10-10T00:00:00Z">String</Note>
+                                <SpecialHandlingNote lang="en-us" author="String" entryDateTime="2002-10-10T00:00:00Z">String</SpecialHandlingNote>
+                                <ShippingNote lang="en-us" author="String" entryDateTime="2002-10-10T00:00:00Z">String</ShippingNote>
+                                <TransportationTerm>
+                                        <TermCode issuingAgency="String">String</TermCode>
+                                        <PlaceOfOwnershipTransfer>
+                                                <Name lang="en-us">String</Name>
+                                                <Id>String</Id>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <PostalAddress>
+                                                        <AddressId qualifyingAgency="String">String</AddressId>
+                                                        <AddressLine>String</AddressLine>
+                                                        <City>String</City>
+                                                        <County>String</County>
+                                                        <StateOrProvince>String</StateOrProvince>
+                                                        <Country>String</Country>
+                                                        <Region>String</Region>
+                                                        <PostalCode>String</PostalCode>
+                                                        <Description lang="en-us" owner="String">String</Description>
+                                                        <UserArea/>
+                                                </PostalAddress>
+                                                <GPSCoordinates>
+                                                        <GPSSystemType>Text</GPSSystemType>
+                                                        <Latitude>Text</Latitude>
+                                                        <Longitude>Text</Longitude>
+                                                        <UserArea/>
+                                                </GPSCoordinates>
+                                                <LocationRelationship>
+                                                        <Binder>String</Binder>
+                                                        <Location>
+                                                                <Name lang="en-us">String</Name>
+                                                                <Id>String</Id>
+                                                                <Description lang="en-us" owner="String">String</Description>
+                                                                <PostalAddress>
+                                                                        <AddressId qualifyingAgency="String">String</AddressId>
+                                                                        <AddressLine>String</AddressLine>
+                                                                        <City>String</City>
+                                                                        <County>String</County>
+                                                                        <StateOrProvince>String</StateOrProvince>
+                                                                        <Country>String</Country>
+                                                                        <Region>String</Region>
+                                                                        <PostalCode>String</PostalCode>
+                                                                        <Description lang="en-us" owner="String">String</Description>
+                                                                        <UserArea/>
+                                                                </PostalAddress>
+                                                                <GPSCoordinates>
+                                                                        <GPSSystemType>Text</GPSSystemType>
+                                                                        <Latitude>Text</Latitude>
+                                                                        <Longitude>Text</Longitude>
+                                                                        <UserArea/>
+                                                                </GPSCoordinates>
+                                                                <Note lang="en-us" author="String" entryDateTime="2002-10-10T00:00:00Z">String</Note>
+                                                                <UserArea/>
+                                                        </Location>
+                                                </LocationRelationship>
+                                                <Note lang="en-us" author="String" entryDateTime="2002-10-10T00:00:00Z">String</Note>
+                                                <UserArea/>
+                                        </PlaceOfOwnershipTransfer>
+                                        <FreightTerms>String</FreightTerms>
+                                        <UserArea/>
+                                </TransportationTerm>
+                                <ActualTemperature scale="Celsius" entryDateTime="2002-10-10T00:00:00Z">3.1415926535897932384626433832795</ActualTemperature>
+                                <LoadingTemperature scale="Celsius" entryDateTime="2002-10-10T00:00:00Z">3.1415926535897932384626433832795</LoadingTemperature>
+                                <DeliveryTemperature scale="Celsius" entryDateTime="2002-10-10T00:00:00Z">3.1415926535897932384626433832795</DeliveryTemperature>
+                                <Charges>
+                                        <Charge>
+                                                <Id>String</Id>
+                                                <Total currency="String">3.1415926535897932384626433832795</Total>
+                                                <Cost>
+                                                        <Amount currency="String">3.1415926535897932384626433832795</Amount>
+                                                        <FunctionalAmout currency="String">3.1415926535897932384626433832795</FunctionalAmout>
+                                                        <PerQuantity uom="NMTOKEN">3.1415926535897932384626433832795</PerQuantity>
+                                                </Cost>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <Distribution>
+                                                        <Amount>
+                                                                <Actual currency="String">3.1415926535897932384626433832795</Actual>
+                                                                <Converted currency="String" conversionFactor="3.1415926535897932384626433832795">3.1415926535897932384626433832795</Converted>
+                                                        </Amount>
+                                                        <Ledger>String</Ledger>
+                                                        <GLEntity>String</GLEntity>
+                                                        <Business>
+                                                                <Id>String</Id>
+                                                                <Function>String</Function>
+                                                                <Name lang="en-us">String</Name>
+                                                                <RelatedUnit>
+                                                                        <Relationship>String</Relationship>
+                                                                        <Unit>
+                                                                                <Id>String</Id>
+                                                                                <Function>String</Function>
+                                                                                <Name lang="en-us">String</Name>
+                                                                                <UserArea/>
+                                                                        </Unit>
+                                                                </RelatedUnit>
+                                                                <UserArea/>
+                                                        </Business>
+                                                        <CostCenter>String</CostCenter>
+                                                        <ProfitCenter>String</ProfitCenter>
+                                                        <Fund>String</Fund>
+                                                        <Project>
+                                                                <Id>String</Id>
+                                                                <Status>String</Status>
+                                                                <EffectivePeriod inclusive="true">
+                                                                        <From>2002-04-05</From>
+                                                                        <Duration>P1Y2M3DT10H30M</Duration>
+                                                                </EffectivePeriod>
+                                                                <Authorization>
+                                                                        <Id>String</Id>
+                                                                        <Type>Text</Type>
+                                                                        <Status>
+                                                                                <Code>123</Code>
+                                                                        </Status>
+                                                                        <DateAuthorized>2002-04-05</DateAuthorized>
+                                                                        <EffectivePeriod inclusive="true">
+                                                                                <From>2002-04-05</From>
+                                                                                <Duration>P1Y2M3DT10H30M</Duration>
+                                                                        </EffectivePeriod>
+                                                                        <AuthorizationCode>Text</AuthorizationCode>
+                                                                </Authorization>
+                                                                <TransactionType>String</TransactionType>
+                                                                <TotalCost>
+                                                                        <Actual currency="String">3.1415926535897932384626433832795</Actual>
+                                                                        <Converted currency="String" conversionFactor="3.1415926535897932384626433832795">3.1415926535897932384626433832795</Converted>
+                                                                </TotalCost>
+                                                                <GLElement>
+                                                                        <NameValue name="String" type="String">String</NameValue>
+                                                                        <Description lang="en-us" owner="String">String</Description>
+                                                                        <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                                        <UserArea/>
+                                                                </GLElement>
+                                                                <ProjectResourceCategory>String</ProjectResourceCategory>
+                                                                <Activity>
+                                                                        <Id>String</Id>
+                                                                        <Status>String</Status>
+                                                                        <Cost>
+                                                                                <Actual currency="String">3.1415926535897932384626433832795</Actual>
+                                                                                <Converted currency="String" conversionFactor="3.1415926535897932384626433832795">3.1415926535897932384626433832795</Converted>
+                                                                        </Cost>
+                                                                        <Description lang="en-us" owner="String">String</Description>
+                                                                        <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                                        <UserArea/>
+                                                                </Activity>
+                                                                <DocumentReferences>
+                                                                        <PurchaseOrderDocumentReference/>
+                                                                </DocumentReferences>
+                                                                <Attachments>
+                                                                        <Attachment inline="false">
+                                                                                <EmbeddedData encoding="base64">
+                                                                                        <Data>Text</Data>
+                                                                                </EmbeddedData>
+                                                                                <DocumentDate>2002-04-05</DocumentDate>
+                                                                                <Description lang="en-us" owner="String">String</Description>
+                                                                                <FileType>String</FileType>
+                                                                                <FileSize>3.1415926535897932384626433832795</FileSize>
+                                                                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                                                <Title lang="en-us">String</Title>
+                                                                                <UserArea/>
+                                                                        </Attachment>
+                                                                </Attachments>
+                                                                <UserArea/>
+                                                        </Project>
+                                                        <UserArea/>
+                                                </Distribution>
+                                                <UserArea/>
+                                        </Charge>
+                                        <TotalCharge>
+                                                <Id>String</Id>
+                                                <Total currency="String">3.1415926535897932384626433832795</Total>
+                                                <Cost>
+                                                        <Amount currency="String">3.1415926535897932384626433832795</Amount>
+                                                        <FunctionalAmout currency="String">3.1415926535897932384626433832795</FunctionalAmout>
+                                                        <PerQuantity uom="NMTOKEN">3.1415926535897932384626433832795</PerQuantity>
+                                                </Cost>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <Distribution>
+                                                        <Amount>
+                                                                <Actual currency="String">3.1415926535897932384626433832795</Actual>
+                                                                <Converted currency="String" conversionFactor="3.1415926535897932384626433832795">3.1415926535897932384626433832795</Converted>
+                                                        </Amount>
+                                                        <Ledger>String</Ledger>
+                                                        <GLEntity>String</GLEntity>
+                                                        <Business>
+                                                                <Id>String</Id>
+                                                                <Function>String</Function>
+                                                                <Name lang="en-us">String</Name>
+                                                                <RelatedUnit>
+                                                                        <Relationship>String</Relationship>
+                                                                        <Unit>
+                                                                                <Id>String</Id>
+                                                                                <Function>String</Function>
+                                                                                <Name lang="en-us">String</Name>
+                                                                                <UserArea/>
+                                                                        </Unit>
+                                                                </RelatedUnit>
+                                                                <UserArea/>
+                                                        </Business>
+                                                        <CostCenter>String</CostCenter>
+                                                        <ProfitCenter>String</ProfitCenter>
+                                                        <Fund>String</Fund>
+                                                        <Project>
+                                                                <Id>String</Id>
+                                                                <Status>String</Status>
+                                                                <EffectivePeriod inclusive="true">
+                                                                        <From>2002-04-05</From>
+                                                                        <Duration>P1Y2M3DT10H30M</Duration>
+                                                                </EffectivePeriod>
+                                                                <Authorization>
+                                                                        <Id>String</Id>
+                                                                        <Type>Text</Type>
+                                                                        <Status>
+                                                                                <Code>123</Code>
+                                                                        </Status>
+                                                                        <DateAuthorized>2002-04-05</DateAuthorized>
+                                                                        <EffectivePeriod inclusive="true">
+                                                                                <From>2002-04-05</From>
+                                                                                <Duration>P1Y2M3DT10H30M</Duration>
+                                                                        </EffectivePeriod>
+                                                                        <AuthorizationCode>Text</AuthorizationCode>
+                                                                </Authorization>
+                                                                <TransactionType>String</TransactionType>
+                                                                <TotalCost>
+                                                                        <Actual currency="String">3.1415926535897932384626433832795</Actual>
+                                                                        <Converted currency="String" conversionFactor="3.1415926535897932384626433832795">3.1415926535897932384626433832795</Converted>
+                                                                </TotalCost>
+                                                                <GLElement>
+                                                                        <NameValue name="String" type="String">String</NameValue>
+                                                                        <Description lang="en-us" owner="String">String</Description>
+                                                                        <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                                        <UserArea/>
+                                                                </GLElement>
+                                                                <ProjectResourceCategory>String</ProjectResourceCategory>
+                                                                <Activity>
+                                                                        <Id>String</Id>
+                                                                        <Status>String</Status>
+                                                                        <Cost>
+                                                                                <Actual currency="String">3.1415926535897932384626433832795</Actual>
+                                                                                <Converted currency="String" conversionFactor="3.1415926535897932384626433832795">3.1415926535897932384626433832795</Converted>
+                                                                        </Cost>
+                                                                        <Description lang="en-us" owner="String">String</Description>
+                                                                        <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                                        <UserArea/>
+                                                                </Activity>
+                                                                <DocumentReferences>
+                                                                        <PurchaseOrderDocumentReference/>
+                                                                </DocumentReferences>
+                                                                <Attachments>
+                                                                        <Attachment inline="false">
+                                                                                <EmbeddedData encoding="base64">
+                                                                                        <Data>Text</Data>
+                                                                                </EmbeddedData>
+                                                                                <DocumentDate>2002-04-05</DocumentDate>
+                                                                                <Description lang="en-us" owner="String">String</Description>
+                                                                                <FileType>String</FileType>
+                                                                                <FileSize>3.1415926535897932384626433832795</FileSize>
+                                                                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                                                <Title lang="en-us">String</Title>
+                                                                                <UserArea/>
+                                                                        </Attachment>
+                                                                </Attachments>
+                                                                <UserArea/>
+                                                        </Project>
+                                                        <UserArea/>
+                                                </Distribution>
+                                                <UserArea/>
+                                        </TotalCharge>
+                                </Charges>
+                                <DocumentReferences>
+                                        <ShipmentDocumentReference/>
+                                </DocumentReferences>
+                                <Attachments>
+                                        <Attachment inline="false">
+                                                <EmbeddedData encoding="base64">
+                                                        <Data>Text</Data>
+                                                </EmbeddedData>
+                                                <DocumentDate>2002-04-05</DocumentDate>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <FileType>String</FileType>
+                                                <FileSize>3.1415926535897932384626433832795</FileSize>
+                                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                <Title lang="en-us">String</Title>
+                                                <UserArea/>
+                                        </Attachment>
+                                </Attachments>
+                                <Type>
+                                        <Code>123</Code>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <Change>
+                                                <From>String</From>
+                                                <To>String</To>
+                                                <ChangeDate>2002-10-10</ChangeDate>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <UserArea/>
+                                        </Change>
+                                        <UserArea/>
+                                </Type>
+                                <Disposition>
+                                        <Code>String</Code>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <Change>
+                                                <From>String</From>
+                                                <To>String</To>
+                                                <ChangeDate>2002-10-10</ChangeDate>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <UserArea/>
+                                        </Change>
+                                        <UserArea/>
+                                </Disposition>
+                                <ReceivedBy>
+                                        <SystemId>String</SystemId>
+                                        <Authorization>
+                                                <Id>String</Id>
+                                                <Type>Text</Type>
+                                                <Status>
+                                                        <Code>123</Code>
+                                                </Status>
+                                                <DateAuthorized>2002-04-05</DateAuthorized>
+                                                <EffectivePeriod inclusive="true">
+                                                        <From>2002-04-05</From>
+                                                        <Duration>P1Y2M3DT10H30M</Duration>
+                                                </EffectivePeriod>
+                                                <AuthorizationCode>Text</AuthorizationCode>
+                                        </Authorization>
+                                        <UserArea/>
+                                </ReceivedBy>
+                                <DockId>String</DockId>
+                                <Site>
+                                        <Name lang="en-us">String</Name>
+                                        <Id>String</Id>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <PostalAddress>
+                                                <AddressId qualifyingAgency="String">String</AddressId>
+                                                <AddressLine>String</AddressLine>
+                                                <City>String</City>
+                                                <County>String</County>
+                                                <StateOrProvince>String</StateOrProvince>
+                                                <Country>String</Country>
+                                                <Region>String</Region>
+                                                <PostalCode>String</PostalCode>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <UserArea/>
+                                        </PostalAddress>
+                                        <GPSCoordinates>
+                                                <GPSSystemType>Text</GPSSystemType>
+                                                <Latitude>Text</Latitude>
+                                                <Longitude>Text</Longitude>
+                                                <UserArea/>
+                                        </GPSCoordinates>
+                                        <LocationRelationship>
+                                                <Binder>String</Binder>
+                                                <Location>
+                                                        <Name lang="en-us">String</Name>
+                                                        <Id>String</Id>
+                                                        <Description lang="en-us" owner="String">String</Description>
+                                                        <PostalAddress>
+                                                                <AddressId qualifyingAgency="String">String</AddressId>
+                                                                <AddressLine>String</AddressLine>
+                                                                <City>String</City>
+                                                                <County>String</County>
+                                                                <StateOrProvince>String</StateOrProvince>
+                                                                <Country>String</Country>
+                                                                <Region>String</Region>
+                                                                <PostalCode>String</PostalCode>
+                                                                <Description lang="en-us" owner="String">String</Description>
+                                                                <UserArea/>
+                                                        </PostalAddress>
+                                                        <GPSCoordinates>
+                                                                <GPSSystemType>Text</GPSSystemType>
+                                                                <Latitude>Text</Latitude>
+                                                                <Longitude>Text</Longitude>
+                                                                <UserArea/>
+                                                        </GPSCoordinates>
+                                                        <Note lang="en-us" author="String" entryDateTime="2002-10-10T00:00:00Z">String</Note>
+                                                        <UserArea/>
+                                                </Location>
+                                        </LocationRelationship>
+                                        <Note lang="en-us" author="String" entryDateTime="2002-10-10T00:00:00Z">String</Note>
+                                        <UserArea/>
+                                </Site>
+                                <DistributionCenter>
+                                        <Name lang="en-us">String</Name>
+                                        <Id>String</Id>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <PostalAddress>
+                                                <AddressId qualifyingAgency="String">String</AddressId>
+                                                <AddressLine>String</AddressLine>
+                                                <City>String</City>
+                                                <County>String</County>
+                                                <StateOrProvince>String</StateOrProvince>
+                                                <Country>String</Country>
+                                                <Region>String</Region>
+                                                <PostalCode>String</PostalCode>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <UserArea/>
+                                        </PostalAddress>
+                                        <GPSCoordinates>
+                                                <GPSSystemType>Text</GPSSystemType>
+                                                <Latitude>Text</Latitude>
+                                                <Longitude>Text</Longitude>
+                                                <UserArea/>
+                                        </GPSCoordinates>
+                                        <LocationRelationship>
+                                                <Binder>String</Binder>
+                                                <Location>
+                                                        <Name lang="en-us">String</Name>
+                                                        <Id>String</Id>
+                                                        <Description lang="en-us" owner="String">String</Description>
+                                                        <PostalAddress>
+                                                                <AddressId qualifyingAgency="String">String</AddressId>
+                                                                <AddressLine>String</AddressLine>
+                                                                <City>String</City>
+                                                                <County>String</County>
+                                                                <StateOrProvince>String</StateOrProvince>
+                                                                <Country>String</Country>
+                                                                <Region>String</Region>
+                                                                <PostalCode>String</PostalCode>
+                                                                <Description lang="en-us" owner="String">String</Description>
+                                                                <UserArea/>
+                                                        </PostalAddress>
+                                                        <GPSCoordinates>
+                                                                <GPSSystemType>Text</GPSSystemType>
+                                                                <Latitude>Text</Latitude>
+                                                                <Longitude>Text</Longitude>
+                                                                <UserArea/>
+                                                        </GPSCoordinates>
+                                                        <Note lang="en-us" author="String" entryDateTime="2002-10-10T00:00:00Z">String</Note>
+                                                        <UserArea/>
+                                                </Location>
+                                        </LocationRelationship>
+                                        <Note lang="en-us" author="String" entryDateTime="2002-10-10T00:00:00Z">String</Note>
+                                        <UserArea/>
+                                </DistributionCenter>
+                                <DeliverToContact>
+                                        <Person>
+                                                <PersonCode>String</PersonCode>
+                                                <PersonName>
+                                                        <Salutation lang="en-us">String</Salutation>
+                                                        <GivenName lang="en-us">String</GivenName>
+                                                        <PreferredGivenName lang="en-us">String</PreferredGivenName>
+                                                        <MiddleName lang="en-us">String</MiddleName>
+                                                        <FamilyName lang="en-us">String</FamilyName>
+                                                        <Suffix lang="en-us">String</Suffix>
+                                                        <FormattedName lang="en-us">String</FormattedName>
+                                                        <UserArea/>
+                                                </PersonName>
+                                                <UserArea/>
+                                        </Person>
+                                        <Telephone>String</Telephone>
+                                        <EMailAddress>String</EMailAddress>
+                                        <Fax>String</Fax>
+                                        <URI>http://www.xmlspy.com</URI>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <Addresses>
+                                                <Address>
+                                                        <AddressId qualifyingAgency="String">String</AddressId>
+                                                        <AddressLine>String</AddressLine>
+                                                        <City>String</City>
+                                                        <County>String</County>
+                                                        <StateOrProvince>String</StateOrProvince>
+                                                        <Country>String</Country>
+                                                        <Region>String</Region>
+                                                        <PostalCode>String</PostalCode>
+                                                        <Description lang="en-us" owner="String">String</Description>
+                                                        <Telephone>String</Telephone>
+                                                        <FaxNumber>String</FaxNumber>
+                                                        <EMailAddress>String</EMailAddress>
+                                                        <URI>http://www.xmlspy.com</URI>
+                                                        <TaxJurisdiction>String</TaxJurisdiction>
+                                                        <UserArea/>
+                                                </Address>
+                                        </Addresses>
+                                        <UserArea/>
+                                </DeliverToContact>
+                                <ContainersShippedQuantity uom="NMTOKEN">3.1415926535897932384626433832795</ContainersShippedQuantity>
+                                <ShippedDateTime>2002-10-10T00:00:00Z</ShippedDateTime>
+                                <ReceivedDateTime>2002-10-10T00:00:00Z</ReceivedDateTime>
+                                <EffectivePeriod inclusive="true">
+                                        <From>2002-10-10T00:00:00Z</From>
+                                        <Duration>P1Y2M3DT10H30M</Duration>
+                                </EffectivePeriod>
+                                <ScheduledDeliveryDateTime>2002-10-10T00:00:00Z</ScheduledDeliveryDateTime>
+                                <ActualDeliveryDateTime>2002-10-10T00:00:00Z</ActualDeliveryDateTime>
+                                <ContainerId>String</ContainerId>
+                                <ContainerType>String</ContainerType>
+                                <ContainerSealId>String</ContainerSealId>
+                                <TrackingId>String</TrackingId>
+                                <BillOfLadingId>String</BillOfLadingId>
+                                <Parties>
+                                        <CarrierParty>
+                                                <PartyId>
+                                                        <Id>1234</Id>
+                                                </PartyId>
+                                        </CarrierParty>
+                                        <ShipFromParty>
+                                                <PartyId>
+                                                        <Id>1234</Id>
+                                                </PartyId>
+                                                <Addresses>
+                                                        <Address/>
+                                                </Addresses>
+                                        </ShipFromParty>
+                                        <ShipToParty>
+                                                <PartyId>
+                                                        <Id>1234</Id>
+                                                </PartyId>
+                                                <Addresses>
+                                                        <Address/>
+                                                </Addresses>
+                                        </ShipToParty>
+                                </Parties>
+                                <UserArea/>
+                        </Header>
+                        <ReceiptLine>
+                                <LineNumber>String</LineNumber>
+                                <ItemIds>
+                                        <ItemId>
+                                                <Id>String</Id>
+                                                <EANUCC13 url="String">String</EANUCC13>
+                                                <UPC url="String">String</UPC>
+                                                <Revision>String</Revision>
+                                        </ItemId>
+                                        <BuyerItemId>
+                                                <Id>String</Id>
+                                                <Revision>String</Revision>
+                                                <AssigningPartyId>
+                                                        <Id>12345</Id>
+                                                </AssigningPartyId>
+                                        </BuyerItemId>
+                                </ItemIds>
+                                <PackingMaterial>String</PackingMaterial>
+                                <OwnershipCode>String</OwnershipCode>
+                                <ImportLicenseRequired>1</ImportLicenseRequired>
+                                <HazardousMaterial>
+                                        <Code issuingAgency="String">String</Code>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <UserArea/>
+                                </HazardousMaterial>
+                                <FreightClass>String</FreightClass>
+                                <ItemDisposition>
+                                        <Code>String</Code>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <Change>
+                                                <From>String</From>
+                                                <To>String</To>
+                                                <ChangeDate>2002-10-10</ChangeDate>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <UserArea/>
+                                        </Change>
+                                        <UserArea/>
+                                </ItemDisposition>
+                                <ReceiptQuantity uom="NMTOKEN">3.1415926535897932384626433832795</ReceiptQuantity>
+                                <ActualDeliveryDateTime>2002-10-10T00:00:00Z</ActualDeliveryDateTime>
+                                <ReceiptValue>
+                                        <Actual currency="String">3.1415926535897932384626433832795</Actual>
+                                        <Converted currency="String" conversionFactor="3.1415926535897932384626433832795">3.1415926535897932384626433832795</Converted>
+                                </ReceiptValue>
+                                <ReceiptDisposition>
+                                        <Code>String</Code>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <Change>
+                                                <From>String</From>
+                                                <To>String</To>
+                                                <ChangeDate>2002-10-10</ChangeDate>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <UserArea/>
+                                        </Change>
+                                        <UserArea/>
+                                </ReceiptDisposition>
+                                <CatchWeightQuantity uom="NMTOKEN">3.1415926535897932384626433832795</CatchWeightQuantity>
+                                <CatchWeightConversionFactor>3.14159</CatchWeightConversionFactor>
+                                <OrderedQuantity uom="NMTOKEN">3.1415926535897932384626433832795</OrderedQuantity>
+                                <ShippedQuantity uom="NMTOKEN">3.1415926535897932384626433832795</ShippedQuantity>
+                                <PackingQuantity uom="NMTOKEN">3.1415926535897932384626433832795</PackingQuantity>
+                                <ReturnedQuantity uom="NMTOKEN">3.1415926535897932384626433832795</ReturnedQuantity>
+                                <OpenQuantity uom="NMTOKEN">3.1415926535897932384626433832795</OpenQuantity>
+                                <NetWeight uom="NMTOKEN">3.1415926535897932384626433832795</NetWeight>
+                                <BackOrderedQuantity uom="NMTOKEN">3.1415926535897932384626433832795</BackOrderedQuantity>
+                                <Lot>
+                                        <LotId>String</LotId>
+                                        <SubLotId>String</SubLotId>
+                                        <EffectivePeriod inclusive="true">
+                                                <From>2002-04-05T00:00:00Z</From>
+                                                <Duration>P1Y2M3DT10H30M</Duration>
+                                        </EffectivePeriod>
+                                        <UserArea/>
+                                </Lot>
+                                <Site>
+                                        <Name lang="en-us">String</Name>
+                                        <Id>String</Id>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <PostalAddress>
+                                                <AddressId qualifyingAgency="String">String</AddressId>
+                                                <AddressLine>String</AddressLine>
+                                                <City>String</City>
+                                                <County>String</County>
+                                                <StateOrProvince>String</StateOrProvince>
+                                                <Country>String</Country>
+                                                <Region>String</Region>
+                                                <PostalCode>String</PostalCode>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <UserArea/>
+                                        </PostalAddress>
+                                        <GPSCoordinates>
+                                                <GPSSystemType>Text</GPSSystemType>
+                                                <Latitude>Text</Latitude>
+                                                <Longitude>Text</Longitude>
+                                                <UserArea/>
+                                        </GPSCoordinates>
+                                        <LocationRelationship>
+                                                <Binder>String</Binder>
+                                                <Location>
+                                                        <Name lang="en-us">String</Name>
+                                                        <Id>String</Id>
+                                                        <Description lang="en-us" owner="String">String</Description>
+                                                        <PostalAddress>
+                                                                <AddressId qualifyingAgency="String">String</AddressId>
+                                                                <AddressLine>String</AddressLine>
+                                                                <City>String</City>
+                                                                <County>String</County>
+                                                                <StateOrProvince>String</StateOrProvince>
+                                                                <Country>String</Country>
+                                                                <Region>String</Region>
+                                                                <PostalCode>String</PostalCode>
+                                                                <Description lang="en-us" owner="String">String</Description>
+                                                                <UserArea/>
+                                                        </PostalAddress>
+                                                        <GPSCoordinates>
+                                                                <GPSSystemType>Text</GPSSystemType>
+                                                                <Latitude>Text</Latitude>
+                                                                <Longitude>Text</Longitude>
+                                                                <UserArea/>
+                                                        </GPSCoordinates>
+                                                        <Note lang="en-us" author="String" entryDateTime="2002-10-10T00:00:00Z">String</Note>
+                                                        <UserArea/>
+                                                </Location>
+                                        </LocationRelationship>
+                                        <Note lang="en-us" author="String" entryDateTime="2002-10-10T00:00:00Z">String</Note>
+                                        <UserArea/>
+                                </Site>
+                                <OriginationCountry>String</OriginationCountry>
+                                <Description lang="en-us" owner="String">String</Description>
+                                <ReceiptDiscrepancy>
+                                        <Type>String</Type>
+                                        <ReasonCode>String</ReasonCode>
+                                        <ItemQuantity uom="NMTOKEN">3.1415926535897932384626433832795</ItemQuantity>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <Note lang="en-us" author="String" entryDateTime="2002-10-10T00:00:00Z">String</Note>
+                                        <UserArea/>
+                                </ReceiptDiscrepancy>
+                                <InventoryDetail>
+                                        <ItemQuantity uom="NMTOKEN">3.1415926535897932384626433832795</ItemQuantity>
+                                        <Lot>
+                                                <LotId>String</LotId>
+                                                <SubLotId>String</SubLotId>
+                                                <EffectivePeriod inclusive="true">
+                                                        <From>2002-04-05T00:00:00Z</From>
+                                                        <Duration>P1Y2M3DT10H30M</Duration>
+                                                </EffectivePeriod>
+                                                <UserArea/>
+                                        </Lot>
+                                        <ParentLot>
+                                                <LotId>String</LotId>
+                                                <SubLotId>String</SubLotId>
+                                                <EffectivePeriod inclusive="true">
+                                                        <From>2002-04-05T00:00:00Z</From>
+                                                        <Duration>P1Y2M3DT10H30M</Duration>
+                                                </EffectivePeriod>
+                                                <UserArea/>
+                                        </ParentLot>
+                                        <Disposition>
+                                                <Code>String</Code>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <Change>
+                                                        <From>String</From>
+                                                        <To>String</To>
+                                                        <ChangeDate>2002-10-10</ChangeDate>
+                                                        <Description lang="en-us" owner="String">String</Description>
+                                                        <UserArea/>
+                                                </Change>
+                                                <UserArea/>
+                                        </Disposition>
+                                        <SerialNumber>String</SerialNumber>
+                                        <ParentSerialNumber>String</ParentSerialNumber>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <Note lang="en-us" author="String" entryDateTime="2002-10-10T00:00:00Z">String</Note>
+                                        <UserArea/>
+                                </InventoryDetail>
+                                <Charges>
+                                        <Charge>
+                                                <Id>String</Id>
+                                                <Total currency="String">3.1415926535897932384626433832795</Total>
+                                                <Cost>
+                                                        <Amount currency="String">3.1415926535897932384626433832795</Amount>
+                                                        <FunctionalAmout currency="String">3.1415926535897932384626433832795</FunctionalAmout>
+                                                        <PerQuantity uom="NMTOKEN">3.1415926535897932384626433832795</PerQuantity>
+                                                </Cost>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <Distribution>
+                                                        <Amount>
+                                                                <Actual currency="String">3.1415926535897932384626433832795</Actual>
+                                                                <Converted currency="String" conversionFactor="3.1415926535897932384626433832795">3.1415926535897932384626433832795</Converted>
+                                                        </Amount>
+                                                        <Ledger>String</Ledger>
+                                                        <GLEntity>String</GLEntity>
+                                                        <Business>
+                                                                <Id>String</Id>
+                                                                <Function>String</Function>
+                                                                <Name lang="en-us">String</Name>
+                                                                <RelatedUnit>
+                                                                        <Relationship>String</Relationship>
+                                                                        <Unit>
+                                                                                <Id>String</Id>
+                                                                                <Function>String</Function>
+                                                                                <Name lang="en-us">String</Name>
+                                                                                <UserArea/>
+                                                                        </Unit>
+                                                                </RelatedUnit>
+                                                                <UserArea/>
+                                                        </Business>
+                                                        <CostCenter>String</CostCenter>
+                                                        <ProfitCenter>String</ProfitCenter>
+                                                        <Fund>String</Fund>
+                                                        <Project>
+                                                                <Id>String</Id>
+                                                                <Status>String</Status>
+                                                                <EffectivePeriod inclusive="true">
+                                                                        <From>2002-04-05</From>
+                                                                        <Duration>P1Y2M3DT10H30M</Duration>
+                                                                </EffectivePeriod>
+                                                                <Authorization>
+                                                                        <Id>String</Id>
+                                                                        <Type>Text</Type>
+                                                                        <Status>
+                                                                                <Code>123</Code>
+                                                                        </Status>
+                                                                        <DateAuthorized>2002-04-05</DateAuthorized>
+                                                                        <EffectivePeriod inclusive="true">
+                                                                                <From>2002-04-05</From>
+                                                                                <Duration>P1Y2M3DT10H30M</Duration>
+                                                                        </EffectivePeriod>
+                                                                        <AuthorizationCode>Text</AuthorizationCode>
+                                                                </Authorization>
+                                                                <TransactionType>String</TransactionType>
+                                                                <TotalCost>
+                                                                        <Actual currency="String">3.1415926535897932384626433832795</Actual>
+                                                                        <Converted currency="String" conversionFactor="3.1415926535897932384626433832795">3.1415926535897932384626433832795</Converted>
+                                                                </TotalCost>
+                                                                <GLElement>
+                                                                        <NameValue name="String" type="String">String</NameValue>
+                                                                        <Description lang="en-us" owner="String">String</Description>
+                                                                        <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                                        <UserArea/>
+                                                                </GLElement>
+                                                                <ProjectResourceCategory>String</ProjectResourceCategory>
+                                                                <Activity>
+                                                                        <Id>String</Id>
+                                                                        <Status>String</Status>
+                                                                        <Cost>
+                                                                                <Actual currency="String">3.1415926535897932384626433832795</Actual>
+                                                                                <Converted currency="String" conversionFactor="3.1415926535897932384626433832795">3.1415926535897932384626433832795</Converted>
+                                                                        </Cost>
+                                                                        <Description lang="en-us" owner="String">String</Description>
+                                                                        <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                                        <UserArea/>
+                                                                </Activity>
+                                                                <DocumentReferences>
+                                                                        <PurchaseOrderDocumentReference/>
+                                                                </DocumentReferences>
+                                                                <Attachments>
+                                                                        <Attachment inline="false">
+                                                                                <EmbeddedData encoding="base64">
+                                                                                        <Data>Text</Data>
+                                                                                </EmbeddedData>
+                                                                                <DocumentDate>2002-04-05</DocumentDate>
+                                                                                <Description lang="en-us" owner="String">String</Description>
+                                                                                <FileType>String</FileType>
+                                                                                <FileSize>3.1415926535897932384626433832795</FileSize>
+                                                                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                                                <Title lang="en-us">String</Title>
+                                                                                <UserArea/>
+                                                                        </Attachment>
+                                                                </Attachments>
+                                                                <UserArea/>
+                                                        </Project>
+                                                        <UserArea/>
+                                                </Distribution>
+                                                <UserArea/>
+                                        </Charge>
+                                        <TotalCharge>
+                                                <Id>String</Id>
+                                                <Total currency="String">3.1415926535897932384626433832795</Total>
+                                                <Cost>
+                                                        <Amount currency="String">3.1415926535897932384626433832795</Amount>
+                                                        <FunctionalAmout currency="String">3.1415926535897932384626433832795</FunctionalAmout>
+                                                        <PerQuantity uom="NMTOKEN">3.1415926535897932384626433832795</PerQuantity>
+                                                </Cost>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <Distribution>
+                                                        <Amount>
+                                                                <Actual currency="String">3.1415926535897932384626433832795</Actual>
+                                                                <Converted currency="String" conversionFactor="3.1415926535897932384626433832795">3.1415926535897932384626433832795</Converted>
+                                                        </Amount>
+                                                        <Ledger>String</Ledger>
+                                                        <GLEntity>String</GLEntity>
+                                                        <Business>
+                                                                <Id>String</Id>
+                                                                <Function>String</Function>
+                                                                <Name lang="en-us">String</Name>
+                                                                <RelatedUnit>
+                                                                        <Relationship>String</Relationship>
+                                                                        <Unit>
+                                                                                <Id>String</Id>
+                                                                                <Function>String</Function>
+                                                                                <Name lang="en-us">String</Name>
+                                                                                <UserArea/>
+                                                                        </Unit>
+                                                                </RelatedUnit>
+                                                                <UserArea/>
+                                                        </Business>
+                                                        <CostCenter>String</CostCenter>
+                                                        <ProfitCenter>String</ProfitCenter>
+                                                        <Fund>String</Fund>
+                                                        <Project>
+                                                                <Id>String</Id>
+                                                                <Status>String</Status>
+                                                                <EffectivePeriod inclusive="true">
+                                                                        <From>2002-04-05</From>
+                                                                        <Duration>P1Y2M3DT10H30M</Duration>
+                                                                </EffectivePeriod>
+                                                                <Authorization>
+                                                                        <Id>String</Id>
+                                                                        <Type>Text</Type>
+                                                                        <Status>
+                                                                                <Code>123</Code>
+                                                                        </Status>
+                                                                        <DateAuthorized>2002-04-05</DateAuthorized>
+                                                                        <EffectivePeriod inclusive="true">
+                                                                                <From>2002-04-05</From>
+                                                                                <Duration>P1Y2M3DT10H30M</Duration>
+                                                                        </EffectivePeriod>
+                                                                        <AuthorizationCode>Text</AuthorizationCode>
+                                                                </Authorization>
+                                                                <TransactionType>String</TransactionType>
+                                                                <TotalCost>
+                                                                        <Actual currency="String">3.1415926535897932384626433832795</Actual>
+                                                                        <Converted currency="String" conversionFactor="3.1415926535897932384626433832795">3.1415926535897932384626433832795</Converted>
+                                                                </TotalCost>
+                                                                <GLElement>
+                                                                        <NameValue name="String" type="String">String</NameValue>
+                                                                        <Description lang="en-us" owner="String">String</Description>
+                                                                        <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                                        <UserArea/>
+                                                                </GLElement>
+                                                                <ProjectResourceCategory>String</ProjectResourceCategory>
+                                                                <Activity>
+                                                                        <Id>String</Id>
+                                                                        <Status>String</Status>
+                                                                        <Cost>
+                                                                                <Actual currency="String">3.1415926535897932384626433832795</Actual>
+                                                                                <Converted currency="String" conversionFactor="3.1415926535897932384626433832795">3.1415926535897932384626433832795</Converted>
+                                                                        </Cost>
+                                                                        <Description lang="en-us" owner="String">String</Description>
+                                                                        <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                                        <UserArea/>
+                                                                </Activity>
+                                                                <DocumentReferences>
+                                                                        <PurchaseOrderDocumentReference/>
+                                                                </DocumentReferences>
+                                                                <Attachments>
+                                                                        <Attachment inline="false">
+                                                                                <EmbeddedData encoding="base64">
+                                                                                        <Data>Text</Data>
+                                                                                </EmbeddedData>
+                                                                                <DocumentDate>2002-04-05</DocumentDate>
+                                                                                <Description lang="en-us" owner="String">String</Description>
+                                                                                <FileType>String</FileType>
+                                                                                <FileSize>3.1415926535897932384626433832795</FileSize>
+                                                                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                                                <Title lang="en-us">String</Title>
+                                                                                <UserArea/>
+                                                                        </Attachment>
+                                                                </Attachments>
+                                                                <UserArea/>
+                                                        </Project>
+                                                        <UserArea/>
+                                                </Distribution>
+                                                <UserArea/>
+                                        </TotalCharge>
+                                </Charges>
+                                <DocumentReferences>
+                                        <PurchaseOrderDocumentReference/>
+                                </DocumentReferences>
+                                <Attachments>
+                                        <Attachment inline="false">
+                                                <EmbeddedData encoding="base64">
+                                                        <Data>Text</Data>
+                                                </EmbeddedData>
+                                                <DocumentDate>2002-10-10</DocumentDate>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <FileType>String</FileType>
+                                                <FileSize>3.1415926535897932384626433832795</FileSize>
+                                                <Note lang="en-us" author="String" entryDateTime="2002-10-10T00:00:00Z">String</Note>
+                                                <Title lang="en-us">String</Title>
+                                                <UserArea/>
+                                        </Attachment>
+                                </Attachments>
+                        </ReceiptLine>
+                </DeliveryReceipt>
+        </DataArea>
+</ListDeliveryReceipt>

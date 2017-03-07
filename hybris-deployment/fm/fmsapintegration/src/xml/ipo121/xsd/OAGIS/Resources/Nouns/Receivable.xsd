@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/Receivable.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="FinancialDocument.xsd"/>
+        <xs:complexType name="Receivable">
+                <xs:complexContent>
+                        <xs:extension base="FinancialDocument"/>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="ReceivableHeader">
+                <xs:complexContent>
+                        <xs:extension base="FinancialDocumentHeader">
+                                <xs:sequence>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="ReceivableLine">
+                <xs:complexContent>
+                        <xs:extension base="FinancialDocumentLine">
+                                <xs:sequence>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:element name="Receivable" type="Receivable" substitutionGroup="Noun">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Receivable is a transaction representing an invoice, credit memo or debit memo to a customer.  A receivable is an open (unpaid) item in the Accounts Receivable ledger.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Header" type="ReceivableHeader">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Information that applies to the entire receivable document, including totals, invoice identifier, and description.  </xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Line" type="ReceivableLine">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Line associated with the receivable document.  Can be an invoice line.  </xs:documentation>
+                </xs:annotation>
+        </xs:element>
+</xs:schema>

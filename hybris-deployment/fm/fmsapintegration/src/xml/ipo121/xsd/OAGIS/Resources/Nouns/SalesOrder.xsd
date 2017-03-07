@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/SalesOrder.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified">
+        <xs:include schemaLocation="Order.xsd"/>
+<!--   Abstract elements that support substitution of various Narrowed Nouns-->
+<!--   Abstract elements that support substitution of various Narrowed Nouns-->
+        <xs:complexType name="SalesOrder">
+                <xs:complexContent>
+                        <xs:extension base="Order"/>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="SalesOrderHeader">
+                <xs:complexContent>
+                        <xs:extension base="OrderHeader">
+                                <xs:sequence>
+                                        <xs:element name="SalesOrganization" type="SalesOrganization" minOccurs="0" maxOccurs="unbounded">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the SalesOrgainizations involved in this sale. Often times this will be just one, but not in the case where several are involved.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="Department" type="Department" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the department of the selling organization.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="DistributionCenter" type="DistributionCenter" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the DistributionCenter that the Seller will ship the items from.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element ref="SalesInformation" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="SalesOrderLine">
+                <xs:complexContent>
+                        <xs:extension base="OrderLine">
+                                <xs:sequence>
+                                        <xs:element name="ActualDeliveryDate" type="DateTimeAny" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the actual delivery date and time of the line item.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="ShipDate" type="DateTimeAny" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Inidicates the shipping date and time of the line item.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="DistributionCenter" type="DistributionCenter" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the distribution center the line item will be shipped from.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element ref="SalesInformation" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element ref="SubLine" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element ref="Schedule" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="SalesOrderSchedule">
+                <xs:complexContent>
+                        <xs:extension base="OrderSchedule">
+                                <xs:sequence>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="SalesOrderSubLine">
+                <xs:complexContent>
+                        <xs:extension base="OrderLineBase">
+                                <xs:sequence>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:element name="SalesOrder" type="SalesOrder" substitutionGroup="Noun">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The SalesOrder is a order or customer order, it is a step beyond a PurchaseOrder in that the receiving entity of the order also communicates SalesInformoration about the Order along with the Order itself. The SalesOrder is intended to be used when a order needs to be communicated between business applications and the PurchaseOrder terms and conditions and quantities have been agreed to. This agreement may occur in an electronic or by other means.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Header" type="SalesOrderHeader">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Provides information that pertains to the entire SalesOrder. </xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Line" type="SalesOrderLine">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Provides the line level detail of the items ordered by the SalesOrder and the associated detail.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Schedule" type="SalesOrderSchedule">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the schedule for the delivery of this line item.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="SubLine" type="SalesOrderSubLine">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The Component SubLine represents any additional information concerning the product on the Line.  The SubLine can be used to describe a specific configuration of the ordered item.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+</xs:schema>

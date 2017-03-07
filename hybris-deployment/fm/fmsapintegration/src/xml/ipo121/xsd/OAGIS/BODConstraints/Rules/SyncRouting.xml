@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sch:schema xmlns="http://www.ascc.net/xml/schematron" xmlns:oa="http://www.openapplications.org/oagis" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ascc.net/xml/schematron ../../../Utility/Schematron/schematron1-5.xsd">
+	<sch:title>Schematron Validator for OAGI Constraints</sch:title>
+	<sch:ns prefix="oa" uri="http://www.openapplications.org/oagis"/>
+	<sch:pattern name="Sync Routing">
+		<sch:rule context="oa:Routing">
+			<sch:assert test="oa:Header">Sync Routing must have a Header component specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Sync Routing Header">
+		<sch:rule context="oa:Routing/oa:Header">
+			<sch:assert test="oa:DocumentId/oa:Id">The Sync Routing Header must have a "DocumentId" and "Id" specified</sch:assert>
+			<sch:assert test="oa:DocumentId/oa:Revision">The Sync Routing Header must have a "DocumentId" and "Revision" specified</sch:assert>
+			<sch:assert test="oa:DocumentId/oa:Type">The Sync Routing Header must have a "DocumentId" and "Type" specified</sch:assert>
+			<sch:assert test="oa:RouteOperation">The Sync Routing Header must have a "RouteOperation" component specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Route Operation">
+		<sch:rule context="oa:Routing/oa:Header/oa:RouteOperation">
+			<sch:assert test="oa:ItemData">The RouteOperation must have at least one "ItemData" component specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Item Data">
+		<sch:rule context="oa:Routing/oa:Header/oa:RouteOperation/oa:ItemData">
+			<sch:assert test="oa:Item">The ItemData must have an "Item" specified</sch:assert>
+			<sch:assert test="oa:ItemQuantity">The ItemData must have a "ItemQuantity" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Item">
+		<sch:rule context="oa:Routing/oa:Header/oa:RouteOperation/oa:ItemData/oa:Item">
+			<sch:assert test="oa:ItemId/oa:Id">An Item must have an "ItemId" and "Id" specified</sch:assert>
+			<sch:assert test="oa:Type">An Item must have an "Item" and "Type" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Assigned Operation Groups">
+		<sch:rule context="oa:Routing/oa:Header/oa:AssignedOperationGroups">
+			<sch:assert test="oa:OperationGroupName">The AssignedOperationGroups must have a "OperationGroupName" specified</sch:assert>
+			<sch:assert test="oa:OperationGroupType">The AssignedOperationGroups must  have a "OperationGroupType" specified</sch:assert>
+			<sch:assert test="oa:GroupMember">The AssignedOperationGroups must have a "GroupMember" component specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Group Member">
+		<sch:rule context="oa:Routing/oa:Header/oa:AssignedOperationGroups/oa:GroupMember">
+			<sch:assert test="oa:OperationId">The GroupMember must have a "OperationId" specified</sch:assert>
+			<sch:assert test="oa:OperationSequence">The GroupMember must have a "OperationSequence" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Operation">
+		<sch:rule context="oa:Routing/oa:Line">
+			<sch:assert test="oa:OperationId">An Operation Line Must have a "OperationId" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Step">
+		<sch:rule context="oa:Line/oa:Step">
+			<sch:assert test="oa:Id">A Step must have an "Id" specified</sch:assert>
+			<sch:assert test="oa:StepType">A Step must have an "StepType" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Resources">
+		<sch:rule context="oa:Resources/oa:MachineResource/oa:Machine">
+			<sch:assert test="oa:Id | oa:Classification">A Machine Resource must have an "Id "  or "Classification" specified</sch:assert>
+		</sch:rule>
+		<sch:rule context="oa:Resources/oa:LaborResource/oa:Labor">
+			<sch:assert test="oa:EmployeeId | oa:Category">A Labor Resource must have an "EmployeeId "  or "Category" specified</sch:assert>
+		</sch:rule>
+		<sch:rule context="oa:Resources/oa:ToolResource/oa:Tool">
+			<sch:assert test="oa:ToolId | oa:ToolClassification">A Tool Resource must have a "ToolId"  or "ToolClassification" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+</sch:schema>

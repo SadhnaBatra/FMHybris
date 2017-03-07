@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/ItemCrossReference.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../MfgComponents.xsd"/>
+        <xs:complexType name="ItemCrossReference">
+                <xs:complexContent>
+                        <xs:extension base="Noun">
+                                <xs:sequence>
+                                        <xs:element name="ItemId" type="Id" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the ItemId of the indicated PublisherParty. This ItemId is the primary for this instance of the cross-reference. Alternate ItemIds are provided in the AlternateReferences.</xs:documentation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the ItemId of the indicated Assigning Party. This ItemId is the primary for this instance of the cross-reference. Alternate ItemIds are provided in the AlternateReferences.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="Revision" type="Revision" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the Revision Number related to the ItemId</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element ref="Property" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element ref="PublisherParty" minOccurs="0"/>
+                                        <xs:element ref="Site" minOccurs="0"/>
+                                        <xs:element ref="RelatedItemReference" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element ref="AlternateItemIdReference" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:element name="ItemCrossReference" type="ItemCrossReference" substitutionGroup="Noun">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Item Cross References describe both alternate and related items. Alternate items could specify items that have alternative universal identifiers such as EAN, UPC, or party specific identifiers such as supplier part number or customer part number. Related items could be spares, accessories or substitutes. Substitute items could be items that were validated by a development department for use as a substitute for the regular item.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="RelatedItemReference">
+                <xs:sequence>
+                        <xs:element name="Relationship" type="Relationship" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">This identifies the relationship of the item to the parent item. Examples of relationships are spares, substitutes, accesories, consumables, Alternate, Replacement etc </xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="RelatedItem" type="RelatedItem" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="AlternateItemIdReference">
+                <xs:sequence>
+                        <xs:element ref="ItemIds" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the Alternate ItemId</xs:documentation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the ItemId of the indicated Assigning Party. This ItemId is the primary for this instance of the cross-reference. Alternate ItemIds are provided in the AlternateReferences.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="Site" minOccurs="0"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="RelatedItem">
+                <xs:sequence>
+                        <xs:element name="ItemId" type="ItemIdType" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the ItemId of the indicated Assigning Party. This ItemId is the primary for this instance of the cross-reference. Alternate ItemIds are provided in the AlternateReferences.</xs:documentation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the ItemId of the indicated Assigning Party. This ItemId is the primary for this instance of the cross-reference. Alternate ItemIds are provided in the AlternateReferences.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="Site" minOccurs="0"/>
+                        <xs:element ref="Property" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="Parties" minOccurs="0"/>
+                        <xs:element name="Preference" type="Preference" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Determines the ranking or rating of otherwise equal candidates within a given list.
+
+Examples of the use of preference are:	
+Preference for a substitute item from a demanded item.	
+Preference for a given supplier for a required item.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:element name="RelatedItemReference" type="RelatedItemReference">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">This identifies an item or a group of items that are related to the primary item. For a given relationship, there may be one or more than one item identified. Examples of replationships are spares, substitutes, accesories, consumables etc</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="AlternateItemIdReference" type="AlternateItemIdReference">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">This identifies an Alternate ItemId for the item. The type of ItemId is identified by the AlternateIdQualifier. Examples of Alternate ItemIds are UPC, EAN, Customer Assigned Part Number, Manufacturer Assigned Part Number etc.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+</xs:schema>

@@ -1,0 +1,558 @@
+/* ========================
+    Orders
+=========================== */
+.quicOrderPoerrorTd {
+    border: medium none !important;
+    padding: 0 !important;
+}
+.quicOrderPoerror_show {
+    border-bottom: 1px solid @grey-light;
+    padding: 10px;
+}
+.poerror{
+    display: none;
+    margin-left: 10px;
+}      
+.poerror_show{
+    color: @red;
+    margin-left: 2px;
+    margin-top: -12px;
+    margin-bottom:12px;
+}
+.form-horizontal .control-label.invoiceToLabel {
+    padding-top:0;
+}
+.morerowslink, 
+.addNewAddLink, 
+.invoiceToLabel {
+    line-height:30px; 
+    line-height:3rem;
+}
+.descCol {width:30%}
+.itemsCol {width:25%}
+.deleteRow {font-size:20px; font-size:2rem;}
+.bottomForm {margin-bottom:18px; margin-top:1.8rem;}
+.totalPrice {font-size:24px; font-size:2.4rem; }
+.quickInvoice {
+    margin-bottom: 16px; 
+    margin-bottom: 1.6rem;
+    .col-left {
+        padding-right:60px;padding-right:6rem;
+    }
+    .col-right {
+        padding-left:60px;padding-left:6rem;
+    }
+}
+
+//Small Mobile Breakpoint
+@media all and (max-width: @bp_small_mobile_max) {
+    .quickInvoice .col-right {
+        padding-right:60px;
+        padding-right:6rem;
+        padding-left:15px;
+        padding-left:1.5rem;
+    }
+}
+
+/*****************************************
+          Return History CSS
+*****************************************/
+.returnHistory > table > tbody > tr > td,
+.orderStatusTable .userTable > table > tbody > tr > td ,
+.invoiceTabTable .userTable > table > tbody > tr > td ,
+.backOrderTabTable .userTable > table > tbody > tr > td,
+.uploadOrderStatus .userTable > table > tbody > tr > td {
+    font-size: 14px;
+    font-size: 1.4rem;
+}
+.returnHistory > table > tbody > tr:last-child > td {
+    border-bottom: 0;
+}
+
+/*****************************************
+          Order Details
+*****************************************/
+
+.orderDetailSubTitle {
+    padding-top:10px;
+    padding-top:1rem;
+    padding-bottom:10px;
+    padding-bottom:1rem;
+    font-size:12px;
+    font-size:1.2rem;
+    .ff-primary-bold;
+}
+.packageSlipPanel .orderDetailTable  tr td {
+    font-size:14px;
+    font-size:1.4rem;
+    vertical-align:top; 
+}
+.packageSlipPanel .orderDetailTable  tr:last-child td {
+    border-bottom:0 none;
+}
+.packageSlipPanel .fa-exclamation-triangle{
+    font-size:18px;
+}
+
+.packageSlipPanel h4{
+    background:@grey-lighter;
+    padding:10px;
+    padding:1rem;
+    font-size:12px;
+    font-size:1.2rem;
+    margin-top:22px;
+    margin-top:2.2rem;
+    
+}
+
+.packageSlipPanel  table.ordeDetailsTable h5 { 
+    background: none; 
+    color: @grey; 
+    font-size:16px;
+    font-size: 1.6rem;  
+    font-weight:500; 
+    margin: 0;
+    padding:0; 
+}
+
+.orderStatusForm {
+    margin-top: 12px;
+    margin-top: 1.2rem;
+}
+.orderStatusForm .row {
+    margin-bottom: 5px;
+    margin-bottom: 0.5rem;
+}
+
+.orderStatusTable {
+    margin-top: 20px;
+    margin-top: 2rem;
+}
+.orderStatusTable .table > thead > tr > th > a, .invoiceTabTable .table > thead > tr > th > a, .backOrderTabTable .table > thead > tr > th > a { color:@grey;}
+
+.orderDateStatusAction .orderDate, 
+.orderDateStatusAction .orderStatus, 
+.orderPdf,
+.orderPdf:hover,
+.manageAccountLinks li a.selected, .companyOverview .manageAccountLinks .productlist-lhs .panel-title > .selected {
+    color: @red;
+}
+.orderDateStatusAction .divider {
+    padding: 0 15px;
+    padding: 0 1.5rem;
+}
+.orderDateStatusAction .orderMail,
+.orderDateStatusAction .orderMail:hover,
+.orderInfoBlock a {
+    color:@blue;
+    text-decoration:none;
+}
+.orderExcel,
+.orderExcel:hover { 
+    color:@green;
+ }
+.orderInfoBlock {
+    background:@grey-table-dark;
+}
+/*****************************************************
+               Create Order Returns
+*****************************************************/
+
+.createOrderReturns .invoiceContent h2 {
+    margin-top: 53px;
+    margin-top: 5.3rem;
+    
+}
+
+.createOrderReturns .shipmentTable .img-responsive{
+    margin-top:0;
+}
+.createOrderReturnsYellowPanel{
+    background-color: #ffe066;
+    color: @grey;
+    
+    font-size: 12px;
+    font-size: 1.2rem;
+    margin-top: 22px;
+    margin-top: 2.2rem;
+    padding: 10px;
+    padding: 1rem;
+}
+
+/**************** Quick Order, Order Upload and Orders in Progress Section ****************/
+
+.quickOrderPanel, .uploadOrderPanel, .orderProgressPanel {border-radius:0; border:0}
+.quickOrderTitle, .uploadOrderTitle, .orderInProgressTitle {
+    font-size: 28px;
+    font-size:2.8rem;
+    line-height: 28px;
+    line-height: 2.8rem;
+    margin-bottom: 5px;
+    margin-bottom: 0.5rem;
+        
+}
+.quickOrderTitle span.fa, .uploadOrderTitle span.fa, .orderInProgressTitle span.fa{color:@red}
+
+ .accountInfoPanel{height:328px; height:32.8rem; border-radius:0; border:0}
+
+.quickOrderForm input{margin-bottom: 14px;margin-bottom: 1.4rem}
+.quantityColumn {padding-left: 0;}
+.quickOrderPanel .reviewLnk,  .orderProgressPanel .reviewLnk{margin: 0}
+.quickOrderPanel .reviewLnk a,  .orderProgressPanel .reviewLnk a{line-height:30px;line-height:3rem; }
+.quickOrderPanel .reviewLnk a span {font-weight:100}
+.productDescPanel {margin-bottom: 20px; margin-bottom:2rem; height: 90px;height: 9rem; overflow-y: scroll}
+.productDescPanel .product {margin-bottom: 10px; margin-bottom:1rem}
+.productDescPanel .prodDetail  {min-height: 66px;min-height: 6.6rem;}
+.accDetBody {min-height: 305px; min-height:30.5rem;}
+
+/* Upload Order */
+
+.uploadOrderCheck{
+    font-size:41px;
+    font-size:4.1rem;
+    color:#006600;
+}
+
+.quickOrderForm label, .productDescPanel .prodName{font-size: 14px; font-size:1.4rem;}
+/* Order Progress */
+.orderProgressPanel h4 {font-size: 18px;font-size:1.8rem;}
+.orderInfoText{ margin-top: 19px; margin-top: 1.9rem; margin-bottom: 8px; margin-bottom: 0.8rem}
+.uploadOrderPanel .reviewLnk {
+    margin: 6px 0;margin: 0.6rem 0;
+}
+.quickOrderPanel .panel-body, .uploadOrderPanel  .panel-body{min-height:360px;}
+
+
+.orderBoxes{
+    margin:20px 0;
+}
+
+.orderBox{
+    float:left;
+    margin:0 20px 0 0;
+    border:1px dotted #a5a5a5;
+    padding:0 20px 20px;
+    width:180px;
+    height:190px;
+}
+.orderBox.payment{
+    width:424px;
+}
+
+.orderBox.address{
+    margin:0;
+}
+
+.orderBox.payment .left{
+    width:50%;
+}
+
+.orderList{
+    border:1px dotted #a5a5a5;
+    padding:0 20px 20px;
+    margin:0 0 20px 0;
+}
+
+
+.orderList .headline{
+    border-bottom: 1px dotted #A5A5A5;
+    font-size: 1em;
+    font-weight: bold;
+    height: 30px;
+    line-height: 30px;
+    text-transform: uppercase;
+    margin:0 0 20px;
+}
+
+.orderList .orderListTable{
+    width:100%;
+}
+
+.orderList .orderListTable thead th {
+    border-bottom:1px dotted #a5a5a5;
+    height:30px;
+    line-height:30px;
+    text-transform:uppercase;
+    font-weight:bold;
+    font-size:1em;
+    padding-right: 10px;
+}
+
+.orderList .orderListTable thead th:last-child {
+    padding-right: 0;
+}
+
+.orderList .orderListTable .item td{
+    vertical-align:top;
+    border-bottom:1px dotted #a5a5a5;
+    padding:20px 0 0 0;
+}
+
+.orderList .orderListTable .item td.thumb{
+    border-bottom:0;
+    padding-right:20px;
+    width: 96px;
+}
+
+.orderList .orderListTable tbody td {
+    vertical-align:top;
+    padding-top: 5px;
+    padding-right: 10px;
+}
+
+.orderList .orderListTable tbody td:last-child {
+    padding-right: 0;
+}
+
+.orderList .orderListTable tbody td p {
+    margin-bottom: 5px;
+}
+
+.orderList .orderListTable tbody td a {
+    text-decoration: underline;
+}
+
+.orderList table.deliveryCartItems thead th {
+    text-align: center;
+}
+
+.orderList table.deliveryCartItems thead th:first-child {
+    text-align: left;
+}
+
+.orderBox_top{
+    border: 1px dotted #A5A5A5;
+    float: left;
+    height: auto;
+    margin: 0 0 20px 0;
+    padding: 0 20px 20px;   
+}
+/*
+## orderTotals
+********************************************************************/
+
+
+#orderTotals{
+    width:100%;
+}
+
+#orderTotals td{
+    text-align:right;
+}
+
+#orderTotals td:first-child{
+    text-align:left;
+    vertical-align:top;
+}
+
+
+#orderTotals thead td{
+    border-bottom:1px solid #a5a5a5;
+    height:30px;
+    line-height:30px;
+    text-transform:uppercase;
+    font-weight:bold;
+    font-size:1.2em;
+    white-space:nowrap;
+    padding-left: 5px;
+}
+
+
+#orderTotals tbody td{
+    height:30px;
+    line-height:30px;
+}
+
+#orderTotals tfoot td{
+    border-top:1px dotted #a5a5a5;
+    height:30px;
+    line-height:30px;
+    font-weight:bold;
+    font-size:1.1em;
+}
+
+#orderTotals #countryIso{
+    width:150px;
+}
+
+#orderTotals #estimateTaxesButton{
+    margin:8px 0 8px 8px;
+}
+/************************************
+            PACKAGE SLIP
+************************************/
+.packageSlipPanel .packageSlipPanelHead{
+    background-color:#003399 ;
+    padding:10px;
+    font-size:12px;
+    font-size:1.2rem;
+    margin-top:22px;
+    color:@white;
+}
+
+.packageSlipPanel{
+    padding: 2px 20px 0px 25px;
+    padding: 0.2rem 2.0rem 0rem 2.5rem;
+    background:@white;
+    }
+    
+
+.packageSlipPanel h2{
+    margin-top: 25px;
+    margin-top: 2.5rem; 
+}
+
+.packageSlipPanel .table-responsive tr td{
+    border-top:none;
+}
+
+/************************************
+            INVOICE PAGE
+************************************/
+.invoice h3{
+    
+    /*text-align:center;*/
+}
+
+.invoice .invoiceSectionOne{
+    text-align:right;
+}
+
+.invoice h5 {
+    
+    font-size:12px;
+    font-size:1.2rem;
+}
+
+.invoiceSectionThree{
+    margin-top:14px;
+    margin-top:1.4rem;
+}
+
+.invoice .orderPdf{
+    background:none;
+}
+
+.invoiceDownload, .invoicePrint{
+    color: #134e94;
+    
+}
+
+.invoiceSectionOne, .invoice .img-responsive{
+    margin-top:24px;
+    margin-top:2.4rem;
+}
+
+.invoice .row{
+    margin-bottom:14px;
+    margin-bottom:1.4rem;
+}
+
+.invoice .invoiceSectionThree td{
+    font-size:18px;
+    font-size:1.8rem;
+}
+
+.invoiceBold, h4{
+    
+}
+
+.invoiceContent .bgwhite{
+    padding: 0px 19px 8px 19px;
+    padding: 0rem 1.9rem 0.8rem 1.9rem;
+}
+
+@media screen and (max-width: 640px) {
+.invoice h3{
+    text-align:left;
+}
+
+.invoice .invoiceSectionOne{
+    text-align:left;
+}
+
+}
+
+.invoiceContent .subTitle, .orderPackingSlipDetails .subTitle, .packageSlipPanel .packagingSlipSectionTwo h5 {
+    background: none repeat scroll 0 0 #ececec;
+    margin-bottom: 20px;
+    margin-bottom: 2rem;
+    min-height: 36px;
+    min-height: 3.6rem;
+    padding: 8px 8px 8px 10px;
+    padding: 0.8rem 0.8rem 0.8rem 1rem;
+    
+}
+.invoiceContent .invoiceContentFirstPanel{padding-left: 1px; padding-left: 0.1rem;}
+
+.invoiceComment{
+    margin-top:0;
+    
+    font-size: 12px;
+    font-size: 1.2rem;
+    background-color: #f2f2f2;
+    color:#333;
+    padding:8px 0px;
+    padding:0.8rem 0rem;
+}
+.orderPackingSlipDetails  .userTable > table > tbody > tr > td {
+    font-size: 14px;
+    font-size: 1.4rem;  
+}
+    .checkoutPlaceorder {
+      margin-right: -15px;
+      margin-right: -1.5rem;
+    }
+
+
+/*
+    Delivery Method Details
+*****************/
+.delivery_method {
+    border: 1px solid @grey-light;
+    overflow: auto;
+    padding: 10px;
+
+    ul {
+        padding: 0;
+        margin: 0;
+        float: left;
+    }
+}
+
+/* 
+    Order Detail Page
+====================== */
+#your_order dl dt {
+    min-width: 50px;
+}
+
+#your_order .quantity img {
+    float: right;
+    margin: 0;
+}
+
+#your_order .quantity input[type="image"] {
+    float: right;
+    margin: 0;
+}
+
+#your_order .quantity input.qty {
+    margin-right: 10px;
+}
+
+#your_order p {
+    float: left;
+    margin-right: 30px;
+    margin-right: 20px;
+    padding-left: 12px;
+}
+
+#your_order .product_image {
+    width: 65px;
+}
+
+#your_order .product_details {
+    border-left: 0 none;
+    width: 320px;
+}

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/ResourceAllocation.xsd
+-->
+<xs:schema targetNamespace="http://www.openapplications.org/oagis" xmlns="http://www.openapplications.org/oagis" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../MfgComponents.xsd"/>
+	<xs:element name="ResourceAllocation" type="ResourceAllocation" substitutionGroup="Noun">
+		<xs:annotation>
+			<xs:documentation>Identifies the resources that are need for a prodiuction order and indicates where they are to be assigned.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ResourceAllocation">
+		<xs:complexContent>
+			<xs:extension base="Noun">
+				<xs:sequence>
+					<xs:element ref="Header" minOccurs="0"/>
+					<xs:element ref="Detail" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="Header" type="ResourceAllocationHeader">
+		<xs:annotation>
+			<xs:documentation source="http://www.openapplications.org/oagis">Information describing the work order that the resource transaction is to be charged against</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Detail" type="ResourceAllocationDetail">
+		<xs:annotation>
+			<xs:documentation source="http://www.openapplications.org/oagis">Information describing the resources to be charged.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ResourceAllocationHeader">
+		<xs:sequence>
+			<xs:element name="DocumentDateTime" type="DateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="http://www.openapplications.org/oagis">Is the timestamp of the document on the sending system in order to track when the document was created.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ReasonCode" type="ReasonCode" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="http://www.openapplications.org/oagis">is used as a reason indicator for any type of business event or activity</xs:documentation>
+					<xs:documentation source="http://www.openapplications.org/oagis">The ReasonCode can be used to indicate the process reason for this event.  It can be used also to indicate the event is triggered to ‘revert/undo’ a previous event when specified with a value of ‘UNDO’.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="Kind" minOccurs="0"/>
+			<xs:element ref="DocumentReferences" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="http://www.openapplications.org/oagis">A Production Order is likely listed here.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="UserArea" minOccurs="0"/>
+			<!--AW: replacing w/ DocRefs <xs:element ref="ProductionOrder"/> -->
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ResourceAllocationDetail">
+		<xs:sequence>
+			<xs:element name="WorkCenter" type="WorkCenter" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation source="http://www.openapplications.org/oagis">identifies an area consisting of one or more resources where production takes place.  This can be grouped into production areas. WorkCenter is used to identify a specific Work Center on a Shop Floor or other manufacturing facility.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="Resources" minOccurs="0"/>
+			<xs:element ref="WIPOperation" minOccurs="0"/>
+			<xs:element ref="DocumentReferences" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="UserArea" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="WIPOperation" type="WIPOperationReference">
+		<xs:annotation>
+			<xs:documentation source="http://www.openapplications.org/oagis">represents the operation at which to charge the resource.  It is a reference to an existing operation defined in the routing of the item.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Kind" type="Message">
+		<xs:annotation>
+			<xs:documentation source="http://www.openapplications.org/oagis">describes the types of resource.  Suggested examples of resource types are: Outside Processing, Overhead, Resource</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

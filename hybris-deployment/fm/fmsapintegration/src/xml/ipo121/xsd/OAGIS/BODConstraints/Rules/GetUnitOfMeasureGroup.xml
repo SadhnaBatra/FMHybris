@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sch:schema xmlns="http://www.ascc.net/xml/schematron" xmlns:oa="http://www.openapplications.org/oagis" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ascc.net/xml/schematron ../../../Utility/Schematron/schematron1-5.xsd">
+	<sch:title>Schematron Validator for OAGI Constraints</sch:title>
+	<sch:ns prefix="oa" uri="http://www.openapplications.org/oagis"/>
+	<sch:pattern name="Get UnitOfMeasureGroup">
+		<sch:rule context="oa:UnitOfMeasureGroup">
+			<sch:assert test="oa:Header">The Get UnitOfMeasureGroup must have a Header component specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Get UnitOfMeasureGroup Header">
+		<sch:rule context="oa:Header">
+			<sch:assert test="oa:UOMGroupId">The Get UnitOfMeasureGroup Header must have a "UOMGroupId" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="AlternateUOM">
+		<sch:rule context="oa:UnitOfMeasureGroup/oa:AlternateUOM">
+			<sch:assert test="oa:MultiplierQuantity">The AlternateUOM must have a "MultiplierQuantity" specified</sch:assert>
+			<sch:assert test="oa:UOM">The AlternateUOM must have a "UOM" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+</sch:schema>

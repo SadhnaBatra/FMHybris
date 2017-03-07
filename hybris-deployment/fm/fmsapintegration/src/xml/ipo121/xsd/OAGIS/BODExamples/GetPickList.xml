@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group Sample XML Data
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: GetPickList.xml
+-->
+<GetPickList xmlns="http://www.openapplications.org/oagis" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openapplications.org/oagis ../BODs/GetPickList.xsd" revision="8.0" environment="Production" lang="en-US">
+        <ApplicationArea>
+                <Sender>
+                        <LogicalId>String</LogicalId>
+                        <Component>String</Component>
+                        <Task>String</Task>
+                        <ReferenceId>String</ReferenceId>
+                        <Confirmation>0</Confirmation>
+                        <AuthorizationId>String</AuthorizationId>
+                </Sender>
+                <CreationDateTime>2001-12-17T09:30:47-05:00</CreationDateTime>
+                <Signature qualifyingAgency="String"/>
+                <BODId>String</BODId>
+                <UserArea/>
+        </ApplicationArea>
+        <DataArea>
+                <Get confirm="Always" show="Always">
+                        <ReturnCriteria expressionLanguage="XPath">
+                                <SelectExpression>String</SelectExpression>
+                        </ReturnCriteria>
+                </Get>
+                <PickList>
+                        <Header>
+                                <DocumentId>
+                                        <Id>String</Id>
+                                        <Revision>String</Revision>
+                                </DocumentId>
+                                <DocumentDateTime>2002-04-05T00:00:00Z</DocumentDateTime>
+                                <BillOfLadingId>String</BillOfLadingId>
+                                <DockId>String</DockId>
+                                <RouteId>String</RouteId>
+                                <Weight uom="NMTOKEN">3.1415926535897932384626433832795</Weight>
+                                <Volume uom="NMTOKEN">3.1415926535897932384626433832795</Volume>
+                                <Parties>
+                                        <CarrierParty active="false" oneTime="false">
+                                                <PartyId>
+                                                        <Id>String</Id>
+                                                        <SCAC>String</SCAC>
+                                                        <DUNS>String</DUNS>
+                                                </PartyId>
+                                        </CarrierParty>
+                                </Parties>
+                                <ActualTemperature scale="Celsius" entryDateTime="2002-04-05T00:00:00Z">3.1415926535897932384626433832795</ActualTemperature>
+                                <LoadingTemperature scale="Celsius" entryDateTime="2002-04-05T00:00:00Z">3.1415926535897932384626433832795</LoadingTemperature>
+                                <DeliveryTemperature scale="Celsius" entryDateTime="2002-04-05T00:00:00Z">3.1415926535897932384626433832795</DeliveryTemperature>
+                                <ShipPoint>String</ShipPoint>
+                                <UserArea/>
+                        </Header>
+                        <Line>
+                                <LineNumber>String</LineNumber>
+                                <Item>
+                                        <ItemId>
+                                                <Id>String</Id>
+                                                <EANUCC13 url="String">String</EANUCC13>
+                                                <UPC url="String">String</UPC>
+                                                <Revision>String</Revision>
+                                        </ItemId>
+                                        <Type>String</Type>
+                                        <Variation>String</Variation>
+                                        <Disposition>
+                                                <Code>String</Code>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <Change>
+                                                        <From>String</From>
+                                                        <To>String</To>
+                                                        <ChangeDate>2002-04-05</ChangeDate>
+                                                        <Description lang="en-us" owner="String">String</Description>
+                                                        <UserArea/>
+                                                </Change>
+                                                <UserArea/>
+                                        </Disposition>
+                                        <Property>
+                                                <NameValue name="String" type="String">String</NameValue>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                <UserArea/>
+                                        </Property>
+                                        <UserArea/>
+                                </Item>
+                                <Lot>
+                                        <LotId>String</LotId>
+                                        <SubLotId>String</SubLotId>
+                                        <EffectivePeriod inclusive="true">
+                                                <From>2002-04-05T00:00:00Z</From>
+                                                <Duration>P1Y2M3DT10H30M</Duration>
+                                        </EffectivePeriod>
+                                        <UserArea/>
+                                </Lot>
+                                <SerialNumber>String</SerialNumber>
+                                <PickQuantity uom="NMTOKEN">3.1415926535897932384626433832795</PickQuantity>
+                                <ShippedQuantity uom="NMTOKEN">3.1415926535897932384626433832795</ShippedQuantity>
+                                <ShipUnitQuantity uom="NMTOKEN">3.1415926535897932384626433832795</ShipUnitQuantity>
+                                <CarrierReference>
+                                        <PartyId>
+                                                <Id>String</Id>
+                                                <SCAC>String</SCAC>
+                                                <DUNS>String</DUNS>
+                                                <AssigningPartyId>
+                                                        <Id>String</Id>
+                                                        <SCAC>String</SCAC>
+                                                        <DUNS>String</DUNS>
+                                                </AssigningPartyId>
+                                        </PartyId>
+                                        <Name lang="en-us">String</Name>
+                                        <UserArea/>
+                                </CarrierReference>
+                                <Detail>
+                                        <ShippedDateTime>2002-04-05T00:00:00Z</ShippedDateTime>
+                                        <LoadPointId>String</LoadPointId>
+                                        <ShipPointId>String</ShipPointId>
+                                        <TrackingId>String</TrackingId>
+                                        <ShippingMaterial>
+                                                <ShippingMaterialId>String</ShippingMaterialId>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <UserArea/>
+                                        </ShippingMaterial>
+                                        <LoadingDateTime>2002-04-05T00:00:00Z</LoadingDateTime>
+                                        <TotalMaterialWeight uom="NMTOKEN">3.1415926535897932384626433832795</TotalMaterialWeight>
+                                        <NetMaterialWeight uom="NMTOKEN">3.1415926535897932384626433832795</NetMaterialWeight>
+                                        <MaterialVolume uom="NMTOKEN">3.1415926535897932384626433832795</MaterialVolume>
+                                        <NetContainerWeight uom="NMTOKEN">3.1415926535897932384626433832795</NetContainerWeight>
+                                        <MaximumContainerWeight uom="NMTOKEN">3.1415926535897932384626433832795</MaximumContainerWeight>
+                                        <ActualTemperature scale="Celsius" entryDateTime="2002-04-05T00:00:00Z">3.1415926535897932384626433832795</ActualTemperature>
+                                        <LoadingTemperature scale="Celsius" entryDateTime="2002-04-05T00:00:00Z">3.1415926535897932384626433832795</LoadingTemperature>
+                                        <DeliveryTemperature scale="Celsius" entryDateTime="2002-04-05T00:00:00Z">3.1415926535897932384626433832795</DeliveryTemperature>
+                                        <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                        <SpecialHandlingNote lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</SpecialHandlingNote>
+                                        <ShippingNote lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</ShippingNote>
+                                        <UserArea/>
+                                </Detail>
+                                <UserArea/>
+                        </Line>
+                </PickList>
+        </DataArea>
+</GetPickList>

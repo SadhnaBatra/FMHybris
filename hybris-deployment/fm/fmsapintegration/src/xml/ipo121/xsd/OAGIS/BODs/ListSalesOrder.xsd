@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: ListSalesOrder.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Resources/Verbs/List.xsd"/>
+        <xs:include schemaLocation="../Resources/Nouns/SalesOrder.xsd"/>
+        <xs:element name="ListSalesOrder" type="ListSalesOrder">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The purpose of the List SalesOrder is to enable a business application module to respond to a GetList SalesOrder request or to proactively send a listing of summary information about sales orders to one or more other applications.
+
+This BOD does not usually cause updates to occur.  It may be used as part of a large integration scenario or as a single tool for sending information concerning existing demands for goods or services.
+
+For example, a Customer Order application may use this BOD to respond to a request for information from a Sales Automation application.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="ListSalesOrder">
+                <xs:complexContent>
+                        <xs:extension base="BusinessObjectDocument">
+                                <xs:sequence>
+                                        <xs:element name="DataArea" type="ListSalesOrderDataArea">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is where the information that the BOD message carries is provided, in this case ListSalesOrder. The information consists of a Verb and one or more Nouns. The verb (List) indicates the action to be performed on the Noun (SalesOrder).</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="ListSalesOrderDataArea">
+                <xs:complexContent>
+                        <xs:extension base="DataArea">
+                                <xs:sequence>
+                                        <xs:element ref="List"/>
+                                        <xs:element ref="SalesOrder" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+</xs:schema>

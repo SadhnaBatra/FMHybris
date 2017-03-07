@@ -1,0 +1,140 @@
+# ImpEx for Importing FMPart Classifications
+
+#% impex.setLocale(Locale.ENGLISH);
+
+
+# Macros / Replacement Parameter definitions
+$FMPartCatalog=federalmogulProductCatalog
+$FMPartCatalogName=FederalMogul Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$FMPartCatalog]),version[default='Staged'])[unique=true,default=$FMPartCatalog:Staged]
+$clAttrModifiers=system='federalmogulClassification',version='1.0',translator=de.hybris.platform.catalog.jalo.classification.impex.ClassificationAttributeTranslator,lang=en
+
+
+
+# Insert FMPart Classifications
+
+# Classification: BELOW
+$feature1=@SEndIDIn,867[$clAttrModifiers];
+$feature2=@SEndIDMM,868[$clAttrModifiers];
+$feature3=@LEndIDIn,869[$clAttrModifiers];
+$feature4=@LengthIn,871[$clAttrModifiers];
+$feature5=@LengthMM,872[$clAttrModifiers];
+INSERT_UPDATE FMPart;code[unique=true];$feature1;$feature2;$feature3;$feature4;$feature5;$catalogVersion;
+;K8439;0.4;10.2;2.31;9.07;230.4;
+
+
+#TROD
+$feature1=@StudCentertoEndIn,1348[$clAttrModifiers];
+$feature2=@RodThrd,1349[$clAttrModifiers];
+$feature3=@RodTypeMorF,1351[$clAttrModifiers];
+$feature4=@StudDiaDimtopIn,1352[$clAttrModifiers];
+$feature5=@StudDiDimbottomIn,1353[$clAttrModifiers];
+$feature6=@StudThrd,1354[$clAttrModifiers];
+INSERT_UPDATE FMPart;code[unique=true];$feature1;$feature2;$feature3;$feature4;$feature5;$feature6;$catalogVersion;
+;ES3184RL;5.45;M14-1.5R;FEMALE;0.554;0.626;M12-1.25;
+;8732;5.45;M14-1.5R;MALE;0.554;0.626;M12-1.25;
+;8594;5.35;M14-1.5R;FEMALE;0.554;0.626;M12-1.25;
+;EV127;5.35;M14-1.5R;MALE;0.554;0.626;M12-1.25;
+
+#SWBLK
+$feature1=@BLgthIn,1361[$clAttrModifiers];
+$feature2=@SLgthIn,1362[$clAttrModifiers];
+INSERT_UPDATE FMPart;code[unique=true];$feature1;$feature2;$catalogVersion;
+;K700537;7.75;3.9;
+
+
+#CS
+$feature1=@IDIn,826[$clAttrModifiers];
+$feature2=@IDMM,827[$clAttrModifiers];
+$feature3=@BarDiaIn,828[$clAttrModifiers];
+$feature4=@BarDiaMM,829[$clAttrModifiers];
+$feature5=@SpringRatelbsperIn,830[$clAttrModifiers];
+$feature6=@Loadlbs,831[$clAttrModifiers];
+$feature7=@InstallationHeightIn,832[$clAttrModifiers];
+$feature8=@InstallationHeightMM,833[$clAttrModifiers];
+$feature9=@FreeHtIn,834[$clAttrModifiers];
+$feature10=@FreeHtMM,835[$clAttrModifiers];
+$feature11=@EndType1,836[$clAttrModifiers];
+$feature12=@EndType2,837[$clAttrModifiers];
+$feature13=@SpringType,838[$clAttrModifiers];
+INSERT_UPDATE FMPart;code[unique=true];$feature1;$feature2;$feature3;$feature4;$feature5;$feature6;$feature7;$feature8;$feature9;$feature10;$feature11;$feature12;$feature13;$catalogVersion;
+;8594;3.5;88.9;0.62;15.9;383;1500;11;279.4;14.94;379.5;Squared;Tangential;Constant Rate;
+;8732;3.5;88.9;0.62;15.9;383;1420;11;279.4;14.71;373.6;Squared;Tangential;Constant Rate;
+
+
+
+#BROTR
+$feature1=@Slotted,782[$clAttrModifiers];
+$feature2=@Material,783[$clAttrModifiers];
+$feature3=@HeightIns,784[$clAttrModifiers];
+$feature4=@HeightMM,785[$clAttrModifiers];
+$feature5=@OutDiaIn,787[$clAttrModifiers];
+$feature6=@OutDiaMM,788[$clAttrModifiers];
+$feature7=@Finish,789[$clAttrModifiers];
+$feature8=@NewPartThickIn,794[$clAttrModifiers];
+$feature9=@NewPartThickMM,795[$clAttrModifiers];
+$feature10=@MinimumThickIn,1024[$clAttrModifiers];
+$feature11=@MinimumThickMM,1025[$clAttrModifiers];
+$feature12=@Vented,796[$clAttrModifiers];
+INSERT_UPDATE FMPart;code[unique=true];$feature1;$feature2;$feature3;$feature4;$feature5;$feature6;$feature7;$feature8;$feature9;$feature10;$feature11;$feature12;$catalogVersion;
+;BD125405;No;Cast Iron;1.835;46.609;10.866;275.9964;Directional;1.03;26.162;0.974;24.74;Vented;
+#;BD125406;No;Cast Iron;1.968;49.9872;Fullcast;10.51;266.954;Directional;4.5;114.3;0.545;13.843;0.504;12.802;Solid;
+
+#BPAD
+$feature1=@PadFMSINumber,1130[$clAttrModifiers];
+$feature2=@AbutementHwInc,1131[$clAttrModifiers];
+$feature3=@FrictionThickInnerPadIn,1132[$clAttrModifiers];
+$feature4=@FrictionThickOuterPadIn,1133[$clAttrModifiers];
+$feature5=@FrontorRearPads,1134[$clAttrModifiers];
+$feature6=@OEMReplacement,1135[$clAttrModifiers];
+$feature7=@PackageQuantity,1136[$clAttrModifiers];
+$feature8=@PadMaterial,1137[$clAttrModifiers];
+$feature9=@ShimsIncluded,1138[$clAttrModifiers];
+$feature10=@WearSensorsIncluded,1139[$clAttrModifiers];
+$feature11=@Performance,1140[$clAttrModifiers];
+INSERT_UPDATE FMPart;code[unique=true];$feature1;$feature2;$feature3;$feature4;$feature5;$feature6;$feature7;$feature8;$feature9;$feature10;$feature11;$catalogVersion;
+;MX412;7300 - D412;No;0.607;0.607;Front;Yes;4;Semi-Metallic;Yes;Yes;No;
+;MX804;7675-D804;No;0.61;0.61;Front;Yes;4;Semi-Metallic;Yes;No;No;
+;PD627A;7524-D627;No;0.669;0.669;Rear;Yes;4;Ceramic;Yes;No;No;
+;QC627;7504-D627;No;0.669;0.669;Rear;Yes;4;Ceramic;Yes;No;No;
+;SX804;7675-D804;No;0.61;0.61;Front;Yes;4;Severe Duty Semi-Met;Yes;No;Yes;
+
+
+#CHRAF
+$feature1=@FilterMaterial,1102[$clAttrModifiers];
+$feature2=@OuterDiaTopIn,1104[$clAttrModifiers];
+$feature3=@OuterDiaTopMM,1105[$clAttrModifiers];
+$feature4=@OuterDiaBottomIn,1106[$clAttrModifiers];
+$feature5=@OuterDiaBottomMM,1107[$clAttrModifiers];
+$feature6=@InDiaTopIn,1108[$clAttrModifiers];
+$feature7=@InDiaTopMM,1109[$clAttrModifiers];
+$feature8=@HeightIn,1119[$clAttrModifiers];
+$feature9=@HeightMM,1120[$clAttrModifiers];
+INSERT_UPDATE FMPart;code[unique=true];$feature1;$feature2;$feature3;$feature4;$feature5;$feature6;$feature7;$feature8;$feature9;$catalogVersion;
+#;82520;Premium filter media removes 98% of air contaminants;4.46 inch;113mm;6.50 inch;165mm;3.23 inch;82mm;6.78 inch;172mm;
+#;82530;Premium filter media removes 98% of air contaminants;6.17 inch;157mm;8.13 inch;207mm;4.27 inch;108mm;7.41 inch;188mm;
+
+
+#CHSOL
+$feature1=@FilterMaterial,1102[$clAttrModifiers];
+$feature2=@ThreadPitch,1116[$clAttrModifiers];
+$feature3=@PressureRelief,1117[$clAttrModifiers];
+$feature4=@AntiDrainBackValve,1118[$clAttrModifiers];
+$feature5=@HeightIn,1119[$clAttrModifiers];
+$feature6=@HeightMM,1120[$clAttrModifiers];
+INSERT_UPDATE FMPart;code[unique=true];$feature1;$feature2;$feature3;$feature4;$feature5;$feature6;$catalogVersion;
+#;CL2;Optimized pleat count yields 96% effiency.;M22 x 1.5 Special Thd.;Yes;Yes;3.20 inch;81mm;
+#;CL3600;Optimized pleat count yields 96% effiency.;3/4""""-16 Thd."";Yes;Yes;4.44 inch;113mm;
+ 
+
+
+
+
+
+
+
+
+
+
+
+

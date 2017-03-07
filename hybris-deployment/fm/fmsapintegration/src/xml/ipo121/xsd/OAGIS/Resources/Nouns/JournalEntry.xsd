@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/JournalEntry.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Components.xsd"/>
+        <xs:complexType name="JournalEntry">
+                <xs:complexContent>
+                        <xs:extension base="Noun">
+                                <xs:sequence>
+                                        <xs:element name="Id" type="JournalEntryId" minOccurs="0"/>
+                                        <xs:element name="Total" type="Amounts" minOccurs="0"/>
+                                        <xs:element name="LedgerId" type="LedgerId" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the Ledger to which this transaction entry is to be inserted</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="SourceGLEntity" type="GLEntity" minOccurs="0"/>
+                                        <xs:element name="AccountingDate" type="DateTimeAny" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the date that is used to determine the accounting period the transaction is posted within.  It is also known as the effective or post date.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="AccountingPeriod" type="Period" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the accounting period the document is to post within.  The period is within a fiscal year to which a business transaction is assigned.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="AccountingYear" type="Year" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the accounting year the document is to post within.  Generally a period of 12 months for which the company regularly has to create financial statements.  A fiscal year may correspond to a calendar year.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="EntryCreator" type="UserId" minOccurs="0"/>
+                                        <xs:element ref="DocumentReferences" minOccurs="0"/>
+                                        <xs:element ref="LedgerEntry" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:element name="JournalEntry" type="JournalEntry" substitutionGroup="Noun">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">A journal represents a change in the balances of a business’s financial accounts.  Many tasks or transactions throughout an enterprise will result in the creation of a journal.  Some examples are creating a customer invoice, paying a vendor, transferring inventory, or paying employees.  A journal consists of a header with general information, and two or more lines specifying what accounts will be affected.  A journal typically includes balanced debit and credit lines.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="LedgerEntry">
+                <xs:sequence>
+                        <xs:element name="LineNumber" type="LineNumber" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the Line Number of the given Line Coponent within the document. LineNumbers are assigned by the sending system.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:choice minOccurs="0">
+                                <xs:element name="AccountingDate" type="DateTimeAny" minOccurs="0">
+                                        <xs:annotation>
+                                                <xs:documentation source="http://www.openapplications.org/oagis">Is the date that is used to determine the accounting period the transaction is posted within.  It is also known as the effective or post date.</xs:documentation>
+                                        </xs:annotation>
+                                </xs:element>
+                                <xs:sequence>
+                                        <xs:element name="AccountingPeriod" type="Period" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the accounting period the document is to post within.  The period is within a fiscal year to which a business transaction is assigned.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="AccountingYear" type="Year" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the accounting year the document is to post within.  Generally a period of 12 months for which the company regularly has to create financial statements.  A fiscal year may correspond to a calendar year.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                </xs:sequence>
+                        </xs:choice>
+                        <xs:group ref="LedgerEntryContent" minOccurs="0"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:simpleType name="JournalEntryId">
+                <xs:restriction base="xs:string"/>
+        </xs:simpleType>
+        <xs:complexType name="JournalEntryHeader">
+                <xs:sequence>
+                        <xs:element name="Id" type="JournalEntryId" minOccurs="0"/>
+                        <xs:element name="Total" type="Amounts" minOccurs="0"/>
+                        <xs:element name="LedgerId" type="LedgerId" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the Ledger to which this transaction entry is to be inserted</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="SourceGLEntity" type="GLEntity" minOccurs="0"/>
+                        <xs:element name="AccountingDate" type="DateTimeAny" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the date that is used to determine the accounting period the transaction is posted within.  It is also known as the effective or post date.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="AccountingPeriod" type="Period" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the accounting period the document is to post within.  The period is within a fiscal year to which a business transaction is assigned.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="AccountingYear" type="Year" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the accounting year the document is to post within.  Generally a period of 12 months for which the company regularly has to create financial statements.  A fiscal year may correspond to a calendar year.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="EntryCreator" type="UserId" minOccurs="0"/>
+                        <xs:element ref="DocumentReferences" minOccurs="0"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:element name="LedgerEntry" type="LedgerEntry"/>
+</xs:schema>

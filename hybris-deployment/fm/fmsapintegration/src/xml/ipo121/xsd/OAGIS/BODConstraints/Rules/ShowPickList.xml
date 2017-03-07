@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sch:schema xmlns="http://www.ascc.net/xml/schematron" xmlns:oa="http://www.openapplications.org/oagis" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ascc.net/xml/schematron ../../../Utility/Schematron/schematron1-5.xsd">
+	<sch:title>Schematron Validator for OAGI Constraints</sch:title>
+	<sch:ns prefix="oa" uri="http://www.openapplications.org/oagis"/>
+	<sch:pattern name="Show PickList">
+		<sch:rule context="oa:PickList">
+			<sch:assert test="oa:Header">The Show PickList must have a Header component specified</sch:assert>
+			<sch:assert test="oa:Line">The Show PickList must have at least one Line component specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Show PickList Header">
+		<sch:rule context="oa:PickList/oa:Header">
+			<sch:assert test="oa:DocumentId/oa:Id">The Show PickList Header must have a "DocumentId" and "Id" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Show PickList Line">
+		<sch:rule context="oa:PickList /oa:Line">
+			<sch:assert test="oa:LineNumber">The Show PickList Line must have an "Item" specified</sch:assert>
+			<sch:assert test="oa:ShippedQuantity">The PickList Line must have a "ShippedQuantity" specified</sch:assert>
+			<sch:assert test="oa:Detail">The PickList Line must have at least one "Detail" component specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+</sch:schema>

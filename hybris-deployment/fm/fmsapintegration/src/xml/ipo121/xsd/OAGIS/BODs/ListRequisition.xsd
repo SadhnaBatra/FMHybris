@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: ListRequisition.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Resources/Verbs/List.xsd"/>
+        <xs:include schemaLocation="../Resources/Nouns/Requisition.xsd"/>
+        <xs:element name="ListRequisition" type="ListRequisition">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The purpose of the ListRequisition is to send information relative to demand for goods or services to another business application.  This may be in response to a GetlistRequisition request, or it may be a notification vehicle, initiated upon an event in a business application.
+
+The List verb describes the behavior of supplying one or several documents in a summary format to the requesting business application.  These listings of information may be supplied for requisition documents, or requisition lines and/or requisition sub lines.
+</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="ListRequisition">
+                <xs:complexContent>
+                        <xs:extension base="BusinessObjectDocument">
+                                <xs:sequence>
+                                        <xs:element name="DataArea" type="ListRequisitionDataArea">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is where the information that the BOD message carries is provided, in this case ListRequisition. The information consists of a Verb and one or more Nouns. The verb (List) indicates the action to be performed on the Noun (Requisition).</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="ListRequisitionDataArea">
+                <xs:complexContent>
+                        <xs:extension base="DataArea">
+                                <xs:sequence>
+                                        <xs:element ref="List"/>
+                                        <xs:element ref="Requisition" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+</xs:schema>

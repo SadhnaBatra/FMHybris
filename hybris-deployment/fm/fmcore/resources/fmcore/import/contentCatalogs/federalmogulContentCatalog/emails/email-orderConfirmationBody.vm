@@ -1,0 +1,493 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Order Status</title>
+<style type="text/css">
+/* Client-specific Styles */
+
+#outlook a {
+	padding: 0;
+} /* Force Outlook to provide a "view in browser" menu link. */
+body {
+	width: 100% !important;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+	margin: 0;
+	padding: 0;
+}
+/* Prevent Webkit and Windows Mobile platforms from changing default font sizes, while not breaking desktop design. */
+.ExternalClass {
+	width: 100%;
+} /* Force Hotmail to display emails at full width */
+.ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {
+	line-height: 100%;
+} /* Force Hotmail to display normal line spacing.  */
+#backgroundTable {
+	margin: 0;
+	padding: 0;
+	width: 100% !important;
+	line-height: 100% !important;
+}
+img {
+	outline: none;
+	text-decoration: none;
+	border: none;
+	-ms-interpolation-mode: bicubic;
+}
+a img {
+	border: none;
+}
+.image_fix {
+	display: block;
+}
+p {
+	margin: 0px 0px !important;
+}
+table td {
+	border-collapse: collapse;
+}
+table {
+	border-collapse: collapse;
+	mso-table-lspace: 0pt;
+	mso-table-rspace: 0pt;
+}
+a {
+	color: #164991;
+	text-decoration: none;
+	text-decoration: none!important;
+}
+.background {
+	background: url("img/nav_bg.jpg") repeat-x scroll 0 0 #ad102a
+}
+.btn {
+	background: #c41230;
+	color: #fff;
+	font-family: helvetica;
+	font-size: 1.2rem;
+	line-height: 1.4rem;
+	text-transform: uppercase;
+	border: 1px solid #c41230;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 1.42857;
+	padding: 3px 18px;
+	margin-right: 15px;
+}
+/*STYLES*/
+table[class=full] {
+	width: 100%;
+	clear: both;
+}
+         /*IPAD STYLES*/
+         @media only screen and (max-width: 640px) {
+a[href^="tel"], a[href^="sms"] {
+	text-decoration: none;
+	color: #164991; /* or whatever your want */
+	pointer-events: none;
+	cursor: default;
+}
+.mobile_link a[href^="tel"], .mobile_link a[href^="sms"] {
+	text-decoration: default;
+	color: #164991 !important;
+	pointer-events: auto;
+	cursor: default;
+}
+table[class=devicewidth] {
+	width: 440px!important;
+	text-align: center!important;
+}
+td[class=devicewidth] {
+	width: 440px!important;
+	text-align: center!important;
+}
+img[class=devicewidth] {
+	width: 440px!important;
+	text-align: center!important;
+}
+img[class=banner] {
+	width: 440px!important;
+	height: 147px!important;
+}
+table[class=devicewidthinner] {
+	width: 420px!important;
+	text-align: center!important;
+}
+table[class=icontext] {
+	width: 345px!important;
+	text-align: center!important;
+}
+img[class="colimg2"] {
+	width: 420px!important;
+	height: 243px!important;
+}
+table[class="emhide"] {
+	display: none!important;
+}
+img[class="logo"] {
+	width: 440px!important;
+	height: 110px!important;
+}
+}
+         /*IPHONE STYLES*/
+         @media only screen and (max-width: 480px) {
+a[href^="tel"], a[href^="sms"] {
+	text-decoration: none;
+	color: #164991; /* or whatever your want */
+	pointer-events: none;
+	cursor: default;
+}
+.mobile_link a[href^="tel"], .mobile_link a[href^="sms"] {
+	text-decoration: default;
+	color: #164991 !important;
+	pointer-events: auto;
+	cursor: default;
+}
+table[class=devicewidth] {
+	width: 280px!important;
+	text-align: center!important;
+}
+td[class=devicewidth] {
+	width: 280px!important;
+	text-align: center!important;
+}
+img[class=devicewidth] {
+	width: 280px!important;
+	text-align: center!important;
+}
+img[class=banner] {
+	width: 280px!important;
+	height: 93px!important;
+}
+table[class=devicewidthinner] {
+	width: 260px!important;
+	text-align: center!important;
+}
+table[class=icontext] {
+	width: 186px!important;
+	text-align: center!important;
+}
+img[class="colimg2"] {
+	width: 260px!important;
+	height: 150px!important;
+}
+table[class="emhide"] {
+	display: none!important;
+}
+img[class="logo"] {
+	width: 280px!important;
+	height: 70px!important;
+}
+}
+</style>
+</head>
+<body>
+<!-- Start of header -->
+<table width="100%" bgcolor="#e7e7e7" cellpadding="0" cellspacing="0" border="0" id="backgroundTable">
+   <tbody>
+      <tr>
+         <td>
+            <table width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+               <tbody>
+                  <tr>
+                     <td width="100%">
+                        <table bgcolor="#e7e7e7" width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                           <tbody>
+                              <tr>
+                                 <td style="vertical-align:bottom">
+                                    <table width="300" align="left" border="0" cellpadding="0" cellspacing="0" class="devicewidth">
+                                       <tbody>
+                                          <!-- Spacing -->
+                                          <tr>
+                                             <td width="100%" height="20"></td>
+                                          </tr>
+                                          <!-- Spacing -->
+                                          <tr>
+                                             <td><div class="imgpop">
+													
+                                                   <a target="_blank" href="http://www.fmmotorparts.com">
+                                                   <img src="http://qa.fmmpe-cat.com/fmstorefront/_ui/desktop/theme-green/images/federal-mogul-logo.gif" alt="" border="0" width="184" height="20" style="display:block; border:none; outline:none; text-decoration:none;">
+                                                   </a>
+                                                </div>
+                                             </td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                    <!-- end of left column -->
+                                    <!-- start of right column -->
+                                    <table width="140" align="right" border="0" cellpadding="0" cellspacing="0" class="devicewidth">
+                                       <tbody>
+                                          <!-- Spacing -->
+                                          <tr>
+                                             <td width="100%" height="20"></td>
+                                          </tr>
+                                          <!-- Spacing -->
+                                          <tr>
+											
+                                             <td align="left" style="text-align:left; vertical-align: bottom;">
+											<!-- Hi ,#if($ctx.title). ${ctx.title} #end #if($ctx.displayName) ${ctx.displayName} #end -->											 
+											 <font face="Helvetica, arial, sans-serif;" size="2" style="font-family: Helvetica, arial, sans-serif; font-size: 13px;color: #164991; font-weight: heavy;">
+											 <nobr><a href="http://www.fmmotorparts.com" style="text-decoration: none; color: #164991">fmmotorparts.com</a> <a href="#" style="text-decoration: none; color: #b91104">&gt;</a></nobr></font></td>
+                                             </td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                    <!-- end of right column -->
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+						
+                     </td>
+
+                  </tr>
+										  <tr>
+                                             <td width="100%" height="20"></td>
+                                          </tr>
+                                          <tr>
+											<!-- navigation -->
+                                             <td width="100%" height="10" bgcolor="#c1122f" align="center">
+											 <table align="center" cellpadding="2" cellspacing="0" border="0">
+											 <tr>	
+											  <td><a title="eStore" style="color:#e7e7e7; important" href="http://qa.fmmpe-cat.com/fmstorefront/federalmogul/en/USD/">eStore|</a></td>
+											  <td><a style="color:#e7e7e7; important" href="http://qa.fmmpe-cat.com/fmstorefront/federalmogul/en/USD/">Catalog<b class="caret"></b>|</a></td>
+											  <td><a style="color:#e7e7e7; important" href="http://qa.fmmpe-cat.com/fmstorefront/federalmogul/en/USD/">Online Tools|</a></td>
+											  <td><a style="color:#e7e7e7; important" href="http://qa.fmmpe-cat.com/fmstorefront/federalmogul/en/USD/">Support<b class="caret"></b>|</a></td>
+											  <td><a style="color:#e7e7e7; important" title="About Us" href="http://qa.fmmpe-cat.com/fmstorefront/federalmogul/en/USD/">About Us</a></td>
+											  </tr>
+											 </table>
+											 </td>
+                                          </tr>
+               </tbody>
+            </table>
+         </td>
+      </tr>
+   </tbody>
+</table>
+<!-- Start of LOGO -->
+<table width="100%" bgcolor="#e7e7e7" cellpadding="0" cellspacing="0" border="0" id="backgroundTable">
+   <tbody>
+      <tr>
+         <td>
+            <table width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth" bgcolor="#252525" background="http://qa.fmmpe-cat.com/fmstorefront/_ui/desktop/theme-green/images/honeycomb_bg.gif">
+               <tbody>
+                  <tr>
+                     <td width="100%">
+                        <table width="600" align="center" cellspacing="0" cellpadding="0" border="0" class="devicewidth">
+                           <tbody>
+ 
+                              <tr>
+                                 <!-- start of image -->
+                                 <td align="center"><br> 								 
+								 <br>
+								 <font face="Helvetica, arial, sans-serif;" color="#e7e7e7" size="6" style="font-family: Helvetica, arial, sans-serif; font-size: 32px;color: #e7e7e7; font-weight: heavy; line-height: 120%">
+                                   THANK YOU FOR YOUR ORDER
+								   <br>
+								   <br>
+								   
+                                 </td>
+                              </tr>
+ 
+                           </tbody>
+                        </table>
+                        <!-- end of image -->
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </td>
+      </tr>
+   </tbody>
+</table>
+<!-- End of LOGO --> 
+<!-- start textbox-with-title -->
+<table width="100%" bgcolor="#e7e7e7" cellpadding="0" cellspacing="0" border="0" id="backgroundTable">
+  <tbody>
+    <tr>
+      <td><table width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+          <tbody>
+            <tr  width="100%" height="15"> </tr>
+            <tr>
+              <td align="left"><font face="Helvetica, arial, sans-serif;" size="2" color="#333333" style="font-family: Helvetica, arial, sans-serif; font-size: 13px; color: #333333; text-align:left;line-height: 110%"> <br/>
+                <span style="font-weight: bold;">ORDER NUMBER:</span>  #if($ctx.order.purchaseOrderNumber)${ctx.order.purchaseOrderNumber} #end<br/>
+                <br/>
+                <span style="font-weight: bold;">ORDER DATE & TIME</span><br/>
+                #if($ctx.order.created) ${ctx.order.created} #end</font></td>
+              <td align="left"><font face="Helvetica, arial, sans-serif;" size="2" color="#333333" style="font-family: Helvetica, arial, sans-serif; font-size: 13px; color: #333333; text-align:left;line-height: 110%"> <span style="font-weight: bold;">SHIPPING ADDRESS:</span><br/>
+				${ctx.order.deliveryAddress.line1}<br/>
+				#if(${ctx.order.deliveryAddress.line2}) ${ctx.order.deliveryAddress.line2}<br/>#end
+				${ctx.order.deliveryAddress.town}<br/>
+				#if(${ctx.order.deliveryAddress.region.isocodeShort}) ${ctx.order.deliveryAddress.region.isocodeShort}#end ${ctx.order.deliveryAddress.postalCode}<br/>
+				${ctx.order.deliveryAddress.country.name}
+		
+                </font></td>
+              <td align="left"><font face="Helvetica, arial, sans-serif;" size="2" color="#333333" style="font-family: Helvetica, arial, sans-serif; font-size: 13px; color: #333333; text-align:left;line-height: 110%"> <br/>
+                <span style="font-weight: bold;">P.O. Number:</span><br/>
+                #if($ctx.order.custponumber)
+                ${ctx.order.custponumber}#end <br/>
+				
+                <br/>
+                <span style="font-weight: bold;">Order Comments:</span><br/>
+                #if($ctx.order.ordercomments)
+                ${ctx.order.ordercomments}#end <br/>
+                </font>
+				</td>
+            </tr>
+            <tr  width="100%" height="15"> </tr>
+            <tr>
+              <td colspan="5" height="1" bgcolor="#999999"></td>
+            </tr>
+          </tbody>
+        </table>
+        <table width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+          <tbody>
+            <tr>
+            <tr>
+              <td height="100"></td>
+              <td align="left"><font face="Helvetica, arial, sans-serif;" size="2" color="#333333" style="font-family: Helvetica, arial, sans-serif; font-size: 13px; color: #333333; text-align:left;line-height: 110%"> Your order details are below. We'll send additional information, including shipping and tracking <br/>
+                details
+                as your 
+                order is processed. If you bought multiple items, they may arrive separately.</font></td>
+            </tr>
+          </tbody>
+        </table>
+        <table width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth" bgcolor="#ffffff">
+          <tbody>
+            <tr height="5" width="100%"> </tr>
+            <tr>
+              <td align="left"><font face="Helvetica, arial, sans-serif;" size="2" color="#333333" style="font-family: Helvetica, arial, sans-serif; font-size: 13px; color: #333333; text-align:left;line-height: 185%">
+                <table>
+                  <thead>
+					<th width="120" align="center">Order Details</th>
+                    <th width="120" align="">Part Number</th>
+                    <th width="70" align="">Qty</th>
+					<th width="70" align="">Carrier</th>
+					<th width="70" align="">Shipping Method</th>
+					<th width="70" align="">Shipping Location</th>
+                      </thead>
+                  <tbody>
+						
+                     #foreach( $entry in ${ctx.order.entries} )
+						<tr>
+							#foreach( $dcEntry in ${entry.distrubtionCenter} )
+							<td width="120" align="center">
+										<a href="${ctx.baseUrl}$entry.product.url">
+											#foreach($image in $entry.product.images)
+												#if($image.imageType == "PRIMARY" && $image.format == "thumbnail" )
+													<img src="${ctx.mediaBaseUrl}$image.url" alt="" title="$entry.product.name"/>
+												#end
+											#end
+										</a>
+								</td>
+								<td width="120" align="center">#if($entry.product.code)$entry.product.code #end</td>
+								<td width="70" align="center">#if($entry.quantity)$entry.quantity #end</td>
+								<td width="70" align="center">#if($dcEntry.carrierDispName)$dcEntry.carrierDispName #end</td>
+								<td width="70" align="center">#if($dcEntry.shippingMethodName)$dcEntry.shippingMethodName #end</td>
+								<td width="70" align="center">#if($dcEntry.distrubtionCenterDataName)$dcEntry.distrubtionCenterDataName #end</td>	
+							#end
+						</tr>
+					#end
+                  </tbody>
+                </table>
+                </font></td>
+            </tr>
+            <tr>
+              <td colspan="5" height="1" bgcolor="#999999"></td>
+            </tr>
+            
+            
+          </tbody>
+        </table>
+        <table width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth" bgcolor="#ffffff">
+          <tbody>
+            <tr height="15" width="100%"> </tr>
+            
+            <tr height="15" width="100%"> </tr>
+          </tbody>
+        </table>
+        <br/>
+        <br/>
+  </tbody>
+</table>
+<!-- end of textbox-with-title --> 
+<!-- Start of 2-columns -->
+<table width="100%" bgcolor="#e7e7e7" cellpadding="0" cellspacing="0" border="0" id="backgroundTable">
+   <tbody>
+      <tr>
+         <td>
+            <table width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+               <tbody>
+                  <tr>
+                     <td width="100%">
+                        <table bgcolor="#c51230" width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth" background="http://qa.fmmpe-cat.com/fmstorefront/_ui/desktop/theme-green/images/footer_bg.jpg">
+                           <tbody>
+                              <tr>
+							                                            <!-- Spacing -->
+                                          <tr>
+                                             <td width="100%" height="1"></td>
+                                          </tr>
+                                          <!-- Spacing -->
+								<tr>
+                                 <td style="vertical-align:bottom">
+                                    <table width="240" align="left" border="0" cellpadding="10" cellspacing="0" class="devicewidth">
+                                       <tbody>
+
+                                          <tr>
+                                             <td><div class="imgpop">
+                                                   <a target="_blank" href="http://www.fmmotorparts.com"><img src="http://qa.fmmpe-cat.com/fmstorefront/_ui/desktop/theme-green/images/federal-mogul-logo.png" alt="" vspace="5" border="0" width="184" height="20" style="display:block; border:none; outline:none; text-decoration:none;"></a></div>
+                                    <table width="270" align="left" border="0" cellpadding="0" cellspacing="0" class="devicewidth">
+                                       <tbody>		   
+                                          <tr>
+                                             <td width="25"></td>
+											 <td> 
+												   <font face="Helvetica, arial, sans-serif;" size="1" color="#FFFFFF" style="font-family: Helvetica, arial, sans-serif; font-size: 10px;color: #FFFFFF;"> 
+												   This email was sent from <a href="#" style="text-decoration: none; color: #FFFFFF">donotreply@fmmotorparts.com</a>.<br>
+												   Delivered by: Federal-Mogul Motorparts<br>
+												   27300 West 11 Mile Road Southfield, Michigan 48034
+                                             </td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+												   
+                                             </td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                    <!-- end of left column -->
+                                    <!-- start of right column -->
+                                    <table width="250" align="right" border="0" cellpadding="10" cellspacing="0" class="devicewidth" align="right">
+                                       <tbody>
+                                          <!-- Spacing -->
+                                          <tr>
+                                             <td width="100%" height="12"></td>
+                                          </tr>
+                                          <!-- Spacing -->
+                                          <tr>
+                                             <td align="right" style="text-align:right; vertical-align: bottom;">											 <font face="Helvetica, arial, sans-serif;" size="2" color="#FFFFFF" style="font-family: Helvetica, arial, sans-serif; font-size: 12px;color: #FFFFFF;"><strong><a href="http://qa.fmmpe-cat.com/fmstorefront/about-us/privacy-legal" style="text-decoration: none; color: #FFFFFF">Privacy Policy</a>  &nbsp;|&nbsp; <a href="http://qa.fmmpe-cat.com/fmstorefront/support/contact-us" style="text-decoration: none; color: #FFFFFF">Contact Us</a><br></strong>
+<font face="Helvetica, arial, sans-serif;" size="1" color="#FFFFFF" style="font-family: Helvetica, arial, sans-serif; font-size: 10px;color: #FFFFFF;">You received this email because you are an email subscriber of <a href="http://www.fmmotorparts.com" target="_blank" style="text-decoration: none; color: #FFFFFF">fmmotorparts.com</a>. </font></td>
+                                             </td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                    <!-- end of right column -->
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+						
+                     </td>
+
+                  </tr>
+               </tbody>
+            </table>
+         </td>
+      </tr>
+   </tbody>
+</table>
+
+<!-- End of postfooter -->
+</body>
+</html>

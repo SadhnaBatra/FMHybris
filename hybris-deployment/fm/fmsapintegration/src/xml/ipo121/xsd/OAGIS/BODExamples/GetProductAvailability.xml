@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group Sample XML Data
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: GetProductAvailability.xml
+-->
+<GetProductAvailability xmlns="http://www.openapplications.org/oagis" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openapplications.org/oagis ../BODs/GetProductAvailability.xsd" revision="8.0" environment="Production" lang="en-US">
+        <ApplicationArea>
+                <Sender>
+                        <LogicalId>String</LogicalId>
+                        <Component>String</Component>
+                        <Task>String</Task>
+                        <ReferenceId>String</ReferenceId>
+                        <Confirmation>0</Confirmation>
+                        <AuthorizationId>String</AuthorizationId>
+                </Sender>
+                <CreationDateTime>2001-12-17T09:30:47-05:00</CreationDateTime>
+                <Signature qualifyingAgency="String"/>
+                <BODId>String</BODId>
+                <UserArea/>
+        </ApplicationArea>
+        <DataArea>
+                <Get confirm="Always" show="Always">
+                        <ReturnCriteria expressionLanguage="XPath">
+                                <SelectExpression>String</SelectExpression>
+                        </ReturnCriteria>
+                </Get>
+                <ProductAvailability>
+                        <EffectiveDateTime>2002-04-05T00:00:00Z</EffectiveDateTime>
+                        <Item>
+                                <ItemId>
+                                        <Id>String</Id>
+                                        <EANUCC13 url="String">String</EANUCC13>
+                                        <UPC url="String">String</UPC>
+                                        <Revision>String</Revision>
+                                </ItemId>
+                                <Type>String</Type>
+                                <Variation>String</Variation>
+                                <Disposition>
+                                        <Code>String</Code>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <Change>
+                                                <From>String</From>
+                                                <To>String</To>
+                                                <ChangeDate>2002-04-05</ChangeDate>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <UserArea/>
+                                        </Change>
+                                        <UserArea/>
+                                </Disposition>
+                                <Property>
+                                        <NameValue name="String" type="String">String</NameValue>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                        <UserArea/>
+                                </Property>
+                                <UserArea/>
+                        </Item>
+                        <Lot>
+                                <LotId>String</LotId>
+                                <SubLotId>String</SubLotId>
+                                <EffectivePeriod inclusive="true">
+                                        <From>2002-04-05T00:00:00Z</From>
+                                        <Duration>P1Y2M3DT10H30M</Duration>
+                                </EffectivePeriod>
+                                <UserArea/>
+                        </Lot>
+                        <SerialNumber>String</SerialNumber>
+                        <ItemQuantity uom="NMTOKEN">3.1415926535897932384626433832795</ItemQuantity>
+                        <RequiredDateTime>2002-04-05T00:00:00Z</RequiredDateTime>
+                        <AvailableDateTime>2002-04-05T00:00:00Z</AvailableDateTime>
+                        <Business>
+                                <Id>String</Id>
+                                <Function>String</Function>
+                                <Name lang="en-us">String</Name>
+                                <RelatedUnit>
+                                        <Relationship>String</Relationship>
+                                        <Unit>
+                                                <Id>String</Id>
+                                                <Function>String</Function>
+                                                <Name lang="en-us">String</Name>
+                                                <UserArea/>
+                                        </Unit>
+                                </RelatedUnit>
+                                <UserArea/>
+                        </Business>
+                        <Site>
+                                <Name lang="en-us">String</Name>
+                                <Id>String</Id>
+                                <Description lang="en-us" owner="String">String</Description>
+                                <PostalAddress>
+                                        <AddressId qualifyingAgency="String">String</AddressId>
+                                        <AddressLine>String</AddressLine>
+                                        <City>String</City>
+                                        <County>String</County>
+                                        <StateOrProvince>String</StateOrProvince>
+                                        <Country>String</Country>
+                                        <Region>String</Region>
+                                        <PostalCode>String</PostalCode>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <UserArea/>
+                                </PostalAddress>
+                                <GPSCoordinates>
+                                        <GPSSystemType>Text</GPSSystemType>
+                                        <Latitude>Text</Latitude>
+                                        <Longitude>Text</Longitude>
+                                        <UserArea/>
+                                </GPSCoordinates>
+                                <LocationRelationship>
+                                        <Binder>String</Binder>
+                                        <Location>
+                                                <Name lang="en-us">String</Name>
+                                                <Id>String</Id>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <PostalAddress>
+                                                        <AddressId qualifyingAgency="String">String</AddressId>
+                                                        <AddressLine>String</AddressLine>
+                                                        <City>String</City>
+                                                        <County>String</County>
+                                                        <StateOrProvince>String</StateOrProvince>
+                                                        <Country>String</Country>
+                                                        <Region>String</Region>
+                                                        <PostalCode>String</PostalCode>
+                                                        <Description lang="en-us" owner="String">String</Description>
+                                                        <UserArea/>
+                                                </PostalAddress>
+                                                <GPSCoordinates>
+                                                        <GPSSystemType>Text</GPSSystemType>
+                                                        <Latitude>Text</Latitude>
+                                                        <Longitude>Text</Longitude>
+                                                        <UserArea/>
+                                                </GPSCoordinates>
+                                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                <UserArea/>
+                                        </Location>
+                                        <UserArea/>
+                                </LocationRelationship>
+                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                <UserArea/>
+                        </Site>
+                        <GLEntity>String</GLEntity>
+                        <SubstitutionAllowedInd>1</SubstitutionAllowedInd>
+                        <ProductLine>String</ProductLine>
+                        <DocumentReferences>
+                                <PurchaseOrderDocumentReference/>
+                        </DocumentReferences>
+                        <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                        <UserArea/>
+                </ProductAvailability>
+        </DataArea>
+</GetProductAvailability>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Automotive Aftermarket Industry Association (AAIA)
+	http://www.aftermarket.org
+	Internet Parts Ordering (IPO) Release 1.2.1,  March 1, 2005
+	Business Object Document (BOD)
+	
+	Overlay for: 
+	Open Applications Group (http://www.openapplications.org)
+	OAGIS Release 8.0, 	April 05, 2002
+	
+	Name:	ShowQuote.xsd
+-->
+<xs:schema targetNamespace="http://www.aftermarket.org/oagis" xmlns:oa="http://www.openapplications.org/oagis" xmlns:aaia="http://www.aftermarket.org/oagis" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.openapplications.org/oagis" schemaLocation="../../OAGIS/BODs/ShowQuote.xsd"/>
+	<xs:include schemaLocation="../Resources/Nouns/Quote.xsd"/>
+	<xs:element name="ShowQuote" type="oa:ShowQuote"/>
+</xs:schema>

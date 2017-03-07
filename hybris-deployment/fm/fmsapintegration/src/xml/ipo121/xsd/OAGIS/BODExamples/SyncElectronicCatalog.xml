@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group Sample XML Data
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: SyncElectronicCatalog.xml
+-->
+<SyncElectronicCatalog xmlns="http://www.openapplications.org/oagis" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openapplications.org/oagis ../BODs/SyncElectronicCatalog.xsd" revision="8.0" environment="Production" lang="en-US">
+        <ApplicationArea>
+                <Sender>
+                        <LogicalId>String</LogicalId>
+                        <Component>String</Component>
+                        <Task>String</Task>
+                        <ReferenceId>String</ReferenceId>
+                        <Confirmation>0</Confirmation>
+                        <AuthorizationId>String</AuthorizationId>
+                </Sender>
+                <CreationDateTime>2001-12-17T09:30:47-05:00</CreationDateTime>
+                <Signature qualifyingAgency="String"/>
+                <BODId>String</BODId>
+                <UserArea/>
+        </ApplicationArea>
+        <DataArea>
+                <Sync confirm="Always">
+                        <SyncCriteria expressionLanguage="XPath">
+                                <SyncExpression action="Add">String</SyncExpression>
+                        </SyncCriteria>
+                </Sync>
+                <ElectronicCatalog>
+                        <Header>
+                                <DocumentId>
+                                        <Id>String</Id>
+                                        <Revision>String</Revision>
+                                        <Type>String</Type>
+                                        <AssigningPartyId>
+                                                <Id>String</Id>
+                                                <SCAC>String</SCAC>
+                                                <DUNS>String</DUNS>
+                                        </AssigningPartyId>
+                                </DocumentId>
+                                <Name lang="en-us">String</Name>
+                                <Currency>String</Currency>
+                                <EffectivePeriod inclusive="true">
+                                        <From>2002-04-05T00:00:00Z</From>
+                                        <Duration>P1Y2M3DT10H30M</Duration>
+                                </EffectivePeriod>
+                                <Business>
+                                        <Id>String</Id>
+                                        <Function>String</Function>
+                                        <Name lang="en-us">String</Name>
+                                        <RelatedUnit>
+                                                <Relationship>String</Relationship>
+                                                <Unit>
+                                                        <Id>String</Id>
+                                                        <Function>String</Function>
+                                                        <Name lang="en-us">String</Name>
+                                                        <UserArea/>
+                                                </Unit>
+                                        </RelatedUnit>
+                                        <UserArea/>
+                                </Business>
+                                <Site>
+                                        <Name lang="en-us">String</Name>
+                                        <Id>String</Id>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <PostalAddress>
+                                                <AddressId qualifyingAgency="String">String</AddressId>
+                                                <AddressLine>String</AddressLine>
+                                                <City>String</City>
+                                                <County>String</County>
+                                                <StateOrProvince>String</StateOrProvince>
+                                                <Country>String</Country>
+                                                <Region>String</Region>
+                                                <PostalCode>String</PostalCode>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <UserArea/>
+                                        </PostalAddress>
+                                        <GPSCoordinates>
+                                                <GPSSystemType>Text</GPSSystemType>
+                                                <Latitude>Text</Latitude>
+                                                <Longitude>Text</Longitude>
+                                                <UserArea/>
+                                        </GPSCoordinates>
+                                        <LocationRelationship>
+                                                <Binder>String</Binder>
+                                                <Location>
+                                                        <Name lang="en-us">String</Name>
+                                                        <Id>String</Id>
+                                                        <Description lang="en-us" owner="String">String</Description>
+                                                        <PostalAddress>
+                                                                <AddressId qualifyingAgency="String">String</AddressId>
+                                                                <AddressLine>String</AddressLine>
+                                                                <City>String</City>
+                                                                <County>String</County>
+                                                                <StateOrProvince>String</StateOrProvince>
+                                                                <Country>String</Country>
+                                                                <Region>String</Region>
+                                                                <PostalCode>String</PostalCode>
+                                                                <Description lang="en-us" owner="String">String</Description>
+                                                                <UserArea/>
+                                                        </PostalAddress>
+                                                        <GPSCoordinates>
+                                                                <GPSSystemType>Text</GPSSystemType>
+                                                                <Latitude>Text</Latitude>
+                                                                <Longitude>Text</Longitude>
+                                                                <UserArea/>
+                                                        </GPSCoordinates>
+                                                        <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                        <UserArea/>
+                                                </Location>
+                                                <UserArea/>
+                                        </LocationRelationship>
+                                        <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                        <UserArea/>
+                                </Site>
+                                <Parties>
+                                        <SupplierParty active="false" oneTime="false">
+                                                <PartyId>
+                                                        <Id>String</Id>
+                                                        <SCAC>String</SCAC>
+                                                        <DUNS>String</DUNS>
+                                                </PartyId>
+                                        </SupplierParty>
+                                </Parties>
+                                <UsageRestriction>String</UsageRestriction>
+                                <Description lang="en-us" owner="String">String</Description>
+                                <ClassificationScheme>
+                                        <ClassificationSchemeId>
+                                                <Id>String</Id>
+                                                <Revision>String</Revision>
+                                        </ClassificationSchemeId>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                        <ClassificationMaster>
+                                                <ClassificationId>String</ClassificationId>
+                                                <ClassificationLevel>String</ClassificationLevel>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <UserArea/>
+                                        </ClassificationMaster>
+                                        <ClassificationStructure>
+                                                <ClassificationStructureId>String</ClassificationStructureId>
+                                                <ClassificationId>String</ClassificationId>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                <Feature>
+                                                        <NameValue name="String" type="String">String</NameValue>
+                                                        <Description lang="en-us" owner="String">String</Description>
+                                                        <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                        <EffectivePeriod inclusive="true">
+                                                                <From>2002-04-05T00:00:00Z</From>
+                                                                <Duration>P1Y2M3DT10H30M</Duration>
+                                                        </EffectivePeriod>
+                                                        <Qualification>String</Qualification>
+                                                        <UOM>NMTOKEN</UOM>
+                                                        <PartyReferences>
+                                                                <PartyReference>
+                                                                        <PartyId>
+                                                                                <Id>String</Id>
+                                                                                <SCAC>String</SCAC>
+                                                                                <DUNS>String</DUNS>
+                                                                                <AssigningPartyId>
+                                                                                        <Id>String</Id>
+                                                                                        <SCAC>String</SCAC>
+                                                                                        <DUNS>String</DUNS>
+                                                                                </AssigningPartyId>
+                                                                        </PartyId>
+                                                                        <Name lang="en-us">String</Name>
+                                                                        <UserArea/>
+                                                                </PartyReference>
+                                                        </PartyReferences>
+                                                        <Sequence>String</Sequence>
+                                                        <UserArea/>
+                                                </Feature>
+                                                <UserArea/>
+                                        </ClassificationStructure>
+                                        <Feature>
+                                                <NameValue name="String" type="String">String</NameValue>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                <EffectivePeriod inclusive="true">
+                                                        <From>2002-04-05T00:00:00Z</From>
+                                                        <Duration>P1Y2M3DT10H30M</Duration>
+                                                </EffectivePeriod>
+                                                <Qualification>String</Qualification>
+                                                <UOM>NMTOKEN</UOM>
+                                                <PartyReferences>
+                                                        <PartyReference>
+                                                                <PartyId>
+                                                                        <Id>String</Id>
+                                                                        <SCAC>String</SCAC>
+                                                                        <DUNS>String</DUNS>
+                                                                        <AssigningPartyId>
+                                                                                <Id>String</Id>
+                                                                                <SCAC>String</SCAC>
+                                                                                <DUNS>String</DUNS>
+                                                                        </AssigningPartyId>
+                                                                </PartyId>
+                                                                <Name lang="en-us">String</Name>
+                                                                <UserArea/>
+                                                        </PartyReference>
+                                                </PartyReferences>
+                                                <Sequence>String</Sequence>
+                                                <UserArea/>
+                                        </Feature>
+                                        <UserArea/>
+                                </ClassificationScheme>
+                                <CatalogQualifier>
+                                        <Parties>
+                                                <SupplierParty active="false" oneTime="false">
+                                                        <PartyId>
+                                                                <Id>String</Id>
+                                                                <SCAC>String</SCAC>
+                                                                <DUNS>String</DUNS>
+                                                        </PartyId>
+                                                </SupplierParty>
+                                        </Parties>
+                                        <Site>
+                                                <Name lang="en-us">String</Name>
+                                                <Id>String</Id>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <PostalAddress>
+                                                        <AddressId qualifyingAgency="String">String</AddressId>
+                                                        <AddressLine>String</AddressLine>
+                                                        <City>String</City>
+                                                        <County>String</County>
+                                                        <StateOrProvince>String</StateOrProvince>
+                                                        <Country>String</Country>
+                                                        <Region>String</Region>
+                                                        <PostalCode>String</PostalCode>
+                                                        <Description lang="en-us" owner="String">String</Description>
+                                                        <UserArea/>
+                                                </PostalAddress>
+                                                <GPSCoordinates>
+                                                        <GPSSystemType>Text</GPSSystemType>
+                                                        <Latitude>Text</Latitude>
+                                                        <Longitude>Text</Longitude>
+                                                        <UserArea/>
+                                                </GPSCoordinates>
+                                                <LocationRelationship>
+                                                        <Binder>String</Binder>
+                                                        <Location>
+                                                                <Name lang="en-us">String</Name>
+                                                                <Id>String</Id>
+                                                                <Description lang="en-us" owner="String">String</Description>
+                                                                <PostalAddress>
+                                                                        <AddressId qualifyingAgency="String">String</AddressId>
+                                                                        <AddressLine>String</AddressLine>
+                                                                        <City>String</City>
+                                                                        <County>String</County>
+                                                                        <StateOrProvince>String</StateOrProvince>
+                                                                        <Country>String</Country>
+                                                                        <Region>String</Region>
+                                                                        <PostalCode>String</PostalCode>
+                                                                        <Description lang="en-us" owner="String">String</Description>
+                                                                        <UserArea/>
+                                                                </PostalAddress>
+                                                                <GPSCoordinates>
+                                                                        <GPSSystemType>Text</GPSSystemType>
+                                                                        <Latitude>Text</Latitude>
+                                                                        <Longitude>Text</Longitude>
+                                                                        <UserArea/>
+                                                                </GPSCoordinates>
+                                                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                                <UserArea/>
+                                                        </Location>
+                                                        <UserArea/>
+                                                </LocationRelationship>
+                                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                <UserArea/>
+                                        </Site>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <UserArea/>
+                                </CatalogQualifier>
+                                <UserArea/>
+                        </Header>
+                        <CatalogItemLine>
+                                <LineNumber>String</LineNumber>
+                                <ItemId>
+                                        <Id>String</Id>
+                                        <EANUCC13 url="String">String</EANUCC13>
+                                        <UPC url="String">String</UPC>
+                                        <Revision>String</Revision>
+                                </ItemId>
+                                <ItemType>String</ItemType>
+                                <UnitOfMeasure>NMTOKEN</UnitOfMeasure>
+                                <Description lang="en-us" owner="String">String</Description>
+                                <Parties>
+                                        <SupplierParty active="false" oneTime="false">
+                                                <PartyId>
+                                                        <Id>String</Id>
+                                                        <SCAC>String</SCAC>
+                                                        <DUNS>String</DUNS>
+                                                </PartyId>
+                                        </SupplierParty>
+                                </Parties>
+                                <ItemClassification>
+                                        <ClassificationStructureId>String</ClassificationStructureId>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                        <Attachments>
+                                                <Attachment inline="false">
+                                                        <EmbeddedData encoding="base64">
+                                                                <Data>Text</Data>
+                                                        </EmbeddedData>
+                                                        <DocumentDate>2002-04-05</DocumentDate>
+                                                        <Description lang="en-us" owner="String">String</Description>
+                                                        <FileType>String</FileType>
+                                                        <FileSize>3.1415926535897932384626433832795</FileSize>
+                                                        <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                        <Title lang="en-us">String</Title>
+                                                        <UserArea/>
+                                                </Attachment>
+                                        </Attachments>
+                                        <UserArea/>
+                                </ItemClassification>
+                                <Feature>
+                                        <NameValue name="String" type="String">String</NameValue>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                        <EffectivePeriod inclusive="true">
+                                                <From>2002-04-05T00:00:00Z</From>
+                                                <Duration>P1Y2M3DT10H30M</Duration>
+                                        </EffectivePeriod>
+                                        <Qualification>String</Qualification>
+                                        <UOM>NMTOKEN</UOM>
+                                        <PartyReferences>
+                                                <PartyReference>
+                                                        <PartyId>
+                                                                <Id>String</Id>
+                                                                <SCAC>String</SCAC>
+                                                                <DUNS>String</DUNS>
+                                                                <AssigningPartyId>
+                                                                        <Id>String</Id>
+                                                                        <SCAC>String</SCAC>
+                                                                        <DUNS>String</DUNS>
+                                                                </AssigningPartyId>
+                                                        </PartyId>
+                                                        <Name lang="en-us">String</Name>
+                                                        <UserArea/>
+                                                </PartyReference>
+                                        </PartyReferences>
+                                        <Sequence>String</Sequence>
+                                        <UserArea/>
+                                </Feature>
+                                <ItemPrice>
+                                        <UnitPrice>
+                                                <Amount currency="String">3.1415926535897932384626433832795</Amount>
+                                                <FunctionalAmout currency="String">3.1415926535897932384626433832795</FunctionalAmout>
+                                                <PerQuantity uom="NMTOKEN">3.1415926535897932384626433832795</PerQuantity>
+                                        </UnitPrice>
+                                        <PriceType>String</PriceType>
+                                        <EffectivePeriod inclusive="true">
+                                                <From>2002-04-05</From>
+                                                <Duration>P1Y2M3DT10H30M</Duration>
+                                        </EffectivePeriod>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                        <CustomerReference>
+                                                <PartyId>
+                                                        <Id>String</Id>
+                                                        <SCAC>String</SCAC>
+                                                        <DUNS>String</DUNS>
+                                                        <AssigningPartyId>
+                                                                <Id>String</Id>
+                                                                <SCAC>String</SCAC>
+                                                                <DUNS>String</DUNS>
+                                                        </AssigningPartyId>
+                                                </PartyId>
+                                                <Name lang="en-us">String</Name>
+                                                <UserArea/>
+                                        </CustomerReference>
+                                        <LinePriceBreak>
+                                                <PriceCode>String</PriceCode>
+                                                <PriceBreakQuantity uom="Each">3.1415926535897932384626433832795</PriceBreakQuantity>
+                                        </LinePriceBreak>
+                                        <UserArea/>
+                                </ItemPrice>
+                                <Attachments>
+                                        <Attachment inline="false">
+                                                <EmbeddedData encoding="base64">
+                                                        <Data>Text</Data>
+                                                </EmbeddedData>
+                                                <DocumentDate>2002-04-05</DocumentDate>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <FileType>String</FileType>
+                                                <FileSize>3.1415926535897932384626433832795</FileSize>
+                                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                <Title lang="en-us">String</Title>
+                                                <UserArea/>
+                                        </Attachment>
+                                </Attachments>
+                                <UserArea/>
+                        </CatalogItemLine>
+                        <CatalogCommodityLine>
+                                <LineNumber>String</LineNumber>
+                                <CommodityCode>String</CommodityCode>
+                                <Description lang="en-us" owner="String">String</Description>
+                                <Parties>
+                                        <PublisherParty active="false" oneTime="false">
+                                                <PartyId>
+                                                        <Id>String</Id>
+                                                        <SCAC>String</SCAC>
+                                                        <DUNS>String</DUNS>
+                                                </PartyId>
+                                        </PublisherParty>
+                                </Parties>
+                                <UserArea/>
+                        </CatalogCommodityLine>
+                </ElectronicCatalog>
+        </DataArea>
+</SyncElectronicCatalog>

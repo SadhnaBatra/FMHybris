@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sch:schema xmlns="http://www.ascc.net/xml/schematron" xmlns:oa="http://www.openapplications.org/oagis" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ascc.net/xml/schematron ../../../Utility/Schematron/schematron1-5.xsd">
+	<sch:title>Schematron Validator for OAGI Constraints</sch:title>
+	<sch:ns prefix="oa" uri="http://www.openapplications.org/oagis"/>
+	<sch:pattern name="Noun Level">
+		<sch:rule context="oa:ResourceAllocation">
+			<sch:assert test="oa:Header">Must have a Header component.</sch:assert>
+			<sch:assert test="oa:Detail">Must have at least one Detail component.</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Header Level">
+		<sch:rule context="oa:Header">
+			<sch:assert test="oa:Kind">Must have a "Kind" element.</sch:assert>
+			<sch:assert test="oa:DocumentDateTime">Must have a "DocumentDateTime" element.</sch:assert>
+		</sch:rule>
+		<sch:rule context="oa:Header/oa:DocumentReferences">
+			<sch:assert test="oa:ProductionOrderReference | oa:RouteDocumentReference ">Must have a ProductionOrder or Route Document Reference.</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Detail Level">
+		<sch:rule context="oa:Detail/oa:WIPOperation">
+			<sch:assert test="oa:OperationId">Must have an "OperationId" element.</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="LaborResource Level">
+		<sch:rule context="oa:LaborResource/oa:Labor">
+			<sch:assert test="oa:EmployeeId | oa:Category">Must have an "EmployeeId" or "Category".</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="MachineResource Level">
+		<sch:rule context="oa:MachineResource/oa:Machine">
+			<sch:assert test="oa:Id | oa:Classification">Must have a "Id" or "Classification".</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="ToolResource Level">
+		<sch:rule context="oa:ToolResource/oa:Tool">
+			<sch:assert test="oa:ToolId | oa:ToolClassification">Must have a "ToolId" or "ToolClassification".</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="ItemResource Level">
+		<sch:rule context="oa:ItemResource/oa:Item">
+			<sch:assert test="oa:ItemId">Must have an "ItemId".</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+</sch:schema>

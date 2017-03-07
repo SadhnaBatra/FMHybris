@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/LedgerTransactionDocument.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="Document.xsd"/>
+        <xs:complexType name="LedgerTransactionDocument">
+                <xs:complexContent>
+                        <xs:extension base="Document"/>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="LedgerTransactionDocumentHeader">
+                <xs:complexContent>
+                        <xs:extension base="DocumentHeader">
+                                <xs:sequence>
+                                        <xs:element ref="Parties" minOccurs="0"/>
+                                        <xs:element ref="PaymentTerms" minOccurs="0"/>
+                                        <xs:element ref="Tax" minOccurs="0"/>
+                                        <xs:element name="Total" type="Amounts" minOccurs="0"/>
+                                        <xs:element name="GLEntity" type="GLEntity" minOccurs="0"/>
+                                        <xs:element name="AccountingDate" type="DateTimeAny" minOccurs="0"/>
+                                        <xs:element name="AccountingPeriod" type="TimePeriodAny" minOccurs="0"/>
+                                        <xs:element name="AccountingYear" type="Year" minOccurs="0"/>
+                                        <xs:element name="PaymentMethod" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Describes payment method on an invoice, for example, drafts, BACS, checks, or letter of credit.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="EntryCreator" type="UserId" minOccurs="0"/>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="LedgerTransactionDocumentLine">
+                <xs:complexContent>
+                        <xs:extension base="DocumentLine">
+                                <xs:group ref="LedgerEntryContent"/>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+</xs:schema>

@@ -1,0 +1,871 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema targetNamespace="http://www.aaiasoa.net/IPOv2/Common" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cmn="http://www.aaiasoa.net/IPOv2/Common" elementFormDefault="qualified">
+	<xs:element name="PaymentTermsType" type="cmn:PaymentTermsType"/>
+	<xs:complexType name="PaymentTermsType">
+		<xs:sequence>
+			<xs:element name="TermId" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Payment terms for the Order, e.g. &#8220;Net 45 days&#8221;, "2% 10 net 30", "10th proximo", &#8220;COD &#8211; Money Order only&#8221;.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PaymentMethod" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Specifies a particular payment method, e,g, Cashiers Check, Personal Check.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="SenderType" type="cmn:SenderType"/>
+	<xs:complexType name="SenderType">
+		<xs:sequence>
+			<xs:element name="ReferenceId" type="xs:token" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>This element contains the GUID of the referenced document, providing an audit trail back to the original message.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Confirmation" type="xs:boolean" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>This element contains a "1" if the trading partners are using either asynchronous communication with confirmation or synchronous communication with delayed response. The value should be "0" if trading partners are using asynchronous communication without confirmation or synchronous communication with immediate response - OR - when the element is present in a Confirmation document.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="FreightTermsType" type="cmn:FreightTermsType"/>
+	<xs:complexType name="FreightTermsType">
+		<xs:sequence>
+			<xs:element name="FreightTerm" type="cmn:FreightTermType" minOccurs="1" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Describes how the freight cost for a shipment of goods should be billed, e.g. Prepaid, Collect, Third Party, Prepaid and Add, Consignee Billed.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ApplicationAreaType" type="cmn:ApplicationAreaType"/>
+	<xs:complexType name="ApplicationAreaType">
+		<xs:annotation>
+			<xs:documentation>Information contained in this component supports communication between two or more business applications, for use primarily in authentication and authorization. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DocumentGUID" type="xs:token" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A Globally Unique Identifier (GUID) that makes each document instance uniquely identifiable. This is necessary to create legally binding transactions, to enable transaction logging and exception handling, and facilitate re-sending and receipt confirmation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Sender" type="cmn:SenderType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="CreationDateTime" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The date and time when the document instance was created and sent, which is not necessarily identical to when the message content was created on the host application. It is formatted in the ISO 8601 extended format of YYYY-MM-DDThh:mm:ss followed by the difference between the local time and Coordinated Universal Time (UTC) represented as ±hh:mm, or the letter Z if the local time is identical to UTC. For example, to indicate 2:45 pm on August 18, 2003 for Central Standard Time, which is 6 hours behind UTC (formerly known as Greenwich Mean Time).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UserArea" type="cmn:UserAreaType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Allows the user of IPO to extend the specification in order to exchange additional information which isn't defined in the standard. This UserArea should remain the last element in the Header sequence, prior to the Lines element.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="AdditionalChargesType" type="cmn:AdditionalChargesType"/>
+	<xs:complexType name="AdditionalChargesType">
+		<xs:sequence>
+			<xs:element name="AdditionalCharge" type="cmn:AdditionalChargeType" minOccurs="1" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>One or more unique charges associated with the purchase or delivery of the Order.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PartTypesType" type="cmn:PartTypesType"/>
+	<xs:complexType name="PartTypesType">
+		<xs:annotation>
+			<xs:documentation>Container element for Part Types.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="PartType" type="cmn:PartTypeType" minOccurs="1" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>The Seller may provide additional PartType information, consisting of PCDB, Motive and Quality codes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ItemStatusChangesType" type="cmn:ItemStatusChangesType"/>
+	<xs:complexType name="ItemStatusChangesType">
+		<xs:sequence>
+			<xs:element name="ItemStatusChange" type="cmn:ItemStatusChangeType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="HostPartyType" type="cmn:HostPartyType"/>
+	<xs:complexType name="HostPartyType">
+		<xs:sequence>
+			<xs:element name="PartyId" type="xs:token" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Contains information that represents a business entity that can be used to route a request to a service endpoint.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="EnvironmentEnum">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Test"/>
+			<xs:enumeration value="Production"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="CustomerPODocumentReferenceType" type="cmn:CustomerPODocumentReferenceType"/>
+	<xs:complexType name="CustomerPODocumentReferenceType">
+		<xs:sequence>
+			<xs:element name="CustomerDocumentId" type="xs:token" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>References the ProcessPurchase Order Document Identifier generated by the Customer's (Buyer's) application.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PricesType" type="cmn:PricesType"/>
+	<xs:complexType name="PricesType">
+		<xs:sequence>
+			<xs:element name="Pricing" type="cmn:PricingType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="ChangeDescEnum">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Core (seller has added a core charge)"/>
+			<xs:enumeration value="Drop Ship Not Allowed"/>
+			<xs:enumeration value="Item - Alternate"/>
+			<xs:enumeration value="Item - Kit"/>
+			<xs:enumeration value="Item - Not Found"/>
+			<xs:enumeration value="Item - Superceding"/>
+			<xs:enumeration value="Max Lines Exceeded"/>
+			<xs:enumeration value="Multiple Ship Locations"/>
+			<xs:enumeration value="Okay"/>
+			<xs:enumeration value="Price &#8211; Changed"/>
+			<xs:enumeration value="Price &#8211; Please Call"/>
+			<xs:enumeration value="Price &#8211; Promotion"/>
+			<xs:enumeration value="Price - Quantity Discount"/>
+			<xs:enumeration value="Qty &#8211; Insufficient"/>
+			<xs:enumeration value="Qty - Minimum Order"/>
+			<xs:enumeration value="Qty - Not Available"/>
+			<xs:enumeration value="Qty - Not For Sale"/>
+			<xs:enumeration value="Qty - Pack Size"/>
+			<xs:enumeration value="Ship Date &#8211; Backordered"/>
+			<xs:enumeration value="Ship Date &#8211; Change"/>
+			<xs:enumeration value="Ship Method Changed"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OrderQuantityBaseType">
+		<xs:restriction base="xs:positiveInteger"/>
+	</xs:simpleType>
+	<xs:element name="OrderQuantityType" type="cmn:OrderQuantityType"/>
+	<xs:complexType name="OrderQuantityType">
+		<xs:simpleContent>
+			<xs:extension base="cmn:OrderQuantityBaseType">
+				<xs:attribute name="uom" use="optional" type="cmn:uomType">
+					<xs:annotation>
+						<xs:documentation>Unit of Measuer</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:element name="ShipmentInventoryItemIdType" type="cmn:ShipmentInventoryItemIdType"/>
+	<xs:complexType name="ShipmentInventoryItemIdType">
+		<xs:annotation>
+			<xs:documentation>A shipped Line Item identifier, corresponding to the Line Item on a Purchase Order.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CustomerItemId" type="xs:token" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The item number known to the Buyer. This may be the same as the Supplier's catalog identifer, the customer's SKU,  or some other product identifier.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SupplierItemId" type="xs:token" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>An Item identifier known to the Supplier. If this is different than a Buyer's identifier, it may be used as a cross-reference to the CustomerItemId. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="AlternateDocumentIdsType" type="cmn:AlternateDocumentIdsType"/>
+	<xs:complexType name="AlternateDocumentIdsType">
+		<xs:sequence>
+			<xs:element name="CustomerDocumentId" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Contains the Purchase Order identifier generated by Buyer's application. The contents must match the corresponding field in the ProcessPurchaseOrder and AcknowledgePurchaseOrder documents that triggered the shipment.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RevisedPOIdentifier" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Contains the identifier of the revised P.O., if applicable, generated by Buyer's application. If P.O. revisions are not supported by the Buyer's application, this field is not used.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SupplierDocumentId" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Order/Confirmation number generated by the Supplier and communicated via AcknowledgePurchaseOrder. If this is provided by the Buyer, then Seller will respond with GetShipment against this id and ignoring AlternateDocumentId/CustomerDocumentId. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CarrierDocumentId" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Contains the waybill number used by the trucking company or package carrier (or its equivalent for air freight and other types of carriers) for the entire shipment. Compare this field to ShipUnit/ShippingTrackingId, which contains similar information at the package level.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BrokerDocumentId" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Contains the reference identifier used by a freight forwarder or third-party logistics provider.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="ItemQuantityBaseType">
+		<xs:restriction base="xs:integer"/>
+	</xs:simpleType>
+	<xs:element name="ItemQuantityType" type="cmn:ItemQuantityType"/>
+	<xs:complexType name="ItemQuantityType">
+		<xs:simpleContent>
+			<xs:extension base="cmn:ItemQuantityBaseType">
+				<xs:attribute name="uom" use="required" type="cmn:uomType">
+					<xs:annotation>
+						<xs:documentation>Unit of Measure</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="ShipUnitBaseType">
+		<xs:restriction base="xs:positiveInteger"/>
+	</xs:simpleType>
+	<xs:element name="ShipUnitQuantityType" type="cmn:ShipUnitQuantityType"/>
+	<xs:complexType name="ShipUnitQuantityType">
+		<xs:simpleContent>
+			<xs:extension base="cmn:ShipUnitBaseType">
+				<xs:attribute name="uom" use="optional" type="cmn:uomType">
+					<xs:annotation>
+						<xs:documentation>Unit of Measure</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:element name="SupplierQuoteDocumentReferenceType" type="cmn:SupplierQuoteDocumentReferenceType"/>
+	<xs:complexType name="SupplierQuoteDocumentReferenceType">
+		<xs:sequence>
+			<xs:element name="SupplierDocumentId" type="xs:token" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>References the AddQuote Document Identifier generated by the Supplier's (Seller's) application.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="DocumentIdsType" type="cmn:DocumentIdsType"/>
+	<xs:complexType name="DocumentIdsType">
+		<xs:annotation>
+			<xs:documentation>DocumentIdentifiers generated by the Buyer and Seller.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CustomerRFQDocumentId" type="cmn:CustomerRFQDocumentIdType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SupplierQuoteDocumentId" type="cmn:SupplierQuoteDocumentIdType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="CustomerPurchaseOrderId" type="cmn:CustomerPurchaseOrderIdType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SupplierSalesOrderId" type="cmn:SupplierSalesOrderIdType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="DocumentReferenceIdsType" type="cmn:DocumentReferenceIdsType"/>
+	<xs:complexType name="DocumentReferenceIdsType">
+		<xs:annotation>
+			<xs:documentation>Document Reference Identifiers generated by the Buyer and Seller.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CustomerRFQDocumentReference" type="cmn:CustomerRFQDocumentReferenceType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="SupplierQuoteDocumentReference" type="cmn:SupplierQuoteDocumentReferenceType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="CustomerPODocumentReference" type="cmn:CustomerPODocumentReferenceType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="SupplierSalesOrderDocumentReference" type="cmn:SupplierSalesOrderDocumentReferenceType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="SupplierSalesOrderDocumentReferenceType" type="cmn:SupplierSalesOrderDocumentReferenceType"/>
+	<xs:complexType name="SupplierSalesOrderDocumentReferenceType">
+		<xs:sequence>
+			<xs:element name="SupplierDocumentId" type="xs:token" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>References the AcknowledgePurchaseOrder Document Identifier generated by the Supplier's (Seller's) application.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="CustomerRFQDocumentIdType" type="cmn:CustomerRFQDocumentIdType"/>
+	<xs:complexType name="CustomerRFQDocumentIdType">
+		<xs:sequence>
+			<xs:element name="CustomerDocumentId" type="xs:token" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>AddRequestForQuote Document Identifier generated by the Customer's (Buyer's) application.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="SupplierQuoteDocumentIdType" type="cmn:SupplierQuoteDocumentIdType"/>
+	<xs:complexType name="SupplierQuoteDocumentIdType">
+		<xs:sequence>
+			<xs:element name="SupplierDocumentId" type="xs:token" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>AddQuote Document Identifier generated by the Supplier's (Seller's) application.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="CustomerPurchaseOrderIdType" type="cmn:CustomerPurchaseOrderIdType"/>
+	<xs:complexType name="CustomerPurchaseOrderIdType">
+		<xs:sequence>
+			<xs:element name="CustomerDocumentId" type="xs:token" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>ProcessPurchase Order Document Identifier generated by the Customer's (Buyer's) application.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="SupplierSalesOrderIdType" type="cmn:SupplierSalesOrderIdType"/>
+	<xs:complexType name="SupplierSalesOrderIdType">
+		<xs:sequence>
+			<xs:element name="SupplierDocumentId" type="xs:token" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>AcknowledgePurchaseOrder Document Identifier generated by the Supplier's (Seller's) application.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="TransportationTermCodeType" type="cmn:TransportationTermCodeType"/>
+	<xs:complexType name="TransportationTermCodeType">
+		<xs:annotation>
+			<xs:documentation>One of the three-character codes defined in INCOterms 2000, such as EXW (Ex works), FOB (Free on Board), CIF (Cost, Insurance and Freight), DDU (Delivered Duty Unpaid), or CPT (Carriage Paid To).</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="cmn:TermCodeType">
+				<xs:attribute name="issuingAgency" use="required" type="xs:token">
+					<xs:annotation>
+						<xs:documentation>Indicates who developed the TermCode, e.g. ICC (International Chamber of Commerce) for INCOterms,UCC (Uniform Code Council) for EAN-UCC codes.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="TermCodeType">
+		<xs:annotation>
+			<xs:documentation>One of the three-character codes defined in INCO terms 2000; such as EXW (Ex works), FOB (Free on Board), CIF (Cost, Insurance and Freight), DDU (Delivered Duty Unpaid), or CPT (Carriage Paid To). Explanations of the INCOterms may be found at http://www.iccwbo.org/.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:length value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="NoteType" type="cmn:NoteType"/>
+	<xs:complexType name="NoteType">
+		<xs:simpleContent>
+			<xs:extension base="cmn:NoteBaseType">
+				<xs:attribute name="author" use="optional" type="xs:token">
+					<xs:annotation>
+						<xs:documentation>Identifies the author of the note.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="NoteBaseType">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="BackOrderedQuantityBaseType">
+		<xs:restriction base="xs:integer"/>
+	</xs:simpleType>
+	<xs:element name="BackOrderedQuantityType" type="cmn:BackOrderedQuantityType"/>
+	<xs:complexType name="BackOrderedQuantityType">
+		<xs:simpleContent>
+			<xs:extension base="cmn:BackOrderedQuantityBaseType">
+				<xs:attribute name="uom" use="optional" type="cmn:uomType">
+					<xs:annotation>
+						<xs:documentation>Unit of Measure</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:element name="FreightTermBaseType" type="cmn:FreightTermBaseType"/>
+	<xs:complexType name="FreightTermBaseType">
+		<xs:simpleContent>
+			<xs:extension base="cmn:FreightTermSimpleType">
+				<xs:attribute name="freightTermCode" use="required" type="xs:token">
+					<xs:annotation>
+						<xs:documentation>Contains one of the code types defined in the referenced element.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="FreightTermSimpleType">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:element name="FreightTermType" type="cmn:FreightTermType"/>
+	<xs:complexType name="FreightTermType">
+		<xs:annotation>
+			<xs:documentation>Describes how the freight cost for a shipment of goods should be billed, e.g. Prepaid, Collect, Third Party, Prepaid and Add, Consignee Billed.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CommonCarrier" type="cmn:FreightTermBaseType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Name of the shipping carrier for that Freight Term. Examples of acceptable values for the code attribute would include UPS, FED, DHL, US, etc.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ShippingMethod" type="cmn:FreightTermBaseType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Description of the Shipping Method used for that Freight Term. Examples of acceptable values for the code attribute would include NDE for Next Day Early and 3DY for Three-Day.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TransportationMethod" type="cmn:FreightTermBaseType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A description of Transportation Method for that Freight Term. Examples of acceptable values for the code attribute would include A for Air, T for Truck/Ground, R for Rail and V for Vessel.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CarrierAccount" type="xs:token" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Account number used for the transportation carrier, e.g. FedX, UPS, DHL, Greyhound, Burlington Northern.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ShippingCharge" type="xs:decimal" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Shipping costs for the Order.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="AdditionalChargeType" type="cmn:AdditionalChargeType"/>
+	<xs:complexType name="AdditionalChargeType">
+		<xs:annotation>
+			<xs:documentation>One or more unique charges associated with the purchase or delivery of the Order.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Description" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Describes a charge, apart from Item cost, e.g. freight, tax, or setup charges.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Total" type="xs:decimal" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Total amount of the charge.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PartyType" type="cmn:PartyType"/>
+	<xs:complexType name="PartyType">
+		<xs:sequence>
+			<xs:element name="PartyId" type="xs:token" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Contains information that represents a business entity that can be used to route a request to a service endpoint.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Name" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The formal or trade name of the entity.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AddressLine" type="xs:string" minOccurs="1" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Indicates the multiple lines of an address. The first line is typically a street name and number.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="City" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The city name.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StateOrProvince" type="xs:token" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>ISO 3166-2 two-letter abbreviation for the state or province to which the invoice should be mailed, e.g. "IL"; for Illinois, "QC" for Quebec.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PostalCode" type="xs:token" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>ZIP or postal code for the address.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Country" type="xs:token" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>ISO 3166-1 two-letter code for the country, e.g. "US" for United States, "CA" for Canada.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="County" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The county for the address.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Telephone" type="xs:token" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Business contact's telephone number, formatted as +999 (999) 9999999.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="OrderItemType" type="cmn:OrderItemType"/>
+	<xs:complexType name="OrderItemType">
+		<xs:annotation>
+			<xs:documentation>A collection of information pertaining to the Item.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CustomerItemId" type="xs:token" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The Item number known to the Buyer. This may be the same as the Supplier's catalog number, the Customer's SKU, or some other product identifier.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SupplierItemId" type="xs:token" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>An Item identifier known to the Supplier. If this is different than a Buyer's identifier, it may be used as a cross-reference to the CustomerItemId. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SupplierCode" type="xs:token" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Contains a Seller defined product/line code, if it is different than the ManufacturerCode tag value. This value is used in conjunction with the SupplierItemId to be the product designation as defined by the Seller.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BrandAAIAId" type="xs:token" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Brand idenitifier found in the AAIA maintained Parent/Supplier/Brand Code Registry Table.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ManufacturerItemId" type="xs:token" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The Item identifier known to the Manufacturer or OEM. May be used as a cross-reference to the CustomerItemId or SupplierItemId.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ManufacturerCode" type="xs:token" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Contains a Buyer/Seller negotiated product/line code. This tag value can used in conjunction with the CustomerItemId and/or the ManufacturerItemId tags, as appropriate based upon the agreement between the Buyer and Seller. In addition, this field could be used in conjunction with the SupplierItemId, if the SupplierCode tag is not present.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ManufacturerName" type="xs:token" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Contains a free-form text description of the name of the manufacturer and/or the "brand" of the product.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Description" type="xs:string" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The Item description.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PartTypes" type="cmn:PartTypesType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Container element for Part Types. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NPDCode" type="cmn:NPDCodeType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Category code information for the Item, consisting of the AAIA NPD category, sub-category and segment codes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="UnitPriceType" type="cmn:UnitPriceType"/>
+	<xs:complexType name="UnitPriceType">
+		<xs:annotation>
+			<xs:documentation>Describes the unit cost for a single Item in a package containing multiple items.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="cmn:UnitPriceBaseType">
+				<xs:attribute name="uom" use="optional" type="cmn:uomType">
+					<xs:annotation>
+						<xs:documentation>Unit of Measuer</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="UnitPriceBaseType">
+		<xs:restriction base="xs:decimal"/>
+	</xs:simpleType>
+	<xs:simpleType name="uomType">
+		<xs:annotation>
+			<xs:documentation>The unit of measure applying to PerQuantity value.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token"/>
+	</xs:simpleType>
+	<xs:element name="PricingType" type="cmn:PricingType"/>
+	<xs:complexType name="PricingType">
+		<xs:annotation>
+			<xs:documentation>Item pricing by industry PriceType, as defined in the AAIA PIES PriceType Code Table. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="PriceType" type="cmn:PriceTypeEnum" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Code value identifying the type of price conveyed - refer to the AAIA PIES Price Type Code Table for the complete list of enumerated types.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Price" type="cmn:UnitPriceType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The Item value for the PriceType, as defined in the AAIA PIES Pricing segment. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PriceBreak" type="cmn:PriceBreakType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Incremental unit quantity required of the Item to receive a price break, as defined in the AAIA PIES Pricing segment.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="PriceBreakBaseType">
+		<xs:restriction base="xs:positiveInteger"/>
+	</xs:simpleType>
+	<xs:simpleType name="PriceTypeEnum">
+		<xs:annotation>
+			<xs:documentation>AC1	Special Additional Cost 1	
+				AC2	Special Additional Cost 2	
+				CR1	Core 1	
+				CR2	Core 2	
+				CR3	Core 3	
+				CR4	Core 4	
+				CRG	Good Core	
+				CRJ	Jobber Core	
+				CRW	WD Core	
+				DLN	Non-Stock Dealer	
+				DLR	Dealer	
+				DLV	Volume Dealer	
+				FLT	Fleet	
+				INM	Master Installer	
+				INN	NS Installer	
+				INP	Installer Preferred	
+				INS	Stocking Installer	
+				JBC	Conf-Jobber	
+				JBN	NS Jobber	
+				JBR	Jobber	
+				LST	List	
+				MEC	Mechanic	
+				PKP	Pickup
+				PRO	Special Promo	
+				QOT	Quote
+				RAC	Racer	
+				RET	Retail	
+				RMP	Retail MAP
+				TRD	Trade	
+				UNL	Unilateral Price	
+				USR	User	
+				WD1	Distributor	
+				WLS	Wholesaler	
+				WMP	Wholesale MAP
+				ZZ1	User Defined	
+				ZZ2	User Defined	
+				ZZ3	User Defined	
+				ZZ4	User Defined	
+				ZZ5	User Defined	
+				ZZ6	User Defined	
+				ZZ7	User Defined	
+				ZZ8	User Defined	
+				ZZ9	User Defined	</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="AC1"/>
+			<xs:enumeration value="AC2"/>
+			<xs:enumeration value="CR1"/>
+			<xs:enumeration value="CR2"/>
+			<xs:enumeration value="CR3"/>
+			<xs:enumeration value="CR4"/>
+			<xs:enumeration value="CRG"/>
+			<xs:enumeration value="CRJ"/>
+			<xs:enumeration value="CRW"/>
+			<xs:enumeration value="DLN"/>
+			<xs:enumeration value="DLR"/>
+			<xs:enumeration value="DLV"/>
+			<xs:enumeration value="FLT"/>
+			<xs:enumeration value="INM"/>
+			<xs:enumeration value="INN"/>
+			<xs:enumeration value="INP"/>
+			<xs:enumeration value="INS"/>
+			<xs:enumeration value="JBC"/>
+			<xs:enumeration value="JBN"/>
+			<xs:enumeration value="JBR"/>
+			<xs:enumeration value="LST"/>
+			<xs:enumeration value="MEC"/>
+			<xs:enumeration value="PKP"/>
+			<xs:enumeration value="PRO"/>
+			<xs:enumeration value="QOT"/>
+			<xs:enumeration value="RAC"/>
+			<xs:enumeration value="RET"/>
+			<xs:enumeration value="RMP"/>
+			<xs:enumeration value="TRD"/>
+			<xs:enumeration value="UNL"/>
+			<xs:enumeration value="USR"/>
+			<xs:enumeration value="WD1"/>
+			<xs:enumeration value="WLS"/>
+			<xs:enumeration value="WMP"/>
+			<xs:enumeration value="ZZ1"/>
+			<xs:enumeration value="ZZ2"/>
+			<xs:enumeration value="ZZ3"/>
+			<xs:enumeration value="ZZ4"/>
+			<xs:enumeration value="ZZ5"/>
+			<xs:enumeration value="ZZ6"/>
+			<xs:enumeration value="ZZ7"/>
+			<xs:enumeration value="ZZ8"/>
+			<xs:enumeration value="ZZ9"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="UserAreaType" type="cmn:UserAreaType"/>
+	<xs:complexType name="UserAreaType">
+		<xs:sequence>
+			<xs:element name="Any" type="xs:anyType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PriceBreakType" type="cmn:PriceBreakType"/>
+	<xs:complexType name="PriceBreakType">
+		<xs:simpleContent>
+			<xs:extension base="cmn:PriceBreakBaseType">
+				<xs:attribute name="uom" use="optional" type="cmn:uomType">
+					<xs:annotation>
+						<xs:documentation>Unit of Measure</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:element name="CustomerRFQDocumentReferenceType" type="cmn:CustomerRFQDocumentReferenceType"/>
+	<xs:complexType name="CustomerRFQDocumentReferenceType">
+		<xs:sequence>
+			<xs:element name="CustomerDocumentId" type="xs:token" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>References the AddRequestForQuote Document Identifier generated by the Customer's (Buyer's) application.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="NPDCodeType" type="cmn:NPDCodeType"/>
+	<xs:complexType name="NPDCodeType">
+		<xs:sequence>
+			<xs:element name="Category" type="xs:token" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The AAIA NPD category code for the Item.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SubCategory" type="xs:token" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The AAIA NPD sub-category code for the item.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Segment" type="xs:token" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The AAIA NPD segment code for the Item.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PartTypeType" type="cmn:PartTypeType"/>
+	<xs:complexType name="PartTypeType">
+		<xs:annotation>
+			<xs:documentation>The Seller may provide additional PartType information, consisting of PCDB, Motive and Quality codes.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="PCDB" type="xs:token" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>ACES PCDB PartType code.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Motive" type="cmn:MotiveEnum" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>One of an enumerated list of values specifying the Motive PartType.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Quality" type="cmn:QualityEnum" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>One of an enumerated list of values specifying the Quality of a PartType.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="MotiveEnum">
+		<xs:annotation>
+			<xs:documentation>01	Automotive
+02	Light Duty
+03	Heavy Duty
+04	Marine
+05	Agriculture
+06	Motorcycle
+07	Lawn and Tractor
+08	Racing
+09	High Performance
+10	Specialty Niche
+11	Not Applicable</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="01"/>
+			<xs:enumeration value="02"/>
+			<xs:enumeration value="03"/>
+			<xs:enumeration value="04"/>
+			<xs:enumeration value="05"/>
+			<xs:enumeration value="06"/>
+			<xs:enumeration value="07"/>
+			<xs:enumeration value="08"/>
+			<xs:enumeration value="09"/>
+			<xs:enumeration value="10"/>
+			<xs:enumeration value="11"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="QualityEnum">
+		<xs:annotation>
+			<xs:documentation>01	Standard
+02	Good
+03	Better
+04	Best
+05	Premium
+06	Not Applicable</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="01."/>
+			<xs:enumeration value="02"/>
+			<xs:enumeration value="03"/>
+			<xs:enumeration value="04"/>
+			<xs:enumeration value="05"/>
+			<xs:enumeration value="06"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ChangeToEnum">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="D01"/>
+			<xs:enumeration value="D02"/>
+			<xs:enumeration value="D03"/>
+			<xs:enumeration value="DSNA"/>
+			<xs:enumeration value="I01"/>
+			<xs:enumeration value="I02"/>
+			<xs:enumeration value="I03"/>
+			<xs:enumeration value="I04"/>
+			<xs:enumeration value="I05"/>
+			<xs:enumeration value="MLE"/>
+			<xs:enumeration value="MSL"/>
+			<xs:enumeration value="OK"/>
+			<xs:enumeration value="P01"/>
+			<xs:enumeration value="P02"/>
+			<xs:enumeration value="P03"/>
+			<xs:enumeration value="P04"/>
+			<xs:enumeration value="Q01"/>
+			<xs:enumeration value="Q02"/>
+			<xs:enumeration value="Q03"/>
+			<xs:enumeration value="Q04"/>
+			<xs:enumeration value="Q05"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="ItemStatusChangeType" type="cmn:ItemStatusChangeType"/>
+	<xs:complexType name="ItemStatusChangeType">
+		<xs:annotation>
+			<xs:documentation>A single item status change.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="To" type="cmn:ChangeToEnum" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>One of an enumerated list of code values indicating the reason for a change in status.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Description" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The one description, selected from an enumerated list of descriptions, that correspond to the status change code in this component's ItemStatusChange/To element.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

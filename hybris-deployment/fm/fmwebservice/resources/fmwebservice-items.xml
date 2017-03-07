@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+  ~ [y] hybris Platform
+  ~
+  ~ Copyright (c) 2000-2014 hybris AG
+  ~ All rights reserved.
+  ~
+  ~ This software is the confidential and proprietary information of hybris
+  ~ ("Confidential Information"). You shall not disclose such Confidential
+  ~ Information and shall use it only in accordance with the terms of the
+  ~ license agreement you entered into with hybris.
+  -->
+<items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="items.xsd">
+	<collectiontypes>
+		<collectiontype elementtype="BaseSite" code="BaseSiteCollection" autocreate="true"/>
+	</collectiontypes>
+
+	<itemtypes>
+		<itemtype code="ProductExpressUpdateCleanerCronJob" autocreate="true" generate="true" extends="CronJob"
+					 jaloclass="com.falcon.jalo.expressupdate.cron.ProductExpressUpdateCleanerCronJob">
+			<attributes>
+				<attribute qualifier="queueTimeLimit" type="java.lang.Integer">
+					<persistence type="property"/>
+					<description>Only elements older than specified value (in minutes) will be removed from the queue</description>
+					<defaultvalue>Integer.valueOf(1440)</defaultvalue>
+				</attribute>
+			</attributes>
+		</itemtype>
+
+		<itemtype code="OrderStatusUpdateCleanerCronJob" autocreate="true" generate="true" extends="CronJob"
+					 jaloclass="com.falcon.jalo.expressupdate.cron.OrderStatusUpdateCleanerCronJob">
+			<attributes>
+				<attribute qualifier="queueTimeLimit" type="java.lang.Integer">
+					<persistence type="property"/>
+					<description>Only elements older than specified value (in minutes) will be removed from the queue</description>
+					<defaultvalue>Integer.valueOf(1440)</defaultvalue>
+				</attribute>
+			</attributes>
+		</itemtype>
+
+		<itemtype code="OldCartRemovalCronJob" autocreate="true"
+					 generate="true" extends="CronJob"
+					 jaloclass="com.falcon.jalo.OldCartRemovalCronJob">
+			<attributes>
+				<attribute type="BaseSiteCollection" qualifier="sites">
+					<modifiers/>
+					<persistence type="property"/>
+					<description>BaseSites for which old carts should be removed</description>
+				</attribute>
+				<attribute type="java.lang.Integer" qualifier="cartRemovalAge">
+					<modifiers/>
+					<persistence type="property"/>
+					<defaultvalue>Integer.valueOf(2419200)</defaultvalue>
+					<description>After specified number of seconds carts will be cleaned up. Default is 28 days.</description>
+				</attribute>
+				<attribute type="java.lang.Integer" qualifier="anonymousCartRemovalAge">
+					<modifiers/>
+					<persistence type="property"/>
+					<defaultvalue>Integer.valueOf(1209600)</defaultvalue>
+					<description>After specified number of seconds carts will be cleaned up. Default is 14 days.</description>
+				</attribute>
+			</attributes>
+		</itemtype>
+		
+		<itemtype generate="true" code="OAuthAccessToken"
+		          jaloclass="de.hybris.platform.commercewebservicescommons.jalo.OAuthAccessToken"
+		          autocreate="true">
+			<deployment table="OAuthAccessToken" typecode="6228"/>
+
+			<attributes>
+				<attribute qualifier="tokenId" type="java.lang.String">
+					<description>Token key</description>
+					<modifiers unique="true" optional="false" initial="true"/>
+					<persistence type="property"/>
+				</attribute>
+
+				<attribute qualifier="token" type="java.lang.Object">
+					<description>serialized token object</description>
+					<modifiers read="true" write="true" search="false"/>
+					<persistence type="property">
+						<columntype database="oracle">
+							<value>BLOB</value>
+						</columntype>
+						<columntype>
+							<value>java.io.Serializable</value>
+						</columntype>
+					</persistence>
+				</attribute>
+
+				<attribute qualifier="authenticationId" type="java.lang.String">
+					<description>Authentication identifier</description>
+					<persistence type="property"/>
+				</attribute>
+
+				<attribute qualifier="userName" type="java.lang.String">
+					<description>Authenticated user name</description>
+					<persistence type="property"/>
+				</attribute>
+
+				<attribute qualifier="clientId" type="java.lang.String">
+					<description>Client identifier</description>
+					<persistence type="property"/>
+				</attribute>
+
+				<attribute qualifier="authentication" type="java.lang.Object">
+					<description>Serialized authentication object</description>
+					<modifiers read="true" write="true" search="false"/>
+					<persistence type="property">
+						<columntype database="oracle">
+							<value>BLOB</value>
+						</columntype>
+						<columntype>
+							<value>java.io.Serializable</value>
+						</columntype>
+					</persistence>
+				</attribute>
+
+				<attribute qualifier="refreshToken" type="OAuthRefreshToken">
+					<modifiers read="true" write="true" search="true" optional="true"/>
+					<persistence type="property"/>
+				</attribute>
+			</attributes>
+			<indexes>
+				<index name="tokenIdIdx" unique="true">
+					<key attribute="tokenId"/>
+				</index>
+				<index name="authenticationIdIdx" unique="true">
+					<key attribute="authenticationId"/>
+				</index>
+				<index name="refreshTokenIdx">
+					<key attribute="refreshToken"/>
+				</index>
+			</indexes>
+		</itemtype>
+
+		<itemtype generate="true" code="OAuthRefreshToken"
+		          jaloclass="de.hybris.platform.commercewebservicescommons.jalo.OAuthRefreshToken"
+		          autocreate="true">
+			<deployment table="OAuthRefreshToken" typecode="6229"/>
+
+			<attributes>
+				<attribute qualifier="tokenId" type="java.lang.String">
+					<description>Token key</description>
+					<modifiers unique="true" optional="false" initial="true"/>
+					<persistence type="property"/>
+				</attribute>
+
+				<attribute qualifier="token" type="java.lang.Object">
+					<description>Serialized token object</description>
+					<modifiers read="true" write="true" search="false"/>
+					<persistence type="property">
+						<columntype database="oracle">
+							<value>BLOB</value>
+						</columntype>
+						<columntype>
+							<value>java.io.Serializable</value>
+						</columntype>
+					</persistence>
+				</attribute>
+
+				<attribute qualifier="authentication" type="java.lang.Object">
+					<description>Serialized authentication object</description>
+					<modifiers read="true" write="true" search="false"/>
+					<persistence type="property">
+						<columntype database="oracle">
+							<value>BLOB</value>
+						</columntype>
+						<columntype>
+							<value>java.io.Serializable</value>
+						</columntype>
+					</persistence>
+				</attribute>
+			</attributes>
+			<indexes>
+				<index name="tokenIdIdx" unique="true">
+					<key attribute="tokenId"/>
+				</index>
+			</indexes>
+		</itemtype>
+
+
+	</itemtypes>
+</items>

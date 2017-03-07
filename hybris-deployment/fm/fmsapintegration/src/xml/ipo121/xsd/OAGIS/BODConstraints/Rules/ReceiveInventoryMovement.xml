@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sch:schema xmlns="http://www.ascc.net/xml/schematron" xmlns:oa="http://www.openapplications.org/oagis" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ascc.net/xml/schematron ../../../Utility/Schematron/schematron1-5.xsd">
+	<sch:title>Schematron Validator for OAGI Constraints</sch:title>
+	<sch:ns prefix="oa" uri="http://www.openapplications.org/oagis"/>
+	<sch:pattern name=" InventoryMovement">
+		<sch:rule context="oa:InventoryMovement">
+			<sch:assert test="oa:Header">The  InventoryMovement must have a Header component specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="InventoryMovement Header">
+		<sch:rule context="oa:Header">
+			<sch:assert test="oa:DocumentId">The InventoryIssue Header must have an "DocumentId"</sch:assert>
+			<sch:assert test="oa:DocumentReferences">The  InventoryMovement Header must have a "DocumentReferences" specified</sch:assert>
+			<sch:assert test="oa:DocumentDateTime">The  InventoryMovement Header must have a "DocumentDateTime" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="InventoryMovement Line">
+		<sch:rule context="oa:InventoryMovement /oa:Line">
+			<sch:assert test="oa:LineNumber">The InventoryMovement must have a "LineNumber"</sch:assert>
+			<sch:assert test="oa:Source">The InventoryMovement Line must have a "Source" specified</sch:assert>
+			<sch:assert test="oa:Destination">The InventoryMovement Line must have a "Destination" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="InventoryMovement Source">
+		<sch:rule context="oa:Source">
+			<sch:assert test="oa:ItemQuantity">Must have an "ItemQuantity" specified</sch:assert>
+			<sch:assert test="oa:Item">Must have an "Item"  specified</sch:assert>
+			<sch:assert test="oa:Site">Must have a "Site" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="InventoryMovement Destination">
+		<sch:rule context="oa:Destination">
+			<sch:assert test="oa:ItemQuantity">Must have an "ItemQuantity" specified</sch:assert>
+			<sch:assert test="oa:Item">Must have an "Item"  specified</sch:assert>
+			<sch:assert test="oa:Site">Must have a "Site" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+</sch:schema>

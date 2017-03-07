@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/Routing.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../MfgComponents.xsd"/>
+        <xs:complexType name="Routing">
+                <xs:complexContent>
+                        <xs:extension base="Noun">
+                                <xs:sequence>
+                                        <xs:element ref="Header" minOccurs="0"/>
+                                        <xs:element ref="Operation" minOccurs="0" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="RoutingHeader">
+                <xs:sequence>
+                        <xs:element name="DocumentId" type="RouteIdType" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the contains the unique routing document identifier information.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="EffectivePeriod" type="TimePeriod" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the effectivity of the Routing Document.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Description of the Routing.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="Item" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the Item Identifier in which the Routing is being used to create.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="Site" minOccurs="0"/>
+                        <xs:element ref="AssignedOperationGroups" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="RouteOperation" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="Distribution" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="Charges" minOccurs="0"/>
+                        <xs:group ref="References"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:element name="Routing" type="Routing" substitutionGroup="Noun">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Routing is the description of all of the resources, steps, and activities associated with a path or routing associated with a manufacturing or production process.  Typically, a routing contains people, machines, tooling, operations, and steps.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Header" type="RoutingHeader"/>
+        <xs:complexType name="RouteOperation">
+                <xs:complexContent>
+                        <xs:extension base="WIPOperationBase">
+                                <xs:sequence>
+                                        <xs:element ref="PreviousOperation" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element ref="ItemData" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="PreviousOperation">
+                <xs:complexContent>
+                        <xs:extension base="WIPOperationBase">
+                                <xs:sequence>
+                                        <xs:element ref="Status" minOccurs="0"/>
+                                        <xs:element name="TimeInQueue" type="Duration" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the duration of time that a job may remain in the queue before being run.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="PlannedOverrunPercent" type="Percent" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the percentage of the planned number of items that can be produced. Typically, in a manufacturing environment stopping the manufacturing of an item at an exact number is difficult this allows the specification that an operator may overrun the planned number by a certain percentage.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="OperationGroup">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">In a manufacturing environment where a CNC Lathe or a Manual Lathe may be alternative operations used in the production of a finished good.
+In the example above the Manual Lathe OperationGroup Name would be Alternate OperationGroupType.</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                        <xs:element name="OperationGroupName" type="OperationName" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies a grouping of Operations together.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="OperationGroupType" type="OperationGroupType" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the grouping of operations.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="GroupMember" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="GroupMember">
+                <xs:sequence>
+                        <xs:element name="OperationId" type="OperationId" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the identifier of a specific operation.  Possible examples of use are in the Manufacturing Routing or the Maintenance Order. or WorkINProcessOperation. </xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="OperationName" type="OperationName" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the name of the operation.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="OperationSequence" type="OperationSequenceCode" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the operation sequence.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:element name="AssignedOperationGroups" type="OperationGroup">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Information specifying a grouping of operations and their relationships.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="RouteOperation" type="RouteOperation">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Information specifying the operations and there order for the specified routing.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="PreviousOperation" type="PreviousOperation">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Information specifying the previous operation.  This provides the immediate preceding operation of the current operation defined in RouteOperation.  The RouteOperation of the operations of the potential first operations will not have an associated PreviousOperation, however all others must contain one.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="GroupMember" type="GroupMember">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Information specifying the occurrence of the operations within an OperationGroup.  At least one occurrence of the GroupMember component is required for each occurrence of the OperationGroup component. Except for the request BODs which use the verbs Get and GetList.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+</xs:schema>

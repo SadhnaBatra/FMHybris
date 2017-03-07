@@ -1,0 +1,277 @@
+/* =================================
+    Block element styles
+====================================
+*/
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color:transparent;
+    // Some page elements are purposefully shifted partially out of view, this prevents a horizontal scrollbar
+    overflow-x: hidden;
+    overflow-y: visible;
+}
+div#content {
+    background-color: @grey-lighter;
+    &.iframed {
+        background-color: transparent;
+    }
+}
+a {
+    cursor:pointer;
+}
+blockquote {
+    display:block;
+}
+
+hr {
+    border-color: @grey-light;
+}
+img {
+    vertical-align: top;
+}
+p {
+    margin: 0;
+}
+
+/* 
+    Buttons 
+======================
+*/
+.btn {
+    cursor: pointer;
+    height: 32px; 
+    text-shadow: none;
+}
+button,
+.button-main,
+.button-secondary,
+.btn-fmDefault {
+    background-color: @red;
+    border: 0px;
+    border-radius: 0px;
+    color: @white;
+    .ff-primary-medium;
+    font-size: 14px;
+    padding: 6px 22px;
+    position: relative;
+    text-align: center;
+    transition:all 0.3s ease 0s;
+    &.disabled,
+    &[disabled] {
+        cursor:no-drop;
+        background-color: @grey-lighter;
+        border: 0px solid @grey-light;
+        opacity: 1;
+        &:hover {
+            cursor: no-drop;
+            background-color: @grey-lighter;
+        }
+    }
+}
+
+.button-main,
+.btn-fmDefault {
+    #fmmp-corporate-mixins > .bg-primary-to-primary-dark();
+    color: @white;
+    text-transform:uppercase;
+    &:hover,
+    &:focus {
+        color: @white;
+        outline: none;
+        text-decoration:none;
+    }
+    &.regBtnOnSign, 
+    &.myClassBtn {
+        background: @blue;
+        border: 0;
+      color: @white;
+      &:hover {
+        background:@blue-dark;
+      }
+    }
+    &.myClassBackBtn,
+    &.regBtnOnReg {
+        background: @red;
+        .fa {
+            color: @white;
+        }
+        &:hover {
+            background: @red-dark;
+        }
+    }
+}
+
+
+.button-secondary {
+    #fmmp-corporate-mixins > .bg-black-to-secondary-dark();
+    color: @white;
+    &:hover,
+    &:focus {
+        color: @white;
+        outline: none;
+        text-decoration:none;
+    }
+}
+
+.orderUploadButton, 
+.orderUploadButton:hover, 
+.orderUploadButton:focus, 
+.orderUploadButton:active, 
+.orderUploadButton.active {
+    background: none;
+    border-color:@grey-light; 
+    color: @grey; 
+    border-left: 0
+}
+.uploadOrderUploadBtn{
+    margin-top:18px;
+    margin-top:1.8rem;
+}
+
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  font-size: 10rem;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  background: red;
+  cursor: inherit;
+  display: block;
+}
+.btn-file input[type=file]#uploadOrderFile {
+  width:330px;
+  height:30px;
+}
+
+/* 
+    Tables  
+========================
+*/
+table {
+    width: 100%;
+}
+
+table, th, td {
+    color: @grey;
+    font-size:12px;
+    .ff-primary();
+    vertical-align: top;
+}
+
+tr {
+    border-top: 1px solid @grey-table;
+}
+
+th {
+    background: #e1e1e1;
+    font-family: sans-serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+    padding: 15px;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+thead th {
+    background: transparent;
+}
+
+table tr td {
+    padding: 10px;
+}
+
+td {
+    padding: 15px;
+    text-align: left;
+}
+
+dl {
+    /*float: left;*/
+    overflow: hidden;
+    line-height: 1.5em;
+    margin: 0 0 10px 0;
+}
+
+dl dt {
+    float: left;
+    min-width: 148px;
+}
+
+table.tablesorter thead tr .header {
+    background-image: url(../../images/sort-updown.gif);
+    background-repeat: no-repeat;
+    background-position: center right;
+    cursor: pointer;
+}
+
+table.tablesorter thead tr .headerSortUp {
+    background-image: url(../../images/up-arrow.gif);
+}
+
+table.tablesorter thead tr .headerSortDown {
+    background-image: url(../../images/down-arrow.gif);
+}
+
+
+// Mobile Breakpoint
+@media all and (max-width: @bp_tablet_max) {
+    table {
+        min-width: 0;
+        width: 100%;
+        border: 0;
+    }
+
+    table th {
+        display: none;
+    }
+
+    table tr td:first-child {
+        border-top: 1px solid @grey-table-light;
+    }
+
+    table td {
+        border: 0;
+        padding: .6rem;
+    }
+}
+
+/* 
+    Lists 
+=================== 
+*/
+ol, ul {
+    display:block;
+    list-style-position: inside;
+    margin:0;
+    padding: 0;
+    li {
+        line-height: 22px;
+        line-height: 2.2rem;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+ol {
+    list-style-type: decimal;
+}
+
+ul {
+    color: @grey;
+    list-style: none;
+
+    li {
+        position: relative;
+    }
+}

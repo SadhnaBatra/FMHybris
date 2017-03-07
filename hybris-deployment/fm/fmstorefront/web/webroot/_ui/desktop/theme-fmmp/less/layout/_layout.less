@@ -1,0 +1,69 @@
+/* ===============
+    Layout
+================ */
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  overflow: hidden;
+  width: auto; //overrides bootstrap
+}
+
+.page-content-container {
+    max-width: @max_content_width;
+}
+.headerRow .container,
+.navbar .container {
+    // allows for nav effects
+    overflow: visible;
+}
+
+/* 
+    General 
+================ */
+.bgwhite {
+    background: @white;
+}
+.fm_bgRed{background: @red; color:@white;}
+.fm_bgGrey{background:@grey; color:@white;}
+.fm_bgBlue{background: @blue; color:@white;}
+.fm_bgOrange{background:#ff6600; color:@white;}
+
+.clear_fix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.clear_fix {
+    display: block;
+}
+
+.panel {
+    border:none;
+    border-radius: 0;
+    .panel-heading {
+        .fa {
+            color: @white;
+        }
+    }
+    .panel-title {
+        line-height: 16px;
+        line-height: 1.6rem;
+    }
+}
+.hidden {
+    display: none;
+}
+.skip {
+    position: absolute;
+    top: -30000px;
+    left: -30000px;
+}
+.text_hide {
+    text-indent: -9999px;
+}
+
+

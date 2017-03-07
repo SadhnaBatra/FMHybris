@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: AcknowledgeDeliveryReceipt.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Resources/Verbs/Acknowledge.xsd"/>
+        <xs:include schemaLocation="../Resources/Nouns/DeliveryReceipt.xsd"/>
+        <xs:element name="AcknowledgeDeliveryReceipt" type="AcknowledgeDeliveryReceipt">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The AcknowledgeDeliveryReceipt may be used to notify the shipping business partner that the shipment has been received by the customer or consignee destination, and alert them to any discovered discrepancies.   The acknowledgement may contain the full detail of the receipt as created by the receiving party or just the discrepancies and other exception conditions.
+
+The AcknowledgeDeliveryReceipt BOD supports receipt acknowledgements at either the line item level and/or the ship unit level.  Intermediate transportation/logistics providers or freight forwarding partners can use this document to acknowledge the receipt of entire shipping units without detailing the corresponding contents. 
+</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="AcknowledgeDeliveryReceipt">
+                <xs:complexContent>
+                        <xs:extension base="BusinessObjectDocument">
+                                <xs:sequence>
+                                        <xs:element name="DataArea" type="AcknowledgeDeliveryReceiptDataArea">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is where the information that the BOD message carries is provided, in this case AcknowledgeDeliveryReceipt. The information consists of a Verb and one or more Nouns. The verb (Acknowledge) indicates the action to be performed on the Noun (DeliveryReceipt).</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="AcknowledgeDeliveryReceiptDataArea">
+                <xs:complexContent>
+                        <xs:extension base="DataArea">
+                                <xs:sequence>
+                                        <xs:element ref="Acknowledge"/>
+                                        <xs:element ref="DeliveryReceipt" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+</xs:schema>

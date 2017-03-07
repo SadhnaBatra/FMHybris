@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/PriceList.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../MfgComponents.xsd"/>
+        <xs:complexType name="PriceList">
+                <xs:complexContent>
+                        <xs:extension base="Noun">
+                                <xs:sequence>
+                                        <xs:element ref="Header" minOccurs="0"/>
+                                        <xs:element ref="Line" minOccurs="0" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="PriceListHeader">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The Price list may be issued by either a company within your Enterprise, represented by a GLEntity, a division of the company (represented by Business) or by any entity identified as a Catalog Party. A Party may be a supplier.  The supplier may be a supplier to many companies within the enterprise</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                        <xs:element name="DocumentId" type="PartyDocumentId" minOccurs="0"/>
+                        <xs:element name="Currency" type="Currency" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the default currency of the PriceList.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="EffectivePeriod" type="TimePeriod" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the effective period of the PriceList.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:choice minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">This identifies the issuer of the catalog. For Catalogs that are internal to the organization, the issuer is identified by a GLEntity and/ or Business. Catalogs that are published by external entities e.g. suppliers or manufacturers will have the publisher identified as a PublisherParty</xs:documentation>
+                                </xs:annotation>
+                                <xs:sequence>
+                                        <xs:element ref="Business" minOccurs="0"/>
+                                        <xs:element ref="Site" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the GLEntity that is issuing the catalog</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                </xs:sequence>
+                                <xs:element ref="PublisherParty"/>
+                        </xs:choice>
+                        <xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is a description of the PriceList.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="ListPriceBreak" minOccurs="0"/>
+                        <xs:element ref="PriceListQualifier" minOccurs="0"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="PriceListLine">
+                <xs:sequence>
+                        <xs:element name="LineNumber" type="LineNumber" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">PriceList LineNumber</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:choice minOccurs="0">
+                                <xs:element name="ItemId" type="PartyAssignedItemId" minOccurs="0">
+                                        <xs:annotation>
+                                                <xs:documentation source="http://www.openapplications.org/oagis">Is the ItemId for which the price is being specified</xs:documentation>
+                                        </xs:annotation>
+                                </xs:element>
+                                <xs:element name="CommodityCode" type="Commodity" minOccurs="0">
+                                        <xs:annotation>
+                                                <xs:documentation source="http://www.openapplications.org/oagis">Is the Commodity for which the price is being specified</xs:documentation>
+                                        </xs:annotation>
+                                </xs:element>
+                        </xs:choice>
+                        <xs:element name="UnitPrice" type="AmountPerQuantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Price per unit.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Description of the PriceListLine.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="LinePriceBreak" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:element name="PriceList" type="PriceList" substitutionGroup="Noun">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Defines a list of items with their base price, price breaks, discounts and qualifiers. For each item, price breaks can be defined, above which certain discounts or overriding prices might apply. Price breaks can be defined in volume or in dollar amount. Price list qualifiers specify for which catalog, customer and/or effective dates this price list applies.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Header" type="PriceListHeader"/>
+        <xs:element name="Line" type="PriceListLine"/>
+        <xs:complexType name="PriceListQualifier">
+                <xs:sequence>
+                        <xs:choice minOccurs="0">
+                                <xs:element ref="CatalogDocumentReference" minOccurs="0" maxOccurs="unbounded">
+                                        <xs:annotation>
+                                                <xs:documentation source="http://www.openapplications.org/oagis">Reference to the Catalog in which the PriceList applies.</xs:documentation>
+                                        </xs:annotation>
+                                </xs:element>
+                                <xs:element ref="Business" minOccurs="0"/>
+                                <xs:sequence>
+                                        <xs:element ref="Parties" minOccurs="0"/>
+                                        <xs:element ref="Site" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:choice>
+                        <xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Description of the PriceList.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="ListPriceBreak">
+                <xs:sequence>
+                        <xs:choice minOccurs="0">
+                                <xs:element name="DiscountValue" type="Amount" minOccurs="0">
+                                        <xs:annotation>
+                                                <xs:documentation source="http://www.openapplications.org/oagis">Allows a flat amount to be discounted per item.</xs:documentation>
+                                        </xs:annotation>
+                                </xs:element>
+                                <xs:element name="DiscountPercent" type="Percent" minOccurs="0">
+                                        <xs:annotation>
+                                                <xs:documentation source="http://www.openapplications.org/oagis">Indicates the percentage of the PriceBreak.</xs:documentation>
+                                        </xs:annotation>
+                                </xs:element>
+                        </xs:choice>
+                        <xs:element name="PriceBreakAmount" type="Amount" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the amount of the PriceBreak.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Description of the PriceBreak.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:element name="ListPriceBreak" type="ListPriceBreak"/>
+        <xs:element name="PriceListQualifier" type="PriceListQualifier">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">This qualifies the intended audience or group of users of a Price List  Qualifications for a given price list include, (but are not limited to):
+· Suppliers, Customers or Manufacturers
+· Specific Customer Site
+· Suppliers, Customers or Manufacturers
+· Catalogs</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="LinePriceBreak">
+                <xs:sequence>
+                        <xs:choice>
+                                <xs:element name="DiscountValue" type="Amount" minOccurs="0">
+                                        <xs:annotation>
+                                                <xs:documentation source="http://www.openapplications.org/oagis">Allows a flat amount to be discounted per item.</xs:documentation>
+                                        </xs:annotation>
+                                </xs:element>
+                                <xs:element name="DiscountPercent" type="Percent" minOccurs="0">
+                                        <xs:annotation>
+                                                <xs:documentation source="http://www.openapplications.org/oagis">Indicates the percentage of the PriceBreak.</xs:documentation>
+                                        </xs:annotation>
+                                </xs:element>
+                                <xs:element name="OverRidePrice" type="AmountPerQuantity" minOccurs="0">
+                                        <xs:annotation>
+                                                <xs:documentation source="http://www.openapplications.org/oagis">This is the price that overrides the list price when a given price break requirement is reached. For example, if a customer orders over 50,000 dollars worth of computer equipment, he may qualify for an overriding price.  The list price of $800 per will be modified to $700 per</xs:documentation>
+                                        </xs:annotation>
+                                </xs:element>
+                        </xs:choice>
+                        <xs:choice>
+                                <xs:element name="PriceBreakQuantity" type="Quantity" minOccurs="0">
+                                        <xs:annotation>
+                                                <xs:documentation source="http://www.openapplications.org/oagis">The quantity that must be purchased of the item or commodity on a given price list line before the benefit, or until the detriment of a given price break line will apply.  For example, if a customer orders up to 5000 units of flour, they will get a price of $8:00 a case.  If the customer buys 5500 units of flour they will get a price of $7.50 a case</xs:documentation>
+                                        </xs:annotation>
+                                </xs:element>
+                                <xs:element name="PriceBreakAmount" type="Amount" minOccurs="0">
+                                        <xs:annotation>
+                                                <xs:documentation source="http://www.openapplications.org/oagis">The monetary amount that must be spent on a given price list line before the benefit or until the detriment of a given price break line will apply.  For example, if a customer orders up to 5000 dollars worth of flour, they will get a price of $8:00 a case.  If the customer buys 5500 dollars worth of flour they will get a price of $7.50 a case</xs:documentation>
+                                        </xs:annotation>
+                                </xs:element>
+                        </xs:choice>
+                        <xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Description of the PriceBreak.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:element name="LinePriceBreak" type="LinePriceBreak">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">This defines the prices and modifiers to the price for buying a given quantity or value of an item or item category on a price list line. For Price List Lines that specify Items the price breaks can be specified in terms of quantity or amount. For Price list lines that specify commodity, price breaks can only be specified in terms of currency amount</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+</xs:schema>

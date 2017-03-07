@@ -1,0 +1,127 @@
+<div>
+	<table width="100%" border="1" cellspacing="0" style="margin:0;padding:0;table-layout:fixed;border:1px solid #1E4EBF;">
+		<tbody>
+			<tr>
+				<td height="125px" width="25%" rowspan="2" class="structureViewSection">
+					<cockpit code="SiteLogo" />
+				</td>
+				<td class="structureViewSection">
+					<cockpit code="HeaderLinks" />
+					<cockpit code="SearchBox" />
+				</td>
+				<td width="15%" rowspan="2" class="structureViewSection">
+					<cockpit code="MiniCart" />
+				</td>
+				
+			</tr>
+			<tr>
+				<td height="89px" class="structureViewSection">
+					<div>Header</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" class="structureViewSection">
+					<cockpit code="NavigationBar" />
+					<div>NavigationBar</div>
+				</td>
+				
+			</tr>
+					
+			
+			<tr>
+			
+			 <td width="100%" height="170px"  colspan="3" class="structureViewSection" style="vertical-align:top;">
+				<table height="170px" align="center" width="80%" border="1" cellpadding="2">
+					<tr>
+						<td width="40%" class="structureViewSection" height="250px" style="vertical-align:top;">
+							quick_order
+							<cockpit code="B2BquickOrder" />
+						</td>
+						
+						<td class="structureViewSection" height="250px" style="vertical-align:top;">
+							order_upload
+							<cockpit code="B2BorderUpload" />
+						</td>
+						<td width="30%" height="250px" colspan="2" rowspan="20" style="vertical-align:top;">
+							orders_in_progress
+							<cockpit code="B2BordersInProgress" />
+						</td>
+					</tr>
+				</table>
+			  </td>
+			  
+			</tr>
+			
+						
+			<tr>
+			
+			 <td width="100%" height="170px"  colspan="3" class="structureViewSection" style="vertical-align:top;">
+				<table height="170px" align="center" width="80%" border="1" cellpadding="2">
+					<tr>
+						<td width="40%" class="structureViewSection" height="250px" style="vertical-align:top;">
+							PartSearch
+							<cockpit code="B2BPartSearch" />
+						</td>
+						
+						<td class="structureViewSection" height="250px" style="vertical-align:top;">
+							announcement
+							<cockpit code="B2Bannouncement" />
+						</td>
+						<td width="30%" height="250px" colspan="2" rowspan="20" style="vertical-align:top;">
+							quick_links
+							<cockpit code="B2BquickLinks" />
+						</td>
+					</tr>
+				</table>
+			  </td>
+			  
+			</tr>
+			<tr>
+			
+			 <td width="80%" height="400px"  colspan="3" class="structureViewSection" style="vertical-align:top;">
+				<table height="170px" align="center" width="80%" border="1" cellpadding="2">
+					<tr>
+						<td width="25%" class="structureViewSection" height="150px" style="vertical-align:top;">
+							<cockpit code="B2BLearningTip" />
+						</td>
+						<td width="25%" class="structureViewSection" height="150px" style="vertical-align:top;">
+							<cockpit code="B2BLearningArticle" />
+						</td>
+						<td width="25%" class="structureViewSection" height="150px" style="vertical-align:top;">
+							<cockpit code="B2BLearningVideos1" />
+						</td>
+						<td width="25%" class="structureViewSection" height="150px" style="vertical-align:top;">
+							<cockpit code="B2BLearningVideos2" />
+						</td>
+											
+					</tr>
+				</table>
+			  </td>
+			  
+			</tr>
+					
+			<tr>
+				<td height="170px" colspan="3" class="structureViewSection">
+					<cockpit code="B2BSpotLight" />
+					<div>SpotLight</div>
+				</td>
+			</tr>
+			
+			<tr>
+				<td height="80px" colspan="3" class="structureViewSection">
+					<cockpit code="FMBrandstrip" />
+					<div>Brand Strip</div>
+				</td>
+			</tr>
+			<tr>
+				<td height="170px" colspan="3" class="structureViewSection">
+					<cockpit code="Footer" />
+					<div>Footer</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div style="width:100%; border-top: 2px solid #bbb" class="cmsContentEditor">
+		<cockpit code="editor" />
+	</div>
+</div>

@@ -1,0 +1,491 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Upload Order Status</title>
+<style type="text/css">
+/* Client-specific Styles */
+#outlook a {
+	padding: 0;
+} /* Force Outlook to provide a "view in browser" menu link. */
+body {
+	width: 100% !important;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+	margin: 0;
+	padding: 0;
+}
+/* Prevent Webkit and Windows Mobile platforms from changing default font sizes, while not breaking desktop design. */
+.ExternalClass {
+	width: 100%;
+} /* Force Hotmail to display emails at full width */
+.ExternalClass,.ExternalClass p,.ExternalClass span,.ExternalClass font,.ExternalClass td,.ExternalClass div
+	{
+	line-height: 100%;
+} /* Force Hotmail to display normal line spacing.  */
+#backgroundTable {
+	margin: 0;
+	padding: 0;
+	width: 100% !important;
+	line-height: 100% !important;
+}
+
+img {
+	outline: none;
+	text-decoration: none;
+	border: none;
+	-ms-interpolation-mode: bicubic;
+}
+
+a img {
+	border: none;
+}
+
+.image_fix {
+	display: block;
+}
+
+p {
+	margin: 0px 0px !important;
+}
+
+table td {
+	border-collapse: collapse;
+}
+
+table {
+	border-collapse: collapse;
+	mso-table-lspace: 0pt;
+	mso-table-rspace: 0pt;
+}
+
+a {
+	color: #164991;
+	text-decoration: none;
+	text-decoration: none !important;
+}
+/*STYLES*/
+table[class=full] {
+	width: 100%;
+	clear: both;
+}
+/*IPAD STYLES*/
+@media only screen and (max-width: 640px) {
+	a[href^="tel"],a[href^="sms"] {
+		text-decoration: none;
+		color: #164991; /* or whatever your want */
+		pointer-events: none;
+		cursor: default;
+	}
+	.mobile_link a[href^="tel"],.mobile_link a[href^="sms"] {
+		text-decoration: default;
+		color: #164991 !important;
+		pointer-events: auto;
+		cursor: default;
+	}
+	table[class=devicewidth] {
+		width: 440px !important;
+		text-align: center !important;
+	}
+	td[class=devicewidth] {
+		width: 440px !important;
+		text-align: center !important;
+	}
+	img[class=devicewidth] {
+		width: 440px !important;
+		text-align: center !important;
+	}
+	img[class=banner] {
+		width: 440px !important;
+		height: 147px !important;
+	}
+	table[class=devicewidthinner] {
+		width: 420px !important;
+		text-align: center !important;
+	}
+	table[class=icontext] {
+		width: 345px !important;
+		text-align: center !important;
+	}
+	img[class="colimg2"] {
+		width: 420px !important;
+		height: 243px !important;
+	}
+	table[class="emhide"] {
+		display: none !important;
+	}
+	img[class="logo"] {
+		width: 440px !important;
+		height: 110px !important;
+	}
+}
+/*IPHONE STYLES*/
+@media only screen and (max-width: 480px) {
+	a[href^="tel"],a[href^="sms"] {
+		text-decoration: none;
+		color: #164991; /* or whatever your want */
+		pointer-events: none;
+		cursor: default;
+	}
+	.mobile_link a[href^="tel"],.mobile_link a[href^="sms"] {
+		text-decoration: default;
+		color: #164991 !important;
+		pointer-events: auto;
+		cursor: default;
+	}
+	table[class=devicewidth] {
+		width: 280px !important;
+		text-align: center !important;
+	}
+	td[class=devicewidth] {
+		width: 280px !important;
+		text-align: center !important;
+	}
+	img[class=devicewidth] {
+		width: 280px !important;
+		text-align: center !important;
+	}
+	img[class=banner] {
+		width: 280px !important;
+		height: 93px !important;
+	}
+	table[class=devicewidthinner] {
+		width: 260px !important;
+		text-align: center !important;
+	}
+	table[class=icontext] {
+		width: 186px !important;
+		text-align: center !important;
+	}
+	img[class="colimg2"] {
+		width: 260px !important;
+		height: 150px !important;
+	}
+	table[class="emhide"] {
+		display: none !important;
+	}
+	img[class="logo"] {
+		width: 280px !important;
+		height: 70px !important;
+	}
+}
+</style>
+</head>
+<body bgcolor="#e7e7e7">
+	<!-- Start of header -->
+	<table width="100%" bgcolor="#e7e7e7" cellpadding="0" cellspacing="0"
+		border="0" id="backgroundTable">
+		<tbody>
+			<tr>
+				<td>
+					<table width="600" cellpadding="0" cellspacing="0" border="0"
+						align="center" class="devicewidth">
+						<tbody>
+							<tr>
+								<td width="100%">
+									<table bgcolor="#e7e7e7" width="600" cellpadding="0"
+										cellspacing="0" border="0" align="center" class="devicewidth">
+										<tbody>
+											<tr>
+												<td style="vertical-align: bottom">
+													<table width="290" align="left" border="0" cellpadding="0"
+														cellspacing="0" class="devicewidth">
+														<tbody>
+															<!-- Spacing -->
+															<tr>
+																<td width="100%" height="20"></td>
+															</tr>
+															<!-- Spacing -->
+															<tr>
+																<td><div class="imgpop">
+
+																		<a target="_blank" href="http://www.fmmotorparts.com">
+																			<img
+																			src="http://qa.fmmpe-cat.com/fmstorefront/_ui/desktop/theme-green/images/federal-mogul-logo.gif"
+																			alt="" border="0" width="184" height="20"
+																			style="display: block; border: none; outline: none; text-decoration: none;">
+																		</a>
+																	</div></td>
+															</tr>
+														</tbody>
+													</table> <!-- end of left column --> <!-- start of right column -->
+													<table width="120" align="right" border="0" cellpadding="0"
+														cellspacing="0" class="devicewidth">
+														<tbody>
+															<!-- Spacing -->
+															<tr>
+																<td width="100%" height="20"></td>
+															</tr>
+															<!-- Spacing -->
+															<tr>
+
+																<td align="left"
+																	style="text-align: left; vertical-align: bottom;">
+																	<font
+																	face="Helvetica, arial, sans-serif;" size="2"
+																	style="font-family: Helvetica, arial, sans-serif; font-size: 13px;color: #164991; font-weight: heavy;">
+																	 <a href="${ctx.fmHomePage}"
+																		style="text-decoration: none; color: #164991">fmmotorparts.com&gt;</a>
+																	</font>
+																</td>
+																</td>
+															</tr>
+														</tbody>
+													</table> <!-- end of right column -->
+												</td>
+											</tr>
+										</tbody>
+									</table>
+
+								</td>
+
+							</tr>
+							<tr>
+								<td width="100%" height="20"></td>
+							</tr>
+							<tr>
+								<!-- navigation -->
+								<td width="100%" height="10" bgcolor="#c1122f" align="center">
+									<table align="center" cellpadding="2" cellspacing="0"
+										border="0">
+										
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<!-- Start of LOGO -->
+	<table width="100%" bgcolor="#e7e7e7" cellpadding="0" cellspacing="0"
+		border="0" id="backgroundTable">
+		<tbody>
+			<tr>
+				<td>
+					<table width="600" cellpadding="0" cellspacing="0" border="0"
+						align="center" class="devicewidth" bgcolor="#252525"
+						background="http://qa.fmmpe-cat.com/fmstorefront/_ui/desktop/theme-green/images/honeycomb_bg.gif">
+						<tbody>
+							<tr>
+								<td width="100%">
+									<table width="600" align="center" cellspacing="0"
+										cellpadding="0" border="0" class="devicewidth">
+										<tbody>
+
+											<tr>
+												<!-- start of image -->
+												<td align="center"><br /> <br /> <font
+													face="Helvetica, arial, sans-serif;" color="#e7e7e7"
+													size="6"
+													style="font-family: Helvetica, arial, sans-serif; font-size: 32px;color: #e7e7e7; font-weight: heavy; line-height: 120%">
+													USER ACCESS REQUEST <br />
+													<br /></td>
+											</tr>
+
+										</tbody>
+									</table> <!-- end of image -->
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	</td>
+	</tr>
+	</tbody>
+	</table>
+	<!-- End of LOGO -->
+	<!-- start textbox-with-title -->
+	<table width="100%" bgcolor="#e7e7e7" cellpadding="0" cellspacing="0"
+		border="0" id="backgroundTable">
+		<tbody>
+			<tr>
+				<td>
+					<table width="600" cellpadding="0" cellspacing="0" border="0"
+						align="center" class="devicewidth">
+						<tbody>
+							<tr>
+								<td width="100%">
+									<table bgcolor="#e7e7e7" width="600" cellpadding="0"
+										cellspacing="0" border="0" align="center" class="devicewidth">
+										<tbody>
+											<!-- Spacing -->
+											<tr>
+												<td width="100%" height="20"></td>
+											</tr>
+											<!-- Spacing -->
+											<tr>
+												<td>
+													<div
+														style="color: #636363; font-family: 'frutiger', 'Trebuchet MS', sans-serif; font-size: 12px; font-weight: normal;">
+														<p>
+															<font color="#666666" size="2"
+																face="Arial, Helvetica, sans-serif">A user has
+															registered with the FMMotorparts.com:</font><br/>
+														</p>
+														<p>
+															<font color="#666666" size="2"
+																face="Arial, Helvetica, sans-serif">Name:
+															${ctx.customerName}</font><br/>
+														</p>
+														<p>
+															<font color="#666666" size="2"
+																face="Arial, Helvetica, sans-serif">Company:
+															${ctx.companyName}</font><br/>
+														</p>
+														<p>
+															<font color="#666666" size="2"
+																face="Arial, Helvetica, sans-serif">Account
+															Number:${ctx.accountNumber}</font><br/>
+														</p>
+														<p>
+															<font color="#666666" size="2"
+																face="Arial, Helvetica, sans-serif">Email:${ctx.emailAddress}</font><br/>
+														</p>
+														<p>
+															<font color="#666666" size="2"
+																face="Arial, Helvetica, sans-serif">This user
+															registered on ${ctx.dateAndTime} EST.</font><br/>
+														</p>
+														<p>
+															<font color="#666666" size="2"
+																face="Arial, Helvetica, sans-serif">Please
+															approve this user by clicking on link: ${ctx.approveLink}</font><br/>
+														</p>
+														<p>
+															<font color="#666666" size="2"
+																face="Arial, Helvetica, sans-serif">If you have
+															questions about this registration, please Federal-Mogul
+															Motorparts Customer Service at [contact@fm.com].</font><br/>
+														</p>
+														<p>
+															<font color="#666666" size="2"
+																face="Arial, Helvetica, sans-serif">If there is a
+															problem, reject this registration.</font><br/>
+														</p>
+													</div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<!-- end of textbox-with-title -->
+	<!-- Start of 2-columns -->
+
+	<table width="100%" bgcolor="#e7e7e7" cellpadding="0" cellspacing="0"
+		border="0" id="backgroundTable">
+		<tbody>
+			<tr>
+				<td>
+					<table width="600" cellpadding="0" cellspacing="0" border="0"
+						align="center" class="devicewidth">
+						<tbody>
+							<tr>
+								<td width="100%">
+									<table bgcolor="#c51230" width="600" cellpadding="0"
+										cellspacing="0" border="0" align="center" class="devicewidth"
+										background="http://qa.fmmpe-cat.com/fmstorefront/_ui/desktop/theme-green/images/footer_bg.jpg">
+										<tbody>
+											<tr>
+												<!-- Spacing -->
+												<tr>
+													<td width="100%" height="1"></td>
+												</tr>
+												<!-- Spacing -->
+												<tr>
+													<td style="vertical-align: bottom">
+														<table width="240" align="left" border="0"
+															cellpadding="10" cellspacing="0" class="devicewidth">
+															<tbody>
+
+																<tr>
+																	<td><div class="imgpop">
+																			<a target="_blank" href="http://www.fmmotorparts.com"><img
+																				src="http://qa.fmmpe-cat.com/fmstorefront/_ui/desktop/theme-green/images/federal-mogul-logo.png"
+																				alt="" vspace="5" border="0" width="184" height="20"
+																				style="display: block; border: none; outline: none; text-decoration: none;"></a>
+																		</div>
+																		<table width="270" align="left" border="0"
+																			cellpadding="0" cellspacing="0" class="devicewidth">
+																			<tbody>
+																				<tr>
+																					<td width="25"></td>
+																					<td><font face="Helvetica, arial, sans-serif;"
+																						size="1" color="#FFFFFF"
+																						style="font-family: Helvetica, arial, sans-serif; font-size: 10px;color: #FFFFFF;">
+																						This email was sent to <a href="#"
+																							style="text-decoration: none; color: #FFFFFF">donotreply@fmmotorparts.com</a>.<br />
+																						Delivered by: Federal-Mogul Motorparts<br />
+																						27300 West 11 Mile Road Southfield, Michigan 48034
+																					</td>
+																				</tr>
+																			</tbody>
+																		</table></td>
+																</tr>
+															</tbody>
+														</table> <!-- end of left column --> <!-- start of right column -->
+														<table width="310" align="right" border="0"
+															cellpadding="10" cellspacing="0" class="devicewidth"
+															align="right">
+															<tbody>
+																<!-- Spacing -->
+																<tr>
+																	<td width="100%" height="12"></td>
+																</tr>
+																<!-- Spacing -->
+																<tr>
+																	<td align="right"
+																		style="text-align: right; vertical-align: bottom;">
+																		<font face="Helvetica, arial, sans-serif;" size="2"
+																		color="#FFFFFF"
+																		style="font-family: Helvetica, arial, sans-serif; font-size: 12px;color: #FFFFFF;">
+																		<strong><a href="${ctx.fmHomePage}"
+																			style="text-decoration: none; color: #FFFFFF">Terms
+																				&amp; Conditions</a> &nbsp;|&nbsp; <a href="${ctx.fmHomePage}"
+																			style="text-decoration: none; color: #FFFFFF">Privacy
+																				Policy</a> &nbsp;|&nbsp; <a href="${ctx.fmHomePage}"
+																			style="text-decoration: none; color: #FFFFFF">Contact
+																				Us</a><br /></strong> <font face="Helvetica, arial, sans-serif;"
+																			size="1" color="#FFFFFF"
+																			style="font-family: Helvetica, arial, sans-serif; font-size: 10px;color: #FFFFFF;">You
+																		received this email because you are an email
+																		subscriber of <a href="${ctx.fmHomePage}"
+																			style="text-decoration: none; color: #FFFFFF">fmmmotorparts.com</a>.
+																		</font>
+																	</td>
+																	</td>
+																</tr>
+															</tbody>
+														</table> <!-- end of right column -->
+													</td>
+												</tr>
+										</tbody>
+									</table>
+
+								</td>
+
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<!-- End of postfooter -->
+</body>
+</html>

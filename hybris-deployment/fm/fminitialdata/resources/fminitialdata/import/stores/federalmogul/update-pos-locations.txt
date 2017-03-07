@@ -1,0 +1,6 @@
+#The Point Of Service Locations need to be updated with the Store Key
+#Update Queries will be run to update pos locations with the Store Key.Typically the update query is #based on some reasonable string matching.
+#Once SAP-CRM changes are completed for POS, this data will flow from SAP to PI to Hybris.(which will require some implementation changes in the PI and hybris layer at that time). 
+
+update pointofservice p set p.p_store=(select PK from fmstoremaster where p_storeName like '%Firestone%') where p.p_displayname like '%Firestone%';
+update pointofservice p set p.p_store=(select PK from fmstoremaster where p_storeName like '%Pep Boys%') where p.p_displayname like '%Pep Boys%';

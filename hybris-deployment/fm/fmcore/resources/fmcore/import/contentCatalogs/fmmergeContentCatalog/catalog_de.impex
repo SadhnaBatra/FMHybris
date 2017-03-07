@@ -1,0 +1,10 @@
+#
+# Import the FederalMogul Content Catalog
+#
+# Localization de
+#
+$lang=de
+$contentCatalog=federalmogulContentCatalog
+
+UPDATE ContentCatalog;id[unique=true];name[lang=$lang];
+ ;$contentCatalog;"FederalMogul-Inhaltskatalog";

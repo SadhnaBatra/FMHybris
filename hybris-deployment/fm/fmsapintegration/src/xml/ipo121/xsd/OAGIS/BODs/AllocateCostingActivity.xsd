@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: AllocateCostingActivity.xsd
+-->
+<xs:schema targetNamespace="http://www.openapplications.org/oagis" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../Resources/Verbs/Allocate.xsd"/>
+	<xs:include schemaLocation="../Resources/Nouns/CostingActivity.xsd"/>
+	<xs:element name="AllocateCostingActivity" type="AllocateCostingActivity">
+		<xs:annotation>
+			<xs:documentation source="http://www.openapplications.org/oagis">The purpose of the AllocateCostingActivity BOD is to enable the update of Activityinformation from a production or manufacturing application to a costing application.  This is necessary for applications that are based on a Dual Cycle Accounting model.  This Dual Cycle Accounting model does not capture the details of the Activities that caused entries to be made in the general ledger application, but instead captures them in a separate overall costing application.
+This BOD commonly causes updates to occur and may be used as part of a large integration scenario or as a single tool for updating data. 
+
+For Single Cycle accounting systems, the PostJournalEntry BOD will be used to ensure that the costing information flows from the Manufacturing Application to the Financial Application.
+
+In most cases either PostJournal or AllocateActivity will be used when the Financial applications are included with Logistics, but both Business Service Requests will not be used in the same integration scenario.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="AllocateCostingActivity">
+		<xs:complexContent>
+			<xs:extension base="BusinessObjectDocument">
+				<xs:sequence>
+					<xs:element name="DataArea" type="AllocateCostingActivityDataArea">
+						<xs:annotation>
+							<xs:documentation source="http://www.openapplications.org/oagis">Is where the information that the BOD message carries is provided, in this case AllocateCostingActivity. The information consists of a Verb and one or more Nouns. The verb (Allocate) indicates the action to be performed on the Noun (CostingActivity).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AllocateCostingActivityDataArea">
+		<xs:complexContent>
+			<xs:extension base="DataArea">
+				<xs:sequence>
+					<xs:element ref="Allocate"/>
+					<xs:element ref="CostingActivity" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

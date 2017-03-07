@@ -1,0 +1,47 @@
+/* =============
+    Sidebar 
+=============== */
+
+.manageAccountLinks {
+    h3, h4 {
+        color: @grey-dark;
+        .ff-primary-bold;
+        margin-top: 8px;
+        margin-top: 0.8rem;
+
+        a {
+            color: @blue;
+            .ff-primary-bold;
+        }
+    }
+    ul {
+        li {
+            line-height: 27px;
+            line-height: 2.7rem;
+
+            a {
+                .ff-primary-bold;
+                font-size: 14px;
+                font-size: 1.4rem;
+                color: @blue;
+
+                span {
+                    margin-left: 5px;
+                }
+            }
+        }
+    }
+}
+
+.sidebar {
+    &.panel-group .panel+.panel {
+        margin-top: 0;
+    }
+    .panel {
+        box-shadow:none;
+        border-radius:0;
+    }
+    .panel-title a {
+        font-size: 14px;
+    }
+}

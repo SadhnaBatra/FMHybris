@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testclasses>
+  <fmwebservice>
+    <testclass>com.falcon.xstream.XmlXStreamMarshallerFactoryTest</testclass>
+    <testclass>com.falcon.xstream.XmlXStreamFactoryTest</testclass>
+    <testclass>com.falcon.v2.filter.CartMatchingFilterTest</testclass>
+    <testclass>com.falcon.xstream.JsonXStreamFactoryTest</testclass>
+    <testclass>com.falcon.mapping.converters.ConsignmentStatusConverterTest</testclass>
+    <testclass>com.falcon.mapping.converters.StockLevelStatusConverterTest</testclass>
+    <testclass>com.falcon.interceptors.CacheControlHandlerInterceptorTest</testclass>
+    <testclass>com.falcon.test.SearchQueryDataParserTest</testclass>
+    <testclass>com.falcon.v2.filter.UserMatchingFilterTest</testclass>
+    <testclass>com.falcon.v2.filter.BaseSiteMatchingFilterTest</testclass>
+  </fmwebservice>
+</testclasses>

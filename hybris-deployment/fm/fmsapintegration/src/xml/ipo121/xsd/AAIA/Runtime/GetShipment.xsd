@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Automotive Aftermarket Industry Association (AAIA)
+	http://www.aftermarket.org
+	Internet Parts Ordering (IPO) Release 1.2.1,  March 1, 2005
+	Business Object Document (BOD)
+	
+	Overlay for: 
+	Open Applications Group (http://www.openapplications.org)
+	OAGIS Release 8.0, 	April 05, 2002
+	
+	Name:	GetShipment.xsd (Runtime Version)
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:oa="http://www.openapplications.org/oagis" xmlns:aaia="http://www.aftermarket.org/oagis" targetNamespace="http://www.aftermarket.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.openapplications.org/oagis" schemaLocation="./Templates/ShipmentBODTemplate.xsd"/>
+	<xs:complexType name="Get">
+		<xs:sequence>
+			<xs:element name="ReturnCriteria" type="oa:ExpressionCriteria" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="confirm" type="oa:ConfirmType" use="optional"/>
+		<xs:attribute name="show" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="GetShipmentDataArea">
+		<xs:sequence>
+			<xs:element ref="aaia:Get"/>
+			<xs:element ref="oa:Shipment" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GetShipment">
+		<xs:complexContent>
+			<xs:extension base="oa:BusinessObjectDocument">
+				<xs:sequence>
+					<xs:element name="DataArea" type="aaia:GetShipmentDataArea"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="Get" type="aaia:Get"/>
+	<xs:element name="GetShipment" type="aaia:GetShipment"/>
+	<xs:element name="HostParty" type="oa:PartyInstitutional" substitutionGroup="oa:PartyType"/>
+</xs:schema>

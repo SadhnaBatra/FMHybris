@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Automotive Aftermarket Industry Association (AAIA)
+	http://www.aftermarket.org
+	Internet Parts Ordering (IPO) Release 1.2.1,  March 1, 2005
+	Business Object Document (BOD)
+	
+	Overlay for: 
+	Open Applications Group (http://www.openapplications.org)
+	OAGIS Release 8.0, 	April 05, 2002
+	
+	Name:	ShowPurchaseOrder.xsd (Runtime Version)
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:oa="http://www.openapplications.org/oagis" xmlns:aaia="http://www.aftermarket.org/oagis" targetNamespace="http://www.aftermarket.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.openapplications.org/oagis" schemaLocation="../../OAGIS/Runtime/ShowPurchaseOrder.xsd"/>
+	<xs:complexType name="PurchaseOrderHeader">
+		<xs:complexContent>
+			<xs:extension base="oa:PurchaseOrderHeader">
+				<xs:sequence>
+					<xs:element name="EffectivePeriod" type="oa:TimePeriodAny" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PurchaseOrderLine">
+		<xs:complexContent>
+			<xs:extension base="oa:PurchaseOrderLine">
+				<xs:sequence>
+					<xs:element ref="aaia:Vehicle" minOccurs="0"/>
+					<xs:element name="ListPrice" type="oa:AmountPerQuantity" minOccurs="0"/>
+					<xs:element name="DistributorPrice" type="oa:AmountPerQuantity" minOccurs="0"/>
+					<xs:element name="JobberPrice" type="oa:AmountPerQuantity" minOccurs="0"/>
+					<xs:element name="SubLine" type="aaia:PurchaseOrderSubLine" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PurchaseOrderSubLine">
+		<xs:complexContent>
+			<xs:extension base="oa:PurchaseOrderSubLine">
+				<xs:sequence>
+					<xs:element ref="oa:Parties" minOccurs="0"/>
+					<xs:element ref="aaia:Vehicle" minOccurs="0"/>
+					<xs:element name="ListPrice" type="oa:AmountPerQuantity" minOccurs="0"/>
+					<xs:element name="DistributorPrice" type="oa:AmountPerQuantity" minOccurs="0"/>
+					<xs:element name="JobberPrice" type="oa:AmountPerQuantity" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ItemIds">
+		<xs:complexContent>
+			<xs:extension base="oa:ItemIds">
+				<xs:sequence>
+					<xs:element name="ManufacturerCode" type="oa:Code" minOccurs="0"/>
+					<xs:element name="ManufacturerName" type="oa:Name" minOccurs="0"/>
+					<xs:element name="SupplierCode" type="oa:Code" minOccurs="0"/>
+					<xs:element name="SupplierName" type="oa:Name" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PaymentTerms">
+		<xs:complexContent>
+			<xs:extension base="oa:PaymentTerms">
+				<xs:sequence>
+					<xs:element name="PaymentMethod" type="xs:token" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PartyAssignedItemId">
+		<xs:complexContent>
+			<xs:extension base="oa:PartyAssignedItemId">
+				<xs:sequence>
+					<xs:element name="Code" type="oa:Code" minOccurs="0"/>
+					<xs:element name="Name" type="oa:Name" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="OrderItem">
+		<xs:complexContent>
+			<xs:extension base="oa:OrderItem">
+				<xs:sequence>
+					<xs:element name="Warranty" type="oa:Code" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Vehicle">
+		<xs:sequence>
+			<xs:element name="VehicleId" type="aaia:VehicleId" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Year" type="oa:Year" minOccurs="0"/>
+			<xs:element name="Make" type="oa:Name" minOccurs="0"/>
+			<xs:element name="Model" type="oa:Name" minOccurs="0"/>
+			<xs:element name="SubModel" type="oa:Name" minOccurs="0"/>
+			<xs:element name="Doors" type="xs:positiveInteger" minOccurs="0"/>
+			<xs:element name="ExteriorColorCode" type="oa:Code" minOccurs="0"/>
+			<xs:element name="BodyStyle" type="oa:Code" minOccurs="0"/>
+			<xs:element ref="aaia:Engine" minOccurs="0"/>
+			<xs:element name="FuelType" type="oa:Type" minOccurs="0"/>
+			<xs:element name="Transmission" type="oa:Code" minOccurs="0"/>
+			<xs:element name="DriveType" type="oa:Type" minOccurs="0"/>
+			<xs:element ref="oa:Note" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="VehicleId">
+		<xs:sequence>
+			<xs:element name="VIN" type="oa:Id" minOccurs="0"/>
+			<xs:element name="AAIA" type="oa:Id" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Engine">
+		<xs:sequence>
+			<xs:element name="ConfigId" type="oa:Id" minOccurs="0"/>
+			<xs:element name="BlockType" type="oa:Type" minOccurs="0"/>
+			<xs:element name="Cylinders" type="xs:positiveInteger" minOccurs="0"/>
+			<xs:element name="Displacement" type="oa:Quantity" minOccurs="0"/>
+			<xs:element name="FuelDelivery" type="oa:Type" minOccurs="0"/>
+			<xs:element name="Aspiration" type="oa:Name" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Header" type="aaia:PurchaseOrderHeader" substitutionGroup="oa:Header"/>
+	<xs:element name="HostParty" type="oa:PartyInstitutional" substitutionGroup="oa:PartyType"/>
+	<xs:element name="Line" type="aaia:PurchaseOrderLine" substitutionGroup="oa:Line"/>
+	<xs:element name="ItemIds" type="aaia:ItemIds" substitutionGroup="oa:ItemIds"/>
+	<xs:element name="PaymentTerms" type="aaia:PaymentTerms" substitutionGroup="oa:PaymentTerms"/>
+	<xs:element name="ManufacturerItemId" type="aaia:PartyAssignedItemId" substitutionGroup="oa:PartyAssignedItemId"/>
+	<xs:element name="SupplierItemId" type="aaia:PartyAssignedItemId" substitutionGroup="oa:PartyAssignedItemId"/>
+	<xs:element name="OrderItem" type="aaia:OrderItem" substitutionGroup="oa:OrderItem"/>
+	<xs:element name="Engine" type="aaia:Engine"/>
+	<xs:element name="Vehicle" type="aaia:Vehicle"/>
+	<xs:element name="ShowPurchaseOrder" type="oa:ShowPurchaseOrder"/>
+</xs:schema>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/InventoryBalance.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified">
+        <xs:include schemaLocation="../Components.xsd"/>
+<!--   -->
+        <xs:element name="InventoryBalance" type="InventoryBalance" substitutionGroup="Noun">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Includes all stocked items and primarily represents the quantities of each item by location.  Other item-by-location information, such as serial numbers or lot numbers, can also be included.  The use of this noun does not include basic item master data that is independent of location, such as item description and dimensions.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="InventoryBalance">
+                <xs:complexContent>
+                        <xs:extension base="Noun">
+                                <xs:sequence>
+                                        <xs:element ref="Item" minOccurs="0"/>
+                                        <xs:element name="ItemQuantity" type="Quantity" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">The quantity of items that are involved in the transaction</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:group ref="ItemLotSerialIdentifier" minOccurs="0"/>
+                                        <xs:element ref="Business" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the GL Entity that is associated with the transaction</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="Note" type="Note" minOccurs="0" maxOccurs="unbounded">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is a note about the source location of the transfer.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element name="ReasonCode" type="ReasonCode" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the reason for the transfer.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="DocumentDateTime" type="DateTime" minOccurs="0"/>
+                                        <xs:element ref="Site" minOccurs="0"/>
+                                        <xs:element name="AvailableQuantity" type="Quantity" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the number of inventory items that are available to be used.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="InspectedQuantity" type="Quantity" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Number of inventory items that have been inspected.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="AllocatedQuantity" type="Quantity" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Number of inventory items that have been allocated for other uses as such are no longer availble. Unless the allocation is overriden.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="BlockedQuantity" type="Quantity" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Number of inventory items that are blocked or unavailable.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="ValueClass" type="ValueClass" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis"> Is a grouping used to determine the General Ledger accounting effect. These are user defined values, with the exception of the values TOTAL, MATERIAL, LABOR, BURDEN, OVERHEAD, SUBCONTRACT.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="DensityFactor" type="Factor" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">The density factor is a simple field with a numeric value that enables a conversion rate to the standard density of a liquid.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="CatchWeightQuantity" type="Quantity" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">This is the quantity of product as it is shipped.  This quantity is generally used with the CatchWeightConversion Factor.  This provides for the business case in process manufacturing when one is converting such things as the number of chickens that go into a box.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="CatchWeightConversionFactor" type="Factor" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">The catch weight conversion factor is a stock keeping conversion factor for inventory goods.  This is a special conversion factor for when the units of measure can not be converted using arithmetic.  This conversion factor is used with the CatchWeightQuantity.
+
+Examples of the use of this factor include:	
+Number of Chickens to a Box
+Number of units of a chemical in a barrel</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:group ref="Temperatures" minOccurs="0"/>
+                                        <xs:group ref="References" minOccurs="0"/>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+</xs:schema>

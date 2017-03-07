@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group Sample XML Data
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: ShowParty.xml
+-->
+<ShowParty xmlns="http://www.openapplications.org/oagis" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openapplications.org/oagis ../BODs/ShowParty.xsd" revision="8.0" environment="Production" lang="en-US">
+        <ApplicationArea>
+                <Sender>
+                        <LogicalId>String</LogicalId>
+                        <Component>String</Component>
+                        <Task>String</Task>
+                        <ReferenceId>String</ReferenceId>
+                        <Confirmation>0</Confirmation>
+                        <AuthorizationId>String</AuthorizationId>
+                </Sender>
+                <CreationDateTime>2001-12-17T09:30:47-05:00</CreationDateTime>
+                <Signature qualifyingAgency="String"/>
+                <BODId>String</BODId>
+                <UserArea/>
+        </ApplicationArea>
+        <DataArea>
+                <Show confirm="Always"/>
+                <Party active="false" oneTime="false">
+                        <PartyId>
+                                <Id>String</Id>
+                                <SCAC>String</SCAC>
+                                <DUNS>String</DUNS>
+                        </PartyId>
+                        <AlternatePartyIds>
+                                <CustomerPartyId>
+                                        <Id>String</Id>
+                                        <SCAC>String</SCAC>
+                                        <DUNS>String</DUNS>
+                                        <AssigningPartyId>
+                                                <Id>String</Id>
+                                                <SCAC>String</SCAC>
+                                                <DUNS>String</DUNS>
+                                        </AssigningPartyId>
+                                </CustomerPartyId>
+                        </AlternatePartyIds>
+                        <Name lang="en-us">String</Name>
+                        <Currency>String</Currency>
+                        <Description lang="en-us" owner="String">String</Description>
+                        <GLEntity>String</GLEntity>
+                        <PaymentMethod>Credit Card</PaymentMethod>
+                        <Rating>Good</Rating>
+                        <TaxExemptInd>1</TaxExemptInd>
+                        <TaxId>String</TaxId>
+                        <TermId>String</TermId>
+                        <Addresses>
+                                <Address>
+                                        <AddressId qualifyingAgency="String">String</AddressId>
+                                        <AddressLine>String</AddressLine>
+                                        <City>String</City>
+                                        <County>String</County>
+                                        <StateOrProvince>String</StateOrProvince>
+                                        <Country>String</Country>
+                                        <Region>String</Region>
+                                        <PostalCode>String</PostalCode>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <Telephone>String</Telephone>
+                                        <FaxNumber>String</FaxNumber>
+                                        <EMailAddress>String</EMailAddress>
+                                        <URI>http://www.xmlspy.com</URI>
+                                        <TaxJurisdiction>String</TaxJurisdiction>
+                                        <UserArea/>
+                                </Address>
+                        </Addresses>
+                        <Contacts>
+                                <Contact>
+                                        <Person>
+                                                <PersonCode>String</PersonCode>
+                                                <PersonName>
+                                                        <Salutation lang="en-us">String</Salutation>
+                                                        <GivenName lang="en-us">String</GivenName>
+                                                        <PreferredGivenName lang="en-us">String</PreferredGivenName>
+                                                        <MiddleName lang="en-us">String</MiddleName>
+                                                        <FamilyName lang="en-us">String</FamilyName>
+                                                        <Suffix lang="en-us">String</Suffix>
+                                                        <FormattedName lang="en-us">String</FormattedName>
+                                                        <UserArea/>
+                                                </PersonName>
+                                                <UserArea/>
+                                        </Person>
+                                        <Telephone>String</Telephone>
+                                        <EMailAddress>String</EMailAddress>
+                                        <Fax>String</Fax>
+                                        <URI>http://www.xmlspy.com</URI>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <Addresses>
+                                                <Address>
+                                                        <AddressId qualifyingAgency="String">String</AddressId>
+                                                        <AddressLine>String</AddressLine>
+                                                        <City>String</City>
+                                                        <County>String</County>
+                                                        <StateOrProvince>String</StateOrProvince>
+                                                        <Country>String</Country>
+                                                        <Region>String</Region>
+                                                        <PostalCode>String</PostalCode>
+                                                        <Description lang="en-us" owner="String">String</Description>
+                                                        <Telephone>String</Telephone>
+                                                        <FaxNumber>String</FaxNumber>
+                                                        <EMailAddress>String</EMailAddress>
+                                                        <URI>http://www.xmlspy.com</URI>
+                                                        <TaxJurisdiction>String</TaxJurisdiction>
+                                                        <UserArea/>
+                                                </Address>
+                                        </Addresses>
+                                        <UserArea/>
+                                </Contact>
+                        </Contacts>
+                        <Attachments>
+                                <Attachment inline="false">
+                                        <EmbeddedData encoding="base64">
+                                                <Data>Text</Data>
+                                        </EmbeddedData>
+                                        <DocumentDate>2002-04-05</DocumentDate>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <FileType>String</FileType>
+                                        <FileSize>3.1415926535897932384626433832795</FileSize>
+                                        <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                        <Title lang="en-us">String</Title>
+                                        <UserArea/>
+                                </Attachment>
+                        </Attachments>
+                        <CorrespondenceLanguage>en-us</CorrespondenceLanguage>
+                        <Qualification>
+                                <NameValue name="String" type="String">String</NameValue>
+                                <Description lang="en-us" owner="String">String</Description>
+                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                <UserArea/>
+                        </Qualification>
+                        <UserArea/>
+                </Party>
+        </DataArea>
+</ShowParty>

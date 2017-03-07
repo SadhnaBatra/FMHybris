@@ -1,0 +1,30 @@
+insert_update FMDCCenter;extSysCode;marketCode;dcCode[unique=true];dcName;addressLine1;city;state;isoCountryCode;zipCode;contactPhone;locTimeZoneOffSet;emergencyCutOffTime;participateFlag;latitude;longitude
+;EVRST;USCAN;4515;Local DC - Houston;14820 North Freeway;Houston;TX;US;77090;;0;Jan 1, 1970 6:00:00 PM;true;29.9807722;-95.42125910000001;
+;EVRST;USCAN;4516;Local DC - Boston;1053 Turnpike st;Stoughton;MA;US;2072;;0;Jan 1, 1970 6:00:00 PM;true;42.135371;-71.071798;
+;NABS;USCAN;019;Maysville;1151 Morton Lane;Maysville;KY;US;41056;1,772,626,904;0;Jan 1, 1970 4:00:00 PM;false;38.6405809;-83.8145739;
+;NABS;USCAN;034;Skokie - FelPro;7450 North McCormick Boulevard;Skokie;IL;US;60076;-113,186,892;0;Jan 1, 1970 4:00:00 PM;true;42.0162337;-87.7133735;
+;NABS;USCAN;035;Skokie;7450 North McCormick Boulevard;Skokie;IL;US;60076;-113,186,892;0;Jan 1, 1970 4:00:00 PM;true;42.0162337;-87.7133735;
+;NABS;USCAN;040;Jacksonville;2599 Alabama Highway 21 North;Jacksonville;AL;US;36265;256;0;Jan 1, 1970 5:00:00 PM;true;33.8507;-85.756;
+;NABS;USCAN;061;Indianapolis Fuel;78325 North Norfolk Street, Park 100;Indianapolis;IN;US;46268;317;0;Jan 1, 1970 4:00:00 PM;true;39.7872067;-86.25408709999999;
+;EVRST;USCAN;2151;Smyrna;2100 Midway Lane;Smyrna;TN;US;37167;1,858,583,750;0;Jan 1, 1970 6:30:00 PM;true;35.932472;-86.541088;
+;EVRST;USCAN;2152;Indianapolis;7450 North McCormick Boulevard;Indianapolis;IN;US;46268;-1,122,681,996;0;Jan 1, 1970 4:00:00 PM;true;39.7686213;-86.19262879999999;
+;EVRST;USCAN;2154;Moreno Valley;22750 Cactus Ave;MORENO VALLEY;CA;US;46268;-1,122,681,996;0;Jan 1, 1970 6:00:00 PM;true;33.9112936;-117.2635569;
+;EVRST;USCAN;2155;York;20 Leo Lane;HALLAM;PA;US;17406;-1,122,681,996;0;Jan 1, 1970 3:00:00 PM;true;40.00482;-76.6041322;
+;EVRST;USCAN;2156;Jacksonville;2599 Alabama Highway 21 North;Jacksonville;AL;US;36265;-1,730,612,596;0;Jan 1, 1970 5:00:00 PM;true;33.8507;-85.756;
+;EVRST;USCAN;2199;Clinton;;;MO;US;;;1;Jan 1, 1970 3:00:00 PM;true;37.1875524;-89.9656538;
+;EVRST;USCAN;299C;Clinton;;;MO;US;;;1;Jan 1, 1970 3:00:00 PM;true;37.1875524;-89.9656538;
+;EVRST;USCAN;4501;Local DC - Van Nuys, CA;15039 Raymer St;Van Nuys;CA;US;91405;-1,811,419,288;0;Jan 1, 1970 6:00:00 PM;true;34.2137797;-118.4610841;
+;EVRST;USCAN;4502;Local DC - Skokie;7450 N McCormick Blvd;Skokie;IL;US;60076;-1,811,419,288;0;Jan 1, 1970 4:00:00 PM;true;42.0162337;-87.7133735;
+;EVRST;USCAN;4503;Local DC - Rancho Dom, CA;2121 Paulhan St;Rancho Dominguez;CA;US;90220;-1,811,419,288;0;Jan 1, 1970 6:00:00 PM;true;33.8620514;-118.2283707;
+;EVRST;USCAN;4504;Chicago Mason St,(TSC);4929 S Mason Ave;Forest View;IL;US;60638;-1,811,419,288;0;Jan 1, 1970 4:00:00 PM;true;41.8030896;-87.7703411;
+;EVRST;USCAN;4505;Local DC - Bronx;1460 Sheridan Expressway;Bronx;NY;US;10464;-1,811,419,288;0;Jan 1, 1970 3:00:00 PM;true;40.831655;-73.8841939;
+;ECON;ECON;FMO;Federal-Mogul;26555 Northwestern Hwy;Southfield;MI;US;48033;-401,354,188;1;Jan 1, 1970 3:00:00 PM;true;42.4824001;-83.2631473;
+;EVRST;USCAN;ShivTestDC;Local DC – Lansing, MI;7000 W.Saginaw Hwy;Lansing;MI;US;48917;;0;Jan 1, 1970 6:00:00 PM;true;42.7416293;-84.65300259999999;
+;NABS;USCAN;036;Skokie - FPD Engine Parts;7450 North McCormick Boulevard;Skokie;IL;US;60076;-113,186,892;0;Jan 1, 1970 4:00:00 PM;true;42.0162337;-87.7133735;
+;EVRST;USCAN;4506;Local DC - Atlanta;6690  Jones Mill Court,Suite E(D&E);Norcross;GA;US;30092;;0;Jan 1, 1970 6:00:00 PM;true;33.9412127;-84.21353089999999;
+;EVRST;USCAN;4507;Local DC - Baltimore;717 Hammonds Ferry Rd,Suite F-H;inthicum Heights;MD;US;21090;;0;Jan 1, 1970 6:00:00 PM;true;39.2240414;-76.6635946;
+;EVRST;USCAN;4508;Local DC - Dallas;10390 shady Trail,Suite 100;Dallas;TX;US;75220;;0;Jan 1, 1970 6:00:00 PM;true;32.8640414;-96.88944560000002;
+;EVRST;USCAN;4514;Local DC - St Louis;3184 Riverport Tech Center Drive;Maryland Heights;MO;US;63043;;0;Jan 1, 1970 6:00:00 PM;true;38.7530856;-90.4711097;
+;EVRST;USCAN;4513;Local DC - Southfield;24477 W 10 Mile Rd;Southfield;MI;US;48033;;0;Jan 1, 1970 6:00:00 PM;true;42.4718329;-83.28380190000001;
+
+

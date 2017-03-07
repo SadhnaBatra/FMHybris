@@ -1,0 +1,243 @@
+/* =========================
+    Hybris Page Layouts
+============================ */
+
+/* 
+    Site Map 
+============== */
+
+.siteMapHeading {
+    border-bottom: 1px solid @grey-light;
+    padding-bottom: 15px;
+}
+.siteMapUlLI {
+    ul {
+        li {
+            margin-top: 5px;
+            a {
+                color: @blue;
+            }
+        }
+    }
+}
+
+// It is unclear if this is in use or will continue to be necessary after FM2.0 content is moved to AEM
+
+.pageContet {
+    padding: 0 0 20px 0;
+}
+.section1{
+    margin:10px 0;
+}
+
+.zoneA .disp-img{
+    height:108px;
+    margin:10px 0 0 0;
+    border-bottom:1px dotted #A5A5A5;
+    position:relative;
+
+    &:first-child {
+        margin:0;
+    }
+
+    a {
+        display:block;
+    }
+    .action {
+        display:none;
+    }
+    .details {
+        width:124px;
+        height:96px;
+        margin-left:106px;
+        display:block;
+    }
+    .thumb {
+        position:absolute;
+        top:0;
+    }
+    .title {
+        display:block;
+        margin-left:106px;
+        border-bottom:1px dotted #A5A5A5;
+        margin-bottom:10px;
+    }
+}
+
+.section4 .disp-img {
+    margin:0 0 15px 0;
+    .action{
+        display:none;
+    }
+    .thumb {
+        margin:0 0 5px 0;
+        display:block;
+    }
+    .title {
+        border-bottom:1px solid #a5a5a5;
+        height:30px;
+        line-height:30px;
+        text-transform:uppercase;
+        font-weight:bold;
+        font-size:1em;
+        white-space: nowrap;
+        display:block;
+        margin:0 0 10px 0;
+    }
+}
+
+/*
+    FM LANDING PAGES
+=======================*/
+.internalPage {
+    padding: 15px 20px 15px 25px;
+    padding: 1.5rem 2.0rem 1.5rem 2.5rem;
+    background: @white;
+    ul, ol { 
+        margin: 1.5rem 3rem; 
+        li { 
+           padding: .2rem 0; 
+        }
+    } 
+    .search-result-title{
+        margin-bottom: 43px;
+        margin-bottom: 4.3rem;
+    }
+    a {
+        font-weight: bold !important; 
+        color: @blue; 
+    }
+    h1 {
+        border-bottom: 1px solid @grey-light;
+        margin: 8px 0 22px;
+        padding-bottom: 15px;
+        .ff-primary-bold;
+        font-size: 28px;
+    }
+    h2 {
+        color: @red;
+        font-size: 22px;
+    }
+    p {
+        margin: 1.5rem 0; 
+        line-height: 150%;
+    }
+}
+.internalLanding {
+    .internalLandingImgContent{
+        font-size: 12rem;font-size: 120px;
+        left: 30.5rem;left: 305px;
+        line-height: 3.8rem;line-height: 38px;
+        opacity: 0.62;
+        position: absolute;
+        top: 8rem;
+     }
+    .internalPage {
+        padding-bottom:42px;
+        padding-bottom:4.2rem;
+    }
+}
+.internalContent .internalPage {
+    padding-bottom: 60px;
+    padding-bottom: 6rem;
+    .orderPdf {
+        margin-right:6px;
+        margin-right:0.6rem;
+    }
+}
+
+/*
+    Branding Carousel - 
+    Anonymous & B2B home page
+============================= */
+.brandingFlyr {
+    .carousel-control {
+        .fa-chevron-left {
+            height: 30px; height: 3rem;
+            width: 30px; width: 30px;
+            font-size: 30px;
+            font-size: 3rem;
+            left: 50%;
+            display: inline-block;
+            position: absolute;
+            top: 50%;
+            z-index: 5;
+            margin: -15px  0 0 -15px; 
+            left: 50%;
+        }
+        .fa-chevron-right {
+            height: 30px; height: 3rem;
+            width: 30px; width: 3rem;
+            font-size: 30px;
+            font-size: 3rem;
+            display: inline-block;
+            position: absolute;
+            top: 50%;
+            z-index: 5;
+            margin: -15px  -15px 0 0; 
+            right:50%;
+        }
+    }
+} 
+@media (max-width: @bp_mobile_max) {
+    .brandingFlyr {
+        display: none;
+    }
+    .internalLanding .slide .thumbnail {
+        border: 1px solid @grey-light;
+        border: 0.1rem solid @grey-light;
+        border-radius: 0;
+    }
+    .internalPage .carousel p {
+        text-align: left;
+        font-size:12px;
+        font-size:1.2rem;
+    }
+
+    .internalLanding .bx-wrapper .bx-prev {
+        left: -22px;
+        left: -2.2rem;
+    }
+    .internalLanding .bx-wrapper .bx-next {
+        right: -22px;
+        right: -2.2rem;
+    }
+} 
+
+// Sigh. 
+
+.section1.cms_disp-img_slot .disp-img .title,
+.section1.cms_disp-img_slot .disp-img .details,
+.section1.cms_disp-img_slot .disp-img .action,
+.section2.cms_disp-img_slot .disp-img .title,
+.section2.cms_disp-img_slot .disp-img .details,
+.section2.cms_disp-img_slot .disp-img .action,
+.zone_a.cms_disp-img_slot .disp-img .title,
+.zone_a.cms_disp-img_slot .disp-img .details,
+.zone_a.cms_disp-img_slot .disp-img .action,
+.zone_b.cms_disp-img_slot .disp-img .title,
+.zone_b.cms_disp-img_slot .disp-img .details,
+.zone_b.cms_disp-img_slot .disp-img .action,
+.zone_c.cms_disp-img_slot .disp-img .title,
+.zone_c.cms_disp-img_slot .disp-img .details,
+.zone_c.cms_disp-img_slot .disp-img .action,
+.section4.cms_disp-img_slot .disp-img .title,
+.section4.cms_disp-img_slot .disp-img .details,
+.section4.cms_disp-img_slot .disp-img .action,
+.section5.cms_disp-img_slot .disp-img .title,
+.section5.cms_disp-img_slot .disp-img .details,
+.section5.cms_disp-img_slot .disp-img .action,
+.left-content-slot.cms_disp-img_slot .disp-img .title,
+.left-content-slot.cms_disp-img_slot .disp-img .details,
+.left-content-slot.cms_disp-img_slot .disp-img .action,
+.top-content-slot.cms_disp-img_slot .disp-img .title,
+.top-content-slot.cms_disp-img_slot .disp-img .details,
+.top-content-slot.cms_disp-img_slot .disp-img .action,
+.wide-content-slot.cms_disp-img_slot .disp-img .title,
+.wide-content-slot.cms_disp-img_slot .disp-img .details,
+.wide-content-slot.cms_disp-img_slot .disp-img .action,
+.narrow-content-slot.cms_disp-img_slot .disp-img .title,
+.narrow-content-slot.cms_disp-img_slot .disp-img .details,
+.narrow-content-slot.cms_disp-img_slot .disp-img .action {
+    display: none;
+}

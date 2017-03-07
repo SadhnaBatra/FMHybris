@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema targetNamespace="http://www.aaiasoa.net/IPOv2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.aaiasoa.net/IPOv2" xmlns:cmn="http://www.aaiasoa.net/IPOv2/Common" elementFormDefault="qualified">
+	<xs:import namespace="http://www.aaiasoa.net/IPOv2/Common" schemaLocation="IPOv2Common.xsd"/>
+	<xs:element name="HeaderType" type="HeaderType"/>
+	<xs:complexType name="HeaderType">
+		<xs:sequence minOccurs="1" maxOccurs="1">
+			<xs:element name="Language" type="xs:token" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The two-character or three-character Language Code defined in ISO Code Tables 639-1 and 639-2.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Currency" type="xs:token" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The three-letter currency code defined in the ISO 4217 Code Table.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DimensionalUOM" type="xs:token" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The two-character code defined in ANSI Code Table 355 for dimensional measures. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WeightUOM" type="xs:token" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The two-character weight measurement code defined in ANSI Code Table 355.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DocumentDateTime" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The date and time the document was created, formatted in ISO 8601 extended format of YYYY-MM-DDThh:mm:ss, followed by the difference between the local time and Universal Time represented as ±hh:mm, or Z if there is no difference - fractional seconds may be included.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DocumentIds" type="cmn:DocumentIdsType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="DocumentReferenceIds" type="cmn:DocumentReferenceIdsType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Note" type="cmn:NoteType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Free form text element used to annotate the document or exchange process.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PromisedShipDate" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Contains the date which the Seller expects to ship the Order, i.e. the departure date from the ship-from location. Content is formatted in the ISO 8601 extended format of YYYY-MM-DDThh:mm:ss followed by the difference between the local time and Universal Time represented as ±hh:mm, or Z if there is no difference.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TransportationTermCode" type="cmn:TransportationTermCodeType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>If the Buyer provided transportation terms in the RFQ, and the Seller agrees with those terms, the transportation terms from the RFQ should be echoed here. If not, the element contains the Sellers terms. This element contains one of the three-character codes defined in INCOterms 2000, such as EXW (Ex works), FOB (Free on Board), CIF (Cost, Insurance and Freight), DDU (Delivered Duty Unpaid), or CPT (Carriage Paid To).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FreightTerms" type="cmn:FreightTermsType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Container element for Freight Terms.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ExtendedPrice" type="xs:decimal" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>This element contains the total value of all Line Items, excluding any additional charges or fees such as tax or shipping.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AdditionalCharges" type="cmn:AdditionalChargesType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Container element for Additional Charges.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TotalAmount" type="xs:decimal" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Contains the total value for the Order, including additional charges, e.g. customization, shipping and handling, or tax. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PaymentTerms" type="cmn:PaymentTermsType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Payment terms &amp; methods.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BillToParty" type="cmn:PartyType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The content of this component describes the entity, organization, or person responsible for paying an Order invoice. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ShipToParty" type="cmn:PartyType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The content of this component describes the entity, organization, or person, to which the Ordered Items will be shipped or delivered. The ShipToParty component structure is identical to  Header/BillToParty, and in many cases the information provided here will also match the content in that component, although address and contact information is frequently different for larger organizations. Note that Quote does not provision for more than one ShipToParty, as it's assumed every Item in an Order will be delivered to the same address.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SoldToParty" type="cmn:PartyType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The content of this component describes the entity, organization, or person who will take title to the Ordered Items. The SoldToParty component structure is identical to Header/BillToParty, and in many cases the content may also be the same as that component. However, Items requested by larger organizations, such as a retail chain, could be sold to a local store, shipped to a regional warehouse to be included in the daily stock delivery, and billed to the corporate headquarters.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ShipFromParty" type="cmn:PartyType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The content of this component describes the entity, organization, or person who will ship the requested Items. The elements contained in the  ShipFromParty component are identical to Header/BillToParty.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HostParty" type="cmn:HostPartyType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Component describes the entity to which the document should be routed. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UserArea" type="cmn:UserAreaType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Allows the user of IPO to extend the specification in order to exchange additional information which isn't defined in the standard. This UserArea should remain the last element in the Header sequence, prior to the Lines element.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="LineType" type="LineType"/>
+	<xs:complexType name="LineType">
+		<xs:annotation>
+			<xs:documentation>Line Item Information.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="LineNumber" type="xs:positiveInteger" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Contains a sequential line identifier, beginning with 1 for the first line.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Weight" type="xs:decimal" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Gross weight per pack.  HDX PCFS uses a 5.3 configuration</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Length" type="xs:decimal" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Length is the front-to-back Horizontal dimension (of Pack, Layer, Pallet, etc.).  Put the product on its natural base, with the graphics reading from left to right from the front.  Note:  This relates to how the product is merchandised, and it is possible it is packed for distribution in a different orientation.
+Length = front to back.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Width" type="xs:decimal" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Width is the left-to-right horizontal dimension (of pack, layer, pallet, etc.).  Put the product on its natural base, with the graphics reading from left to right from the front.  Note:  This relates to how the product is merchandised, and it is possible it is packed for distribution in a different orientation.
+Width = left to right.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Height" type="xs:decimal" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Height is the vertical dimension (of pack, layer, pallet, etc.).  Put the product on its natural base, with the graphics reading from left to right from the front.  Note:  This relates to how the product is merchandised, and it is possible it is packed for distribution in a different orientation.
+Height = base to top.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OrderItem" type="cmn:OrderItemType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A collection of information pertaining to the Item.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ItemStatusChanges" type="cmn:ItemStatusChangesType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Codes used by the Seller when the status of a LineItem changes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OrderQuantity" type="cmn:OrderQuantityType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Quantity of the Item being ordered.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BackOrderedQuantity" type="cmn:BackOrderedQuantityType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Contains the quantity of the Item that the Seller expects to backorder. If the value in the RFQ BackOrderedInd is "0", and this element is present in the Quote, its value must be zero.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Prices" type="cmn:PricesType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Container element for Prices</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FreightTerms" type="cmn:FreightTermsType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Container element for Freight Terms.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ExtendedPrice" type="xs:decimal" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>This element contains the total value of all Line Items, excluding any additional charges or fees such as tax or shipping.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AdditionalCharges" type="cmn:AdditionalChargesType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Container element for Additional Charges.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TotalAmount" type="xs:decimal" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Contains the total value for the Line Item, including additional charges, e.g. customization, shipping and handling or tax.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PromisedShipDate" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Contains the date which the Seller expects to ship the Order, i.e. the departure date from the ship-from location. Content is formatted in the ISO 8601 extended format of YYYY-MM-DDThh:mm:ss followed by the difference between the local time and Universal Time represented as ±hh:mm, or Z if there is no difference.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Note" type="cmn:NoteType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Free form text element which may be used to provide additional information about the Line Item.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ShipFromParty" type="cmn:PartyType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The content of this component describes the entity, organization, or person who will ship the requested Items. The elements contained in the ShipFromParty component are identical to Header/BillToParty. Information provided here overrides any Header/ShipFromParty information for this Line Item. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UserArea" type="cmn:UserAreaType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Allows the user of IPO to extend the specification in order to exchange additional line item information which isn't defined in the standard. This UserArea should remain the last element in the sequence.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Sublines" type="SublinesType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="LinesType" type="LinesType"/>
+	<xs:complexType name="LinesType">
+		<xs:sequence>
+			<xs:element name="Line" type="LineType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="SublinesType" type="SublinesType"/>
+	<xs:complexType name="SublinesType">
+		<xs:sequence>
+			<xs:element name="SubLine" type="SubLineType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="SubLineType" type="SubLineType"/>
+	<xs:complexType name="SubLineType">
+		<xs:sequence>
+			<xs:element name="LineNumber" type="xs:positiveInteger" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Contains a sequential line identifier, beginning with 1 for the first line.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Weight" type="xs:decimal" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Gross weight per pack.  HDX PCFS uses a 5.3 configuration</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Length" type="xs:decimal" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Length is the front-to-back Horizontal dimension (of Pack, Layer, Pallet, etc.).  Put the product on its natural base, with the graphics reading from left to right from the front.  Note:  This relates to how the product is merchandised, and it is possible it is packed for distribution in a different orientation.
+Length = front to back.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Width" type="xs:decimal" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Width is the left-to-right horizontal dimension (of pack, layer, pallet, etc.).  Put the product on its natural base, with the graphics reading from left to right from the front.  Note:  This relates to how the product is merchandised, and it is possible it is packed for distribution in a different orientation.
+Width = left to right.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Height" type="xs:decimal" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Height is the vertical dimension (of pack, layer, pallet, etc.).  Put the product on its natural base, with the graphics reading from left to right from the front.  Note:  This relates to how the product is merchandised, and it is possible it is packed for distribution in a different orientation.
+Height = base to top.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ItemStatusChanges" type="cmn:ItemStatusChangesType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Codes used by the Seller when the status of a Line Item changes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OrderItem" type="cmn:OrderItemType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A collection of information pertaining to the Item.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OrderQuantity" type="cmn:OrderQuantityType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Quantity of the Item being ordered.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BackOrderedQuantity" type="cmn:BackOrderedQuantityType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Contains the quantity of the Item that the Seller expects to backorder. If the value in the RFQ BackOrderedInd is "0", and this element is present in the Quote, its value must be zero.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Prices" type="cmn:PricesType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Container element for Prices. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FreightTerms" type="cmn:FreightTermsType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Container element for Freight Terms.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ExtendedPrice" type="xs:decimal" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>This element contains the total value of all Line Items, excluding any additional charges or fees such as tax or shipping.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AdditionalCharges" type="cmn:AdditionalChargesType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Container element for Additional Charges.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TotalAmount" type="xs:decimal" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Contains the total value for the SubLine Item, including additional charges, e.g. customization, shipping and handling or tax.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PromisedShipDate" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Contains the date which the Seller expects to ship the Order, i.e. the departure date from the ship-from location. Content is formatted in the ISO 8601 extended format of YYYY-MM-DDThh:mm:ss followed by the difference between the local time and Universal Time represented as ±hh:mm, or Z if there is no difference.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Note" type="cmn:NoteType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Free form text element which may be used to provide additional information about the Line Item.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ShipFromParty" type="cmn:PartyType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The content of this component describes the entity, organization, or person who will ship the requested Items. The elements contained in the  ShipFromParty component are identical to Header/BillToParty. Information provided here overrides any Header/ShipFromParty or Line/ShipFromParty information for this SubLine Item. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UserArea" type="cmn:UserAreaType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Allows the user of IPO to extend the specification in order to exchange additional Line Item information which isn't defined in the standard. This UserArea should remain the last element in the sequence.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Quote" type="Quote"/>
+	<xs:complexType name="Quote">
+		<xs:sequence>
+			<xs:element name="Header" type="HeaderType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Lines" type="LinesType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

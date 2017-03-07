@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/Location.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Components.xsd"/>
+        <xs:annotation>
+                <xs:documentation source="http://www.openapplications.org/oagis">This is a placeholder for the Location noun. </xs:documentation>
+        </xs:annotation>
+        <xs:annotation>
+                <xs:documentation source="http://www.openapplications.org/oagis">Since it's really a Component that sometimes doubles as a Noun, its definition is in Components.</xs:documentation>
+        </xs:annotation>
+</xs:schema>

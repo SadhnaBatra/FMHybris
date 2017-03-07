@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/EmployeeTime.xsd
+-->
+<xs:schema targetNamespace="http://www.openapplications.org/oagis" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="TimeReporting.xsd"/>
+	<xs:complexType name="EmployeeTime">
+		<xs:complexContent>
+			<xs:extension base="Noun">
+				<xs:sequence>
+					<xs:group ref="CommonTimeReporting" minOccurs="0"/>
+					<xs:element ref="UserArea" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="EmployeeTime" type="EmployeeTime" substitutionGroup="Noun">
+		<xs:annotation>
+			<xs:documentation source="http://www.openapplications.org/oagis">Refers to time sheet information for an employee.  This information may be collected in an external source, and then transferred to a HRMS or Payroll application.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

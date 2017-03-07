@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/DispatchList.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../MfgComponents.xsd"/>
+        <xs:complexType name="DispatchList">
+                <xs:complexContent>
+                        <xs:extension base="Noun">
+                                <xs:sequence>
+                                        <xs:element ref="Header" minOccurs="0"/>
+                                        <xs:element ref="Line" minOccurs="0" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="DispatchListHeader">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">This provides information about the entire WIP transaction. It can refer to a WorkCenter, a work location or a machine</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                        <xs:element name="Id" type="Id" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the dispatch list identtifier.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="Machine" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="WorkCenter" type="WorkCenter" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the work center in which the machine resides in which the work is being diapatched to.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="Site" minOccurs="0"/>
+                        <xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="Note" type="Note" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="DispatchListLine">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">This refers to Dispatch List Operation/Line information or it could represent a step in a routing</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                        <xs:element name="LineNumber" type="LineNumber" minOccurs="0"/>
+                        <xs:element ref="OperationReference" minOccurs="0"/>
+                        <xs:element ref="ProductionOrderReference" minOccurs="0"/>
+                        <xs:element name="ItemQuantity" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Number of items in the Line.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="ResourceLevel" minOccurs="0"/>
+                        <xs:element name="ForecastTime" type="TimePeriod" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Forecasted start and finishing TimePeriod.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="SetupTime" type="TimePeriod" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">TimePeriod indicating setup time for the resource.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="TearDownTime" type="TimePeriod" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Timestamp indicating that teardown of the resource.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Description of the DispatchListLine.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="DispatchResource" minOccurs="0"/>
+                        <xs:element ref="MfgDocumentReferences" minOccurs="0"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:element name="DispatchList" type="DispatchList" substitutionGroup="Noun">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">A dispatch list shows the manufacturing or production supervisor or foreman a prioritized detail status of orders and operations scheduled or in-process at a specific work center.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Header" type="DispatchListHeader"/>
+        <xs:element name="Line" type="DispatchListLine"/>
+        <xs:complexType name="DispatchResource">
+                <xs:sequence>
+                        <xs:element ref="Resources" minOccurs="0"/>
+                        <xs:element name="ActivityType" type="Type" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">This describes the type of activity produced by a cost center in an operation. In this context, it indicates that the resources being reported here are performing one of the following types of activities: Setup, Execution or Teardown</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ForecastTime" type="TimePeriod" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Forecasted start and finishing TimePeriod.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="SetupTime" type="TimePeriod" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">TimePeriod indicating setup time for the resource.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="TearDownTime" type="TimePeriod" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Timestamp indicating that teardown of the resource.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:simpleType name="ResourceLevel">
+                <xs:restriction base="xs:string"/>
+        </xs:simpleType>
+        <xs:element name="ResourceLevel" type="ResourceLevel"/>
+        <xs:element name="DispatchResource" type="DispatchResource">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">This identifies information concerning the resources associated with a particular WIP operation</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+</xs:schema>

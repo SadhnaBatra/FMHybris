@@ -1,0 +1,28 @@
+#Scripts to delete link components we do not need in the about us section.
+#Please check and replace for the catalogversion pk from production.
+
+Delete FROM cmscomponent WHERE (P_UID='CompanyLink') and (p_catalogversion='8796093252185')
+Delete FROM cmscomponent WHERE (P_UID='InvestorsLink') and (p_catalogversion='8796093252185')
+Delete FROM cmscomponent WHERE (P_UID='CareersLink') and (p_catalogversion='8796093252185')
+Delete FROM cmscomponent WHERE (P_UID='MediaSuppliersLink') and (p_catalogversion='8796093252185')
+Delete FROM cmscomponent WHERE (P_UID='PrivacyAndLegalLink') and (p_catalogversion='8796093252185')
+Delete FROM cmscomponent WHERE (P_UID='AboutUsMediaLink') and (p_catalogversion='8796093252185')
+Delete FROM cmscomponent WHERE (P_UID='PrivacyAndLegalFooterLink') and (p_catalogversion='8796093252185')
+
+##Update scripts to update url in footer component
+
+insert_update CMSLinkComponent;uid[unique=true];external;url;
+;AboutUsMediaFooterLink;true;/media.html;
+;MediaSuppliersFooterLink;true;/suppliers.html;
+;CompanyFooterLink;true;/about-us.html;
+;CareersFooterLink;true;/careers.html;
+;InvestorsFooterLink;true;/investors.html
+
+##Impex script to create header about us link component to match with AEM layout
+insert_update CMSLinkComponent;&Item;actions(catalogVersion(catalog(id),version),uid);catalogVersion(catalog(id),version)[unique=true,allownull=true];category(catalogVersion(catalog(id),version),code);categoryPOS;contentPage(catalogVersion(catalog(id),version),uid);contentPagePOS;external[allownull=true];linkName[lang=en];name;navigationNodes(catalogVersion(catalog(id),version),uid);onlyOneRestrictionMustApply[allownull=true];product(catalogVersion(catalog(id),version),code);productPOS;restrictions(catalogVersion(catalog(id),version),uid);slots(catalogVersion(catalog(id),version),uid);styleAttributes;target(code,itemtype(code))[allownull=true];uid[unique=true,allownull=true];url;visible[allownull=true]
+;Item177;;federalmogulContentCatalog:Online;;;;;false;Our Culture;OurCultureLink;federalmogulContentCatalog:Online:AboutUsHeaderLinksNavNode;true;;;;;;sameWindow:LinkTargets;OurCultureLink;/our-culture.html;true
+;Item179;;federalmogulContentCatalog:Online;;;;;false;Careers;Careers Link;federalmogulContentCatalog:Online:AboutUsHeaderLinksNavNode;true;;;;;;sameWindow:LinkTargets;CareersLink;/careers.html;true
+;Item181;;federalmogulContentCatalog:Online;;;;;false;Meet Our Leaders;MeetOurLeadersLink ;federalmogulContentCatalog:Online:AboutUsHeaderLinksNavNode;true;;;;;;sameWindow:LinkTargets;MeetOurLeadersLink;/meet-our-leaders.html;true
+;Item182;;federalmogulContentCatalog:Online;;;;;false;What We Do;WhatWeDoLink;federalmogulContentCatalog:Online:AboutUsHeaderLinksNavNode;true;;;;;;sameWindow:LinkTargets;WhatWeDoLink;/whatwedo.html;true
+;Item183;;federalmogulContentCatalog:Online;;;;;false;Innovation;InnovationLink ;federalmogulContentCatalog:Online:AboutUsHeaderLinksNavNode;true;;;;;;sameWindow:LinkTargets;InnovationLink;/innovation.html;true
+;Item360;;federalmogulContentCatalog:Online;;;;;true;Media;Media;federalmogulContentCatalog:Online:AboutUsHeaderLinksNavNode;true;;;;;;sameWindow:LinkTargets;AboutUsMediaLink;/media.html;true

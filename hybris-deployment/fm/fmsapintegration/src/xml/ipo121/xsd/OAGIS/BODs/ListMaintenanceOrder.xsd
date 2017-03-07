@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: ListMaintenanceOrder.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Resources/Verbs/List.xsd"/>
+        <xs:include schemaLocation="../Resources/Nouns/MaintenanceOrder.xsd"/>
+        <xs:element name="ListMaintenanceOrder" type="ListMaintenanceOrder">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The purpose of the ListMaintenanceOrder is to publish one or more summary listings of Maintenance Order information to other business application component.  This may be in response to a GetListMaintenanceOrder request or to proactively publish a listing of summary Maintenance Order information for a business event.
+
+When a receiving application receives this BOD, the information can be used as is or it may be used to initiate a selection of a specific Maintenance Order through the GetMaintenanceOrder request.  The processing is designed to provide multiple occurrences of summary data. 
+</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="ListMaintenanceOrder">
+                <xs:complexContent>
+                        <xs:extension base="BusinessObjectDocument">
+                                <xs:sequence>
+                                        <xs:element name="DataArea" type="ListMaintenanceOrderDataArea">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is where the information that the BOD message carries is provided, in this case ListMaintenanceOrder. The information consists of a Verb and one or more Nouns. The verb (List) indicates the action to be performed on the Noun (MaintenanceOrder).</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="ListMaintenanceOrderDataArea">
+                <xs:complexContent>
+                        <xs:extension base="DataArea">
+                                <xs:sequence>
+                                        <xs:element ref="List"/>
+                                        <xs:element ref="MaintenanceOrder" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+</xs:schema>

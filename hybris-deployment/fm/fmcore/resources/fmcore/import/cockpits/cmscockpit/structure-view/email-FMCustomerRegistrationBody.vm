@@ -1,0 +1,237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<head>
+	
+<style type="text/css">
+	
+	img {
+		border: none;
+	}
+	td {
+		font-family: "Arial", arial, sans-serif;
+		color: black;
+		text-align: left;
+		font-size: 14px;
+	}
+	a {
+		color: #0000ff;
+		font-weight: bold;
+	}
+	a.noline {
+		text-decoration: none;
+	}
+	.small {
+		font-size: 11px;
+	}
+	.bold {
+		font-weight: bold;
+	}
+	.red {
+		color: #ac1f2d;
+	}
+	.large {
+		font-size: 16px;
+	}
+	.gray {
+		color: #676767;
+	}
+	.italic {
+		font-style: italic;
+	}
+	td.grayBackground {
+		background: #b7b7b7;
+	}
+	td.bottom {
+		font-size: 11px;
+	}
+	.center {
+		text-align: center;
+	}
+	a.black {
+		color: black;
+	}
+	a .gray {
+		color: #676767;
+	}
+	.sidebar {
+		border-radius: 10px 0 0 10px;
+	}
+	.noline {
+		text-decoration: none;
+	}
+	
+    @media only screen and (max-width: 480px) {
+
+        #templateColumns{
+            width:100% !important;
+        }
+
+        .templateColumnContainer{
+            display:block !important;
+            width:100% !important;
+        }
+
+        .columnImage{
+            height:auto !important;
+            max-width:480px !important;
+            width:100% !important;
+        }
+        .columnImageInner{
+            height:auto !important;
+            max-width:440px !important;
+            width:90% !important;
+        }
+
+        .leftColumnContent{
+            display:block !important;
+            font-size:16px !important;
+            line-height:125% !important;
+        }
+
+        .rightColumnContent{
+            display:block !important;
+            font-size:16px !important;
+            line-height:125% !important;
+        }
+        .sidebar {
+			border-radius: 0px;
+		}
+		
+        td.bottom {
+            font-size: 14px !important;
+        }
+        td.bottom a {
+            display: block !important;
+	        margin-top: 10px !important;
+	    }
+    }
+</style>
+	
+</head>
+<body>
+
+<table border="0" cellpadding="0" cellspacing="0" width="640" id="templateColumns" align="center" style="background:white;">
+    <tr>
+        <td align="center" valign="top" width="100%" colspan="2">
+            <table border="0" cellpadding="20" cellspacing="0" width="100%">
+                <tr>
+                    <td>
+						<span class="small">Garage Rewards Account Confirmation</span>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" valign="top" width="100%" colspan="2">
+            <a href="http://fmmotorparts.com/fmstorefront/" target="_blank"><img src="http://clients.tgcserver.com/federalmogul/ggemailtemplate/images/gg-august2015-header2.png" width="640" style="max-width:640px;" class="columnImage" usemap="#headerMap" alt="GARAGE GURUS" /></a>
+        </td>
+    </tr>
+    <tr>
+      	<td align="center">
+             <a href="http://fmmotorparts.com/" target="_blank"><img src="http://clients.tgcserver.com/federalmogul/ggemailtemplate/images/gg-august2015-subhead1.png" height="35" class="columnImage" alt="FMMotorparts" /></a><a href="http://fmgaragegurus.com/" target="_blank"><img src="http://clients.tgcserver.com/federalmogul/ggemailtemplate/images/gg-august2015-subhead2.png" width="145" height="35" class="columnImage" alt="Garage Gurus" /></a><a href="http://qa.fmmpe-cat.com/fmstorefront/" target="_blank"><img src="http://clients.tgcserver.com/federalmogul/ggemailtemplate/images/gg-august2015-subhead3.png" width="264" height="35" class="columnImage" alt="Garage Rewards" /></a>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" valign="top" width="100%" colspan="2">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                    <td>
+			            <table border="0" cellpadding="20" cellspacing="0" width="100%">
+			                <tr>
+			                    <td>
+						            <span class="bold" ><b style="font-size: 16px;">Garage Rewards Registration Confirmation</b></span><br />
+						            <br />
+									Hi ${ctx.customerData.firstName} ${ctx.customerData.lastName},<br />
+									<br />
+									Thank you for joining the Garage Rewards loyalty program. <br />
+									Your account has been updated with <span class="bold"><b>250 points for joining the program</b></span>. <br />
+									<br />
+									<a href="http://qa.fmmpe-cat.com/fmstorefront/" target="_blank">CLICK HERE</a>  to login to your account anytime and check your point status. <br />									<br />
+									Your userid is: ${ctx.customerData.uid}<br />
+									<br />
+									
+			                    </td>
+			                </tr>
+			            </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+        <td align="center" valign="top" width="65%" class="templateColumnContainer">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+        <td class="center">
+			&nbsp;
+        </td>
+    </tr>
+    <tr>
+        <td align="center" valign="top" width="100%" colspan="2" class="grayBackground">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+	                <td>
+			            <table border="0" cellpadding="15" cellspacing="0" width="100%">
+			                <tr>
+			                    <td>
+				                    <img src="http://clients.tgcserver.com/federalmogul/ggemailtemplate/images/gg-august2015-fmmp-logo.png" alt="Federal-Mogul Motorparts" /><br />
+									<br />
+									<span class="small">&copy; 2015 Federal-Mogul Motorparts Corporation.</span>
+			                    </td>
+			                    <td>
+						            <table border="0" cellpadding="10" cellspacing="0" width="25%">
+						                <tr>
+						                    <td>
+												<a href="https://www.facebook.com/FMGarageGurus?ref=bookmarks" target="_blank"><img src="http://clients.tgcserver.com/federalmogul/ggemailtemplate/images/gg-august2015-social-facebook-c.png" width="24" style="max-width:24px;" alt="Facebook" /></a>
+						                    </td>
+						                    <td>
+												<a href="https://twitter.com/GarageGurus" target="_blank"><img src="http://clients.tgcserver.com/federalmogul/ggemailtemplate/images/gg-august2015-social-twitter-c.png" width="24" style="max-width:24px;" alt="Twitter" /></a>
+						                    </td>
+						                    <td>
+												<a href="https://instagram.com/garagegurus/" target="_blank"><img src="http://clients.tgcserver.com/federalmogul/ggemailtemplate/images/gg-august2015-social-instagram-c.png" width="24" style="max-width:24px;" alt="Instagram" /></a>
+						                    </td>
+						                    <td>
+												<a href="https://www.youtube.com/channel/UCD1JFMOqkQKzxg91lrkRPhg/feed" target="_blank"><img src="http://clients.tgcserver.com/federalmogul/ggemailtemplate/images/gg-august2015-social-youtube-c.png" width="24" style="max-width:24px;" alt="YouTube" /></a>
+						                    </td>
+						                </tr>
+						            </table>
+			                    </td>
+			                </tr>
+                            <tr>
+                            	<td colspan="4" class="left bottom">
+	                                This email was sent to <a href="mailto:${ctx.email}" target="_blank" style="color:#404040 !important;">${ctx.email}</a> because you requested information on one of our websites: 
+	                                <br />FMMotorparts, Garage Gurus<sup><small>TM</sup></small>, Champion<sup><small>&reg;</sup></small>, MOOG<sup><small>&reg;</sup></small>, Fel-Pro<sup><small>&reg;</sup></small>, ANCO<sup><small>&reg;</sup></small> or Wagner<sup><small>&reg;</sup></small><br />
+	                                 <br />
+									 <a href="#" target="_blank" style="color:#404040 !important;"><a href="#" style="color:#404040 !important;">Unsubscribe</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://fmmotorparts.com/fmstorefront/about-us/privacy-legal" style="color:#404040 !important;">Privacy Policy</a><br />
+	                                <br />
+								    <br /> Federal-Mogul Motorparts  |  27300 W. 11 Mile Road  | Southfield, MI  48034 | USA <br />
+	                                <br />
+                                </td>
+                            </tr>
+                        </table>
+	                </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+<map name="headerMap" id="headerMap">
+	<area shape="rect" coords="0,140,320,281" href="http://qa.fmmpe-cat.com/fmstorefront/" target="_blank" />
+</map>
+<map name="footerMap" id="footerMap">
+	<area shape="rect" coords="1,1,58,24" href="http://aftermarket.federalmogul.com/en-US/Brands/Abex/Pages/home.aspx" target="_blank">
+	<area shape="rect" coords="86,1,163,23" href="http://ancowipers.com/" target="_blank">
+	<area shape="rect" coords="189,1,239,25" href="http://alwaysachampion.com/" target="_blank">
+	<area shape="rect" coords="260,1,352,23" href="http://felpro-only.com/" target="_blank">
+	<area shape="rect" coords="379,4,470,20" href="http://www.ferodo.com/" target="_blank">
+	<area shape="rect" coords="499,1,564,24" href="http://aftermarket.federalmogul.com/en-US/Brands/FP-Diesel/Pages/home.aspx" target="_blank">
+	<area shape="rect" coords="35,36,114,59" href="http://moogproblemsolver.com/" target="_blank">
+	<area shape="rect" coords="139,34,213,60" href="http://aftermarket.federalmogul.com/en-US/Brands/National/Pages/home.aspx" target="_blank">
+	<area shape="rect" coords="240,33,314,58" href="http://aftermarket.federalmogul.com/en-US/Brands/Sealed-Power/Pages/home.aspx" target="_blank">
+	<area shape="rect" coords="347,34,413,60" href="http://aftermarket.federalmogul.com/en-US/Brands/Speed-Pro/Pages/home.aspx" target="_blank">
+	<area shape="rect" coords="443,34,536,58" href="http://wagnerbrake.com/" target="_blank">
+</map>
+
+</body>
+</html>

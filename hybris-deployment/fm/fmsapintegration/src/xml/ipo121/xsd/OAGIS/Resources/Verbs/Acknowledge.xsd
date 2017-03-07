@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Verbs/Acknowledge.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="Verb.xsd"/>
+        <xs:complexType name="Acknowledge">
+                <xs:complexContent>
+                        <xs:extension base="Verb">
+                                <xs:sequence>
+                                        <xs:element name="Code" type="AcknowledgeCode"/>
+                                        <xs:element name="Mode" type="AcknowledgeMode" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:element name="Acknowledge" type="Acknowledge" substitutionGroup="Verb">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The Acknowledge verb is used to acknowledge the application receipt of a PROCESS request.  This function conveys the result of the original request.  An example of this is ACKNOWLEDGE PO, where a PROCESS PO has been issued and the corresponding business application acknowledges the receipt of the PO and responds with an acceptance or a counter offer.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:simpleType name="AcknowledgeCode">
+                <xs:restriction base="xs:string">
+                        <xs:enumeration value="Accepted"/>
+                        <xs:enumeration value="Modified"/>
+                        <xs:enumeration value="Rejected"/>
+                </xs:restriction>
+        </xs:simpleType>
+        <xs:simpleType name="AcknowledgeMode">
+                <xs:restriction base="xs:string">
+                        <xs:enumeration value="FullDetail"/>
+                        <xs:enumeration value="ExceptionDetail"/>
+                </xs:restriction>
+        </xs:simpleType>
+</xs:schema>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sch:schema xmlns="http://www.ascc.net/xml/schematron" xmlns:oa="http://www.openapplications.org/oagis" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ascc.net/xml/schematron ../../../Utility/Schematron/schematron1-5.xsd">
+	<sch:title>Schematron Validator for OAGI Constraints</sch:title>
+	<sch:ns prefix="oa" uri="http://www.openapplications.org/oagis"/>
+	<sch:pattern name="Sync Maintenance Order">
+		<sch:rule context="oa:MaintenanceOrder">
+			<sch:assert test="oa:Header">Sync Maintenance Order must have a Header component specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Sync Maintenance Order Header">
+		<sch:rule context="oa:MaintenanceOrder/oa:Header">
+			<sch:assert test="oa:DocumentId/oa:Id">The MaintenanceOrder Header must have a "DocumentId" and "Id" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Resources">
+		<sch:rule context="oa:Resources/oa:ItemResource">
+			<sch:assert test="oa:Item/oa:ItemId">The ItemResource must have an "ItemId" and an "Id" specified</sch:assert>
+			<sch:assert test="oa:Item/oa:Type">The ItemResource must have a "Type" specified</sch:assert>
+			<sch:assert test="oa:Description">The ItemResource must have a "Description" specified</sch:assert>
+			<sch:assert test="oa:UnitRate">The ItemResource must have a "UnitRate" specified</sch:assert>
+			<sch:assert test="oa:RequiredQuantity">The ItemResource must have a "RequiredQuantity" specified</sch:assert>
+			<sch:assert test="oa:Total">The ItemResource must have a "Total" specified</sch:assert>
+		</sch:rule>
+		<sch:rule context="oa:Resources/oa:LaborResource">
+			<sch:assert test="oa:Labor/oa:EmployeeId">The LaborResource must have an "EmployeeId" specified</sch:assert>
+			<sch:assert test="oa:Labor/oa:Category">The LaborResource must have an "Category" specified</sch:assert>
+		</sch:rule>
+		<sch:rule context="oa:Resources/oa:ToolResource">
+			<sch:assert test="oa:Tool/oa:ToolId">The ToolResource must have a "ToolId" specified</sch:assert>
+			<sch:assert test="oa:Tool/oa:ToolClassification">The ToolResource must have a "ToolClassification" specified</sch:assert>
+			<sch:assert test="oa:Description">The ToolResource must have a "Description" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Hazard">
+		<sch:rule context="oa:Hazard">
+			<sch:assert test="oa:Id">A Hazard must have an "Id" specified</sch:assert>
+			<sch:assert test="oa:Classification">A Hazard must have a "Classification" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Precaution">
+		<sch:rule context="oa:Precaution">
+			<sch:assert test="oa:Id">A Precaution must have an "Id" specified</sch:assert>
+			<sch:assert test="oa:Classification">A Precaution must have a "Classification" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Failure Note">
+		<sch:rule context="oa:FailureNote">
+			<sch:assert test="oa:Id">A FailureNote must have an "Id" specified</sch:assert>
+			<sch:assert test="oa:Type">A FailureNote must have a "Type" specified</sch:assert>
+			<sch:assert test="oa:Classification">A FailureNote must have a "Classification" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Operation">
+		<sch:rule context="oa:MaintenanceOrder/oa:MaintenanceOperation">
+			<sch:assert test="oa:OperationId">The  MaintenanceOperation must have an "OperationId" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+</sch:schema>

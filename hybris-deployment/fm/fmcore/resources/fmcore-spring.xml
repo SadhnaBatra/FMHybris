@@ -1,0 +1,1567 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- [y] hybris Platform Copyright (c) 2000-2013 hybris AG All rights reserved. 
+	This software is the confidential and proprietary information of hybris ("Confidential 
+	Information"). You shall not disclose such Confidential Information and shall 
+	use it only in accordance with the terms of the license agreement you entered 
+	into with hybris. -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Spring Integration -->
+
+
+	<!-- SystemSetup for the FMcore -->
+	<bean id="b2bAcceleratorCoreSystemSetup" class="com.federalmogul.core.setup.CoreSystemSetup"
+		parent="abstractCoreSystemSetup">
+		<property name="setupSyncJobService" ref="b2bSetupSyncJobService" />
+	</bean>
+
+	<!-- Solr field value providers -->
+
+	<bean id="dynamicFMCustomerType" class="com.federalmogul.core.model.customermodel.DynamicFMCustomerType">
+	</bean>
+
+	<bean id="volumeAwareProductPriceValueProvider"
+		class="com.federalmogul.core.solr.provider.VolumeAwareProductPriceValueProvider"
+		parent="abstractPropertyFieldValueProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider" />
+		<property name="priceService" ref="priceService" />
+		<property name="commonI18NService" ref="commonI18NService" />
+		<property name="sessionService" ref="sessionService" />
+		<property name="userService" ref="userService" />
+		<property name="priceComparator" ref="volumePriceComparator" />
+		<property name="catalogVersionService" ref="catalogVersionService" />
+	</bean>
+
+	<bean id="volumePriceComparator"
+		class="com.federalmogul.core.VolumeAwarePriceInformationComparator"
+		scope="singleton" />
+
+	<bean id="productVolumePricesProvider"
+		class="com.federalmogul.core.solr.provider.ProductVolumePricesProvider"
+		parent="abstractPropertyFieldValueProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider" />
+		<property name="priceService" ref="priceService" />
+	</bean>
+
+	<bean id="federalmogulCategorySource" parent="variantCategorySource">
+		<property name="rootCategory" value="1" /> <!-- '1' is the root icecat category -->
+	</bean>
+	<bean id="federalmogulVariantCategorySource" parent="variantCategorySource" />
+
+	<bean id="federalmogulBrandCategorySource" parent="defaultCategorySource">
+		<property name="rootCategory" value="brands" /> <!-- 'brands' is the root of the brands hierarchy -->
+	</bean>
+
+	<bean id="abstractCategoryCodeValueProvider" abstract="true"
+		class="de.hybris.platform.commerceservices.search.solrfacetsearch.provider.impl.CategoryCodeValueProvider"
+		parent="abstractPropertyFieldValueProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider" />
+		<property name="commonI18NService" ref="commonI18NService" />
+	</bean>
+	<bean id="abstractCategoryNameValueProvider" abstract="true"
+		class="de.hybris.platform.commerceservices.search.solrfacetsearch.provider.impl.CategoryNameValueProvider"
+		parent="abstractPropertyFieldValueProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider" />
+		<property name="commonI18NService" ref="commonI18NService" />
+	</bean>
+
+	<!--Start Loyalty -->
+
+	<bean id="loyaltyCategorySource" parent="abstractCategorySource">
+		<property name="rootCategory" value="categories"/>
+		<!-- 'categories' is the root apparel category -->
+	</bean>
+	
+	<bean id="loyaltyCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider">
+		<property name="categorySource" ref="loyaltyCategorySource"/>
+	</bean>
+
+	<bean id="loyaltyCategoryNameValueProvider" parent="abstractCategoryNameValueProvider">
+		<property name="categorySource" ref="loyaltyCategorySource"/>
+	</bean>
+
+	<!--End  Loyalty -->
+
+
+	<bean id="federalmogulCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider">
+		<property name="categorySource" ref="federalmogulCategorySource" />
+	</bean>
+	<bean id="federalmogulBrandCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider">
+		<property name="categorySource" ref="federalmogulBrandCategorySource" />
+	</bean>
+	<bean id="federalmogulVariantCategoryCodeValueProvider" parent="abstractCategoryCodeValueProvider">
+		<property name="categorySource" ref="federalmogulVariantCategorySource" />
+	</bean>
+
+
+	<bean id="federalmogulCategoryNameValueProvider" parent="abstractCategoryNameValueProvider">
+		<property name="categorySource" ref="federalmogulCategorySource" />
+	</bean>
+	<bean id="federalmogulBrandCategoryNameValueProvider" parent="abstractCategoryNameValueProvider">
+		<property name="categorySource" ref="federalmogulBrandCategorySource" />
+	</bean>
+
+	<bean id="image515ValueProvider" parent="abstractImageValueProvider">
+		<property name="mediaFormat" value="515Wx515H" />
+	</bean>
+	<bean id="image300ValueProvider" parent="abstractImageValueProvider">
+		<property name="mediaFormat" value="300Wx300H" />
+	</bean>
+	<bean id="image96ValueProvider" parent="abstractImageValueProvider">
+		<property name="mediaFormat" value="96Wx96H" />
+	</bean>
+	<bean id="image65ValueProvider" parent="abstractImageValueProvider">
+		<property name="mediaFormat" value="65Wx65H" />
+	</bean>
+	<bean id="image30ValueProvider" parent="abstractImageValueProvider">
+		<property name="mediaFormat" value="30Wx30H" />
+	</bean>
+	
+	<bean id="reportLogEventListener"
+		class="com.federalmogul.core.event.ReportLogEventListener">
+	</bean>
+	
+
+
+	<bean id="productUrlValueProvider"
+		class="de.hybris.platform.commerceservices.search.solrfacetsearch.provider.impl.ProductUrlValueProvider"
+		parent="abstractPropertyFieldValueProvider">
+		<property name="urlResolver" ref="productModelUrlResolver" />
+		<property name="fieldNameProvider" ref="solrFieldNameProvider" />
+		<property name="i18nService" ref="i18nService" />
+		<property name="commonI18NService" ref="commonI18NService" />
+	</bean>
+
+	<bean id="promotionCodeValueProvider"
+		class="de.hybris.platform.commerceservices.search.solrfacetsearch.provider.impl.PromotionCodeValueProvider"
+		parent="abstractPropertyFieldValueProvider">
+		<property name="promotionsService" ref="promotionsService" />
+		<property name="fieldNameProvider" ref="solrFieldNameProvider" />
+	</bean>
+
+	<bean id="promotionImageValueProvider"
+		class="de.hybris.platform.commerceservices.search.solrfacetsearch.provider.impl.PrimaryPromotionImageValueProvider"
+		parent="abstractPropertyFieldValueProvider">
+		<property name="promotionsService" ref="promotionsService" />
+		<property name="fieldNameProvider" ref="solrFieldNameProvider" />
+	</bean>
+
+	<!-- Event listeners are singletons, therefore the dependency for a bean 
+		in tenant-scope must be configured with a lookup method. -->
+	<bean id="b2b-customerRegistrationEventListener" class="com.federalmogul.core.event.RegistrationEventListener"
+		parent="abstractSiteEventListener">
+		<property name="modelService" ref="modelService" />
+		<property name="businessProcessService" ref="businessProcessService" />
+
+	</bean>
+	<bean id="b2b-forgottenPasswordEventListener"
+		class="com.federalmogul.core.event.ForgottenPasswordEventListener"
+		parent="abstractSiteEventListener">
+		<property name="modelService" ref="modelService" />
+		<property name="businessProcessService" ref="businessProcessService" />
+
+	</bean>
+	<bean id="b2b-submitOrderEventListener" class="com.federalmogul.core.event.SubmitOrderEventListener"
+		parent="abstractSiteEventListener">
+		<property name="businessProcessService" ref="businessProcessService" />
+		<property name="modelService" ref="modelService" />
+		<property name="baseStoreService" ref="baseStoreService" />
+	</bean>
+	<bean id="b2b-orderConfirmationEventListener"
+		class="com.federalmogul.core.event.OrderConfirmationEventListener"
+		parent="abstractSiteEventListener">
+		<property name="modelService" ref="modelService" />
+		<property name="businessProcessService" ref="businessProcessService" />
+	</bean>
+
+	<!-- Process resourcess definition -->
+
+	<bean id="b2bCustomerRegistrationEmailProcessDefinitionResource"
+		class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+		<property name="resource"
+			value="classpath:/fmcore/processes/customerRegistrationEmailProcess.xml" />
+	</bean>
+	<!-- ashwini -->
+
+
+	<bean id="b2bForgottenPasswordEmailProcessDefinitionResource"
+		class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+		<property name="resource"
+			value="classpath:/fmcore/processes/forgottenPasswordEmailProcess.xml" />
+	</bean>
+	<bean id="b2bOrderConfirmationEmailProcessDefinitionResource"
+		class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+		<property name="resource"
+			value="classpath:/fmcore/processes/orderConfirmationEmailProcess.xml" />
+	</bean>
+	<bean id="replenishmentOrderConfirmationEmailProcessDefinitionResource"
+		class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+		<property name="resource"
+			value="classpath:/fmcore/processes/replenishmentOrderConfirmationEmailProcess.xml" />
+	</bean>
+	<bean id="replenishmentOrderProcessDefinitionResource"
+		class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+		<property name="resource"
+			value="classpath:/fmcore/processes/replenishmentOrderProcess.xml" />
+	</bean>
+
+	<bean id="referAFriendEmailProcessDefinitionResource"
+		class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+		<property name="resource"
+			value="classpath:/fmcore/processes/ReferAFriendEmailProcess.xml" />
+	</bean>
+	
+	<bean id="referAFriendEmailProcessEventListener"
+		class="com.federalmogul.core.event.ReferAFriendEmailProcessEventListener">
+		<lookup-method name="getModelServiceViaLookup" bean="modelService" />
+	</bean>
+	
+	<bean id="generateReferAfriendEmail"
+		class="de.hybris.platform.acceleratorservices.process.email.actions.GenerateEmailAction"
+		parent="abstractAction">
+		<property name="modelService" ref="modelService" />
+		<property name="frontendTemplateName" value="ReferAFriendEmailTemplate" />
+		<property name="cmsEmailPageService" ref="cmsEmailPageService" />
+		<property name="contextResolutionStrategy" ref="b2bProcessContextResolutionStrategy" />
+		<!-- rma: fixed circular reference issue with BTG 4/29/2011 -->
+		<property name="emailGenerationService" ref="emailGenerationService" />
+	</bean>
+	<bean id="replenishmentOrderPlacedProcessDefinitionResource"
+		class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+		<property name="resource"
+			value="classpath:/fmcore/processes/replenishmentOrderPlacedEmailProcess.xml" />
+	</bean>
+
+	<bean id="quoteOrderApproveProcessDefinitionResource"
+		class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+		<property name="resource"
+			value="classpath:/fmcore/processes/quoteOrderApproveEmailProcess.xml" />
+	</bean>
+
+	<bean id="quoteOrderRejectProcessDefinitionResource"
+		class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+		<property name="resource"
+			value="classpath:/fmcore/processes/quoteOrderRejectEmailProcess.xml" />
+	</bean>
+
+	<!-- Actions -->
+	<bean id="abstractAction" class="de.hybris.platform.processengine.action.AbstractAction"
+		abstract="true">
+		<property name="modelService" ref="modelService" />
+		<property name="processParameterHelper" ref="processParameterHelper" />
+	</bean>
+
+	<bean id="sendEmail"
+		class="de.hybris.platform.acceleratorservices.process.email.actions.SendEmailAction"
+		parent="abstractAction">
+		<property name="emailService" ref="emailService" />
+	</bean>
+
+	<bean id="generateB2BCustomerRegistrationEmail"
+		class="de.hybris.platform.acceleratorservices.process.email.actions.GenerateEmailAction"
+		parent="abstractAction">
+		<property name="modelService" ref="modelService" />
+		<property name="frontendTemplateName" value="CustomerRegistrationEmailTemplate" />
+		<property name="cmsEmailPageService" ref="cmsEmailPageService" />
+		<property name="contextResolutionStrategy" ref="b2bProcessContextResolutionStrategy" />
+		<!-- rma: fixed circular reference issue with BTG 4/29/2011 -->
+		<property name="emailGenerationService" ref="emailGenerationService" />
+	</bean>
+
+	<!-- Custom EMAIL START -->
+
+
+	<bean id="fmCustomerRegistrationProcessEventListener"
+		class="com.federalmogul.core.event.FMCustomerRegistrationProcessEventListener">
+		<lookup-method name="getModelServiceViaLookup" bean="modelService" />
+	</bean>
+
+	<bean id="FMCustomerRegistrationProcessDefinitionResource"
+		class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+		<property name="resource"
+			value="classpath:/fmcore/processes/FMCustomerRegistrationEmailProcess.xml" />
+	</bean>
+
+	<bean id="generateFMCustomerRegistrationEmail"
+		class="de.hybris.platform.acceleratorservices.process.email.actions.GenerateEmailAction"
+		parent="abstractAction">
+		<property name="modelService" ref="modelService" />
+		<property name="frontendTemplateName" value="FMCustomerRegistrationTemplate" />
+		<property name="cmsEmailPageService" ref="cmsEmailPageService" />
+		<property name="contextResolutionStrategy" ref="b2bProcessContextResolutionStrategy" />
+		<!-- rma: fixed circular reference issue with BTG 4/29/2011 -->
+		<property name="emailGenerationService" ref="emailGenerationService" />
+	</bean>
+	
+	
+	<!-- Batch job error email Start-->
+	
+	<bean id="fmBatchLoadErrorEmailEventListener"
+		class="com.federalmogul.core.event.FMBatchLoadErrorEmailEventListener">
+		<lookup-method name="getModelServiceViaLookup" bean="modelService" />
+	</bean>
+
+	<bean id="FMBatchLoadErrorEmailDefinitionResource"
+		class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+		<property name="resource"
+			value="classpath:/fmcore/processes/FMBatchLoadErrorEmailProcess.xml" />
+	</bean>
+
+	<bean id="generateFMBatchLoadErrorEmail"
+		class="de.hybris.platform.acceleratorservices.process.email.actions.GenerateEmailAction"
+		parent="abstractAction">
+		<property name="modelService" ref="modelService" />
+		<property name="frontendTemplateName" value="FMBatchJobErrorEmailTemplate" />
+		<property name="cmsEmailPageService" ref="cmsEmailPageService" />
+		<property name="contextResolutionStrategy" ref="b2bProcessContextResolutionStrategy" />
+		<!-- rma: fixed circular reference issue with BTG 4/29/2011 -->
+		<property name="emailGenerationService" ref="emailGenerationService" />
+	</bean>
+	
+	<!-- Batch job error email End-->
+	
+	<!-- Batch job Success email Start-->
+	
+	<bean id="fmBatchLoadSuccessEmailEventListener"
+		class="com.federalmogul.core.event.FMBatchLoadSuccessEmailEventListener">
+		<lookup-method name="getModelServiceViaLookup" bean="modelService" />
+	</bean>
+
+	<bean id="FMBatchLoadSuccessEmailDefinitionResource"
+		class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+		<property name="resource"
+			value="classpath:/fmcore/processes/FMBatchLoadSuccessEmailProcess.xml" />
+	</bean>
+
+	<bean id="generateFMBatchLoadSuccessEmail"
+		class="de.hybris.platform.acceleratorservices.process.email.actions.GenerateEmailAction"
+		parent="abstractAction">
+		<property name="modelService" ref="modelService" />
+		<property name="frontendTemplateName" value="FMBatchJobSuccessEmailTemplate" />
+		<property name="cmsEmailPageService" ref="cmsEmailPageService" />
+		<property name="contextResolutionStrategy" ref="b2bProcessContextResolutionStrategy" />
+		<!-- rma: fixed circular reference issue with BTG 4/29/2011 -->
+		<property name="emailGenerationService" ref="emailGenerationService" />
+	</bean>
+	
+	<!-- Batch job Success email End-->
+
+	<bean id="FMCustomerAdminProcessDefinitionResource"
+		class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+		<property name="resource"
+			value="classpath:/fmcore/processes/FMCustomerAdminEmailProcess.xml" />
+	</bean>
+
+	<bean id="fmCustomerAdminProcessEventListener"
+		class="com.federalmogul.core.event.FMCustomerAdminProcessEventListener">
+		<lookup-method name="getModelServiceViaLookup" bean="modelService" />
+	</bean>
+
+	<bean id="generateFMCustomerAdminEmail"
+		class="de.hybris.platform.acceleratorservices.process.email.actions.GenerateEmailAction"
+		parent="abstractAction">
+		<property name="modelService" ref="modelService" />
+		<property name="frontendTemplateName" value="FMCustomerAdminTemplate" />
+		<property name="cmsEmailPageService" ref="cmsEmailPageService" />
+		<property name="contextResolutionStrategy" ref="b2bProcessContextResolutionStrategy" />
+		<!-- rma: fixed circular reference issue with BTG 4/29/2011 -->
+		<property name="emailGenerationService" ref="emailGenerationService" />
+	</bean>
+	
+	
+	
+	<bean id="FMAdminAddNewUserProcessDefinitionResource"
+		class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+		<property name="resource"
+			value="classpath:/fmcore/processes/FMAdminAddNewUserEmailProcess.xml" />
+	</bean>
+	
+	<bean id="fmAdminAddNewUserProcessEventListener"
+		class="com.federalmogul.core.event.FMAdminAddNewUserProcessEventListener">
+		<lookup-method name="getModelServiceViaLookup" bean="modelService" />
+	</bean>
+	
+	<bean id="generateFMAdminAddNewUserEmail"
+		class="de.hybris.platform.acceleratorservices.process.email.actions.GenerateEmailAction"
+		parent="abstractAction">
+		<property name="modelService" ref="modelService" />
+		<property name="frontendTemplateName" value="FMAddNewUserEmailTemplate" />
+		<property name="cmsEmailPageService" ref="cmsEmailPageService" />
+		<property name="contextResolutionStrategy" ref="b2bProcessContextResolutionStrategy" />
+		<!-- rma: fixed circular reference issue with BTG 4/29/2011 -->
+		<property name="emailGenerationService" ref="emailGenerationService" />
+	</bean>
+	
+	
+	
+	
+	
+	<bean id="FMB2BBRegistrationApprovalProcessDefinitionResource"
+		class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+		<property name="resource"
+			value="classpath:/fmcore/processes/FMB2BBRegistrationApprovalEmailProcess.xml" />
+	</bean>
+
+	<bean id="fmB2BBRegistrationApprovalProcessEventListener"
+		class="com.federalmogul.core.event.FMB2BBRegistrationApprovalProcessEventListener">
+		<lookup-method name="getModelServiceViaLookup" bean="modelService" />
+	</bean>
+	
+	<bean id="generateFMB2BBRegistrationApprovalEmail"
+		class="de.hybris.platform.acceleratorservices.process.email.actions.GenerateEmailAction"
+		parent="abstractAction">
+		<property name="modelService" ref="modelService" />
+		<property name="frontendTemplateName" value="FMB2BBRegistrationApprovalTemplate" />
+		<property name="cmsEmailPageService" ref="cmsEmailPageService" />
+		<property name="contextResolutionStrategy" ref="b2bProcessContextResolutionStrategy" />
+		<!-- rma: fixed circular reference issue with BTG 4/29/2011 -->
+		<property name="emailGenerationService" ref="emailGenerationService" />
+	</bean>
+	
+	<bean id="FMB2SBTaxApprovalProcessDefinitionResource"
+		class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+		<property name="resource"
+			value="classpath:/fmcore/processes/FMB2SBTaxApprovalEmailProcess.xml" />
+	</bean>
+
+	<bean id="FMB2SBTaxApprovalProcessEventListener"
+		class="com.federalmogul.core.event.FMB2SBTaxApprovalProcessEventListener">
+		<lookup-method name="getModelServiceViaLookup" bean="modelService" />
+	</bean>
+	
+	<bean id="generateFMB2SBTaxApprovalEmail"
+		class="de.hybris.platform.acceleratorservices.process.email.actions.GenerateEmailAction"
+		parent="abstractAction">
+		<property name="modelService" ref="modelService" />
+		<property name="frontendTemplateName" value="FMB2SBTaxApprovalTemplate" />
+		<property name="cmsEmailPageService" ref="cmsEmailPageService" />
+		<property name="contextResolutionStrategy" ref="b2bProcessContextResolutionStrategy" />
+		<!-- rma: fixed circular reference issue with BTG 4/29/2011 -->
+		<property name="emailGenerationService" ref="emailGenerationService" />
+	</bean>
+	
+	<bean id="FMB2SBTaxAdminApprovalProcessDefinitionResource"
+			class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+		<property name="resource"
+			value="classpath:/fmcore/processes/FMB2SBTaxAdminApprovalEmailProcess.xml" />
+	</bean>
+	
+	<bean id="FMB2SBTaxAdminApprovalProcessEventListener"
+		class="com.federalmogul.core.event.FMB2SBTaxAdminApprovalProcessEventListener">
+		<lookup-method name="getModelServiceViaLookup" bean="modelService" />
+	</bean>
+	
+	<bean id="generateFMB2SBTaxAdminApprovalEmail"
+		class="de.hybris.platform.acceleratorservices.process.email.actions.GenerateEmailAction"
+		parent="abstractAction">
+		<property name="modelService" ref="modelService" />
+		<property name="frontendTemplateName" value="FMB2SBTaxAdminApprovalTemplate" />
+		<property name="cmsEmailPageService" ref="cmsEmailPageService" />
+		<property name="contextResolutionStrategy" ref="b2bProcessContextResolutionStrategy" />
+		<!-- rma: fixed circular reference issue with BTG 4/29/2011 -->
+		<property name="emailGenerationService" ref="emailGenerationService" />
+	</bean>
+	
+	
+	
+	
+	
+		<bean id="loyaltyOrderConfirmationProcessDefinitionResource"
+		class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+		<property name="resource"
+			value="classpath:/fmcore/processes/loyaltyOrderConfirmationEmailProcess.xml" />
+	</bean>
+	
+	<bean id="loyaltyOrderConfirmationProcessEventListener"
+		class="com.federalmogul.core.event.LoyaltyOrderConfirmationProcessEventListener">
+		<lookup-method name="getModelServiceViaLookup" bean="modelService" />
+	</bean>
+	
+	<bean id="generateLoyaltyOrderConfirmationEmail"
+		class="de.hybris.platform.acceleratorservices.process.email.actions.GenerateEmailAction"
+		parent="abstractAction">
+		<property name="modelService" ref="modelService" />
+		<property name="frontendTemplateName" value="LoyaltyOrderConfirmationTemplate" />
+		<property name="cmsEmailPageService" ref="cmsEmailPageService" />
+		<property name="contextResolutionStrategy" ref="b2bProcessContextResolutionStrategy" />
+		<!-- rma: fixed circular reference issue with BTG 4/29/2011 -->
+		<property name="emailGenerationService" ref="emailGenerationService" />
+	</bean>
+	
+	
+	<!-- Custom EMAIL end -->
+
+
+
+	<bean id="generateB2BForgottenPasswordEmail"
+		class="de.hybris.platform.acceleratorservices.process.email.actions.GenerateEmailAction"
+		parent="abstractAction">
+		<property name="modelService" ref="modelService" />
+		<property name="cmsEmailPageService" ref="cmsEmailPageService" />
+		<property name="frontendTemplateName" value="ForgottenPasswordEmailTemplate" />
+		<property name="contextResolutionStrategy" ref="b2bProcessContextResolutionStrategy" />
+		<property name="emailGenerationService" ref="emailGenerationService" />
+	</bean>
+
+	<bean id="generateB2BOrderConfirmationEmail"
+		class="de.hybris.platform.acceleratorservices.process.email.actions.GenerateEmailAction"
+		parent="abstractAction">
+		<property name="modelService" ref="modelService" />
+		<property name="cmsEmailPageService" ref="cmsEmailPageService" />
+		<property name="frontendTemplateName" value="OrderConfirmationEmailTemplate" />
+		<property name="contextResolutionStrategy" ref="b2bProcessContextResolutionStrategy" />
+		<property name="emailGenerationService" ref="emailGenerationService" />
+	</bean>
+
+	<bean id="generateB2BReplenishmentOrderConfirmationEmail"
+		class="de.hybris.platform.acceleratorservices.process.email.actions.GenerateEmailAction"
+		parent="abstractAction">
+		<property name="modelService" ref="modelService" />
+		<property name="cmsEmailPageService" ref="cmsEmailPageService" />
+		<property name="frontendTemplateName" value="ReplenishmentOrderConfirmationEmailTemplate" />
+		<property name="contextResolutionStrategy" ref="b2bProcessContextResolutionStrategy" />
+		<property name="emailGenerationService" ref="emailGenerationService" />
+	</bean>
+
+	<bean id="generateB2BReplenishmentOrderPlacedEmail"
+		class="de.hybris.platform.acceleratorservices.process.email.actions.GenerateEmailAction"
+		parent="abstractAction">
+		<property name="modelService" ref="modelService" />
+		<property name="cmsEmailPageService" ref="cmsEmailPageService" />
+		<property name="frontendTemplateName" value="ReplenishmentOrderPlacedEmailTemplate" />
+		<property name="contextResolutionStrategy" ref="b2bProcessContextResolutionStrategy" />
+		<property name="emailGenerationService" ref="emailGenerationService" />
+	</bean>
+
+	<bean id="generateB2BQuoteOrderApproveEmail"
+		class="de.hybris.platform.acceleratorservices.process.email.actions.GenerateEmailAction"
+		parent="abstractAction">
+		<property name="modelService" ref="modelService" />
+		<property name="cmsEmailPageService" ref="cmsEmailPageService" />
+		<property name="frontendTemplateName" value="QuoteOrderApproveEmailTemplate" />
+		<property name="contextResolutionStrategy" ref="b2bProcessContextResolutionStrategy" />
+		<property name="emailGenerationService" ref="emailGenerationService" />
+	</bean>
+
+	<bean id="generateB2BQuoteOrderRejectEmail"
+		class="de.hybris.platform.acceleratorservices.process.email.actions.GenerateEmailAction"
+		parent="abstractAction">
+		<property name="modelService" ref="modelService" />
+		<property name="cmsEmailPageService" ref="cmsEmailPageService" />
+		<property name="frontendTemplateName" value="QuoteOrderRejectEmailTemplate" />
+		<property name="contextResolutionStrategy" ref="b2bProcessContextResolutionStrategy" />
+		<property name="emailGenerationService" ref="emailGenerationService" />
+	</bean>
+
+	<bean id="removeSentEmail"
+		class="de.hybris.platform.acceleratorservices.process.email.actions.RemoveSentEmailAction"
+		parent="abstractAction">
+		<property name="modelService" ref="modelService" />
+	</bean>
+
+	<!-- Simple Suggestion Service -->
+	<alias alias="b2bSimpleSuggestionService" name="b2bDefaultSimpleSuggestionService" />
+	<bean id="b2bDefaultSimpleSuggestionService"
+		class="com.federalmogul.core.suggestion.impl.DefaultSimpleSuggestionService">
+		<property name="simpleSuggestionDao" ref="b2bSimpleSuggestionDao" />
+	</bean>
+	<alias alias="b2bSimpleSuggestionDao" name="b2bDefaultSimpleSuggestionDao" />
+	<bean id="b2bDefaultSimpleSuggestionDao"
+		class="com.federalmogul.core.suggestion.dao.impl.DefaultSimpleSuggestionDao"
+		parent="abstractItemDao">
+		<property name="flexibleSearchService" ref="flexibleSearchService" />
+	</bean>
+
+	<bean id="b2bMccSiteUrlHelper" class="com.federalmogul.core.util.MccSiteUrlHelper">
+		<property name="siteBaseUrlResolutionService" ref="siteBaseUrlResolutionService" />
+		<property name="cmsSiteService" ref="cmsSiteService" />
+	</bean>
+
+	<!-- SALES QUOTE ACC PROCESS -->
+	<bean id="salesQuoteProcess"
+		class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+		<property name="resource"
+			value="classpath:/fmcore/processes/b2bACCSalesquote.xml" />
+	</bean>
+
+	<alias alias="b2bQuoteBusinessProcessStrategy" name="acceleratorQuoteBusinessProcessStrategy" />
+	<bean id="acceleratorQuoteBusinessProcessStrategy"
+		class="de.hybris.platform.b2b.strategies.impl.DefaultB2BQuoteBusinessProcessStrategy"
+		parent="defaultB2BQuoteBusinessProcessStrategy">
+		<property name="processCode" value="accSalesQuote" />
+		<property name="processName" value="PENDING_QUOTE" />
+	</bean>
+
+	<!-- Process resourcess definition -->
+	<!-- APPROVAL PROCESS -->
+	<bean id="b2bAccApprovalProcessDefinitionResource"
+		class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+		<property name="resource"
+			value="classpath:/fmcore/processes/b2bAccOrderApproval.xml" />
+	</bean>
+
+	<bean id="orderPendingApprovalEmailProcessDefinitionResource"
+		class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+		<property name="resource"
+			value="classpath:/fmcore/processes/orderPendingApprovalEmailProcess.xml" />
+	</bean>
+
+	<bean id="orderApprovalRejectionEmailProcessDefinitionResource"
+		class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+		<property name="resource"
+			value="classpath:/fmcore/processes/orderApprovalRejectionEmailProcess.xml" />
+	</bean>
+
+	<bean id="startWorkflowForAdmin" class="com.federalmogul.core.actions.StartWorkFlowForAdmin"
+		parent="abstractProceduralB2BOrderApproveAction">
+		<property name="b2bWorkflowIntegrationService" ref="b2bWorkflowIntegrationService" />
+		<property name="permissionResultHelper" ref="permissionResultHelper" />
+		<property name="workflowProcessingService" ref="workflowProcessingService" />
+		<property name="workflowService" ref="newestWorkflowService" />
+		<property name="b2bUnitService" ref="b2bUnitService" />
+		<property name="userService" ref="userService" />
+	</bean>
+
+	<bean id="checkCreditCardOrderAction"
+		class="com.federalmogul.core.actions.CheckCreditCardOrderAction"
+		parent="abstractSimpleB2BApproveOrderDecisionAction">
+	</bean>
+
+	<bean id="b2bSetupSyncJobService"
+		class="com.federalmogul.core.setup.impl.B2BDefaultSetupSyncJobService"
+		parent="defaultSetupSyncJobService">
+		<property name="cronJobService" ref="cronJobService" />
+		<property name="flexibleSearchService" ref="flexibleSearchService" />
+	</bean>
+
+	<bean id="federalmogulCatalogSyncJobPerformable"
+		class="com.federalmogul.core.setup.MultipleCatalogsSyncJobPerformable"
+		parent="abstractJobPerformable">
+		<property name="setupSyncJobService" ref="setupSyncJobService" />
+	</bean>
+
+	<bean id="organizationOrdersReportingJob"
+		class="com.federalmogul.core.btg.OrganizationOrdersReportingJob"
+
+		parent="abstractJobPerformable">
+		<property name="b2BUnitService" ref="b2bUnitService" />
+		<property name="commonI18NService" ref="commonI18NService" />
+		<property name="catalogVersionService" ref="catalogVersionService" />
+		<property name="currencies">
+			<list>
+				<value>USD</value>
+				<value>EUR</value>
+				<value>CAD</value>
+			</list>
+		</property>
+		<property name="catalog" value="federalmogulProductCatalog" />
+	</bean>
+
+	<bean id="organizationCategoryPurchasedReportingJob"
+		class="com.federalmogul.core.btg.OrganizationOrdersReportingJob"
+
+		parent="abstractJobPerformable">
+		<property name="b2BUnitService" ref="b2bUnitService" />
+		<property name="commonI18NService" ref="commonI18NService" />
+		<property name="catalogVersionService" ref="catalogVersionService" />
+		<property name="currencies">
+			<list>
+				<value>USD</value>
+				<value>EUR</value>
+				<value>CAD</value>
+			</list>
+		</property>
+		<property name="categories">
+			<list>
+				<value>1360</value>
+			</list>
+		</property>
+		<property name="catalog" value="federalmogulProductCatalog" />
+
+	</bean>
+
+	<bean id="abstractTotalSpentByOrgOperandProvider" abstract="true"
+		class="com.federalmogul.core.btg.condition.operand.valueproviders.AbstractTotalSpentByOrgOperandProvider"
+		parent="abstractOrderOperandValueProvider" />
+
+	<bean id="organizationTotalSpentInCurrencyLastYearOperandValueProvider"
+		class="com.federalmogul.core.btg.condition.operand.valueproviders.OrganizationTotalSpentInCurrencyLastYearOperandValueProvider"
+		parent="abstractTotalSpentByOrgOperandProvider">
+		<property name="b2bUnitService" ref="b2bUnitService" />
+	</bean>
+
+	<bean
+		id="organizationTotalSpentInCurrencyRelativeDateOperandValueProvider"
+		class="com.federalmogul.core.btg.condition.operand.valueproviders.OrganizationTotalSpentInCurrencyRelativeDateOperandValueProvider"
+		parent="abstractTotalSpentByOrgOperandProvider">
+		<property name="b2bUnitService" ref="b2bUnitService" />
+	</bean>
+
+	<bean id="b2b-orderCPendingApprovalEventListener"
+		class="com.federalmogul.core.event.OrderPendingApprovalEventListener"
+		parent="abstractEventListener">
+		<property name="modelService" ref="modelService" />
+		<property name="businessProcessService" ref="businessProcessService" />
+
+	</bean>
+
+	<bean id="b2b-replenishmentOrderConfirmationEventListener"
+		class="com.federalmogul.core.event.ReplenishmentOrderConfirmationEventListener"
+		parent="abstractEventListener">
+		<property name="modelService" ref="modelService" />
+		<property name="businessProcessService" ref="businessProcessService" />
+	</bean>
+
+	<bean id="b2b-replenishmentOrderPlacedEventListener"
+		class="com.federalmogul.core.event.ReplenishmentOrderPlacedEventListener"
+		parent="abstractEventListener">
+		<property name="modelService" ref="modelService" />
+		<property name="businessProcessService" ref="businessProcessService" />
+	</bean>
+
+	<bean id="b2b-orderApprovalRejectionEventListener"
+		class="com.federalmogul.core.event.OrderApprovalRejectionEventListener"
+		parent="abstractEventListener">
+		<property name="modelService" ref="modelService" />
+		<property name="businessProcessService" ref="businessProcessService" />
+	</bean>
+
+	<bean id="abstractQuoteEventListener" class="com.federalmogul.core.event.QuoteEventListener"
+		abstract="true" parent="abstractOrderEventListener">
+		<property name="modelService" ref="modelService" />
+		<property name="orderHistoryService" ref="orderHistoryService" />
+	</bean>
+
+	<bean id="b2b-quoteApprovedEventListener" class="com.federalmogul.core.event.QuoteApprovedEventListener"
+		parent="abstractQuoteEventListener">
+		<property name="i18NService" ref="i18NService" />
+		<property name="businessProcessService" ref="businessProcessService" />
+	</bean>
+
+	<bean id="b2b-quoteRejectedEventListener" class="com.federalmogul.core.event.QuoteRejectedEventListener"
+		parent="abstractQuoteEventListener">
+		<property name="i18NService" ref="i18NService" />
+		<property name="businessProcessService" ref="businessProcessService" />
+	</bean>
+
+	<bean id="abstractMerchantEventListener"
+		class="com.federalmogul.core.event.AbstractMerchantEventListener"
+		abstract="true" parent="abstractOrderEventListener" />
+
+	<bean id="b2b-merchantApprovedEventListener"
+		class="com.federalmogul.core.event.MerchantApprovedEventListener"
+		parent="abstractMerchantEventListener">
+		<property name="createSnapshot" value="true" />
+	</bean>
+
+	<bean id="b2b-merchantRejectedEventListener"
+		class="com.federalmogul.core.event.MerchantRejectedEventListener"
+		parent="abstractMerchantEventListener">
+		<property name="createSnapshot" value="true" />
+	</bean>
+
+	<bean id="b2b-orderApprovedEventListener" class="com.federalmogul.core.event.OrderApprovedEventListener"
+		parent="abstractOrderEventListener">
+		<property name="createSnapshot" value="true" />
+
+	</bean>
+
+	<bean id="b2b-orderRejectedEventListener" class="com.federalmogul.core.event.OrderRejectedEventListener"
+		parent="abstractOrderEventListener">
+		<property name="createSnapshot" value="true" />
+	</bean>
+
+	<bean id="abstractOrderEventListener" class="com.federalmogul.core.event.AbstractOrderEventListener"
+		abstract="true" parent="abstractEventListener">
+		<property name="modelService" ref="modelService" />
+		<property name="orderHistoryService" ref="orderHistoryService" />
+		<property name="i18NService" ref="i18NService" />
+		<property name="businessProcessService" ref="businessProcessService" />
+	</bean>
+
+	<bean id="informOfOrderApproval"
+		class="com.federalmogul.core.actions.B2BAcceleratorInformOfOrderApproval">
+		<property name="fromAddress" value="b2b@hybris.com" />
+		<property name="b2bEmailService" ref="b2bEmailService" />
+	</bean>
+
+	<bean id="setBookingLineEntries"
+		class="com.federalmogul.core.actions.AcceleratorBookingLineEntries"
+		parent="abstractSimpleB2BApproveOrderDecisionAction" />
+
+	<bean id="generateB2BOrderPendingApprovalEmail"
+		class="de.hybris.platform.acceleratorservices.process.email.actions.GenerateEmailAction"
+		parent="abstractAction">
+		<property name="modelService" ref="modelService" />
+		<property name="cmsEmailPageService" ref="cmsEmailPageService" />
+		<property name="frontendTemplateName" value="OrderPendingApprovalEmailTemplate" />
+		<property name="contextResolutionStrategy" ref="b2bProcessContextResolutionStrategy" />
+		<property name="emailGenerationService" ref="emailGenerationService" />
+	</bean>
+
+	<bean id="sendOrderPendingApprovalNotification"
+		class="com.federalmogul.core.actions.SendOrderPendingApprovalNotification"
+		parent="abstractAction">
+		<property name="eventService" ref="eventService" />
+	</bean>
+
+	<!-- actions -->
+	<bean name="cloneCartAction"
+		class="com.federalmogul.core.actions.replenishment.CloneCartAction"
+		parent="abstractAction">
+		<property name="typeService" ref="typeService" />
+		<property name="cartService" ref="cartService" />
+		<property name="userService" ref="userService" />
+		<property name="guidKeyGenerator" ref="guidKeyGenerator" />
+	</bean>
+
+	<bean name="calculateCartAction"
+		class="com.federalmogul.core.actions.replenishment.CalculateCartAction"
+		parent="abstractAction">
+		<property name="commerceCartService" ref="commerceCartService" />
+		<property name="impersonationService" ref="impersonationService" />
+	</bean>
+
+	<bean name="authorizePaymentAction"
+		class="com.federalmogul.core.actions.replenishment.AuthorizePaymentAction"
+		parent="abstractAction">
+		<property name="commerceCheckoutService" ref="b2bCommerceCheckoutService" />
+		<property name="impersonationService" ref="impersonationService" />
+	</bean>
+
+	<bean name="placeOrderAction"
+		class="com.federalmogul.core.actions.replenishment.PlaceOrderAction"
+		parent="abstractAction">
+		<property name="commerceCheckoutService" ref="b2bCommerceCheckoutService" />
+		<property name="impersonationService" ref="impersonationService" />
+	</bean>
+	<bean name="confirmationAction"
+		class="com.federalmogul.core.actions.replenishment.ConfirmationAction"
+		parent="abstractAction">
+		<property name="eventService" ref="eventService" />
+	</bean>
+
+	<bean id="sendReplenishmentOrderPlacedNotification"
+		class="com.federalmogul.core.actions.SendReplenishmentOrderPlacedNotification">
+		<property name="eventService" ref="eventService" />
+	</bean>
+
+	<bean id="auditAutoApproval"
+		class="de.hybris.platform.b2b.process.approval.actions.SystemAuditAction"
+		parent="abstractProceduralB2BOrderApproveAuditAction">
+		<property name="permissionResultHelper" ref="permissionResultHelper" />
+		<property name="messageKey" value="approval.process.orderapprovedautomatically" />
+	</bean>
+
+	<bean id="auditSubmittedToMerchantForApproval"
+		class="de.hybris.platform.b2b.process.approval.actions.SystemAuditAction"
+		parent="abstractProceduralB2BOrderApproveAuditAction">
+		<property name="permissionResultHelper" ref="permissionResultHelper" />
+		<property name="messageKey" value="approval.process.submittedtomerchant" />
+	</bean>
+
+	<bean id="createQuoteOrderHistory" class="com.federalmogul.core.actions.CreateQuoteOrderHistory"
+		parent="abstractSimpleB2BApproveOrderDecisionAction">
+		<property name="orderHistoryService" ref="orderHistoryService" />
+		<property name="modelService" ref="modelService" />
+		<property name="userService" ref="userService" />
+	</bean>
+
+	<bean id="checkOrderEntryCostCentersActive"
+		class="com.federalmogul.core.actions.CheckOrderEntryCostCentersActive"
+		parent="abstractSimpleB2BApproveOrderDecisionAction" />
+
+	<bean id="startFulfilmentProcessAction" parent="abstractProceduralB2BOrderApproveAction"
+		class="com.federalmogul.core.actions.StartFulfilmentProcessAction">
+		<property name="businessProcessService" ref="businessProcessService" />
+	</bean>
+
+	<!-- Send rejection notification -->
+	<bean id="sendOrderApprovalRejectionNotification"
+		class="com.federalmogul.core.actions.SendOrderApprovalRejectionNotification"
+		parent="abstractAction">
+		<property name="eventService" ref="eventService" />
+	</bean>
+
+	<bean id="generateB2BOrderApprovalRejectionEmail"
+		class="de.hybris.platform.acceleratorservices.process.email.actions.GenerateEmailAction"
+		parent="abstractAction">
+		<property name="modelService" ref="modelService" />
+		<property name="cmsEmailPageService" ref="cmsEmailPageService" />
+		<property name="frontendTemplateName" value="OrderApprovalRejectionEmailTemplate" />
+		<property name="contextResolutionStrategy" ref="b2bProcessContextResolutionStrategy" />
+		<property name="emailGenerationService" ref="emailGenerationService" />
+	</bean>
+
+	<bean id="auditStartOfApproval"
+		class="de.hybris.platform.b2b.process.approval.actions.SystemAuditAction"
+		parent="abstractProceduralB2BOrderApproveAuditAction">
+		<property name="permissionResultHelper" ref="permissionResultHelper" />
+		<property name="messageKey" value="approval.process.ordersubmitted" />
+	</bean>
+
+	<bean id="auditOrderRejection"
+		class="de.hybris.platform.b2b.process.approval.actions.SystemAuditAction"
+		parent="abstractProceduralB2BOrderApproveAuditAction">
+		<property name="permissionResultHelper" ref="permissionResultHelper" />
+		<property name="messageKey" value="approval.process.orderrejected" />
+	</bean>
+
+	<bean id="auditOrderApproval"
+		class="de.hybris.platform.b2b.process.approval.actions.SystemAuditAction"
+		parent="abstractProceduralB2BOrderApproveAuditAction">
+		<property name="permissionResultHelper" ref="permissionResultHelper" />
+		<property name="messageKey" value="approval.process.orderapproved" />
+	</bean>
+
+	<!-- checkout flow configuration -->
+	<!-- We force the Single step checkout strategy. -->
+	<alias alias="b2bCheckoutFlowStrategy" name="b2bMultiStepCheckoutFlowStrategy" />
+
+	<bean id="b2bSingleStepCheckoutFlowStrategy"
+		class="com.federalmogul.core.checkout.flow.impl.FixedB2BCheckoutFlowStrategy">
+		<property name="checkoutFlow" value="SINGLE" />
+	</bean>
+
+	<bean id="b2bMultiStepCheckoutFlowStrategy"
+		class="com.federalmogul.core.checkout.flow.impl.FixedB2BCheckoutFlowStrategy">
+		<property name="checkoutFlow" value="MULTISTEP" />
+	</bean>
+
+	<!--Checkout PCI Strategies -->
+	<alias alias="b2bCheckoutPciStrategy" name="configuredB2BCheckoutPciStrategy" />
+	<bean id="configuredB2BCheckoutPciStrategy"
+		class="com.federalmogul.core.checkout.pci.impl.ConfiguredB2BCheckoutPciStrategy">
+		<!-- This strategy looks in the session to see if HOP is the chosen option. 
+			HOP is only valid if configured in the application properties file. Defaults 
+			to wsCheckoutPciStrategy. -->
+		<property name="siteConfigService" ref="siteConfigService" />
+
+		<!-- Default to the wsCheckoutPciStrategy -->
+		<property name="defaultCheckoutPciStrategy" ref="b2bWSCheckoutPciStrategy" />
+	</bean>
+
+	<bean id="b2bWSCheckoutPciStrategy"
+		class="com.federalmogul.core.checkout.pci.impl.FixedB2BCheckoutPciStrategy">
+		<!-- Use the Payment extension web services to create credit card details -->
+		<property name="subscriptionPciOption" value="DEFAULT" />
+	</bean>
+	<bean id="b2bHOPCheckoutPciStrategy"
+		class="com.federalmogul.core.checkout.pci.impl.FixedB2BCheckoutPciStrategy">
+		<!-- Use the Hosted Order Payment to create credit card details -->
+		<property name="subscriptionPciOption" value="HOP" />
+	</bean>
+
+	<bean id="b2bSendOrderPlacedNotificationAction"
+		class="com.federalmogul.core.actions.SendOrderPlacedNotificationAction"
+		parent="abstractAction">
+		<property name="eventService" ref="eventService" />
+	</bean>
+
+
+	<alias name="defaultVariantCategorySource" alias="variantCategorySource" />
+	<bean id="defaultVariantCategorySource"
+		class="com.federalmogul.core.search.solrfacetsearch.provider.impl.VariantCategorySource"
+		parent="defaultCategorySource">
+		<property name="productSource" ref="variantProductSource"></property>
+	</bean>
+
+	<bean id="variantProductSource"
+		class="com.federalmogul.core.search.solrfacetsearch.provider.impl.VariantProductSource" />
+
+	<bean id="variantProductStockLevelStatusValueProvider"
+		class="com.federalmogul.core.search.solrfacetsearch.provider.impl.VariantProductStockLevelStatusValueProvider"
+		parent="defaultProductStockLevelStatusValueProvider">
+		<property name="productSource" ref="variantProductSource"></property>
+	</bean>
+
+	<bean id="abstractMultidimensionalProductFieldValueProvider"
+		abstract="true"
+		class="com.federalmogul.core.search.solrfacetsearch.provider.AbstractMultidimensionalProductFieldValueProvider"
+		parent="abstractPropertyFieldValueProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider" />
+	</bean>
+
+	<alias name="defaultMultidimentionalProductFlagValueProvider"
+		alias="multidimentionalProductFlagValueProvider" />
+	<bean id="defaultMultidimentionalProductFlagValueProvider"
+		class="com.federalmogul.core.search.solrfacetsearch.provider.impl.MultidimentionalProductFlagValueProvider"
+		parent="abstractMultidimensionalProductFieldValueProvider" />
+
+	<alias name="defaultProductPriceRangeValueProvider" alias="productPriceRangeValueProvider" />
+	<bean id="defaultProductPriceRangeValueProvider"
+		class="com.federalmogul.core.search.solrfacetsearch.provider.impl.ProductPriceRangeValueProvider"
+		parent="abstractMultidimensionalProductFieldValueProvider" />
+
+	<alias name="defaultFirstGenericVariantProductUrlValueProvider"
+		alias="firstGenericVariantProductUrlValueProvider" />
+	<bean id="defaultFirstGenericVariantProductUrlValueProvider"
+		class="com.federalmogul.core.search.solrfacetsearch.provider.impl.FirstGenericVariantProductUrlValueProvider"
+		parent="abstractMultidimensionalProductFieldValueProvider">
+		<property name="productModelUrlResolver" ref="productModelUrlResolver" />
+		<property name="genericVariantProductModelComparator" ref="genericVariantProductModelComparator" />
+	</bean>
+
+	<alias name="defaultFirstVariantCategoryNameListValueProvider"
+		alias="firstVariantCategoryNameListValueProvider" />
+	<bean id="defaultFirstVariantCategoryNameListValueProvider"
+		class="com.federalmogul.core.search.solrfacetsearch.provider.impl.FirstVariantCategoryNameListValueProvider"
+		parent="abstractMultidimensionalProductFieldValueProvider">
+		<property name="variantValueCategoryModelPriorityComparator"
+			ref="variantValueCategoryModelPriorityComparator" />
+		<property name="variantValueCategoryModelSequenceComparator"
+			ref="variantValueCategoryModelSequenceComparator" />
+		<property name="categoryManager" ref="solrFirstVariantCategoryManager" />
+	</bean>
+
+	<bean id="genericVariantProductModelComparator"
+		class="com.federalmogul.core.search.solrfacetsearch.provider.entity.GenericVariantProductModelComparator">
+		<property name="variantValueCategoryModelPriorityComparator"
+			ref="variantValueCategoryModelPriorityComparator" />
+	</bean>
+
+	<bean id="variantValueCategoryModelPriorityComparator"
+		class="com.federalmogul.core.search.solrfacetsearch.provider.entity.VariantValueCategoryModelPriorityComparator">
+		<property name="categoryService" ref="categoryService" />
+	</bean>
+
+	<bean id="variantValueCategoryModelSequenceComparator"
+		class="com.federalmogul.core.search.solrfacetsearch.provider.entity.VariantValueCategoryModelSequenceComparator" />
+
+	<bean id="solrFirstVariantCategoryManager"
+		class="com.federalmogul.core.search.solrfacetsearch.provider.impl.SolrFirstVariantCategoryManager">
+		<property name="l10NService" ref="l10nService" />
+	</bean>
+	<!-- Custom Federal Mogul Hot Folder Integration Mahaveer A -->
+	<import
+		resource="classpath:/fmcore/integration/hot-folder-store-federalmogul-spring.xml" />
+	<import
+		resource="classpath:/fmcore/integration/hot-folder-store-federalmogul_specification-spring.xml" />
+
+	<!-- FM part Active/ obselet status -->
+	<bean id="fmPartStatusInterceptorMapping"
+		class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping"
+		scope="tenant">
+		<property name="interceptor" ref="fmPartStatusUpdateInterceptor" />
+		<property name="typeCode" value="FMPart" />
+	</bean>
+
+	<bean id="fmPartStatusUpdateInterceptor"
+		class="com.federalmogul.core.interceptor.FMPartStatusUpdateInterceptor"
+		scope="tenant">
+
+	</bean>
+
+	<!-- <bean id="fmPartFitmentRelationInterceptorMapping" class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping" 
+		scope="tenant"> <property name="interceptor" ref="fmPartFitmentRelationInterceptor" 
+		/> <property name="typeCode" value="FMFitment" /> </bean> <bean id="fmPartFitmentRelationInterceptor" 
+		class="com.federalmogul.core.interceptor.FMPartFitmentRelationInterceptor" 
+		scope="tenant"> </bean> -->
+		
+		<bean id="colorFacetValueProvider"
+	      class="com.federalmogul.core.solr.provider.ColorFacetValueProvider"
+	       parent="abstractPropertyFieldValueProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+	</bean>
+
+	<bean id="colorFacetDisplayNameProvider"
+	      class="com.federalmogul.core.solr.provider.ColorFacetDisplayNameProvider"
+	      >
+		<property name="enumerationService" ref="enumerationService"/>
+		<property name="i18nService" ref="i18nService"/>
+		<property name="commonI18NService" ref="commonI18NService"/>
+	</bean>
+
+	<bean id="fmBrandNameValueProvider"
+		class="com.federalmogul.core.solr.provider.FMBrandNameValueProvider"
+		parent="abstractPropertyFieldValueProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider" />
+	</bean>
+	<bean id="fmCategoryNameValueProvider"
+		class="com.federalmogul.core.solr.provider.FMCategoryNameValueProvider"
+		parent="categoryCodeValueProvider">
+		<property name="categorySource" ref="allCategoriesSource" />
+		<property name="fieldNameProvider" ref="solrFieldNameProvider" />
+
+	</bean>
+	<bean id="fmSubcategoryNameValueProvider"
+		class="com.federalmogul.core.solr.provider.FMSubcategoryNameValueProvider"
+		parent="categoryCodeValueProvider">
+		<property name="categorySource" ref="allCategoriesSource" />
+		<property name="fieldNameProvider" ref="solrFieldNameProvider" />
+	</bean>
+	<!-- <bean id="fitmentMakeValueProvider" class="com.federalmogul.core.solr.provider.FitmentMakeValueProvider" 
+		parent="abstractPropertyFieldValueProvider"> <property name="fieldNameProvider" 
+		ref="solrFieldNameProvider"/> </bean> -->
+	<bean id="fitmentModelValueProvider"
+		class="com.federalmogul.core.solr.provider.FitmentModelValueProvider"
+		parent="abstractPropertyFieldValueProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider" />
+	</bean>
+
+	<bean id="ymmTextValueProvider"
+		class="com.federalmogul.core.solr.provider.YMMTextValueProvider"
+		parent="abstractPropertyFieldValueProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider" />
+	</bean>
+
+	<alias alias="fitmentSearchDAO" name="defaultFMFitmentSearchDAO" />
+	<bean id="defaultFMFitmentSearchDAO"
+		class="com.federalmogul.core.search.dao.impl.DefaultFMFitmentSearchDAO">
+		<constructor-arg value="FMFitment" />
+	</bean>
+	<alias alias="fmCheckoutDAO" name="defaultFMCheckoutDAO" />
+	<bean id="defaultFMCheckoutDAO"
+		class="com.federalmogul.core.order.dao.impl.DefaultFMCheckoutDAO">
+		<constructor-arg value="FMDistrubtionCenter" />
+	</bean>
+	<alias alias="ymmSearchDAO" name="defaultFMYearMakeModelVehicleTypeDAO" />
+	<bean id="defaultFMYearMakeModelVehicleTypeDAO"
+		class="com.federalmogul.core.search.dao.impl.DefaultFMYearMakeModelVehicleTypeDAO">
+		<constructor-arg value="FMYearMakeModelVehicleType" />
+	</bean>
+	<!-- Part Interchange -->
+	<alias alias="fmCompetitorDAO" name="defaultFMCompetitorDAO" />
+	<bean id="defaultFMCompetitorDAO"
+		class="com.federalmogul.core.search.dao.impl.DefaultFMCompetitorDAO">		
+		<constructor-arg value="PartInterchange" />
+	</bean>
+
+
+	<!-- Mahaveer A -->
+	<alias name="defaultFMCommerceSearchResponseFacetsPopulator"
+		alias="commerceSearchResponseFacetsPopulator" />
+	<bean id="defaultFMCommerceSearchResponseFacetsPopulator"
+		class="com.federalmogul.core.search.solrfacetsearch.populators.FMSearchResponseFacetsPopulator">
+	</bean>
+
+	<alias name="defaultFMCommerceSearchTextPopulator" alias="commerceSearchTextPopulator" />
+	<bean id="defaultFMCommerceSearchTextPopulator"
+		class="de.hybris.platform.commerceservices.search.solrfacetsearch.populators.SearchTextPopulator">
+		<property name="freeTextQueryBuilders">
+			<list>
+				<bean
+					class="de.hybris.platform.commerceservices.search.solrfacetsearch.querybuilder.impl.DefaultFreeTextQueryBuilder">
+					<property name="propertyName" value="rawpartnumber" />
+					<property name="boost" value="200" />
+				</bean>
+				<bean
+					class="de.hybris.platform.commerceservices.search.solrfacetsearch.querybuilder.impl.DefaultFreeTextQueryBuilder">
+					<property name="propertyName" value="ean" />
+					<property name="boost" value="100" />
+				</bean>
+				<bean
+					class="de.hybris.platform.commerceservices.search.solrfacetsearch.querybuilder.impl.DefaultFreeTextQueryBuilder">
+					<property name="propertyName" value="code" />
+					<property name="boost" value="90" />
+				</bean>
+				<bean
+					class="de.hybris.platform.commerceservices.search.solrfacetsearch.querybuilder.impl.DefaultFreeTextQueryBuilder">
+					<property name="propertyName" value="name" />
+					<property name="boost" value="50" />
+				</bean>
+				 <bean
+					class="de.hybris.platform.commerceservices.search.solrfacetsearch.querybuilder.impl.DefaultFreeTextQueryBuilder">
+					<property name="propertyName" value="manufacturerName" />
+					<property name="boost" value="40" />
+				</bean>
+				<bean
+					class="de.hybris.platform.commerceservices.search.solrfacetsearch.querybuilder.impl.ClassificationFreeTextQueryBuilder">
+					<property name="boost" value="30" />
+				</bean>
+				<bean
+					class="de.hybris.platform.commerceservices.search.solrfacetsearch.querybuilder.impl.DefaultFreeTextQueryBuilder">
+					<property name="propertyName" value="keywords" />
+					<property name="boost" value="20" />
+				</bean>
+				<bean
+					class="de.hybris.platform.commerceservices.search.solrfacetsearch.querybuilder.impl.DefaultFreeTextQueryBuilder">
+					<property name="propertyName" value="categoryName" />
+					<property name="boost" value="10" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+
+
+
+	<alias alias="partService" name="defaultPartService" />
+	<bean id="defaultPartService" class="com.federalmogul.core.product.impl.DefaultPartService"
+		parent="abstractBusinessService">
+		<property name="partDAO" ref="partDAO" />
+	</bean>
+
+	<alias alias="partDAO" name="defaultPartDAO" />
+	<bean id="defaultPartDAO" class="com.federalmogul.core.product.dao.impl.DefaultPartDAO">
+		<constructor-arg value="FMPart" />
+	</bean>
+
+	<!-- Registration Page -->
+
+	<alias name="fmcustomerservice" alias="customerAccountService" />
+	<bean id="fmcustomerservice"
+		class="com.federalmogul.core.account.impl.FMCustomerServiceImpl">
+		<property name="userService" ref="userService" />
+		<property name="paymentService" ref="paymentService" />
+		<property name="modelService" ref="modelService" />
+		<property name="flexibleSearchService" ref="flexibleSearchService" />
+		<property name="i18nService" ref="i18nService" />
+		<property name="passwordEncoderService" ref="passwordEncoderService" />
+		<property name="secureTokenService" ref="secureTokenService" />
+		<property name="tokenValiditySeconds" value="1800" />
+		<property name="customerAccountDao" ref="customerAccountDao" />
+		<property name="baseSiteService" ref="baseSiteService" />
+		<property name="baseStoreService" ref="baseStoreService" />
+		<property name="eventService" ref="eventService" />
+		<property name="commonI18NService" ref="commonI18NService" />
+		<property name="customerEmailResolutionService" ref="customerEmailResolutionService" />
+		<property name="passwordEncoding" value="md5" />
+		<property name="typeService" ref="typeService" />
+		<property name="customerNameStrategy" ref="defaultCustomerNameStrategy" />
+		<property name="timeService" ref="timeService" />
+		<property name="b2bAcceleratorCartToOrderCronJobModelDao"
+			ref="b2bAcceleratorCartToOrderCronJobModelDao" />
+		<property name="monthsForOrderExpiry"
+			value="#{configurationService.configuration.getProperty('guest.orderstatuspage.access.expiry.month')}" />
+		<property name="fmb2bAddressPopulator" ref="fmb2bAddressPopulator" />
+		<property name="fmCustomerAccountPopulator" ref="fmCustomerAccountPopulator" />
+		<property name="fmCustomerAccountConverter" ref="fmCustomerAccountConverter" />
+	</bean>
+
+	<alias alias="customerAccountService" name="fmCustomerAccountService" />
+	<bean id="fmCustomerAccountService"
+		class="com.federalmogul.core.account.impl.FMCustomerAccountServiceImpl">
+		<property name="userService" ref="userService" />
+		<property name="paymentService" ref="paymentService" />
+		<property name="modelService" ref="modelService" />
+		<property name="flexibleSearchService" ref="flexibleSearchService" />
+		<property name="i18nService" ref="i18nService" />
+		<property name="passwordEncoderService" ref="passwordEncoderService" />
+		<property name="secureTokenService" ref="secureTokenService" />
+		<property name="tokenValiditySeconds" value="1800" />
+		<property name="customerAccountDao" ref="customerAccountDao" />
+		<property name="baseSiteService" ref="baseSiteService" />
+		<property name="baseStoreService" ref="baseStoreService" />
+		<property name="eventService" ref="eventService" />
+		<property name="commonI18NService" ref="commonI18NService" />
+		<property name="customerEmailResolutionService" ref="customerEmailResolutionService" />
+		<property name="passwordEncoding" value="md5" />
+		<property name="typeService" ref="typeService" />
+		<property name="customerNameStrategy" ref="defaultCustomerNameStrategy" />
+		<property name="timeService" ref="timeService" />
+		<property name="b2bAcceleratorCartToOrderCronJobModelDao"
+			ref="b2bAcceleratorCartToOrderCronJobModelDao" />
+		<property name="monthsForOrderExpiry"
+			value="#{configurationService.configuration.getProperty('guest.orderstatuspage.access.expiry.month')}" />
+	</bean>
+
+
+	<!-- Network Page -->
+
+	<alias name="fmNetworkService" alias="companyB2BCommerceService" />
+	<bean id="fmNetworkService" class="com.federalmogul.core.network.impl.FMNetworkServiceImpl">
+		<property name="b2BApproverService" ref="b2bApproverService" />
+		<property name="b2BUnitService" ref="b2bUnitService" />
+		<property name="pagedB2BCustomerDao" ref="pagedB2BCustomerDao" />
+		<property name="pagedB2BBudgetDao" ref="pagedB2BBudgetDao" />
+		<property name="userService" ref="userService" />
+		<property name="b2BCustomerService" ref="b2bCustomerService" />
+		<property name="pagedB2BCostCenterDao" ref="pagedB2BCostCenterDao" />
+		<property name="b2BCostCenterService" ref="b2bCostCenterService" />
+		<property name="commonI18NService" ref="commonI18NService" />
+		<property name="modelService" ref="modelService" />
+		<property name="sessionService" ref="sessionService" />
+		<property name="b2BBudgetService" ref="b2BBudgetService" />
+		<property name="searchRestrictionService" ref="searchRestrictionService" />
+		<property name="pagedB2BPermissionDao" ref="pagedB2BPermissionDao" />
+		<property name="b2BPermissionService" ref="b2bPermissionService" />
+		<property name="commerceCommonI18NService" ref="commerceCommonI18NService" />
+		<property name="pagedB2BUserGroupDao" ref="pagedB2BUserGroupDao" />
+		<property name="b2BGroupCycleValidator" ref="b2bGroupCycleValidator" />
+		<property name="b2BApprovalProcessLookUpStrategy" ref="b2bApprovalProcessLookUpStrategy" />
+		<property name="businessProcessService" ref="businessProcessService" />
+
+	</bean>
+
+	<bean id="fmUserSearchDAO"
+		class="com.federalmogul.core.network.dao.impl.FMUserSearchDAOImpl">
+		<property name="flexibleSearchService" ref="flexibleSearchService"></property>
+		<property name="addressPopulator" ref="addressPopulator" />
+	</bean>
+
+	<bean id="defaultFMCustomerAccountDAO"
+		class="com.federalmogul.core.customer.account.dao.impl.DefaultFMCustomerAccountDAO">
+		<property name="flexibleSearchService" ref="flexibleSearchService"></property>
+	</bean>
+
+	<!-- Ashwini -->
+	<bean id="fmCustomerServiceImpl"
+		class="com.federalmogul.core.account.impl.FMCustomerServiceImpl">
+		<property name="modelService" ref="modelService" />
+		<property name="eventService" ref="eventService" />
+		<property name="businessProcessService" ref="businessProcessService" />
+		<property name="b2bAcceleratorCartToOrderCronJobModelDao"
+			ref="b2bAcceleratorCartToOrderCronJobModelDao" />
+		<property name="baseSiteService" ref="baseSiteService" />
+		<property name="baseStoreService" ref="baseStoreService" />
+
+		<property name="commonI18NService" ref="commonI18NService" />
+		<property name="customerAccountDao" ref="customerAccountDao" />
+
+		<property name="customerEmailResolutionService" ref="customerEmailResolutionService" />
+		<property name="customerNameStrategy" ref="customerNameStrategy" />
+
+		<property name="flexibleSearchService" ref="flexibleSearchService" />
+		<property name="i18nService" ref="i18nService" />
+
+
+		<property name="passwordEncoderService" ref="passwordEncoderService" />
+
+		<property name="paymentService" ref="paymentService" />
+		<property name="secureTokenService" ref="secureTokenService" />
+
+		<property name="timeService" ref="timeService" />
+		<property name="tokenValiditySeconds" value="1800" />
+
+		<property name="typeService" ref="typeService" />
+		<property name="userService" ref="userService" />
+		<property name="monthsForOrderExpiry"
+			value="#{configurationService.configuration.getProperty('guest.orderstatuspage.access.expiry.month')}" />
+
+
+
+
+
+	</bean>
+
+
+	<alias alias="fmSiteBaseUrlResolutionService" name="fmSiteBaseUrlResolutionService" />
+	<bean id="fmSiteBaseUrlResolutionService"
+		class="com.federalmogul.core.urlresolver.impl.FMSiteBaseUrlResolutionServiceImpl">
+		<property name="configurationService" ref="configurationService" />
+		<property name="urlEncoderService" ref="urlEncoderService" />
+		<property name="contextRoots">
+			<map key-type="de.hybris.platform.commerceservices.enums.SiteChannel">
+				<entry key="B2C"
+					value="#{configurationService.configuration.getProperty('storefrontContextRoot')}" />
+				<entry key="B2B"
+					value="#{configurationService.configuration.getProperty('b2bStorefrontContextRoot')}" />
+			</map>
+		</property>
+	</bean>
+	<!--Mahaveer Cybersource Integration -->
+	<bean id="fmCommonServices"
+		class="com.federalmogul.core.services.impl.DefaultFMCommonServices"
+		scope="tenant">
+		<property name="fmCommonDAO" ref="fmCommonDAO" />
+	</bean>
+
+	<bean id="fmCommonDAO" class="com.federalmogul.core.dao.impl.DefaultFMCommonDAO"
+		scope="tenant" />
+	      
+	 <alias alias="fmUserOnlineToolsDAO" name="defaultFMUserOnlineToolsDAO"/> 
+	<bean id="defaultFMUserOnlineToolsDAO"
+		class="com.federalmogul.core.customer.account.dao.impl.DefaultFMUserOnlineToolsDAO">
+		<property name="flexibleSearchService" ref="flexibleSearchService"></property>
+		<property name="modelService" ref="modelService" />
+	</bean>
+
+	<!-- Added as part of FederalMogul office Locations -->
+	 <alias alias="federalMogulLocationsDAO" name="defaultFederalMogulLocationsDAO"/> 
+	<bean id="defaultFederalMogulLocationsDAO"
+		class="com.federalmogul.core.locations.dao.impl.DefaultFederalMogulLocationsDAO">
+		<property name="flexibleSearchService" ref="flexibleSearchService"></property>
+		<property name="modelService" ref="modelService" />
+	</bean>
+
+	<alias alias="commerceCheckoutService" name="fmCommerceCheckoutService" />
+	<bean id="fmCommerceCheckoutService"
+		class="com.federalmogul.core.services.impl.FMCommerceCheckoutService"
+		parent="defaultCommerceCheckoutService" scope="tenant">
+	</bean>
+	<bean id="fmSoldToCustomerCreationJob" class="com.federalmogul.core.job.FMSoldToCustomerCreationJob"
+		autowire="byName" />
+
+	<bean id="fmDisableInactiveCustomerJob" class="com.federalmogul.core.job.FMDisableInactiveCustomerJob"
+		autowire="byName" />
+
+	<bean id="fmUserOnlineToolBulkFileUploadCronJob" class="com.federalmogul.core.job.FMUserOnlineToolBulkFileUploadCronJob"
+		autowire="byName" />
+
+	<!-- Added for Where to buy dealer store locations -->
+	<bean id="fmWheretoBuyDataCronjob" class="com.federalmogul.core.job.WheretoBuyDataCronjob"
+		autowire="byName" />
+
+<!-- FOR FAL-251 -->
+	 <bean id="fmCustomerLoginDateCoreJob" class="com.federalmogul.core.job.FMCustomerLoginDateCoreJob"
+		autowire="byName" />
+		
+	  <!-- Added for Online retailer/distributor -->
+	<bean id="fmOnlineStoreDataUploadJob" class="com.federalmogul.core.job.FMOnlineStoreDataUploadJob"
+		autowire="byName" />	
+		
+	<!-- Added for Where to buy EMEA -->	
+    <bean id="fmWheretoBuyEMEACronjob" class="com.federalmogul.core.job.WhereToBuyEMEAJob"
+		autowire="byName" />	
+
+
+<!-- Mahaveer Upload Order start -->
+	
+	<alias alias="fmUploadOrderDAO" name="defaultUploadOrderDAO"/>
+    <bean id="defaultUploadOrderDAO" class="com.federalmogul.core.uploadorder.dao.impl.DefaultUploadOrderDAO">
+		<constructor-arg value="UploadOrder"/>
+	</bean>
+	
+	 <bean id="fmUploadOrderInterceptor"
+		class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping"
+		scope="tenant">
+		<property name="interceptor" ref="fmUploadOrderStatusInterceptor" />
+		<property name="typeCode" value="UploadOrder" />
+	</bean>
+
+	<bean id="fmUploadOrderStatusInterceptor"
+			class="com.federalmogul.core.upload.order.interceptor.UploadOrderInterceptor"
+		scope="tenant">
+	</bean> 
+	
+	<bean id="fmUploadOrderEventListner" class="com.federalmogul.core.event.UploadOrderEventListner">
+              <lookup-method name="getModelServiceViaLookup" bean="modelService" />
+    </bean>
+	<bean id="FMUploadOrderProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource" >
+        <property name="resource" value="classpath:/fmcore/processes/FMUploadOrderProcess.xml"/>
+    </bean>
+	
+	<bean id="generateUploadOrderEntry"
+		class="com.federalmogul.core.process.uploadorder.action.UploadOrderEntryAction"
+		parent="abstractAction">
+		<constructor-arg value="PRODUCT_FLAG"/>
+	</bean>
+	<bean id="generateUploadOrderPartResolution"
+		class="com.federalmogul.core.process.uploadorder.action.UploadOrderPartResolution"
+		parent="abstractAction">
+		
+	</bean>
+	<bean id="generateUploadPlaceOrder"
+		class="com.federalmogul.core.process.uploadorder.action.UploadPlaceOrder"
+		parent="abstractAction">
+	</bean>
+	
+	
+	<bean id="FMUploadOrderEmailProcessDefinitionResource"
+		class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+		<property name="resource"
+			value="classpath:/fmcore/processes/FMUploadOrderEmailProcess.xml" />
+	</bean>
+
+	<bean id="fmUploadOrderEmailProcessEventListener"
+		class="com.federalmogul.core.event.FMUploadOrderEmailProcessEventListener">
+		<lookup-method name="getModelServiceViaLookup" bean="modelService" />
+	</bean>
+	
+	<bean id="generateFMUploadOrderEmail"
+		class="de.hybris.platform.acceleratorservices.process.email.actions.GenerateEmailAction"
+		parent="abstractAction"> 
+		<property name="modelService" ref="modelService" />
+		<property name="frontendTemplateName" value="UploadOrderEmailTemplate" />
+		<property name="cmsEmailPageService" ref="cmsEmailPageService" />
+		<property name="contextResolutionStrategy" ref="b2bProcessContextResolutionStrategy" />
+		<!-- rma: fixed circular reference issue with BTG 4/29/2011 -->
+		<property name="emailGenerationService" ref="emailGenerationService" />
+	</bean>
+	
+	<!-- Mahaveer Upload Order End  -->
+
+<!-- Where To Buy  -->
+
+<alias name="defaultFMPointOfServicePopulator" alias="pointOfServicePopulator" />
+	<bean id="defaultFMPointOfServicePopulator"
+		class="com.federalmogul.core.model.storelocator.populator.FMPointOfServicePopulator">
+		
+		<property name="addressConverter" ref="fmAddressConverter"/>
+		<property name="imageConverter" ref="imageConverter"/>
+		<property name="imageFormatMapping" ref="imageFormatMapping"/>
+		<property name="mediaService" ref="mediaService"/>
+		<property name="mediaContainerService" ref="mediaContainerService"/>
+		<property name="imageFormats">
+			<list>
+				<value>store</value>
+				<value>cartIcon</value>
+			</list>
+		</property>
+		<property name="openingScheduleConverter" ref="openingScheduleConverter"/>
+	</bean>
+	<!-- For Review Email Start -->
+	<bean id="fmCustomerReviewProcessDefinitionResource"
+		class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+		<property name="resource"
+			value="classpath:/fmcore/processes/FMCustomerReviewEmailProcess.xml" />
+	</bean>
+
+	<bean id="fmCustomerReviewProcessEventListener" class="com.federalmogul.core.event.FMCustomerReviewProcessEventListener">
+		<lookup-method name="getModelServiceViaLookup" bean="modelService" />
+	</bean>
+	
+	<bean id="generateFMCustomerReviewEmail" class="de.hybris.platform.acceleratorservices.process.email.actions.GenerateEmailAction"
+		parent="abstractAction">
+		<property name="modelService" ref="modelService" />
+		<property name="frontendTemplateName" value="FMCustomerReviewTemplate" />
+		<property name="cmsEmailPageService" ref="cmsEmailPageService" />
+		<property name="contextResolutionStrategy" ref="b2bProcessContextResolutionStrategy" />
+		<!-- rma: fixed circular reference issue with BTG 4/29/2011 -->
+		<property name="emailGenerationService" ref="emailGenerationService" />
+	</bean>
+	<!-- For Review Email End -->
+
+	<!-- For Contact Us email Start -->
+	<bean id="fmContactUsProcessDefinitionResource"
+		  class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+		<property name="resource"
+				  value="classpath:/fmcore/processes/FMContactUsEmailProcess.xml" />
+	</bean>
+
+	<bean id="fmContactUsProcessEventListener" class="com.federalmogul.core.event.FMContactUsProcessEventListener">
+		<lookup-method name="getModelServiceViaLookup" bean="modelService" />
+	</bean>
+
+	<bean id="generateFMContactUsEmail" class="de.hybris.platform.acceleratorservices.process.email.actions.GenerateEmailAction"
+		  parent="abstractAction">
+		<property name="modelService" ref="modelService" />
+		<property name="frontendTemplateName" value="FMContactUsTemplate" />
+		<property name="cmsEmailPageService" ref="cmsEmailPageService" />
+		<property name="contextResolutionStrategy" ref="b2bProcessContextResolutionStrategy" />
+		<!-- rma: fixed circular reference issue with BTG 4/29/2011 -->
+		<property name="emailGenerationService" ref="emailGenerationService" />
+	</bean>
+	<!-- For Contact Us Email End -->
+	
+	
+	<bean id="reviewCountValueProvider"
+	      class="com.federalmogul.core.solr.provider.ReviewCountValueProvider"
+	      parent="abstractPropertyFieldValueProvider">
+		<property name="fieldNameProvider" ref="solrFieldNameProvider"/>
+		<property name="customerReviewService" ref="customerReviewService"/>
+	</bean>
+	
+	<bean id= "fmStoreFinderService" parent="storeFinderService" class="com.federalmogul.core.services.impl.DefaultFMStoreFinderService">
+	  
+	</bean>
+	
+	<bean id="fmStoreFinderDAO" class="com.federalmogul.core.search.dao.impl.DefaultFMStoreFinderDAO"></bean>
+
+    <bean id="customerReviewInterceptorMapping"
+		class="de.hybris.platform.servicelayer.interceptor.impl.InterceptorMapping"
+		scope="tenant">
+		<property name="interceptor" ref="customerReviewInterceptor" />
+		<property name="typeCode" value="CustomerReview" />
+	</bean>
+
+	<bean id="customerReviewInterceptor"
+		class="com.federalmogul.core.interceptor.CustomerReviewPrepareInterceptor"
+		scope="tenant">
+	</bean>
+</beans>

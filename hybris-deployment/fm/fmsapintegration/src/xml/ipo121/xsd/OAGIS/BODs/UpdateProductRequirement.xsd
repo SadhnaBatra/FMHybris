@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: UpdateProductRequirement.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Resources/Verbs/Update.xsd"/>
+        <xs:include schemaLocation="../Resources/Nouns/ProductRequirement.xsd"/>
+        <xs:element name="UpdateProductRequirement" type="UpdateProductRequirement">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The purpose of the UpdateProductRequirement is to enable a business application such as Order Management to reserve a quantity of goods or services for a specific date and time. The business process scenario is the Order Management application interacting with the Available to Promise or Production application in order to determine availability of a product for the customer.
+
+This scenario is commonly referred to as Make to Order or Build to Order.
+The UpdateProductRequirement accomplishes this task in a two step process within this one request:
+1.  First the receiving business application checks to see if an item is available in sufficient quantity by a specific date and time.
+2.  The receiving business application then reserves that quantity of inventory for that specific date and time combination if the product is available.
+If the product requested is not available, 
+
+The responding application may send one of two responses:
+1.  A ConfirmBOD to confirm the denial of the request.
+2.  A ShowProductAvailability  to communicate an alternative product availability.  This may be OrderItem, Date, or Quantity, or a combination of these.  This may also be accompanied with a message in the Note field Identifier stating that this is an alternative.
+
+If the product requested is available:
+The responding application may send a ConfirmBOD to confirm the execution of the request.
+
+This BOD will likely cause updates to occur.
+
+This BOD may be used individually, or as part of a larger interface scenario.  The GetProductAvailability and ShowProductAvailability may be used before an UpdateProductRequirement, but they are not required. </xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="UpdateProductRequirement">
+                <xs:complexContent>
+                        <xs:extension base="BusinessObjectDocument">
+                                <xs:sequence>
+                                        <xs:element name="DataArea" type="UpdateProductRequirementDataArea">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is where the information that the BOD message carries is provided, in this case UpdateProductRequirement. The information consists of a Verb and one or more Nouns. The verb (Update) indicates the action to be performed on the Noun (ProductRequirement).</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="UpdateProductRequirementDataArea">
+                <xs:complexContent>
+                        <xs:extension base="DataArea">
+                                <xs:sequence>
+                                        <xs:element ref="Update"/>
+                                        <xs:element ref="ProductRequirement" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+</xs:schema>

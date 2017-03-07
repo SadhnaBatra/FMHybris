@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testclasses>
+  <fmstorefront>
+    <testclass>com.federalmogul.storefront.filters.CommonResourcesAddOnFilterTest</testclass>
+    <testclass>com.federalmogul.storefront.util.MetaSanitizerUtilTest</testclass>
+    <testclass>com.federalmogul.storefront.controllers.cms.PurchasedCategorySuggestionComponentControllerTest</testclass>
+    <testclass>com.federalmogul.storefront.controllers.cms.DefaultCMSComponentControllerTest</testclass>
+    <testclass>com.federalmogul.storefront.controllers.cms.ProductCarouselComponentControllerTest</testclass>
+    <testclass>com.federalmogul.storefront.controllers.cms.ProductFeatureComponentControllerTest</testclass>
+    <testclass>com.federalmogul.storefront.controllers.pages.SearchPageControllerUnitTest</testclass>
+    <testclass>com.federalmogul.storefront.controllers.cms.CategoryFeatureComponentControllerTest</testclass>
+    <testclass>com.federalmogul.storefront.controllers.cms.ProductReferencesComponentControllerTest</testclass>
+    <testclass>com.federalmogul.storefront.filters.AbstractAddOnFilterTest</testclass>
+    <testclass>com.federalmogul.storefront.interceptors.i18n.SetLanguageBeforeControllerHandlerTest</testclass>
+    <testclass>com.federalmogul.storefront.controllers.cms.NavigationBarComponentControllerTest</testclass>
+    <testclass>com.federalmogul.storefront.filters.TagResourcesAddOnFilterTest</testclass>
+    <testclass>com.federalmogul.storefront.security.cookie.EnhancedCookieGeneratorTest</testclass>
+    <testclass>com.federalmogul.storefront.controllers.cms.MiniCartComponentControllerTest</testclass>
+    <testclass>com.federalmogul.storefront.filters.AcceleratorAddOnFilterTest</testclass>
+  </fmstorefront>
+</testclasses>

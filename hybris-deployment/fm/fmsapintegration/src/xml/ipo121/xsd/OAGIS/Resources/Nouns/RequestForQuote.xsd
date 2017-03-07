@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/RequestForQuote.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified">
+        <xs:include schemaLocation="Order.xsd"/>
+        <xs:element name="RequestForQuote" type="RequestForQuote" substitutionGroup="Noun">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Is a document describing goods or services desired from a vendor.  The RFQ includes the terms of the purchase, delivery requirements, identification of goods or services ordered, as well as their quantities.The RFQ noun is used in conjunction with the Quote noun to form a Business-to-Business negotiation dialogue concerning the goods or services specified.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="RequestForQuote">
+                <xs:complexContent>
+                        <xs:extension base="Order"/>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="RequestForQuoteHeader">
+                <xs:complexContent>
+                        <xs:extension base="OrderHeader">
+                                <xs:sequence>
+                                        <xs:element name="EffectivePeriod" type="TimePeriodAny" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the effective period that the RFQ is valid.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="SupplierSelectionPeriod" type="TimePeriodAny" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the timeperiod e that Suppliers will be selected.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="BiddingPeriod" type="TimePeriodAny" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the period in which bidding can occur.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="Message" type="Message" minOccurs="0" maxOccurs="unbounded">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates acceptance, rejection or questions with the entire document or specific Data Types within the RFQ.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="RequestForQuoteLine">
+                <xs:complexContent>
+                        <xs:extension base="OrderLine">
+                                <xs:sequence>
+                                        <xs:element ref="Site" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element name="EffectivePeriod" type="TimePeriodAny" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the time period in which the RFQ Line is effective.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="Message" type="Message" minOccurs="0" maxOccurs="unbounded">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Allows messages to be passed between the buyer, seller and possibly a broker, if one is involved in the transaction.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element ref="SubLine" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element ref="Schedule" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="RequestForQuoteSubLine">
+                <xs:complexContent>
+                        <xs:extension base="OrderLineBase">
+                                <xs:sequence>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="RequestForQuoteLineSchedule">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the schedule for the items to be delivered.</xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                        <xs:extension base="OrderSchedule">
+                                <xs:sequence>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:element name="Header" type="RequestForQuoteHeader">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Information that applies to the entire request for quote.  </xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Line" type="RequestForQuoteLine">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The item or product ordered along with quantity, price and other descriptive information.  </xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="SubLine" type="RequestForQuoteSubLine">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The Component SubLine represents any additional information concerning the product on the Line.  The SubLine can be used to describe a specific configuration of the ordered item.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Schedule" type="RequestForQuoteLineSchedule">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the schedule for the delivery of this line item.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+</xs:schema>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: ProcessInventoryIssue.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Resources/Verbs/Process.xsd"/>
+        <xs:include schemaLocation="../Resources/Nouns/InventoryIssue.xsd"/>
+        <xs:element name="ProcessInventoryIssue" type="ProcessInventoryIssue">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The purpose of the ProcessInventoryIssue is to reflect an unplanned issue of an item to a miscellaneous location.
+
+Possible reasons for this include:
+1. Somebody broke the material,
+2. The material is defective and needs replacing, 
+3. The material is used up and needs replenishment.
+</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="ProcessInventoryIssue">
+                <xs:complexContent>
+                        <xs:extension base="BusinessObjectDocument">
+                                <xs:sequence>
+                                        <xs:element name="DataArea" type="ProcessInventoryIssueDataArea">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is where the information that the BOD message carries is provided, in this case ProcessInventoryIssue. The information consists of a Verb and one or more Nouns. The verb (Process) indicates the action to be performed on the Noun (InventoryIssue).</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="ProcessInventoryIssueDataArea">
+                <xs:complexContent>
+                        <xs:extension base="DataArea">
+                                <xs:sequence>
+                                        <xs:element ref="Process"/>
+                                        <xs:element ref="InventoryIssue" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+</xs:schema>

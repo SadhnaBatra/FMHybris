@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: LoadProjectAccounting.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Resources/Verbs/Load.xsd"/>
+        <xs:include schemaLocation="../Resources/Nouns/ProjectAccounting.xsd"/>
+        <xs:element name="LoadProjectAccounting" type="LoadProjectAccounting">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The purpose of the LoadProjectAccounting  is to enable all relevant sub-systems that submit single sided transactions to send information to a Project Accounting Application. This would include, but not necessarily be limited to:
+·	Accounts Payable
+·	Accounts Receivable
+·	Budget
+·	Order Management
+·	Purchasing
+·	Time and Labor
+·	Travel and Expense
+
+The LoadProjectAccounting will cause common data to be loaded in a project accounting application.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="LoadProjectAccounting">
+                <xs:complexContent>
+                        <xs:extension base="BusinessObjectDocument">
+                                <xs:sequence>
+                                        <xs:element name="DataArea" type="LoadProjectAccountingDataArea">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is where the information that the BOD message carries is provided, in this case LoadProjectAccounting. The information consists of a Verb and one or more Nouns. The verb (Load) indicates the action to be performed on the Noun (ProjectAccounting).</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="LoadProjectAccountingDataArea">
+                <xs:complexContent>
+                        <xs:extension base="DataArea">
+                                <xs:sequence>
+                                        <xs:element ref="Load"/>
+                                        <xs:element ref="ProjectAccounting" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+</xs:schema>

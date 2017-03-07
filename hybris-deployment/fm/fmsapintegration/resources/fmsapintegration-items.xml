@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2000-2013 hybris AG
+ All rights reserved.
+
+ This software is the confidential and proprietary information of hybris
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with hybris.
+
+  
+-->
+<!--
+	ATTENTION: This is just an example file. You have to edit it according to your needs.
+-->
+
+<items 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			xsi:noNamespaceSchemaLocation="items.xsd">
+
+	<itemtypes>
+		<!-- IPO Changes Start -->
+		
+		<itemtype code="FMIPOTRACKING" autocreate="true" generate="true"
+				extends="GenericItem" jaloclass=" com.fmo.wom.jalo.FMIPOTRACKING">
+				<description>.</description>
+				<deployment table="fmipotracking" typecode="21105" />
+				
+				<attributes>
+					<attribute autocreate="true" qualifier="code" type="java.lang.String"
+							generate="true">
+						<persistence type="property" qualifier="code" />
+						<modifiers read="true" write="true" search="true"
+								optional="false" initial="true" unique="true" />
+						<description>code </description>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="ipoVersion">
+						<description>IPO Version</description>
+						<modifiers initial="true" />
+						<persistence type="property" />
+					</attribute>
+					<attribute type="java.lang.String" qualifier="masterOrderNumber">
+						<description>IPO Version</description>
+						<modifiers initial="true" />
+						<persistence type="property" />
+					</attribute>
+					<attribute type="java.lang.String" qualifier="customer">
+						<description>Unique id for </description>
+						<modifiers initial="true" />
+						<persistence type="property" />
+					</attribute>
+					<attribute type="java.util.Date" qualifier="createDate">
+						<description>CREATE_TIMESTAMP</description>
+						<modifiers initial="false" />
+						<persistence type="property" />
+					</attribute>
+					<attribute type="java.lang.String" qualifier="IPORequest">
+								<modifiers read="true" write="true" search="false"
+									optional="true" />
+								<persistence type="property" >
+									<columntype database="oracle">
+										<value>CLOB</value>
+									</columntype>
+									<columntype database="sap">
+										<value>NCLOB</value>
+									</columntype>
+									<columntype>
+										<value>HYBRIS.LONG_STRING</value>
+									</columntype>
+								</persistence>
+								<custom-properties>
+									<property name="hmcIndexField">
+										<value>"thefield"</value>
+									</property>
+								</custom-properties>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="IPOResponse">
+								<modifiers read="true" write="true" search="false"
+									optional="true" />
+								<persistence type="property" >
+									<columntype database="oracle">
+										<value>CLOB</value>
+									</columntype>
+									<columntype database="sap">
+										<value>NCLOB</value>
+									</columntype>
+									<columntype>
+										<value>HYBRIS.LONG_STRING</value>
+									</columntype>
+								</persistence>
+								<custom-properties>
+									<property name="hmcIndexField">
+										<value>"thefield"</value>
+									</property>
+								</custom-properties>
+					</attribute>
+				</attributes>
+				<indexes>
+					<index name="code">
+						<key attribute="code"/>
+					</index>
+				</indexes>
+			</itemtype>
+	
+		
+			<itemtype code="FMIPOTPACCOUNT" autocreate="true" generate="true"
+				extends="GenericItem" jaloclass=" com.fmo.wom.jalo.FMIPOTPACCOUNT">
+				<description>TP_ACCOUNT.</description>
+				<deployment table="fmipotpaccount" typecode="21100" />
+				<attributes>
+					<attribute autocreate="true" qualifier="TP_ACCT_ID" type="java.lang.String"
+							generate="true">
+						<persistence type="property" qualifier="TP_ACCT_ID" />
+						<modifiers read="true" write="true" search="true"
+								optional="false" initial="true" unique="true" />
+						<description>code for TP_ACCOUNT </description>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="TP_ID">
+						<description>Unique id for TP_ACCOUNT</description>
+						<modifiers initial="true" />
+						<persistence type="property" />
+					</attribute>
+					<attribute type="java.lang.String" qualifier="FM_BILLTO_ACCT_CD">
+						<description>FM_BILLTO_ACCT_CD</description>
+						<modifiers initial="true" />
+						<persistence type="property" />
+					</attribute>
+					<attribute type="java.lang.String" qualifier="ACTIVE_FLG">
+						<description>ACTIV_FLG</description>
+						<modifiers initial="false" />
+						<persistence type="property" />
+					</attribute>
+					<attribute type="java.util.Date" qualifier="INACTIVE_FROM_DATE">
+						<description>INACTIV_FROM_DATE</description>
+						<modifiers initial="false" />
+						<persistence type="property" />
+					</attribute>
+					<attribute type="java.lang.String" qualifier="CREATE_USERID">
+						<description>CREATE_USERID</description>
+						<modifiers initial="false" />
+						<persistence type="property" />
+					</attribute>
+					<attribute type="java.util.Date" qualifier="CREATE_TIMESTAMP">
+						<description>CREATE_TIMESTAMP</description>
+						<modifiers initial="false" />
+						<persistence type="property" />
+					</attribute>
+					<attribute type="java.lang.String" qualifier="UPDATE_USERID">
+						<description>UPDATE_USERID</description>
+						<modifiers initial="false" />
+						<persistence type="property" />
+					</attribute>
+					<attribute type="java.util.Date" qualifier="UPDATE_TIMESTAMP">
+						<description>UPDATE_TIMESTAMP</description>
+						<modifiers initial="true" />
+						<persistence type="property" />
+					</attribute>
+				</attributes>
+				<indexes>
+					<index name="code">
+						<key attribute="TP_ACCT_ID"/>
+					</index>
+				</indexes>
+
+			</itemtype>
+	
+			<itemtype code="FMIPOTRADINGPARTNER" autocreate="true" generate="true"
+				extends="GenericItem" jaloclass="com.fmo.wom.jalo.FMIPOTRADINGPARTNER">
+				<description>FMIPOTRADINGPARTNER.</description>
+				<deployment table="fmipotradingpartner" typecode="21101" />
+				<attributes>
+					<attribute autocreate="true" qualifier="TP_ID" type="java.lang.String"
+							generate="true">
+						<persistence type="property" qualifier="TP_ID" />
+						<modifiers read="true" write="true" search="true"
+								optional="false" initial="true" unique="true" />
+						<description>Unique id for Trading Partner</description>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="TP_NAME">
+						<description>Trading Partner Name</description>
+						<modifiers initial="true" />
+						<persistence type="property" />
+					</attribute>
+					<attribute type="java.lang.String" qualifier="IPO_SECURITY_KEY">
+						<description>Security Key used for IPO</description>
+						<modifiers initial="true" />
+						<persistence type="property" />
+					</attribute>
+					<attribute type="java.lang.String" qualifier="ACTIVE_FLG">
+						<description>Flag indicating whether the Trading Partner is active</description>
+						<modifiers initial="false" />
+						<persistence type="property" />
+					</attribute>
+					<attribute type="java.util.Date" qualifier="INACTIVE_FROM_DATE">
+						<description>Date from which the Trading Partner is inactive</description>
+						<modifiers initial="false" />
+						<persistence type="property" />
+					</attribute>
+					<attribute type="java.lang.String" qualifier="TP_GRP_CD">
+						<description>Trading Partner Group Code</description>
+						<modifiers initial="false" />
+						<persistence type="property" />
+					</attribute>
+					<attribute type="java.lang.String" qualifier="CREATE_USERID">
+						<description>User Id who created the Trading Partner</description>
+						<modifiers initial="false" />
+						<persistence type="property" />
+					</attribute>
+					<attribute type="java.util.Date" qualifier="CREATE_TIMESTAMP">
+						<description>Date/Time on which the Trading Partner was created</description>
+						<modifiers initial="false" />
+						<persistence type="property" />
+					</attribute>
+					<attribute type="java.lang.String" qualifier="UPDATE_USERID">
+						<description>User Id who last updated the Trading Partner</description>
+						<modifiers initial="false" />
+						<persistence type="property" />
+					</attribute>
+					<attribute type="java.util.Date" qualifier="UPDATE_TIMESTAMP">
+						<description>Date/Time on which the Trading Partner was last updated</description>
+						<modifiers initial="true" />
+						<persistence type="property" />
+					</attribute>
+					<attribute type="java.lang.String" qualifier="ENABLE_SHIPPING_FROM_TSC_FLG">
+						<description>Flag indicating whether Shipping from TSCs is enabled</description>
+						<modifiers initial="false" />
+						<persistence type="property" qualifier="ENABLE_SHIPPING_FROM_TSC_FLG" />
+					</attribute>
+				</attributes>
+				<indexes>
+					<index name="TP_ID">
+						<key attribute="TP_ID"/>
+					</index>
+				</indexes>
+			</itemtype>
+			
+			<itemtype code="FMtpcarriershipmethods" autocreate="true" generate="true"
+				extends="GenericItem" jaloclass=" com.fmo.wom.jalo.FMtpcarriershipmethods">
+				<deployment table="FMtpcarriershipmethods" typecode="21102" />
+				<attributes>
+					<attribute autocreate="true" qualifier="TP_CARRIER_SHIPMTHD_ID" type="java.lang.String"
+							generate="true">
+						<persistence type="property" qualifier="TP_CARRIER_SHIPMTHD_ID" />
+						<modifiers read="true" write="true" search="true"
+								optional="false" initial="true" unique="true" />
+						<description>TP_CARRIER_SHIPMTHD_ID </description>
+					</attribute>
+					<attribute type="java.lang.String" qualifier="TP_ID">
+						<description>TP_ID</description>
+						<modifiers initial="true" />
+						<persistence type="property" />
+					</attribute>
+					<attribute type="java.lang.String" qualifier="CARRIER_SHIPMTHD_ID">
+						<description>CARRIER_SHIPMTHD_ID</description>
+						<modifiers initial="true" />
+						<persistence type="property" />
+					</attribute>
+					<attribute type="java.lang.String" qualifier="ACTIVE_FLG">
+						<description>ACTIV_FLG</description>
+						<modifiers initial="false" />
+						<persistence type="property" />
+					</attribute>
+					<attribute type="java.lang.String" qualifier="SCAC_CD">
+						<description>SCAC_CD</description>
+						<modifiers initial="false" />
+						<persistence type="property" />
+					</attribute>
+					<attribute type="java.lang.String" qualifier="CARRIER_CD">
+						<description>CARRIER_CD</description>
+						<modifiers initial="false" />
+						<persistence type="property" />
+					</attribute>
+					<attribute type="java.lang.String" qualifier="SHIP_MTHD_CD">
+						<description>SHIP_MTHD_CD</description>
+						<modifiers initial="false" />
+						<persistence type="property" />
+					</attribute>
+					<attribute type="java.lang.String" qualifier="TRNSPRT_MTHD_CD">
+						<description>TRNSPRT_MTHD_CD</description>
+						<modifiers initial="false" />
+						<persistence type="property" />
+					</attribute>
+					
+				</attributes>
+				<indexes>
+					<index name="TP_CARRIER_SHIPMTHD_ID">
+						<key attribute="TP_CARRIER_SHIPMTHD_ID"/>
+					</index>
+				</indexes>
+
+			</itemtype>
+	 <!-- IPO Changes End -->
+	</itemtypes>
+</items>

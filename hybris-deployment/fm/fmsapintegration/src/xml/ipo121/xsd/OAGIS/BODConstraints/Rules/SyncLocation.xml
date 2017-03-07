@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sch:schema xmlns="http://www.ascc.net/xml/schematron" xmlns:oa="http://www.openapplications.org/oagis" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ascc.net/xml/schematron ../../../Utility/Schematron/schematron1-5.xsd">
+	<sch:title>Schematron Validator for OAGI Constraints</sch:title>
+	<sch:ns prefix="oa" uri="http://www.openapplications.org/oagis"/>
+	<sch:pattern name="Noun Level">
+		<sch:rule context="oa:Location">
+			<sch:assert test="oa:Id">Must have a Location Id.</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Postal Address Level">
+		<sch:rule context="oa:PostalAddress">
+			<sch:assert test="oa:AddressLine">Must have an "AddressLine".</sch:assert>
+			<sch:assert test="oa:City">Must have a "City" element.</sch:assert>
+			<sch:assert test="oa:StateOrProvince">Must have a "StateOrProvince".</sch:assert>
+			<sch:assert test="oa:PostalCode">Must have a "PostalCode".</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="GPSCoordinates Level">
+		<sch:rule context="oa:GPSCoordinates">
+			<sch:assert test="oa:GPSSystemType">Must have a idenitfy the type of GPS System</sch:assert>
+			<sch:assert test="oa:Latitude">Must have an "Latitude".</sch:assert>
+			<sch:assert test="oa:Longitude">Must have an "Longitude".</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+</sch:schema>

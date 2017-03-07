@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sch:schema xmlns="http://www.ascc.net/xml/schematron" xmlns:oa="http://www.openapplications.org/oagis" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ascc.net/xml/schematron ../../../Utility/Schematron/schematron1-5.xsd">
+	<sch:title>Schematron Validator for OAGI Constraints</sch:title>
+	<sch:ns prefix="oa" uri="http://www.openapplications.org/oagis"/>
+
+	<sch:pattern name="Sync PriceList">
+		<sch:rule context="oa:PriceList">
+			<sch:assert test="oa:Header">Sync PriceList must have a Header component specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+
+	<sch:pattern name="Sync PriceList Header">
+		<sch:rule context="oa:PriceList/oa:Header">
+			<sch:assert test="oa:DocumentId/oa:Id">The Sync PriceList Header must have a "DocumentId" and "Id" specified</sch:assert>
+			<sch:assert test="oa:Business | oa:PublisherParty">The Sync PriceList Header must have a "Business" or "PublisherParty" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+
+	<sch:pattern name="Publisher Party">
+		<sch:rule context="oa:PublisherParty">
+			<sch:assert test="oa:PublisherParty/oa:PartyId">A "PublisherParty" must have an Identifier specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+		
+	<sch:pattern name="List Price Break">
+		<sch:rule context="oa:PriceList/oa:Header/oa:ListPriceBreak">
+			<sch:assert test="oa:DiscountValue | oa:DiscountPercent">The ListPriceBreak must have a "DiscountValue" or "DiscountPercent" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	
+	<sch:pattern name="Price List Qualifier">
+		<sch:rule context="oa:PriceList/oa:Header/oa:PriceListQualifier">
+			<sch:assert test="oa:CatalogDocumentReference | oa:Business | PublisherParty">The PriceListQualifier must have a 'Catalog" or "Business" or "PublisherParty" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+
+	<sch:pattern name="Sync PriceList Line">
+		<sch:rule context="oa:PriceList /oa:Line">
+			<sch:assert test="oa:LineNumber">The PriceList Line must have an "LineNumber" specified</sch:assert>
+			<sch:assert test="oa:UnitPrice">The PriceList Line must have an "UnitPrice" specified</sch:assert>
+			<sch:assert test="oa:ItemId | oa:CommodityCode">The PriceList Line must have an "ItemId" or "CommodityCode" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+		
+	<sch:pattern name="Line Price Break">
+		<sch:rule context="oa:PriceList /oa:Line/oa:LinePriceBreak">
+			<sch:assert test="oa:DiscountValue | oa:DiscountPercent | oa:OverRidePrice">The LinePriceBreak must have a "DiscountValue" or "DiscountPercent" or "OverRidePrice" specified</sch:assert>
+			<sch:assert test="oa:PriceBreakQuantity | oa:PriceBreakAmount">The LinePriceBreak must have a "PriceBreakQuantity" or a "PriceBreakAmount" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+</sch:schema>

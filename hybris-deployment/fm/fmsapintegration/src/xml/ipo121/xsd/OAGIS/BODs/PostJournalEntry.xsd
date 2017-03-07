@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: PostJournalEntry.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Resources/Verbs/Post.xsd"/>
+        <xs:include schemaLocation="../Resources/Nouns/JournalEntry.xsd"/>
+        <xs:element name="PostJournalEntry" type="PostJournalEntry">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The purpose of the PostJournal is to transmit data necessary to create a journal entry from any sub ledger business application to a general ledger application.
+
+Many applications in the enterprise environment create data that cause changes in the account balances of a 
+general ledger application.  Some components that have activity which will be reflected in a general ledger 
+application are:
+
+1.	Benefits
+2.	Costing
+3.	Human Resources
+4.	Inventory Control
+5.	Manufacturing
+6.	Payroll
+7.	Production
+8.	Treasury
+
+By no means is this a complete list of all the components that create activity which generate a journal entry.
+
+Many tasks that occur within the enterprise applications cause the creation of a General Ledger journal entry.  
+Tasks relate directly to the Component.  For example, the adjustment of inventory value is a task that occurs within 
+the Inventory Control Component.  Some of the tasks that would be catalysts for changes in a general ledger include:
+
+1.	Receiving Inventory
+2.	Issuing Inventory
+3.	Transferring Inventory
+4.	Adjusting Inventory Value
+5.	Adjusting Inventory Count
+6.	Calculating Material Variances
+7.	Calculating Labor Variances
+8.	Calculating Overhead Variances</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="PostJournalEntry">
+                <xs:complexContent>
+                        <xs:extension base="BusinessObjectDocument">
+                                <xs:sequence>
+                                        <xs:element name="DataArea" type="PostJournalEntryDataArea">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is where the information that the BOD message carries is provided, in this case PostJournalEntry. The information consists of a Verb and one or more Nouns. The verb (Post) indicates the action to be performed on the Noun (JournalEntry).</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="PostJournalEntryDataArea">
+                <xs:complexContent>
+                        <xs:extension base="DataArea">
+                                <xs:sequence>
+                                        <xs:element ref="Post"/>
+                                        <xs:element ref="JournalEntry" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+</xs:schema>

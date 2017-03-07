@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sch:schema xmlns="http://www.ascc.net/xml/schematron" xmlns:oa="http://www.openapplications.org/oagis" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ascc.net/xml/schematron ../../../Utility/Schematron/schematron1-5.xsd">
+	<sch:title>Schematron Validator for OAGI Constraints</sch:title>
+	<sch:ns prefix="oa" uri="http://www.openapplications.org/oagis"/>
+	<sch:pattern name="Noun Level">
+		<sch:rule context="oa:DeliveryReceipt">
+			<sch:assert test="oa:Header">Must have a Header component.</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Header Level">
+		<sch:rule context="oa:DeliveryReceipt/oa:Header">
+			<sch:assert test="oa:DocumentId/oa:Id">Must have a DeliveryReceipt identifier.</sch:assert>
+			<sch:assert test="oa:DocumentDate">Must have a Shipment Document TimeStamp.</sch:assert>
+			<sch:assert test="oa:Parties/oa:ShipFromParty">Must have identify a "ShipFrom" Party.</sch:assert>
+			<sch:assert test="oa:Parties/oa:ShipFromParty/oa:PartyId">"ShipFrom" Party must have an Identifier.</sch:assert>
+			<sch:assert test="oa:Parties/oa:ShipFromParty/oa:Addresses/oa:Address">"ShipFrom" Party Address.</sch:assert>
+			<sch:assert test="oa:Parties/oa:ShipToParty">Must have identify a "ShipTo" Party.</sch:assert>
+			<sch:assert test="oa:Parties/oa:ShipToParty/oa:PartyId">"ShipTo" Party must have an Identifier.</sch:assert>
+			<sch:assert test="oa:Parties/oa:ShipToParty/oa:Addresses/oa:Address">"ShipTo" Party Address.</sch:assert>
+			<sch:assert test="oa:Parties/oa:CarrierParty">Must have identify a "Carrier" Party.</sch:assert>
+			<sch:assert test="oa:Parties/oa:CarrierParty/oa:PartyId">"Carrier" Party must have an Identifier.</sch:assert>
+			<sch:assert test="oa:ReceivedDateTime">The ReceivedDateTime must be present.</sch:assert>
+			<sch:assert test="oa:ShippedDateTime">The ShippedDateTime must be present.</sch:assert>
+			<sch:assert test="oa:DocumentReferences/oa:ShipmentDocumentReference">The shippers shipment (ASN) must be referenced.</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Receipt Line Level">
+		<sch:rule context="oa:ReceiptLine">
+			<sch:assert test="oa:LineNumber">Must have a Line Number</sch:assert>
+			<sch:assert test="oa:ItemIds/oa:ItemId">Must have an Item.</sch:assert>
+			<sch:assert test="oa:ReceiptQuantity">Must have received an number of Items.</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Receipt Unit Level">
+		<sch:rule context="oa:ReceiptUnit">
+			<sch:assert test="oa:ShippingTrackingId">Must have a tracking number</sch:assert>
+			<sch:assert test="oa:Parties/oa:CarrierParty">Must indicate the Carrier that is transporting the unit.</sch:assert>
+			<sch:assert test="oa:Parties/oa:ShipFromParty">Must identify the party in which the unit is being shipped from.</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Receipt Item Level">
+		<sch:rule context="oa:ReceiptItem">
+			<sch:assert test="oa:PackingQuantity">Must have number of items on the Packing List.</sch:assert>
+			<sch:assert test="oa:ReceivedQuantity">Must have number of items received.</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+</sch:schema>

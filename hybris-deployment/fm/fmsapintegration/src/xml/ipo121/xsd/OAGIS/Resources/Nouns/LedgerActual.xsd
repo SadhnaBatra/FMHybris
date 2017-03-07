@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/LedgerActual.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Components.xsd"/>
+        <xs:complexType name="LedgerActual">
+                <xs:complexContent>
+                        <xs:extension base="Noun">
+                                <xs:sequence>
+                                        <xs:element name="LedgerId" type="LedgerId" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the Ledger to which this transaction entry is to be inserted</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:choice minOccurs="0">
+                                                <xs:element name="AccountingDate" type="DateTimeAny" minOccurs="0">
+                                                        <xs:annotation>
+                                                                <xs:documentation source="http://www.openapplications.org/oagis">Is the date that is used to determine the accounting period the transaction is posted within.  It is also known as the effective or post date.</xs:documentation>
+                                                        </xs:annotation>
+                                                </xs:element>
+                                                <xs:sequence>
+                                                        <xs:element name="AccountingPeriod" type="Period" minOccurs="0">
+                                                                <xs:annotation>
+                                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the accounting period the document is to post within.  The period is within a fiscal year to which a business transaction is assigned.</xs:documentation>
+                                                                </xs:annotation>
+                                                        </xs:element>
+                                                        <xs:element name="AccountingYear" type="Year" minOccurs="0">
+                                                                <xs:annotation>
+                                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the accounting year the document is to post within.  Generally a period of 12 months for which the company regularly has to create financial statements.  A fiscal year may correspond to a calendar year.</xs:documentation>
+                                                                </xs:annotation>
+                                                        </xs:element>
+                                                </xs:sequence>
+                                        </xs:choice>
+                                        <xs:element name="DocumentDateTime" type="DateTime" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the timestamp that the LedgerActual was created in the sending system.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:group ref="LedgerEntryContent" minOccurs="0"/>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:element name="LedgerActual" substitutionGroup="Noun">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Ledger Actual  represents actual amounts by account within ledger within company or business area.  Actual amounts may be generated in a source application and then loaded to a specific ledger within the enterprise general ledger or budget application.</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                        <xs:complexContent>
+                                <xs:extension base="LedgerActual"/>
+                        </xs:complexContent>
+                </xs:complexType>
+        </xs:element>
+</xs:schema>

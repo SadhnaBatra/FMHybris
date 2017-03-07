@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/MatchDocument.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="Document.xsd"/>
+        <xs:complexType name="MatchDocument">
+                <xs:complexContent>
+                        <xs:extension base="Document"/>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="MatchDocumentHeader">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">A Matching Document is a document in and of itself. It may exist in an ERP application, just like a Sales Order. The Matching Document essentially holds a cross reference among the documents being matched. The header contains general and financial information. The document references used in the Header are for all of the doucments being matched in addition to documents that are not explicitly part of the matching process, but still need to be referenced, such as a Quote. However, since matching is essentiall N-way, even a Quote could be matched.
+
+Note that the Status on the MatchDocument indicates whether the Match was successful or was a failure.</xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                        <xs:extension base="DocumentHeader">
+                                <xs:sequence>
+                                        <xs:element ref="Parties" minOccurs="0"/>
+                                        <xs:element name="MatchType" type="Type" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">contains the information that determines the type of invoice document matching process.  Suggested values associated with this field are:
+2 Way: Invoice is matched to the Purchase Order
+3 Way: Invoice is matched with the Purchase Order, and Receipt
+4 Way: Invoice is matched with the Purchase Order, Receipt, and Inspection results.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="InvoiceDate" type="DateTimeAny" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">The date on which the original invoice document was issued</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="MatchingDate" type="DateTimeAny" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">The date on which the associated document was matched</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="Remittance" type="Remittance" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Remittance refers to a reference identifier to print on a remittance advice, for example, supplier invoice number.
+When a RemittanceAdvice BOD exists this could be a DocumentReference name RemittanceReference. </xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element ref="Distribution" minOccurs="0" maxOccurs="unbounded">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the Financial Entities involved in the transaction.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="MatchDocumentLine">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">A Match Line contains the information for the matching cross reference among the documents being matched. Each Match Line contains 2 or more Match Points. A Match Point represents the document being matched and the matching critieria.</xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                        <xs:extension base="DocumentLine">
+                                <xs:sequence>
+                                        <xs:element ref="Status" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">mlr - Couldn't this be an attribute? </xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element ref="MatchPoint" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="MatchPoint">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">A Match Point identifies a document and the matching critier that is matched with other Match Points. The DocumentReference must be mutually exclusive of the other Match Point Document References for the Match Line.</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                        <xs:element ref="DocumentReferences" minOccurs="0"/>
+                        <xs:element ref="MatchCriteria" minOccurs="0"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="MatchCriteria">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Match Criteria identifies the detailed information that is being matched. Typically this is the unit price, unit quantity the the extended amount.</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                        <xs:element ref="OrderItem" minOccurs="0"/>
+                        <xs:element name="OrderQuantity" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the number of ordered items for the given line..</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="UnitPrice" type="AmountPerQuantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the price per unit of the items ordered.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="TotalAmount" type="Amounts" minOccurs="0" maxOccurs="2">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the accumulated cost of the ordered items for this line. It is OrderedQuantity multiplied by the UnitPrce.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is a free form description of the line.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:element name="MatchDocument" type="MatchDocument" substitutionGroup="Noun">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies an internal document containing matching information. Essential it holds cross reference information among the customer Purchase Order and the Suppier Invoice. It supports N-way matching.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Header" type="MatchDocumentHeader">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Header information for the matching document instance.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Line" type="MatchDocumentLine">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Line level infoi\rmatoin for the matching doucment.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="MatchPoint" type="MatchPoint">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">A Match Line (like geometric lines) must consist of at least 2 Match Points. A Match Point can match different lines in documents identified in other Match Points. It is not required that LineNumbers are the same.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="MatchCriteria" type="MatchCriteria">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The Match Criteria is included in the match document to identify the type of information being matched. It identifies the information for the associated matching document.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+</xs:schema>

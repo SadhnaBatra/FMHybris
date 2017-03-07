@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sch:schema xmlns="http://www.ascc.net/xml/schematron" xmlns:oa="http://www.openapplications.org/oagis" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ascc.net/xml/schematron ../../../Utility/Schematron/schematron1-5.xsd">
+	<sch:title>Schematron Validator for OAGI Constraints</sch:title>
+	<sch:ns prefix="oa" uri="http://www.openapplications.org/oagis"/>
+	<sch:pattern name="Noun Level">
+		<sch:rule context="oa:Consumption">
+			<sch:assert test="oa:Header">Must have a Header component.</sch:assert>
+			<sch:assert test="oa:Line">Must have at least one Line component.</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Header Level">
+		<sch:rule context="oa:Header">
+			<sch:assert test="oa:DocumentId/oa:Id">Must have a "DocumentId" and "Id" element.</sch:assert>
+			<sch:assert test="oa:Site">Must have a "Site" element.</sch:assert>
+			<sch:assert test="oa:Parties/oa:ShipToParty">Must have a "ShipToParty" component.</sch:assert>
+			<sch:assert test="oa:Parties/oa:ShipFromParty">Must have a "ShipFromParty" component.</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Line Level">
+		<sch:rule context="oa:Line">
+			<sch:assert test="oa:LineNumber">Must have a LineNumber for the Consumption.</sch:assert>
+			<sch:assert test="oa:ItemQuantity">Must have an "ItemQuantity" element.</sch:assert>
+			<sch:assert test="oa:OrderItem">Must have an "OrderItem" element.</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+</sch:schema>

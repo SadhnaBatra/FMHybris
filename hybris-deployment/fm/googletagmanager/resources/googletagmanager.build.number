@@ -1,0 +1,9 @@
+#Ant properties
+#Thu Mar 12 02:49:43 CET 2015
+builddate=20150312 0249
+description=googletagmanager
+name=googletagmanager
+releasedate=20150311 1421
+vendor=hybris
+version=5.5.1.0
+version.api=5.5.1

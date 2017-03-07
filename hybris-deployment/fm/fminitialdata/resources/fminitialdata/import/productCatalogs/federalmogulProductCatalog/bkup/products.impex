@@ -1,0 +1,167 @@
+# ImpEx for Importing Products into Federal-Mogul Store
+
+# Macros / Replacement Parameter definitions
+$productCatalog=federalmogulProductCatalog
+$productCatalogName=FederalMogul Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$supercategories=supercategories(code, $catalogVersion)
+# Set product approval status to Approved only for those products that have prices.												
+$approved=approvalstatus(code)[default='approved']
+$partstatus=partstatus(code)[default='activepart']
+
+
+# Language
+$lang=en
+
+
+#Insert FM Corporate
+
+INSERT_UPDATE FMCorporate;corpcode[unique=true];corpname;corpid;corptype
+;AMG;Moog Automotive;1;U;
+;CHFLF;Champion Filters-Div of F-M;3219;U;
+;MWG;Wagner Brake;569;U;
+;MAN;Wagner Brake;569;U;
+
+
+
+# Insert FMProducts
+
+
+
+INSERT_UPDATE FMPart;corporate(corpcode);pid;partNumber;code[unique=true];upc;$partstatus;flagcode;flagname;textcomment;textnote;textfootnote;name[lang=$lang];description[lang=$lang];$approved;$supercategories;$catalogVersion
+
+;AMG;10382;ES3184RL;ES3184RL;80066165462;activepart;S;Chassis And Shortline;;;;Chassis And Shortline;;;TROD;
+;AMG;13494;EV127;EV127;;activepart;S;Chassis And Shortline;;;;Chassis And Shortline;;;TROD;
+;AMG;7390;8594;8594;;activepart;S;Chassis And Shortline;;;;Chassis And Shortline;;;TROD;
+;AMG;7439;8732;8732;;activepart;S;Chassis And Shortline;;;;Chassis And Shortline;;;TROD;
+;AMG;10382;ES3184RL;ES3184RL;80066165462;activepart;S;Chassis And Shortline;;;;Chassis And Shortline;;;TROD;
+;AMG;11607;K8422;K8422;;activepart;S;Chassis And Shortline;;;;Chassis And Shortline;;;RPMB;
+;AMG;11620;K8439;K8439;;activepart;S;Chassis And Shortline;;;;Chassis And Shortline;;;BELOW;
+;AMG;11643;K8495;K8495;;activepart;S;Chassis And Shortline;;;;Chassis And Shortline;;;CABK;
+;AMG;11743;K8634;K8634;;activepart;S;Chassis And Shortline;;;;Chassis And Shortline;;;STMTK;
+;AMG;13494;EV127;EV127;;activepart;S;Chassis And Shortline;;;;Chassis And Shortline;;;TROD;
+;AMG;1936974;K80059;K80059;;activepart;S;Chassis And Shortline;;;;Chassis And Shortline;;;CAWKT;
+;AMG;1945242;K80102;K80102;;activepart;S;Chassis And Shortline;;;;Chassis And Shortline;;;SWBLK;
+;AMG;1949293;K90462;K90462;;activepart;S;Chassis And Shortline;;;;Chassis And Shortline;;;MSB;
+;AMG;1966326;K80114;K80114;;obsoletepart;S;Chassis And Shortline;;;;Chassis And Shortline;;;CABK;
+;AMG;1968856;K90476;K90476;;activepart;S;Chassis And Shortline;;;;Chassis And Shortline;;;CBK;
+;AMG;2181377;K8807;K8807;;activepart;S;Chassis And Shortline;;;;Chassis And Shortline;;;CBUSH;
+;AMG;2283759;K200201;K200201;;activepart;S;Chassis And Shortline;;;;Chassis And Shortline;;;SWBK;
+;AMG;2379141;RK620899;RK620899;;newpart;S;Chassis And Shortline;;;;Chassis And Shortline;;;CBJON;
+;AMG;2379142;RK620900;RK620900;;newpart;S;Chassis And Shortline;;;;Chassis And Shortline;;;CBJON;
+;AMG;2404619;K700537;K700537;;newpart;S;Chassis And Shortline;;;;Chassis And Shortline;;;SWBLK;
+;AMG;374057;K8749;K8749;;activepart;S;Chassis And Shortline;;;;Chassis And Shortline;;;BJONT;
+;AMG;646084;K8788;K8788;80066110714;activepart;S;Chassis And Shortline;;;;Chassis And Shortline;;;SWBK;
+;AMG;646085;K8789;K8789;80066119915;activepart;S;Chassis And Shortline;;;;Chassis And Shortline;;;SWBK;
+;AMG;646086;K8790;K8790;;activepart;S;Chassis And Shortline;;;;Chassis And Shortline;;;SWBK;
+;AMG;646118;K8848;K8848;;activepart;S;Chassis And Shortline;;;;Chassis And Shortline;;;SWBLK;
+;AMG;646372;K9978;K9978;;activepart;S;Chassis And Shortline;;;;Chassis And Shortline;;;SWBK;
+;AMG;7390;8594;8594;;activepart;S;Chassis And Shortline;;;;Chassis And Shortline;;;TROD;
+;AMG;7439;8732;8732;;activepart;S;Chassis And Shortline;;;;Chassis And Shortline;;;TROD;
+#;CHFLF;2312083;CL2;CL2;;activepart;J;Service Line;;;;Service Line;SPIN-ON OIL FILTERS;SPIN-ON OIL FILTERS;CHSOL;
+#;CHFLF;2312091;CL3600;CL3600;;activepart;J;Service Line;;;;Service Line;SPIN-ON OIL FILTERS;SPIN-ON OIL FILTERS;CHSOL;
+#;CHFLF;2312620;82520;82520;;activepart;J;Service Line;;;;Service Line;ROUND AIR FILTERS;ROUND AIR FILTERS;CHRAF;
+#;CHFLF;2312621;82530;82530;;activepart;J;Service Line;;;;Service Line;ROUND AIR FILTERS;ROUND AIR FILTERS;CHRAF;
+;MWG;1598824;MC134458;MC134458;;activepart;C;Brake Components;;;;Brake Components;;;BMCA;;
+;MWG;1598825;MC134459;MC134459;;activepart;C;Brake Components;;;;Brake Components;;;BMCA;;
+;MWG;1598849;H18047;H18047;;activepart;C;Brake Components;;;;Brake Components;;;BPBK;;
+;MWG;1608573;H5641;H5641;;activepart;C;Brake Components;;;;Brake Components;;;DBAK;;
+;MWG;1615318;MX804;MX804;;activepart;C;Brake Components;;;;Brake Components;;;BPAD;;
+;MWG;176715;BD125405;BD125405;;activepart;C;Brake Components;;;;Brake Components;;;BROTR;;
+;MWG;176716;BD125406;BD125406;;supersededpart;C;Brake Components;;;;Brake Components;;;BROTR;;
+;MWG;1794338;SX804;SX804;;activepart;C;Brake Components;;;;Brake Components;;;BPAD;;
+;MWG;186033;MX412;MX412;;activepart;C;Brake Components;;;;Brake Components;;;BPAD;;
+;MWG;190186;H18001;H18001;;activepart;C;Brake Components;;;;Brake Components;;;BPBK;;
+;MWG;191219;H5048;H5048;;activepart;C;Brake Components;;;;Brake Components;;;BGPIN;;
+;MWG;193245;H5076;H5076;;activepart;C;Brake Components;;;;Brake Components;;;BGPIN;;
+;MWG;1935601;BC140051;BC140051;;activepart;C;Brake Components;;;;Brake Components;;;BCAB;;
+;MWG;1935695;BH140190;BH140190;;activepart;C;Brake Components;;;;Brake Components;;;BHOSE;;
+;MWG;1935697;BH140193;BH140193;;activepart;C;Brake Components;;;;Brake Components;;;BHOSE;;
+;MWG;1935698;BH140194;BH140194;;activepart;C;Brake Components;;;;Brake Components;;;BHOSE;;
+;MWG;1935699;BH140195;BH140195;;activepart;C;Brake Components;;;;Brake Components;;;BHOSE;;
+;MWG;196452;PD627A;PD627A;;activepart;C;Brake Components;;;;Brake Components;;;BPAD;;
+;MWG;1965435;BC140294;BC140294;;activepart;C;Brake Components;;;;Brake Components;;;BCAB;;
+;MWG;1966224;BH140191;BH140191;;obsoletepart;C;Brake Components;;;;Brake Components;;;BHOSE;;
+;MWG;196629;SX412;SX412;;obsoletepart;C;Brake Components;;;;Brake Components;;;BPAD;;
+;MWG;2164512;SG627;SG627;;obsoletepart;C;Brake Components;;;;Brake Components;;;DBAK;;
+;MWG;2164543;SG804Q;SG804Q;;obsoletepart;C;Brake Components;;;;Brake Components;;;DBAK;;
+;MWG;2165413;MC140634;MC140634;;activepart;C;Brake Components;;;;Brake Components;;;BMCA;;
+;MWG;2172992;BH141074;BH141074;;activepart;C;Brake Components;;;;Brake Components;;;BHOSE;;
+;MWG;2173043;MC140633;MC140633;;activepart;C;Brake Components;;;;Brake Components;;;BMCA;;
+;MWG;2224785;QC627;QC627;;activepart;C;Brake Components;;;;Brake Components;;;BPAD;;
+;MWG;2226597;BH141073;BH141073;;activepart;C;Brake Components;;;;Brake Components;;;BHOSE;;
+;MWG;2342237;QC804;QC804;;activepart;C;Brake Components;;;;Brake Components;;;BPAD;;
+;MWG;2457563;BD125406E;BD125406E;;newpart;C;Brake Components;;;;Brake Components;;;BROTR;;
+;MWG;648355;H5604;H5604;;activepart;C;Brake Components;;;;Brake Components;;;DBAK;;
+;MWG;648490;H5081;H5081;;activepart;C;Brake Components;;;;Brake Components;;;BGPIN;;
+
+
+INSERT_UPDATE FMPart;code[unique=true];countryOfOriginPrimary;hazardousIndicator;packageEachLevelGTINUPC;packageUOM;quantityOfEachesEachPackage;packageEachHeight;packageEachWidth;packageEachLength;dimensionsUOM;packageEachWeight;weightUOM;freightClass;applicationSpecific;carLightTruck;mediumDutyTruck;heavyDutyTruck;agriculturalEquipment;industrialOffHighwayEquipment;motorcycleATV;snowMobile;personalWatercraft;marine;smallEngine;highPerformance;engineSpecific;transmissionSpecific;nonVehicleSpecific;digitalAssetURL;emissionCode;mSDSSheetAvailable;remanufacturedPart;harmonizedTariffCode;palletFootprintSize;maxCasePerPalletLayer;palletLayerMax;palletFootprintSizeUOM;itemQuantitySize;itemQuantitySizeUOM;containerType;mSDSSheetNumber;$catalogVersion
+;8594;US;false;80066110714;EA;2;5.12;11.12;20;IN;20.3413;LB;85;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Moog/Images/8594_TOP.jpg;1;false;false;7320201000;40x40;25;4;IN;1;EA;EA;;
+;8732;US;false;80066119915;EA;2;5.12;11.12;20;IN;20.5418;LB;85;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Moog/Images/8732_TOP.jpg;1;false;false;7320201000;40x40;25;4;IN;1;EA;EA;;
+#;82530;;;;;;;;;;;;;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;;;;;;;;;;;;;;
+#;83320;;;;;;;;;;;;;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;;;;;;;;;;;;;;
+;BC140051;;false;8536377443;EA;1;1.625;9.75;9.75;IN;2.84;LB;70;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Wagnerbrakes/Images/BC140051_TOP.jpg;1;false;false;8708305020;40 X 48;10;3;IN;1;EA;BX;;
+;BC140294;;false;8536422501;EA;1;1.625;9.75;9.75;IN;2.84;LB;70;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Wagnerbrakes/Images/BC140294_TOP.jpg;1;false;false;8708305020;40 X 48;10;3;IN;1;EA;BX;;
+;BD125405;;false;8536118688;EA;1;4;13.75;13.75;IN;16.87;LB;60;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Wagnerbrakes/Images/BD125405_TOP (2).jpg;1;false;false;8708305020;40 X 48;6;10;IN;1;EA;BX;;
+;BD125406;;false;8536118084;EA;1;3;11.375;11.375;IN;11.58;LB;60;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Wagnerbrakes/Images/BD125406_TOP.jpg;1;false;false;8708305020;40 X 48;8;13;IN;1;EA;BX;;
+;BD125406E;;false;8536711025;EA;1;3;11.375;11.375;IN;11.58;LB;60;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;;1;false;false;8708305020;40 X 48;8;13;IN;1;EA;BX;;
+;BH140190;;false;8536421566;EA;1;1.5;4.5;9.125;IN;0.311;LB;70;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Wagnerbrakes/Images/BH140190_ANG.jpg;1;false;false;8708305020;40 X 48;10;4;IN;1;EA;BX;;
+;BH140193;;false;8536421597;EA;1;2;7.5;7.5;IN;0.679;LB;70;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Wagnerbrakes/Images/BH140193_ANG.jpg;1;false;false;8708305020;40 X 48;10;4;IN;1;EA;BX;;
+;BH140194;;false;8536421603;EA;1;2;7.5;7.5;IN;0.679;LB;70;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Wagnerbrakes/Images/BH140194_ANG.jpg;1;false;false;8708305020;40 X 48;10;4;IN;1;EA;BX;;
+;BH140195;;false;8536421610;EA;1;2;7.5;7.5;IN;0.679;LB;70;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Wagnerbrakes/Images/BH140195_ANG.jpg;1;false;false;8708305020;40 X 48;10;4;IN;1;EA;BX;;
+#;CL2;;;;;;;;;;;;;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;;;;;;;;;;;;;;
+#;CL3600;;;;;;;;;;;;;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;;;;;;;;;;;;;;
+;ES3184RL;US;false;80066165462;EA;1;2;2;13.5;;1.2748;LB;85;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Moog/Images/EV127_TOP.jpg;1;false;false;8708947550;40x40;15;7;IN;1;EA;EA;;
+;EV127;US;false;80066165462;EA;1;2;2;13.5;;1.2748;LB;85;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Moog/Images/EV127_TOP.jpg;1;false;false;8708947550;40x40;15;7;IN;1;EA;EA;;
+;H18001;;false;;EA;1;1.5;2;6.5;IN;0.181;LB;70;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Wagnerbrakes/Images/H18001_TOP.jpg;1;false;false;8302303060;42 X 42;48;4;IN;1;EA;BX;;
+;H18047;;false;;EA;1;1.5;2;6.5;IN;0.04;LB;70;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Wagnerbrakes/Images/H18047_TOP.jpg;1;false;false;8302303060;42 X 42;48;4;IN;1;EA;BX;;
+;H5048;;false;;EA;1;1.5;2;6.5;IN;0.079;LB;60;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Wagnerbrakes/Images/H5048_TOP.jpg;1;false;false;8302303060;42 X 42;48;4;IN;1;EA;BX;;
+;H5076;;false;;EA;1;1.5;2;6.5;IN;0.315;LB;60;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Wagnerbrakes/Images/H5076_TOP.jpg;1;false;false;8302303060;42 X 42;48;4;IN;1;EA;BX;;
+;H5081;;false;;EA;1;1.5;2;6.5;IN;0.313;LB;60;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Wagnerbrakes/Images/H5081_TOP.jpg;1;false;false;8302303060;42 X 42;48;4;IN;1;EA;BX;;
+;H5604;;false;;EA;1;1.5;4;6.5;IN;0.13;LB;70;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Wagnerbrakes/Images/H5604_TOP.jpg;1;false;false;8302303060;42 X 42;48;4;IN;1;EA;BX;;
+;H5641;;false;;EA;1;1.5;4;6.5;IN;0.17;LB;70;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Wagnerbrakes/Images/H5641_TOP.jpg;1;false;false;8302303060;42 X 42;48;4;IN;1;EA;BX;;
+;K200201;IN;false;80066444703;EA;1;3.25;4;5.375;IN;0.6507;LB;65;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;;1;false;false;8708995500;40x40;21;4;IN;1;EA;EA;;
+;K700537;US;false;80066024813;EA;1;1.75;3.313;8;;0.5914;LB;70;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;;1;false;false;8708806590;40x40;15;10;IN;1;EA;EA;;
+;K80059;US;false;80066321233;EA;1;4.125;2;3;IN;0.9044;LB;85;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Moog/Images/K80059_ANG.jpg;1;false;false;8708806590;40x40;28;6;IN;1;EA;EA;;
+;K80102;US;false;80066323015;EA;1;1.75;3.25;6;IN;0.6261;LB;70;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Moog/Images/K80102_ANG.jpg;1;false;false;8708806590;40x40;20;8;IN;1;EA;EA;;
+;K80114;MX;false;80066323909;EA;1;3.25;4;5.375;IN;1.03;LB;65;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Moog/Images/K80114_TOP.jpg;1;false;false;8708806590;40x40;170;4;IN;1;EA;EA;;
+;K8422;US;false;80066169316;EA;4;2.75;3.313;5.25;;0.2496;LB;65;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Moog/Images/K8422_TOP.jpg;1;false;false;8708947550;40x40;21;5;IN;1;EAEA;;
+;K8439;TW;false;80066113920;EA;1;3.25;3.25;9;;0.3458;LB;85;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Moog/Images/K8439_TOP.jpg;1;false;false;8708947550;40x40;17;4;IN;1;EA;EA;;
+;K8495;MX;false;80066401652;EA;2;3.25;4;5.375;;1.9623;LB;65;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Moog/Images/K8495_TOP.jpg;1;false;false;8708806590;40x40;21;4;IN;1;EA;EA;;
+;K8634;TW;false;80066416496;EA;6;4;8.75;9.375;IN;1.3341;LB;70;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Moog/Images/K8634_TOP.jpg;1;false;false;8708806590;40x40;72;4;IN;1;EA;EA;;
+;K8749;US;false;80066298498;EA;1;2.75;3.313;5.25;;1.2809;LB;70;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Moog/Images/K8749_ANG.jpg;1;false;false;8708806590;40x40;21;5;IN;1;EA;EA;;
+;K8788;MX;false;80066284699;EA;1;1.75;3.25;4;IN;0.2885;LB;65;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Moog/Images/K8788_TOP.jpg;1;false;false;8708806590;40x40;29;7;IN;1;EA;EA;;
+;K8789;US;false;80066284705;EA;1;2.75;3.313;5.25;IN;0.3151;LB;65;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Moog/Images/K8789_TOP.jpg;1;false;false;8708806590;40x40;21;5;IN;1;EA;EA;;
+;K8789;US;false;80066284705;EA;1;2.75;3.313;5.25;IN;0.3151;LB;65;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Moog/Images/K8789_TOP.jpg;1;false;false;8708806590;40x40;21;5;IN;1;EA;EA;;
+;K8790;MX;false;80066284712;EA;1;1.75;3.25;6;IN;0.3069;LB;65;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Moog/Images/K8790_TOP.jpg;1;false;false;8708806590;40x40;20;8;IN;1;EA;EA;;
+;K8807;MX;false;80066284835;EA;1;3.25;4;5.375;IN;1.2154;LB;65;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;;1;false;false;8708806590;40x40;21;4;IN;1;EA;EA;;
+;K8848;US;false;80066285078;EA;1;2;3.5;10;;0.6446;LB;70;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Moog/Images/K8848_TOP.jpg;1;false;false;8708806590;40x40;10;6;IN;1;EA;EA;;
+;K90462;US;false;80066323497;EA;1;7.5;3.75;3.75;IN;0.2987;LB;70;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Moog/Images/K90462_ANG.jpg;1;false;false;8708806590;40x40;8;4;IN;1;EA;EA;;
+;K90476;CH;false;80066323985;EA;1;1.75;3.25;4;;0.4031;LB;85;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Moog/Images/K90476_TOP.jpg;1;false;false;8708806590;40x40;29;7;IN;1;EA;EA;;
+;K9978;US;false;80066281636;EA;1;1.75;3.25;4;IN;0.3253;LB;65;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Moog/Images/K9978_TOP.jpg;1;false;false;8708806590;40x40;29;7;IN;1;EA;EA;;
+;MC134458;;false;8536309871;EA;1;6.25;4.5;9.125;IN;1.874;LB;70;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Wagnerbrakes/Images/MC134458_ANG.jpg;1;false;false;8708305020;40 X 48;10;4;IN;1;EA;BX;;
+;MC134459;;false;8536309888;EA;1;6.25;4.5;9.125;IN;1.9;LB;70;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Wagnerbrakes/Images/MC134459_ANG.jpg;1;false;false;8708305020;40 X 48;10;4;IN;1;EA;BX;;
+;MC140634;;false;8536444817;EA;1;5.375;4.625;11.125;IN;1.991;LB;70;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Wagnerbrakes/Images/MC140634_TOP.jpg;1;false;false;8708305020;40 X 48;10;3;IN;1;EA;BX;;
+;MX412;;false;8536930648;EA;1;2.5;5.25;8.5;IN;4.01;LB;60;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Wagnerbrakes/Images/MX412_ANG.jpg;1;true;false;8708305020;40 X 48;19;4;IN;1;EA;BX;5008;;
+;MX804;;false;8536309321;EA;1;2.5;5.25;8.5;IN;4.58;LB;60;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Wagnerbrakes/Images/MX804_ANG.jpg;1;true;false;8708305020;40 X 48;19;4;IN;1;EA;BX;5008;;
+;PD627A;;false;8536138112;EA;1;2.5;4.25;5.25;IN;1.77;LB;60;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Wagnerbrakes/Images/PD627A_ANG.jpg;1;true;false;8708305020;40 X 48;20;7;IN;1;EA;BX;5008;;
+;QC627;;false;8536575412;EA;1;2.5;4.25;5.25;IN;1.71;LB;60;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Wagnerbrakes/Images/QC627_ANG.jpg;1;true;false;8708305020;40 X 48;20;7;IN;1;EA;BX;5008;;
+;QC804;;false;8536648079;EA;1;2.5;5.25;8.5;IN;4.58;LB;60;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Wagnerbrakes/Images/QC804_P04_TOP.jpg;1;true;false;8708305020;40 X 48;19;4;IN;1;EA;BX;5008;;
+;RK620899;TW;false;;EA;1;6.75;21.25;21;IN;6.38;LB;70;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;;1;false;false;8708806590;40x40;12;4;IN;1;EA;CG;;;
+;RK620900;TW;false;;EA;1;6.75;21.25;21;IN;6.38;LB;70;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;;1;false;false;8708806590;40x40;12;4;IN;1;EA;CG;;;
+;SG627;;false;;EA;1;1.5;3;7.88;IN;0.119;LB;70;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Wagnerbrakes/Images/SG627_ANG.jpg;1;;false;8708300000;40 X 48;20;4;IN;1;EA;BX;;
+;SG804Q;;false;;EA;1;1.5;3;7.88;IN;0.161;LB;70;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Wagnerbrakes/Images/SG804Q_ANG.jpg;1;;false;8708300000;40 X 48;20;4;IN;1;EA;BX;;
+;SX804;;false;8536404095;EA;1;2.5;5.25;8.5;IN;4.37;LB;60;true;true;false;false;false;false;false;false;false;false;false;false;false;false;false;http://www.opticatnetwork.com/Media/Federalmogul/Wagnerbrakes/Images/SX804_TOP.jpg;1;true;false;8708305020;40 X 48;19;4;IN;1;EA;BX;5008;;
+
+
+
+
+
+
+
+
+
+
+
+

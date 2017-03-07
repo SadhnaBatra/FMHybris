@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sch:schema xmlns="http://www.ascc.net/xml/schematron" xmlns:oa="http://www.openapplications.org/oagis" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ascc.net/xml/schematron ../../../Utility/Schematron/schematron1-5.xsd">
+	<sch:title>Schematron Validator for OAGI Constraints</sch:title>
+	<sch:ns prefix="oa" uri="http://www.openapplications.org/oagis"/>
+	<sch:pattern name="Sync ItemMaster">
+		<sch:rule context="oa:ItemMaster">
+			<sch:assert test="oa:Header">Sync ItemMaster must have an "Header" component specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Header">
+		<sch:rule context="oa:ItemMaster/oa:Header">
+			<sch:assert test="oa:ItemId/oa:Id">The ItemHeader must have an "ItemId" and "Id" specified</sch:assert>
+			<sch:assert test="oa:Type">The ItemHeader must have a "Type" specified</sch:assert>
+			<sch:assert test="oa:UOM">The ItemHeader must have a "UOM" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="AlternateUOM">
+		<sch:rule context="oa:AlternateUOM">
+			<sch:assert test="oa:Multiplier">The AlternateUOM must have a "Multiplier" specified</sch:assert>
+			<sch:assert test="oa:UOM">The AlternateUOM must have an "UOM" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="ItemLocation">
+		<sch:rule context="oa:ItemLocation">
+			<sch:assert test="oa:Site">The ItemLocation must have a "Site" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="ItemValue">
+		<sch:rule context="oa:Value">
+			<sch:assert test="oa:ItemValue">The Value must have an "ItemValue" specified</sch:assert>
+			<sch:assert test="oa:CostType">The ItemValue must have an "CostType" specified</sch:assert>
+			<sch:assert test="oa:ValueClass | oa:GLNominalAccount">The ItemValue must have a "ValueClass " or "GLNominalAccount" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+</sch:schema>

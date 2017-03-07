@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoints xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime"
+	version="2.0">
+
+	<endpoint name="InternetPartsOrderWebServiceSoap"
+		      implementation="com.fmo.wom.webservice.IpoService121Impl"
+		      wsdl="WEB-INF/wsdl/ipo121/InternetPartsOrder.wsdl"
+		      url-pattern="/services/121/InternetPartsOrderWebService" />
+	
+	<endpoint name="InternetPartsOrderWebServiceSoap"
+		      implementation="com.fmo.wom.webservice.IpoService21Impl"
+		      wsdl="WEB-INF/wsdl/ipo201/InternetPartsOrder.wsdl"
+		      url-pattern="/services/21/InternetPartsOrderWebService" />
+
+</endpoints>

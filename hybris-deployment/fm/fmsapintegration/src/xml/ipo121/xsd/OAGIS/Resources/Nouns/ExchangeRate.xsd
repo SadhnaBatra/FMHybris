@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/ExchangeRate.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Components.xsd"/>
+        <xs:complexType name="ExchangeRate">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Information that applies to the exchange rate ratio.</xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                        <xs:extension base="Noun">
+                                <xs:sequence>
+                                        <xs:element name="From" type="Currency" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Represents the currency that is to be exchanged by applying the exchange rate to calculate the "to" currency.  The equation becomes To = From times Multiplier.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="To" type="Currency" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Represents the currency that is the result of applying an exchange rate to the "from" currency.  The equation becomes To = From times Multiplier</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="Multiplier" type="Factor" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">The number multiplied by the From currency to arrive at the To currency.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="EffectivePeriod" type="TimePeriodAny" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">The time period that this exchange rate effective. If Start is omitted, exchange rate is effective until End. If End is omitted, the exchange rate becomes effective at  Start. </xs:documentation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Should this be effective dates?</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element name="GLEntitySource" type="GLEntity" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">The primary balancing element of the GL Account structure.  Typically, this is the owning entity for the transaction.  A G/L entity is the smallest organizational unit for which individual financial statements must be drawn up according to relevant commercial law.  P&amp;L statements are required at this level.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="RateType" type="ExchangeRateType" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Used to distinguish the rate based on the nature the business process of the transaction.Example: Daily,	Corporate, End of Period.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="GLEntity" type="GLEntity" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">The primary balancing element of the GL Account structure.  Typically, this is the owning entity for the transaction.  A G/L entity is the smallest organizational unit for which individual financial statements must be drawn up according to relevant commercial law.  P&amp;L statements are required at this level.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="Note" type="Note" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:element name="ExchangeRate" type="ExchangeRate" substitutionGroup="Noun">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Information that applies to the exchange rate ratio.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:simpleType name="ExchangeRateType">
+                <xs:restriction base="xs:string"/>
+        </xs:simpleType>
+</xs:schema>

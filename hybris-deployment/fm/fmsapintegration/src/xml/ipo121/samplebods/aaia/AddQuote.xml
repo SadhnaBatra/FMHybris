@@ -1,0 +1,1847 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aaia:AddQuote environment="Production" lang="en-US" revision="" xmlns:aaia="http://www.aftermarket.org/oagis" xmlns:p="http://www.openapplications.org/oagis" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.aftermarket.org/oagis ../../xsd/AAIA/BODs/AddQuote.xsd ">
+  <p:ApplicationArea>
+    <p:Sender>
+      <p:LogicalId>p:LogicalId</p:LogicalId>
+      <p:Component>p:Component</p:Component>
+      <p:Task>p:Task</p:Task>
+      <p:ReferenceId>p:ReferenceId</p:ReferenceId>
+      <p:Confirmation>0</p:Confirmation>
+      <p:AuthorizationId>p:AuthorizationId</p:AuthorizationId>
+    </p:Sender>
+    <p:CreationDateTime>2001-12-31T12:00:00</p:CreationDateTime>
+    <p:Signature qualifyingAgency=""/>
+    <p:BODId>p:BODId</p:BODId>
+    <p:UserArea/>
+  </p:ApplicationArea>
+  <p:DataArea>
+    <p:Add confirm="Always"/>
+    <p:Quote>
+      <p:Header>
+        <p:DocumentIds>
+          <p:DocumentId xsi:type="p:DocumentIdType">
+            <p:Id>p:Id</p:Id>
+            <p:Revision xsi:type="p:Revision">p:Revision</p:Revision>
+          </p:DocumentId>
+        </p:DocumentIds>
+        <p:LastModificationDateTime>2001-12-31T12:00:00</p:LastModificationDateTime>
+        <p:DocumentDateTime>2001-12-31T12:00:00</p:DocumentDateTime>
+        <p:Description lang="EN" owner="">p:Description</p:Description>
+        <p:Note author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:Note</p:Note>
+        <p:DocumentReferences>
+          <p:PurchaseOrderDocumentReference>
+            <p:DocumentIds>
+              <p:DocumentId xsi:type="p:DocumentIdType">
+                <p:Id>p:Id</p:Id>
+                <p:Revision xsi:type="p:Revision">p:Revision</p:Revision>
+              </p:DocumentId>
+            </p:DocumentIds>
+            <p:DocumentDate>p:DocumentDate</p:DocumentDate>
+            <p:LineNumber>1</p:LineNumber>
+            <p:ScheduleLineNumber>1</p:ScheduleLineNumber>
+            <p:SubLineNumber>1</p:SubLineNumber>
+            <p:UserArea/>
+          </p:PurchaseOrderDocumentReference>
+        </p:DocumentReferences>
+        <p:Attachments>
+          <p:Attachment inline="false">
+            <p:EmbeddedData encoding="base64">
+              <p:Data xsi:type="anyType"/>
+            </p:EmbeddedData>
+            <p:DocumentDate>p:DocumentDate</p:DocumentDate>
+            <p:Description lang="EN" owner="">p:Description</p:Description>
+            <p:FileType>p:FileType</p:FileType>
+            <p:FileSize>0.0</p:FileSize>
+            <p:Note author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:Note</p:Note>
+            <p:Title lang="EN" xsi:type="p:LingualString">p:Title</p:Title>
+            <p:UserArea/>
+          </p:Attachment>
+        </p:Attachments>
+        <p:OrderStatus entryDateTime="2001-12-31T12:00:00">
+          <p:Code>Open</p:Code>
+          <p:Description lang="EN" owner="">p:Description</p:Description>
+          <p:AcknowledgementDetail xsi:type="p:Status">
+            <p:Code>p:Code</p:Code>
+            <p:Description lang="EN" owner="">p:Description</p:Description>
+            <p:Change>
+              <p:From>p:From</p:From>
+              <p:To>p:To</p:To>
+              <p:ChangeDate>p:ChangeDate</p:ChangeDate>
+              <p:Description lang="EN" owner="">p:Description</p:Description>
+              <p:UserArea/>
+            </p:Change>
+            <p:UserArea/>
+          </p:AcknowledgementDetail>
+          <p:UserArea/>
+        </p:OrderStatus>
+        <p:SpecialPriceAuthorization>p:SpecialPriceAuthorization</p:SpecialPriceAuthorization>
+        <p:TaxWithholdingExempt>true</p:TaxWithholdingExempt>
+        <p:License type="Import">true</p:License>
+        <p:FreightClass>p:FreightClass</p:FreightClass>
+        <p:ShipNote author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:ShipNote</p:ShipNote>
+        <p:DropShipInd>true</p:DropShipInd>
+        <p:BackOrderedInd>true</p:BackOrderedInd>
+        <p:ShipPriorToDueDateInd>true</p:ShipPriorToDueDateInd>
+        <p:Priority>p:Priority</p:Priority>
+        <p:ReasonCode>p:ReasonCode</p:ReasonCode>
+        <p:EarliestShipDate>p:EarliestShipDate</p:EarliestShipDate>
+        <p:NeedDeliveryDate>p:NeedDeliveryDate</p:NeedDeliveryDate>
+        <p:PromisedDeliveryDate>p:PromisedDeliveryDate</p:PromisedDeliveryDate>
+        <p:PromisedShipDate>p:PromisedShipDate</p:PromisedShipDate>
+        <p:ExtendedPrice currency="" xsi:type="p:Amount">0.0</p:ExtendedPrice>
+        <p:TotalAmount currency="" xsi:type="p:Amount">0.0</p:TotalAmount>
+        <p:TransportationTerm>
+          <p:TermCode issuingAgency="">p:TermCode</p:TermCode>
+          <p:PlaceOfOwnershipTransfer>
+            <p:Name lang="EN">p:Name</p:Name>
+            <p:Id>p:Id</p:Id>
+            <p:Description lang="EN" owner="">p:Description</p:Description>
+            <p:PostalAddress>
+              <p:AddressId qualifyingAgency="">p:AddressId</p:AddressId>
+              <p:AddressLine>p:AddressLine</p:AddressLine>
+              <p:City>p:City</p:City>
+              <p:County>p:County</p:County>
+              <p:StateOrProvince>p:StateOrProvince</p:StateOrProvince>
+              <p:Country>p:Country</p:Country>
+              <p:Region>p:Region</p:Region>
+              <p:PostalCode>p:PostalCode</p:PostalCode>
+              <p:Description lang="EN" owner="">p:Description</p:Description>
+              <p:UserArea/>
+            </p:PostalAddress>
+            <p:GPSCoordinates>
+              <p:GPSSystemType xsi:type="anyType"/>
+              <p:Latitude xsi:type="anyType"/>
+              <p:Longitude xsi:type="anyType"/>
+              <p:UserArea/>
+            </p:GPSCoordinates>
+            <p:LocationRelationship>
+              <p:Binder>p:Binder</p:Binder>
+              <p:Location/>
+              <p:UserArea/>
+            </p:LocationRelationship>
+            <p:Note author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:Note</p:Note>
+            <p:UserArea/>
+          </p:PlaceOfOwnershipTransfer>
+          <p:FreightTerms>p:FreightTerms</p:FreightTerms>
+          <p:UserArea/>
+        </p:TransportationTerm>
+        <p:PaymentTerms>
+          <p:TermId xsi:type="p:Id">p:TermId</p:TermId>
+          <p:Description lang="EN" owner="">p:Description</p:Description>
+          <p:LineNumber>p:LineNumber</p:LineNumber>
+          <p:DiscountAmount currency="" xsi:type="p:Amount">0.0</p:DiscountAmount>
+          <p:UserArea/>
+        </p:PaymentTerms>
+        <p:Charges>
+          <p:Charge>
+            <p:Id>p:Id</p:Id>
+            <p:Total currency="" xsi:type="p:Amount">0.0</p:Total>
+            <p:Cost>
+              <p:Amount currency="" xsi:type="p:Amount">0.0</p:Amount>
+              <p:FunctionalAmout currency="" xsi:type="p:Amount">0.0</p:FunctionalAmout>
+              <p:PerQuantity uom="NMTOKEN">0.0</p:PerQuantity>
+            </p:Cost>
+            <p:Description lang="EN" owner="">p:Description</p:Description>
+            <p:Distribution>
+              <p:Amount>
+                <p:Actual currency="" xsi:type="p:Amount">0.0</p:Actual>
+                <p:Converted conversionFactor="0.0" currency="">0.0</p:Converted>
+              </p:Amount>
+              <p:Ledger>p:Ledger</p:Ledger>
+              <p:GLEntity>p:GLEntity</p:GLEntity>
+              <p:Project>
+                <p:Id>p:Id</p:Id>
+                <p:Status>p:Status</p:Status>
+                <p:DocumentDateTime>2001-12-31T12:00:00</p:DocumentDateTime>
+                <p:EffectivePeriod inclusive="true">
+                  <p:From>p:From</p:From>
+                  <p:Duration>P1D</p:Duration>
+                </p:EffectivePeriod>
+                <p:Authorization>
+                  <p:Id>p:Id</p:Id>
+                  <p:Type>p:Type</p:Type>
+                  <p:Status xsi:type="p:Status">
+                    <p:Code>p:Code</p:Code>
+                    <p:Description lang="EN" owner="">p:Description</p:Description>
+                    <p:Change>
+                      <p:From>p:From</p:From>
+                      <p:To>p:To</p:To>
+                      <p:ChangeDate>p:ChangeDate</p:ChangeDate>
+                      <p:Description lang="EN" owner="">p:Description</p:Description>
+                      <p:UserArea/>
+                    </p:Change>
+                    <p:UserArea/>
+                  </p:Status>
+                  <p:DateAuthorized>p:DateAuthorized</p:DateAuthorized>
+                  <p:EffectivePeriod inclusive="true">
+                    <p:From>p:From</p:From>
+                    <p:Duration>P1D</p:Duration>
+                  </p:EffectivePeriod>
+                  <p:AuthorizationCode>p:AuthorizationCode</p:AuthorizationCode>
+                  <p:UserArea/>
+                </p:Authorization>
+                <p:TransactionType>p:TransactionType</p:TransactionType>
+                <p:TotalCost>
+                  <p:Actual currency="" xsi:type="p:Amount">0.0</p:Actual>
+                  <p:Converted conversionFactor="0.0" currency="">0.0</p:Converted>
+                </p:TotalCost>
+                <p:SourceGLEntity>p:SourceGLEntity</p:SourceGLEntity>
+                <p:GLElement>
+                  <p:NameValue name="" type="">p:NameValue</p:NameValue>
+                  <p:Description lang="EN" owner="">p:Description</p:Description>
+                  <p:Note author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:Note</p:Note>
+                  <p:UserArea/>
+                </p:GLElement>
+                <p:ProjectResourceCategory>p:ProjectResourceCategory</p:ProjectResourceCategory>
+                <p:Activity>
+                  <p:Id>p:Id</p:Id>
+                  <p:Status>p:Status</p:Status>
+                  <p:Cost>
+                    <p:Actual currency="" xsi:type="p:Amount">0.0</p:Actual>
+                    <p:Converted conversionFactor="0.0" currency="">0.0</p:Converted>
+                  </p:Cost>
+                  <p:Description lang="EN" owner="">p:Description</p:Description>
+                  <p:Note author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:Note</p:Note>
+                  <p:UserArea/>
+                </p:Activity>
+                <p:UserArea/>
+              </p:Project>
+              <p:UserArea/>
+            </p:Distribution>
+            <p:UserArea/>
+          </p:Charge>
+          <p:TotalCharge>
+            <p:Id>p:Id</p:Id>
+            <p:Total currency="" xsi:type="p:Amount">0.0</p:Total>
+            <p:Cost>
+              <p:Amount currency="" xsi:type="p:Amount">0.0</p:Amount>
+              <p:FunctionalAmout currency="" xsi:type="p:Amount">0.0</p:FunctionalAmout>
+              <p:PerQuantity uom="NMTOKEN">0.0</p:PerQuantity>
+            </p:Cost>
+            <p:Description lang="EN" owner="">p:Description</p:Description>
+            <p:Distribution>
+              <p:Amount>
+                <p:Actual currency="" xsi:type="p:Amount">0.0</p:Actual>
+                <p:Converted conversionFactor="0.0" currency="">0.0</p:Converted>
+              </p:Amount>
+              <p:Ledger>p:Ledger</p:Ledger>
+              <p:GLEntity>p:GLEntity</p:GLEntity>
+              <p:Project>
+                <p:Id>p:Id</p:Id>
+                <p:Status>p:Status</p:Status>
+                <p:DocumentDateTime>2001-12-31T12:00:00</p:DocumentDateTime>
+                <p:EffectivePeriod inclusive="true">
+                  <p:From>p:From</p:From>
+                  <p:Duration>P1D</p:Duration>
+                </p:EffectivePeriod>
+                <p:Authorization>
+                  <p:Id>p:Id</p:Id>
+                  <p:Type>p:Type</p:Type>
+                  <p:Status xsi:type="p:Status">
+                    <p:Code>p:Code</p:Code>
+                    <p:Description lang="EN" owner="">p:Description</p:Description>
+                    <p:Change>
+                      <p:From>p:From</p:From>
+                      <p:To>p:To</p:To>
+                      <p:ChangeDate>p:ChangeDate</p:ChangeDate>
+                      <p:Description lang="EN" owner="">p:Description</p:Description>
+                      <p:UserArea/>
+                    </p:Change>
+                    <p:UserArea/>
+                  </p:Status>
+                  <p:DateAuthorized>p:DateAuthorized</p:DateAuthorized>
+                  <p:EffectivePeriod inclusive="true">
+                    <p:From>p:From</p:From>
+                    <p:Duration>P1D</p:Duration>
+                  </p:EffectivePeriod>
+                  <p:AuthorizationCode>p:AuthorizationCode</p:AuthorizationCode>
+                  <p:UserArea/>
+                </p:Authorization>
+                <p:TransactionType>p:TransactionType</p:TransactionType>
+                <p:TotalCost>
+                  <p:Actual currency="" xsi:type="p:Amount">0.0</p:Actual>
+                  <p:Converted conversionFactor="0.0" currency="">0.0</p:Converted>
+                </p:TotalCost>
+                <p:SourceGLEntity>p:SourceGLEntity</p:SourceGLEntity>
+                <p:GLElement>
+                  <p:NameValue name="" type="">p:NameValue</p:NameValue>
+                  <p:Description lang="EN" owner="">p:Description</p:Description>
+                  <p:Note author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:Note</p:Note>
+                  <p:UserArea/>
+                </p:GLElement>
+                <p:ProjectResourceCategory>p:ProjectResourceCategory</p:ProjectResourceCategory>
+                <p:Activity>
+                  <p:Id>p:Id</p:Id>
+                  <p:Status>p:Status</p:Status>
+                  <p:Cost>
+                    <p:Actual currency="" xsi:type="p:Amount">0.0</p:Actual>
+                    <p:Converted conversionFactor="0.0" currency="">0.0</p:Converted>
+                  </p:Cost>
+                  <p:Description lang="EN" owner="">p:Description</p:Description>
+                  <p:Note author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:Note</p:Note>
+                  <p:UserArea/>
+                </p:Activity>
+                <p:UserArea/>
+              </p:Project>
+              <p:UserArea/>
+            </p:Distribution>
+            <p:UserArea/>
+          </p:TotalCharge>
+        </p:Charges>
+        <p:Distribution>
+          <p:Amount>
+            <p:Actual currency="" xsi:type="p:Amount">0.0</p:Actual>
+            <p:Converted conversionFactor="0.0" currency="">0.0</p:Converted>
+          </p:Amount>
+          <p:Ledger>p:Ledger</p:Ledger>
+          <p:GLEntity>p:GLEntity</p:GLEntity>
+          <p:Project>
+            <p:Id>p:Id</p:Id>
+            <p:Status>p:Status</p:Status>
+            <p:DocumentDateTime>2001-12-31T12:00:00</p:DocumentDateTime>
+            <p:EffectivePeriod inclusive="true">
+              <p:From>p:From</p:From>
+              <p:Duration>P1D</p:Duration>
+            </p:EffectivePeriod>
+            <p:Authorization>
+              <p:Id>p:Id</p:Id>
+              <p:Type>p:Type</p:Type>
+              <p:Status xsi:type="p:Status">
+                <p:Code>p:Code</p:Code>
+                <p:Description lang="EN" owner="">p:Description</p:Description>
+                <p:Change>
+                  <p:From>p:From</p:From>
+                  <p:To>p:To</p:To>
+                  <p:ChangeDate>p:ChangeDate</p:ChangeDate>
+                  <p:Description lang="EN" owner="">p:Description</p:Description>
+                  <p:UserArea/>
+                </p:Change>
+                <p:UserArea/>
+              </p:Status>
+              <p:DateAuthorized>p:DateAuthorized</p:DateAuthorized>
+              <p:EffectivePeriod inclusive="true">
+                <p:From>p:From</p:From>
+                <p:Duration>P1D</p:Duration>
+              </p:EffectivePeriod>
+              <p:AuthorizationCode>p:AuthorizationCode</p:AuthorizationCode>
+              <p:UserArea/>
+            </p:Authorization>
+            <p:TransactionType>p:TransactionType</p:TransactionType>
+            <p:TotalCost>
+              <p:Actual currency="" xsi:type="p:Amount">0.0</p:Actual>
+              <p:Converted conversionFactor="0.0" currency="">0.0</p:Converted>
+            </p:TotalCost>
+            <p:SourceGLEntity>p:SourceGLEntity</p:SourceGLEntity>
+            <p:GLElement>
+              <p:NameValue name="" type="">p:NameValue</p:NameValue>
+              <p:Description lang="EN" owner="">p:Description</p:Description>
+              <p:Note author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:Note</p:Note>
+              <p:UserArea/>
+            </p:GLElement>
+            <p:ProjectResourceCategory>p:ProjectResourceCategory</p:ProjectResourceCategory>
+            <p:Activity>
+              <p:Id>p:Id</p:Id>
+              <p:Status>p:Status</p:Status>
+              <p:Cost>
+                <p:Actual currency="" xsi:type="p:Amount">0.0</p:Actual>
+                <p:Converted conversionFactor="0.0" currency="">0.0</p:Converted>
+              </p:Cost>
+              <p:Description lang="EN" owner="">p:Description</p:Description>
+              <p:Note author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:Note</p:Note>
+              <p:UserArea/>
+            </p:Activity>
+            <p:UserArea/>
+          </p:Project>
+          <p:UserArea/>
+        </p:Distribution>
+        <p:Parties>
+          <p:SoldToParty active="false" oneTime="false">
+            <p:PartyId xsi:type="p:PartyIdType">
+              <p:Id>p:Id</p:Id>
+              <p:SCAC>p:SCAC</p:SCAC>
+              <p:DUNS>p:DUNS</p:DUNS>
+            </p:PartyId>
+            <p:AlternatePartyIds>
+              <p:BillToPartyId>
+                <p:Id>p:Id</p:Id>
+                <p:SCAC>p:SCAC</p:SCAC>
+                <p:DUNS>p:DUNS</p:DUNS>
+                <p:AssigningPartyId xsi:type="p:PartyIdType">
+                  <p:Id>p:Id</p:Id>
+                  <p:SCAC>p:SCAC</p:SCAC>
+                  <p:DUNS>p:DUNS</p:DUNS>
+                </p:AssigningPartyId>
+              </p:BillToPartyId>
+            </p:AlternatePartyIds>
+            <p:Name lang="EN">p:Name</p:Name>
+            <p:Business>
+              <p:Id>p:Id</p:Id>
+              <p:Function>p:Function</p:Function>
+              <p:Name lang="EN">p:Name</p:Name>
+              <p:RelatedUnit>
+                <p:Relationship>p:Relationship</p:Relationship>
+                <p:Unit/>
+              </p:RelatedUnit>
+              <p:UserArea/>
+            </p:Business>
+            <p:Currency>p:Currency</p:Currency>
+            <p:Description lang="EN" owner="">p:Description</p:Description>
+            <p:GLEntity>p:GLEntity</p:GLEntity>
+            <p:PaymentMethod>Credit Card</p:PaymentMethod>
+            <p:Rating>Good</p:Rating>
+            <p:TaxExemptInd>true</p:TaxExemptInd>
+            <p:TaxId xsi:type="p:Id">p:TaxId</p:TaxId>
+            <p:TermId xsi:type="p:Id">p:TermId</p:TermId>
+            <p:Addresses>
+              <p:Address>
+                <p:AddressId qualifyingAgency="">p:AddressId</p:AddressId>
+                <p:AddressLine>p:AddressLine</p:AddressLine>
+                <p:City>p:City</p:City>
+                <p:County>p:County</p:County>
+                <p:StateOrProvince>p:StateOrProvince</p:StateOrProvince>
+                <p:Country>p:Country</p:Country>
+                <p:Region>p:Region</p:Region>
+                <p:PostalCode>p:PostalCode</p:PostalCode>
+                <p:Description lang="EN" owner="">p:Description</p:Description>
+                <p:Telephone>p:Telephone</p:Telephone>
+                <p:FaxNumber>p:FaxNumber</p:FaxNumber>
+                <p:EMailAddress>p:EMailAddress</p:EMailAddress>
+                <p:URI>http://tempuri.org</p:URI>
+                <p:TaxJurisdiction>p:TaxJurisdiction</p:TaxJurisdiction>
+                <p:UserArea/>
+              </p:Address>
+            </p:Addresses>
+            <p:Contacts>
+              <p:ContactAbs>
+                <p:Person>
+                  <p:PersonCode>p:PersonCode</p:PersonCode>
+                  <p:PersonName>
+                    <p:Salutation lang="EN">p:Salutation</p:Salutation>
+                    <p:GivenName lang="EN">p:GivenName</p:GivenName>
+                    <p:PreferredGivenName lang="EN">p:PreferredGivenName</p:PreferredGivenName>
+                    <p:MiddleName lang="EN">p:MiddleName</p:MiddleName>
+                    <p:FamilyName lang="EN">p:FamilyName</p:FamilyName>
+                    <p:Suffix lang="EN">p:Suffix</p:Suffix>
+                    <p:FormattedName lang="EN">p:FormattedName</p:FormattedName>
+                    <p:UserArea/>
+                  </p:PersonName>
+                  <p:UserArea/>
+                </p:Person>
+                <p:Telephone>p:Telephone</p:Telephone>
+                <p:EMailAddress>p:EMailAddress</p:EMailAddress>
+                <p:Fax>p:Fax</p:Fax>
+                <p:URI>http://tempuri.org</p:URI>
+                <p:Description lang="EN" owner="">p:Description</p:Description>
+                <p:Addresses>
+                  <p:Address>
+                    <p:AddressId qualifyingAgency="">p:AddressId</p:AddressId>
+                    <p:AddressLine>p:AddressLine</p:AddressLine>
+                    <p:City>p:City</p:City>
+                    <p:County>p:County</p:County>
+                    <p:StateOrProvince>p:StateOrProvince</p:StateOrProvince>
+                    <p:Country>p:Country</p:Country>
+                    <p:Region>p:Region</p:Region>
+                    <p:PostalCode>p:PostalCode</p:PostalCode>
+                    <p:Description lang="EN" owner="">p:Description</p:Description>
+                    <p:Telephone>p:Telephone</p:Telephone>
+                    <p:FaxNumber>p:FaxNumber</p:FaxNumber>
+                    <p:EMailAddress>p:EMailAddress</p:EMailAddress>
+                    <p:URI>http://tempuri.org</p:URI>
+                    <p:TaxJurisdiction>p:TaxJurisdiction</p:TaxJurisdiction>
+                    <p:UserArea/>
+                  </p:Address>
+                </p:Addresses>
+                <p:UserArea/>
+              </p:ContactAbs>
+            </p:Contacts>
+            <p:Attachments>
+              <p:Attachment inline="false">
+                <p:EmbeddedData encoding="base64">
+                  <p:Data xsi:type="anyType"/>
+                </p:EmbeddedData>
+                <p:DocumentDate>p:DocumentDate</p:DocumentDate>
+                <p:Description lang="EN" owner="">p:Description</p:Description>
+                <p:FileType>p:FileType</p:FileType>
+                <p:FileSize>0.0</p:FileSize>
+                <p:Note author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:Note</p:Note>
+                <p:Title lang="EN" xsi:type="p:LingualString">p:Title</p:Title>
+                <p:UserArea/>
+              </p:Attachment>
+            </p:Attachments>
+            <p:CorrespondenceLanguage>EN</p:CorrespondenceLanguage>
+            <p:Qualification>
+              <p:NameValue name="" type="">p:NameValue</p:NameValue>
+              <p:Description lang="EN" owner="">p:Description</p:Description>
+              <p:Note author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:Note</p:Note>
+              <p:UserArea/>
+            </p:Qualification>
+            <p:UserArea/>
+          </p:SoldToParty>
+        </p:Parties>
+        <p:EffectivePeriod inclusive="true">
+          <p:From>p:From</p:From>
+          <p:Duration>P1D</p:Duration>
+        </p:EffectivePeriod>
+        <p:DeliveryFlexibililityDuration>P1D</p:DeliveryFlexibililityDuration>
+        <p:Site>
+          <p:Name lang="EN">p:Name</p:Name>
+          <p:Id>p:Id</p:Id>
+          <p:Description lang="EN" owner="">p:Description</p:Description>
+          <p:PostalAddress>
+            <p:AddressId qualifyingAgency="">p:AddressId</p:AddressId>
+            <p:AddressLine>p:AddressLine</p:AddressLine>
+            <p:City>p:City</p:City>
+            <p:County>p:County</p:County>
+            <p:StateOrProvince>p:StateOrProvince</p:StateOrProvince>
+            <p:Country>p:Country</p:Country>
+            <p:Region>p:Region</p:Region>
+            <p:PostalCode>p:PostalCode</p:PostalCode>
+            <p:Description lang="EN" owner="">p:Description</p:Description>
+            <p:UserArea/>
+          </p:PostalAddress>
+          <p:GPSCoordinates>
+            <p:GPSSystemType xsi:type="anyType"/>
+            <p:Latitude xsi:type="anyType"/>
+            <p:Longitude xsi:type="anyType"/>
+            <p:UserArea/>
+          </p:GPSCoordinates>
+          <p:LocationRelationship>
+            <p:Binder>p:Binder</p:Binder>
+            <p:Location/>
+            <p:UserArea/>
+          </p:LocationRelationship>
+          <p:Note author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:Note</p:Note>
+          <p:UserArea/>
+        </p:Site>
+        <p:SalesInformation>
+          <p:SalesPerson>
+            <p:Person>
+              <p:PersonCode>p:PersonCode</p:PersonCode>
+              <p:PersonName>
+                <p:Salutation lang="EN">p:Salutation</p:Salutation>
+                <p:GivenName lang="EN">p:GivenName</p:GivenName>
+                <p:PreferredGivenName lang="EN">p:PreferredGivenName</p:PreferredGivenName>
+                <p:MiddleName lang="EN">p:MiddleName</p:MiddleName>
+                <p:FamilyName lang="EN">p:FamilyName</p:FamilyName>
+                <p:Suffix lang="EN">p:Suffix</p:Suffix>
+                <p:FormattedName lang="EN">p:FormattedName</p:FormattedName>
+                <p:UserArea/>
+              </p:PersonName>
+              <p:UserArea/>
+            </p:Person>
+            <p:Telephone>p:Telephone</p:Telephone>
+            <p:EMailAddress>p:EMailAddress</p:EMailAddress>
+            <p:Fax>p:Fax</p:Fax>
+            <p:URI>http://tempuri.org</p:URI>
+            <p:Description lang="EN" owner="">p:Description</p:Description>
+            <p:Addresses>
+              <p:Address>
+                <p:AddressId qualifyingAgency="">p:AddressId</p:AddressId>
+                <p:AddressLine>p:AddressLine</p:AddressLine>
+                <p:City>p:City</p:City>
+                <p:County>p:County</p:County>
+                <p:StateOrProvince>p:StateOrProvince</p:StateOrProvince>
+                <p:Country>p:Country</p:Country>
+                <p:Region>p:Region</p:Region>
+                <p:PostalCode>p:PostalCode</p:PostalCode>
+                <p:Description lang="EN" owner="">p:Description</p:Description>
+                <p:Telephone>p:Telephone</p:Telephone>
+                <p:FaxNumber>p:FaxNumber</p:FaxNumber>
+                <p:EMailAddress>p:EMailAddress</p:EMailAddress>
+                <p:URI>http://tempuri.org</p:URI>
+                <p:TaxJurisdiction>p:TaxJurisdiction</p:TaxJurisdiction>
+                <p:UserArea/>
+              </p:Address>
+            </p:Addresses>
+            <p:UserArea/>
+          </p:SalesPerson>
+          <p:SalesOrganization>p:SalesOrganization</p:SalesOrganization>
+          <p:UserArea/>
+        </p:SalesInformation>
+        <p:Message>
+          <p:MessageId xsi:type="p:Id">p:MessageId</p:MessageId>
+          <p:MessageType>p:MessageType</p:MessageType>
+          <p:MessageText lang="EN" xsi:type="p:LingualString">p:MessageText</p:MessageText>
+          <p:Description lang="EN" owner="">p:Description</p:Description>
+          <p:Note author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:Note</p:Note>
+          <p:Sender>
+            <p:LogicalId>p:LogicalId</p:LogicalId>
+            <p:Component>p:Component</p:Component>
+            <p:Task>p:Task</p:Task>
+            <p:ReferenceId>p:ReferenceId</p:ReferenceId>
+            <p:Confirmation>0</p:Confirmation>
+            <p:AuthorizationId>p:AuthorizationId</p:AuthorizationId>
+          </p:Sender>
+          <p:UserArea/>
+        </p:Message>
+        <p:UserArea/>
+      </p:Header>
+      <p:Line>
+        <p:LineNumber>p:LineNumber</p:LineNumber>
+        <p:OrderItem>
+          <p:ItemIds>
+            <p:ItemId xsi:type="p:ItemIdType">
+              <p:Id>p:Id</p:Id>
+              <p:EANUCC13 url="">p:EANUCC13</p:EANUCC13>
+              <p:UPC url="">p:UPC</p:UPC>
+              <p:Revision xsi:type="p:Revision">p:Revision</p:Revision>
+            </p:ItemId>
+            <p:SupplierItemId>
+              <p:Id>p:Id</p:Id>
+              <p:EANUCC13 url="">p:EANUCC13</p:EANUCC13>
+              <p:UPC url="">p:UPC</p:UPC>
+              <p:Revision xsi:type="p:Revision">p:Revision</p:Revision>
+              <p:AssigningPartyId xsi:type="p:PartyIdType">
+                <p:Id>p:Id</p:Id>
+                <p:SCAC>p:SCAC</p:SCAC>
+                <p:DUNS>p:DUNS</p:DUNS>
+              </p:AssigningPartyId>
+            </p:SupplierItemId>
+          </p:ItemIds>
+          <p:ItemStatus xsi:type="p:Status">
+            <p:Code>p:Code</p:Code>
+            <p:Description lang="EN" owner="">p:Description</p:Description>
+            <p:Change>
+              <p:From>p:From</p:From>
+              <p:To>p:To</p:To>
+              <p:ChangeDate>p:ChangeDate</p:ChangeDate>
+              <p:Description lang="EN" owner="">p:Description</p:Description>
+              <p:UserArea/>
+            </p:Change>
+            <p:UserArea/>
+          </p:ItemStatus>
+          <p:Commodity>p:Commodity</p:Commodity>
+          <p:ItemCategoryId>p:ItemCategoryId</p:ItemCategoryId>
+          <p:ItemType>p:ItemType</p:ItemType>
+          <p:Definition lang="EN" owner="">p:Definition</p:Definition>
+          <p:Description lang="EN" owner="">p:Description</p:Description>
+          <p:SerialNumber>p:SerialNumber</p:SerialNumber>
+          <p:ParentSerialNumber>p:ParentSerialNumber</p:ParentSerialNumber>
+          <p:HazardousMaterial>
+            <p:Code issuingAgency="">p:Code</p:Code>
+            <p:Description lang="EN" owner="">p:Description</p:Description>
+            <p:UserArea/>
+          </p:HazardousMaterial>
+          <p:ProductLine xsi:type="p:Id">p:ProductLine</p:ProductLine>
+          <p:Lot>
+            <p:LotId xsi:type="p:Id">p:LotId</p:LotId>
+            <p:SubLotId xsi:type="p:Id">p:SubLotId</p:SubLotId>
+            <p:EffectivePeriod inclusive="true">
+              <p:From>2001-12-31T12:00:00</p:From>
+              <p:Duration>P1D</p:Duration>
+            </p:EffectivePeriod>
+            <p:UserArea/>
+          </p:Lot>
+          <p:FeatureValue>
+            <p:NameValue name="" type="">p:NameValue</p:NameValue>
+            <p:Description lang="EN" owner="">p:Description</p:Description>
+            <p:Note author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:Note</p:Note>
+            <p:EffectivePeriod inclusive="true">
+              <p:From>2001-12-31T12:00:00</p:From>
+              <p:Duration>P1D</p:Duration>
+            </p:EffectivePeriod>
+            <p:Qualification>p:Qualification</p:Qualification>
+            <p:UOM>NMTOKEN</p:UOM>
+            <p:PartyReferences>
+              <p:PartyReference>
+                <p:PartyId>
+                  <p:Id>p:Id</p:Id>
+                  <p:SCAC>p:SCAC</p:SCAC>
+                  <p:DUNS>p:DUNS</p:DUNS>
+                  <p:AssigningPartyId xsi:type="p:PartyIdType">
+                    <p:Id>p:Id</p:Id>
+                    <p:SCAC>p:SCAC</p:SCAC>
+                    <p:DUNS>p:DUNS</p:DUNS>
+                  </p:AssigningPartyId>
+                </p:PartyId>
+                <p:Name lang="EN">p:Name</p:Name>
+                <p:UserArea/>
+              </p:PartyReference>
+            </p:PartyReferences>
+            <p:Sequence>p:Sequence</p:Sequence>
+            <p:UserArea/>
+          </p:FeatureValue>
+          <p:Attachments>
+            <p:Attachment inline="false">
+              <p:EmbeddedData encoding="base64">
+                <p:Data xsi:type="anyType"/>
+              </p:EmbeddedData>
+              <p:DocumentDate>p:DocumentDate</p:DocumentDate>
+              <p:Description lang="EN" owner="">p:Description</p:Description>
+              <p:FileType>p:FileType</p:FileType>
+              <p:FileSize>0.0</p:FileSize>
+              <p:Note author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:Note</p:Note>
+              <p:Title lang="EN" xsi:type="p:LingualString">p:Title</p:Title>
+              <p:UserArea/>
+            </p:Attachment>
+          </p:Attachments>
+          <p:UserArea/>
+        </p:OrderItem>
+        <p:OrderQuantity uom="NMTOKEN">0.0</p:OrderQuantity>
+        <p:UnitPrice>
+          <p:Amount currency="" xsi:type="p:Amount">0.0</p:Amount>
+          <p:FunctionalAmout currency="" xsi:type="p:Amount">0.0</p:FunctionalAmout>
+          <p:PerQuantity uom="NMTOKEN">0.0</p:PerQuantity>
+        </p:UnitPrice>
+        <p:ExtendedPrice currency="" xsi:type="p:Amount">0.0</p:ExtendedPrice>
+        <p:TotalAmount currency="" xsi:type="p:Amount">0.0</p:TotalAmount>
+        <p:EarliestShipDate>p:EarliestShipDate</p:EarliestShipDate>
+        <p:BackOrderedQuantity uom="NMTOKEN">0.0</p:BackOrderedQuantity>
+        <p:NeedDeliveryDate>p:NeedDeliveryDate</p:NeedDeliveryDate>
+        <p:PromisedDeliveryDate>p:PromisedDeliveryDate</p:PromisedDeliveryDate>
+        <p:PromisedShipDate>p:PromisedShipDate</p:PromisedShipDate>
+        <p:TaxWithholdingExempt>true</p:TaxWithholdingExempt>
+        <p:Description lang="EN" owner="">p:Description</p:Description>
+        <p:MaximumTemperature entryDateTime="2001-12-31T12:00:00" scale="Celsius">0.0</p:MaximumTemperature>
+        <p:MinimumTemperature entryDateTime="2001-12-31T12:00:00" scale="Celsius">0.0</p:MinimumTemperature>
+        <p:License type="Import">true</p:License>
+        <p:FreightClass>p:FreightClass</p:FreightClass>
+        <p:ShipNote author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:ShipNote</p:ShipNote>
+        <p:Priority>p:Priority</p:Priority>
+        <p:ReasonCode>p:ReasonCode</p:ReasonCode>
+        <p:PackingMaterial>p:PackingMaterial</p:PackingMaterial>
+        <p:DropShipInd>true</p:DropShipInd>
+        <p:BackOrderedInd>true</p:BackOrderedInd>
+        <p:ShipPriorToDueDateInd>true</p:ShipPriorToDueDateInd>
+        <p:SubstitutionAllowedInd>true</p:SubstitutionAllowedInd>
+        <p:Distribution>
+          <p:Amount>
+            <p:Actual currency="" xsi:type="p:Amount">0.0</p:Actual>
+            <p:Converted conversionFactor="0.0" currency="">0.0</p:Converted>
+          </p:Amount>
+          <p:Ledger>p:Ledger</p:Ledger>
+          <p:GLEntity>p:GLEntity</p:GLEntity>
+          <p:Project>
+            <p:Id>p:Id</p:Id>
+            <p:Status>p:Status</p:Status>
+            <p:DocumentDateTime>2001-12-31T12:00:00</p:DocumentDateTime>
+            <p:EffectivePeriod inclusive="true">
+              <p:From>p:From</p:From>
+              <p:Duration>P1D</p:Duration>
+            </p:EffectivePeriod>
+            <p:Authorization>
+              <p:Id>p:Id</p:Id>
+              <p:Type>p:Type</p:Type>
+              <p:Status xsi:type="p:Status">
+                <p:Code>p:Code</p:Code>
+                <p:Description lang="EN" owner="">p:Description</p:Description>
+                <p:Change>
+                  <p:From>p:From</p:From>
+                  <p:To>p:To</p:To>
+                  <p:ChangeDate>p:ChangeDate</p:ChangeDate>
+                  <p:Description lang="EN" owner="">p:Description</p:Description>
+                  <p:UserArea/>
+                </p:Change>
+                <p:UserArea/>
+              </p:Status>
+              <p:DateAuthorized>p:DateAuthorized</p:DateAuthorized>
+              <p:EffectivePeriod inclusive="true">
+                <p:From>p:From</p:From>
+                <p:Duration>P1D</p:Duration>
+              </p:EffectivePeriod>
+              <p:AuthorizationCode>p:AuthorizationCode</p:AuthorizationCode>
+              <p:UserArea/>
+            </p:Authorization>
+            <p:TransactionType>p:TransactionType</p:TransactionType>
+            <p:TotalCost>
+              <p:Actual currency="" xsi:type="p:Amount">0.0</p:Actual>
+              <p:Converted conversionFactor="0.0" currency="">0.0</p:Converted>
+            </p:TotalCost>
+            <p:SourceGLEntity>p:SourceGLEntity</p:SourceGLEntity>
+            <p:GLElement>
+              <p:NameValue name="" type="">p:NameValue</p:NameValue>
+              <p:Description lang="EN" owner="">p:Description</p:Description>
+              <p:Note author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:Note</p:Note>
+              <p:UserArea/>
+            </p:GLElement>
+            <p:ProjectResourceCategory>p:ProjectResourceCategory</p:ProjectResourceCategory>
+            <p:Activity>
+              <p:Id>p:Id</p:Id>
+              <p:Status>p:Status</p:Status>
+              <p:Cost>
+                <p:Actual currency="" xsi:type="p:Amount">0.0</p:Actual>
+                <p:Converted conversionFactor="0.0" currency="">0.0</p:Converted>
+              </p:Cost>
+              <p:Description lang="EN" owner="">p:Description</p:Description>
+              <p:Note author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:Note</p:Note>
+              <p:UserArea/>
+            </p:Activity>
+            <p:UserArea/>
+          </p:Project>
+          <p:UserArea/>
+        </p:Distribution>
+        <p:TransportationTerm>
+          <p:TermCode issuingAgency="">p:TermCode</p:TermCode>
+          <p:PlaceOfOwnershipTransfer>
+            <p:Name lang="EN">p:Name</p:Name>
+            <p:Id>p:Id</p:Id>
+            <p:Description lang="EN" owner="">p:Description</p:Description>
+            <p:PostalAddress>
+              <p:AddressId qualifyingAgency="">p:AddressId</p:AddressId>
+              <p:AddressLine>p:AddressLine</p:AddressLine>
+              <p:City>p:City</p:City>
+              <p:County>p:County</p:County>
+              <p:StateOrProvince>p:StateOrProvince</p:StateOrProvince>
+              <p:Country>p:Country</p:Country>
+              <p:Region>p:Region</p:Region>
+              <p:PostalCode>p:PostalCode</p:PostalCode>
+              <p:Description lang="EN" owner="">p:Description</p:Description>
+              <p:UserArea/>
+            </p:PostalAddress>
+            <p:GPSCoordinates>
+              <p:GPSSystemType xsi:type="anyType"/>
+              <p:Latitude xsi:type="anyType"/>
+              <p:Longitude xsi:type="anyType"/>
+              <p:UserArea/>
+            </p:GPSCoordinates>
+            <p:LocationRelationship>
+              <p:Binder>p:Binder</p:Binder>
+              <p:Location/>
+              <p:UserArea/>
+            </p:LocationRelationship>
+            <p:Note author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:Note</p:Note>
+            <p:UserArea/>
+          </p:PlaceOfOwnershipTransfer>
+          <p:FreightTerms>p:FreightTerms</p:FreightTerms>
+          <p:UserArea/>
+        </p:TransportationTerm>
+        <p:OrderStatus entryDateTime="2001-12-31T12:00:00">
+          <p:Code>Open</p:Code>
+          <p:Description lang="EN" owner="">p:Description</p:Description>
+          <p:AcknowledgementDetail xsi:type="p:Status">
+            <p:Code>p:Code</p:Code>
+            <p:Description lang="EN" owner="">p:Description</p:Description>
+            <p:Change>
+              <p:From>p:From</p:From>
+              <p:To>p:To</p:To>
+              <p:ChangeDate>p:ChangeDate</p:ChangeDate>
+              <p:Description lang="EN" owner="">p:Description</p:Description>
+              <p:UserArea/>
+            </p:Change>
+            <p:UserArea/>
+          </p:AcknowledgementDetail>
+          <p:UserArea/>
+        </p:OrderStatus>
+        <p:Parties>
+          <p:SoldToParty active="false" oneTime="false">
+            <p:PartyId xsi:type="p:PartyIdType">
+              <p:Id>p:Id</p:Id>
+              <p:SCAC>p:SCAC</p:SCAC>
+              <p:DUNS>p:DUNS</p:DUNS>
+            </p:PartyId>
+            <p:AlternatePartyIds>
+              <p:BillToPartyId>
+                <p:Id>p:Id</p:Id>
+                <p:SCAC>p:SCAC</p:SCAC>
+                <p:DUNS>p:DUNS</p:DUNS>
+                <p:AssigningPartyId xsi:type="p:PartyIdType">
+                  <p:Id>p:Id</p:Id>
+                  <p:SCAC>p:SCAC</p:SCAC>
+                  <p:DUNS>p:DUNS</p:DUNS>
+                </p:AssigningPartyId>
+              </p:BillToPartyId>
+            </p:AlternatePartyIds>
+            <p:Name lang="EN">p:Name</p:Name>
+            <p:Business>
+              <p:Id>p:Id</p:Id>
+              <p:Function>p:Function</p:Function>
+              <p:Name lang="EN">p:Name</p:Name>
+              <p:RelatedUnit>
+                <p:Relationship>p:Relationship</p:Relationship>
+                <p:Unit/>
+              </p:RelatedUnit>
+              <p:UserArea/>
+            </p:Business>
+            <p:Currency>p:Currency</p:Currency>
+            <p:Description lang="EN" owner="">p:Description</p:Description>
+            <p:GLEntity>p:GLEntity</p:GLEntity>
+            <p:PaymentMethod>Credit Card</p:PaymentMethod>
+            <p:Rating>Good</p:Rating>
+            <p:TaxExemptInd>true</p:TaxExemptInd>
+            <p:TaxId xsi:type="p:Id">p:TaxId</p:TaxId>
+            <p:TermId xsi:type="p:Id">p:TermId</p:TermId>
+            <p:Addresses>
+              <p:Address>
+                <p:AddressId qualifyingAgency="">p:AddressId</p:AddressId>
+                <p:AddressLine>p:AddressLine</p:AddressLine>
+                <p:City>p:City</p:City>
+                <p:County>p:County</p:County>
+                <p:StateOrProvince>p:StateOrProvince</p:StateOrProvince>
+                <p:Country>p:Country</p:Country>
+                <p:Region>p:Region</p:Region>
+                <p:PostalCode>p:PostalCode</p:PostalCode>
+                <p:Description lang="EN" owner="">p:Description</p:Description>
+                <p:Telephone>p:Telephone</p:Telephone>
+                <p:FaxNumber>p:FaxNumber</p:FaxNumber>
+                <p:EMailAddress>p:EMailAddress</p:EMailAddress>
+                <p:URI>http://tempuri.org</p:URI>
+                <p:TaxJurisdiction>p:TaxJurisdiction</p:TaxJurisdiction>
+                <p:UserArea/>
+              </p:Address>
+            </p:Addresses>
+            <p:Contacts>
+              <p:ContactAbs>
+                <p:Person>
+                  <p:PersonCode>p:PersonCode</p:PersonCode>
+                  <p:PersonName>
+                    <p:Salutation lang="EN">p:Salutation</p:Salutation>
+                    <p:GivenName lang="EN">p:GivenName</p:GivenName>
+                    <p:PreferredGivenName lang="EN">p:PreferredGivenName</p:PreferredGivenName>
+                    <p:MiddleName lang="EN">p:MiddleName</p:MiddleName>
+                    <p:FamilyName lang="EN">p:FamilyName</p:FamilyName>
+                    <p:Suffix lang="EN">p:Suffix</p:Suffix>
+                    <p:FormattedName lang="EN">p:FormattedName</p:FormattedName>
+                    <p:UserArea/>
+                  </p:PersonName>
+                  <p:UserArea/>
+                </p:Person>
+                <p:Telephone>p:Telephone</p:Telephone>
+                <p:EMailAddress>p:EMailAddress</p:EMailAddress>
+                <p:Fax>p:Fax</p:Fax>
+                <p:URI>http://tempuri.org</p:URI>
+                <p:Description lang="EN" owner="">p:Description</p:Description>
+                <p:Addresses>
+                  <p:Address>
+                    <p:AddressId qualifyingAgency="">p:AddressId</p:AddressId>
+                    <p:AddressLine>p:AddressLine</p:AddressLine>
+                    <p:City>p:City</p:City>
+                    <p:County>p:County</p:County>
+                    <p:StateOrProvince>p:StateOrProvince</p:StateOrProvince>
+                    <p:Country>p:Country</p:Country>
+                    <p:Region>p:Region</p:Region>
+                    <p:PostalCode>p:PostalCode</p:PostalCode>
+                    <p:Description lang="EN" owner="">p:Description</p:Description>
+                    <p:Telephone>p:Telephone</p:Telephone>
+                    <p:FaxNumber>p:FaxNumber</p:FaxNumber>
+                    <p:EMailAddress>p:EMailAddress</p:EMailAddress>
+                    <p:URI>http://tempuri.org</p:URI>
+                    <p:TaxJurisdiction>p:TaxJurisdiction</p:TaxJurisdiction>
+                    <p:UserArea/>
+                  </p:Address>
+                </p:Addresses>
+                <p:UserArea/>
+              </p:ContactAbs>
+            </p:Contacts>
+            <p:Attachments>
+              <p:Attachment inline="false">
+                <p:EmbeddedData encoding="base64">
+                  <p:Data xsi:type="anyType"/>
+                </p:EmbeddedData>
+                <p:DocumentDate>p:DocumentDate</p:DocumentDate>
+                <p:Description lang="EN" owner="">p:Description</p:Description>
+                <p:FileType>p:FileType</p:FileType>
+                <p:FileSize>0.0</p:FileSize>
+                <p:Note author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:Note</p:Note>
+                <p:Title lang="EN" xsi:type="p:LingualString">p:Title</p:Title>
+                <p:UserArea/>
+              </p:Attachment>
+            </p:Attachments>
+            <p:CorrespondenceLanguage>EN</p:CorrespondenceLanguage>
+            <p:Qualification>
+              <p:NameValue name="" type="">p:NameValue</p:NameValue>
+              <p:Description lang="EN" owner="">p:Description</p:Description>
+              <p:Note author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:Note</p:Note>
+              <p:UserArea/>
+            </p:Qualification>
+            <p:UserArea/>
+          </p:SoldToParty>
+        </p:Parties>
+        <p:Charges>
+          <p:Charge>
+            <p:Id>p:Id</p:Id>
+            <p:Total currency="" xsi:type="p:Amount">0.0</p:Total>
+            <p:Cost>
+              <p:Amount currency="" xsi:type="p:Amount">0.0</p:Amount>
+              <p:FunctionalAmout currency="" xsi:type="p:Amount">0.0</p:FunctionalAmout>
+              <p:PerQuantity uom="NMTOKEN">0.0</p:PerQuantity>
+            </p:Cost>
+            <p:Description lang="EN" owner="">p:Description</p:Description>
+            <p:Distribution>
+              <p:Amount>
+                <p:Actual currency="" xsi:type="p:Amount">0.0</p:Actual>
+                <p:Converted conversionFactor="0.0" currency="">0.0</p:Converted>
+              </p:Amount>
+              <p:Ledger>p:Ledger</p:Ledger>
+              <p:GLEntity>p:GLEntity</p:GLEntity>
+              <p:Project>
+                <p:Id>p:Id</p:Id>
+                <p:Status>p:Status</p:Status>
+                <p:DocumentDateTime>2001-12-31T12:00:00</p:DocumentDateTime>
+                <p:EffectivePeriod inclusive="true">
+                  <p:From>p:From</p:From>
+                  <p:Duration>P1D</p:Duration>
+                </p:EffectivePeriod>
+                <p:Authorization>
+                  <p:Id>p:Id</p:Id>
+                  <p:Type>p:Type</p:Type>
+                  <p:Status xsi:type="p:Status">
+                    <p:Code>p:Code</p:Code>
+                    <p:Description lang="EN" owner="">p:Description</p:Description>
+                    <p:Change>
+                      <p:From>p:From</p:From>
+                      <p:To>p:To</p:To>
+                      <p:ChangeDate>p:ChangeDate</p:ChangeDate>
+                      <p:Description lang="EN" owner="">p:Description</p:Description>
+                      <p:UserArea/>
+                    </p:Change>
+                    <p:UserArea/>
+                  </p:Status>
+                  <p:DateAuthorized>p:DateAuthorized</p:DateAuthorized>
+                  <p:EffectivePeriod inclusive="true">
+                    <p:From>p:From</p:From>
+                    <p:Duration>P1D</p:Duration>
+                  </p:EffectivePeriod>
+                  <p:AuthorizationCode>p:AuthorizationCode</p:AuthorizationCode>
+                  <p:UserArea/>
+                </p:Authorization>
+                <p:TransactionType>p:TransactionType</p:TransactionType>
+                <p:TotalCost>
+                  <p:Actual currency="" xsi:type="p:Amount">0.0</p:Actual>
+                  <p:Converted conversionFactor="0.0" currency="">0.0</p:Converted>
+                </p:TotalCost>
+                <p:SourceGLEntity>p:SourceGLEntity</p:SourceGLEntity>
+                <p:GLElement>
+                  <p:NameValue name="" type="">p:NameValue</p:NameValue>
+                  <p:Description lang="EN" owner="">p:Description</p:Description>
+                  <p:Note author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:Note</p:Note>
+                  <p:UserArea/>
+                </p:GLElement>
+                <p:ProjectResourceCategory>p:ProjectResourceCategory</p:ProjectResourceCategory>
+                <p:Activity>
+                  <p:Id>p:Id</p:Id>
+                  <p:Status>p:Status</p:Status>
+                  <p:Cost>
+                    <p:Actual currency="" xsi:type="p:Amount">0.0</p:Actual>
+                    <p:Converted conversionFactor="0.0" currency="">0.0</p:Converted>
+                  </p:Cost>
+                  <p:Description lang="EN" owner="">p:Description</p:Description>
+                  <p:Note author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:Note</p:Note>
+                  <p:UserArea/>
+                </p:Activity>
+                <p:UserArea/>
+              </p:Project>
+              <p:UserArea/>
+            </p:Distribution>
+            <p:UserArea/>
+          </p:Charge>
+          <p:TotalCharge>
+            <p:Id>p:Id</p:Id>
+            <p:Total currency="" xsi:type="p:Amount">0.0</p:Total>
+            <p:Cost>
+              <p:Amount currency="" xsi:type="p:Amount">0.0</p:Amount>
+              <p:FunctionalAmout currency="" xsi:type="p:Amount">0.0</p:FunctionalAmout>
+              <p:PerQuantity uom="NMTOKEN">0.0</p:PerQuantity>
+            </p:Cost>
+            <p:Description lang="EN" owner="">p:Description</p:Description>
+            <p:Distribution>
+              <p:Amount>
+                <p:Actual currency="" xsi:type="p:Amount">0.0</p:Actual>
+                <p:Converted conversionFactor="0.0" currency="">0.0</p:Converted>
+              </p:Amount>
+              <p:Ledger>p:Ledger</p:Ledger>
+              <p:GLEntity>p:GLEntity</p:GLEntity>
+              <p:Project>
+                <p:Id>p:Id</p:Id>
+                <p:Status>p:Status</p:Status>
+                <p:DocumentDateTime>2001-12-31T12:00:00</p:DocumentDateTime>
+                <p:EffectivePeriod inclusive="true">
+                  <p:From>p:From</p:From>
+                  <p:Duration>P1D</p:Duration>
+                </p:EffectivePeriod>
+                <p:Authorization>
+                  <p:Id>p:Id</p:Id>
+                  <p:Type>p:Type</p:Type>
+                  <p:Status xsi:type="p:Status">
+                    <p:Code>p:Code</p:Code>
+                    <p:Description lang="EN" owner="">p:Description</p:Description>
+                    <p:Change>
+                      <p:From>p:From</p:From>
+                      <p:To>p:To</p:To>
+                      <p:ChangeDate>p:ChangeDate</p:ChangeDate>
+                      <p:Description lang="EN" owner="">p:Description</p:Description>
+                      <p:UserArea/>
+                    </p:Change>
+                    <p:UserArea/>
+                  </p:Status>
+                  <p:DateAuthorized>p:DateAuthorized</p:DateAuthorized>
+                  <p:EffectivePeriod inclusive="true">
+                    <p:From>p:From</p:From>
+                    <p:Duration>P1D</p:Duration>
+                  </p:EffectivePeriod>
+                  <p:AuthorizationCode>p:AuthorizationCode</p:AuthorizationCode>
+                  <p:UserArea/>
+                </p:Authorization>
+                <p:TransactionType>p:TransactionType</p:TransactionType>
+                <p:TotalCost>
+                  <p:Actual currency="" xsi:type="p:Amount">0.0</p:Actual>
+                  <p:Converted conversionFactor="0.0" currency="">0.0</p:Converted>
+                </p:TotalCost>
+                <p:SourceGLEntity>p:SourceGLEntity</p:SourceGLEntity>
+                <p:GLElement>
+                  <p:NameValue name="" type="">p:NameValue</p:NameValue>
+                  <p:Description lang="EN" owner="">p:Description</p:Description>
+                  <p:Note author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:Note</p:Note>
+                  <p:UserArea/>
+                </p:GLElement>
+                <p:ProjectResourceCategory>p:ProjectResourceCategory</p:ProjectResourceCategory>
+                <p:Activity>
+                  <p:Id>p:Id</p:Id>
+                  <p:Status>p:Status</p:Status>
+                  <p:Cost>
+                    <p:Actual currency="" xsi:type="p:Amount">0.0</p:Actual>
+                    <p:Converted conversionFactor="0.0" currency="">0.0</p:Converted>
+                  </p:Cost>
+                  <p:Description lang="EN" owner="">p:Description</p:Description>
+                  <p:Note author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:Note</p:Note>
+                  <p:UserArea/>
+                </p:Activity>
+                <p:UserArea/>
+              </p:Project>
+              <p:UserArea/>
+            </p:Distribution>
+            <p:UserArea/>
+          </p:TotalCharge>
+        </p:Charges>
+        <p:Tax>
+          <p:TaxAmount currency="" xsi:type="p:Amount">0.0</p:TaxAmount>
+          <p:TaxBaseAmount currency="" xsi:type="p:Amount">0.0</p:TaxBaseAmount>
+          <p:PercentQuantity uom="NMTOKEN">0.0</p:PercentQuantity>
+          <p:Description lang="EN" owner="">p:Description</p:Description>
+          <p:LineNumber>p:LineNumber</p:LineNumber>
+          <p:TaxCode>p:TaxCode</p:TaxCode>
+          <p:TaxJurisdiction>p:TaxJurisdiction</p:TaxJurisdiction>
+          <p:Charges>
+            <p:Charge>
+              <p:Id>p:Id</p:Id>
+              <p:Total currency="" xsi:type="p:Amount">0.0</p:Total>
+              <p:Cost>
+                <p:Amount currency="" xsi:type="p:Amount">0.0</p:Amount>
+                <p:FunctionalAmout currency="" xsi:type="p:Amount">0.0</p:FunctionalAmout>
+                <p:PerQuantity uom="NMTOKEN">0.0</p:PerQuantity>
+              </p:Cost>
+              <p:Description lang="EN" owner="">p:Description</p:Description>
+              <p:Distribution>
+                <p:Amount>
+                  <p:Actual currency="" xsi:type="p:Amount">0.0</p:Actual>
+                  <p:Converted conversionFactor="0.0" currency="">0.0</p:Converted>
+                </p:Amount>
+                <p:Ledger>p:Ledger</p:Ledger>
+                <p:GLEntity>p:GLEntity</p:GLEntity>
+                <p:Project>
+                  <p:Id>p:Id</p:Id>
+                  <p:Status>p:Status</p:Status>
+                  <p:DocumentDateTime>2001-12-31T12:00:00</p:DocumentDateTime>
+                  <p:EffectivePeriod inclusive="true">
+                    <p:From>p:From</p:From>
+                    <p:Duration>P1D</p:Duration>
+                  </p:EffectivePeriod>
+                  <p:Authorization>
+                    <p:Id>p:Id</p:Id>
+                    <p:Type>p:Type</p:Type>
+                    <p:Status xsi:type="p:Status">
+                      <p:Code>p:Code</p:Code>
+                      <p:Description lang="EN" owner="">p:Description</p:Description>
+                      <p:Change>
+                        <p:From>p:From</p:From>
+                        <p:To>p:To</p:To>
+                        <p:ChangeDate>p:ChangeDate</p:ChangeDate>
+                        <p:Description lang="EN" owner="">p:Description</p:Description>
+                        <p:UserArea/>
+                      </p:Change>
+                      <p:UserArea/>
+                    </p:Status>
+                    <p:DateAuthorized>p:DateAuthorized</p:DateAuthorized>
+                    <p:EffectivePeriod inclusive="true">
+                      <p:From>p:From</p:From>
+                      <p:Duration>P1D</p:Duration>
+                    </p:EffectivePeriod>
+                    <p:AuthorizationCode>p:AuthorizationCode</p:AuthorizationCode>
+                    <p:UserArea/>
+                  </p:Authorization>
+                  <p:TransactionType>p:TransactionType</p:TransactionType>
+                  <p:TotalCost>
+                    <p:Actual currency="" xsi:type="p:Amount">0.0</p:Actual>
+                    <p:Converted conversionFactor="0.0" currency="">0.0</p:Converted>
+                  </p:TotalCost>
+                  <p:SourceGLEntity>p:SourceGLEntity</p:SourceGLEntity>
+                  <p:GLElement>
+                    <p:NameValue name="" type="">p:NameValue</p:NameValue>
+                    <p:Description lang="EN" owner="">p:Description</p:Description>
+                    <p:Note author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:Note</p:Note>
+                    <p:UserArea/>
+                  </p:GLElement>
+                  <p:ProjectResourceCategory>p:ProjectResourceCategory</p:ProjectResourceCategory>
+                  <p:Activity>
+                    <p:Id>p:Id</p:Id>
+                    <p:Status>p:Status</p:Status>
+                    <p:Cost>
+                      <p:Actual currency="" xsi:type="p:Amount">0.0</p:Actual>
+                      <p:Converted conversionFactor="0.0" currency="">0.0</p:Converted>
+                    </p:Cost>
+                    <p:Description lang="EN" owner="">p:Description</p:Description>
+                    <p:Note author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:Note</p:Note>
+                    <p:UserArea/>
+                  </p:Activity>
+                  <p:UserArea/>
+                </p:Project>
+                <p:UserArea/>
+              </p:Distribution>
+              <p:UserArea/>
+            </p:Charge>
+            <p:TotalCharge>
+              <p:Id>p:Id</p:Id>
+              <p:Total currency="" xsi:type="p:Amount">0.0</p:Total>
+              <p:Cost>
+                <p:Amount currency="" xsi:type="p:Amount">0.0</p:Amount>
+                <p:FunctionalAmout currency="" xsi:type="p:Amount">0.0</p:FunctionalAmout>
+                <p:PerQuantity uom="NMTOKEN">0.0</p:PerQuantity>
+              </p:Cost>
+              <p:Description lang="EN" owner="">p:Description</p:Description>
+              <p:Distribution>
+                <p:Amount>
+                  <p:Actual currency="" xsi:type="p:Amount">0.0</p:Actual>
+                  <p:Converted conversionFactor="0.0" currency="">0.0</p:Converted>
+                </p:Amount>
+                <p:Ledger>p:Ledger</p:Ledger>
+                <p:GLEntity>p:GLEntity</p:GLEntity>
+                <p:Project>
+                  <p:Id>p:Id</p:Id>
+                  <p:Status>p:Status</p:Status>
+                  <p:DocumentDateTime>2001-12-31T12:00:00</p:DocumentDateTime>
+                  <p:EffectivePeriod inclusive="true">
+                    <p:From>p:From</p:From>
+                    <p:Duration>P1D</p:Duration>
+                  </p:EffectivePeriod>
+                  <p:Authorization>
+                    <p:Id>p:Id</p:Id>
+                    <p:Type>p:Type</p:Type>
+                    <p:Status xsi:type="p:Status">
+                      <p:Code>p:Code</p:Code>
+                      <p:Description lang="EN" owner="">p:Description</p:Description>
+                      <p:Change>
+                        <p:From>p:From</p:From>
+                        <p:To>p:To</p:To>
+                        <p:ChangeDate>p:ChangeDate</p:ChangeDate>
+                        <p:Description lang="EN" owner="">p:Description</p:Description>
+                        <p:UserArea/>
+                      </p:Change>
+                      <p:UserArea/>
+                    </p:Status>
+                    <p:DateAuthorized>p:DateAuthorized</p:DateAuthorized>
+                    <p:EffectivePeriod inclusive="true">
+                      <p:From>p:From</p:From>
+                      <p:Duration>P1D</p:Duration>
+                    </p:EffectivePeriod>
+                    <p:AuthorizationCode>p:AuthorizationCode</p:AuthorizationCode>
+                    <p:UserArea/>
+                  </p:Authorization>
+                  <p:TransactionType>p:TransactionType</p:TransactionType>
+                  <p:TotalCost>
+                    <p:Actual currency="" xsi:type="p:Amount">0.0</p:Actual>
+                    <p:Converted conversionFactor="0.0" currency="">0.0</p:Converted>
+                  </p:TotalCost>
+                  <p:SourceGLEntity>p:SourceGLEntity</p:SourceGLEntity>
+                  <p:GLElement>
+                    <p:NameValue name="" type="">p:NameValue</p:NameValue>
+                    <p:Description lang="EN" owner="">p:Description</p:Description>
+                    <p:Note author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:Note</p:Note>
+                    <p:UserArea/>
+                  </p:GLElement>
+                  <p:ProjectResourceCategory>p:ProjectResourceCategory</p:ProjectResourceCategory>
+                  <p:Activity>
+                    <p:Id>p:Id</p:Id>
+                    <p:Status>p:Status</p:Status>
+                    <p:Cost>
+                      <p:Actual currency="" xsi:type="p:Amount">0.0</p:Actual>
+                      <p:Converted conversionFactor="0.0" currency="">0.0</p:Converted>
+                    </p:Cost>
+                    <p:Description lang="EN" owner="">p:Description</p:Description>
+                    <p:Note author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:Note</p:Note>
+                    <p:UserArea/>
+                  </p:Activity>
+                  <p:UserArea/>
+                </p:Project>
+                <p:UserArea/>
+              </p:Distribution>
+              <p:UserArea/>
+            </p:TotalCharge>
+          </p:Charges>
+          <p:UserArea/>
+        </p:Tax>
+        <p:PaymentTerms>
+          <p:TermId xsi:type="p:Id">p:TermId</p:TermId>
+          <p:Description lang="EN" owner="">p:Description</p:Description>
+          <p:LineNumber>p:LineNumber</p:LineNumber>
+          <p:DiscountAmount currency="" xsi:type="p:Amount">0.0</p:DiscountAmount>
+          <p:UserArea/>
+        </p:PaymentTerms>
+        <p:DocumentReferences>
+          <p:PurchaseOrderDocumentReference>
+            <p:DocumentIds>
+              <p:DocumentId xsi:type="p:DocumentIdType">
+                <p:Id>p:Id</p:Id>
+                <p:Revision xsi:type="p:Revision">p:Revision</p:Revision>
+              </p:DocumentId>
+            </p:DocumentIds>
+            <p:DocumentDate>p:DocumentDate</p:DocumentDate>
+            <p:LineNumber>1</p:LineNumber>
+            <p:ScheduleLineNumber>1</p:ScheduleLineNumber>
+            <p:SubLineNumber>1</p:SubLineNumber>
+            <p:UserArea/>
+          </p:PurchaseOrderDocumentReference>
+        </p:DocumentReferences>
+        <p:Attachments>
+          <p:Attachment inline="false">
+            <p:EmbeddedData encoding="base64">
+              <p:Data xsi:type="anyType"/>
+            </p:EmbeddedData>
+            <p:DocumentDate>p:DocumentDate</p:DocumentDate>
+            <p:Description lang="EN" owner="">p:Description</p:Description>
+            <p:FileType>p:FileType</p:FileType>
+            <p:FileSize>0.0</p:FileSize>
+            <p:Note author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:Note</p:Note>
+            <p:Title lang="EN" xsi:type="p:LingualString">p:Title</p:Title>
+            <p:UserArea/>
+          </p:Attachment>
+        </p:Attachments>
+        <p:EffectiveDateTime>2001-12-31T12:00:00</p:EffectiveDateTime>
+        <p:ExpirationDateTime>2001-12-31T12:00:00</p:ExpirationDateTime>
+        <p:TimeOpenDuration>P1D</p:TimeOpenDuration>
+        <p:SalesInformation>
+          <p:SalesPerson>
+            <p:Person>
+              <p:PersonCode>p:PersonCode</p:PersonCode>
+              <p:PersonName>
+                <p:Salutation lang="EN">p:Salutation</p:Salutation>
+                <p:GivenName lang="EN">p:GivenName</p:GivenName>
+                <p:PreferredGivenName lang="EN">p:PreferredGivenName</p:PreferredGivenName>
+                <p:MiddleName lang="EN">p:MiddleName</p:MiddleName>
+                <p:FamilyName lang="EN">p:FamilyName</p:FamilyName>
+                <p:Suffix lang="EN">p:Suffix</p:Suffix>
+                <p:FormattedName lang="EN">p:FormattedName</p:FormattedName>
+                <p:UserArea/>
+              </p:PersonName>
+              <p:UserArea/>
+            </p:Person>
+            <p:Telephone>p:Telephone</p:Telephone>
+            <p:EMailAddress>p:EMailAddress</p:EMailAddress>
+            <p:Fax>p:Fax</p:Fax>
+            <p:URI>http://tempuri.org</p:URI>
+            <p:Description lang="EN" owner="">p:Description</p:Description>
+            <p:Addresses>
+              <p:Address>
+                <p:AddressId qualifyingAgency="">p:AddressId</p:AddressId>
+                <p:AddressLine>p:AddressLine</p:AddressLine>
+                <p:City>p:City</p:City>
+                <p:County>p:County</p:County>
+                <p:StateOrProvince>p:StateOrProvince</p:StateOrProvince>
+                <p:Country>p:Country</p:Country>
+                <p:Region>p:Region</p:Region>
+                <p:PostalCode>p:PostalCode</p:PostalCode>
+                <p:Description lang="EN" owner="">p:Description</p:Description>
+                <p:Telephone>p:Telephone</p:Telephone>
+                <p:FaxNumber>p:FaxNumber</p:FaxNumber>
+                <p:EMailAddress>p:EMailAddress</p:EMailAddress>
+                <p:URI>http://tempuri.org</p:URI>
+                <p:TaxJurisdiction>p:TaxJurisdiction</p:TaxJurisdiction>
+                <p:UserArea/>
+              </p:Address>
+            </p:Addresses>
+            <p:UserArea/>
+          </p:SalesPerson>
+          <p:SalesOrganization>p:SalesOrganization</p:SalesOrganization>
+          <p:UserArea/>
+        </p:SalesInformation>
+        <p:Message>
+          <p:MessageId xsi:type="p:Id">p:MessageId</p:MessageId>
+          <p:MessageType>p:MessageType</p:MessageType>
+          <p:MessageText lang="EN" xsi:type="p:LingualString">p:MessageText</p:MessageText>
+          <p:Description lang="EN" owner="">p:Description</p:Description>
+          <p:Note author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:Note</p:Note>
+          <p:Sender>
+            <p:LogicalId>p:LogicalId</p:LogicalId>
+            <p:Component>p:Component</p:Component>
+            <p:Task>p:Task</p:Task>
+            <p:ReferenceId>p:ReferenceId</p:ReferenceId>
+            <p:Confirmation>0</p:Confirmation>
+            <p:AuthorizationId>p:AuthorizationId</p:AuthorizationId>
+          </p:Sender>
+          <p:UserArea/>
+        </p:Message>
+        <p:SubLine>
+          <p:LineNumber>p:LineNumber</p:LineNumber>
+          <p:OrderItem>
+            <p:ItemIds>
+              <p:ItemId xsi:type="p:ItemIdType">
+                <p:Id>p:Id</p:Id>
+                <p:EANUCC13 url="">p:EANUCC13</p:EANUCC13>
+                <p:UPC url="">p:UPC</p:UPC>
+                <p:Revision xsi:type="p:Revision">p:Revision</p:Revision>
+              </p:ItemId>
+              <p:SupplierItemId>
+                <p:Id>p:Id</p:Id>
+                <p:EANUCC13 url="">p:EANUCC13</p:EANUCC13>
+                <p:UPC url="">p:UPC</p:UPC>
+                <p:Revision xsi:type="p:Revision">p:Revision</p:Revision>
+                <p:AssigningPartyId xsi:type="p:PartyIdType">
+                  <p:Id>p:Id</p:Id>
+                  <p:SCAC>p:SCAC</p:SCAC>
+                  <p:DUNS>p:DUNS</p:DUNS>
+                </p:AssigningPartyId>
+              </p:SupplierItemId>
+            </p:ItemIds>
+            <p:ItemStatus xsi:type="p:Status">
+              <p:Code>p:Code</p:Code>
+              <p:Description lang="EN" owner="">p:Description</p:Description>
+              <p:Change>
+                <p:From>p:From</p:From>
+                <p:To>p:To</p:To>
+                <p:ChangeDate>p:ChangeDate</p:ChangeDate>
+                <p:Description lang="EN" owner="">p:Description</p:Description>
+                <p:UserArea/>
+              </p:Change>
+              <p:UserArea/>
+            </p:ItemStatus>
+            <p:Commodity>p:Commodity</p:Commodity>
+            <p:ItemCategoryId>p:ItemCategoryId</p:ItemCategoryId>
+            <p:ItemType>p:ItemType</p:ItemType>
+            <p:Definition lang="EN" owner="">p:Definition</p:Definition>
+            <p:Description lang="EN" owner="">p:Description</p:Description>
+            <p:SerialNumber>p:SerialNumber</p:SerialNumber>
+            <p:ParentSerialNumber>p:ParentSerialNumber</p:ParentSerialNumber>
+            <p:HazardousMaterial>
+              <p:Code issuingAgency="">p:Code</p:Code>
+              <p:Description lang="EN" owner="">p:Description</p:Description>
+              <p:UserArea/>
+            </p:HazardousMaterial>
+            <p:ProductLine xsi:type="p:Id">p:ProductLine</p:ProductLine>
+            <p:Lot>
+              <p:LotId xsi:type="p:Id">p:LotId</p:LotId>
+              <p:SubLotId xsi:type="p:Id">p:SubLotId</p:SubLotId>
+              <p:EffectivePeriod inclusive="true">
+                <p:From>2001-12-31T12:00:00</p:From>
+                <p:Duration>P1D</p:Duration>
+              </p:EffectivePeriod>
+              <p:UserArea/>
+            </p:Lot>
+            <p:FeatureValue>
+              <p:NameValue name="" type="">p:NameValue</p:NameValue>
+              <p:Description lang="EN" owner="">p:Description</p:Description>
+              <p:Note author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:Note</p:Note>
+              <p:EffectivePeriod inclusive="true">
+                <p:From>2001-12-31T12:00:00</p:From>
+                <p:Duration>P1D</p:Duration>
+              </p:EffectivePeriod>
+              <p:Qualification>p:Qualification</p:Qualification>
+              <p:UOM>NMTOKEN</p:UOM>
+              <p:PartyReferences>
+                <p:PartyReference>
+                  <p:PartyId>
+                    <p:Id>p:Id</p:Id>
+                    <p:SCAC>p:SCAC</p:SCAC>
+                    <p:DUNS>p:DUNS</p:DUNS>
+                    <p:AssigningPartyId xsi:type="p:PartyIdType">
+                      <p:Id>p:Id</p:Id>
+                      <p:SCAC>p:SCAC</p:SCAC>
+                      <p:DUNS>p:DUNS</p:DUNS>
+                    </p:AssigningPartyId>
+                  </p:PartyId>
+                  <p:Name lang="EN">p:Name</p:Name>
+                  <p:UserArea/>
+                </p:PartyReference>
+              </p:PartyReferences>
+              <p:Sequence>p:Sequence</p:Sequence>
+              <p:UserArea/>
+            </p:FeatureValue>
+            <p:Attachments>
+              <p:Attachment inline="false">
+                <p:EmbeddedData encoding="base64">
+                  <p:Data xsi:type="anyType"/>
+                </p:EmbeddedData>
+                <p:DocumentDate>p:DocumentDate</p:DocumentDate>
+                <p:Description lang="EN" owner="">p:Description</p:Description>
+                <p:FileType>p:FileType</p:FileType>
+                <p:FileSize>0.0</p:FileSize>
+                <p:Note author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:Note</p:Note>
+                <p:Title lang="EN" xsi:type="p:LingualString">p:Title</p:Title>
+                <p:UserArea/>
+              </p:Attachment>
+            </p:Attachments>
+            <p:UserArea/>
+          </p:OrderItem>
+          <p:OrderQuantity uom="NMTOKEN">0.0</p:OrderQuantity>
+          <p:UnitPrice>
+            <p:Amount currency="" xsi:type="p:Amount">0.0</p:Amount>
+            <p:FunctionalAmout currency="" xsi:type="p:Amount">0.0</p:FunctionalAmout>
+            <p:PerQuantity uom="NMTOKEN">0.0</p:PerQuantity>
+          </p:UnitPrice>
+          <p:ExtendedPrice currency="" xsi:type="p:Amount">0.0</p:ExtendedPrice>
+          <p:TotalAmount currency="" xsi:type="p:Amount">0.0</p:TotalAmount>
+          <p:EarliestShipDate>p:EarliestShipDate</p:EarliestShipDate>
+          <p:BackOrderedQuantity uom="NMTOKEN">0.0</p:BackOrderedQuantity>
+          <p:NeedDeliveryDate>p:NeedDeliveryDate</p:NeedDeliveryDate>
+          <p:PromisedDeliveryDate>p:PromisedDeliveryDate</p:PromisedDeliveryDate>
+          <p:PromisedShipDate>p:PromisedShipDate</p:PromisedShipDate>
+          <p:TaxWithholdingExempt>true</p:TaxWithholdingExempt>
+          <p:Description lang="EN" owner="">p:Description</p:Description>
+          <p:MaximumTemperature entryDateTime="2001-12-31T12:00:00" scale="Celsius">0.0</p:MaximumTemperature>
+          <p:MinimumTemperature entryDateTime="2001-12-31T12:00:00" scale="Celsius">0.0</p:MinimumTemperature>
+          <p:License type="Import">true</p:License>
+          <p:FreightClass>p:FreightClass</p:FreightClass>
+          <p:ShipNote author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:ShipNote</p:ShipNote>
+          <p:Priority>p:Priority</p:Priority>
+          <p:ReasonCode>p:ReasonCode</p:ReasonCode>
+          <p:PackingMaterial>p:PackingMaterial</p:PackingMaterial>
+          <p:DropShipInd>true</p:DropShipInd>
+          <p:BackOrderedInd>true</p:BackOrderedInd>
+          <p:ShipPriorToDueDateInd>true</p:ShipPriorToDueDateInd>
+          <p:SubstitutionAllowedInd>true</p:SubstitutionAllowedInd>
+          <p:Distribution>
+            <p:Amount>
+              <p:Actual currency="" xsi:type="p:Amount">0.0</p:Actual>
+              <p:Converted conversionFactor="0.0" currency="">0.0</p:Converted>
+            </p:Amount>
+            <p:Ledger>p:Ledger</p:Ledger>
+            <p:GLEntity>p:GLEntity</p:GLEntity>
+            <p:Project>
+              <p:Id>p:Id</p:Id>
+              <p:Status>p:Status</p:Status>
+              <p:DocumentDateTime>2001-12-31T12:00:00</p:DocumentDateTime>
+              <p:EffectivePeriod inclusive="true">
+                <p:From>p:From</p:From>
+                <p:Duration>P1D</p:Duration>
+              </p:EffectivePeriod>
+              <p:Authorization>
+                <p:Id>p:Id</p:Id>
+                <p:Type>p:Type</p:Type>
+                <p:Status xsi:type="p:Status">
+                  <p:Code>p:Code</p:Code>
+                  <p:Description lang="EN" owner="">p:Description</p:Description>
+                  <p:Change>
+                    <p:From>p:From</p:From>
+                    <p:To>p:To</p:To>
+                    <p:ChangeDate>p:ChangeDate</p:ChangeDate>
+                    <p:Description lang="EN" owner="">p:Description</p:Description>
+                    <p:UserArea/>
+                  </p:Change>
+                  <p:UserArea/>
+                </p:Status>
+                <p:DateAuthorized>p:DateAuthorized</p:DateAuthorized>
+                <p:EffectivePeriod inclusive="true">
+                  <p:From>p:From</p:From>
+                  <p:Duration>P1D</p:Duration>
+                </p:EffectivePeriod>
+                <p:AuthorizationCode>p:AuthorizationCode</p:AuthorizationCode>
+                <p:UserArea/>
+              </p:Authorization>
+              <p:TransactionType>p:TransactionType</p:TransactionType>
+              <p:TotalCost>
+                <p:Actual currency="" xsi:type="p:Amount">0.0</p:Actual>
+                <p:Converted conversionFactor="0.0" currency="">0.0</p:Converted>
+              </p:TotalCost>
+              <p:SourceGLEntity>p:SourceGLEntity</p:SourceGLEntity>
+              <p:GLElement>
+                <p:NameValue name="" type="">p:NameValue</p:NameValue>
+                <p:Description lang="EN" owner="">p:Description</p:Description>
+                <p:Note author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:Note</p:Note>
+                <p:UserArea/>
+              </p:GLElement>
+              <p:ProjectResourceCategory>p:ProjectResourceCategory</p:ProjectResourceCategory>
+              <p:Activity>
+                <p:Id>p:Id</p:Id>
+                <p:Status>p:Status</p:Status>
+                <p:Cost>
+                  <p:Actual currency="" xsi:type="p:Amount">0.0</p:Actual>
+                  <p:Converted conversionFactor="0.0" currency="">0.0</p:Converted>
+                </p:Cost>
+                <p:Description lang="EN" owner="">p:Description</p:Description>
+                <p:Note author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:Note</p:Note>
+                <p:UserArea/>
+              </p:Activity>
+              <p:UserArea/>
+            </p:Project>
+            <p:UserArea/>
+          </p:Distribution>
+          <p:TransportationTerm>
+            <p:TermCode issuingAgency="">p:TermCode</p:TermCode>
+            <p:PlaceOfOwnershipTransfer>
+              <p:Name lang="EN">p:Name</p:Name>
+              <p:Id>p:Id</p:Id>
+              <p:Description lang="EN" owner="">p:Description</p:Description>
+              <p:PostalAddress>
+                <p:AddressId qualifyingAgency="">p:AddressId</p:AddressId>
+                <p:AddressLine>p:AddressLine</p:AddressLine>
+                <p:City>p:City</p:City>
+                <p:County>p:County</p:County>
+                <p:StateOrProvince>p:StateOrProvince</p:StateOrProvince>
+                <p:Country>p:Country</p:Country>
+                <p:Region>p:Region</p:Region>
+                <p:PostalCode>p:PostalCode</p:PostalCode>
+                <p:Description lang="EN" owner="">p:Description</p:Description>
+                <p:UserArea/>
+              </p:PostalAddress>
+              <p:GPSCoordinates>
+                <p:GPSSystemType xsi:type="anyType"/>
+                <p:Latitude xsi:type="anyType"/>
+                <p:Longitude xsi:type="anyType"/>
+                <p:UserArea/>
+              </p:GPSCoordinates>
+              <p:LocationRelationship>
+                <p:Binder>p:Binder</p:Binder>
+                <p:Location/>
+                <p:UserArea/>
+              </p:LocationRelationship>
+              <p:Note author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:Note</p:Note>
+              <p:UserArea/>
+            </p:PlaceOfOwnershipTransfer>
+            <p:FreightTerms>p:FreightTerms</p:FreightTerms>
+            <p:UserArea/>
+          </p:TransportationTerm>
+          <p:UserArea/>
+        </p:SubLine>
+        <p:Schedule>
+          <p:LineNumber>p:LineNumber</p:LineNumber>
+          <p:OrderItem>
+            <p:ItemIds>
+              <p:ItemId xsi:type="p:ItemIdType">
+                <p:Id>p:Id</p:Id>
+                <p:EANUCC13 url="">p:EANUCC13</p:EANUCC13>
+                <p:UPC url="">p:UPC</p:UPC>
+                <p:Revision xsi:type="p:Revision">p:Revision</p:Revision>
+              </p:ItemId>
+              <p:SupplierItemId>
+                <p:Id>p:Id</p:Id>
+                <p:EANUCC13 url="">p:EANUCC13</p:EANUCC13>
+                <p:UPC url="">p:UPC</p:UPC>
+                <p:Revision xsi:type="p:Revision">p:Revision</p:Revision>
+                <p:AssigningPartyId xsi:type="p:PartyIdType">
+                  <p:Id>p:Id</p:Id>
+                  <p:SCAC>p:SCAC</p:SCAC>
+                  <p:DUNS>p:DUNS</p:DUNS>
+                </p:AssigningPartyId>
+              </p:SupplierItemId>
+            </p:ItemIds>
+            <p:ItemStatus xsi:type="p:Status">
+              <p:Code>p:Code</p:Code>
+              <p:Description lang="EN" owner="">p:Description</p:Description>
+              <p:Change>
+                <p:From>p:From</p:From>
+                <p:To>p:To</p:To>
+                <p:ChangeDate>p:ChangeDate</p:ChangeDate>
+                <p:Description lang="EN" owner="">p:Description</p:Description>
+                <p:UserArea/>
+              </p:Change>
+              <p:UserArea/>
+            </p:ItemStatus>
+            <p:Commodity>p:Commodity</p:Commodity>
+            <p:ItemCategoryId>p:ItemCategoryId</p:ItemCategoryId>
+            <p:ItemType>p:ItemType</p:ItemType>
+            <p:Definition lang="EN" owner="">p:Definition</p:Definition>
+            <p:Description lang="EN" owner="">p:Description</p:Description>
+            <p:SerialNumber>p:SerialNumber</p:SerialNumber>
+            <p:ParentSerialNumber>p:ParentSerialNumber</p:ParentSerialNumber>
+            <p:HazardousMaterial>
+              <p:Code issuingAgency="">p:Code</p:Code>
+              <p:Description lang="EN" owner="">p:Description</p:Description>
+              <p:UserArea/>
+            </p:HazardousMaterial>
+            <p:ProductLine xsi:type="p:Id">p:ProductLine</p:ProductLine>
+            <p:Lot>
+              <p:LotId xsi:type="p:Id">p:LotId</p:LotId>
+              <p:SubLotId xsi:type="p:Id">p:SubLotId</p:SubLotId>
+              <p:EffectivePeriod inclusive="true">
+                <p:From>2001-12-31T12:00:00</p:From>
+                <p:Duration>P1D</p:Duration>
+              </p:EffectivePeriod>
+              <p:UserArea/>
+            </p:Lot>
+            <p:FeatureValue>
+              <p:NameValue name="" type="">p:NameValue</p:NameValue>
+              <p:Description lang="EN" owner="">p:Description</p:Description>
+              <p:Note author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:Note</p:Note>
+              <p:EffectivePeriod inclusive="true">
+                <p:From>2001-12-31T12:00:00</p:From>
+                <p:Duration>P1D</p:Duration>
+              </p:EffectivePeriod>
+              <p:Qualification>p:Qualification</p:Qualification>
+              <p:UOM>NMTOKEN</p:UOM>
+              <p:PartyReferences>
+                <p:PartyReference>
+                  <p:PartyId>
+                    <p:Id>p:Id</p:Id>
+                    <p:SCAC>p:SCAC</p:SCAC>
+                    <p:DUNS>p:DUNS</p:DUNS>
+                    <p:AssigningPartyId xsi:type="p:PartyIdType">
+                      <p:Id>p:Id</p:Id>
+                      <p:SCAC>p:SCAC</p:SCAC>
+                      <p:DUNS>p:DUNS</p:DUNS>
+                    </p:AssigningPartyId>
+                  </p:PartyId>
+                  <p:Name lang="EN">p:Name</p:Name>
+                  <p:UserArea/>
+                </p:PartyReference>
+              </p:PartyReferences>
+              <p:Sequence>p:Sequence</p:Sequence>
+              <p:UserArea/>
+            </p:FeatureValue>
+            <p:Attachments>
+              <p:Attachment inline="false">
+                <p:EmbeddedData encoding="base64">
+                  <p:Data xsi:type="anyType"/>
+                </p:EmbeddedData>
+                <p:DocumentDate>p:DocumentDate</p:DocumentDate>
+                <p:Description lang="EN" owner="">p:Description</p:Description>
+                <p:FileType>p:FileType</p:FileType>
+                <p:FileSize>0.0</p:FileSize>
+                <p:Note author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:Note</p:Note>
+                <p:Title lang="EN" xsi:type="p:LingualString">p:Title</p:Title>
+                <p:UserArea/>
+              </p:Attachment>
+            </p:Attachments>
+            <p:UserArea/>
+          </p:OrderItem>
+          <p:OrderQuantity uom="NMTOKEN">0.0</p:OrderQuantity>
+          <p:UnitPrice>
+            <p:Amount currency="" xsi:type="p:Amount">0.0</p:Amount>
+            <p:FunctionalAmout currency="" xsi:type="p:Amount">0.0</p:FunctionalAmout>
+            <p:PerQuantity uom="NMTOKEN">0.0</p:PerQuantity>
+          </p:UnitPrice>
+          <p:ExtendedPrice currency="" xsi:type="p:Amount">0.0</p:ExtendedPrice>
+          <p:TotalAmount currency="" xsi:type="p:Amount">0.0</p:TotalAmount>
+          <p:EarliestShipDate>p:EarliestShipDate</p:EarliestShipDate>
+          <p:BackOrderedQuantity uom="NMTOKEN">0.0</p:BackOrderedQuantity>
+          <p:NeedDeliveryDate>p:NeedDeliveryDate</p:NeedDeliveryDate>
+          <p:PromisedDeliveryDate>p:PromisedDeliveryDate</p:PromisedDeliveryDate>
+          <p:PromisedShipDate>p:PromisedShipDate</p:PromisedShipDate>
+          <p:TaxWithholdingExempt>true</p:TaxWithholdingExempt>
+          <p:Description lang="EN" owner="">p:Description</p:Description>
+          <p:MaximumTemperature entryDateTime="2001-12-31T12:00:00" scale="Celsius">0.0</p:MaximumTemperature>
+          <p:MinimumTemperature entryDateTime="2001-12-31T12:00:00" scale="Celsius">0.0</p:MinimumTemperature>
+          <p:License type="Import">true</p:License>
+          <p:FreightClass>p:FreightClass</p:FreightClass>
+          <p:ShipNote author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:ShipNote</p:ShipNote>
+          <p:Priority>p:Priority</p:Priority>
+          <p:ReasonCode>p:ReasonCode</p:ReasonCode>
+          <p:PackingMaterial>p:PackingMaterial</p:PackingMaterial>
+          <p:DropShipInd>true</p:DropShipInd>
+          <p:BackOrderedInd>true</p:BackOrderedInd>
+          <p:ShipPriorToDueDateInd>true</p:ShipPriorToDueDateInd>
+          <p:SubstitutionAllowedInd>true</p:SubstitutionAllowedInd>
+          <p:Distribution>
+            <p:Amount>
+              <p:Actual currency="" xsi:type="p:Amount">0.0</p:Actual>
+              <p:Converted conversionFactor="0.0" currency="">0.0</p:Converted>
+            </p:Amount>
+            <p:Ledger>p:Ledger</p:Ledger>
+            <p:GLEntity>p:GLEntity</p:GLEntity>
+            <p:Project>
+              <p:Id>p:Id</p:Id>
+              <p:Status>p:Status</p:Status>
+              <p:DocumentDateTime>2001-12-31T12:00:00</p:DocumentDateTime>
+              <p:EffectivePeriod inclusive="true">
+                <p:From>p:From</p:From>
+                <p:Duration>P1D</p:Duration>
+              </p:EffectivePeriod>
+              <p:Authorization>
+                <p:Id>p:Id</p:Id>
+                <p:Type>p:Type</p:Type>
+                <p:Status xsi:type="p:Status">
+                  <p:Code>p:Code</p:Code>
+                  <p:Description lang="EN" owner="">p:Description</p:Description>
+                  <p:Change>
+                    <p:From>p:From</p:From>
+                    <p:To>p:To</p:To>
+                    <p:ChangeDate>p:ChangeDate</p:ChangeDate>
+                    <p:Description lang="EN" owner="">p:Description</p:Description>
+                    <p:UserArea/>
+                  </p:Change>
+                  <p:UserArea/>
+                </p:Status>
+                <p:DateAuthorized>p:DateAuthorized</p:DateAuthorized>
+                <p:EffectivePeriod inclusive="true">
+                  <p:From>p:From</p:From>
+                  <p:Duration>P1D</p:Duration>
+                </p:EffectivePeriod>
+                <p:AuthorizationCode>p:AuthorizationCode</p:AuthorizationCode>
+                <p:UserArea/>
+              </p:Authorization>
+              <p:TransactionType>p:TransactionType</p:TransactionType>
+              <p:TotalCost>
+                <p:Actual currency="" xsi:type="p:Amount">0.0</p:Actual>
+                <p:Converted conversionFactor="0.0" currency="">0.0</p:Converted>
+              </p:TotalCost>
+              <p:SourceGLEntity>p:SourceGLEntity</p:SourceGLEntity>
+              <p:GLElement>
+                <p:NameValue name="" type="">p:NameValue</p:NameValue>
+                <p:Description lang="EN" owner="">p:Description</p:Description>
+                <p:Note author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:Note</p:Note>
+                <p:UserArea/>
+              </p:GLElement>
+              <p:ProjectResourceCategory>p:ProjectResourceCategory</p:ProjectResourceCategory>
+              <p:Activity>
+                <p:Id>p:Id</p:Id>
+                <p:Status>p:Status</p:Status>
+                <p:Cost>
+                  <p:Actual currency="" xsi:type="p:Amount">0.0</p:Actual>
+                  <p:Converted conversionFactor="0.0" currency="">0.0</p:Converted>
+                </p:Cost>
+                <p:Description lang="EN" owner="">p:Description</p:Description>
+                <p:Note author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:Note</p:Note>
+                <p:UserArea/>
+              </p:Activity>
+              <p:UserArea/>
+            </p:Project>
+            <p:UserArea/>
+          </p:Distribution>
+          <p:TransportationTerm>
+            <p:TermCode issuingAgency="">p:TermCode</p:TermCode>
+            <p:PlaceOfOwnershipTransfer>
+              <p:Name lang="EN">p:Name</p:Name>
+              <p:Id>p:Id</p:Id>
+              <p:Description lang="EN" owner="">p:Description</p:Description>
+              <p:PostalAddress>
+                <p:AddressId qualifyingAgency="">p:AddressId</p:AddressId>
+                <p:AddressLine>p:AddressLine</p:AddressLine>
+                <p:City>p:City</p:City>
+                <p:County>p:County</p:County>
+                <p:StateOrProvince>p:StateOrProvince</p:StateOrProvince>
+                <p:Country>p:Country</p:Country>
+                <p:Region>p:Region</p:Region>
+                <p:PostalCode>p:PostalCode</p:PostalCode>
+                <p:Description lang="EN" owner="">p:Description</p:Description>
+                <p:UserArea/>
+              </p:PostalAddress>
+              <p:GPSCoordinates>
+                <p:GPSSystemType xsi:type="anyType"/>
+                <p:Latitude xsi:type="anyType"/>
+                <p:Longitude xsi:type="anyType"/>
+                <p:UserArea/>
+              </p:GPSCoordinates>
+              <p:LocationRelationship>
+                <p:Binder>p:Binder</p:Binder>
+                <p:Location/>
+                <p:UserArea/>
+              </p:LocationRelationship>
+              <p:Note author="" entryDateTime="2001-12-31T12:00:00" lang="EN">p:Note</p:Note>
+              <p:UserArea/>
+            </p:PlaceOfOwnershipTransfer>
+            <p:FreightTerms>p:FreightTerms</p:FreightTerms>
+            <p:UserArea/>
+          </p:TransportationTerm>
+          <p:EffectivePeriod inclusive="true">
+            <p:From>p:From</p:From>
+            <p:Duration>P1D</p:Duration>
+          </p:EffectivePeriod>
+          <p:RequiredQuantity uom="NMTOKEN">0.0</p:RequiredQuantity>
+          <p:FixedTimeDuration>P1D</p:FixedTimeDuration>
+          <p:OverToleranceDuration>P1D</p:OverToleranceDuration>
+          <p:UnderToleranceDuration>P1D</p:UnderToleranceDuration>
+          <p:OverShipTolerance uom="NMTOKEN">0.0</p:OverShipTolerance>
+          <p:UnderShipTolerance uom="NMTOKEN">0.0</p:UnderShipTolerance>
+          <p:UserArea/>
+        </p:Schedule>
+        <p:UserArea/>
+      </p:Line>
+    </p:Quote>
+  </p:DataArea>
+</aaia:AddQuote>

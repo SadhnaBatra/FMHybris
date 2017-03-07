@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sch:schema xmlns="http://www.ascc.net/xml/schematron" xmlns:oa="http://www.openapplications.org/oagis" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ascc.net/xml/schematron ../../../Utility/Schematron/schematron1-5.xsd">
+	<sch:title>Schematron Validator for OAGI Constraints</sch:title>
+	<sch:ns prefix="oa" uri="http://www.openapplications.org/oagis"/>
+
+	<sch:pattern name="Update InventoryReceipt">
+		<sch:rule context="oa:InventoryReceipt">
+			<sch:assert test="oa:Header">The Update InventoryReceipt must have a Header component specified</sch:assert>
+			<sch:assert test="oa:Line">The Update InventoryReceipt must have at least one Line component specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+
+	<sch:pattern name="Update InventoryReceipt Header">
+		<sch:rule context="oa:InventoryReceipt/oa:Header">
+			<sch:assert test="oa:DocumentId/oa:Id">The  InventoryReceipt Header must have a "DocumentId" and an "Id" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+
+	<sch:pattern name="Update InventoryReceipt Line">
+		<sch:rule context="oa:InventoryReceipt/oa:Line">
+			<sch:assert test="oa:Item">The InventoryReceipt Line must have an "Item"  specified</sch:assert>
+			<sch:assert test="oa:ItemQuantity">The InventoryReceipt Line must have an "ItemQuantity" specified</sch:assert>
+			<sch:assert test="oa:Site">The InventoryReceipt Line must have a "Site" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+</sch:schema>

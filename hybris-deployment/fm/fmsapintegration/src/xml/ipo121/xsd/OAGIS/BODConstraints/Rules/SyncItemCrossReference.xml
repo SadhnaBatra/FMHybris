@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sch:schema xmlns="http://www.ascc.net/xml/schematron" xmlns:oa="http://www.openapplications.org/oagis" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ascc.net/xml/schematron ../../../Utility/Schematron/schematron1-5.xsd">
+	<sch:title>Schematron Validator for OAGI Constraints</sch:title>
+	<sch:ns prefix="oa" uri="http://www.openapplications.org/oagis"/>
+	<sch:pattern name="Sync Item Cross Reference">
+		<sch:rule context="oa:ItemCrossReference">
+			<sch:assert test="oa:ItemId">The ItemCrossReference must have an "ItemId" specified</sch:assert>
+			<sch:assert test="oa:RelatedItemReference | oa:AlternateItemIdReference">The ItemCrossReference must have a "RelatedItemReference" or an "AlternateItemIdReference" component specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Related Item Reference">
+		<sch:rule context="oa:ItemCrossReference/oa:RelatedItemReference ">
+			<sch:assert test="oa:Relationship">The RelatedItemReference must have a "Relationship" specified</sch:assert>
+			<sch:assert test="oa:RelatedItem">The RelatedItemReference must have at least one "RelatedItem" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Related Item">
+		<sch:rule context="oa:ItemCrossReference/oa:RelatedItemReference/oa:RelatedItem ">
+			<sch:assert test="oa:ItemId">The RelatedItem must have an "ItemId" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Alternate ItemId Reference">
+		<sch:rule context="oa:ItemCrossReference/oa:AlternateItemIdReference">
+			<sch:assert test="oa:ItemIds">The AlternateItemIdReference must have an "ItemIds" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+</sch:schema>

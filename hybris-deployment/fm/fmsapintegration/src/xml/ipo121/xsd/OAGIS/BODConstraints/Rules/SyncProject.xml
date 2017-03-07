@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sch:schema xmlns="http://www.ascc.net/xml/schematron" xmlns:oa="http://www.openapplications.org/oagis" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ascc.net/xml/schematron ../../../Utility/Schematron/schematron1-5.xsd">
+	<sch:title>Schematron Validator for OAGI Constraints</sch:title>
+	<sch:ns prefix="oa" uri="http://www.openapplications.org/oagis"/>
+	<sch:pattern name="Noun Level">
+		<sch:rule context="oa:Project">
+			<sch:assert test="oa:Id">Must have a Project Id.</sch:assert>
+			<sch:assert test="oa:EffectivePeriod">Must have an EffectivePeriod.</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+</sch:schema>

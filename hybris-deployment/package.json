@@ -1,0 +1,18 @@
+{
+  "name": "fm-hybris",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Federal Mogul - Hybris",
+  "author": "HS2 Solutions",
+  "devDependencies": {
+    "bower": "^1.7.7",
+    "eslint": "^3.12.2",
+    "grunt": "^1.0.1",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-cssmin": "^1.0.2",
+    "grunt-contrib-less": "^1.4.0",
+    "grunt-contrib-uglify": "^2.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "less-plugin-autoprefix": "^1.5.1"
+  }
+}

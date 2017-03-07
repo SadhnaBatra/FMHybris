@@ -1,0 +1,34 @@
+/* ==========================================================================
+   jQuery UI Stars 3.0.1 custom overrides
+   ========================================================================== */
+
+#stars-wrapper img {
+	position: absolute;
+	top: -88px;
+	left: 0;
+	cursor: pointer;
+}
+
+#stars-wrapper img.no_star {
+	top: -60px;
+}
+
+#stars-wrapper label {
+	position: relative;
+	width: 1.8em;
+	height: 1.8em;
+	overflow: hidden;
+	float: left;
+	margin-right: 15px;
+	text-indent: -999em;
+	padding-right: 0;
+}
+
+#stars-wrapper label:hover, #stars-wrapper .selected {
+	opacity: 0.5;
+	filter: alpha(opacity=50)
+}
+
+#stars-wrapper br {
+	display: none;
+}

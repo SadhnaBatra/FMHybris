@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/LedgerBudget.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Components.xsd"/>
+        <xs:complexType name="LedgerBudget">
+                <xs:complexContent>
+                        <xs:extension base="Noun">
+                                <xs:sequence>
+                                        <xs:element ref="Header" minOccurs="0"/>
+                                        <xs:element ref="Line" minOccurs="0" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="LedgerBudgetHeader">
+                <xs:sequence>
+                        <xs:element name="Id" type="BudgetId" minOccurs="0"/>
+                        <xs:element name="DocumentDateTime" type="DateTime" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the date and time the document was last created. This is not the date and time that the BOD message instance was created.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="BudgetVersion" type="Revision" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the version of the budget that relates to the ledger.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="BudgetStatus" type="BudgetStatus" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">This indicates whether the  included amount is  monetary, statistical/ quantitative or both.Valid values are: 0 -  Monetary amounts only,1 - Statistical/Quantitative amounts only</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="BudgetTransaction" type="BudgetTransaction" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates whether the budget amounts are to replace the existing amounts or be summed into the existing budget amounts.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Ledger" type="Id" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the financial ledger to be used when updating balances.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="GLEntity" type="GLEntity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the primary balancing segment of the GL Account structure.  Typically, this is the owning entity for the transaction.  A G/L entity is the smallest organizational unit for which individual financial statements must be drawn up according to relevant commercial law.  P&amp;L statements are required at this level. </xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="JournalEntryId" type="Id" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the externally created identifier for a general ledger journal entry.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="TransactionAnalysis" type="Code" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is a segmenting code used to analyze project accounting transactions.  It is commonly used in project accounting applications.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is a free-form description of the transaction or any portion of the transaction.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="DocumentReferences" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the link that ties back to a sub ledger transaction entry ID.  It is the identifier of an original transaction or document.  For example, it could be the receipt or the summarized inventory activity.  Together with the Sender information, the OriginalReference is part of the referencing system, which will enable drill back audit trail functionality.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="EntryCreator" type="Id" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the user's enterprise-wide identifier.  It is also known as the user code.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="LedgerBudgetLine">
+                <xs:sequence>
+                        <xs:element name="LineNumber" type="LineNumber" minOccurs="0"/>
+                        <xs:choice minOccurs="0">
+                                <xs:element name="AccountingDate" type="DateTimeAny" minOccurs="0">
+                                        <xs:annotation>
+                                                <xs:documentation source="http://www.openapplications.org/oagis">Is the date that is used to determine the accounting period the transaction is posted within.  It is also known as the effective or post date.</xs:documentation>
+                                        </xs:annotation>
+                                </xs:element>
+                                <xs:sequence>
+                                        <xs:element name="AccountingPeriod" type="Period" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the accounting period the document is to post within.  The period is within a fiscal year to which a business transaction is assigned.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="AccountingYear" type="Year" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the accounting year the document is to post within.  Generally a period of 12 months for which the company regularly has to create financial statements.  A fiscal year may correspond to a calendar year.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                </xs:sequence>
+                        </xs:choice>
+                        <xs:group ref="LedgerEntryContent" minOccurs="0"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:element name="LedgerBudget" type="LedgerBudget" substitutionGroup="Noun">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Ledger Budget represents budget amounts by account within ledger within company or business area.  Budget amounts may be generated in a source application and then loaded to a specific ledger within the enterprise general ledger or budget application.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Header" type="LedgerBudgetHeader">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Budget Header information</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Line" type="LedgerBudgetLine"/>
+        <xs:simpleType name="BudgetId">
+                <xs:restriction base="xs:string"/>
+        </xs:simpleType>
+        <xs:simpleType name="BudgetStatus">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">This indicates whether the  included amount is  monetary, statistical/ quantitative or both.Valid values are: 0 -  Monetary amounts only,1 - Statistical/Quantitative amounts only</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                        <xs:enumeration value="Monetary"/>
+                        <xs:enumeration value="Statistical"/>
+                        <xs:enumeration value="Both"/>
+                </xs:restriction>
+        </xs:simpleType>
+        <xs:simpleType name="BudgetTransaction">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates whether the budget amounts are to replace the existing amounts or be summed into the existing budget amounts.</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                        <xs:enumeration value="Replace"/>
+                        <xs:enumeration value="AddTo"/>
+                </xs:restriction>
+        </xs:simpleType>
+</xs:schema>

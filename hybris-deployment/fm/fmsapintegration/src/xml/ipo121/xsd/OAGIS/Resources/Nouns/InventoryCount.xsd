@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/InventoryCount.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Components.xsd"/>
+        <xs:complexType name="InventoryCount">
+                <xs:complexContent>
+                        <xs:extension base="Noun">
+                                <xs:sequence>
+                                        <xs:element ref="Header" minOccurs="0"/>
+                                        <xs:element ref="Line" minOccurs="0" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="InventoryCountHeader">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis"/>
+                </xs:annotation>
+                <xs:sequence>
+                        <xs:element ref="DocumentId" minOccurs="0"/>
+                        <xs:element name="DocumentDateTime" type="DateTime" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the timestamp when the document was created on the sending system.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="InventoryCountLine">
+                <xs:sequence>
+                        <xs:element name="LineNumber" type="LineNumber" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the line number of the InventoryCount.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="Item" minOccurs="0"/>
+                        <xs:element name="ItemQuantity" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">The quantity of items that are involved in the transaction</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:group ref="ItemLotSerialIdentifier" minOccurs="0"/>
+                        <xs:element name="EffectiveDateTime" type="DateTime" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">This is the date on which the count has been carried out</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="Site" minOccurs="0"/>
+                        <xs:element ref="Business" minOccurs="0"/>
+                        <xs:element name="GLEntity" type="GLEntity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Idenitifies GLEntity owns the item and takes the credit or debit for the item on the balance sheet.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:group ref="GLAccount" minOccurs="0"/>
+                        <xs:element name="Note" type="Note" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is a note about the source location of the transfer.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="ReasonCode" type="ReasonCode" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the reason for the transfer.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:element name="InventoryCount" type="InventoryCount" substitutionGroup="Noun">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">InventoryCount represents the results of a physical inventory or cycle count of the actual on-hand quantities of each item in each location.  Compare to the noun InventoryBalance, which represents system-maintained on-hand quantities.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Header" type="InventoryCountHeader">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Is the header of the InventoryCount document.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Line" type="InventoryCountLine">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Provides the detail for each count entry.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+</xs:schema>

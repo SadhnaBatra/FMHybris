@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: SyncPlanningSchedule.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Resources/Verbs/Sync.xsd"/>
+        <xs:include schemaLocation="../Resources/Nouns/PlanningSchedule.xsd"/>
+        <xs:element name="SyncPlanningSchedule" type="SyncPlanningSchedule">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Since collaboration between a customer and a supplier can potentially go through several rounds of negotiations, both parties can use the same BOD to communicate their current demand or supply schedule in response to what they received from the other party.  Either party can indicate detailed exception descriptions along with reason code and action code to the other party why the original demand/supply requirements need to be adjusted using the optional component PlanningScheduleException
+.
+The purpose of the SyncPlanningSchedule is to communicate requirement information (part number, quantity, etc.) between a customer and their supplier on a regular basis, for example daily, weekly etc, or for a user-defined time bucket type definition (Component FexibileBucket) that is sent as part of this PlanningSchedule.  
+
+SyncPlanningSchedule allows the adding of new requirements and the modification of previously established requirements.  
+
+Customers can use this PlanningSchedule to communicate demand requirement in three different ways.  It can be as specific as the Item level or at the Commodity code level, which is higher than item.  Furthermore, it can be required simply by functional specification via feature identifiers and values using the optional component FeatureValue.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="SyncPlanningSchedule">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Allows the adding of new requirements and the modification of previously established requirements through various SYNC Indicator values.
+Customers can use PlanningSchedule to communicate demand requirement in three different ways.  It can be as specific as the Item level or at the Commodity code level, which is higher than item.  Furthermore, it can be required simply by functional specification via feature identifiers and values using the optional Data Type FeatureValueData.</xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                        <xs:extension base="BusinessObjectDocument">
+                                <xs:sequence>
+                                        <xs:element name="DataArea" type="SyncPlanningScheduleDataArea">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is where the information that the BOD message carries is provided, in this case SyncPlanningSchedule. The information consists of a Verb and one or more Nouns. The verb (Sync) indicates the action to be performed on the Noun (PlanningSchedule).</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="SyncPlanningScheduleDataArea">
+                <xs:complexContent>
+                        <xs:extension base="DataArea">
+                                <xs:sequence>
+                                        <xs:element ref="Sync"/>
+                                        <xs:element ref="PlanningSchedule" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+</xs:schema>

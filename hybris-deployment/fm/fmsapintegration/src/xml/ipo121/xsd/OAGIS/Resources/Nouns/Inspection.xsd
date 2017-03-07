@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/Inspection.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Components.xsd"/>
+        <xs:complexType name="Inspection">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">In some cases, the goods inspected may already be in inventory in a queue awaiting inspection. In this case the visibility to the PO may no longer be available. In which case the DeliveryReceipt reference must be used. This may also require an Inventory event to occur to ensure the status of the goods is updated in Inventory to reflect whether the goods are available for Inventory use after inspection.</xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                        <xs:extension base="Noun">
+                                <xs:sequence>
+                                        <xs:element ref="DocumentId" minOccurs="0"/>
+                                        <xs:element name="InspectionDateTime" type="DateTime" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">This is the datetime at which the inspection is carried out</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="RejectedQuantity" type="Quantity" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">This identifies the total quantity rejected against this inspection line. A further break-up of this quantity can be speciifed in the Rejection component</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="AcceptedQuantity" type="Quantity" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">This identifies the total quantity acceptedagainst this inspection line</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="Site" type="Location" minOccurs="0" maxOccurs="unbounded">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies location that the inspection was performed.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element ref="LotSerial" minOccurs="0"/>
+                                        <xs:element ref="ItemIds" minOccurs="0"/>
+                                        <xs:element name="ReasonCode" type="ReasonCode" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the reason code for tje inspectionl.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element ref="Result" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element ref="DocumentReferences" minOccurs="0"/>
+                                        <xs:element ref="Attachments" minOccurs="0"/>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:element name="Inspection" type="Inspection" substitutionGroup="Noun">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Reports the inspection of items identifies the source document</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="InspectionResult">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">This describes the reasons for rejecting or accepting the corresponding quantity</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                        <xs:element ref="Status" minOccurs="0"/>
+                        <xs:element name="ItemQuantity" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">This indicates the quantity rejected or accepted against the corresponding ReasonCode</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ReasonCode" type="ReasonCode" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">This indicates the reason for rejecting or accepting the specific quantity</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Description of the inspection results.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Note" type="Note" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Free-form note about the InspectionResult</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:element name="Result" type="InspectionResult">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the results of the inspection.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+</xs:schema>

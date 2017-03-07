@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/Resource.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Components.xsd"/>
+<!-- Fields to move -->
+        <xs:simpleType name="ResourceKind">
+                <xs:restriction base="xs:string"/>
+        </xs:simpleType>
+        <xs:simpleType name="WorkCenter">
+                <xs:restriction base="xs:string"/>
+        </xs:simpleType>
+        <xs:simpleType name="EmployeeCategory">
+                <xs:restriction base="xs:string"/>
+        </xs:simpleType>
+        <xs:simpleType name="EmployeeQualifications">
+                <xs:restriction base="xs:string"/>
+        </xs:simpleType>
+        <xs:simpleType name="MachineClass">
+                <xs:restriction base="xs:string"/>
+        </xs:simpleType>
+        <xs:simpleType name="MachineId">
+                <xs:restriction base="xs:string"/>
+        </xs:simpleType>
+<!-- Fields -->
+        <xs:complexType name="Resource">
+                <xs:complexContent>
+                        <xs:extension base="Noun">
+                                <xs:sequence>
+                                        <xs:element ref="Header" minOccurs="0"/>
+                                        <xs:element ref="Detail" minOccurs="0" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:element name="Resource" type="Resource" substitutionGroup="Noun"/>
+        <xs:element name="Header" type="ResourceHeader"/>
+        <xs:element name="Detail" type="ResourceDetail"/>
+        <xs:element name="People" type="People"/>
+        <xs:element name="Machine" type="Machine"/>
+        <xs:element name="Tooling" type="Tooling"/>
+        <xs:complexType name="ResourceHeader">
+                <xs:sequence>
+                        <xs:element name="DocumentDateTime" type="DateTime" minOccurs="0"/>
+                        <xs:element name="ReasonCode" type="ReasonCode" minOccurs="0"/>
+                        <xs:element name="Kind" type="ResourceKind" minOccurs="0"/>
+                        <xs:element name="DocumentReferences" type="DocumentReferences" minOccurs="0"/>
+                        <xs:element name="UserArea" type="UserArea" minOccurs="0"/>
+<!--AW: replacing w/ DocRefs <xs:element ref="ProductionOrder"/> -->
+                </xs:sequence>
+        </xs:complexType>
+<!--
+	<xs:complexType name="ProductionOrder">
+		<xs:sequence/>
+	</xs:complexType>
+	-->
+        <xs:complexType name="ResourceDetail">
+                <xs:sequence>
+                        <xs:element name="WorkCenter" type="WorkCenter" minOccurs="0"/>
+                        <xs:element ref="People" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="Machine" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="Tooling" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="WIPOperation" minOccurs="0"/>
+                        <xs:element name="DocumentReferences" type="DocumentReferences" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="UserArea" type="UserArea" minOccurs="0"/>
+<!-- AW: Make sure WIPoper is not replaceable with DocRefs -->
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="People">
+                <xs:sequence>
+                        <xs:choice>
+                                <xs:element name="EmployeeCategory" type="EmployeeCategory" minOccurs="0"/>
+                                <xs:element name="EmployeeId" type="EmployeeId" minOccurs="0"/>
+                        </xs:choice>
+                        <xs:element name="EmployeeQualifications" type="EmployeeQualifications" minOccurs="0"/>
+                        <xs:element name="Cost" type="AmountPerQuantity" minOccurs="0"/>
+                        <xs:element name="DurationQty" type="Quantity" minOccurs="0"/>
+                        <xs:element name="EmployeesQty" type="Quantity" minOccurs="0"/>
+                        <xs:element name="Description" type="Description" minOccurs="0"/>
+                        <xs:element name="UserArea" type="UserArea" minOccurs="0"/>
+<!-- AW: for EEQualfs use xs:list type ?-->
+<!-- AW: How does Cost apply Cost x DurationQty or x EEQty or both; same question for Tool and Machine-->
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="Machine">
+                <xs:sequence>
+                        <xs:choice>
+                                <xs:element name="MachineClass" type="MachineClass" minOccurs="0"/>
+                                <xs:element name="MachineId" type="MachineId" minOccurs="0"/>
+                        </xs:choice>
+                        <xs:element name="Cost" type="AmountPerQuantity" minOccurs="0"/>
+                        <xs:element name="DurationQty" type="Quantity" minOccurs="0"/>
+                        <xs:element name="RequiredQty" type="Quantity" minOccurs="0"/>
+                        <xs:element name="UserArea" type="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="Tooling">
+                <xs:sequence>
+                        <xs:choice>
+                                <xs:element name="ToolClass" type="MachineClass" minOccurs="0"/>
+                                <xs:element name="ToolId" type="MachineId" minOccurs="0"/>
+                        </xs:choice>
+                        <xs:element name="Cost" type="AmountPerQuantity" minOccurs="0"/>
+                        <xs:element name="DurationQty" type="Quantity" minOccurs="0"/>
+                        <xs:element name="RequiredQty" type="Quantity" minOccurs="0"/>
+                        <xs:element name="UserArea" type="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:element name="WIPOperation">
+                <xs:complexType>
+                        <xs:sequence>
+                                <xs:element name="OperationId" minOccurs="0"/>
+                                <xs:element name="OperationSequence" minOccurs="0"/>
+                                <xs:element name="StepType" minOccurs="0"/>
+                                <xs:element name="UserArea" type="UserArea" minOccurs="0"/>
+                        </xs:sequence>
+                </xs:complexType>
+        </xs:element>
+</xs:schema>

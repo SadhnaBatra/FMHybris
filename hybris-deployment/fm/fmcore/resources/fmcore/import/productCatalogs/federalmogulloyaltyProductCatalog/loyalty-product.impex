@@ -1,0 +1,53 @@
+# ImpEx for Importing Products into Apparel Store
+#% impex.setLocale( Locale.GERMAN );
+ 
+# Macros / Replacement Parameter definitions
+$productCatalog=federalmogulloyaltyProductCatalog
+$productCatalogName=FederalMogul Loyalty Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$baseProduct=baseProduct(code, catalogVersion(catalog(id[default='$productCatalog']),version[default='Staged']))
+$approved=approvalstatus(code)[default='approved']
+$taxGroup=Europe1PriceFactory_PTG(code)[default=eu-vat-full]
+ 
+ 
+# Create products
+INSERT_UPDATE Product;code[unique=true];$catalogVersion;unit(code);supercategories(code,$catalogVersion);varianttype(code);$approved;ManufacturerName;manufacturerAID;loyaltyPoints
+#Wagner
+;10000;;pieces;Hats-Wagner;;;Wagner;Wagner;1500
+;10001;;pieces;Apparels-Wagner;;;Wagner;Wagner;1500
+;10002;;pieces;ToolsAndAccessories-Wagner;;;Wagner;Wagner;4500
+;10003;;pieces;ToolsAndAccessories-Wagner;;;Wagner;Wagner;5500
+;10004;;pieces;ToolsAndAccessories-Wagner;;;Wagner;Wagner;7000
+;10005;;pieces;ToolsAndAccessories-Wagner;;;Wagner;Wagner;12000
+#Moog
+;10006;;pieces;Hats-Moog;;;Moog;Moog;2000
+;10007;;pieces;Apparels-Moog;;;Moog;Moog;2500
+;10008;;pieces;ToolsAndAccessories-Moog;;;Moog;Moog;3000
+;10009;;pieces;ToolsAndAccessories-Moog;;;Moog;Moog;4500
+;10010;;pieces;ToolsAndAccessories-Moog;;;Moog;Moog;6000
+#FelPro
+;10011;;pieces;ToolsAndAccessories-FelPro;;;FelPro;FelPro;1500
+;10012;;pieces;Apparels-FelPro;;;FelPro;FelPro;1800
+;10013;;pieces;ToolsAndAccessories-FelPro;;;FelPro;FelPro;1800
+;10014;;pieces;Apparels-FelPro;;;FelPro;FelPro;4000
+;10015;;pieces;ToolsAndAccessories-FelPro;;;FelPro;FelPro;5000
+;10016;;pieces;Apparels-FelPro;;;FelPro;FelPro;7500
+
+
+##anco
+;10017;;pieces;ToolsAndAccessories-ANCO;;;ANCO;ANCO;2000
+;10018;;pieces;ToolsAndAccessories-ANCO;;;ANCO;ANCO;2500
+;10019;;pieces;ToolsAndAccessories-ANCO;;;ANCO;ANCO;3500
+;10020;;pieces;ToolsAndAccessories-ANCO;;;ANCO;ANCO;4000
+;10021;;pieces;ToolsAndAccessories-ANCO;;;ANCO;ANCO;6000
+#champion
+;10022;;pieces;Apparels-Champion;;;Champion;Champion;1195
+;10023;;pieces;Hats-Champion;;;Champion;Champion;1395
+;10024;;pieces;Apparels-Champion;;;Champion;Champion;1395
+;10025;;pieces;Apparels-Champion;;;Champion;Champion;1395
+;10026;;pieces;Apparels-Champion;;;Champion;Champion;1795
+;10027;;pieces;Apparels-Champion;;;Champion;Champion;1795
+;10028;;pieces;Apparels-Champion;;;Champion;Champion;1795
+;10029;;pieces;Hats-Champion;;;Champion;Champion;2395
+;10030;;pieces;Apparels-Champion;;;Champion;Champion;2395
+;10031;;pieces;Apparels-Champion;;;Champion;Champion;4995

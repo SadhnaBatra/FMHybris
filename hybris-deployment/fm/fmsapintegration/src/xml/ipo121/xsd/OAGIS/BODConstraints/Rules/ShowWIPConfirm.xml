@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sch:schema xmlns="http://www.ascc.net/xml/schematron" xmlns:oa="http://www.openapplications.org/oagis" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ascc.net/xml/schematron ../../../Utility/Schematron/schematron1-5.xsd">
+	<sch:title>Schematron Validator for OAGI Constraints</sch:title>
+	<sch:ns prefix="oa" uri="http://www.openapplications.org/oagis"/>
+
+	<sch:pattern name="Show WIP Confirm">
+		<sch:rule context="oa:WIPConfirm">
+			<sch:assert test="oa:Header">Show WIPConfirm must have a Header component specified</sch:assert>
+			<sch:assert test="oa:Line">Show WIPConfirm must have at least one Line component specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+
+	<sch:pattern name="Show WIP Confirm Line">
+		<sch:rule context="oa:WIPConfirm/oa:Line">
+			<sch:assert test="oa:ReturnedQuantity | oa:CompletedQuantity | oa:ScrapQuantity">The WIP Confirm Line must have a "ReturnedQuantity" or "CompletedQuantity" or "ScrapQuantity" specified</sch:assert>
+			<sch:assert test="oa:ProductionOrderReference">The WIP Confirm Line must have a "ProductionOrderReference" specified</sch:assert>
+			<sch:assert test="oa:ShopFloorControlResource">The WIP Confirm Line must  have a "ShopFloorControlResource" component specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+
+	<sch:pattern name="Shop Floor Control Sub-Line">
+		<sch:rule context="oa:WIPConfirm/oa:Line/oa:ShopFloorControlSubLine">
+			<sch:assert test="oa:OperationId">The ShopFloorControlSubLine must have a "OperationId"  specified.</sch:assert>
+			<sch:assert test="oa:ShopFloorControlResource">The ShopFloorControlSubLine must have a "ShopFloorControlResource" component specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+
+	<sch:pattern name="ShopFloorControlResource">
+		<sch:rule context="oa:ShopFloorControlResource">
+			<sch:assert test="oa:ShopFloorControlActivity">The ShopFloorControlActivity must have a "ShopFloorControlActivity" component specified</sch:assert>
+			<sch:assert test="oa:Labor | oa:Tool | oa:Machine">The ShopFloorControlActivity must have a "Labor" or "Machine" or "Tool" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+
+	<sch:pattern name="Labor">
+		<sch:rule context="oa:Labor">
+			<sch:assert test="oa:EmployeeId | oa:Category">Labor must have a "EmployeeId"  or "Category" specified.</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+
+	<sch:pattern name="Tool">
+		<sch:rule context="oa:Tool">
+			<sch:assert test="oa:ToolId | oa:ToolClassification">Tool must have a "ToolId"  or "ToolClassification" specified</sch:assert>
+		</sch:rule>
+
+	</sch:pattern>
+	<sch:pattern name="Machine">
+		<sch:rule context="oa:Machine">
+			<sch:assert test="oa:Id | oa:Classification">Machine Must have a "Id "  or "Classification" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+
+	<sch:pattern name="ProductionOrderReference">
+		<sch:rule context="oa:ProductionOrderReference">
+			<sch:assert test="oa:DocumentId/oa:Id">The Production Order Rererence must have a "DocumentId" and an "Id" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+</sch:schema>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: ConfirmInventoryIssue.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Resources/Verbs/Confirm.xsd"/>
+        <xs:include schemaLocation="../Resources/Nouns/InventoryIssue.xsd"/>
+        <xs:element name="ConfirmInventoryIssue" type="ConfirmInventoryIssue">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The purpose of the ConfirmInventoryIssue is to notify a Manufacturing Application of the issue of required material to a production order for making a product. This BOD is also used to notify a Manufacturing Application of the return of material from a production order back into inventory. The business environments most likely to require this capability are any type of manufacturing scenario.
+
+This BOD communicates what the item is that is being issued, where it is being issued from, which processing operation it is being issued to, what quantity was issued, and at what time this event occurred. In the case of a return, this BOD communicates what the item is that is being returned, which processing operation it is being returned from, which inventory location it is being returned to, the quantity being returned, and the time at which this event occurred.
+</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="ConfirmInventoryIssue">
+                <xs:complexContent>
+                        <xs:extension base="BusinessObjectDocument">
+                                <xs:sequence>
+                                        <xs:element name="DataArea" type="ConfirmInventoryIssueDataArea">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is where the information that the BOD message carries is provided, in this case ConfirmInventoryIssue. The information consists of a Verb and one or more Nouns. The verb (Confirm) indicates the action to be performed on the Noun (InventoryIssue).</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="ConfirmInventoryIssueDataArea">
+                <xs:complexContent>
+                        <xs:extension base="DataArea">
+                                <xs:sequence>
+                                        <xs:element ref="Confirm"/>
+                                        <xs:element ref="InventoryIssue" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+</xs:schema>

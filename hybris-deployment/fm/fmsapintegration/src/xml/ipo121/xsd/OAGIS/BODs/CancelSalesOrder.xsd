@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: CancelSalesOrder.xsd
+-->
+<xs:schema targetNamespace="http://www.openapplications.org/oagis" xmlns="http://www.openapplications.org/oagis" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../Resources/Verbs/Cancel.xsd"/>
+	<xs:include schemaLocation="../Resources/Nouns/SalesOrder.xsd"/>
+	<xs:element name="CancelSalesOrder" type="CancelSalesOrder">
+		<xs:annotation>
+			<xs:documentation source="http://www.openapplications.org/oagis">The purpose of the Cancel SalesOrder is to communicate from one business application to one or more other business applications that a previous Sales Order, line, or schedule is no longer needed.
+
+Processing Note:  This cancel must refer to the original document, item, and schedule.  To cancel the entire order, include only the Salesorder Header information for the instance of the Salesorder you wish to cancel.  To cancel a SalesOrder Line or SalesOrder Schedule, each line or schedule to be cancelled must be included in the occurrence of the BOD with the Corresponding LineNumber.  If a schedule is to be cancelled, the line that the schedule refers to MUST be included or the schedule can not be found.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="CancelSalesOrder">
+		<xs:complexContent>
+			<xs:extension base="BusinessObjectDocument">
+				<xs:sequence>
+					<xs:element name="DataArea" type="CancelSalesOrderDataArea">
+						<xs:annotation>
+							<xs:documentation source="http://www.openapplications.org/oagis">Is where the information that the BOD message carries is provided, in this case CancelSalesOrder. The information consists of a Verb and one or more Nouns. The verb (Cancel) indicates the action to be performed on the Noun (SalesOrder).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CancelSalesOrderDataArea">
+		<xs:complexContent>
+			<xs:extension base="DataArea">
+				<xs:sequence>
+					<xs:element ref="Cancel"/>
+					<xs:element ref="SalesOrder" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

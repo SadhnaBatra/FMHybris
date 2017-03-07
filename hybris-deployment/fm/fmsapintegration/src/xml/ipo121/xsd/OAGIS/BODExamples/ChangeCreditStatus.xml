@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group Sample XML Data
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: ChangeCreditStatus.xml
+-->
+<ChangeCreditStatus xmlns="http://www.openapplications.org/oagis" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openapplications.org/oagis ../BODs/ChangeCreditStatus.xsd" revision="8.0" environment="Production" lang="en-US">
+        <ApplicationArea>
+                <Sender>
+                        <LogicalId>String</LogicalId>
+                        <Component>String</Component>
+                        <Task>String</Task>
+                        <ReferenceId>String</ReferenceId>
+                        <Confirmation>0</Confirmation>
+                        <AuthorizationId>String</AuthorizationId>
+                </Sender>
+                <CreationDateTime>2001-12-17T09:30:47-05:00</CreationDateTime>
+                <Signature qualifyingAgency="String"/>
+                <BODId>String</BODId>
+                <UserArea/>
+        </ApplicationArea>
+        <DataArea>
+                <Change confirm="Always"/>
+                <CreditStatus>
+                        <Approve>true</Approve>
+                        <GLEntity>String</GLEntity>
+                        <Status>
+                                <Code>String</Code>
+                                <Description lang="en-us" owner="String">String</Description>
+                                <Change>
+                                        <From>String</From>
+                                        <To>String</To>
+                                        <ChangeDate>2002-04-05</ChangeDate>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <UserArea/>
+                                </Change>
+                                <UserArea/>
+                        </Status>
+                        <Description lang="en-us" owner="String">String</Description>
+                        <Parties>
+                                <CustomerParty active="false" oneTime="false">
+                                        <PartyId>
+                                                <Id>String</Id>
+                                                <SCAC>String</SCAC>
+                                                <DUNS>String</DUNS>
+                                        </PartyId>
+                                        <AlternatePartyIds>
+                                                <CustomerPartyId>
+                                                        <Id>String</Id>
+                                                        <SCAC>String</SCAC>
+                                                        <DUNS>String</DUNS>
+                                                        <AssigningPartyId>
+                                                                <Id>String</Id>
+                                                                <SCAC>String</SCAC>
+                                                                <DUNS>String</DUNS>
+                                                        </AssigningPartyId>
+                                                </CustomerPartyId>
+                                        </AlternatePartyIds>
+                                </CustomerParty>
+                        </Parties>
+                        <DocumentReferences>
+                                <PurchaseOrderDocumentReference/>
+                        </DocumentReferences>
+                        <UserArea/>
+                </CreditStatus>
+        </DataArea>
+</ChangeCreditStatus>

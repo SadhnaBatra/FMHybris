@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: GetListBillOfMaterial.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Resources/Verbs/GetList.xsd"/>
+        <xs:include schemaLocation="../Resources/Nouns/BillOfMaterial.xsd"/>
+        <xs:element name="GetListBillOfMaterial" type="GetListBillOfMaterial">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The purpose of the GetListBillOfMaterial is to enable an application or component to request a summary list of Bill of Material information from another business application or component.  The response to the GetListBillOfMaterial is the ListBillOfMaterial
+
+The GwtListBillOfMaterial also enables the retrieval of information across several documents by using selection fields.  An example of this could be requesting all Bills of Material for a specific ITEM.  This type of functionality is limited to the capabilities of the responding application and needs to be determined during the implementation project. 
+
+There are many possible business applications in several environments that may use this capability. For example, an MRP, Inventory, or Manufacturing business application could use this to communicate Item Bill of Material information.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="GetListBillOfMaterial">
+                <xs:complexContent>
+                        <xs:extension base="BusinessObjectDocument">
+                                <xs:sequence>
+                                        <xs:element name="DataArea" type="GetListBillOfMaterialDataArea">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is where the information that the BOD message carries is provided, in this case GetListBillOfMaterial. The information consists of a Verb and one or more Nouns. The verb (GetList) indicates the action to be performed on the Noun (BillOfMaterial).</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="GetListBillOfMaterialDataArea">
+                <xs:complexContent>
+                        <xs:extension base="DataArea">
+                                <xs:sequence>
+                                        <xs:element ref="GetList"/>
+                                        <xs:element ref="BillOfMaterial" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+</xs:schema>

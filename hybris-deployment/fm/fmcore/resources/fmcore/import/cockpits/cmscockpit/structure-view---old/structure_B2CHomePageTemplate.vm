@@ -1,0 +1,124 @@
+<div>
+	<table width="100%" border="1" cellspacing="0" style="margin:0;padding:0;table-layout:fixed;border:1px solid #1E4EBF;">
+		<tbody>
+			<tr>
+				<td height="125px" width="25%" rowspan="2" class="structureViewSection">
+					<cockpit code="SiteLogo" />
+				</td>
+				<td class="structureViewSection">
+					<cockpit code="HeaderLinks" />
+					<cockpit code="SearchBox" />
+				</td>
+				<td width="15%" rowspan="2" class="structureViewSection">
+					<cockpit code="MiniCart" />
+				</td>
+				
+			</tr>
+			<tr>
+				<td height="89px" class="structureViewSection">
+					<div>Header</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" class="structureViewSection">
+					<cockpit code="NavigationBar" />
+					<div>NavigationBar</div>
+				</td>
+				
+			</tr>
+			
+			<tr>
+			
+			 <td width="60%" height="170px"  colspan="3" class="structureViewSection" style="vertical-align:top;">
+				<table height="170px" align="center" width="80%" border="1" cellpadding="2">
+					<tr>
+						<td width="40%" class="structureViewSection" height="250px" style="vertical-align:top;">
+							B2CPartSearch
+							<cockpit code="B2CPartSearch" />
+						</td>
+						
+						<td class="structureViewSection" height="250px" style="vertical-align:top;">
+							B2CTroubleshoot
+							<cockpit code="B2CTroubleshoot" />
+						</td>
+						<td width="30%" height="250px" colspan="2" rowspan="20" style="vertical-align:top;">
+							B2CLoginAndRegister
+							<cockpit code="B2CLoginAndRegister" />
+						</td>
+					</tr>
+				</table>
+			  </td>
+			  
+			</tr>
+			<tr>
+				<td height="100px" colspan="3" class="structureViewSection">
+					<cockpit code="B2CWhereToBuy" />
+					<div>Where To Buy</div>
+				</td>
+			</tr>
+			<tr>
+				<td width="60%" height="170px"  colspan="3" class="structureViewSection" style="vertical-align:top;">
+					<table height="170px" align="center" width="80%" border="1" cellpadding="2">
+						<tr>
+							
+							
+							<td class="structureViewSection" height="250px" style="vertical-align:top;">
+								B2CMsgAnnounceOffer
+								<cockpit code="B2CMsgAnnounceOffer" />
+							</td>
+							
+						</tr>
+					</table>
+				  </td>
+			</tr>
+			<tr>
+				<td height="170px" colspan="3" class="structureViewSection">
+					<cockpit code="B2CSpotLight" />
+					<div>B2CSpotLight</div>
+				</td>
+			</tr>
+			<tr>
+			
+			 <td width="60%" height="170px"  colspan="3" class="structureViewSection" style="vertical-align:top;">
+				<table height="170px" align="center" width="80%" border="1" cellpadding="2">
+					<tr>
+						<td width="25%" class="structureViewSection" height="150px" style="vertical-align:top;">
+							B2CLearningTip
+							<cockpit code="B2CLearningTip" />
+						</td>
+						<td width="25%" class="structureViewSection" height="150px" style="vertical-align:top;">
+							B2CLearningArticle
+							<cockpit code="B2CLearningArticle" />
+						</td>
+						<td width="25%" class="structureViewSection" height="150px" style="vertical-align:top;">
+							B2CLearningVideos1
+							<cockpit code="B2CLearningVideos1" />
+						</td>
+						<td width="25%" class="structureViewSection" height="150px" style="vertical-align:top;">
+							<cockpit code="B2CLearningVideos2" />
+							B2CLearningVideos2
+						</td>
+											
+					</tr>
+				</table>
+			  </td>
+			  
+			</tr>
+			<tr>
+				<td height="80px" colspan="3" class="structureViewSection">
+					<cockpit code="FMBrandstrip" />
+					<div>Brand Strip</div>
+				</td>
+			</tr>
+			<tr>
+				<td height="170px" colspan="3" class="structureViewSection">
+					<cockpit code="Footer" />
+					<div>Footer</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div style="width:100%; border-top: 2px solid #bbb" class="cmsContentEditor">
+		<cockpit code="editor" />
+	</div>
+</div>

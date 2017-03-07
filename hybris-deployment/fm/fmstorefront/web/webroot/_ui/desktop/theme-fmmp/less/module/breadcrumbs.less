@@ -1,0 +1,37 @@
+/* ===============
+    Breadcrumbs
+================== */
+.breadcrumb {
+    padding: 0 15px;
+    padding: 0 1.5rem;
+    margin-top: 20px;
+    margin-top: 2rem;
+    list-style: none;
+    background: none;
+    border-radius: 0;
+    color:@grey;
+
+    > li {  
+        display: inline-block;
+        a, span {
+            .ff-primary-medium;
+            font-size: 14px;
+            font-size: 1.4rem;    
+            color: @blue;
+        }
+        &.active {
+            a, span {
+                color: @grey;
+                .ff-primary;
+            }
+        }
+        + li:before {  
+            padding: 0 0;  
+            color: @grey; 
+            content: " ";
+        }
+    }
+    .fa-angle-right {
+        color: @grey;
+    }
+}

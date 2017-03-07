@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: GetListPurchaseOrder.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Resources/Verbs/GetList.xsd"/>
+        <xs:include schemaLocation="../Resources/Nouns/PurchaseOrder.xsd"/>
+        <xs:element name="GetListPurchaseOrder" type="GetListPurchaseOrder">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The purpose of the GetList PurchaseOrder is to enable a business application to request information containing summary information for one or more Purchase Orders from another business application.
+
+The GetList PurchaseOrder also enables the retrieval of information across several documents by using selection fields.  An example of this could be requesting all PurchaseOrder Lines for a specific ItemId.  This type of functionality is limited to the capabilities of the responding application and needs to be determined during the implementation project. 
+
+This BOD does not usually cause updates to occur.  It may be used as part of a large integration scenario or as a single tool for requesting information on existing demands for goods or services.  Examples include:
+
+1. A Plant Data Collection application could use this BOD to request information from a Purchasing application.
+
+2. A MRP, Inventory or Manufacturing business application could use this to obtain order information.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="GetListPurchaseOrder">
+                <xs:complexContent>
+                        <xs:extension base="BusinessObjectDocument">
+                                <xs:sequence>
+                                        <xs:element name="DataArea" type="GetListPurchaseOrderDataArea">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is where the information that the BOD message carries is provided, in this case GetListPurchaseOrder. The information consists of a Verb and one or more Nouns. The verb (GetList) indicates the action to be performed on the Noun (PurchaseOrder).</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="GetListPurchaseOrderDataArea">
+                <xs:complexContent>
+                        <xs:extension base="DataArea">
+                                <xs:sequence>
+                                        <xs:element ref="GetList"/>
+                                        <xs:element ref="PurchaseOrder" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+</xs:schema>

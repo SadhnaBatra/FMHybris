@@ -1,0 +1,119 @@
+#******************************This file is generated - please do not edit it. It will be regenerated after every build.********************************#
+# ImpEx for Importing Classification Categories into Electronics Store 
+
+# Macros / Replacement Parameter definitions
+$productCatalog=federalmogulProductCatalog
+$productCatalogName=federalmogul Product Catalog
+$classCatalogVersion=catalogversion(catalog(id[default='federalmogulClassification']),version[default='1.0'])[unique=true,default='federalmogulClassification:1.0']
+$classSystemVersion=systemVersion(catalog(id[default='federalmogulClassification']),version[default='1.0'])[unique=true]
+
+# Language
+$lang=en
+
+
+# Create Categories
+UPDATE ClassificationClass;code[unique=true];$classCatalogVersion;name[lang=$lang]
+ 
+;BELOW;;Rack and Pinion Bellows;
+;BJONT;;Ball Joint;
+;TROD;;Tie Rod End;
+;CS;;Coil Spring Set;
+;SWBLK;;Sway Bar Link;
+;BROTR;;Rotor Attributes;
+;BPAD;;Brake Pad;
+;CHRAF;;Round Air Filters;	
+;CHSOL;;Spin-on Oil Filters;
+ 
+
+
+# Create Categories
+UPDATE ClassificationAttribute;code[unique=true];name[lang=$lang];$classSystemVersion
+
+
+#BELOW	
+;SEndIDIn,867;Small End ID - Inches;
+;SEndIDMM,868;Small End ID - MM;
+;LEndIDIn,869;Large End ID - Inches;
+;LengthIn,871;Length - Inches;
+;LengthMM,872;Length - MM;
+	
+#TROD	
+;StudCentertoEndIn,1348;Stud Center to End (in)
+;RodThrd,1349;Rod Thread;
+;RodTypeMorF,1351;Rod Type (Male / Female);
+;StudDiaDimtopIn,1352;Stud Diameter Dimension (top in.);
+;StudDiDimbottomIn,1353;Stud Diameter Dimension (bottom in.);
+;StudThrd,1354;Stud Thread;
+	
+#SWBLK	
+;BLgthIn,1361;Bolt Length (IN);
+;SLgthIn,1362;Sleeve Length (IN);
+	
+#CS	
+;IDIn,826;ID - Inches;
+;IDMM,827;ID - MM;
+;BarDiaIn,828;Bar Diameter - Inches;
+;BarDiaMM,829;Bar Diameter - MM;
+;SpringRatelbsperIn,830;Spring Rate - lbs per inch;
+;Loadlbs,831;Load - lbs;
+;InstallationHeightIn,832;Installation Height - Inches;
+;InstallationHeightMM,833;Installation Height - MM;
+;FreeHtIn,834;Free Height - Inches;
+;FreeHtMM,835;Free Height - MM;
+;EndType1,836;End Type 1;
+;EndType2,837;End Type 2;
+;SpringType,838;Spring Type;
+	
+	
+#BROTR	
+;Slotted,782;Slotted;
+;Material,783;Material;
+;HeightIns,784;Height - Inches;
+;HeightMM,785;Height - MM;
+;OutDiaIn,787;Outside Diameter - Inches;
+;OutDiaMM,788;Outside Diameter - MM;
+;Finish,789;Finish;
+;NewPartThickIn,794;New Part Thickness - Inches;
+;NewPartThickMM,795;New Part Thickness - MM;
+;MinimumThickIn,1024;Minimum Thickness - Inches;
+;MinimumThickMM,1025;Minimum Thickness - MM;
+;Vented,796;Vented;
+	
+	
+#BPAD	
+;PadFMSINumber,1130;Pad FMSI Number;
+;AbutementHwInc,1131;Abutement Hardware Included;
+;FrictionThickInnerPadIn,1132;Friction Thickness Inner Pad (Inch);
+;FrictionThickOuterPadIn,1133;Friction Thickness Outer Pad (Inch);
+;FrontorRearPads,1134;Front or Rear Pads;
+;OEMReplacement,1135;OEM Replacement;
+;PackageQuantity,1136;Package Quantity;
+;PadMaterial,1137;Pad Material;
+;ShimsIncluded,1138;Shims Included;
+;WearSensorsIncluded,1139;Wear Sensors Included;
+;Performance,1140;Performance;
+
+#CHSOL
+;FilterMaterial,1102;Filter Material;
+;ThreadPitch,1116;Thread Pitch;
+;PressureRelief,1117;Pressure Relief;
+;AntiDrainBackValve,1118;Anti-Drain Back Valve;
+;HeightIn,1119;Height (Inches);
+;HeightMM,1120;Height (mm);
+
+
+#CHRAF
+;FilterMaterial,1102;Filter Material;
+;OuterDiaTopIn,1104;Outer Diameter Top (Inches);
+;OuterDiaTopMM,1105;Outer Diameter Top (mm);
+;OuterDiaBottomIn,1106;Outer Diameter Bottom (Inches);
+;OuterDiaBottomMM,1107;Outer Diameter Bottom (mm);
+;InDiaTopIn,1108;Inner Diameter Top (Inches);
+;InDiaTopMM,1109;Inner Diameter Top (mm);
+;HeightIn,1119;Height (Inches);
+;HeightMM,1120;Height (mm);
+
+
+
+
+

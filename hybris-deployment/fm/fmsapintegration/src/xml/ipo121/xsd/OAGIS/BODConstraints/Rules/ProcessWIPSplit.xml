@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sch:schema xmlns="http://www.ascc.net/xml/schematron" xmlns:oa="http://www.openapplications.org/oagis" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ascc.net/xml/schematron ../../../Utility/Schematron/schematron1-5.xsd">
+	<sch:title>Schematron Validator for OAGI Constraints</sch:title>
+	<sch:ns prefix="oa" uri="http://www.openapplications.org/oagis"/>
+	<sch:pattern name="Process WIPSplit">
+		<sch:rule context="oa:WIPSplit">
+			<sch:assert test="oa:Header">The Process WIPSplit must have a Header component specified</sch:assert>
+			<sch:assert test="oa:Line">The Process WIPSplit must have at least one Line component specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Process WIPSplitHeader">
+		<sch:rule context="oa:WIPSplit/oa:Header">
+			<sch:assert test="oa:DocumentDateTime">The Process WIPSplit Header must have a "DocumentDateTime" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Process WIPSplitLine">
+		<sch:rule context="oa:WIPSplit/oa:Line">
+			<sch:assert test="oa:WIPSplitSource">The Process WIPSplit Line must have a "WIPSplitSource" component specified</sch:assert>
+			<sch:assert test="oa:WIPSplitDestination">The Process WIPSplit Line must have a "WIPSplitDestination" component specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="WIPSplitSource">
+		<sch:rule context="oa:WIPSplit/oa:Line/oa:WIPSplitSource">
+			<sch:assert test="oa:ProductionOrderReference">The WIPSplitSource must have a "ProductionOrderReference" specified</sch:assert>
+			<sch:assert test="oa:OperationReference">The WIPSplitSource must have an "OperationReference" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="WIPSplitDestination">
+		<sch:rule context="oa:WIPSplit/oa:Line/oa:WIPSplitDestination">
+			<sch:assert test="oa:ItemQuantity">The WIPSplitDestination must have a "ItemQuantity" specified</sch:assert>
+			<sch:assert test="oa:ProductionOrderReference">The WIPSplitDestination must have a "ProductionOrderReference" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Operation">
+		<sch:rule context="oa:OperationReference">
+			<sch:assert test="oa:OperationId">An Operation must have a "OperationId"  specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Production Order">
+		<sch:rule context="oa:ProductionOrderReference">
+			<sch:assert test="oa:DocumentId/oa:Id">A ProductionOrderReference must have a "DocumentId" and an "Id"  specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+</sch:schema>

@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group Sample XML Data
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: SyncShipmentSchedule.xml
+-->
+<SyncShipmentSchedule xmlns="http://www.openapplications.org/oagis" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openapplications.org/oagis ../BODs/SyncShipmentSchedule.xsd" revision="8.0" environment="Production" lang="en-US">
+        <ApplicationArea>
+                <Sender>
+                        <LogicalId>String</LogicalId>
+                        <Component>String</Component>
+                        <Task>String</Task>
+                        <ReferenceId>String</ReferenceId>
+                        <Confirmation>0</Confirmation>
+                        <AuthorizationId>String</AuthorizationId>
+                </Sender>
+                <CreationDateTime>2001-12-17T09:30:47-05:00</CreationDateTime>
+                <Signature qualifyingAgency="String"/>
+                <BODId>String</BODId>
+                <UserArea/>
+        </ApplicationArea>
+        <DataArea>
+                <Sync confirm="Always">
+                        <SyncCriteria expressionLanguage="XPath">
+                                <SyncExpression action="Add">String</SyncExpression>
+                        </SyncCriteria>
+                </Sync>
+                <ShipmentSchedule>
+                        <Header>
+                                <DocumentIds>
+                                        <DocumentId>
+                                                <Id>String</Id>
+                                                <Revision>String</Revision>
+                                        </DocumentId>
+                                </DocumentIds>
+                                <Status>
+                                        <Code>String</Code>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <Change>
+                                                <From>String</From>
+                                                <To>String</To>
+                                                <ChangeDate>2002-04-05</ChangeDate>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <UserArea/>
+                                        </Change>
+                                        <UserArea/>
+                                </Status>
+                                <LastModificationDateTime>2002-04-05T00:00:00Z</LastModificationDateTime>
+                                <DocumentDateTime>2002-04-05T00:00:00Z</DocumentDateTime>
+                                <Description lang="en-us" owner="String">String</Description>
+                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                <DocumentReferences>
+                                        <PurchaseOrderDocumentReference/>
+                                </DocumentReferences>
+                                <Attachments>
+                                        <Attachment inline="false">
+                                                <EmbeddedData encoding="base64">
+                                                        <Data>Text</Data>
+                                                </EmbeddedData>
+                                                <DocumentDate>2002-04-05</DocumentDate>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <FileType>String</FileType>
+                                                <FileSize>3.1415926535897932384626433832795</FileSize>
+                                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                <Title lang="en-us">String</Title>
+                                                <UserArea/>
+                                        </Attachment>
+                                </Attachments>
+                                <RespondingScheduleReference>
+                                        <DocumentIds>
+                                                <SupplierDocumentId>
+                                                        <Id>String</Id>
+                                                        <Revision>String</Revision>
+                                                </SupplierDocumentId>
+                                        </DocumentIds>
+                                        <DocumentDate>2002-04-05</DocumentDate>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <Name lang="en-us">String</Name>
+                                        <Status>
+                                                <Code>String</Code>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <Change>
+                                                        <From>String</From>
+                                                        <To>String</To>
+                                                        <ChangeDate>2002-04-05</ChangeDate>
+                                                        <Description lang="en-us" owner="String">String</Description>
+                                                        <UserArea/>
+                                                </Change>
+                                                <UserArea/>
+                                        </Status>
+                                        <Usage>String</Usage>
+                                        <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                        <UserArea/>
+                                </RespondingScheduleReference>
+                                <EffectivePeriod inclusive="true">
+                                        <From>2002-04-05</From>
+                                        <Duration>P1Y2M3DT10H30M</Duration>
+                                </EffectivePeriod>
+                                <DateType>String</DateType>
+                                <ScheduleType>String</ScheduleType>
+                                <Parties>
+                                        <ShipToParty active="false" oneTime="false">
+                                                <PartyId>
+                                                        <Id>String</Id>
+                                                        <SCAC>String</SCAC>
+                                                        <DUNS>String</DUNS>
+                                                </PartyId>
+                                        </ShipToParty>
+                                </Parties>
+                                <UserArea/>
+                        </Header>
+                        <Line>
+                                <LineNumber>String</LineNumber>
+                                <LineType>String</LineType>
+                                <RespondingScheduleReference/>
+                                <DocumentReferences>
+                                        <PurchaseOrderDocumentReference/>
+                                </DocumentReferences>
+                                <Item>
+                                        <ItemId>
+                                                <Id>String</Id>
+                                                <EANUCC13 url="String">String</EANUCC13>
+                                                <UPC url="String">String</UPC>
+                                                <Revision>String</Revision>
+                                        </ItemId>
+                                        <Type>String</Type>
+                                        <Variation>String</Variation>
+                                        <Disposition>
+                                                <Code>String</Code>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <Change>
+                                                        <From>String</From>
+                                                        <To>String</To>
+                                                        <ChangeDate>2002-04-05</ChangeDate>
+                                                        <Description lang="en-us" owner="String">String</Description>
+                                                        <UserArea/>
+                                                </Change>
+                                                <UserArea/>
+                                        </Disposition>
+                                        <Property>
+                                                <NameValue name="String" type="String">String</NameValue>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                <UserArea/>
+                                        </Property>
+                                        <UserArea/>
+                                </Item>
+                                <EffectivePeriod inclusive="true">
+                                        <From>2002-04-05</From>
+                                        <Duration>P1Y2M3DT10H30M</Duration>
+                                </EffectivePeriod>
+                                <EngineeringChangeDateTime>2002-04-05</EngineeringChangeDateTime>
+                                <ActualDeliveryDateTime>2002-04-05</ActualDeliveryDateTime>
+                                <ReceivedDateTime>2002-04-05</ReceivedDateTime>
+                                <ShipmentDateTime>2002-04-05</ShipmentDateTime>
+                                <DeliveredQuantity uom="NMTOKEN">3.1415926535897932384626433832795</DeliveredQuantity>
+                                <ItemQuantity uom="NMTOKEN">3.1415926535897932384626433832795</ItemQuantity>
+                                <PriorQuantity uom="NMTOKEN">3.1415926535897932384626433832795</PriorQuantity>
+                                <ReceivedQuantity uom="NMTOKEN">3.1415926535897932384626433832795</ReceivedQuantity>
+                                <ShippedQuantity uom="NMTOKEN">3.1415926535897932384626433832795</ShippedQuantity>
+                                <Attachments>
+                                        <Attachment inline="false">
+                                                <EmbeddedData encoding="base64">
+                                                        <Data>Text</Data>
+                                                </EmbeddedData>
+                                                <DocumentDate>2002-04-05</DocumentDate>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <FileType>String</FileType>
+                                                <FileSize>3.1415926535897932384626433832795</FileSize>
+                                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                <Title lang="en-us">String</Title>
+                                                <UserArea/>
+                                        </Attachment>
+                                </Attachments>
+                                <Authorization>11</Authorization>
+                                <Description lang="en-us" owner="String">String</Description>
+                                <Commodity>String</Commodity>
+                                <LoadingDock>String</LoadingDock>
+                                <HazardousMaterial>
+                                        <Code issuingAgency="String">String</Code>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <UserArea/>
+                                </HazardousMaterial>
+                                <Kanban>String</Kanban>
+                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                <Packing>
+                                        <PackingCode>String</PackingCode>
+                                        <UPC url="String">String</UPC>
+                                        <Description lang="en-us" owner="String">String</Description>
+                                        <Volume uom="NMTOKEN">3.1415926535897932384626433832795</Volume>
+                                        <Width uom="NMTOKEN">3.1415926535897932384626433832795</Width>
+                                        <Height uom="NMTOKEN">3.1415926535897932384626433832795</Height>
+                                        <Length uom="NMTOKEN">3.1415926535897932384626433832795</Length>
+                                        <WeightQuantity uom="NMTOKEN">3.1415926535897932384626433832795</WeightQuantity>
+                                        <ShippingMaterial>
+                                                <ShippingMaterialId>String</ShippingMaterialId>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <UserArea/>
+                                        </ShippingMaterial>
+                                        <UserArea/>
+                                </Packing>
+                                <PackingDescription lang="en-us" owner="String">String</PackingDescription>
+                                <Priority>String</Priority>
+                                <Project>
+                                        <Id>String</Id>
+                                        <Status>String</Status>
+                                        <EffectivePeriod inclusive="true">
+                                                <From>2002-04-05</From>
+                                                <Duration>P1Y2M3DT10H30M</Duration>
+                                        </EffectivePeriod>
+                                        <Authorization>
+                                                <Id>String</Id>
+                                                <Type>Text</Type>
+                                                <Status>
+                                                        <Code>123</Code>
+                                                </Status>
+                                                <DateAuthorized>2002-04-05</DateAuthorized>
+                                                <EffectivePeriod inclusive="true">
+                                                        <From>2002-04-05</From>
+                                                        <Duration>P1Y2M3DT10H30M</Duration>
+                                                </EffectivePeriod>
+                                                <AuthorizationCode>Text</AuthorizationCode>
+                                        </Authorization>
+                                        <TransactionType>String</TransactionType>
+                                        <TotalCost>
+                                                <Actual currency="String">3.1415926535897932384626433832795</Actual>
+                                                <Converted currency="String" conversionFactor="3.1415926535897932384626433832795">3.1415926535897932384626433832795</Converted>
+                                        </TotalCost>
+                                        <GLElement>
+                                                <NameValue name="String" type="String">String</NameValue>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                <UserArea/>
+                                        </GLElement>
+                                        <ProjectResourceCategory>String</ProjectResourceCategory>
+                                        <Activity>
+                                                <Id>String</Id>
+                                                <Status>String</Status>
+                                                <Cost>
+                                                        <Actual currency="String">3.1415926535897932384626433832795</Actual>
+                                                        <Converted currency="String" conversionFactor="3.1415926535897932384626433832795">3.1415926535897932384626433832795</Converted>
+                                                </Cost>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                <UserArea/>
+                                        </Activity>
+                                        <DocumentReferences>
+                                                <PurchaseOrderDocumentReference/>
+                                        </DocumentReferences>
+                                        <Attachments>
+                                                <Attachment inline="false">
+                                                        <EmbeddedData encoding="base64">
+                                                                <Data>Text</Data>
+                                                        </EmbeddedData>
+                                                        <DocumentDate>2002-04-05</DocumentDate>
+                                                        <Description lang="en-us" owner="String">String</Description>
+                                                        <FileType>String</FileType>
+                                                        <FileSize>3.1415926535897932384626433832795</FileSize>
+                                                        <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                        <Title lang="en-us">String</Title>
+                                                        <UserArea/>
+                                                </Attachment>
+                                        </Attachments>
+                                        <UserArea/>
+                                </Project>
+                                <ShipperNumber>String</ShipperNumber>
+                                <Task>String</Task>
+                                <Parties>
+                                        <ShipToParty active="false" oneTime="false">
+                                                <PartyId>
+                                                        <Id>String</Id>
+                                                        <SCAC>String</SCAC>
+                                                        <DUNS>String</DUNS>
+                                                </PartyId>
+                                        </ShipToParty>
+                                </Parties>
+                                <RequiredDateTime>2002-04-05</RequiredDateTime>
+                                <UserArea/>
+                        </Line>
+                </ShipmentSchedule>
+        </DataArea>
+</SyncShipmentSchedule>

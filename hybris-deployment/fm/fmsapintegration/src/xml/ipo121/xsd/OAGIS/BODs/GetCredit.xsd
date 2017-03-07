@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: GetCredit.xsd
+-->
+<xs:schema targetNamespace="http://www.openapplications.org/oagis" xmlns="http://www.openapplications.org/oagis" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../Resources/Verbs/Get.xsd"/>
+	<xs:include schemaLocation="../Resources/Nouns/Credit.xsd"/>
+	<xs:element name="GetCredit" type="GetCredit">
+		<xs:annotation>
+			<xs:documentation source="http://www.openapplications.org/oagis">The purpose of the GetCredit is for the order management application to request credit data for a trading partner from the credit management function.  The GetCredit does not imply any update, it is only an inquiry function.  The ShowCredit discussed in the next chapter will be the response back to the order management application.
+
+Discussed in a later chapter is the UpdateCredit.  The UpdateCredit may be used in both directions between the order management and the accounts receivable application.  Its purpose is to keep order, shipment and open item amounts current.  Finally, the ChangeCreditStatus is used to update the order management application with any changes in business status for a particular trading partner.
+</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="GetCredit">
+		<xs:complexContent>
+			<xs:extension base="BusinessObjectDocument">
+				<xs:sequence>
+					<xs:element name="DataArea" type="GetCreditDataArea">
+						<xs:annotation>
+							<xs:documentation source="http://www.openapplications.org/oagis">Is where the information that the BOD message carries is provided, in this case GetCredit. The information consists of a Verb and one or more Nouns. The verb (Get) indicates the action to be performed on the Noun (Credit).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="GetCreditDataArea">
+		<xs:complexContent>
+			<xs:extension base="DataArea">
+				<xs:sequence>
+					<xs:element ref="Get"/>
+					<xs:element ref="Credit" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

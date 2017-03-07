@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sch:schema xmlns="http://www.ascc.net/xml/schematron" xmlns:oa="http://www.openapplications.org/oagis" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ascc.net/xml/schematron ../../../Utility/Schematron/schematron1-5.xsd">
+	<sch:title>Schematron Validator for OAGI Constraints</sch:title>
+	<sch:ns prefix="oa" uri="http://www.openapplications.org/oagis"/>
+	<sch:pattern name="Cancel ProductRequirement">
+		<sch:rule context="oa:ProductRequirement">
+			<sch:assert test="oa:Item">The Cancel ProductRequirement must have an "Item"  specified</sch:assert>
+			<sch:assert test="oa:RequiredDateTime">The Cancel ProductRequirement must have a "RequiredDateTime" specified</sch:assert>
+			<sch:assert test="oa:Site">The Cancel ProductRequirement must have a "Site" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Cancel ProductRequirement Item">
+		<sch:rule context="oa:ProductRequirement/oa:Item">
+			<sch:assert test="oa:ItemId/oa:Id">The Cancel ProductRequirement must have an "ItemId" and "Id" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+</sch:schema>

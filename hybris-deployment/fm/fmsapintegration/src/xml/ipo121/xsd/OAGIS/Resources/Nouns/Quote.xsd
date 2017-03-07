@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/Quote.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" xmlns:saxon="http://icl.com/saxon" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="Order.xsd"/>
+        <xs:element name="Quote" type="Quote" substitutionGroup="Noun">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Is a document describing the prices of goods or services provided by a vendor.  The Quote includes the terms of the purchase, delivery proposals, identification of goods or services ordered, as well as their quantities.The Quote noun is used in conjunction with the RFQ noun to form a Business-to-Business negotiation dialogue concerning the goods or services specified.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="Quote">
+                <xs:complexContent>
+                        <xs:extension base="Order"/>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="QuoteHeader">
+                <xs:complexContent>
+                        <xs:extension base="OrderHeader">
+                                <xs:sequence>
+                                        <xs:element name="EffectivePeriod" type="TimePeriodAny" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the effective period for the quote.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="DeliveryFlexibililityDuration" type="Duration" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the flexibility that the Customer allows the Supplier in the Delivery Date of the Quote.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element ref="Site" minOccurs="0"/>
+                                        <xs:element ref="SalesInformation" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element ref="Message" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="QuoteLine">
+                <xs:complexContent>
+                        <xs:extension base="OrderLine">
+                                <xs:sequence>
+                                        <xs:element name="EffectiveDateTime" type="DateTime" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the start date in which the Quote Line is effective.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="ExpirationDateTime" type="DateTime" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the ending date in which the quote line is effective.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="TimeOpenDuration" type="Duration" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the time period over which the line applies, as a duration of time.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element ref="SalesInformation" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element ref="Message" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element name="SubLine" type="QuoteSubLine" minOccurs="0" maxOccurs="unbounded">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">The Component SubLine represents any additional information concerning the product on the Line.  The SubLine can be used to describe a specific configuration of the ordered item.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element ref="Schedule" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="QuoteSubLine">
+                <xs:complexContent>
+                        <xs:extension base="OrderSubLine"/>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="QuoteLineSchedule">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the schedule for the order items to be delivered.</xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                        <xs:extension base="OrderSchedule">
+                                <xs:sequence>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:element name="Header" type="QuoteHeader">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">- Information that applies to the entire quote.  </xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Line" type="QuoteLine">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The item or product quoted along with quantity, price and other descriptive information.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Schedule" type="QuoteLineSchedule">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the schedule for the delivery of this line item.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+</xs:schema>

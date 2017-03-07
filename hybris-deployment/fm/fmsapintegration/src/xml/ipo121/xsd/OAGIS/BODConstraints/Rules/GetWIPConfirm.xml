@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sch:schema xmlns="http://www.ascc.net/xml/schematron" xmlns:oa="http://www.openapplications.org/oagis" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ascc.net/xml/schematron ../../../Utility/Schematron/schematron1-5.xsd">
+	<sch:title>Schematron Validator for OAGI Constraints</sch:title>
+	<sch:ns prefix="oa" uri="http://www.openapplications.org/oagis"/>
+	<sch:pattern name="Get WIP Confirm">
+		<sch:rule context="oa:WIPConfirm">
+			<sch:assert test="oa:Header">Get WIPConfirm must have a Header component specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Shop Floor Control Sub-Line">
+		<sch:rule context="oa:WIPConfirm/oa:Line/oa:ShopFloorControlSubLine">
+			<sch:assert test="oa:ShopFloorControlResource">The ShopFloorControlSubLine must have a "ShopFloorControlResource" component specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="ShopFloorControlResource">
+		<sch:rule context="oa:ShopFloorControlResource">
+			<sch:assert test="oa:ShopFloorControlActivity">The ShopFloorControlActivity must have a "ShopFloorControlActivity" component specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+</sch:schema>

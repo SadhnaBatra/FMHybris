@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/WIPSplit.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../MfgComponents.xsd"/>
+        <xs:complexType name="WIPSplit">
+                <xs:complexContent>
+                        <xs:extension base="Noun">
+                                <xs:sequence>
+                                        <xs:element ref="Header" minOccurs="0"/>
+                                        <xs:element ref="Line" minOccurs="0" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="WIPSplitHeader">
+                <xs:sequence>
+                        <xs:element name="DocumentDateTime" type="DateTime" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the timestamp that indicates when the WIPSplit document was created on in the integrated envitonment.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ReasonCode" type="ReasonCode" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the reason code that caused the WIPSplit event to happen.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="ProductionOrderReference" minOccurs="0"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="WIPSplitLine">
+                <xs:sequence>
+                        <xs:element ref="WIPSplitSource" minOccurs="0"/>
+                        <xs:element ref="WIPSplitDestination" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:element name="WIPSplit" type="WIPSplit" substitutionGroup="Noun">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">WIPSplit is used to notify a Manufacturing Application of the creation of multiple production lots from a single production lot of a product being made on a production order. </xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Header" type="WIPSplitHeader"/>
+        <xs:element name="Line" type="WIPSplitLine"/>
+        <xs:complexType name="WIPSplitSource">
+                <xs:sequence>
+                        <xs:element ref="ProductionOrderReference" minOccurs="0"/>
+                        <xs:element ref="OperationReference" minOccurs="0"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="WIPSplitDestination">
+                <xs:sequence>
+                        <xs:element name="ItemQuantity" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the number of items being split.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="ProductionOrderReference" minOccurs="0"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:element name="WIPSplitSource" type="WIPSplitSource">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Information concerning the specific production order in the WIP Split transaction to be processed.  This component specifies the source (parent) production order from which to perform the split transaction.  </xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="WIPSplitDestination" type="WIPSplitDestination">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Information concerning the specific production order in the WIP Split transaction to be processed.  Instances of this component are the target (children) production orders to which to perform the split transaction.  If the parent production order (specified in the WIPSplitSource component) is also a resulting child production lot, it must be specified again as a child production order (ie. you must define the WIPSplitSource again as an instance in the WIPSplitDestination).</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+</xs:schema>

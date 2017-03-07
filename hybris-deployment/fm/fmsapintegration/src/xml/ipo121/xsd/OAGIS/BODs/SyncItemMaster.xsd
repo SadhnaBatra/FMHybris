@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: SyncItemMaster.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Resources/Verbs/Sync.xsd"/>
+        <xs:include schemaLocation="../Resources/Nouns/ItemMaster.xsd"/>
+        <xs:element name="SyncItemMaster" type="SyncItemMaster">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The purpose of the SyncItemMaster is to supply Item information for goods or services to another business application module.  This BOD may also be initiated by the sending system upon some event occurring.
+
+This BOD is not for synchronizing ITEM quantities at each inventory location.   The SyncInventoryBalance Business Object Document is used for this purpose.
+
+There are many possible business applications in several environments that may use this capability. For example, a MRP, Inventory, or Manufacturing business application could use this to communicate item information. 
+
+This BOD can be used to synchronize items used in finished goods, raw materials, work-in-process or components in a bill of materials.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="SyncItemMaster">
+                <xs:complexContent>
+                        <xs:extension base="BusinessObjectDocument">
+                                <xs:sequence>
+                                        <xs:element name="DataArea" type="SyncItemMasterDataArea">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is where the information that the BOD message carries is provided, in this case SyncItemMaster. The information consists of a Verb and one or more Nouns. The verb (Sync) indicates the action to be performed on the Noun (ItemMaster).</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="SyncItemMasterDataArea">
+                <xs:complexContent>
+                        <xs:extension base="DataArea">
+                                <xs:sequence>
+                                        <xs:element ref="Sync"/>
+                                        <xs:element ref="ItemMaster" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+</xs:schema>

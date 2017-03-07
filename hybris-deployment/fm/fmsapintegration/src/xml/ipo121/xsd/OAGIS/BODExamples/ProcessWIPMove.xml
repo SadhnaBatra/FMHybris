@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group Sample XML Data
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: ProcessWIPMove.xml
+-->
+<ProcessWIPMove xmlns="http://www.openapplications.org/oagis" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openapplications.org/oagis ../BODs/ProcessWIPMove.xsd" revision="8.0" environment="Production" lang="en-US">
+        <ApplicationArea>
+                <Sender>
+                        <LogicalId>String</LogicalId>
+                        <Component>String</Component>
+                        <Task>String</Task>
+                        <ReferenceId>String</ReferenceId>
+                        <Confirmation>0</Confirmation>
+                        <AuthorizationId>String</AuthorizationId>
+                </Sender>
+                <CreationDateTime>2001-12-17T09:30:47-05:00</CreationDateTime>
+                <Signature qualifyingAgency="String"/>
+                <BODId>String</BODId>
+                <UserArea/>
+        </ApplicationArea>
+        <DataArea>
+                <Process confirm="Always" acknowledge="Always"/>
+                <WIPMove>
+                        <Header>
+                                <DocumentDateTime>2002-04-05T00:00:00Z</DocumentDateTime>
+                                <ReasonCode>String</ReasonCode>
+                                <UserArea/>
+                        </Header>
+                        <Line>
+                                <ScrapQuantity uom="NMTOKEN">3.1415926535897932384626433832795</ScrapQuantity>
+                                <MoveFromOperation>
+                                        <OperationReference>
+                                                <OperationId>String</OperationId>
+                                                <OperationName lang="en-us">String</OperationName>
+                                                <OperationSequence>String</OperationSequence>
+                                                <SuffixId>String</SuffixId>
+                                                <StepType>String</StepType>
+                                                <UserArea/>
+                                        </OperationReference>
+                                        <UserArea/>
+                                </MoveFromOperation>
+                                <MoveToOperation>
+                                        <OperationReference>
+                                                <OperationId>String</OperationId>
+                                                <OperationName lang="en-us">String</OperationName>
+                                                <OperationSequence>String</OperationSequence>
+                                                <SuffixId>String</SuffixId>
+                                                <StepType>String</StepType>
+                                                <UserArea/>
+                                        </OperationReference>
+                                        <UserArea/>
+                                </MoveToOperation>
+                                <UserArea/>
+                        </Line>
+                        <Distribution>
+                                <Amount>
+                                        <Actual currency="String">3.1415926535897932384626433832795</Actual>
+                                        <Converted currency="String" conversionFactor="3.1415926535897932384626433832795">3.1415926535897932384626433832795</Converted>
+                                </Amount>
+                                <Ledger>String</Ledger>
+                                <GLEntity>String</GLEntity>
+                                <Business>
+                                        <Id>String</Id>
+                                        <Function>String</Function>
+                                        <Name lang="en-us">String</Name>
+                                        <RelatedUnit>
+                                                <Relationship>String</Relationship>
+                                                <Unit>
+                                                        <Id>String</Id>
+                                                        <Function>String</Function>
+                                                        <Name lang="en-us">String</Name>
+                                                        <UserArea/>
+                                                </Unit>
+                                        </RelatedUnit>
+                                        <UserArea/>
+                                </Business>
+                                <CostCenter>String</CostCenter>
+                                <ProfitCenter>String</ProfitCenter>
+                                <Fund>String</Fund>
+                                <Project>
+                                        <Id>String</Id>
+                                        <Status>String</Status>
+                                        <EffectivePeriod inclusive="true">
+                                                <From>2002-04-05</From>
+                                                <Duration>P1Y2M3DT10H30M</Duration>
+                                        </EffectivePeriod>
+                                        <Authorization>
+                                                <Id>String</Id>
+                                                <Type>Text</Type>
+                                                <Status>
+                                                        <Code>123</Code>
+                                                </Status>
+                                                <DateAuthorized>2002-04-05</DateAuthorized>
+                                                <EffectivePeriod inclusive="true">
+                                                        <From>2002-04-05</From>
+                                                        <Duration>P1Y2M3DT10H30M</Duration>
+                                                </EffectivePeriod>
+                                                <AuthorizationCode>Text</AuthorizationCode>
+                                        </Authorization>
+                                        <TransactionType>String</TransactionType>
+                                        <TotalCost>
+                                                <Actual currency="String">3.1415926535897932384626433832795</Actual>
+                                                <Converted currency="String" conversionFactor="3.1415926535897932384626433832795">3.1415926535897932384626433832795</Converted>
+                                        </TotalCost>
+                                        <GLElement>
+                                                <NameValue name="String" type="String">String</NameValue>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                <UserArea/>
+                                        </GLElement>
+                                        <ProjectResourceCategory>String</ProjectResourceCategory>
+                                        <Activity>
+                                                <Id>String</Id>
+                                                <Status>String</Status>
+                                                <Cost>
+                                                        <Actual currency="String">3.1415926535897932384626433832795</Actual>
+                                                        <Converted currency="String" conversionFactor="3.1415926535897932384626433832795">3.1415926535897932384626433832795</Converted>
+                                                </Cost>
+                                                <Description lang="en-us" owner="String">String</Description>
+                                                <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                <UserArea/>
+                                        </Activity>
+                                        <DocumentReferences>
+                                                <PurchaseOrderDocumentReference/>
+                                        </DocumentReferences>
+                                        <Attachments>
+                                                <Attachment inline="false">
+                                                        <EmbeddedData encoding="base64">
+                                                                <Data>Text</Data>
+                                                        </EmbeddedData>
+                                                        <DocumentDate>2002-04-05</DocumentDate>
+                                                        <Description lang="en-us" owner="String">String</Description>
+                                                        <FileType>String</FileType>
+                                                        <FileSize>3.1415926535897932384626433832795</FileSize>
+                                                        <Note lang="en-us" author="String" entryDateTime="2002-04-05T00:00:00Z">String</Note>
+                                                        <Title lang="en-us">String</Title>
+                                                        <UserArea/>
+                                                </Attachment>
+                                        </Attachments>
+                                        <UserArea/>
+                                </Project>
+                                <UserArea/>
+                        </Distribution>
+                </WIPMove>
+        </DataArea>
+</ProcessWIPMove>

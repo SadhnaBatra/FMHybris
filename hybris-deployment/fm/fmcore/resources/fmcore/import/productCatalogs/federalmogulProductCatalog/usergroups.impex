@@ -1,0 +1,20 @@
+#
+# Import Users and Groups for BTG Cockpit
+# 
+
+$productCatalog=federalmogulProductCatalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default='$productCatalog:Staged']
+$prices=Europe1prices[translator=de.hybris.platform.europe1.jalo.impex.Europe1PricesTranslator]
+
+
+INSERT_UPDATE UserGroup;uid[unique=true];locname[lang=en];
+
+
+INSERT_UPDATE B2BUnit;uid[unique=true];name;Active;userPriceGroup(code)
+
+
+INSERT_UPDATE B2BCustomer;uid[unique=true];email;name;groups(uid)[mode=append];
+
+
+
+INSERT_UPDATE UserPriceGroup;code[unique=true];name[lang=en];

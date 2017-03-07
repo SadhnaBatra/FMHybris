@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Automotive Aftermarket Industry Association (AAIA)
+	http://www.aftermarket.org
+	Internet Parts Ordering (IPO) Release 1.2.1,  March 1, 2005
+	Business Object Document (BOD)
+	
+	Overlay for: 
+	Open Applications Group (http://www.openapplications.org)
+	OAGIS Release 8.0, 	April 05, 2002
+	
+	Name:	PurchaseOrder.xsd
+-->
+<xs:schema targetNamespace="http://www.aftermarket.org/oagis" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:aaia="http://www.aftermarket.org/oagis" xmlns:oa="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.openapplications.org/oagis" schemaLocation="../../../OAGIS/Resources/Nouns/PurchaseOrder.xsd"/>
+	<xs:include schemaLocation="../Components.xsd"/>
+	<xs:complexType name="PurchaseOrderHeader">
+		<xs:complexContent>
+			<xs:extension base="oa:PurchaseOrderHeader">
+				<xs:sequence>
+					<xs:element ref="aaia:Vehicle" minOccurs="0"/>
+					<xs:element name="EffectivePeriod" type="oa:TimePeriodAny" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="Header" type="aaia:PurchaseOrderHeader" substitutionGroup="oa:Header"/>
+	<xs:complexType name="PurchaseOrderLine">
+		<xs:complexContent>
+			<xs:extension base="oa:PurchaseOrderLine">
+				<xs:sequence>
+					<xs:element name="Vehicle" type="aaia:Vehicle" minOccurs="0"/>
+					<xs:element name="ListPrice" type="oa:AmountPerQuantity" minOccurs="0"/>
+					<xs:element name="DistributorPrice" type="oa:AmountPerQuantity" minOccurs="0"/>
+					<xs:element name="JobberPrice" type="oa:AmountPerQuantity" minOccurs="0"/>
+					<xs:element name="SubLine" type="aaia:PurchaseOrderSubLine" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="Line" type="aaia:PurchaseOrderLine" substitutionGroup="oa:Line"/>
+	<xs:complexType name="PurchaseOrderSubLine">
+		<xs:complexContent>
+			<xs:extension base="oa:PurchaseOrderSubLine">
+				<xs:sequence>
+					<xs:element ref="oa:Parties" minOccurs="0"/>
+					<xs:element name="Vehicle" type="aaia:Vehicle" minOccurs="0"/>
+					<xs:element name="ListPrice" type="oa:AmountPerQuantity" minOccurs="0"/>
+					<xs:element name="DistributorPrice" type="oa:AmountPerQuantity" minOccurs="0"/>
+					<xs:element name="JobberPrice" type="oa:AmountPerQuantity" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

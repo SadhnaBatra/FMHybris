@@ -1,0 +1,1058 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2000-2013 hybris AG
+ All rights reserved.
+
+ This software is the confidential and proprietary information of hybris
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with hybris.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:file="http://www.springframework.org/schema/integration/file"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
+		http://www.springframework.org/schema/integration/file http://www.springframework.org/schema/integration/file/spring-integration-file-2.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="baseDirectoryFederalMogul" class="java.lang.String">
+		<!-- <constructor-arg value="#{configurationService.configuration.getProperty('fmcore.hotfolder.basefolder')}" /> -->
+		<constructor-arg value="#{baseDirectory}/${tenantId}/federalmogul" />
+	</bean>
+	
+	<bean id="federalmogulFileOrderComparator" class="de.hybris.platform.acceleratorservices.dataimport.batch.FileOrderComparator">
+		<property name="prefixPriority">
+			<map>
+				<!-- default priority is 0 -->
+				<entry key="federalmogul_products" value="2" />
+				<entry key="federalmogul_corporate" value="1"  />
+				<entry key="federalmogul_category" value="3"  />
+				<entry key="federalmogul_catrelation" value="3"  />
+				<entry key="federalmogul_partattribute" value="4"  />
+				<entry key="federalmogul_specification" value="6"/>
+				<entry key="specification_Attribute" value="7"/>
+				<entry key="federalmogul_specAttrRel" value="8"/>
+				<entry key="federalmogul_speccatRel" value="8"/>
+				<entry key="specification_below" value="9"/>
+				<entry key="specification_trod" value="9"/>
+				<entry key="specification_swblk" value="9"/>
+				<entry key="federalmogul_media" value="10"/>
+				<entry key="federalmogul_prodMed_rel" value="11"/>
+				<entry key="federalmogul_fitment" value="12"/>
+				<entry key="federalmogul_accounts" value="1"/>
+				<entry key="federalmogul_SalesOrg" value="3"/>
+				<entry key="federalmogul_delete_PartnerFunction" value="1"/>
+				<entry key="federalmogul_PartnerFunction" value="2"/>
+				<entry key="SoldToProspect_federalmodul" value="10"/>
+				<entry key="federalmogul_delete_fitment" value="13"/>
+				<entry key="federalmogul_delete_part" value="14"/>
+				<entry key="federalmogul_partInterchange" value="15"/>
+				<entry key="federalmogul_delete_partInterchange" value="16"/>
+				<entry key="federalmogul_cpl1Customer" value="17"/>
+				<entry key="federalmogul_csbCG" value="18"/>
+				<entry key="federalmogul_csbCustomer" value="19"/>
+				<entry key="federalmogul_csbPercents" value="20"/>
+				<entry key="federalmogul_csbYearSales3612" value="21"/>
+				<entry key="federalmogul_delete_csbCustomer" value="22"/>
+				<entry key="federalmogul_delete_csbPercents" value="23"/>
+				<entry key="federalmogul_delete_csbYearSales3612" value="24"/>
+				<entry key="federalmogul_AlsoFits" value="25"/>
+				<entry key="federalmogul_delete_AlsoFits" value="26"/>
+				<entry key="federalmogul_ymmdata" value="27"/>
+			</map>
+		</property>
+	</bean>
+	
+	<!-- 1) Scan for files -->
+	<file:inbound-channel-adapter id="batchFilesFederalMogul" directory="#{baseDirectoryFederalMogul}"
+		filename-regex="^(federalmogul_products|federalmogul_corporate|federalmogul_category|federalmogul_catrelation|federalmogul_partattribute|federalmogul_specification|specification_Attribute|federalmogul_specAttrRel|federalmogul_speccatRel|specification_below|specification_trod|specification_swblk|federalmogul_media|federalmogul_prodMed_rel|federalmogul_delete_fitment|federalmogul_delete_part|federalmogul_fitment|federalmogul_accounts|federalmogul_SalesOrg|federalmogul_PartnerFunction|federalmogul_CustomerAddress|SoldToProspect_federalmodul|federalmogul_partInterchange|federalmogul_delete_partInterchange|federalmogul_cpl1Customer|federalmogul_csbCG|federalmogul_csbCustomer|federalmogul_csbPercents|federalmogul_csbYearSales3612|federalmogul_delete_csbCustomer|federalmogul_delete_csbPercents|federalmogul_delete_csbYearSales3612|federalmogul_delete_PartnerFunction|federalmogul_AlsoFits|federalmogul_delete_AlsoFits|federalmogul_ymmdata)-(\d+)\.csv" comparator="federalmogulFileOrderComparator">
+		<int:poller fixed-rate="5000" />
+	</file:inbound-channel-adapter>
+
+	<!-- 2) A move the file to processing and setup header -->
+	<file:outbound-gateway request-channel="batchFilesFederalMogul" reply-channel="batchFilesFederalMogulProc"
+		directory="#{baseDirectoryFederalMogul}/processing" delete-source-files="true" />
+	<int:service-activator input-channel="batchFilesFederalMogulProc" output-channel="batchFilesHeaderInitTask"
+		ref="federalmogulHeaderSetupTask" method="execute" />
+	<bean id="federalmogulHeaderSetupTask" class="de.hybris.platform.acceleratorservices.dataimport.batch.task.HeaderSetupTask">
+		<property name="catalog" value="federalmogulProductCatalog" />
+		<property name="net" value="true" />
+		<property name="storeBaseDirectory" ref="baseDirectoryFederalMogul" />
+	</bean>
+	
+	<!-- 2) B move the file to processing and setup header, partly site dependent -->
+	<int:service-activator input-channel="batchFilesHeaderInitTask" output-channel="batchFilesHeader" ref="headerInitTask"
+		method="execute" />
+	<bean id="headerInitTask" class="de.hybris.platform.acceleratorservices.dataimport.batch.task.HeaderInitTask">
+		<property name="sequenceIdParser" ref="batchSequenceIdParser"/>
+		<property name="languageParser" ref="batchLanguageParser"/>
+		<property name="fallbackLanguage" value="en" />
+	</bean>
+	<bean id="batchSequenceIdParser" class="de.hybris.platform.acceleratorservices.dataimport.batch.util.SequenceIdParser">
+		<property name="parser">
+			<bean class="de.hybris.platform.acceleratorservices.util.RegexParser">
+				<property name="regex" value="-(\d+)\.csv" />
+			</bean>
+		</property>
+	</bean>
+	<bean id="batchLanguageParser" class="de.hybris.platform.acceleratorservices.util.RegexParser">
+		<property name="regex" value="-(\w{2})-(\d+)\.csv" />
+	</bean>
+	
+	<!-- 3) transform csv to impex file -->
+	<int:service-activator input-channel="batchFilesHeader" output-channel="batchFilesTran" ref="batchTransformerTask"
+		method="execute" />
+	<bean id="batchTransformerTask" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.task.ImpexTransformerTask" 
+		  init-method="initConvertersMap">
+		<property name="fieldSeparator" value="|" />
+		<property name="encoding" value="UTF-8" />
+		<property name="linesToSkip" value="0"/>
+		<property name="cleanupHelper" ref="cleanupHelper" />
+	</bean>
+	
+	<!-- Transformer converters mappings parts -->
+	
+	<bean id="batchFederalMogulPartsdeleteSupercategoriesConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		  p:mapping="federalmogul_products"
+		  p:converter-ref="batchFederalMogulPartsdeleteCategoriesConverter"/>
+		  
+	<bean id="batchFederalMogulPartsConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		  p:mapping="federalmogul_products"
+		  p:converter-ref="batchFederalMogulPartsConverter"/>
+		
+	<bean id="batchFederalMogulCorporateMediaConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		  p:mapping="federalmogul_corporate"
+		  p:converter-ref="batchFederalMogulCorporateMediaConverter"/>
+	
+	<bean id="batchFederalMogulCorporateConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		  p:mapping="federalmogul_corporate"
+		  p:converter-ref="batchFederalMogulCorporateConverter"/>	  
+
+		  
+	<bean id="batchFederalMogulCategoryConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		  p:mapping="federalmogul_category"
+		  p:converter-ref="batchFederalMogulCategoryConverter"/>
+		  
+	<bean id="batchFederalMogulCatRelationConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		  p:mapping="federalmogul_catrelation"
+		  p:converter-ref="batchFederalMogulCatRelationConverter"/>
+		  
+	<bean id="batchFederalMogulPartAttributeConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		  p:mapping="federalmogul_partattribute"
+		  p:converter-ref="batchFederalMogulPartAttributeConverter"/>  
+		  
+	<bean id="batchFederalMogulSpecificationClassConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		  p:mapping="federalmogul_specification"
+		  p:converter-ref="batchFederalMogulSpecificationClassConverter"/>
+		  
+	<bean id="batchFederalMogulSpecificationAttrConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		  p:mapping="specification_Attribute"
+		  p:converter-ref="batchFederalMogulSpecificationAttrConverter"/>
+		  
+	<bean id="batchFederalMogulSpecAtttrRelConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		  p:mapping="federalmogul_specAttrRel"
+		  p:converter-ref="batchFederalMogulSpecAtttrRelConverter"/>
+
+	<bean id="batchFederalMogulClassCatRelConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		  p:mapping="federalmogul_speccatRel"
+		  p:converter-ref="batchFederalMogulClassCatRelConverter"/>
+		  
+
+	<bean id="batchFederalMogulSpecbelowConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		  p:mapping="specification_below"
+		  p:converter-ref="batchFederalMogulSpecbelowConverter"/>
+		  
+	
+	<bean id="batchFederalMogulSpectrodConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		  p:mapping="specification_trod"
+		  p:converter-ref="batchFederalMogulSpectrodConverter"/>
+		  
+	
+	<bean id="batchFederalMogulSpecswblkConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping"
+		  p:mapping="specification_swblk"
+		  p:converter-ref="batchFederalMogulSpecswblkConverter"/>		
+		  
+	<bean id="batchMediaConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+		  p:mapping="federalmogul_media" 
+		  p:converter-ref="batchMediaConverter"/>
+
+	<bean id="batchMediaContainerConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+		  p:mapping="federalmogul_media" 
+		  p:converter-ref="batchMediaContainerConverter"/>
+		  
+	<bean id="batchMediaContainerProductRelDelConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+		  p:mapping="federalmogul_media" 
+		  p:converter-ref="batchMediaContainerProductRelDel"/>
+		  
+	<bean id="batchMediaContainerProductRelConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+		  p:mapping="federalmogul_media" 
+		  p:converter-ref="batchMediaContainerProductRel"/>
+	
+	<bean id="batchMediaProductRelConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+		  p:mapping="federalmogul_prodMed_rel" 
+		  p:converter-ref="batchMediaProductRel"/>	  
+		  
+		  
+	<bean id="batchFitmentDeleteConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+		  p:mapping="federalmogul_delete_fitment" 
+		  p:converter-ref="batchFitmentDeleteConverter"/>
+		  
+	<bean id="batchPartDeleteConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+		  p:mapping="federalmogul_delete_part" 
+		  p:converter-ref="batchPartDeleteConverter"/>
+		 
+	<bean id="batchFitmentConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+		  p:mapping="federalmogul_fitment" 
+		  p:converter-ref="batchFitmentConverter"/>
+		  
+	  
+	 <bean id="batchFitmentRelationConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+		  p:mapping="federalmogul_fitment" 
+		  p:converter-ref="batchFitmentRelationConverter"/> 
+		  
+	<bean id="batchPartInterchangeConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+		  p:mapping="federalmogul_partInterchange" 
+		  p:converter-ref="batchPartInterchangeConverter"/> 
+		
+	<bean id="batchDeletePartInterchangeConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+		  p:mapping="federalmogul_delete_partInterchange" 
+		  p:converter-ref="batchDeletePartInterchangeConverter"/> 
+		  
+	<bean id="batchcpl1CustomerConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+		  p:mapping="federalmogul_cpl1Customer" 
+		  p:converter-ref="batchcpl1CustomerConverter"/> 
+	
+	<bean id="batchcsbCustomerGroupConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+		  p:mapping="federalmogul_csbCG" 
+		  p:converter-ref="batchcsbCustomerGroupConverter"/> 
+		  
+	<bean id="batchcsbCustomerConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+		  p:mapping="federalmogul_csbCustomer" 
+		  p:converter-ref="batchcsbCustomerConverter"/> 
+		  
+	<bean id="batchcsbPercentsConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+		  p:mapping="federalmogul_csbPercents" 
+		  p:converter-ref="batchcsbPercentsConverter"/> 
+		  
+	<bean id="batchcsbPercents3612ConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+		  p:mapping="federalmogul_csbYearSales3612" 
+		  p:converter-ref="batchcsbPercents3612Converter"/> 
+		  
+	<bean id="batchDeletecsbCustomerConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+		  p:mapping="federalmogul_delete_csbCustomer" 
+		  p:converter-ref="batchDeletecsbCustomerConverter"/>
+	
+	<bean id="batchDeletecsbPercentsConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+		  p:mapping="federalmogul_delete_csbPercents" 
+		  p:converter-ref="batchDeletecsbPercentsConverter"/>
+		  
+	<bean id="batchDeletecsbPercents3612ConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+		  p:mapping="federalmogul_delete_csbYearSales3612" 
+		  p:converter-ref="batchDeletecsbPercents3612Converter"/>
+		  
+	
+	<bean id="batchDeleteFMParterFunctionConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+		  p:mapping="federalmogul_delete_PartnerFunction" 
+		  p:converter-ref="batchDeleteFMParterFunctionConverter"/>
+	<!-- Also Fits -->					
+	<bean id="batchAlsoFitsConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+		  p:mapping="federalmogul_AlsoFits" 
+		  p:converter-ref="batchAlsoFitsConverter"/> 
+		  
+	<bean id="batchDeleteAlsoFitsConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+		  p:mapping="federalmogul_delete_AlsoFits" 
+		  p:converter-ref="batchDeleteAlsoFitsConverter"/> 	  
+		  
+	<bean id="batchYMMFitmentDataConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+		  p:mapping="federalmogul_ymmdata" 
+		  p:converter-ref="batchYMMFitmentDataConverter"/> 
+	   
+	     <!-- 4) run impex import -->
+	<int:service-activator input-channel="batchFilesTran" output-channel="batchFilesImp" ref="batchRunnerTask"
+		method="execute" />
+	<bean id="batchRunnerTask" class="com.federalmogul.core.dao.dataimport.task.impl.FmAbstractImpexRunnerTask" >
+		<property name="sessionService" ref="sessionService" /> 
+		<property name="importService" ref="importService" />
+		<property name="eventService" ref="eventService"/>
+		<property name="commonI18NService" ref="commonI18NService" />
+		<property name="baseSiteService" ref="baseSiteService" />
+		<property name="baseStoreService" ref="baseStoreService" />
+		<property name="userService" ref="userService" />		
+		<lookup-method name="getImportConfig" bean="importConfig" /> 
+	</bean>
+	<bean id="importConfig" class="de.hybris.platform.servicelayer.impex.ImportConfig" scope="prototype">
+		<property name="removeOnSuccess" value="true" />
+		<property name="failOnError" value="false" />
+		<property name="synchronous" value="true" />
+		<property name="legacyMode" value="false" />
+		<property name="maxThreads" value="#{configurationService.configuration.getProperty('acceleratorservices.batch.impex.max-threads')}" />
+		<property name="locale" value="en"/>
+	</bean>
+
+	<!-- 5) Cleanup -->
+	<int:service-activator input-channel="batchFilesImp" ref="batchCleanupTask" method="execute" />
+	<bean id="batchCleanupTask" class="de.hybris.platform.acceleratorservices.dataimport.batch.task.CleanupTask">
+		<property name="cleanupHelper" ref="cleanupHelper" />
+	</bean>
+	<!-- Converters -->
+	<!-- Shared ImpEx -->
+	<bean id="defaultImpExCatalogVersionHeader" class="java.lang.String">
+		<constructor-arg>
+			<value>
+				# Set the target catalog version
+				$productCatalog=$CATALOG$
+				$productCatalogVersionId='Staged'
+				$productCatalogName=FederalMogul Product Catalog
+				$catalogVersion=catalogVersion(catalog(id[default=$productCatalog]),version[default=$productCatalogVersionId])[unique=true]				
+			</value>
+		</constructor-arg>
+	</bean>
+	
+	<!-- Media Header ImpEx -->
+	<bean id="defaultImpExMediaHeader" class="java.lang.String">
+		<constructor-arg>
+			<value>												
+				$media=@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator]				
+				$galleryImages=galleryImages(qualifier, $catalogVersion)
+				$thumbnail=thumbnail(code, $catalogVersion)
+				$picture=picture(code, $catalogVersion)
+				$thumbnails=thumbnails(code, $catalogVersion)
+				$detail=detail(code, $catalogVersion)
+				$medias=medias(code, $catalogVersion)
+				$normal=normal(code, $catalogVersion)
+				$others=others(code, $catalogVersion)
+				#$importFolder=file:/hybris_fe/Image
+				$importFolder=file:/sharespace/media/Images	  
+			</value>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="defaultImpExLanguageHeader" class="java.lang.String">
+		<constructor-arg>
+			<value>
+				# Set the target language
+				$targetLanguageIso=$LANGUAGE$
+				$language=language(isocode[default=$targetLanguageIso])[unique=true]
+			</value>
+		</constructor-arg>
+	</bean>
+	<bean id="defaultImpexClassficationHeader" class="java.lang.String">
+		<constructor-arg>
+			<value>
+				# ImpEx for Importing Category Classifications into Federal Mogul Store
+				# Macros / Replacement Parameter definitions
+				$classCatalogVersion=catalogVersion(catalog(id[default='federalmogulClassification']),version[default='1.0'])[unique=true,default='federalmogulClassification:1.0']
+				$classSystemVersion=systemVersion(catalog(id[default='federalmogulClassification']),version[default='1.0'])[unique=true]
+				$class=classificationClass(ClassificationClass.code,$classCatalogVersion)[unique=true]
+				$classSupercategories=source(code, $classCatalogVersion)[unique=true]
+				$classCategories=target(code, $catalogVersion)[unique=true]
+				$attribute=classificationAttribute(code,$classSystemVersion)[unique=true]
+				$unit=unit(code,$classSystemVersion)
+			</value>
+		</constructor-arg>
+	</bean>
+	<bean id="defaultProductClassficationHeader" class="java.lang.String">
+		<constructor-arg>
+			<value>
+			# ImpEx for Importing FMPart Classifications
+			#% impex.setLocale(Locale.ENGLISH);
+			# Macros / Replacement Parameter definitions
+			$clAttrModifiers=system='federalmogulClassification',version='1.0',translator=de.hybris.platform.catalog.jalo.classification.impex.ClassificationAttributeTranslator,lang=en
+			</value>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="batchFederalMogulPartsdeleteCategoriesConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				#{defaultImpExLanguageHeader}
+				#{defaultImpExCatalogVersionHeader}				
+				$supercategories=supercategories(code, $catalogVersion)[mode='delete']
+				INSERT_UPDATE FMPart;code[unique=true];$supercategories;$catalogVersion
+			</value>
+
+		</property>
+		<property name="impexRow">			
+			 <value>;{+1};{9};</value>
+		</property>
+	</bean>
+	
+	<bean id="batchFederalMogulPartsConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				#{defaultImpExLanguageHeader}
+				#{defaultImpExCatalogVersionHeader}
+				$approved=approvalstatus(code)[default='approved']
+				$partstatus=partstatus(code)[default='activepart']
+				$supercategories=supercategories(code, $catalogVersion)[unique=true]
+				#INSERT_UPDATE FMPart;corporate(corpcode);code[unique=true];pid;partNumber;rawpartnumber;upc;$partstatus;flagcode;flagname;textcomment;textnote;textfootnote;name[lang=$targetLanguageIso];description[lang=$targetLanguageIso];$approved;$supercategories;$catalogVersion;warranty;warrantydescription;summary[lang=$targetLanguageIso];manufacturerName			
+				#INSERT_UPDATE FMPart;corporate(corpcode);code[unique=true];pid;partNumber;rawpartnumber;upc;$partstatus;flagcode;flagname;textcomment;textnote;textfootnote;name[lang=$targetLanguageIso];$approved;$supercategories;$catalogVersion;manufacturerName
+				INSERT_UPDATE FMPart;corporate(corpcode);code[unique=true];partSequence;pid;partNumber;rawpartnumber;upc;$partstatus;$approved;$supercategories;name[lang=$targetLanguageIso];$catalogVersion;manufacturerName;flagcode;flagname;textcomment;textnote;textfootnote;warranty;warrantydescription;summary[lang=$targetLanguageIso];description[lang=$targetLanguageIso];faqQestion1;faqQestion2;faqQestion3;faqQestion4;faqQestion5;faqAnswer1;faqAnswer2;faqAnswer3;faqAnswer4;faqAnswer5;
+				#INSERT_UPDATE FMPart;code[unique=true];summary[lang=$targetLanguageIso];description[lang=$targetLanguageIso];$catalogVersion
+			
+			</value>
+
+		</property>
+		<property name="impexRow">			
+			 <value>;{+0};{1};{2};{3};{+4};{5};{6};{7};{8};{9};{10};{11};{12};{13};{14};{15};{16};{17};{18};{19};{20};{21};{22};{23};{24};{25};{26};{27};{28};{29};{30};{31};</value>
+			<!-- <value>;{+0};{1};{2};{3};</value>-->
+		</property>
+	</bean>
+	
+	<bean id="batchFederalMogulCorporateMediaConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				#{defaultImpExLanguageHeader}
+				#{defaultImpExCatalogVersionHeader}
+				#{defaultImpExMediaHeader}
+				# Import all products Media
+				#INSERT_UPDATE Media;mediaFormat(qualifier);code[unique=true];$media;mime[default='image/jpg'];$catalogVersion;folder(qualifier)[forceWrite=true]
+				INSERT_UPDATE Media;mediaFormat(qualifier);code[unique=true];$media;mime[default='image/png'];$catalogVersion;folder(qualifier)[forceWrite=true]
+				
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>	;96Wx96H;/96Wx96H/{+4};$importFolder/Logo_135X50/{+4};;;images	
+					
+			</value>
+		</property>
+	</bean>
+	
+	<bean id="batchFederalMogulCorporateConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				#{defaultImpExLanguageHeader}
+				#{defaultImpExCatalogVersionHeader}
+				#{defaultImpExMediaHeader}
+				# Import all federal mogul corporate
+				INSERT_UPDATE FMCorporate;corpcode[unique=true];corpname;corpid;corptype;$thumbnail
+				
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{+1};{2};{3};/96Wx96H/{+4};</value>
+		</property>
+	</bean>
+	<bean id="batchFederalMogulCategoryConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				#{defaultImpExLanguageHeader}
+				#{defaultImpExCatalogVersionHeader}
+				# Import all category
+				INSERT_UPDATE Category;code[unique=true];name[lang=$targetLanguageIso];description[lang=$targetLanguageIso];allowedPrincipals(uid)[default='customergroup'];$catalogVersion
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{1};{2};{3}</value>
+		</property>
+	</bean>
+	<bean id="batchFederalMogulCatRelationConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				#{defaultImpExLanguageHeader}
+				#{defaultImpExCatalogVersionHeader}
+				# Import all category relation
+				$supercategories=source(code, $catalogVersion)[unique=true]
+				$categories=target(code, $catalogVersion)[unique=true]
+				INSERT_UPDATE CategoryCategoryRelation;$categories;$supercategories
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{+1};</value>
+		</property>
+	</bean>
+	<bean id="batchFederalMogulPartAttributeConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				#{defaultImpExLanguageHeader}
+				#{defaultImpExCatalogVersionHeader}
+				# Import all product category relation
+				INSERT_UPDATE FMPart;code[unique=true];corporate(corpcode);countryOfOriginPrimary;hazardousIndicator;packageEachLevelGTINUPC;packageUOM;quantityOfEachesEachPackage;packageEachHeight;packageEachWidth;packageEachLength;dimensionsUOM;packageEachWeight;weightUOM;freightClass;applicationSpecific;carLightTruck;mediumDutyTruck;heavyDutyTruck;agriculturalEquipment;industrialOffHighwayEquipment;motorcycleATV;snowMobile;personalWatercraft;marine;smallEngine;highPerformance;engineSpecific;transmissionSpecific;nonVehicleSpecific;digitalAssetURL;emissionCode;mSDSSheetAvailable;remanufacturedPart;harmonizedTariffCode;palletFootprintSize;maxCasePerPalletLayer;palletLayerMax;palletFootprintSizeUOM;itemQuantitySize;itemQuantitySizeUOM;containerType;mSDSSheetNumber;$catalogVersion
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{1};{2};{3};{4};{5};{6};{7};{8};{9};{10};{11};{12};{13};{14};{15};{16};{17};{18};{19};{20};{21};{22};{23};{24};{25};{26};{27};{28};{29};{30};{31};{32};{33};{34};{35};{36};{37};{38};{39};{40};{41};</value>
+		</property>
+	</bean>
+	<bean id="batchFederalMogulSpecificationClassConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				#{defaultImpExLanguageHeader}
+				#{defaultImpExCatalogVersionHeader}
+				#{defaultImpexClassficationHeader}
+				# Import all product category relation
+				INSERT_UPDATE ClassificationClass;code[unique=true];allowedPrincipals(uid)[default='customergroup'];name[lang=$targetLanguageIso];$classCatalogVersion
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{1};{2};{3};</value>
+		</property>
+	</bean>
+	<bean id="batchFederalMogulSpecificationAttrConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				#{defaultImpExLanguageHeader}
+				#{defaultImpExCatalogVersionHeader}
+				#{defaultImpexClassficationHeader}
+				# Import all product category relation
+				INSERT_UPDATE ClassificationAttribute;code[unique=true];name[lang=$targetLanguageIso];$classSystemVersion
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{1};{2};</value>
+		</property>
+	</bean>
+	<bean id="batchFederalMogulClassCatRelConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				#{defaultImpExLanguageHeader}
+				#{defaultImpExCatalogVersionHeader}
+				#{defaultImpexClassficationHeader}
+				# Import all product category relation
+				INSERT_UPDATE CategoryCategoryRelation;$classCategories;$classSupercategories
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{1};</value>
+		</property>
+	</bean>
+	<bean id="batchFederalMogulSpecAtttrRelConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				#{defaultImpExLanguageHeader}
+				#{defaultImpExCatalogVersionHeader}
+				#{defaultImpexClassficationHeader}
+				# Import all product category relation
+				INSERT_UPDATE ClassAttributeAssignment;$class;$attribute;localized[default=true]
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{1};</value>
+		</property>
+	</bean>
+	<bean id="batchFederalMogulSpecbelowConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				#{defaultImpExLanguageHeader}
+				#{defaultImpExCatalogVersionHeader}
+				#{defaultImpexClassficationHeader}
+				#{defaultProductClassficationHeader}
+				# Import all product category relation
+				$feature1=@SEndIDIn,867[$clAttrModifiers];
+				$feature2=@SEndIDMM,868[$clAttrModifiers];
+				$feature3=@LEndIDIn,869[$clAttrModifiers];
+				$feature4=@LengthIn,871[$clAttrModifiers];
+				$feature5=@LengthMM,872[$clAttrModifiers];
+				INSERT_UPDATE FMPart;code[unique=true];$feature1;$feature2;$feature3;$feature4;$feature5;$catalogVersion;
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{1};{2};{3};{4};{5};{6};</value>
+		</property>
+	</bean>
+	<bean id="batchFederalMogulSpectrodConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				#{defaultImpExLanguageHeader}
+				#{defaultImpExCatalogVersionHeader}
+				#{defaultImpexClassficationHeader}
+				#{defaultProductClassficationHeader}
+				# Import all product category relation
+				$feature1=@StudCentertoEndIn,1348[$clAttrModifiers];
+				$feature2=@RodThrd,1349[$clAttrModifiers];
+				$feature3=@RodTypeMorF,1351[$clAttrModifiers];
+				$feature4=@StudDiaDimtopIn,1352[$clAttrModifiers];
+				$feature5=@StudDiDimbottomIn,1353[$clAttrModifiers];
+				$feature6=@StudThrd,1354[$clAttrModifiers];
+				INSERT_UPDATE FMPart;code[unique=true];$feature1;$feature2;$feature3;$feature4;$feature5;$feature6;$catalogVersion;
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{1};{2};{3};{4};{5};{6};{7};</value>
+		</property>
+	</bean>
+	<bean id="batchFederalMogulSpecswblkConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				#{defaultImpExLanguageHeader}
+				#{defaultImpExCatalogVersionHeader}
+				#{defaultImpexClassficationHeader}
+				#{defaultProductClassficationHeader}
+				# SWBLK Import all product category relation
+				$feature1=@BLgthIn,1361[$clAttrModifiers];
+				$feature2=@SLgthIn,1362[$clAttrModifiers];
+				INSERT_UPDATE FMPart;code[unique=true];$feature1;$feature2;$catalogVersion;
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{1};{2};</value>
+		</property>
+	</bean>
+
+	<bean id="batchMediaConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				#{defaultImpExCatalogVersionHeader}
+				#{defaultImpExMediaHeader}
+				# Import all products Media
+				INSERT_UPDATE Media;mediaFormat(qualifier);code[unique=true];$media;mime[default='image/jpg'];$catalogVersion;folder(qualifier)[forceWrite=true]
+			</value>
+		</property>
+		<property name="impexRow">	
+			<value>	;515Wx515H;/515Wx515H/{+1};$importFolder/Part_1500X1500/{+1};;;images
+					;300Wx300H;/300Wx300H/{+1};$importFolder/Part_160X160/{+1};;;images
+					;96Wx96H;/96Wx96H/{+1};$importFolder/Part_86X86/{+1};;;images					
+					
+			</value>
+		</property>
+	</bean>
+	
+	<bean id="batchMediaContainerConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				#{defaultImpExCatalogVersionHeader}
+				#{defaultImpExMediaHeader}
+				# Import all products Media
+				INSERT_UPDATE MediaContainer;qualifier[unique=true,append=true];$medias;$catalogVersion
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+1};/515Wx515H/{+1},/300Wx300H/{+1},/96Wx96H/{+1};
+			</value>
+		</property>
+	</bean>
+	
+	<bean id="batchMediaProductRel" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				#{defaultImpExCatalogVersionHeader}
+				#{defaultImpExMediaHeader}
+				# Import all products Media			
+				INSERT_UPDATE FMPart;code[unique=true];$picture;$thumbnail;$others;$thumbnails;$normal;$catalogVersion
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};/300Wx300H/{+1};/300Wx300H/{+1};/96Wx96H/{+1};/96Wx96H/{+1},/96Wx96H/{+1};/96Wx96H/{+1};</value>
+		</property>
+	</bean>
+	
+	<bean id="batchMediaContainerProductRelDel" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				#{defaultImpExCatalogVersionHeader}
+				#{defaultImpExMediaHeader}
+				# Import all products Media
+				UPDATE FMPart;code[unique=true];$galleryImages[mode='delete'];$catalogVersion
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};;</value>
+		</property>
+	</bean>
+	
+	<bean id="batchMediaContainerProductRel" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				#{defaultImpExCatalogVersionHeader}
+				#{defaultImpExMediaHeader}
+				# Import all products Media
+				INSERT_UPDATE FMPart;code[unique=true];$galleryImages[mode='append'];$catalogVersion
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{+1};</value>
+		</property>
+	</bean>
+	
+	<bean id="batchFitmentDeleteConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				#{defaultImpExLanguageHeader}
+				#{defaultImpExCatalogVersionHeader}
+				# Import all Fitment Delete
+				REMOVE FMFitment;code[unique=true];
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{0};</value>
+		</property>
+	</bean>
+	<!-- Part Delete -->
+	<bean id="batchPartDeleteConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				#{defaultImpExLanguageHeader}
+				#{defaultImpExCatalogVersionHeader}
+				# Import all part Delete
+				REMOVE FMPart;code[unique=true];$catalogVersion
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{0}{1};</value>
+		</property>
+	</bean>
+	
+	<bean id="batchFitmentConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				#{defaultImpExLanguageHeader}
+				#{defaultImpExCatalogVersionHeader}
+				# Import all Fitment data
+				#INSERT_UPDATE FMFitment;code[unique=true];vehiclesegment;Make;Model;Year;Product;PartNumber;MfrLabel;Position;appQuantity;engineBase;EngineDesignation;EngineVIN;Aspiration;CylinderHeadType;FuelType;IgnitionSystemType;EngineVersion;FuelDeliveryType;FuelDeliverySubType;FuelSystemControlType;FuelSystemDesign;EngineMfr;EngineValves;PowerOutput;EngineArrangementNumber;EngineSerialNumber;EngineCPLNumber;VehicleType;Submodel;Region;BodyNumDoors;BodyType;BedLength;BedType;DriveType;MfrBodyCode;WheelBase;FrontBrakeType;RearBrakeType;BrakeSystem;BrakeABS;FrontSpringType;RearSpringType;SteeringType;SteeringSystem;VehicleSeries;TransmissionNumSpeeds;TransmissionControlType;TransmissionMfrCode;TransmissionType;Comment1;Comment2;Comment3;Comment4;Comment5;Comment6;Comment7;Comment8;Comment9;Comment10;InterchangeNote1;InterchangeNote2;InterchangeNote3;InterchangeNote4;InterchangeNote5;InterchangeNote6;InterchangeNote7;InterchangeNote8;InterchangeNote9;InterchangeNote10;ApplicationNote1;ApplicationNote2;ApplicationNote3;ApplicationNote4;ApplicationNote5;ApplicationNote6;ApplicationNote7;ApplicationNote8;ApplicationNote9;ApplicationNote10;AssetLogicalName;AssetItemRef;AssetItemOrder;AssetFileName;ymmcode;
+				INSERT_UPDATE FMFitment;code[unique=true];ymmcode;vehiclesegment;Make;Model;Year;Product;PartNumber;MfrLabel;Position;appQty;engineBase;EngineDesignation;EngineVIN;Aspiration;CylinderHeadType;FuelType;IgnitionSystemType;EngineVersion;FuelDeliveryType;FuelDeliverySubType;FuelSystemControlType;FuelSystemDesign;EngineMfr;EngineValves;PowerOutput;EngineArrangementNumber;EngineSerialNumber;EngineCPLNumber;VehicleType;Submodel;Region;BodyNumDoors;BodyType;BedLength;BedType;DriveType;MfrBodyCode;WheelBase;FrontBrakeType;RearBrakeType;BrakeSystem;BrakeABS;FrontSpringType;RearSpringType;SteeringType;SteeringSystem;VehicleSeries;TransmissionNumSpeeds;TransmissionControlType;TransmissionMfrCode;TransmissionType;Comment1;Comment2;Comment3;Comment4;Comment5;Comment6;Comment7;Comment8;Comment9;Comment10;InterchangeNote1;InterchangeNote2;InterchangeNote3;InterchangeNote4;InterchangeNote5;InterchangeNote6;InterchangeNote7;InterchangeNote8;InterchangeNote9;InterchangeNote10;ApplicationNote1;ApplicationNote2;ApplicationNote3;ApplicationNote4;ApplicationNote5;ApplicationNote6;ApplicationNote7;ApplicationNote8;ApplicationNote9;ApplicationNote10;AssetLogicalName;AssetItemRef;AssetItemOrder;AssetFileName;
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{0};{1};{4};{5};{6};{7};{8};{9};{10};{11};{12};{13};{14};{15};{16};{17};{18};{19};{20};{21};{22};{23};{24};{25};{26};{27};{28};{29};{30};{31};{32};{33};{34};{35};{36};{37};{38};{39};{40};{41};{42};{43};{44};{45};{46};{47};{48};{49};{50};{51};{52};{53};{54};{55};{56};{57};{58};{59};{60};{61};{62};{63};{64};{65};{66};{67};{68};{69};{70};{71};{72};{73};{74};{75};{76};{77};{78};{79};{80};{81};{82};{83};{84};{85};{86};{87};</value>
+		</property>
+	</bean>
+	
+	  
+	<bean id="batchFitmentRelationConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				#{defaultImpExLanguageHeader}
+				#{defaultImpExCatalogVersionHeader}
+				# Import all Fitment data
+				#UPDATE FMPart;fitments(code);code[unique='true'];corporate(corpcode);$catalogVersion
+				$fitsupercategories=source(code)[unique=true]
+
+				$fitcategories=target(code, $catalogVersion)[unique=true]
+
+				INSERT_UPDATE FitmentPartRelation;$fitcategories;$fitsupercategories
+
+
+			</value>
+		</property>
+		<property name="impexRow">
+			 <!-- <value>;{2}:federalmogulProductCatalog:Online;{0};</value> --> 
+			 <value>;{2}:federalmogulProductCatalog:Staged;{0};</value>
+
+		</property>
+	</bean>
+	<!-- Transformer converters mappings -->
+	<bean id="batchFMCustomeraccountConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+		  p:mapping="federalmogul_accounts" 
+		  p:converter-ref="batchFMCustomeraccountConverter"/>	
+	<!-- Converters -->
+	<bean id="batchFMCustomeraccountConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				$rootUnit=16427113580
+				# Import all federal mogul customer accounts
+				INSERT_UPDATE FMCustomerAccount;uid[unique=true];description;locName;groups(uid[default=$rootUnit]);nabsAccountCode;channelCode;viewInvoiceFlag;shippingCode;freeFreightAmt;accComments;accComments2;buyingAffiliationCode;buyingGroup;customerRegion;customerTerritory;customerServiceTerritory;carrierAccountCode;customerGroup;salesorg;distributionChannel;division;shipToLimitFlag;
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{1};{2};{3};{4};{5};{6};{7};{8};{9};{10};{11};{12};{13};{14};{15};{16};{17};{18};{19};{20};{28};</value>
+		</property>
+	</bean>	
+	
+	<bean id="batchFMCustomerAddressConverterMapping" 
+			  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+			  p:mapping="federalmogul_accounts" 
+			  p:converter-ref="batchFMCustomerAddressConverter"/>
+							
+	
+	<bean id="batchFMCustomerAddressConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				# Import all federal mogul customer account addresse
+				INSERT_UPDATE Address;owner(FMCustomerAccount.uid)[unique=true];line1;line2;town;region(isocode);postalcode;country(isocode);phone1
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{21};{22};{23};{24};{25};{26};{27};</value>
+		</property>
+	</bean>	
+	<bean id="batchFMParterFunctionConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+		  p:mapping="federalmogul_PartnerFunction" 
+		  p:converter-ref="batchFMParterFunctionConverter"/>
+							
+	
+	<bean id="batchFMParterFunctionConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				$accountType=ShipTo
+				# Import all federal mogul customer accounts ship-to to sold-to associations
+				INSERT_UPDATE FMCustomerPartnerFunction;code[unique=true];FMTargetCustomerAccount(uid);FMSourceCustomerAccount(uid);fmCustSourceAccountCode(uid);PartnerFMAccountType[default=$accountType]
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0}{1};{0};{1};{1};</value>
+		</property>
+	</bean>
+	
+	<bean id="batchFMSalesOrgConverterMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+		  p:mapping="federalmogul_SalesOrg" 
+		  p:converter-ref="batchFMSalesOrgConverter"/>
+							
+	
+	<bean id="batchFMSalesOrgConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				# Import all federal mogul sales organization details
+				INSERT_UPDATE SalesOrganization;salesOrgsId[unique=true];soldToAccount(uid);salesOrgCode;salesDivisionCode;salesChannelCode;fmCustAccount(uid)
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{1};{2};{3};{4};{5};</value>
+		</property>
+	</bean>
+	<bean id="batchFMSoldToProspectMapping" 
+		  class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.mapping.impl.DefaultConverterMapping" 
+		  p:mapping="SoldToProspect_federalmodul" 
+		  p:converter-ref="batchFMSoldToProspect67533Converter"/>
+							
+	
+	<bean id="batchFMSoldToProspect67533Converter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				# Update the prospect ID with Sold to number
+				UPDATE FMCustomerAccount;taxID[unique=true];uid[forceWrite=true]
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{1};</value>
+		</property>
+	</bean>		
+	
+	<!-- PartInterchange -->
+	<bean id="batchPartInterchangeConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>				
+				INSERT_UPDATE PartInterchange;uid[unique=true];rawPartNumber;fmrawpartnumber;fmPartNumber;fmcorpcode;fmcorpName;corpCode;corpName;corpType;partNumber;partFlagCode;partTypeCode;partTypeName;partSort;packageQuantity;reboxQuantity
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{1};{2};{3};{4};{5};{6};{7};{8};{9};{10};{11};{12};{13};{14};{15};{16};</value>
+		</property>
+	</bean>
+	
+	<bean id="batchDeletePartInterchangeConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				#{defaultImpExLanguageHeader}
+				#{defaultImpExCatalogVersionHeader}
+				# Import all Delete Part Inter change
+				REMOVE PartInterchange;uid[unique=true];
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};</value>
+		</property>
+	</bean>
+	
+	<bean id="batchcpl1CustomerConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				#{defaultImpExLanguageHeader}
+				#{defaultImpExCatalogVersionHeader}
+				# Import all CPL1 Customer data
+				INSERT_UPDATE CPL1Customer;cpl1ProductCode[unique=true];cpl1ProductDescription;cpl1SoldToAccount
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{0};{1};{2};</value>
+		</property>
+	</bean>
+	
+	<bean id="batchcsbCustomerGroupConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				#{defaultImpExLanguageHeader}
+				#{defaultImpExCatalogVersionHeader}
+				# Import all CSB Customer Group data
+				INSERT_UPDATE CSBCustomerGroup;csbCustomerGroupCode[unique=true];csbCustomerGroupText;posDollars;posUnits
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{0};{1};{2};{3};</value>
+		</property>
+	</bean>
+	
+	<bean id="batchcsbCustomerConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				#{defaultImpExLanguageHeader}
+				#{defaultImpExCatalogVersionHeader}
+				# Import all Category Sales Benchmark Customer data
+				INSERT_UPDATE CategorySalesBenchmarkCustomer;csbCustomerId[unique=true];csbCustomerGroupcode;csbSoldToAccount;cpl1CustomerCode
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0}{1}{2};{0};{1};{2};</value>
+		</property>
+	</bean>
+	
+	<bean id="batchcsbPercentsConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				#{defaultImpExLanguageHeader}
+				#{defaultImpExCatalogVersionHeader}
+				# Import all category sales Benchmark Percents data
+				INSERT_UPDATE CategorySalesBenchmarkPercents;csbPercentsId[unique=true];cpl1CustomerCode;csbCalenderYearMonth;csbSaleChangePercents;csbUnitChangePercents
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0}{1};{0};{1};{2};{3};</value>
+		</property>
+	</bean>
+	
+	
+	<bean id="batchcsbPercents3612Converter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				#{defaultImpExLanguageHeader}
+				#{defaultImpExCatalogVersionHeader}
+				# Import all category sales Benchmark Percents data
+				INSERT_UPDATE CSBPercents3612;cpl1CustomerCode[unique=true];salechange_3months;salechange_6months;salechange_12months;unitchange_3months;unitchange_6months;unitchange_12months
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{0};{1};{2};{3};{4};{5};{6};</value>
+		</property>
+	</bean>
+	
+	<bean id="batchDeletecsbCustomerConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				#{defaultImpExLanguageHeader}
+				#{defaultImpExCatalogVersionHeader}
+				# Import all Category Sales Benchmark Customer data
+				REMOVE CategorySalesBenchmarkCustomer;csbCustomerId[unique=true];
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0}{1}{2};</value>
+		</property>
+	</bean>
+	
+	<bean id="batchDeletecsbPercentsConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				#{defaultImpExLanguageHeader}
+				#{defaultImpExCatalogVersionHeader}
+				# Import all category sales Benchmark Percents data
+				REMOVE CategorySalesBenchmarkPercents;csbPercentsId[unique=true];
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0}{1};</value>
+		</property>
+	</bean>
+	
+	<bean id="batchDeletecsbPercents3612Converter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				#{defaultImpExLanguageHeader}
+				#{defaultImpExCatalogVersionHeader}
+				# Import all category sales Benchmark Percents data
+				REMOVE CSBPercents3612;cpl1CustomerCode[unique=true];
+			</value> 
+		</property>
+		<property name="impexRow">
+			<value>;{+0};</value>
+		</property>
+	</bean> 
+
+	<bean id="batchDeleteFMParterFunctionConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				$accountType=ShipTo
+				# Import all federal mogul customer accounts ship-to to sold-to associations
+				REMOVE FMCustomerPartnerFunction;code[unique=true];
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0}{1};</value>
+		</property>
+	</bean>
+
+	<bean id="batchAlsoFitsConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				#{defaultImpExLanguageHeader}
+				#{defaultImpExCatalogVersionHeader}
+				# Import all FM Part Also fits data
+				INSERT_UPDATE FMPartAlsoFits;code;uid[unique=true];yearRange;make;model;position;driveWheel;vehicleQuantity;engineBase;engineVIN;engineDesignation
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{+0};{1};{2};{3};{4};{5};{6};{7};{8};{9};{10};</value>
+		</property>
+	</bean>
+	
+	<bean id="batchDeleteAlsoFitsConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				#{defaultImpExLanguageHeader}
+				#{defaultImpExCatalogVersionHeader}
+				# Import all FM Part Also fits data
+				REMOVE FMPartAlsoFits;uid[unique=true];
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{0};</value>
+		</property>
+	</bean>
+	
+	<bean id="batchYMMFitmentDataConverter" class="de.hybris.platform.acceleratorservices.dataimport.batch.converter.impl.DefaultImpexConverter">
+		<property name="header">
+			<value>
+				INSERT_UPDATE FMYearMakeModelVehicleType;code[unique='true'];vehicleType;year;make;model				
+			</value>
+		</property>
+		<property name="impexRow">
+			<value>;{0};{1};{2};{3};{4};</value>
+		</property>
+	</bean>
+	
+</beans>
+

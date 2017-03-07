@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:sws="http://www.springframework.org/schema/web-services"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+						http://www.springframework.org/schema/web-services
+      					http://www.springframework.org/schema/web-services/web-services-2.0.xsd">
+
+	<description>
+		This web application context contains moswebservices beans. The
+		beans defined in this context are automatically detected by moswebservices,
+		similar to the way Controllers are picked up in Spring Web MVC.
+	</description>
+	
+	<sws:annotation-driven marshaller="marshaller" unmarshaller="marshaller"/>
+	
+	
+	<bean id="pointofserviceRequest" 
+		  class="com.falcon.Endpoint.PointofServiceEndpoint"
+		  scope="prototype">
+		<property name="fmStoreFinderFacades" ref="fmstoreFinderFacades" />	
+	</bean>
+
+	<sws:static-wsdl id="PointofserviceWS" location="/WEB-INF/wsdl/pointofservice.wsdl"/>
+	 
+
+	<!-- The marshaller -->
+	<bean id="marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+    	<property name="classesToBeBound">
+        	<list>
+            	<value>com.fm.services.ObjectFactory</value>
+                <value>com.fm.services.PointofserviceRequest</value>
+                <value>com.fm.services.PointofserviceResponse</value>
+            </list>
+        </property>
+    </bean>
+ 
+        <!-- Web Service Client config -->
+    <!-- <bean id="messageFactory" class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory">
+    </bean> -->
+    <bean id="messageFactory" class="org.springframework.ws.soap.axiom.AxiomSoapMessageFactory">
+    </bean>
+     
+    <bean id="webServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
+        <constructor-arg ref="messageFactory"/>
+        <property name="defaultUri" value="#{configurationService.configuration.getProperty('storelocator.service.endpoint.url')}"/>
+        <property name="marshaller" ref="marshaller"/>
+        <property name="unmarshaller" ref="marshaller"/>
+    </bean>    
+       	
+    
+</beans>

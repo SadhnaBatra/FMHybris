@@ -1,0 +1,305 @@
+#
+# Import the CMS content for the FederalMogul site emails
+#
+
+$contentCatalog=federalmogulContentCatalog
+
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+$wideContent=CMSImageComponent,BannerComponent
+$jarResourceCms=jar:com.federalmogul.core.setup.CoreSystemSetup&/fmcore/import/cockpits/cmscockpit
+$emailResource=jar:com.federalmogul.core.setup.CoreSystemSetup&/fmcore/import/contentCatalogs/$contentCatalog/emails
+
+# Language
+$lang=en
+# Email page Template
+INSERT_UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];name;active;frontendTemplateName;subject(code);htmlTemplate(code);restrictedPageTypes(code)
+;;CustomerRegistrationEmailTemplate;Customer Registration Email Template;true;customerRegistrationEmail;powertools_Email_Customer_Registration_Subject;powertools_Email_Customer_Registration_Body;EmailPage
+;;ForgottenPasswordEmailTemplate;Forgotten Password Email Template;true;forgottenPasswordEmail;powertools_Email_Forgotten_Password_Subject;powertools_Email_Forgotten_Password_Body;EmailPage
+;;OrderConfirmationEmailTemplate;Order Confirmation Email Template;true;orderConfirmationEmail;powertools_Email_Order_Confirmation_Subject;powertools_Email_Order_Confirmation_Body;EmailPage
+;;OrderPendingApprovalEmailTemplate;Order Pending Approval Email Template;true;orderPendingApprovalEmail;powertools_Email_Order_PendingApproval_Subject;powertools_Email_Order_PendingApproval_Body;EmailPage
+;;ReplenishmentOrderConfirmationEmailTemplate;Replenishment Order Confirmation Email Template;true;replenishmentOrderConfirmationEmail;powertools_Email_Replenishment_Order_Confirmation_Subject;powertools_Email_Replenishment_Order_Confirmation_Body;EmailPage
+;;ReplenishmentOrderPlacedEmailTemplate;Replenishment Order Placed Email Template;true;replenishmentOrderPlacedEmail;powertools_Email_Replenishment_Order_Placed_Subject;powertools_Email_Replenishment_Order_Placed_Body;EmailPage
+;;OrderApprovalRejectionEmailTemplate;Order Approval Rejection Email Template;true;orderApprovalRejectionEmail;powertools_Email_Order_ApprovalRejection_Subject;powertools_Email_Order_ApprovalRejection_Body;EmailPage
+;;QuoteOrderApproveEmailTemplate;Quote Order Approval Email Template;true;QuoteOrderApproveEmail;powertools_Email_Quote_Order_Approve_Subject;powertools_Email_Quote_Order_Approve_Body;EmailPage
+;;QuoteOrderRejectEmailTemplate;Quote Order Rejection Email Template;true;QuoteOrderRejectEmail;powertools_Email_Quote_Order_Reject_Subject;powertools_Email_Quote_Order_Reject_Body;EmailPage
+
+;;FMCustomerRegistrationTemplate;FMCustomerRegistration Email Template;true;FMCustomerRegistrationEmail;FMCustomerRegistrationTemplate_Subject;FMCustomerRegistrationTemplate_Body;EmailPage
+;;FMCustomerAdminTemplate;FMCustomerAdmin Email Template;true;FMCustomerAdminEmail;FMCustomerAdminTemplate_Subject;FMCustomerAdminTemplate_Body;EmailPage
+;;FMAddNewUserEmailTemplate;FMAdd New User Email Template;true;FMAddNewUserEmail;FMAddNewUserEmailTemplate_Subject;FMAddNewUserEmailTemplate_Body;EmailPage
+;;FMB2BBRegistrationApprovalTemplate;FMB2BBRegistrationApproval Email Template;true;FMB2BBRegistrationApprovalEmail;FMB2BBRegistrationApprovalTemplate_Subject;FMB2BBRegistrationApprovalTemplate_Body;EmailPage
+;;FMContactUsTemplate;FMContactUs Email Template;true;FMContactUsEmail;FMContactUsTemplate_Subject;FMContactUsTemplate_Body;EmailPage
+
+;;FMB2SBTaxAdminApprovalTemplate;FMB2SBTaxAdminApproval Email Template;true;FMB2SBTaxAdminApprovalEmail;FMB2SBTaxAdminApprovalTemplate_Subject;FMB2SBTaxAdminApprovalTemplate_Body;EmailPage
+;;FMB2SBTaxApprovalTemplate;FMB2SBTaxApproval Email Template;true;FMB2SBTaxApprovalEmail;FMB2SBTaxApprovalTemplate_Subject;FMB2SBTaxApprovalTemplate_Body;EmailPage
+
+
+# Templates for CMS Cockpit Page Edit
+UPDATE EmailPageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;;CustomerRegistrationEmailTemplate;$jarResourceCms/structure-view/structure_customerRegistrationEmailTemplate.vm
+;;ForgottenPasswordEmailTemplate;$jarResourceCms/structure-view/structure_forgottenPasswordEmailTemplate.vm
+;;OrderConfirmationEmailTemplate;$jarResourceCms/structure-view/structure_orderConfirmationEmailTemplate.vm
+;;OrderPendingApprovalEmailTemplate;$jarResourceCms/structure-view/structure_orderPendingApprovalEmailTemplate.vm
+;;OrderApprovalRejectionEmailTemplate;$jarResourceCms/structure-view/structure_orderApprovalRejectionEmailTemplate.vm
+;;ReplenishmentOrderConfirmationEmailTemplate;$jarResourceCms/structure-view/structure_replenishmentOrderConfirmationEmailTemplate.vm
+;;ReplenishmentOrderPlacedEmailTemplate;$jarResourceCms/structure-view/structure_replenishmentOrderPlacedEmailTemplate.vm
+;;QuoteOrderApproveEmailTemplate;$jarResourceCms/structure-view/structure_quoteOrderApproveEmailTemplate.vm
+;;QuoteOrderRejectEmailTemplate;$jarResourceCms/structure-view/structure_quoteOrderRejectEmailTemplate.vm
+
+;;FMCustomerRegistrationTemplate;$jarResourceCms/structure-view/structure_fmCustomerRegistrationTemplate.vm
+;;FMCustomerAdminTemplate;$jarResourceCms/structure-view/structure_fmCustomerAdminTemplate.vm
+;;FMAddNewUserEmailTemplate;$jarResourceCms/structure-view/structure_fmAddNewUserEmailTemplate.vm
+;;FMB2BBRegistrationApprovalTemplate;$jarResourceCms/structure-view/structure_fmB2BBRegistrationApprovalTemplate.vm
+;;FMContactUsTemplate;$jarResourceCms/structure-view/structure_fmContactUsTemplate.vm
+
+;;FMB2SBTaxAdminApprovalTemplate;$jarResourceCms/structure-view/structure_fmB2SBTaxAdminApprovalTemplate.vm
+;;FMB2SBTaxApprovalTemplate;$jarResourceCms/structure-view/structure_fmB2SBTaxApprovalTemplate.vm
+
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='CustomerRegistrationEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ForgottenPasswordEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='OrderConfirmationEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='OrderPendingApprovalEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ReplenishmentOrderConfirmationEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ReplenishmentOrderPlacedEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='OrderApprovalRejectionEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='QuoteOrderApproveEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='QuoteOrderRejectEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='FMCustomerRegistrationTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='FMContactUsTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='FMCustomerAdminTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='FMAddNewUserEmailTemplate'];validComponentTypes(code)
+;SiteLogo;;;logo
+;TopContent;;$wideContent;
+;BottomContent;;$wideContent;
+
+# Create Content Slots
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active
+;;EmailTopSlot;Default Email Top Slot;true
+;;EmailBottomSlot;Default Email Bottom Slot;true
+
+# Bind Content Slots to Email Page Templates
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CustomerRegistrationEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-CustomerRegistrationEmail;SiteLogo;;SiteLogoSlot;true
+;;TopContent-CustomerRegistrationEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-CustomerRegistrationEmail;BottomContent;;EmailBottomSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ForgottenPasswordEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-ForgottenPasswordEmail;SiteLogo;;SiteLogoSlot;true
+;;TopContent-ForgottenPasswordEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-ForgottenPasswordEmail;BottomContent;;EmailBottomSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='OrderConfirmationEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-OrderConfirmationEmail;SiteLogo;;SiteLogoSlot;true
+;;TopContent-OrderConfirmationEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-OrderConfirmationEmail;BottomContent;;EmailBottomSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='OrderPendingApprovalEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-OrderPendingApprovalEmail;SiteLogo;;SiteLogoSlot;true
+;;TopContent-OrderPendingApprovalEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-OrderPendingApprovalEmail;BottomContent;;EmailBottomSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ReplenishmentOrderConfirmationEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-ReplenishmentOrderConfirmationEmail;SiteLogo;;SiteLogoSlot;true
+;;TopContent-ReplenishmentOrderConfirmationEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-ReplenishmentOrderConfirmationEmail;BottomContent;;EmailBottomSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ReplenishmentOrderPlacedEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-ReplenishmentOrderPlacedEmail;SiteLogo;;SiteLogoSlot;true
+;;TopContent-ReplenishmentOrderPlacedEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-ReplenishmentOrderPlacedEmail;BottomContent;;EmailBottomSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='OrderApprovalRejectionEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-OrderApprovalRejectionEmail;SiteLogo;;SiteLogoSlot;true
+;;TopContent-OrderApprovalRejectionEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-OrderApprovalRejectionEmail;BottomContent;;EmailBottomSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='QuoteOrderApproveEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-QuoteOrderApproveEmail;SiteLogo;;SiteLogoSlot;true
+;;TopContent-QuoteOrderApproveEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-QuoteOrderApproveEmail;BottomContent;;EmailBottomSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='QuoteOrderRejectEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-QuoteOrderRejectEmail;SiteLogo;;SiteLogoSlot;true
+;;TopContent-QuoteOrderRejectEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-QuoteOrderRejectEmail;BottomContent;;EmailBottomSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='FMCustomerRegistrationTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-FMCustomerRegistrationEmail;SiteLogo;;SiteLogoSlot;true
+;;TopContent-FMCustomerRegistrationEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-FMCustomerRegistrationEmail;BottomContent;;EmailBottomSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='FMContactUsTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-FMContactUsEmail;SiteLogo;;SiteLogoSlot;true
+;;TopContent-FMContactUsEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-FMContactUsEmail;BottomContent;;EmailBottomSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='FMAddNewUserEmailTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-FMAddNewUserEmail;SiteLogo;;SiteLogoSlot;true
+;;TopContent-FMAddNewUserEmail;TopContent;;EmailTopSlot;true
+;;BottomContent-FMAddNewUserEmail;BottomContent;;EmailBottomSlot;true
+
+# Customer Registration Email Page
+INSERT_UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved'];fromEmail[lang=en];fromName[lang=en]
+;;CustomerRegistrationEmail;Customer Registration Email;CustomerRegistrationEmailTemplate;true;;donotreply@fmmotorparts.com;Customer Services Team
+;;ForgottenPasswordEmail;Forgotten Password Email;ForgottenPasswordEmailTemplate;true;;donotreply@fmmotorparts.com;Customer Services Team
+;;OrderConfirmationEmail;Order Confirmation Email;OrderConfirmationEmailTemplate;true;;donotreply@fmmotorparts.com;Customer Services Team
+;;OrderPendingApprovalEmail;Order Pending Approval Email;OrderPendingApprovalEmailTemplate;true;;donotreply@fmmotorparts.com;Customer Services Team
+;;ReplenishmentOrderConfirmationEmail;Order Confirmation Email;ReplenishmentOrderConfirmationEmailTemplate;true;;donotreply@fmmotorparts.com;Customer Services Team
+;;ReplenishmentOrderPlacedEmail;Order Confirmation Email;ReplenishmentOrderPlacedEmailTemplate;true;;donotreply@fmmotorparts.com;Customer Services Team
+;;OrderApprovalRejectionEmail;Order Approval Rejection Email;OrderApprovalRejectionEmailTemplate;true;;donotreply@fmmotorparts.com;Customer Services Team
+;;QuoteOrderApproveEmail;Quote Order Approval Email;QuoteOrderApproveEmailTemplate;true;;donotreply@fmmotorparts.com;Customer Services Team
+;;QuoteOrderRejectEmail;Quote Order Rejection Email;QuoteOrderRejectEmailTemplate;true;;donotreply@fmmotorparts.com;Customer Services Team
+
+;;FMCustomerRegistrationEmail;FMCustomer registration Email;FMCustomerRegistrationTemplate;true;;donotreply@fmmotorparts.com;Customer Services Team
+;;FMCustomerAdminEmail;FMCustomer Admin Email;FMCustomerAdminTemplate;true;;donotreply@fmmotorparts.com;Customer Services Team
+;;FMAddNewUserEmail;FMAdd New User Email;FMAddNewUserEmailTemplate;true;;donotreply@fmmotorparts.com;Customer Services Team
+;;FMB2BBRegistrationApprovalEmail;FMB2BBRegistrationApproval Email;FMB2BBRegistrationApprovalTemplate;true;;donotreply@fmmotorparts.com;Customer Services Team
+;;FMContactUsEmail;FMContact Us Email;FMContactUsTemplate;true;;donotreply@fmmotorparts.com;Customer Services Team
+
+
+;;FMB2SBTaxAdminApprovalEmail;FMB2SBTaxAdminApproval Email;FMB2SBTaxAdminApprovalTemplate;true;;donotreply@fmmotorparts.com;Customer Services Team
+;;FMB2SBTaxApprovalEmail;FMB2SBTaxApproval Email;FMB2SBTaxApprovalTemplate;true;;donotreply@fmmotorparts.com;Customer Services Team
+
+# CMS components velocity templates
+INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
+;powertools-CMSImageComponent-template;java.util.Map
+;powertools-BannerComponent-template;java.util.Map
+;powertools-SimpleBannerComponent-template;java.util.Map
+;powertools-CMSLinkComponent-template;java.util.Map
+;powertools-CMSParagraphComponent-template;java.util.Map
+
+# Email velocity templates
+INSERT_UPDATE RendererTemplate;code[unique=true];contextClass;rendererType(code)[default='velocity']
+;powertools_Email_Customer_Registration_Body;de.hybris.platform.b2bacceleratorfacades.process.email.context.CustomerEmailContext
+;powertools_Email_Forgotten_Password_Body;com.federalmogul.facades.process.email.context.ForgottenPasswordEmailContext
+;powertools_Email_Forgotten_Password_Subject;com.federalmogul.facades.process.email.context.ForgottenPasswordEmailContext
+;powertools_Email_Order_Confirmation_Body;de.hybris.platform.b2bacceleratorfacades.process.email.context.OrderNotificationEmailContext
+;powertools_Email_Customer_Registration_Subject;de.hybris.platform.b2bacceleratorfacades.process.email.context.CustomerEmailContext
+;powertools_Email_Order_Confirmation_Subject;de.hybris.platform.b2bacceleratorfacades.process.email.context.OrderNotificationEmailContext
+;powertools_Email_Order_PendingApproval_Subject;de.hybris.platform.b2bacceleratorfacades.process.email.context.OrderNotificationEmailContext
+;powertools_Email_Order_PendingApproval_Body;de.hybris.platform.b2bacceleratorfacades.process.email.context.OrderNotificationEmailContext
+;powertools_Email_Replenishment_Order_Confirmation_Subject;de.hybris.platform.b2bacceleratorfacades.process.email.context.OrderNotificationEmailContext
+;powertools_Email_Replenishment_Order_Confirmation_Body;de.hybris.platform.b2bacceleratorfacades.process.email.context.OrderNotificationEmailContext
+;powertools_Email_Replenishment_Order_Placed_Body;com.federalmogul.facades.process.email.context.OrderReplenishmentEmailContext
+;powertools_Email_Replenishment_Order_Placed_Subject;com.federalmogul.facades.process.email.context.OrderReplenishmentEmailContext
+;powertools_Email_Order_ApprovalRejection_Body;de.hybris.platform.b2bacceleratorfacades.process.email.context.OrderNotificationEmailContext
+;powertools_Email_Order_ApprovalRejection_Subject;de.hybris.platform.b2bacceleratorfacades.process.email.context.OrderNotificationEmailContext
+;powertools_Email_Quote_Order_Approve_Body;com.federalmogul.facades.process.email.context.OrderNotificationEmailContext
+;powertools_Email_Quote_Order_Approve_Subject;com.federalmogul.facades.process.email.context.OrderNotificationEmailContext
+;powertools_Email_Quote_Order_Reject_Body;com.federalmogul.facades.process.email.context.OrderNotificationEmailContext
+;powertools_Email_Quote_Order_Reject_Subject;com.federalmogul.facades.process.email.context.OrderNotificationEmailContext
+
+
+#ashwini
+;FMCustomerRegistrationTemplate_Body;com.federalmogul.facades.process.email.context.FMCustomerRegistrationContext
+;FMCustomerRegistrationTemplate_Subject;com.federalmogul.facades.process.email.context.FMCustomerRegistrationContext
+
+;FMContactUsTemplate_Body;com.federalmogul.facades.process.email.context.FMContactUsContext
+;FMContactUsTemplate_Subject;com.federalmogul.facades.process.email.context.FMContactUsContext
+
+;FMAddNewUserEmailTemplate_Body;com.federalmogul.facades.process.email.context.FMAdminAddNewUserContext
+;FMAddNewUserEmailTemplate_Subject;com.federalmogul.facades.process.email.context.FMAdminAddNewUserContext
+
+
+;FMCustomerAdminTemplate_Body;com.federalmogul.facades.process.email.context.FMCustomerAdminContext
+;FMCustomerAdminTemplate_Subject;com.federalmogul.facades.process.email.context.FMCustomerAdminContext
+
+
+;FMB2BBRegistrationApprovalTemplate_Body;com.federalmogul.facades.process.email.context.FMB2BBRegistrationApprovalContext
+;FMB2BBRegistrationApprovalTemplate_Subject;com.federalmogul.facades.process.email.context.FMB2BBRegistrationApprovalContext
+
+;FMB2SBTaxAdminApprovalTemplate_Body;com.federalmogul.facades.process.email.context.FMB2SBTaxAdminApprovalContext
+;FMB2SBTaxAdminApprovalTemplate_Subject;com.federalmogul.facades.process.email.context.FMB2SBTaxAdminApprovalContext
+;FMB2SBTaxApprovalTemplate_Body;com.federalmogul.facades.process.email.context.FMB2SBTaxApprovalContext
+;FMB2SBTaxApprovalTemplate_Subject;com.federalmogul.facades.process.email.context.FMB2SBTaxApprovalContext
+
+
+# Preview Image for use in the CMS Cockpit
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];mime;realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true]
+;;EmailPageModel_preview;text/gif;EmailPageModel_preview.gif;$jarResourceCms/preview-images/EmailPageModel_preview.gif
+
+UPDATE EmailPage;$contentCV[unique=true];uid[unique=true];previewImage(code, $contentCV)
+;;CustomerRegistrationEmail;EmailPageModel_preview
+;;ForgottenPasswordEmail;EmailPageModel_preview
+;;OrderConfirmationEmail;EmailPageModel_preview
+;;OrderPendingApprovalEmail;EmailPageModel_preview
+;;ReplenishmentOrderConfirmationEmail;EmailPageModel_preview
+;;ReplenishmentOrderPlacedEmail;EmailPageModel_preview
+;;OrderApprovalRejectionEmail;EmailPageModel_preview
+;;QuoteOrderApproveEmail;EmailPageModel_preview
+;;QuoteOrderRejectEmail;EmailPageModel_preview
+
+
+;;FMCustomerRegistrationEmail;EmailPageModel_preview
+;;FMCustomerAdminEmail;EmailPageModel_preview
+;;FMAddNewUserEmail;EmailPageModel_preview
+;;FMB2BBRegistrationApprovalEmail;EmailPageModel_preview
+;;FMB2SBTaxAdminApprovalEmail;EmailPageModel_preview
+;;FMB2SBTaxApprovalEmail;EmailPageModel_preview
+;;FMContactUsEmail;EmailPageModel_preview
+
+
+UPDATE RendererTemplate;code[unique=true];description[lang=$lang];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+ ;powertools_Email_Order_Confirmation_Body;Order Confirmation Email Body;$emailResource/email-orderConfirmationBody.vm;
+ ;powertools_Email_Order_Confirmation_Subject;Order Confirmation Email Subject;$emailResource/email-orderConfirmationSubject.vm;
+
+#Please execute below scripts only for FM2.0 -- Need to be included in steps for cutover
+
+$contentCatalog=federalmogulContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+$wideContent=CMSImageComponent,BannerComponent
+$jarResourceCms=jar:com.federalmogul.core.setup.CoreSystemSetup&/fmcore/import/cockpits/cmscockpit
+$emailResource=jar:com.federalmogul.core.setup.CoreSystemSetup&/fmcore/import/contentCatalogs/$contentCatalog/emails
+$lang=en
+
+UPDATE RendererTemplate;code[unique=true];templateScript[lang=$lang,translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+;fmCustomerReviewEmail_Subject;$emailResource/email-customerReviewSubject.vm;
+;fmCustomerReviewEmail_Body;$emailResource/email-customerReviewBody.vm; 

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sch:schema xmlns="http://www.ascc.net/xml/schematron" xmlns:oa="http://www.openapplications.org/oagis" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ascc.net/xml/schematron ../../../Utility/Schematron/schematron1-5.xsd">
+	<sch:title>Schematron Validator for OAGI Constraints</sch:title>
+	<sch:ns prefix="oa" uri="http://www.openapplications.org/oagis"/>
+	<sch:pattern name="Update EmployeeTime">
+		<sch:rule context="oa:EmployeeTimeReporting">
+			<sch:assert test="oa:Employee/oa:EmployeeId" diagnostics="Noun">Must have an EmployeeId.</sch:assert>
+			<sch:assert test="oa:ReportingDateTime | oa:ReportingTimePeriod" diagnostics="Noun">Must have either a ReportingDateTime or ReportingTimePeriod.</sch:assert>
+			<sch:assert test="oa:ActualTimePeriod" diagnostics="Noun">Must have an ActualTimePeriod</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<diagnostics>
+		<diagnostic id="Noun"> 
+		    BODId =<value-of select="//oa:ApplicationArea/oa:BODId"/>
+		    EmployeeId =<value-of select="oa:Employee/oa:EmployeeId"/>
+		</diagnostic>
+	</diagnostics>
+</sch:schema>

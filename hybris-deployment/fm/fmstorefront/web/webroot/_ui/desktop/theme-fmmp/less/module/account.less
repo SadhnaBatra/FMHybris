@@ -1,0 +1,459 @@
+/* =========================
+    Account Management
+============================ */
+
+/*
+    Address Book
+==================== */
+
+.addressBookAddAddress .regFormFieldGroup, .manageUserProfileDetails .regFormFieldGroup, .manageUserUpdateDetails .regFormFieldGroup{
+     margin-right: 56px;
+     margin-right: 5.6rem;
+}
+
+.address {
+    border-bottom: 1px solid @grey-light;
+    border-bottom: 0.1rem solid @grey-light;
+    margin-top:20px;
+    margin-top:2.0rem;
+    padding-bottom:20px;
+    padding-bottom:2.0rem;
+    padding-left:0;
+}
+.address:last-child {
+    border-bottom: 0 none;
+}
+.addressBlock{
+    border-bottom: 1px solid @grey-light;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+.addressBookEditDetail .addressBookADD, .addressBookFillDetails, .addressBookNoAddress .btn, .manageUserProfile .btn, .addressBookAddAddress .btn{
+    margin-top:20px;
+    margin-top:2.0rem;
+    
+}
+
+.addressBookFillDetails, .addressBookFillDetailsPanelFirst, .addressBookFillDetailsPanelSecond{
+    padding-left:0px;
+    padding-left:0rem;
+}
+.addNewAddressBtnHolder {
+    margin-left: 0;
+    margin-top: 3px;
+    margin-top: 0.3rem;
+    padding-left: 0;
+}
+.savedAddress .paging {
+    border-bottom: 1px solid @grey-light;
+    border-bottom: 0.1rem solid @grey-light;
+}
+.savedAddress .paging:last-child {
+    border-bottom: none;
+}
+
+@media screen and (max-width: 640px) {
+.addressBookAddAddress .width270,.manageUserUpdateDetails .width270, .manageUserProfileDetails .width270{
+    width:100%;
+    }
+.addressBookAddAddress .regFormFieldGroup, .manageUserProfileDetails .regFormFieldGroup, .manageUserUpdateDetails .regFormFieldGroup{
+     margin-right: 0px;
+     margin-right: 0rem;
+}
+}
+.editRemoveLink {
+    
+    padding-top:10px;
+    padding-top:1rem;
+    margin-top:10px;
+    margin-top:1rem;
+    border-top: 1px solid @grey-light;
+    border-top: 0.1rem solid @grey-light;
+}
+.editRemoveLink .divider {
+
+    padding-left:10px;
+    padding-left:1rem;
+    padding-right:10px;
+    padding-right:1rem;
+}
+
+.profileTable tr td:first-child {
+    
+    padding-right: 10px;
+    padding-right: 1rem;
+}
+.profileTable tr td{
+        padding-top:5px;
+        padding-top:0.5rem;
+}
+
+@media screen and (max-width: 640px) {
+.profileBtn .lftMrgn_20 {
+    margin-left: 0;
+}
+}
+
+.applicationUsageReport .date-picker {margin-left:-21px !important;}
+.manageAccountLinks li a .selected{
+    color: @red;
+}
+
+.regFormFieldGroup.form-reg > input#fmRole {
+    margin-right: 8px; margin-right: 0.8rem;
+}
+
+
+#savedPaymentList .paymentEntry  {
+    min-height:188px;
+}
+
+
+#savedPaymentList .paymentList ul{
+  width:50%;
+}
+
+
+#savedPaymentList .paymentEntry button {
+    margin: 20px;
+}
+
+//Account Payment Info Page
+.default_txt{
+    clear: left;
+    color: @grey-dark;
+    float: left;
+    font-weight: bold;
+    padding-left: 15px; 
+}
+/*
+
+    Existing Address
+*****************/
+.existing_address {
+    border: 1px solid @grey-light;
+    overflow: auto;
+    padding: 10px;
+}
+
+.existing_address button {
+    display: block;
+    float: right;
+    clear: right;
+    margin: 0 0 10px 0;
+}
+
+.existing_address ul {
+    padding: 0;
+    margin: 0;
+    float: left;
+}
+
+
+
+
+#savedAddressList  button{
+  margin-top:8px;
+}
+
+#savedAddressList  .addressEntry{
+  width:380px;
+}
+
+
+#savedAddressList  {
+  max-height:400px;
+  overflow-y:auto;
+  overflow-x:hidden;
+}
+/**************************************************
+   MANAGE ACCOUNT LANDING PAGE
+**************************************************/
+
+/*Starts: Manage Account page */
+.manageAccount .productDescPanel .productImg, 
+.manageAccount .productDescPanel .prodDetail {
+    padding-right:0;
+}
+.manageAccount .productDescPanel .prodName {
+    font-size:14px;
+    font-size:1.4rem;
+}
+.messagingPanel, .manageAccountLinks {
+    border:0 none;
+    border-radius:0;
+}
+.messagingPanel .lms_intro_hover .caption {
+    top: 130px;
+    top: 13rem;
+}
+.messagingPanel .lms_intro_hover:hover .caption {
+    transform: translateY(-130px);
+    transform: translateY(-13rem);
+    -webkit-transform:translateY(-13rem);
+    -moz-transform:translateY(-13rem);
+    -ms-transform:translateY(-130px);
+    -ms-transform:translateY(-13rem);
+    -o-transform:translateY(-13rem);
+}
+.messagingPanel .caption h5 {
+    font-weight: bold;
+    margin: 0 0 5px;
+    margin: 0 0 0.5rem;
+}
+.messagingPanel .downloadLink {
+    margin-bottom: 5px;
+    margin-bottom: 0.5rem;
+}
+.messagingPanel .downloadLink > a {
+    color: @white;
+    font-size: 12px;
+    font-size: 1.2rem;
+}
+.messagingPanel .lms_desc {
+    margin-bottom: 20px;
+    margin-bottom: 2rem;
+}
+
+
+.manageAccountLinks li a,
+.detailsLink {
+    color:#164991;
+}
+
+.manageAccountTab{
+    padding-top: 0;
+}
+.manageAccountTab .resp-tab-content{
+    padding-left: 15px;
+    padding-left: 1.5rem;
+}
+.manageAccountTab .resp-tabs-list li {background: @grey;}
+.manageAccountTab .resp-tabs-list .resp-tab-active, .manageAccountTab .resp-tab-content {border-color: @white;}
+
+.manageAccountTab .table tbody tr  td {
+    border:0;
+}
+.orderStatusTable .table > thead > tr > th {font-size:12px; font-size:1.2rem}
+.table > tbody > tr.orderDateStatusAction > td {padding-top:30px; padding-top:3rem; padding-bottom: 5px; padding-bottom: 0.5rem;}
+.table > tbody > tr.orderDateStatusAction:first-child > td {padding-top:20px; padding-top:2rem;}
+.table > tbody > tr.orderInfoBlock > td {padding-top:14px; padding-top:1.4rem; padding-bottom: 14px; padding-bottom: 1.4rem;}
+
+
+/* Manage Account Invoice Tab*/
+
+.invoiceBlock .btn.fa {background: none; padding: 6px; padding:0.6rem;  font-size: 16px; font-size: 1.6rem;}
+.invoiceBlock .btn.reset, .invoiceBlock .btn.search{ padding-left:27px; padding-left:2.7rem; padding-right:27px; padding-right:2.7rem;}
+.invoiceBlock .exportButton {
+    background: #f2f2f2;
+    border-radius: 4px;
+    border-radius: 0.4rem;
+    padding: 0 8px;
+    padding: 0 0.8rem;
+}
+/*********************************************************
+**************************************************************/
+.invoiceTabTable th, .backOrderTabTable th {
+    font-size: 12px;font-size: 1.2rem;
+}
+.invoiceTabTable .table {
+    margin-bottom: 24px;
+    margin-bottom: 2.4rem;
+}
+.invoiceTabTable .table > tbody >  tr.emptyRow td {height: 24px;height: 2.4rem;}
+.invoiceTabTable .table > tbody >  tr:nth-child(even),
+.backOrderTabTable .table > tbody > tr, .orderStatusTable .table > tbody > tr, .uploadOrderTabTable .table > tbody > tr, .invoiceTabTable .table > tbody > tr  {border-bottom: solid 1px #e2e2e2; border-bottom: solid 0.1rem #e2e2e2;}
+.invoiceBlockPaging .control-label  {font-size:16px; font-size:1.6rem;}
+
+.invoiceTabTable a, .backOrderTabTable a.orderNo, .backOrderTabTable .orderMail, .orderStatusTable a.orderNo, .orderStatusTable .orderMail{ color:#164991;}
+/* Manage Account Back orders Tab*/
+.backOrderTabTable .shippingDC{width: 15%;}
+.backOrdersBlock  .btn.btn-default.btn-fmDefault {
+    height: 32px;
+    height: 3.2rem;
+    padding-left: 30px;
+    padding-left: 3rem;
+    padding-right: 30px;
+    padding-right: 3rem;
+}
+.backOrdersBlock .btn.reset {margin-left: 10px; margin-left: 1rem;}
+
+/* Manage Account Upload Status Orders Tab*/
+.uploadOrderStatus th{
+font-size: 12px;font-size: 1.2rem;
+}
+
+.uploadOrderStatus .table > tbody >  tr.even  {background: #f2f2f2;}
+
+.uploadOrderStatus a.orderNo, .uploadOrderStatus .orderMail{ color:#164991;}
+
+.uploadOrderStatus  .btn.btn-default.btn-fmDefault {
+    height: 32px;
+    height: 3.2rem;
+    padding-left: 30px;
+    padding-left: 3rem;
+    padding-right: 30px;
+    padding-right: 3rem;
+}
+.uploadOrderStatus .btn.reset {margin-left: 10px;margin-left: 1rem;}
+
+.uploadOrderAction a{
+    color:@grey;
+}
+.uploadOrderAction a.selected{
+    color:@red;
+}
+.uploadOrderAction .fa{
+    cursor:pointer;
+    padding-right:12px;
+    padding-right:1.2rem;
+    font-size:16px;
+    font-size:1.6rem;
+    text-decoration:none;
+}
+
+.uploadOrderClose,
+.uploadOrderClose:hover{
+    color:@grey;
+    font-size:16px;
+    font-size:1.6rem;
+    padding-left: 16px;
+    padding-left: 1.6rem;
+}
+
+.uploadOrderBtn,
+.uploadOrderBtn:hover{
+    background-color:@grey;
+    border-color: @grey;
+}
+
+.uploadAction{
+    margin-left: 27px;
+    margin-left: 2.7rem;
+}
+.EditOrderTableRow,
+.EditOrderHistory,
+.EditOrderDetails {
+    border-top: 1px solid @grey-light;
+    border-top: 0.1rem solid @grey-light;
+    border-bottom: 1px solid @grey-light;
+    border-bottom: 0.1rem solid @grey-light;
+}
+.EditOrderHistory .table,
+.EditOrderDetails .table {
+    margin-bottom: 0;
+}
+.manageAccountTab .uploadOrderStatus .EditOrderTableRow tr.noBorder{
+    border-bottom: 0;
+}
+
+.manageAccountTab .uploadOrderStatus .EditOrderTableRow tr.noBorder td{
+    padding-bottom: 0
+}
+
+.manageAccountTab .uploadOrderStatus .EditOrderTableRow tr,
+.manageAccountTab .uploadOrderStatus .EditOrderHistory tr,
+.manageAccountTab .uploadOrderStatus .EditOrderDetails tr{
+    border-bottom: 1px solid #e2e2e2;
+    border-bottom: 0.1rem solid #e2e2e2;
+    border-top: 0 none;
+    vertical-align: middle;
+} 
+
+.manageAccountTab .uploadOrderStatus .EditOrderTableRow th,
+.manageAccountTab .uploadOrderStatus .EditOrderHistory tr,
+.manageAccountTab .uploadOrderStatus .EditOrderDetails th{
+    border-bottom: 1px solid @grey-light;
+    border-bottom: 0.1rem solid @grey-light;
+}
+.manageAccountTab .uploadOrderStatus .EditOrderHistory tr:last-child,
+.manageAccountTab .uploadOrderStatus .EditOrderDetails tr:last-child{
+    border-bottom: 0
+}
+.manageAccountTab .uploadOrderStatus .EditOrderHistory tr td{
+    padding-top:16px;
+    padding-top:1.6rem;
+    padding-bottom:16px;
+    padding-bottom:1.6rem;
+}
+
+
+/**************************************************
+   MANAGE USER LANDING PAGE
+**************************************************/
+.manageAccountLinks_lftNav
+ {
+    padding-left:0;
+}
+.manageAccountLinks_lftNav ul{
+    margin: 0;
+    padding:0;
+    list-style:none;
+    text-transform:capitalize;
+}
+.manageUserPanel, .quickOrderPagePanel{padding: 0; background:@white;}
+.reviewPlaceOrderBold {font-weight:bold;}
+.rightHandPanel{
+        padding: 15px;
+        padding: 1.5rem;
+}
+.quickOrderPagePanel .userTable > table > tbody > tr > td{vertical-align: top !important;}
+
+.tableFilter{margin: 10px 0;margin: 1rem 0;clear:both; display:table-cell; padding:3px 0; padding:0.3rem 0; vertical-align:middle; min-height: 42px; min-height:4.2rem;}
+.addNewUserBtnHolder{margin-left: 0; padding-left: 0; margin-top:10px; margin-top:1rem;}
+.manageUserPanel .addImportPart{margin-left: 0; padding-left: 0; margin-top:4px; margin-top:0.4rem;}
+.userTable{padding:0; margin:0;}
+.userTable>table{ margin-bottom:0;}
+.userTable>table>tbody>tr>td{vertical-align:middle; padding-top:16px; padding-top:1.6rem; padding-bottom:16px; padding-bottom: 1.6rem; border-top: 0; border-bottom: 1px solid #e2e2e2;font-size:1.2rem;}
+.userTable>table>tbody>tr:hover>td{background: #f9f9f9;}
+.userTable>table>tbody>tr.orderSubTotalRow:hover td{background: @white;}
+.userTable>table>thead>tr>th{background: #ececec; border-bottom: none; border-left: 1px solid @white;border-left: 0.1rem solid @white; border-right: 1px solid @white;border-right: 0.1rem solid @white;font-size:12px;font-size:1.2rem;}
+.userTable>table>thead>tr>th:first-child{border-left: none;}
+.userTable>table>thead>tr>th:last-child{border-right: none;}
+.userTable>table>tbody>tr.last>td{border-bottom: none;}
+.costCenterCol, .linkCol{font-weight:bold}
+.nameCol .input-group {width:90%; float: left;}
+.nameCol .searchStatus { float:right; line-height:34px; line-height:3.4rem; color:green;}
+.nameCol .enterPartNumber {box-shadow: none; border-right:0;}
+.nameCol .btn,.nameCol .btn:hover {background: none; border-left:0; border-color:@grey-light;}
+.btnPanel{padding-right: 0}
+.quickOrderSubtotal{ margin-bottom: 30px; margin-bottom: 3rem;}
+.quickOrderSubtotal h4, .quickOrderSubtotal h2{ margin:4px 0 0 0; margin:0.4rem 0 0 0; font-family:DINWeb-Bold}
+.quickOrderSubtotal .totalPrice{ margin:6px 0 0 0; margin:0.6rem 0 0 0;}
+.inactiveData {color:#c4c4c4}
+.inactiveData .divider {padding:0 5px; padding: 0 0.5rem;}
+.muName {width:20%}
+.muRole {width:20%}
+.muCompany {width:35%}
+.muStatus {width:10%}
+.muActions {width:15%}
+.nameCol a, .linkCol a, .morerowslink, .addNewAddLink{color: #164991}
+.addNewUserBtnHolder a{color :@grey;}
+.tableFilter label, .tableFilter .addNewUserBtnHolder a{ font-size:16px;font-size:1.6rem;}
+@media (max-width: 640px) {
+.manageAccount .manageUserPanel .table-responsive{
+        border:none;
+    }
+    
+.manageAccount .manageUserPanel .table-responsive > .table > thead > tr > th, .table-responsive > .table > tbody > tr > th,.manageAccount .manageUserPanel .table-responsive > .table > tfoot > tr > th, .table-responsive > .table > thead > tr > td, .manageAccount .table-responsive > .table > tbody > tr > td,.manageUserPanel .table-responsive > .table > tfoot > tr > td {
+    white-space: pre-wrap;
+}
+}
+@media (max-width: 767px) {
+.manageUserPanel h2{  font-size:16px;  font-size:1.6rem; padding-left:0; margin-top:3px; margin-top:0.3rem;}
+.manageUserPanel .addNewUserBtnHolder{margin-top:0;}
+
+.manageUserPanel .fa-gear{background: none repeat scroll 0 0 @red;color: @white;border: 0 none; height: 2rem;height: 20px; padding: 0;width: 2rem;width: 20px;border-radius:5px;border-radius:0.5rem; margin-top:-32px;
+}
+.manageUserPanel .addNewUserBtnHolder{
+    padding-right:0;
+}
+.manageUserPanel .manageUserSetting{ background-color: @grey;}
+
+.manageUserPopup .modal-header{background:grey;}
+
+}
+    .manageuserdivider {
+      padding-left: 15px;
+    }
+

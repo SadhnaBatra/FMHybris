@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Verbs/Respond.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="Verb.xsd"/>
+        <xs:complexType name="Respond">
+                <xs:complexContent>
+                        <xs:extension base="Verb"/>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:element name="Respond" type="Respond" substitutionGroup="Verb">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The Respond verb is used to communicate relative to another document. It may be used to communicate agreement, questions, answers to a question, or disagreement with the related document.  An example is the RequestForQuote and Quote document pair. An RequestForQuote is issued to a set of business partners. If one of the partners needs clarification on an item, a RespondRequestForQuote is sent to the originating partner.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+</xs:schema>

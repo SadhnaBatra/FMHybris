@@ -1,0 +1,1821 @@
+#
+# Import the CMS content for the FederalMogul site
+#
+
+$contentCatalog=fmmergeContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=federalmogulProductCatalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$jarResourceCms=jar:com.federalmogul.core.setup.CoreSystemSetup&/fmcore/import/cockpits/cmscockpit
+$siteResource=jar:com.federalmogul.core.setup.CoreSystemSetup&/fmcore/import/contentCatalogs/$contentCatalog
+
+$lang=en
+
+# Content catalog for CMS contents
+INSERT_UPDATE ContentCatalog;id[unique=true]
+;$contentCatalog
+
+# Catalog versions for content catalogs
+INSERT_UPDATE CatalogVersion;catalog(id)[unique=true];version[unique=true];active;languages(isoCode);writePrincipals(uid);readPrincipals(uid);
+;$contentCatalog;Staged;false;$lang;cmsmanagergroup,cmsmanager;cmsmanagergroup,cmsmanager;
+;$contentCatalog;Online;true;$lang;cmsmanagergroup,cmsmanager;cmsmanagergroup,cmsmanager;
+
+
+INSERT_UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];name;frontendTemplateName;restrictedPageTypes(code);active[default=true]
+#eCatalog
+;;FederalMogulProdListPageTemplate;FederalMogul Product List Page Template;category/productListPage;CategoryPage,ProductPage
+;;FederalMogulSearchResultsListPageTemplate;FederalMogul Product List Page Template;search/searchListPage;CategoryPage,ProductPage
+;;FederalMogulSearchResultsGridPageTemplate;Search Results Grid Page Template;search/searchGridPage;ContentPage
+;;AnonymousHomePageTemplate;FederalMogul Anonymous Home Page Template;layout/anonymousHomePage;CategoryPage,ContentPage
+;;FederalMogulProdDetailsPageTemplate;FederalMogul Product Details Page Template;product/fmProductDetailsPage;CategoryPage,ProductPage
+;;FederalMogulSearchResultsEmptyPageTemplate;Search Results Empty Page Template;search/fmSearchEmptyPage;ContentPage
+#UserManagement								
+;;B2BHomePageTemplate;FederalMogul B2B Home Page Template;layout/b2BLandingHomePage;CategoryPage,ContentPage
+;;HomePageB2bTemplate;FederalMogul B2bHome Page Template;layout/b2bHomePage;CategoryPage,ContentPage
+;;B2CHomePageTemplate;FederalMogul B2C Home Page Template;layout/b2cHomePage;CategoryPage,ContentPage
+;;LoginPageTemplate;Login Page Template;;ContentPage
+;;FMRegistrationPageTemplate;FM Registration Page Template;account/signUpPage;CategoryPage,ContentPage
+;;FMRegistrationPageTemplate;FM Registration Page Template;password/fmForgotPassword;ContentPage
+;;FMRegistrationPageTemplate;FM Registration Page Template;password/fmForgotPasswordValidationPage;ContentPage
+;;FMRegistrationPageTemplate;FM Registration Page Template;password/fmForgotPasswordResetPage;ContentPage
+#;;FMRegistrationPageTemplate;FM Registration Page Template;password/fmForgotPasswordSecretQuestionPage;ContentPage
+;;FMRegistrationPageTemplate;FM Registration Page Template;error/pageNotFoundPage;ContentPage
+;;ManageUserPageTemplate;Manage User Page Template;company/fmManageUserPage;ContentPage
+;;ManageUserPageTemplate;Manage User Page Template;company/fmCreateUserPage;ContentPage
+;;ManageUserPageTemplate;Manage User Page Template;company/fmEditUserPage;ContentPage
+;;ManageUserPageTemplate;Manage User Page Template;company/fmNetworkPage;ContentPage
+;;ManageUserPageTemplate;Manage User Page Template;company/fmCreateAddressPage;ContentPage
+;;ManageUserPageTemplate;Manage User Page Template;company/fmEditAddressPage;ContentPage
+;;ManageUserPageTemplate;Manage User Page Template;company/fmViewUnitPage;ContentPage
+;;ManageUserPageTemplate;Manage User Page Template;company/fmTaxExemptionPage;ContentPage
+;;ManageUserPageTemplate;Manage User Page Template;account/fmtaxexemptionapprovalpage;ContentPage
+;;ManageAccountPageTemplate;Manage Account Page Template;account/fmManageAccountPage;ContentPage
+;;ManageAccountPageTemplate;Manage Account Page Template;account/fmUpdatePasswordPage;ContentPage
+;;ManageAccountPageTemplate;Manage Account Page Template;account/fmUpdateProfilePage;ContentPage
+;;ManageAccountPageTemplate;Manage Account Page Template;account/fmAddressBookPage;ContentPage
+;;ManageAccountPageTemplate;Manage Account Page Template;account/fmAddEditAddressPage;ContentPage
+;;ManageAccountPageTemplate;Manage Account Page Template;account/fmAdminAddressBookPage;ContentPage
+;;ManageAccountPageTemplate;Manage Account Page Template;account/fmAdminAddEditAddressPage;ContentPage
+;;CSRPageTemplate;CSR Home Page Template;layout/fmCSRHomePage;CategoryPage,ContentPage
+;;OrderHistoryPageTemplate;Order History Page Template;account/fmOrderHistoryPage;ContentPage
+;;OrderDetailsPageTemplate;Order Details Page Template;account/fmOrderDetailsPage;ContentPage
+#Balaji Return pages
+;;ManageAccountPageTemplate;Manage Account Page Template;account/fmReturnHistoryPage;ContentPage
+;;ManageAccountPageTemplate;Manage Account Page Template;account/fmReturnDetailsPage;ContentPage
+;;ManageAccountPageTemplate;Manage Account Page Template;account/fmReturnRequestPage;ContentPage
+;;ManageAccountPageTemplate;Manage Account Page Template;account/fmReturnRequestConfirmationPage;ContentPage
+#Balaji LeagGeneration
+;;LeadGenerationPageTemplate;Lead Generation Call back Page Template;account/fmLeadGenerationCallBackPage;ContentPage
+
+#Store Locator
+;;StoreFinderPageTemplate;Store Finder Page Template;;ContentPage
+
+#about us
+;;InternalLandingPageTemplate;Internal Landing Page Template;company/fmInternalLandingPage;ContentPage
+#Part Interchange page
+;;PartInterchangePageTemplate;Part Interchange Page Template;layout/partInterchangePage;ContentPage
+
+INSERT_UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+#eCatalog
+;;FederalMogulProdListPageTemplate;$jarResourceCms/structure-view/structure_FMProductListPageTemplate.vm
+;;FederalMogulSearchResultsListPageTemplate;$jarResourceCms/structure-view/structure_FMsearchResultsListPageTemplate.vm
+;;FederalMogulSearchResultsGridPageTemplate;$jarResourceCms/structure-view/structure_FMsearchResultsGridPageTemplate.vm
+;;AnonymousHomePageTemplate;$jarResourceCms/structure-view/structure_anonymousHomePageTemplate.vm
+;;FederalMogulProdDetailsPageTemplate;$jarResourceCms/structure-view/structure_productDetailsPageTemplate.vm
+;;FederalMogulSearchResultsEmptyPageTemplate;$jarResourceCms/structure-view/structure_FMsearchResultsEmptyPageTemplate.vm
+#UserManagement
+;;B2BHomePageTemplate		;$jarResourceCms/structure-view/structure_B2BHomePageTemplate.vm	
+;;HomePageB2bTemplate		;$jarResourceCms/structure-view/structure_HomePageB2bTemplate.vm
+;;B2CHomePageTemplate		;$jarResourceCms/structure-view/structure_B2CHomePageTemplate.vm
+;;ManageAccountPageTemplate ;$jarResourceCms/structure-view/structure_fmManageAccountPageTemplate.vm
+;;FMRegistrationPageTemplate;$jarResourceCms/structure-view/structure_commonPageTemplate.vm
+;;FMCheckoutPageTemplate	;$jarResourceCms/structure-view/structure_commonPageTemplate.vm
+;;ManageUserPageTemplate	;$jarResourceCms/structure-view/structure_fmManageUserPageTemplate.vm
+;;LoginPageTemplate         ;$jarResourceCms/structure-view/structure_loginPageTemplate.vm
+;;CSRPageTemplate			;$jarResourceCms/structure-view/structure_commonPageTemplate.vm
+;;OrderHistoryPageTemplate  ;$jarResourceCms/structure-view/structure_FMOrderHistoryTemplate.vm
+;;OrderDetailsPageTemplate  ;$jarResourceCms/structure-view/structure_FMOrderDetailsTemplate.vm
+#Balaji LeagGeneration Pages
+;;LeadGenerationPageTemplate;$jarResourceCms/structure-view/structure_fmLeadGenerationCallBackPageTemplate.vm
+
+#Store Locator
+;;StoreFinderPageTemplate	;$jarResourceCms/structure-view/structure_storefinderSearchTemplate.vm
+
+#about -us
+;;InternalLandingPageTemplate;$jarResourceCms/structure-view/structure_internalContentTemplate.vm
+#Part Interchange Landing 
+;;PartInterchangePageTemplate;$jarResourceCms/structure-view/structure_partInterchangePageTemplate.vm
+
+#For Login
+# Preview Image for use in the CMS Cockpit for special ContentPages
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];mime;realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true]
+;;ContentPageModel__function_preview;text/gif;ContentPageModel__function_preview.gif;$jarResourceCms/preview-images/ContentPageModel__function_preview.gif
+
+
+
+INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
+;;SiteLogoComponent;/images/theme/logo-hybris.png
+
+# Site Logo Component
+INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlLink
+;;SiteLogoComponent;Site Logo Component;SiteLogoComponent;
+
+# CMS SearchBox Components
+INSERT_UPDATE SearchBoxComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+;;SearchBox;Search Box;SearchBox
+;;FMSearchBox;Search Box;FMSearchBox
+
+# Site Logo Component
+INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlLink
+;;SiteLogoComponent;Site Logo Component;SiteLogoComponent;
+;;LightboxHomeDeliveryBannerComponent;Lightbox Home Delivery Banner Component;LightboxHomeDeliveryBannerComponent;
+
+# CMS Mini Cart Component
+INSERT_UPDATE MiniCartComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;totalDisplay(code);shownProductCount;lightboxBannerComponent(&componentRef)
+;;MiniCart;Mini Cart;MiniCart;TOTAL;3;LightboxHomeDeliveryBannerComponent
+
+# Site Logo
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];altText
+;;/images/theme/logo-hybris.png;logo-hybris.png;$siteResource/images/theme/logo-hybris.png;image/png;hybris Accelerator
+
+# Media
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];&imageRef;altText
+#New Images for ProductGrid and SearchPage Banner
+;;FederalMogul_ProductGrid_Image_0.jpg;$siteResource/images/banners/homepage/product-page-banner.jpg;;FederalMogul_ProductGrid_Image_0.jpg;"FM ProductGrid Banner0"
+
+#FederalMogul custom ImageComponent [FMHomeCarouselComponent]
+INSERT_UPDATE FMCMSImageComponent;$contentCV[unique=true];uid[unique=true];name;$picture[lang=$lang];&componentRef
+;;FMSearchProductGridBannerImage0;FM Search ProductGrid Banner Image0;FederalMogul_ProductGrid_Image_0.jpg;FMSearchProductGridBannerImage0
+
+# Media
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];&imageRef;altText
+#New Images for PartSearch 
+;;FederalMogul_PartSearch_Image_0.png;$siteResource/images/banners/homepage/partner-img.png;;FederalMogul_PartSearch_Image_0.png;"FM TroubleShoot Banner0"
+#New Images for WheretoBuy
+;;FederalMogul_WheretoBuy_Image_0.png;$siteResource/images/banners/homepage/map_bg.jpg;;FederalMogul_WheretoBuy_Image_0.png;"FM WhereToBuy Banner"
+#New Images for TroubleShoot 
+;;FederalMogul_TroubleShoot_Image_0.png;$siteResource/images/banners/homepage/troubleshoot.jpg;;FederalMogul_TroubleShoot_Image_0.jpg;"FM TroubleShoot Banner0"
+
+#New Images for Message Anounce Offer 
+;;FederalMogul_MsgAnounceOffer_Image_0.jpg;$siteResource/images/banners/homepage/info-img1.jpg;;FederalMogul_MsgAnounceOffer_Image_0.jpg;"FM MsgAnounceOffer Banner0"
+;;FederalMogul_MsgAnounceOffer_Image_1.jpg;$siteResource/images/banners/homepage/info-img2.jpg;;FederalMogul_MsgAnounceOffer_Image_1.jpg;"FM MsgAnounceOffer Banner1"
+#New Images for Learning and videos 
+;;FederalMogul_Learning_Image_0.jpg;$siteResource/images/banners/homepage/learning-img1.jpg;;FederalMogul_Learning_Image_0.jpg;"FM Learning Banner0"
+;;FederalMogul_Learning_Image_1.jpg;$siteResource/images/banners/homepage/learning-img2.jpg;;FederalMogul_Learning_Image_1.jpg;"FM Learning Banner1"
+;;FederalMogul_Learning_Image_2.jpg;$siteResource/images/banners/homepage/learning-img3.jpg;;FederalMogul_Learning_Image_2.jpg;"FM Learning Banner2"
+;;FederalMogul_Learning_Image_3.jpg;$siteResource/images/banners/homepage/learning-img4.jpg;;FederalMogul_Learning_Image_3.jpg;"FM Learning Banner3"
+#New Images for SpotLite 
+;;FederalMogul_SpotLite_Image_0.jpg;;;FederalMogul_SpotLite_Image_0.jpg;"FM SpotLite Banner0"
+;;FederalMogul_SpotLite_Image_1.jpg;;;FederalMogul_SpotLite_Image_1.jpg;"FM SpotLite Banner1"
+;;FederalMogul_SpotLite_Image_2.jpg;;;FederalMogul_SpotLite_Image_2.jpg;"FM SpotLite Banner2"
+#New Images for Footer Links not included in fasttrack ----check
+;;FederalMogul_Facebook_Image;$siteResource/images/banners/homepage/fb.png;;FederalMogul_Facebook_Image;"Facebook"
+;;FederalMogul_Google_Image;$siteResource/images/banners/homepage/google.png;;FederalMogul_Google_Image;"Google"
+;;FederalMogul_Linkedin_Image;$siteResource/images/banners/homepage/linkedin.png;;FederalMogul_Linkedin_Image;"Linkedin"
+;;FederalMogul_Twitter_Image;$siteResource/images/banners/homepage/twitter.png;;FederalMogul_Twitter_Image;"Twitter"
+
+###FROM UM
+#New Images for ProductGrid and SearchPage Banner
+# Siva
+#;;FederalMogul_ProductGrid_Image_1.jpg;$siteResource/images/banners/homepage/VCS.png;;FederalMogul_ProductGrid_Image_1.jpg;"FM ProductGrid Banner0" 
+
+# Sree B2B & B2C    
+# New Images for Announcement 
+;;FederalMogul_Announcement_Image_0.jpg;$siteResource/images/banners/homepage/moog.jpg;;FederalMogul_Announcement_Image_0.jpg;"FM Announcement Banner0"
+;;FederalMogul_Success_image_0.jpg;$siteResource/images/banners/homepage/success.png;;FederalMogul_Success_image_0.jpg;"FM Success Banner0"
+
+# New Images for Insights
+;;FederalMogul_Insights_Image_0.jpg;$siteResource/images/banners/homepage/learning-img1.png;;FederalMogul_Insights_Image_0.jpg;"FM Insights Banner0"
+;;FederalMogul_Insights_Image_1.jpg;$siteResource/images/banners/homepage/insight-img2.png;;FederalMogul_Insights_Image_1.jpg;"FM Insights Banner1"
+;;FederalMogul_Insights_Image_2.jpg;$siteResource/images/banners/homepage/insight-img3.png;;FederalMogul_Insights_Image_2.jpg;"FM Insights Banner2"
+;;FederalMogul_Insights_Image_3.jpg;$siteResource/images/banners/homepage/insight-img4.png;;FederalMogul_Insights_Image_3.jpg;"FM Insights Banner3"
+
+# New Images for SpotLite 
+;;FederalMogul_B2BSpotLight_Image_0.jpg;;;FederalMogul_B2BSpotLightImage_0.jpg;"FM B2BSpotLight Banner0"
+;;FederalMogul_B2BSpotLight_Image_1.jpg;;;FederalMogul_B2BSpotLight_Image_1.jpg;"FM B2BSpotLight Banner1"
+;;FederalMogul_B2BSpotLight_Image_2.jpg;;;FederalMogul_B2BSpotLight_Image_2.jpg;"FM B2BSpotLight Banner2"
+
+# New Images for Footer Links 
+;;FederalMogul_Facebook_Image;$siteResource/images/banners/homepage/fb.png;;FederalMogul_Facebook_Image;"Facebook"
+;;FederalMogul_Youtube_Image;$siteResource/images/banners/homepage/youtube.png;;FederalMogul_Youtube_Image;"Youtube"
+;;FederalMogul_Linkedin_Image;$siteResource/images/banners/homepage/linkedin.png;;FederalMogul_Linkedin_Image;"Linkedin"
+;;FederalMogul_Twitter_Image;$siteResource/images/banners/homepage/twitter.png;;FederalMogul_Twitter_Image;"Twitter"
+
+# Siva B2b
+;;FederalMogul_B2bDownload_Image_0.jpg;$siteResource/images/banners/homepage/free-mobile-app.jpg;;FederalMogul_B2bDownload_Image_0.jpg;"FM B2b do Banner0"
+
+# New Images for Learning and videos 
+;;FederalMogul_Learning_Image_B2b_0.jpg;$siteResource/images/banners/homepage/learning-img1.png;;FederalMogul_Learning_Image_B2b_0.jpg;"FM Learning Banner0"
+;;FederalMogul_Learning_Image_B2b_1.jpg;$siteResource/images/banners/homepage/training-img2.png;;FederalMogul_Learning_Image_B2b_1.jpg;"FM Learning Banner1"
+;;FederalMogul_Learning_Image_B2b_2.jpg;$siteResource/images/banners/homepage/training-img3.png;;FederalMogul_Learning_Image_B2b_2.jpg;"FM Learning Banner2"
+;;FederalMogul_Learning_Image_B2b_3.jpg;$siteResource/images/banners/homepage/training-img4.png;;FederalMogul_Learning_Image_B2b_3.jpg;"FM Learning Banner3"
+
+###FROM UM END
+
+# Media
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpeg'];&imageRef;altText
+#Images for BrandStrip
+;;logo-abex.jpg;$siteResource/images/banners/homepage/logo-abex.png;;logo-abex.jpg;"Abex"
+;;logo-anco.jpg;$siteResource/images/banners/homepage/logo-anco.png;;logo-anco.jpg;"Anco"
+;;logo-champion.jpg;$siteResource/images/banners/homepage/logo-champion.png;;logo-champion.jpg;"champion"
+;;logo-fel-pro.jpg;$siteResource/images/banners/homepage/logo-fel-pro.png;;logo-fel-pro.jpg;"felPro"
+;;logo-fp-diesel.jpg;$siteResource/images/banners/homepage/logo-fp-diesel.png;;logo-fp-diesel.jpg;"fp-diesel"
+;;logo-moog.jpg;$siteResource/images/banners/homepage/logo-moog.png;;logo-moog.jpg;"Moog"
+;;logo-sealed-power.jpg;$siteResource/images/banners/homepage/logo-sealed-power.png;;logo-sealed-power.jpg;"sealed-power"
+;;logo-speed-pro.jpg;$siteResource/images/banners/homepage/logo-speed-pro.png;;logo-speed-pro.jpg;"speed-pro"
+;;logo-wagner-brake.jpg;$siteResource/images/banners/homepage/logo-wagner-brake.png;;logo-wagner-brake.jpg;"wagner-brake"
+;;logo-wagner-lighting.jpg;$siteResource/images/banners/homepage/logo-wagner-lighting.png;;logo-wagner-lighting.jpg;"wagner-lighting"
+
+#Images for BrandStrip
+;;whereToBuyImage.jpg;$siteResource/images/banners/homepage/map_bg.jpg;;whereToBuyImage.jpg;"where To Buy"
+
+#FederalMogul custom ImageComponent [FMHomeCarouselComponent]
+INSERT_UPDATE FMCMSImageComponent;$contentCV[unique=true];uid[unique=true];name;$picture[lang=$lang];&componentRef
+;;WhereToBuyBanner;where To Buy;whereToBuyImage.jpg;WhereToBuyBanner
+
+INSERT_UPDATE FMBannerComponent;$contentCV[unique=true];uid[unique=true];headline[lang=en];$picture[lang=$lang];content[lang=en]
+#Image Banner for BrandStrip
+;;abex;Abex;logo-abex.jpg;;
+;;anco;Anco;logo-anco.jpg;;
+;;champion;Champion;logo-champion.jpg;;
+;;felpro;FelPro;logo-fel-pro.jpg;;
+;;fpdiesel;Fp Diesel;logo-fp-diesel.jpg;;
+;;moog;Moog;logo-moog.jpg;;
+;;sealedPower1;Sealed Power;logo-sealed-power.jpg;;
+;;speedpro1;SpeedPro;logo-speed-pro.jpg;;
+;;wagnerbrake;Wagner Brake;logo-wagner-brake.jpg;;
+;;wagnerlighting;Wgner Lighting;logo-wagner-lighting.jpg;;
+
+INSERT_UPDATE FMBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlLink
+#Images for BrandStrip Links 
+;;abex;Abex;abex;;
+;;anco;wangerLighting;anco;;
+;;champion;champion;champion;;
+;;felpro;felPro;felpro;;
+;;sealedPower1;sealedPower Banner;sealedPower1;;
+;;fpdiesel;fpDiesel Banner;fpdiesel;;
+;;moog;fpDiesel Banner;moog;;
+;;wagnerbrake;WangerBrake Brake;wagnerbrake;;
+;;wagnerlighting;wangerLighting;wagnerlighting;;
+;;speedpro1;speedPro Banner;speedpro1;;
+
+##############################Start of Custom Banner Component #######################################
+
+INSERT_UPDATE FMBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlLink
+#New Banner for PartSearch
+;;FMPartSearchBanner;FM Part Search;FMPartSearchBanner;;
+
+#New Banner for WheretoBuy not included in fasttrack---check
+;;FMWheretoBuyBanner;FM Where to Buy;FMWheretoBuyBanner;;
+
+#New Banner for TroubleShoot
+;;FMTroubleShootBanner;FM Trouble Shoot;FMTroubleShootBanner;;
+
+#New Banner for Message Anounce Offer 
+;;FMMsgAnounceBanner0;FM Message Anounce Offer Banner0;FMMsgAnounceBanner0;;
+;;FMMsgAnounceBanner1;FM Message Anounce Offer Banner1;FMMsgAnounceBanner1;;
+;;FMMsgAnounceBanner2;FM Message Anounce Offer Banner2;FMMsgAnounceBanner2;;
+;;FMMsgAnounceBanner3;FM Message Anounce Offer Banner3;FMMsgAnounceBanner3;;
+
+#New Banner for SpotLite
+;;FMSpotLiteBanner0;FM SpotLite Banner Image0;FMSpotLiteBanner0;;
+;;FMSpotLiteBanner1;FM SpotLite Banner Image1;FMSpotLiteBanner1;;
+;;FMSpotLiteBanner2;FM SpotLite Banner Image2;FMSpotLiteBanner2;;
+
+#New Images for Footer Links 
+;;Facebook;Facebook Banner;Facebook;http://www.facebook.com
+;;Google;Google Banner;Google;;http://www.google.com
+;;Linkedin;Linkedin Banner;Linkedin;http://www.linkedin.com
+;;Twitter;Twitter Banner;Twitter;http://www.twitter.com
+;;Youtube;Youtube Banner;Youtube;http://www.youtube.com
+
+
+#Images for BrandStrip Links 
+;;wangerBrake;WangerBrake Banner;wangerBrake;c/Wagner
+;;wangerLighting;wangerLighting Banner;wangerLighting;;c/WagnerLighting
+;;champion;champion Banner;champion;c/Champion
+;;felPro;felPro Banner;felPro;c/felPro
+;;sealedPower;sealedPower Banner;sealedPower;;c/SealedPower
+;;fpDiesel;fpDiesel Banner;fpDiesel;c/fpDiesel
+;;speedPro;speedPro Banner;speedPro;c/SpeedPro
+
+#UserManagement
+# Sree B2B & B2C
+# New Banner for Announcement
+;;FMAnnouncementBanner;FM Announcement;FMAnnouncementBanner;;
+;;FMSuccessBanner;FM Success Stories;FMSuccessBanner;;
+
+# New Banner for SpotLight
+;;FMB2BSpotLightBanner0;FM B2BSpotLight Banner Image0;FMB2BSpotLightBanner0;;
+;;FMB2BSpotLightBanner1;FM B2BSpotLight Banner Image1;FMB2BSpotLightBanner1;;
+;;FMB2BSpotLightBanner2;FM B2BSpotLight Banner Image2;FMB2BSpotLightBanner2;;
+
+# Siva B2b
+# banner for download
+;;FMB2bDownloadBanner0;FM B2b Download Banner0;FMB2bDownloadBanner0;;
+ 
+INSERT_UPDATE FMBannerComponent;$contentCV[unique=true];uid[unique=true];headline[lang=en];$picture[lang=$lang];content[lang=en]
+#New Banner for PartSearch
+;;FMPartSearchBanner;Part Search;FederalMogul_PartSearch_Image_0.png;;
+
+#New Banner for WheretoBuy
+;;FMWheretoBuyBanner;Where to Buy;FederalMogul_WheretoBuy_Image_0.png;;
+
+#New Banner for TroubleShoot
+;;FMTroubleShootBanner;TROUBLESHOOT;FederalMogul_TroubleShoot_Image_0.png;Get an idea of what's wrong and what to do about it
+
+
+# Siva B2b
+;;FMB2bDownloadBanner0;FREE MOBILE APP;FederalMogul_B2bDownload_Image_0.jpg;"Purchase parts, find a dealer, get current news, and more!"
+
+#New Banner for Message Anounce Offer 
+;;FMMsgAnounceBanner0;The World's Most Trusted Auto Parts Company;FederalMogul_MsgAnounceOffer_Image_0.jpg;Federal-Mogul is dedicated to our customers and the growing auto industry
+;;FMMsgAnounceBanner1;Save up to $15 Per Pair on ANCO Wiper Blades;FederalMogul_MsgAnounceOffer_Image_1.jpg;After mail in-rebate<br>Valid 10/4/14 - 11/5/15
+;;FMMsgAnounceBanner2;The World's Most Trusted Auto Parts Company;FederalMogul_MsgAnounceOffer_Image_0.jpg;Federal-Mogul is dedicated to our customers and the growing auto industry
+;;FMMsgAnounceBanner3;Save up to $15 Per Pair on ANCO Wiper Blades;FederalMogul_MsgAnounceOffer_Image_1.jpg;After mail in-rebate<br>Valid 10/4/14 - 11/5/15
+
+#New Banner for SpotLite
+;;FMSpotLiteBanner0;;FederalMogul_SpotLite_Image_0.jpg;ANCO
+;;FMSpotLiteBanner1;;FederalMogul_SpotLite_Image_1.jpg;CHAMPION
+;;FMSpotLiteBanner2;;FederalMogul_SpotLite_Image_2.jpg;CARTER
+
+#New Banner for FooterLinks
+;;Facebook;;FederalMogul_Facebook_Image;;
+;;Google;;FederalMogul_Google_Image;;
+;;Linkedin;;FederalMogul_Linkedin_Image;;
+;;Twitter;;FederalMogul_Twitter_Image;;
+;;Youtube;;FederalMogul_Youtube_Image;;
+
+# Sree B2B & B2C
+# New Banner for Announcement
+;;FMAnnouncementBanner;ANNOUNCEMENT;FederalMogul_Announcement_Image_0.jpg;MOOG® Coverage Expanded With Dozens of New Parts For Foreign Nameplate and Domestic Models
+;;FMSuccessBanner;SUCCESS STORIES;FederalMogul_Success_image_0.jpg;Stories that highlight user successes around quality, safety, and reliability.
+
+# New Banner for SpotLite
+;;FMB2BSpotLightBanner0;;FederalMogul_B2BSpotLight_Image_0.jpg;Brand Flyer 1
+;;FMB2BSpotLightBanner1;;FederalMogul_B2BSpotLight_Image_1.jpg;Brand Flyer 2
+;;FMB2BSpotLightBanner2;;FederalMogul_B2BSpotLight_Image_2.jpg;Brand Flyer 3
+
+INSERT_UPDATE FMBannerComponent;$contentCV[unique=true];uid[unique=true];carouselcontainer[lang=en];sequenceId;color
+#New Banner for TroubleShoot 
+;;FMTroubleShootBanner;GET STARTED;;;
+;;FMSuccessBanner;READ MORE;;;
+
+#New Banner for Message Anounce Offer 
+;;FMMsgAnounceBanner0;LEARN MORE;1;;
+;;FMMsgAnounceBanner1;GET REBATE DETAILS;;;
+;;FMMsgAnounceBanner2;LEARN MORE;;;
+;;FMMsgAnounceBanner3;GET REBATE DETAILS;;;
+
+#New Banner for SpotLite
+;;FMSpotLiteBanner0;Nulla vitae elit libero, a pharetra augue mollis interdum.;1;#cd0:#fff
+;;FMSpotLiteBanner1;Nulla vitae elit libero, a pharetra augue mollis interdum.;;sky
+;;FMSpotLiteBanner2;Nulla vitae elit libero, a pharetra augue mollis interdum.;;#ab0223:#fff
+
+INSERT_UPDATE FMBannerComponent;$contentCV[unique=true];uid[unique=true];carouselcontainer[lang=en];sequenceId;color;urlLink
+# New Banner for SpotLight
+;;FMB2BSpotLightBanner0;Nulla vitae elit libero, a pharetra augue mollis interdum.;1;#cd0:#fff
+;;FMB2BSpotLightBanner1;Nulla vitae elit libero, a pharetra augue mollis interdum.;;sky
+;;FMB2BSpotLightBanner2;Nulla vitae elit libero, a pharetra augue mollis interdum.;;#ab0223:#fff
+;;FMAnnouncementBanner;Read More;;;http://www.google.com
+
+##############################End of Custom Banner Component #######################################
+#FederalMogul custom CarouselComponent [FMHomeCarouselComponent]
+INSERT_UPDATE FMHomeCarouselComponent;$contentCV[unique=true];uid[unique=true];name;fmbanners(&componentRef);&componentRef
+;;FMMsgAnounceOfferCarousel;FM Message Anounce Offer Carousel;FMMsgAnounceBanner0,FMMsgAnounceBanner1,FMMsgAnounceBanner2,FMMsgAnounceBanner3;FMMsgAnounceOfferCarousel
+;;FMSpotLiteCarousel;FM SpotLite Carousel;FMSpotLiteBanner0,FMSpotLiteBanner1,FMSpotLiteBanner2;FMSpotLiteCarousel
+#sreeB2B
+;;FMB2BSpotLightCarousel;FM B2BSpotLite Carousel;FMB2BSpotLightBanner0,FMB2BSpotLightBanner1,FMB2BSpotLightBanner2;FMB2BSpotLightCarousel
+
+#FederalMogul custom ImageComponent [FMHomeCarouselComponent]
+INSERT_UPDATE FMCMSImageComponent;$contentCV[unique=true];uid[unique=true];name;$picture[lang=$lang];&componentRef
+;;FMLearningImage0;FM Learning Section Image0;FederalMogul_Learning_Image_0.jpg;FMLearningImage0
+;;FMLearningImage1;FM Learning Section Image1;FederalMogul_Learning_Image_1.jpg;FMLearningImage1
+;;FMLearningImage2;FM Learning Section Image2;FederalMogul_Learning_Image_2.jpg;FMLearningImage2
+;;FMLearningImage3;FM Learning Section Image3;FederalMogul_Learning_Image_3.jpg;FMLearningImage3
+#New Images for ProductGrid and SearchPage Banner
+;;FMProductGridBannerImage0;FM ProductGrid Banner Image0;FederalMogul_ProductGrid_Image_0.jpg;FMProductGridBannerImage0
+;;FMSearchProductGridBannerImage0;FM Search ProductGrid Banner Image0;FederalMogul_ProductGrid_Image_0.jpg;FMSearchProductGridBannerImage0
+
+# Sree B2B & B2C
+;;FMInsightsImage0;FM Insights Section Image0;FederalMogul_Insights_Image_0.jpg;FMInsightsImage0
+;;FMInsightsImage1;FM Insights Section Image1;FederalMogul_Insights_Image_1.jpg;FMInsightsImage1
+;;FMInsightsImage2;FM Insights Section Image2;FederalMogul_Insights_Image_2.jpg;FMInsightsImage2
+;;FMInsightsImage3;FM Insights Section Image3;FederalMogul_Insights_Image_3.jpg;FMInsightsImage3
+# Siva B2b
+;;FMLearningB2bImage0;FM Learning Section Image0;FederalMogul_Learning_Image_B2b_0.jpg;FMLearningB2bImage0
+;;FMLearningB2bImage1;FM Learning Section Image1;FederalMogul_Learning_Image_B2b_1.jpg;FMLearningB2bImage1
+;;FMLearningB2bImage2;FM Learning Section Image2;FederalMogul_Learning_Image_B2b_2.jpg;FMLearningB2bImage2
+;;FMLearningB2bImage3;FM Learning Section Image3;FederalMogul_Learning_Image_B2b_3.jpg;FMLearningB2bImage3
+
+
+# CMS Mini Cart Component
+INSERT_UPDATE MiniCartComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;totalDisplay(code);shownProductCount;lightboxBannerComponent(&componentRef)
+;;MiniCart;Mini Cart;MiniCart;TOTAL;3;LightboxHomeDeliveryBannerComponent
+
+# CMS FMParagraph Component (Contact information)
+INSERT_UPDATE FMParagraphComponent;$contentCV[unique=true];uid[unique=true];name;content;subContent;&componentRef
+;;FMMsgAnounceParagraph;Message Anounce Paragraph;QUALITY, SAFETY, AND PERFOMANCE;Thats the Federal-Mogul advantage;FMMsgAnounceParagraph
+
+# CMS SearchBox Components
+INSERT_UPDATE SearchBoxComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+;;SearchBox;Search Box;SearchBox
+;;FMSearchBox;Search Box;FMSearchBox
+
+#################################Footer###########################################
+
+# Removing existing CMS Link Components For Footer
+REMOVE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&componentRef;target(code)[default='sameWindow'];linkName[lang=en]
+;;ACCompressorBearingsLink;AC Compressor Bearings Link;"c/ACCompressorBearings";ACCompressorBearingsLink;;"AC Compressor Bearings"
+;;AlternatorGeneratorBearingsLink;Alternator/Generator Bearings Link;"c/AlternatorGeneratorBearings";AlternatorGeneratorBearingsLink;;"Alternator/Generator Bearings"
+;;BrakeLink;Brake Link;"c/Brake";BrakeLink;;"Brake"
+;;ClutchMasterCylLink;Clutch Master Cyl Link;"c/ClutchMasterCylReleaseBrgsPilotBrgsBushings";ClutchMasterCylLink;;"Clutch, Master Cyl, Release Brgs, Pilot Brgs., Bushings"
+;;DrivelineLink;Driveline Link;"c/Driveline";DrivelineLink;;"Driveline"
+;;EngineLink;Engine Link;"c/Engine";EngineLink;;"Engine"
+;;FuelPumpsLink;Fuel Pumps and Related Components Link;"c/FuelPumpsandRelatedComponents";FuelPumpsLink;;"Fuel Pumps and Related Components"
+;;IgnitionLink;Ignition Link;"c/Ignition";IgnitionLink;;"Ignition"
+;;LightingLink;Lighting Link;"c/Lighting";LightingLink;;"Lighting"
+;;SteeringLink;Steering Link;"c/Steering";SteeringLink;;"Steering"
+;;SuspensionLink;Suspension Link;"c/Suspension";SuspensionLink;;"Suspension"
+;;WheelBearingsSealsLink;Wheel Bearings Seals Hub Assemblies Link;"c/WheelBearingsSealsHubAssemblies";WheelBearingsSealsLink;;"Wheel Bearings, Seals, Hub Assemblies"
+;;WheelLugNutsAndStudsLink;Wheel Lug Nuts and Studs Link;"c/WheelLugNutsandStuds";WheelLugNutsAndStudsLink;;"Wheel Lug Nuts and Studs"
+;;WindshieldLink;Windshield Link;"c/Windshield";WindshieldLink;;"Windshield"
+
+#Links UnderCatalog for Footer Section
+;;BrakingFooterLink;Braking Link;"#";BrakingFooterLink;;"Braking"
+;;DrivelineFooterLink;Driveline Link;"#";DrivelineFooterLink;;"Driveline"
+;;EngineFooterLink;Engine Link;"#";EngineFooterLink;;"Engine"
+#;;FiltersAndChemicalsFooterLink;Filters And Chemicals Link;"#";FiltersAndChemicalsFooterLink;;"Filters And Chemicals"
+;;LightingFooterLink;Lighting Link;"#";LightingFooterLink;;"Lighting"
+;;SealingFooterLink;Sealing link;"#";SealingFooterLink;;"Sealing"
+;;SteeringFooterLink;Steering Link;"#";SteeringFooterLink;;"Steering"
+;;SuspensionFooterLink;Suspension Link;"#";SuspensionFooterLink;;"Suspension"
+;;WipersFooterLink;Wipers Link;"#";WipersFooterLink;;"Wipers"
+;;ClutchFooterLink;Clutch Link;"#";ClutchFooterLink;;"Clutch"
+;;IgnitionFooterLink;Ignition Link;"#";IgnitionFooterLink;;"Ignition"
+;;WheelBearingFooterLink;Wheel Bearing Link;"#";WheelBearingFooterLink;;"Wheel Bearing"
+;;WindshieldFooterLink;Windshield Link;"#";WindshieldFooterLink;;"Wind Shield"
+;;WheelLugNutsFooterLink;Wheel Lug Nuts Link;"#";WheelLugNutsFooterLink;;"Wheel Lug Nuts"
+
+# CMS Link Components For Footer
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&componentRef;target(code)[default='sameWindow'];linkName[lang=en]
+
+#Links Under eStore
+;;SearchByVechileLink;Search By Vechile Link;"#";SearchByVechileLink;;"Search By Vehicle"
+;;SearchByVINLink;Search By VIN Link;"#";SearchByVINLink;;"Search By VIN"
+;;SearchByCategoryLink;Search By Category Link;"#";SearchByCategoryLink;;"Search By Category"
+;;SearchByCompetitorLink;Search By Competitor Link;"#";SearchByCompetitorLink;;"Search By Competitor"
+
+
+#New links udnder eCatalog header
+;;FiltersChemicalsLink;FiltersChemicals Link;"c/FiltersChemicals";FiltersChemicalsLink;;"Filters & Chemicals"
+;;LightingLink;Lighting Link;"c/Lighting";LightingLink;;"Lighting"
+;;EngineLink;Engine Link;"c/Engine";EngineLink;;"Engine"
+;;DrivelineLink;Driveline Link;"c/Driveline";DrivelineLink;;"Driveline"
+;;IgnitionLink;Ignition Link;"c/Ignition";IgnitionLink;;"Ignition"
+;;GasketsSealingLink;GasketsSealing Link;"c/GasketsSealing";GasketsSealingLink;;"Gaskets & Sealing Systems"
+;;SteeringLink;Steering Link;"c/Steering";SteeringLink;;"Steering"
+;;WipersLink;Wipers Link;"c/Wipers";WipersLink;;"Wipers"
+;;ClutchLink;Clutch Link;"c/Clutch";ClutchLink;;"Clutch"
+;;BrakesLink;Brakes Link;"c/Brakes";BrakesLink;;"Brakes"
+;;SuspensionLink;Suspension Link;"c/Suspension";SuspensionLink;;"Suspension"
+
+
+#Links UnderCatalog for Footer Section
+;;FiltersChemicalsFooterLink;FiltersChemicals Link;"c/FiltersChemicals";FiltersChemicalsFooterLink;;"Filters & Chemicals"
+;;LightingFooterLink;Lighting Link;"c/Lighting";LightingFooterLink;;"Lighting"
+;;EngineFooterLink;Engine Link;"c/Engine";EngineFooterLink;;"Engine"
+;;DrivelineFooterLink;Driveline Link;"c/Driveline";DrivelineFooterLink;;"Driveline"
+;;IgnitionFooterLink;Ignition Link;"c/Ignition";IgnitionFooterLink;;"Ignition"
+;;GasketsSealingFooterLink;GasketsSealing Link;"c/GasketsSealing";GasketsSealingFooterLink;;"Gaskets & Sealing Systems"
+;;SteeringFooterLink;Steering Link;"c/Steering";SteeringFooterLink;;"Steering"
+;;WipersFooterLink;Wipers Link;"c/Wipers";WipersFooterLink;;"Wipers"
+;;ClutchFooterLink;Clutch Link;"c/Clutch";ClutchFooterLink;;"Clutch"
+;;BrakesFooterLink;Brakes Link;"c/Brakes";BrakesFooterLink;;"Brakes"
+;;SuspensionFooterLink;Suspension Link;"c/Suspension";SuspensionFooterLink;;"Suspension"
+
+#LearningCenter
+;;OverviewLink;Overview Link;"#";OverviewLink;;"Overview"
+;;OnDemandLink;On Demand Link;"#";OnDemandLink;;"OnDemand"
+;;VechileRepairSymptomsLink;Vechile Repair Symptoms Link;"#";VechileRepairSymptomsLink;;"Vehicle Repair Symptoms"
+;;InstallationVideosLink;Installation Videos Link;"#";InstallationVideosLink;;"Installation Videos"
+
+#Support
+;;TechnicalLineLink;Technical Line Link;"#";TechnicalLineLink;;"Technical Line"
+;;CustomerServiceLink;Customer Service Link;"#";CustomerServiceLink;;"Customer Service"
+;;ContactUsLink;Contact Us Link;"/leadGeneration/leadGeneration-callBack";ContactUsLink;;"Contact Us"
+
+#About
+;;CompanyLink;Company Link;"AboutUs/company";CompanyLink;;"Company"
+;;NewsLink;News Link;"#";NewsLink;;"News"
+;;CareersLink;Careers Link;"#";CareersLink;;"Careers"
+;;ExecutiveTeamLink;Executive Team Link;"#";ExecutiveTeamLink;;"Executive Team"
+;;InvestorsLink;Investors Link;"#";InvestorsLink;;"Investors"
+;;MediaSuppliersLink;Media Suppliers Link;"#";MediaSuppliersLink;;"Media Suppliers"
+;;PrivacyAndLegalLink;Privacy And Legal Link;"#";PrivacyAndLegalLink;;"Privacy And Legal"
+
+#Connect Us
+;;FacebookLink;Facebook Link;"http://www.facebook.com";FacebookLink;newWindow;"Facebook"
+;;TwitterLink;Twitter Link;"https://twitter.com/";TwitterLink;newWindow;"Twitter"
+;;LinkedInLink;LinkedIn Link;"https://in.linkedin.com";LinkedInLink;newWindow;"Linked In"
+;;GooglePlusLink;Google plus Link;"http://www.google.com";GooglePlusLink;newWindow;"Google+"
+
+#Home Navigation Bar Component
+;;CatalogLink;Catalog link;"#";CatalogLink;;"Catalog"
+;;LearningCenterLink;Learning Center Link;"#";LearningCenterLink;;"Learning Center"
+;;SupportLink;Support Link;"#";SupportLink;;"Support"
+;;AboutUsLink;About Us Link;"#";AboutUsLink;;"About Us"
+;;eStorelink;eStore link;"#";eStorelink;;"eStore"
+
+# Sree B2B
+# Other Parts
+;;ApplicationLookupLink;Application Lookup Link;"http://www.wikipedia.com";ApplicationLookupLink;;"Application Lookup"
+;;ByCategoryLink;By Category Link;"http://www.wikipedia.com";ByCategoryLink;;"By Category"
+;;InterchangeLink;Interchange Link;"http://www.wikipedia.com";InterchangeLink;;"Interchange"
+
+# Online Tools
+;;PrincingLink;Pricing Link;"http://www.wikipedia.com";PrincingLink;;"Pricing"
+;;UPCListingLink;UPC Listing Link;"http://www.wikipedia.com";UPCListingLink;;"UPC Listing"
+;;BuyersGuideLink;Buyers Guide Link;"http://www.wikipedia.com";BuyersGuideLink;;"Buyers Guide"
+;;SupercededInterchangeLink;Superceded Interchange Link;"http://www.wikipedia.com";SupercededInterchangeLink;;"Superceded Interchange"
+;;KitsAndComponentsLink;Kits And Components Link;"http://www.wikipedia.com";KitsAndComponentsLink;;"Kits And Components Link"
+;;MSDSLink;MSDS Link;"http://www.wikipedia.com";MSDSLink;;"MSDS"
+;;PIFSLink;PIFS Link;"http://www.wikipedia.com";PIFSLink;;"PIFS"
+;;LogosLink;Logos Link;"http://www.wikipedia.com";LogosLink;;"Logos"
+;;ImagesLink;Images Link;"http://www.wikipedia.com";ImagesLink;;"Images"
+;;PopMaterialLink;Pop Material Link;"http://www.wikipedia.com";PopMaterialLink;;"Pop Material"
+;;MarketYourShopLink;Market Your Shop Link;"http://www.wikipedia.com";MarketYourShopLink;;"Market Your Shop"
+;;InventoryPlanningLink;Inventory Planning Link;"http://www.wikipedia.com";InventoryPlanningLink;;"Inventory Planning"
+;;ResearchLink;Research Link;"http://www.wikipedia.com";ResearchLink;;"Research"
+
+# contact us
+;;YoutubeLink;Youtube Link;"http://www.youtube.com";YoutubeLink;newWindow;"Youtube"
+
+# Siva
+# Technician academy
+;;VechileRepairSymptomsLink;Vechile Repair Symptoms Link;"http://www.wikipedia.com";VechileRepairSymptomsLink;newWindow;"VechileRepairSymptoms"
+;;InstallationVideosLink;Installation Videos Link;"http://www.wikipedia.com";InstallationVideosLink;newWindow;"InstallationVideos"
+
+# Home Navigation Bar Component
+# Sree B2B
+;;OrderPartsLink;OrderParts Link;"http://www.wikipedia.com";OrderPartsLink;;"Order Parts"
+;;OnlineToolsLink;OnlineTools Link;"http://www.wikipedia.com";OnlineToolsLink;;"Online Tools"
+# Siva  B2b
+;;TechnicianAcademyLink;Technician Academdy Link;"http://www.wikipedia.com";TechnicianAcademyLink;;"Technician Academy"
+
+# CMS NavigationNodes For Footer 
+INSERT_UPDATE CMSNavigationNode;$contentCV[unique=true];uid[unique=true];title[lang=en]
+;;eStoreNavNode;"eStore"
+;;CatalogNavNode;"Catalog"
+;;LearningCenterNavNode;"Learning Center"
+;;SupportNavNode;"Support"
+;;AboutUsNavNode;"About Us"
+#;;ConnectWithUsNavNode;"Connect us"
+#sree B2B
+;;OtherPartsNavNode;"Other Parts"
+;;OnlineToolsNavNode;"Online Tools"
+;;ContactUsNavNode;"Contact Us"
+#sree B2b
+;;TechnicianAcademyNavNode;"Technician Academy"
+
+
+#Header Navigation Bar Component
+;;CatalogHeaderNavNode;"Catalog"
+# Sree B2B
+;;OrderPartsHeaderNavNode;"Order Parts"
+;;CatalogHeaderNavNode;"Catalog"
+;;OnlineToolsHeaderNavNode;"Online Tools"
+;;SupportHeaderNavNode;"Support"
+;;AboutUsHeaderNavNode;"About Us"
+
+# Siva B2b
+;;TechnicianAcademyHeaderNavNode;;"Technician Academy"
+# CMS Navigation Nodes For Root 
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;children(uid,$contentCV)[mode=append]
+;root;;root;;
+
+# CMS Navigation Nodes For Federalmogul Navigation Node.
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&componentRef);&nodeRef
+;SiteRootNode;;SiteRootNode;root;;SiteRootNode
+;FederalMogulNavNode;;FederalMogul Site;SiteRootNode;;FederalMogulNavNode
+
+# CMS NavigationNodes with links For Footer 
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&componentRef);&nodeRef
+;eStoreNavNode;;FederalMogul eStores;FederalMogulNavNode;SearchByVechileLink,SearchByVINLink,SearchByCategoryLink,SearchByCompetitorLink;eStoreNavNode
+#;CatalogNavNode;;FederalMogul Catalog;FederalMogulNavNode;ACCompressorBearingsLink,AlternatorGeneratorBearingsLink,BrakeLink,ClutchMasterCylLink,DrivelineLink,EngineLink,FuelPumpsLink,IgnitionLink,LightingLink,SteeringLink,SuspensionLink,WheelBearingsSealsLink,WheelLugNutsAndStudsLink,WindshieldLink;CatalogNavNode
+;CatalogNavNode;;FederalMogul Catalog;FederalMogulNavNode;LightingLink,EngineLink,DrivelineLink,IgnitionLink,GasketsSealingLink,SteeringLink,WipersLink,ClutchLink,BrakesLink,SuspensionLink;CatalogNavNode
+#;CatalogNavNode;;FederalMogul Catalog;FederalMogulNavNode;BrakingFooterLink,DrivelineFooterLink,EngineFooterLink,LightingFooterLink,SealingFooterLink,SteeringFooterLink,SuspensionFooterLink,WipersFooterLink,ClutchFooterLink,IgnitionFooterLink,WheelBearingFooterLink,WindshieldFooterLink,WheelLugNutsFooterLink;CatalogNavNode
+;LearningCenterNavNode;;FederalMogul Learning Center;FederalMogulNavNode;OverviewLink,OnDemandLink,VechileRepairSymptomsLink,InstallationVideosLink;LearningCenterNavNode
+;SupportNavNode;;FederalMogul Support;FederalMogulNavNode;TechnicalLineLink,CustomerServiceLink,ContactUsLink;SupportNavNode
+;AboutUsNavNode;;FederalMogul About Us;FederalMogulNavNode;CompanyLink,NewsLink,CareersLink,ExecutiveTeamLink,InvestorsLink,MediaSuppliersLink,PrivacyAndLegalLink;AboutUsNavNode
+#;ConnectWithUsNavNode;;FederalMogul Connect Us;FederalMogulNavNode;LinkedInLink,GooglePlusLink,FacebookLink,TwitterLink;ConnectWithUsNavNode
+#;ConnectWithUsNavNode;;FederalMogul Connect Us;FederalMogulNavNode;Facebook,Google,Linkedin,Twitter;ConnectWithUsNavNode
+# Sree B2B
+;OtherPartsNavNode;;FederalMogul Other Parts;FederalMogulNavNode;ApplicationLookupLink,ByCategoryLink,InterchangeLink;OtherPartsNavNode
+;OnlineToolsNavNode;;FederalMogul Online Tools;FederalMogulNavNode;PrincingLink,UPCListingLink,BuyersGuideLink,SupercededInterchangeLink,KitsAndComponentsLink,MSDSLink,PIFSLink,LogosLink,ImagesLink,PopMaterialLink,MarketYourShopLink,InventoryPlanningLink,ResearchLink;OnlineToolsNavNode
+#;ContactUsNavNode;;FederalMogul Connect Us;FederalMogulNavNode;Facebook,Twitter,Linkedin,Youtube;ContactUsNavNode
+# Siva B2b
+;TechnicianAcademyNavNode;;FederalMogul Technician Academy;FederalMogulNavNode;VechileRepairSymptomsLink,InstallationVideosLink;TechnicianAcademyNavNode
+
+#Header Navigation Bar Component
+;eStoreHeaderNavNode;;estore nav node;root;eStorelink;eStoreHeaderNavNode
+;eStoreHeaderLinksNavNode;;estore nav node Links;;;eStoreHeaderLinksNavNode
+#;CatalogHeaderNavNode;;FederalMogul Catalog;root;BrakingLink,DrivelineLink,EngineLink,LightingLink,SealingLink,SteeringLink,SuspensionLink,WipersLink,ClutchLink,IgnitionLink,WheelBearingLink,WindshieldLink,WheelLugNutsLink;CatalogHeaderNavNode
+;LearningCenterHeaderNavNode;;learning center nav node;root;LearningCenterLink;LearningCenterHeaderNavNode
+;SupportHeaderNavNode;;support nav node;root;SupportLink;SupportHeaderNavNode
+;AboutUsHeaderNavNode;;about us nav node;root;AboutUsLink;AboutUsHeaderNavNode
+;AboutUsHeaderLinksNavNode;;about us nav node links;AboutUsHeaderNavNode;CompanyLink,NewsLink,CareersLink,ExecutiveTeamLink,InvestorsLink,MediaSuppliersLink,PrivacyAndLegalLink;AboutUsHeaderLinksNavNode
+#;SupportHeaderLinksNavNode;;support nav node links;SupportHeaderNavNode;CompanyLink;SupportHeaderLinksNavNode
+
+#Moved the estore links to Catalog
+;CatalogHeaderNavNode;;FederalMogul Catalog nav node;root;;CatalogHeaderNavNode
+#;CatalogHeaderLinksNavNode;;catalog nav node Links;CatalogHeaderNavNode;BrakingLink,DrivelineLink,EngineLink,LightingLink,SealingLink,SteeringLink,SuspensionLink,WipersLink,ClutchLink,IgnitionLink,WheelBearingLink,WindshieldLink,WheelLugNutsLink;CatalogHeaderLinksNavNode
+#;CatalogHeaderLinksNavNode;;catalog nav node Links;CatalogHeaderNavNode;ACCompressorBearingsLink,AlternatorGeneratorBearingsLink,BrakeLink,ClutchMasterCylLink,DrivelineLink,EngineLink,FuelPumpsLink,IgnitionLink,LightingLink,SteeringLink,SuspensionLink,WheelBearingsSealsLink,WheelLugNutsAndStudsLink,WindshieldLink;CatalogHeaderLinksNavNode
+;CatalogHeaderLinksNavNode;;catalog nav node Links;CatalogHeaderNavNode;FiltersChemicalsLink,LightingLink,EngineLink,DrivelineLink,IgnitionLink,GasketsSealingLink,SteeringLink,WipersLink,ClutchLink,BrakesLink,SuspensionLink;CatalogHeaderLinksNavNode
+
+# Sree B2B
+;OrderPartsHeaderNavNode;;order parts nav node;root;OrderPartsLink;OrderPartsHeaderNavNode
+;OnlineToolsHeaderNavNode;;online tools nav node;root;OnlineToolsLink;OnlineToolsHeaderNavNode
+# Siva B2b
+;TechnicianAcademyHeaderNavNode;;FederalMogul TecnicianAcademy nav node;root;TechnicianAcademyLink;TechnicianAcademyHeaderNavNode
+
+# CMS Custom Footer(FMFooter) Component for Footer Nodes
+INSERT_UPDATE FmFooterComponent;$contentCV[unique=true];uid[unique=true];wrapAfter;&componentRef;NavigationNodes(&nodeRef);name
+;;FMFooterComponent;3;FMFooterComponent;eStoreNavNode,CatalogNavNode,LearningCenterNavNode,SupportNavNode,AboutUsNavNode;FM Footer Component
+# Sree B2B
+#;;FMB2BFooterComponent;3;FMB2BFooterComponent;OtherPartsNavNode,CatalogNavNode,OnlineToolsNavNode,SupportNavNode,AboutUsNavNode,ContactUsNavNode;FM B2B Footer Component
+;;FMB2BFooterComponent;3;FMB2BFooterComponent;OtherPartsNavNode,CatalogNavNode,OnlineToolsNavNode,SupportNavNode,AboutUsNavNode;FM B2B Footer Component
+# Siva B2b
+#;;B2bFMFooterComponent;3;B2bFMFooterComponent;CatalogNavNode,OnlineToolsNavNode,TechnicianAcademyNavNode,SupportNavNode,AboutUsNavNode,ContactUsNavNode;FM Footer Component
+;;B2bFMFooterComponent;3;B2bFMFooterComponent;CatalogNavNode,OnlineToolsNavNode,TechnicianAcademyNavNode,SupportNavNode,AboutUsNavNode;FM Footer Component
+
+# CMS Link Components For Footer
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&componentRef;target(code)[default='sameWindow'];linkName[lang=en]
+#Links Extended footer
+;;FMCorporationRights;Federalmogul Site Rights;;FMCorporationRights;;;
+;;FMSiteMapFooterLink;FM Site Map Link;"#";FMSiteMapFooterLink;newWindow;"Site Map"
+;;FMPrivacyPolicyLink;FM Privacy and Policy Link;"#";FMPrivacyPolicyLink;newWindow;"Privacy Policy & Legal Disclaimer"
+
+# CMS NavigationNodes For Footer 
+INSERT_UPDATE CMSNavigationNode;$contentCV[unique=true];uid[unique=true];title[lang=en]
+#Extended footer
+;;FMCorporationRightsNavNode;"© 2014 Federal-Mogul Holdings Corporation. "
+;;FMSiteMapFooterNavNode;""
+;;FMPrivacyPolicyNavNode;""
+
+# CMS NavigationNodes with links For Footer 
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&componentRef);&nodeRef
+#Extended footer
+;FMCorporationRightsNavNode;;FederalMogul eStores;FederalMogulNavNode;;FMCorporationRightsNavNode
+;FMSiteMapFooterNavNode;;FederalMogul Catalog;FederalMogulNavNode;FMSiteMapFooterLink;FMSiteMapFooterNavNode
+;FMPrivacyPolicyNavNode;;FederalMogul Learning Center;FederalMogulNavNode;FMPrivacyPolicyLink;FMPrivacyPolicyNavNode
+
+# CMS Custom ExtendedFooter(FMFooter) Component for Footer Nodes
+INSERT_UPDATE FmExtendedFooterComponent;$contentCV[unique=true];uid[unique=true];wrapAfter;&componentRef;NavigationNodes(&nodeRef);name
+;;FMExtendedFooterComponent;3;FMExtendedFooterComponent;FMCorporationRightsNavNode,FMSiteMapFooterNavNode,FMPrivacyPolicyNavNode;FM Extended Footer Component
+
+# Navigation Bar Component
+INSERT_UPDATE FMNavigationBarComponent;$contentCV[unique=true];uid[unique=true];name;wrapAfter;link(uid, $contentCV);styleClass;navigationNode(&nodeRef);dropDownLayout(code)[default=AUTO];&componentRef
+;;catalogHeaderNavBarComponent;catalog Header Navigation Bar Component;8;CatalogLink;;CatalogHeaderNavNode;;catalogHeaderNavBarComponent
+;;LearningHeaderNavBarComponent;LearningCenter Header Navigation Bar Component;8;LearningCenterLink;;LearningCenterHeaderNavNode;;LearningHeaderNavBarComponent
+;;SupportHeaderNavBarComponent;Support Header Navigation Bar Component;8;SupportLink;;SupportHeaderNavNode;;SupportHeaderNavBarComponent
+;;AboutUsHeaderNavBarComponent;About Us Header Navigation Bar Component;8;AboutUsLink;;AboutUsHeaderNavNode;;AboutUsHeaderNavBarComponent
+;;eStoreHeaderNavBarComponent;eStore Header Navigation Bar Component;8;eStorelink;;eStoreHeaderNavNode;;eStoreHeaderNavBarComponent
+# Sree B2B
+#;;OrderPartsHeaderNavBarComponent;Order Parts Header Navigation Bar Component;8;OrderPartsLink;;OrderPartsHeaderNavNode;;OrderPartsHeaderNavBarComponent
+;;OnlineToolsHeaderNavBarComponent;Online Tools Header Navigation Bar Component;8;OnlineToolsLink;;OnlineToolsHeaderNavNode;;OnlineToolsHeaderNavBarComponent
+# Siva B2b
+#;;TechnicianAcademyHeaderNavBarComponent;Technician Academy Header Navigation Bar Component;8;TechnicianAcademdyLink;;TechnicianAcademyHeaderNavNode;;TechnicianAcademyHeaderNavBarComponent
+
+################################End Footer##########################################
+
+############################################ANONYMOUS HOME PAGE#############################################
+
+# FederalMogul Landing Page Templates
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='AnonymousHomePageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+;anonymousPartSearch;;;wide
+;anonymousTroubleshoot;;;wide
+;anonymousLoginAndRegister;;;wide
+;anonymousMsgAnnounceOffer;;;wide
+;anonymousWhereToBuy;;;wide
+;anonymousSpotLight;;;wide
+;anonymousLearningVideos1;;;wide
+;anonymousLearningVideos2;;;wide
+;anonymousLearningTip;;;wide
+;anonymousLearningArticle;;;wide
+;FMBrandstrip;;;wide
+;Footer;;;footer
+
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);currentPosition
+#Anonymous Homepage Slots
+;;anonymousPartSearchSlot;Anonymous Part Search;true;FMPartSearchBanner;anonymousPartSearch
+;;anonymousTroubleshootSlot;Anonymous TroubleShoot;true;FMTroubleShootBanner;anonymousTroubleshoot
+;;anonymousLoginAndRegisterSlot;Anonymous Login and Register;true
+;;anonymousMsgAnnounceOfferSlot;Anonymous Msg Announcement and Offer;true;FMMsgAnounceParagraph,FMMsgAnounceOfferCarousel;anonymousMsgAnnounceOffer
+#;;anonymousWhereToBuySlot;Anonymous Where To Buy;true
+;;anonymousSpotLightSlot;Anonymous Spot Light;true;FMSpotLiteCarousel;anonymousSpotLight
+;;anonymousLearningVideos1Slot;Anonymous Learning videos1;true;FMLearningImage2;anonymousLearningVideos1
+;;anonymousLearningVideos2Slot;Anonymous  Learning videos2;true;FMLearningImage3;anonymousLearningVideos2
+;;anonymousLearningTipSlot;Anonymous Learning Tip;true;FMLearningImage0;anonymousLearningTip
+;;anonymousLearningArticleSlot;Anonymous Learning Article;true;FMLearningImage1;anonymousLearningArticle
+
+# Site-wide Homepage
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;&pageRef;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='true']
+;;fmAnonymousHomePage;FederalMogul Anonymous Homepage;homepage;AnonymousHomePageTemplate;fmAnonymousHomePage;;;;
+
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='fmAnonymousHomePage'];contentSlot(uid,$contentCV)[unique=true]
+;;anonymousPartSearchSlot;anonymousPartSearch;;anonymousPartSearchSlot
+;;anonymousTroubleshootSlot;anonymousTroubleshoot;;anonymousTroubleshootSlot
+;;anonymousLoginAndRegisterSlot;anonymousLoginAndRegister;;anonymousLoginAndRegisterSlot
+;;anonymousMsgAnnounceOfferSlot;anonymousMsgAnnounceOffer;;anonymousMsgAnnounceOfferSlot
+;;anonymousWhereToBuySlot;anonymousWhereToBuy;;anonymousWhereToBuySlot
+;;anonymousSpotLightSlot;anonymousSpotLight;;anonymousSpotLightSlot
+;;anonymousLearningVideos1Slot;anonymousLearningVideos1;;anonymousLearningVideos1Slot
+;;anonymousLearningVideos2Slot;anonymousLearningVideos2;;anonymousLearningVideos2Slot
+;;anonymousLearningTipSlot;anonymousLearningTip;;anonymousLearningTipSlot
+;;anonymousLearningArticleSlot;anonymousLearningArticle;;anonymousLearningArticleSlot
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);currentPosition
+;;SiteLogoSlot;Default Site Logo Slot;true;SiteLogoComponent
+;;HomepageNavLinkSlot;Default Homepage Link;true
+;;HeaderLinksSlot;Header links;true
+;;SearchBoxSlot;Search Box;true;SearchBox
+;;MiniCartSlot;Mini Cart;true;MiniCart
+;;NavigationBarSlot;Navigation Bar;true;eStoreHeaderNavBarComponent,catalogHeaderNavBarComponent,LearningHeaderNavBarComponent,SupportHeaderNavBarComponent,AboutUsHeaderNavBarComponent,FMSearchBox;NavigationBar
+#;;FMBrandstripSlot;FederalMogul BrandStrip;true;wangerBrake,wangerLighting,champion,felPro,sealedPower,fpDiesel,speedPro;FMBrandstrip
+;;FMBrandstripSlot;FederalMogul BrandStrip;true;abex,anco,champion,felpro,fpdiesel,moog,sealedPower1,speedpro1,wagnerbrake,wagnerlighting;FMBrandstrip
+;;FooterSlot;footer;true;FMFooterComponent,FMExtendedFooterComponent;Footer
+#Anonymous Homepage Slots
+;;anonymousWhereToBuySlot;Anonymous Where To Buy;true;WhereToBuyBanner
+
+#StealAndDeals
+INSERT_UPDATE ContentSlotForTemplate;$contentCV;uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='AnonymousHomePageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-AnonymousPage;SiteLogo;;SiteLogoSlot;true
+;;HomepageLink-AnonymousPage;HomepageNavLink;;HomepageNavLinkSlot;true
+;;HeaderLinks-AnonymousPage;HeaderLinks;;HeaderLinksSlot;true
+;;SearchBox-AnonymousPage;SearchBox;;SearchBoxSlot;true
+;;MiniCart-AnonymousPage;MiniCart;;MiniCartSlot;true
+;;NavigationBar-AnonymousPage;NavigationBar;;NavigationBarSlot;true
+;;FMBrandstripSlot-AnonymousPage;FMBrandstrip;;FMBrandstripSlot;true
+;;Footer-AnonymousPage;Footer;;FooterSlot;true
+
+
+###########################################PRODUCT DETAILS PAGE#############################################
+
+# FederalMogul Landing Page Templates
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='FederalMogulProdDetailsPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+;FMProductDetailsSection;;;wide
+;FMProductSpecificationSection;;;wide
+;FMBrandstrip;;;wide
+;Footer;;;footer
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);currentPosition
+#ProductDetails page Slots
+;;FMProductDetailsSlot;Product Details Search;true
+;;FMProductSpecificationSlot;Product Detail Specification;true
+
+# Product Details Page
+INSERT_UPDATE ProductPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved']
+;;FMproductDetailsPage;FederalMogul Product Details;FederalMogulProdDetailsPageTemplate;true;
+
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='FMproductDetailsPage'];contentSlot(uid,$contentCV)[unique=true]
+;;FMProductDetailsSlot;FMProductDetailsSection;;FMProductDetailsSlot
+#;;FMProductSpecificationSlot;FMProductSpecificationSection;;FMProductSpecificationSlot
+
+#StealAndDeals
+INSERT_UPDATE ContentSlotForTemplate;$contentCV;uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='FederalMogulProdDetailsPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-ProductDetailsPage;SiteLogo;;SiteLogoSlot;true
+;;HomepageLink-ProductDetailsPage;HomepageNavLink;;HomepageNavLinkSlot;true
+;;HeaderLinks-ProductDetailsPage;HeaderLinks;;HeaderLinksSlot;true
+;;SearchBox-ProductDetailsPage;SearchBox;;SearchBoxSlot;true
+;;MiniCart-ProductDetailsPage;MiniCart;;MiniCartSlot;true
+;;NavigationBar-ProductDetailsPage;NavigationBar;;NavigationBarSlot;true
+;;FMBrandstripSlot-ProductDetailsPage;FMBrandstrip;;FMBrandstripSlot;true
+;;Footer-ProductDetailsPage;Footer;;FooterSlot;true
+
+
+###########################################PRODUCT SEARCH RESULTS EMPTY PAGE#############################################
+# Search Results Grid Page Template
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='FederalMogulSearchResultsEmptyPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+;FMSearchGridBodySection;;;wide
+;FMBrandstrip;;;wide
+;Footer;;;footer
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);currentPosition
+#Anonymous Homepage Slots
+;;FMSearchGridBodySectionSlot;Search Results Empty Body;true
+
+# Functional Content Pages
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false'];previewImage(code, $contentCV)
+;;searchEmpty;Search Results Empty Page;FederalMogulSearchResultsEmptyPageTemplate;searchEmpty
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='fmAnonymousHomePage'];contentSlot(uid,$contentCV)[unique=true]
+;;FMSearchGridBodySectionSlot;FMSearchGridBodySection;;FMSearchGridBodySectionSlot
+
+#StealAndDeals
+INSERT_UPDATE ContentSlotForTemplate;$contentCV;uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='FederalMogulSearchResultsEmptyPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-SearchResultsEmptyPage;SiteLogo;;SiteLogoSlot;true
+;;HomepageLink-SearchResultsEmptyPage;HomepageNavLink;;HomepageNavLinkSlot;true
+;;HeaderLinks-SearchResultsEmptyPage;HeaderLinks;;HeaderLinksSlot;true
+;;SearchBox-SearchResultsEmptyPage;SearchBox;;SearchBoxSlot;true
+;;MiniCart-SearchResultsEmptyPage;MiniCart;;MiniCartSlot;true
+;;NavigationBar-SearchResultsEmptyPage;NavigationBar;;NavigationBarSlot;true
+;;FMBrandstripSlot-SearchResultsEmptyPage;FMBrandstrip;;FMBrandstripSlot;true
+;;Footer-SearchResultsEmptyPage;Footer;;FooterSlot;true
+
+############################################PRODUCT LIST PAGE#############################################
+
+# FederalMogul Landing Page Templates
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='FederalMogulProdListPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+;CategoryRefinementSection;;;narrow
+;FMProductListBannerSection;;;wide
+;FMymmSearchSection;;;wide
+;FMproductsListSection;;;wide
+;FMBrandstrip;;;wide
+;Footer;;;footer
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);currentPosition
+#ProductDetails page Slots
+;;ProductListYmmSearchSlot;ProductsList ymm refinements;true
+;;CategoryRefinementSectionSlot;ProductList Category refinements;true
+;;FMProductListBannerSectionSlot;ProductsList Page Banner;true
+;;FMproductsListSectionSlot;ProductsGrid Page Items;true
+
+
+# ProductList Category Pages
+INSERT_UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);defaultPage;approvalStatus(code)[default='approved']
+;;fmproductsListPage;FM Product List;FederalMogulProdListPageTemplate;true;
+
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='fmproductsListPage'];contentSlot(uid,$contentCV)[unique=true]
+;;ProductListYmmSearchSlot;FMymmSearchSection;;ProductListYmmSearchSlot
+;;CategoryRefinementSectionSlot;CategoryRefinementSection;;CategoryRefinementSectionSlot
+;;FMProductListBannerSectionSlot;FMProductListBannerSection;;FMProductListBannerSectionSlot
+;;FMproductsListSectionSlot;FMproductsListSection;;FMproductsListSectionSlot
+
+
+#StealAndDeals
+INSERT_UPDATE ContentSlotForTemplate;$contentCV;uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='FederalMogulProdListPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-FMFMProductListPage;SiteLogo;;SiteLogoSlot;true
+;;HomepageLink-FMProductListPage;HomepageNavLink;;HomepageNavLinkSlot;true
+;;HeaderLinks-FMProductListPage;HeaderLinks;;HeaderLinksSlot;true
+;;SearchBox-FMProductListPage;SearchBox;;SearchBoxSlot;true
+;;MiniCart-FMProductListPage;MiniCart;;MiniCartSlot;true
+;;NavigationBar-FMProductListPage;NavigationBar;;NavigationBarSlot;true
+;;FMBrandstripSlot-FMProductListPage;FMBrandstrip;;FMBrandstripSlot;true
+;;Footer-FMProductListPage;Footer;;FooterSlot;true
+
+
+###########################################PRODUCT SEARCH GRID PAGE#############################################
+# Search Results Grid Page Template
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='FederalMogulSearchResultsGridPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+;FMymmSearchGridSection;;;narrow
+;FMSearchGridBannerSection;;;wide
+;FMSearchGridSection;;;wide
+;FMbrandSearchGridSection;;;narrow
+;FMBrandstrip;;;wide
+;Footer;;;footer
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);currentPosition
+#Anonymous Homepage Slots
+;;FMymmSearchGridSectionSlot;Search Grid Products ymm refinements;true
+;;FMSearchGridBannerSectionSlot;SearchGrid Page Banner;true;FMSearchProductGridBannerImage0;FMSearchGridBannerSection
+;;FMSearchGridSectionSlot;Search Grid Products;true
+;;FMbrandSearchGridSectionSlot;Search Grid Products brands refinements;true
+
+# Functional Content Pages
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false'];previewImage(code, $contentCV)
+;;search;Search Results Page;FederalMogulSearchResultsGridPageTemplate;search;false
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='search'];contentSlot(uid,$contentCV)[unique=true]
+;;FMymmSearchGridSectionSlot;FMymmSearchGridSection;;FMymmSearchGridSectionSlot
+;;FMSearchGridBannerSectionSlot;FMSearchGridBannerSection;;FMSearchGridBannerSectionSlot
+;;FMSearchGridSectionSlot;FMSearchGridSection;;FMSearchGridSectionSlot
+;;FMbrandSearchGridSectionSlot;FMbrandSearchGridSection;;FMbrandSearchGridSectionSlot
+
+
+#StealAndDeals
+INSERT_UPDATE ContentSlotForTemplate;$contentCV;uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='FederalMogulSearchResultsGridPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-SearchResultsPage;SiteLogo;;SiteLogoSlot;true
+;;HomepageLink-SearchResultsPage;HomepageNavLink;;HomepageNavLinkSlot;true
+;;HeaderLinks-SearchResultsPage;HeaderLinks;;HeaderLinksSlot;true
+;;SearchBox-SearchResultsPage;SearchBox;;SearchBoxSlot;true
+;;MiniCart-SearchResultsPage;MiniCart;;MiniCartSlot;true
+;;NavigationBar-SearchResultsPage;NavigationBar;;NavigationBarSlot;true
+;;FMBrandstripSlot-SearchResultsPage;FMBrandstrip;;FMBrandstripSlot;true
+;;Footer-SearchResultsPage;Footer;;FooterSlot;true
+
+###########################################PRODUCT SEARCH LIST PAGE#############################################
+
+# Search Results Grid Page Template
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='FederalMogulSearchResultsListPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+;CategoryRefinementSection;;;narrow
+;FMProductListBannerSection;;;wide
+;FMymmSearchSection;;;wide
+;FMproductsListSection;;;wide
+;FMBrandstrip;;;wide
+;Footer;;;footer
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);currentPosition
+#SearchList page Slots
+;;SearchListYmmSearchSlot;ProductsList ymm refinements;true
+;;SearchCategoryRefinementSlot;ProductList Category refinements;true
+;;FMSearchListBannerSectionSlot;ProductsList Page Banner;true
+;;FMsearchProductsListSectionSlot;ProductsGrid Page Items;true
+
+# Functional Content Pages
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false'];previewImage(code, $contentCV)
+;;search;Search Results Page;FederalMogulSearchResultsListPageTemplate;search;true
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='search'];contentSlot(uid,$contentCV)[unique=true]
+;;SearchListYmmSearchSlot;FMymmSearchSection;;SearchListYmmSearchSlot
+;;SearchCategoryRefinementSlot;CategoryRefinementSection;;SearchCategoryRefinementSlot
+;;FMSearchListBannerSectionSlot;FMProductListBannerSection;;FMSearchListBannerSectionSlot
+;;FMsearchProductsListSectionSlot;FMproductsListSection;;FMsearchProductsListSectionSlot
+
+#StealAndDeals
+INSERT_UPDATE ContentSlotForTemplate;$contentCV;uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='FederalMogulSearchResultsListPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-FMSearchListPage;SiteLogo;;SiteLogoSlot;true
+;;HomepageLink-FMSearchListPage;HomepageNavLink;;HomepageNavLinkSlot;true
+;;HeaderLinks-FMSearchListPage;HeaderLinks;;HeaderLinksSlot;true
+;;SearchBox-FMSearchListPage;SearchBox;;SearchBoxSlot;true
+;;MiniCart-FMSearchListPage;MiniCart;;MiniCartSlot;true
+;;NavigationBar-FMSearchListPage;NavigationBar;;NavigationBarSlot;true
+;;FMBrandstripSlot-FMSearchListPage;FMBrandstrip;;FMBrandstripSlot;true
+;;Footer-FMSearchListPage;Footer;;FooterSlot;true
+
+###############################################################   B2B HOMEPAGE   ####################################################################
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='B2BHomePageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+;B2BquickOrder;;;wide
+;B2BorderUpload;;;wide
+;B2BordersInProgress;;;wide
+;B2BPartSearch;;;wide
+;B2Bannouncement;;;wide
+;B2BquickLinks;;;wide
+;B2BLearningTip;;;wide
+;B2BLearningVideos1;;;wide
+;B2BLearningVideos2;;;wide
+;B2BLearningArticle;;;wide
+;B2BSpotLight;;;wide
+;FMBrandstrip;;;wide
+;Footer;;;footer
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);currentPosition
+;;SiteLogoSlot;Default Site Logo Slot;true;SiteLogoComponent
+;;HomepageNavLinkSlot;Default Homepage Link;true
+;;HeaderLinksSlot;Header links;true
+;;SearchBoxSlot;Search Box;true
+;;MiniCartSlot;Mini Cart;true;MiniCart
+;;NavigationBarSlot;Navigation Bar;true;eStoreHeaderNavBarComponent,catalogHeaderNavBarComponent,OnlineToolsHeaderNavBarComponent,SupportHeaderNavBarComponent,AboutUsHeaderNavBarComponent;NavigationBar
+# B2B Homepage Slots
+;;B2BquickOrderSlot;Quick Order;true
+;;B2BorderUploadSlot;Order Upload;true
+;;B2BordersInProgressSlot;Order in Progress;true
+;;B2BPartSearchSlot;B2B Part Search;true;FMPartSearchBanner;B2BPartSearch
+;;B2BannouncementSlot;Announcement;true;FMAnnouncementBanner;B2Bannouncement
+#######;;B2BquickLinksSlot;Quick Links;true;FMQuickLinksParagraph;B2BquickLinks
+;;B2BquickLinksSlot;Quick Links;true
+;;B2BLearningTipSlot;Learning Tip;true;FMInsightsImage0;B2BLearningTip
+;;B2BLearningArticleSlot;Insights Article;true;FMInsightsImage1;B2BLearningArticle
+;;B2BLearningVideos1Slot;Insights videos1;true;FMInsightsImage2;B2BLearningVideos1
+;;B2BLearningVideos2Slot;Insights videos2;true;FMInsightsImage3;B2BLearningVideos2
+;;B2BSpotLightSlot;B2BSpotLight;true;FMB2BSpotLightCarousel;B2BSpotLight
+#;;FMBrandstripSlot;FederalMogul BrandStrip;true;abex,anco,champion,felPro,fpDiesel,moog,sealedPower,speedPro,wagnerBrake,wagnerLighting;FMBrandstrip
+;;FMBrandstripSlot;FederalMogul BrandStrip;true;abex,anco,champion,felpro,fpdiesel,moog,sealedPower1,speedpro1,wagnerbrake,wagnerlighting;FMBrandstrip
+;;FooterSlot;footer;true;FMB2BFooterComponent,FMExtendedFooterComponent;Footer
+
+# Site-wide Homepage
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;&pageRef;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;FMB2BHomePage;FederalMogul B2B Homepage;b2BLandingHomePage;B2BHomePageTemplate;b2BLandingHomePage;;;;
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='FMB2BHomePage'];contentSlot(uid,$contentCV)[unique=true]
+;;B2BquickOrderSlot;B2BquickOrder;;B2BquickOrderSlot
+;;B2BorderUploadSlot;B2BorderUpload;;B2BorderUploadSlot
+;;B2BordersInProgressSlot;B2BordersInProgress;;B2BordersInProgressSlot
+;;B2BPartSearchSlot;B2BPartSearch;;B2BPartSearchSlot
+;;B2BannouncementSlot;B2Bannouncement;;B2BannouncementSlot
+#;;B2BquickLinksSlot;B2BquickLinks;;B2BquickLinksSlot
+;;B2BSpotLightSlot;B2BSpotLight;;B2BSpotLightSlot
+;;B2BLearningVideos1Slot;B2BLearningVideos1;;B2BLearningVideos1Slot
+;;B2BLearningVideos2Slot;B2BLearningVideos2;;B2BLearningVideos2Slot
+;;B2BLearningTipSlot;B2BLearningTip;;B2BLearningTipSlot
+;;B2BLearningArticleSlot;B2BLearningArticle;;B2BLearningArticleSlot
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV;uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='B2BHomePageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogoSlot-FMB2BHomePage;SiteLogo;;SiteLogoSlot;true
+;;HeaderLinksSlot-FMB2BHomePage;HeaderLinks;;HeaderLinksSlot;true
+;;SearchBoxSlot-FMB2BHomePage;SearchBox;;SearchBoxSlot;true
+;;MiniCartSlot-FMB2BHomePage;MiniCart;;MiniCartSlot;true
+;;NavigationBar-FMB2BHomePage;NavigationBar;;NavigationBarSlot;true
+;;FMBrandstripSlot-FMB2BHomePage;FMBrandstrip;;FMBrandstripSlot;true
+;;FooterSlot-FMB2BHomePage;Footer;;FooterSlot;true
+
+
+###############################################################   B2b HOMEPAGE   ####################################################################
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='HomePageB2bTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;MiniCart;;;minicart
+;SearchBox;;;searchbox
+;NavigationBar;;;navigation
+;PartSearchB2b;;;wide
+;DownloadB2b;;;wide
+;RewardsAndClassesB2b;;;wide
+;MsgAnnounceOfferB2b;;;wide
+;LearningTipB2b;;;wide
+;LearningArticleB2b;;;wide
+;LearningVideo1B2b;;;wide
+;LearningArticle2B2b;;;wide
+;SpotLightB2b;;;wide
+;TechnicianForumPost;;;wide
+;QuickLinksB2b;;;wide
+;FMBrandstrip;;;wide
+;Footer;;;footer
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);currentPosition
+;;SiteLogoSlot;Default Site Logo Slot;true;SiteLogoComponent;
+;;HeaderLinksSlot;Header links;true
+;;MiniCartSlot;Mini Cart;true;MiniCart
+;;SearchBoxSlot;Search Box;true
+#;;NavigationBarSlot;Navigation Bar;true;eStoreHeaderNavBarComponent,catalogHeaderNavBarComponent,OnlineToolsHeaderNavBarComponent,TechnicianAcademyHeaderNavBarComponent,SupportHeaderNavBarComponent,AboutUsHeaderNavBarComponent;NavigationBar
+# B2b Homepage Slots
+;;PartSearchB2bSlot;part search slot;true;FMPartSearchBanner;PartSearchB2b
+;;DownloadB2bSlot;Download slot;true;FMB2bDownloadBanner0;DownloadB2b
+;;RewardsAndClassesB2bSlot;Rewards and classes slot;true
+;;MsgAnnounceOfferB2bSlot;Message Announce Offer slot;true;FMMsgAnounceOfferCarousel;MsgAnnounceOfferB2b;
+;;LearningTipB2bSlot;FederalMogul technician Academy slot;true;FMLearningB2bImage0;LearningTipB2b;
+;;LearningArticleB2bSlot;Steering system diagnostics slot;true;FMLearningB2bImage1;LearningArticleB2b;
+;;LearningVideo1B2bSlot;Wagner Brake Diagnostics vidoe;true;FMLearningB2bImage2;LearningVideo1B2b;
+;;LearningArticle2B2bSlot;Seating segments Slot;true;FMLearningB2bImage3;LearningArticle2B2b;
+;;SpotLightB2bSlot;Spotlight B2b;true;FMSpotLiteCarousel;SpotLightB2b;
+;;TechnicianForumPostSlot;Technician Forum Post Slot;true
+;;QuickLinksB2bSlot;QuickLinks B2b Slot;true
+#;;FMBrandstripSlot;FederalMogul BrandStrip;true;abex,anco,champion,felPro,fpDiesel,moog,sealedPower,speedPro,wagnerBrake,wagnerLighting;FMBrandstrip
+;;FMBrandstripSlot;FederalMogul BrandStrip;true;abex,anco,champion,felpro,fpdiesel,moog,sealedPower1,speedpro1,wagnerbrake,wagnerlighting;FMBrandstrip
+;;FooterSlot;footer;true;B2bFMFooterComponent,FMExtendedFooterComponent;Footer
+
+# Site-wide Homepage
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;&pageRef;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;FMHomePageB2b;FederalMogulHomepageB2b;b2bHomePage;HomePageB2bTemplate;b2bHomePage;;;;
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='FMHomePageB2b'];contentSlot(uid,$contentCV)[unique=true]
+;;PartSearchB2bSlot-FMHomePageB2b;PartSearchB2b;;PartSearchB2bSlot;true
+;;DownloadB2bSlot-FMHomePageB2b;DownloadB2b;;DownloadB2bSlot;true 
+;;RewardsAndClassesB2bSlot-FMHomePageB2b;RewardsAndClassesB2b;;RewardsAndClassesB2bSlot;true
+;;MsgAnnounceOfferB2bSlot-FMHomePageB2b;MsgAnnounceOfferB2b;;MsgAnnounceOfferB2bSlot;true
+;;LearningTipB2bSlot-FMHomePageB2b;LearningTipB2b;;LearningTipB2bSlot;true
+;;LearningArticleB2bSlot-FMHomePageB2b;LearningArticleB2b;;LearningArticleB2bSlot;true
+;;LearningVideo1B2bSlot-FMHomePageB2b;LearningVideo1B2b;;LearningVideo1B2bSlot;true
+;;LearningArticle2B2bSlot-FMHomePageB2b;LearningArticle2B2b;;LearningArticle2B2bSlot;true
+;;SpotLightB2bSlot-FMHomePageB2b;SpotLightB2b;;SpotLightB2bSlot;true
+;;TechnicianForumPostSlot-FMHomePageB2b;TechnicianForumPost;;TechnicianForumPostSlot;true
+;;QuickLinksB2bSlot-FMHomePageB2b;QuickLinksB2b;;QuickLinksB2bSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV;uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='HomePageB2bTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogoSlot-FMHomePageB2b;SiteLogo;;SiteLogoSlot;true;SiteLogo
+;;HeaderLinksSlot-FMHomePageB2b;HeaderLinks;;HeaderLinksSlot;true
+;;MiniCartSlot-FMHomePageB2b;MiniCart;;MiniCartSlot;true
+;;SearchBoxSlot-FMHomePageB2b;SearchBox;;SearchBoxSlot;true
+;;NavigationBar-FMHomePageB2b;NavigationBar;;NavigationBarSlot;true
+;;FMBrandstripSlot-FMHomePageB2b;FMBrandstrip;;FMBrandstripSlot;true
+;;FooterSlot-FMHomePageB2b;Footer;;FooterSlot;true
+
+
+###############################################################   B2C HOMEPAGE   ####################################################################
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='B2CHomePageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+;B2CPartSearch;;;wide
+;B2CTroubleshoot;;;wide
+;B2CLoginAndRegister;;;wide
+;B2CWhereToBuy;;;wide
+;B2CMsgAnnounceOffer;;;wide
+;B2CSpotLight;;;wide
+;B2CLearningTip;;;wide
+;B2CLearningArticle;;;wide
+;B2CLearningVideos1;;;wide
+;B2CLearningVideos2;;;wide
+;FMBrandstrip;;;wide
+;Footer;;;footer
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);currentPosition
+;;SiteLogoSlot;Default Site Logo Slot;true;SiteLogoComponent
+;;HomepageNavLinkSlot;Default Homepage Link;true
+;;HeaderLinksSlot;Header links;true
+;;SearchBoxSlot;Search Box;true;SearchBox
+;;MiniCartSlot;Mini Cart;true;MiniCart
+;;NavigationBarSlot;Navigation Bar;true;eStoreHeaderNavBarComponent,catalogHeaderNavBarComponent,LearningHeaderNavBarComponent,SupportHeaderNavBarComponent,AboutUsHeaderNavBarComponent;NavigationBar
+# B2C Homepage Slots
+;;B2CPartSearchSlot;B2C Part Search;true;FMPartSearchBanner;B2CPartSearch
+;;B2CTroubleshootSlot;B2C TroubleShoot;true;FMTroubleShootBanner;B2CTroubleshoot
+;;B2CLoginAndRegisterSlot;B2C Login and Register;true;FMSuccessBanner;B2CLoginAndRegister
+;;B2CWhereToBuySlot;B2C Where To Buy;true;FMWheretoBuyBanner;B2CWhereToBuy
+;;B2CMsgAnnounceOfferSlot;B2C Msg Announcement and Offer;true;FMMsgAnounceParagraph,FMMsgAnounceOfferCarousel;B2CMsgAnnounceOffer
+;;B2CSpotLightSlot;B2C Spot Light;true;FMSpotLiteCarousel;B2CSpotLight
+;;B2CLearningTipSlot;B2C Learning Tip;true;FMLearningImage0;B2CLearningTip
+;;B2CLearningArticleSlot;B2C Learning Article;true;FMLearningImage1;B2CLearningArticle
+;;B2CLearningVideos1Slot;B2C Learning videos1;true;FMLearningImage2;B2CLearningVideos1
+;;B2CLearningVideos2Slot;B2C  Learning videos2;true;FMLearningImage3;B2CLearningVideos2
+#;;FMBrandstripSlot;FederalMogul BrandStrip;true;abex,anco,champion,felPro,fpDiesel,moog,sealedPower,speedPro,wagnerBrake,wagnerLighting;FMBrandstrip
+;;FMBrandstripSlot;FederalMogul BrandStrip;true;abex,anco,champion,felpro,fpdiesel,moog,sealedPower1,speedpro1,wagnerbrake,wagnerlighting;FMBrandstrip
+;;FooterSlot;footer;true;FMFooterComponent,FMExtendedFooterComponent;Footer
+
+# Site-wide Homepage
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;&pageRef;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;FMB2CHomePage;FederalMogul B2C Homepage;b2cHomePage;B2CHomePageTemplate;b2cHomePage;;;;
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='FMB2CHomePage'];contentSlot(uid,$contentCV)[unique=true]
+;;B2CPartSearchSlot;B2CPartSearch;;B2CPartSearchSlot
+;;B2CTroubleshootSlot;B2CTroubleshoot;;B2CTroubleshootSlot
+;;B2CLoginAndRegisterSlot;B2CLoginAndRegister;;B2CLoginAndRegisterSlot
+;;B2CMsgAnnounceOfferSlot;B2CMsgAnnounceOffer;;B2CMsgAnnounceOfferSlot
+;;B2CWhereToBuySlot;B2CWhereToBuy;;B2CWhereToBuySlot
+;;B2CSpotLightSlot;B2CSpotLight;;B2CSpotLightSlot
+;;B2CLearningTipSlot;B2CLearningTip;;B2CLearningTipSlot
+;;B2CLearningArticleSlot;B2CLearningArticle;;B2CLearningArticleSlot
+;;B2CLearningVideos1Slot;B2CLearningVideos1;;B2CLearningVideos1Slot
+;;B2CLearningVideos2Slot;B2CLearningVideos2;;B2CLearningVideos2Slot
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV;uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='B2CHomePageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-FMB2CHomePage;SiteLogo;;SiteLogoSlot;true
+;;HomepageLink-FMB2CHomePage;HomepageNavLink;;HomepageNavLinkSlot;true
+;;HeaderLinks-FMB2CHomePage;HeaderLinks;;HeaderLinksSlot;true
+;;SearchBox-FMB2CHomePage;SearchBox;;SearchBoxSlot;true
+;;MiniCart-FMB2CHomePage;MiniCart;;MiniCartSlot;true
+;;NavigationBar-FMB2CHomePage;NavigationBar;;NavigationBarSlot;true
+;;FMBrandstripSlot-FMB2CHomePage;FMBrandstrip;;FMBrandstripSlot;true
+;;Footer-FMB2CHomePage;Footer;;FooterSlot;true
+
+
+
+################################         Manage User Page Template     ##############################################################
+
+# Basic Default Page Template
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ManageUserPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+;MyNetwork;;;wide
+;Announcement1;;;wide
+;Announcement2;;;wide
+;Insights;;;wide
+;ManageUserSection;;;wide
+;FMBrandstrip;;;wide
+;Footer;;;footer
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);currentPosition
+;;SiteLogoSlot;Default Site Logo Slot;true;SiteLogoComponent
+;;HomepageNavLinkSlot;Default Homepage Link;true
+;;HeaderLinksSlot;Header links;true
+;;SearchBoxSlot;Search Box;true
+;;MiniCartSlot;Mini Cart;true;MiniCart
+;;NavigationBarSlot;Navigation Bar;true;eStoreHeaderNavBarComponent,catalogHeaderNavBarComponent,OnlineToolsHeaderNavBarComponent,SupportHeaderNavBarComponent,AboutUsHeaderNavBarComponent;NavigationBar
+;;MyNetworkSlot;My Network;true
+;;Announcement1Slot;Announcement Slot1;true;FMAnnouncementBanner;Announcement1
+;;Announcement2Slot;Announcement Slot2;true;FMInsightsImage0;Announcement2
+;;InsightsSlot;Insights;true;FMInsightsImage3;Insights
+;;ManageUserSectionSlot;Manage User Section;true
+;;NetworkImg1Slot;Image1 in NetworkPage;true;FMInsightsImage3;Announcement1
+;;NetworkImg2Slot;Image2 in NetworkPage;true;FMInsightsImage2;Announcement2
+#;;FMBrandstripSlot;FederalMogul BrandStrip;true;abex,anco,champion,felPro,fpDiesel,moog,sealedPower,speedPro,wagnerBrake,wagnerLighting;FMBrandstrip
+;;FMBrandstripSlot;FederalMogul BrandStrip;true;abex,anco,champion,felpro,fpdiesel,moog,sealedPower1,speedpro1,wagnerbrake,wagnerlighting;FMBrandstrip
+;;FooterSlot;footer;true;FMB2BFooterComponent,FMExtendedFooterComponent;Footer
+;;FooterSlotb2b;footer;true;B2bFMFooterComponent,FMExtendedFooterComponent;Footer
+
+
+# Functional Content Pages
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;&pageRef;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;ManageUserPage;Manage User Page;fmManageUserPage;ManageUserPageTemplate;fmManageUserPage;;;;
+;;CreateUserPage;Create User Page;fmCreateUserPage;ManageUserPageTemplate;fmCreateUserPage;;;;
+;;EditUserPage;Edit User Page;fmEditUserPage;ManageUserPageTemplate;fmEditUserPage;;;;
+;;NetworkPage;Network Page;fmNetworkPage;ManageUserPageTemplate;fmNetworkPage;;;;
+;;CreateAddressPage;Create Address Page;fmCreateAddressPage;ManageUserPageTemplate;fmCreateAddressPage;;;;
+;;EditAddressPage;Edit Address Page;fmEditAddressPage;ManageUserPageTemplate;fmEditAddressPage;;;;
+;;ViewUnitPage;View Unit Page;fmViewUnitPage;ManageUserPageTemplate;fmViewUnitPage;;;;
+;;TaxExemptionPage;Tax Exemption Page;fmTaxExemptionPage;ManageUserPageTemplate;fmTaxExemptionPage;;;;
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='ManageUserPage'];contentSlot(uid,$contentCV)[unique=true]
+;;MynetworkSlot;MyNetwork;;MyNetworkSlot
+;;Announcement1Slot;Announcement1;;Announcement1Slot
+;;Announcement2Slot;Announcement2;;Announcement2Slot
+;;InsightsSlot;Insights;;InsightsSlot
+;;ManageUserSectionSlot;ManageUsersSection;;ManageUserSectionSlot
+
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='CreateUserPage'];contentSlot(uid,$contentCV)[unique=true]
+;;MynetworkSlot-CreateUserPage;MyNetwork;;MyNetworkSlot
+;;Announcement1Slot-CreateUserPage;Announcement1;;Announcement1Slot
+;;Announcement2Slot-CreateUserPage;Announcement2;;Announcement2Slot
+;;InsightsSlot-CreateUserPage;Insights;;InsightsSlot
+;;ManageUserSectionSlot-CreateUserPage;ManageUsersSection;;ManageUserSectionSlot
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='EditUserPage'];contentSlot(uid,$contentCV)[unique=true]
+;;MynetworkSlot-EditUserPage;MyNetwork;;MyNetworkSlot
+;;Announcement1Slot-EditUserPage;Announcement1;;Announcement1Slot
+;;Announcement2Slot-EditUserPage;Announcement2;;Announcement2Slot
+;;InsightsSlot-EditUserPage;Insights;;InsightsSlot
+;;ManageUserSectionSlot-EditUserPage;ManageUsersSection;;ManageUserSectionSlot
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='NetworkPage'];contentSlot(uid,$contentCV)[unique=true]
+;;MynetworkSlot-NetworkPage;MyNetwork;;MyNetworkSlot
+;;NetworkImg1Slot-NetworkPage;Announcement1;;NetworkImg1Slot
+;;NetworkImg2Slot-NetworkPage;Announcement2;;NetworkImg2Slot
+;;ManageUserSectionSlot-NetworkPage;ManageUsersSection;;ManageUserSectionSlot
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='CreateAddressPage'];contentSlot(uid,$contentCV)[unique=true]
+;;MynetworkSlot-CreateAddressPage;MyNetwork;;MyNetworkSlot
+;;NetworkImg1Slot-CreateAddressPage;Announcement1;;NetworkImg1Slot
+;;NetworkImg2Slot-CreateAddressPage;Announcement2;;NetworkImg2Slot
+;;ManageUserSectionSlot-CreateAddressPage;ManageUsersSection;;ManageUserSectionSlot
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='EditAddressPage'];contentSlot(uid,$contentCV)[unique=true]
+;;MynetworkSlot-EditAddressPage;MyNetwork;;MyNetworkSlot
+;;NetworkImg1Slot-EditAddressPage;Announcement1;;NetworkImg1Slot
+;;NetworkImg2Slot-EditAddressPage;Announcement2;;NetworkImg2Slot
+;;ManageUserSectionSlot-EditAddressPage;ManageUsersSection;;ManageUserSectionSlot
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='TaxExemptionPage'];contentSlot(uid,$contentCV)[unique=true]
+;;MynetworkSlot-TaxExemptionPage;MyNetwork;;MyNetworkSlot
+;;NetworkImg1Slot-TaxExemptionPage;Announcement1;;NetworkImg1Slot
+;;NetworkImg2Slot-TaxExemptionPage;Announcement2;;NetworkImg2Slot
+;;ManageUserSectionSlot-TaxExemptionPage;ManageUsersSection;;ManageUserSectionSlot
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='ViewUnitPage'];contentSlot(uid,$contentCV)[unique=true]
+;;MynetworkSlot-ViewUnitPage;MyNetwork;;MyNetworkSlot
+;;NetworkImg1Slot-ViewUnitPage;Announcement1;;NetworkImg1Slot
+;;NetworkImg2Slot-ViewUnitPage;Announcement2;;NetworkImg2Slot
+;;ManageUserSectionSlot-ViewUnitPage;ManageUsersSection;;ManageUserSectionSlot
+
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV;uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ManageUserPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogoSlot-ManageUserPage;SiteLogo;;SiteLogoSlot;true
+;;HeaderLinksSlot-ManageUserPage;HeaderLinks;;HeaderLinksSlot;true
+;;SearchBoxSlot-ManageUserPage;SearchBox;;SearchBoxSlot;true
+;;MiniCartSlot-ManageUserPage;MiniCart;;MiniCartSlot;true
+;;NavigationBar-ManageUserPage;NavigationBar;;NavigationBarSlot;true
+;;FMBrandstripSlot-ManageUserPage;FMBrandstrip;;FMBrandstripSlot;true
+;;FooterSlot-ManageUserPage;Footer;;FooterSlot;true
+
+
+
+
+################################    Manage Account Page Template    #############################################################
+
+# Basic Default Page Template
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ManageAccountPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+;ManangeAccount;;;wide
+;ManangeAccountImg1;;;wide
+;ManangeAccountImg2;;;wide
+;ManageAccountSection;;;wide
+;FMBrandstrip;;;wide
+;Footer;;;footer
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);currentPosition
+;;SiteLogoSlot;Default Site Logo Slot;true;SiteLogoComponent
+;;HomepageNavLinkSlot;Default Homepage Link;true
+;;HeaderLinksSlot;Header links;true
+;;SearchBoxSlot;Search Box;true
+;;MiniCartSlot;Mini Cart;true;MiniCart
+;;NavigationBarSlot;Navigation Bar;true;eStoreHeaderNavBarComponent,catalogHeaderNavBarComponent,OnlineToolsHeaderNavBarComponent,SupportHeaderNavBarComponent,AboutUsHeaderNavBarComponent;NavigationBar
+;;ManangeAccountSlot;Manage Account;true
+;;ManangeAccountImg1Slot;Manage Account Slot1;true;FMInsightsImage3;ManangeAccountImg1
+;;ManangeAccountImg2Slot;Manage Account Slot2;true;FMInsightsImage2;ManangeAccountImg2
+;;ManageAccountSectionSlot;Manage Account Section;true
+#;;FMBrandstripSlot;FederalMogul BrandStrip;true;abex,anco,champion,felPro,fpDiesel,moog,sealedPower,speedPro,wagnerBrake,wagnerLighting;FMBrandstrip
+;;FMBrandstripSlot;FederalMogul BrandStrip;true;abex,anco,champion,felpro,fpdiesel,moog,sealedPower1,speedpro1,wagnerbrake,wagnerlighting;FMBrandstrip
+;;FooterSlot;footer;true;FMB2BFooterComponent,FMExtendedFooterComponent;Footer
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;&pageRef;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+
+;;ManageAccountPage;Manage Account Page;fmManageAccountPage;ManageAccountPageTemplate;fmManageAccountPage;;;;
+;;UpdatePasswordPage;Update Password Page;fmUpdatePasswordPage;ManageAccountPageTemplate;fmUpdatePasswordPage;;;;
+;;UpdateProfilePage;Update Profile Page;fmUpdateProfilePage;ManageAccountPageTemplate;fmUpdateProfilePage;;;;
+;;AddressBookPage;Address Book Home Page;fmAddressBookPage;ManageAccountPageTemplate;fmAddressBookPage;;;;
+;;AddEditAddressPage;Add/EditAddress Page;fmAddEditAddressPage;ManageAccountPageTemplate;fmAddEditAddressPage;;;;
+;;AddressBookListViewPage;Address Book List View Page;fmAddressBookListView;ManageAccountPageTemplate;fmAddressBookListView;;;;
+;;AdminAddressBookPage;Admin View Address Page;fmAdminAddressBookPage;ManageAccountPageTemplate;fmAdminAddressBookPage;;;;
+;;AdminAddEditAddressPage;Admin Add/EditAddress Page;fmAdminAddEditAddressPage;ManageAccountPageTemplate;fmAdminAddEditAddressPage;;;;
+
+# Balaji Return Pages
+;;ReturnHistoryPage;Return History Page;fmReturnHistoryPage;ManageAccountPageTemplate;fmReturnHistoryPage;;;;
+;;ReturnDetailsPage;Return Details Page;fmReturnDetailsPage;ManageAccountPageTemplate;fmReturnDetailsPage;;;;
+;;ReturnRequestPage;Return Request Page;fmReturnRequestPage;ManageAccountPageTemplate;fmReturnRequestPage;;;;
+;;ReturnRequestConfirmationPage;Return Request Confirmation Page;fmReturnRequestConfirmationPage;ManageAccountPageTemplate;fmReturnRequestConfirmationPage;;;;
+
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='ManageAccountPage'];contentSlot(uid,$contentCV)[unique=true]
+;;ManangeAccountSlot;ManangeAccount;;ManangeAccountSlot
+;;ManangeAccountImg1Slot;ManangeAccountImg1;;ManangeAccountImg1Slot
+;;ManangeAccountImg2Slot;ManangeAccountImg2;;ManangeAccountImg2Slot
+;;ManageAccountSectionSlot;ManageAccountSection;;ManageAccountSectionSlot
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='UpdatePasswordPage'];contentSlot(uid,$contentCV)[unique=true]
+;;ManangeAccountSlot-UpdatePasswordPage;ManangeAccount;;ManangeAccountSlot
+;;ManangeAccountImg1Slot-UpdatePasswordPage;ManangeAccountImg1;;ManangeAccountImg1Slot
+;;ManangeAccountImg2Slot-UpdatePasswordPage;ManangeAccountImg2;;ManangeAccountImg2Slot
+;;ManageAccountSectionSlot-UpdatePasswordPage;ManageAccountSection;;ManageAccountSectionSlot
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='UpdateProfilePage'];contentSlot(uid,$contentCV)[unique=true]
+;;ManangeAccountSlot-UpdateProfilePage;ManangeAccount;;ManangeAccountSlot
+;;ManangeAccountImg1Slot-UpdateProfilePage;ManangeAccountImg1;;ManangeAccountImg1Slot
+;;ManangeAccountImg2Slot-UpdateProfilePage;ManangeAccountImg2;;ManangeAccountImg2Slot
+;;ManageAccountSectionSlot-UpdateProfilePage;ManageAccountSection;;ManageAccountSectionSlot
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='AddressBookPage'];contentSlot(uid,$contentCV)[unique=true]
+;;ManangeAccountSlot-AddressBookPage;ManangeAccount;;ManangeAccountSlot
+;;ManangeAccountImg1Slot-AddressBookPage;ManangeAccountImg1;;ManangeAccountImg1Slot
+;;ManangeAccountImg2Slot-AddressBookPage;ManangeAccountImg2;;ManangeAccountImg2Slot
+;;ManageAccountSectionSlot-AddressBookPage;ManageAccountSection;;ManageAccountSectionSlot
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='AddEditAddressPage'];contentSlot(uid,$contentCV)[unique=true]
+;;ManangeAccountSlot-AddEditAddressPage;ManangeAccount;;ManangeAccountSlot
+;;ManangeAccountImg1Slot-AddEditAddressPage;ManangeAccountImg1;;ManangeAccountImg1Slot
+;;ManangeAccountImg2Slot-AddEditAddressPage;ManangeAccountImg2;;ManangeAccountImg2Slot
+;;ManageAccountSectionSlot-AddEditAddressPage;ManageAccountSection;;ManageAccountSectionSlot
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='AdminAddEditAddressPage'];contentSlot(uid,$contentCV)[unique=true]
+;;ManangeAccountSlot-AdminAddEditAddressPage;ManangeAccount;;ManangeAccountSlot
+;;ManangeAccountImg1Slot-AdminAddEditAddressPage;ManangeAccountImg1;;ManangeAccountImg1Slot
+;;ManangeAccountImg2Slot-AdminAddEditAddressPage;ManangeAccountImg2;;ManangeAccountImg2Slot
+;;ManageAccountSectionSlot-AdminAddEditAddressPage;ManageAccountSection;;ManageAccountSectionSlot
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='AdminAddressBookPage'];contentSlot(uid,$contentCV)[unique=true]
+;;ManangeAccountSlot-AdminAddressBookPage;ManangeAccount;;ManangeAccountSlot
+;;ManangeAccountImg1Slot-AdminAddressBookPage;ManangeAccountImg1;;ManangeAccountImg1Slot
+;;ManangeAccountImg2Slot-AdminAddressBookPage;ManangeAccountImg2;;ManangeAccountImg2Slot
+;;ManageAccountSectionSlot-AdminAddressBookPage;ManageAccountSection;;ManageAccountSectionSlot
+
+#Balaji Return pages
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='ReturnHistoryPage'];contentSlot(uid,$contentCV)[unique=true]
+;;ManangeAccountSlot-ReturnHistoryPage;ManangeAccount;;ManangeAccountSlot
+;;ManangeAccountImg1Slot-ReturnHistoryPage;ManangeAccountImg1;;ManangeAccountImg1Slot
+;;ManangeAccountImg2Slot-ReturnHistoryPage;ManangeAccountImg2;;ManangeAccountImg2Slot
+;;ManageAccountSectionSlot-ReturnHistoryPage;ManageAccountSection;;ManageAccountSectionSlot
+#Balaji Return pages
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='ReturnDetailsPage'];contentSlot(uid,$contentCV)[unique=true]
+;;ManangeAccountSlot-ReturnDetailsPage;ManangeAccount;;ManangeAccountSlot
+;;ManangeAccountImg1Slot-ReturnDetailsPage;ManangeAccountImg1;;ManangeAccountImg1Slot
+;;ManangeAccountImg2Slot-ReturnDetailsPage;ManangeAccountImg2;;ManangeAccountImg2Slot
+;;ManageAccountSectionSlot-ReturnDetailsPage;ManageAccountSection;;ManageAccountSectionSlot
+#Balaji Return pages
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='ReturnRequestPage'];contentSlot(uid,$contentCV)[unique=true]
+;;ManangeAccountSlot-ReturnRequestPage;ManangeAccount;;ManangeAccountSlot
+;;ManangeAccountImg1Slot-ReturnRequestPage;ManangeAccountImg1;;ManangeAccountImg1Slot
+;;ManangeAccountImg2Slot-ReturnRequestPage;ManangeAccountImg2;;ManangeAccountImg2Slot
+;;ManageAccountSectionSlot-ReturnRequestPage;ManageAccountSection;;ManageAccountSectionSlot
+#Balaji Return pages
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='ReturnRequestConfirmationPage'];contentSlot(uid,$contentCV)[unique=true]
+;;ManangeAccountSlot-ReturnRequestConfirmationPage;ManangeAccount;;ManangeAccountSlot
+;;ManangeAccountImg1Slot-ReturnRequestConfirmationPage;ManangeAccountImg1;;ManangeAccountImg1Slot
+;;ManangeAccountImg2Slot-ReturnRequestConfirmationPage;ManangeAccountImg2;;ManangeAccountImg2Slot
+;;ManageAccountSectionSlot-ReturnRequestConfirmationPage;ManageAccountSection;;ManageAccountSectionSlot
+
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV;uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ManageAccountPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogoSlot-ManageAccountPage;SiteLogo;;SiteLogoSlot;true
+;;HeaderLinksSlot-ManageAccountPage;HeaderLinks;;HeaderLinksSlot;true
+;;SearchBoxSlot-ManageAccountPage;SearchBox;;SearchBoxSlot;true
+;;MiniCartSlot-ManageAccountPage;MiniCart;;MiniCartSlot;true
+;;NavigationBar-ManageAccountPage;NavigationBar;;NavigationBarSlot;true
+;;FMBrandstripSlot-ManageAccountPage;FMBrandstrip;;FMBrandstripSlot;true
+;;FooterSlot-ManageAccountPage;Footer;;FooterSlot;true
+
+
+
+
+
+################################   Registration Page Template    #############################################################
+
+# Basic Default Page Template
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='FMRegistrationPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+;FMBrandstrip;;;wide
+;Footer;;;footer
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);currentPosition
+;;SiteLogoSlot;Default Site Logo Slot;true;SiteLogoComponent
+;;HomepageNavLinkSlot;Default Homepage Link;true
+;;HeaderLinksSlot;Header links;true
+;;SearchBoxSlot;Search Box;true
+;;MiniCartSlot;Mini Cart;true;MiniCart
+;;NavigationBarSlot;Navigation Bar;true;eStoreHeaderNavBarComponent,catalogHeaderNavBarComponent,OnlineToolsHeaderNavBarComponent,SupportHeaderNavBarComponent,AboutUsHeaderNavBarComponent;NavigationBar
+#;;FMBrandstripSlot;FederalMogul BrandStrip;true;abex,anco,champion,felPro,fpDiesel,moog,sealedPower,speedPro,wagnerBrake,wagnerLighting;FMBrandstrip
+;;FMBrandstripSlot;FederalMogul BrandStrip;true;abex,anco,champion,felpro,fpdiesel,moog,sealedPower1,speedpro1,wagnerbrake,wagnerlighting;FMBrandstrip
+;;FooterSlot;footer;true;FMB2BFooterComponent,FMExtendedFooterComponent;Footer
+
+#Sai
+# Functional Content Pages
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;&pageRef;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;RegisterUserPage;Register User Page;signUpPage;FMRegistrationPageTemplate;signUpPage;;;;
+
+;;FMForgotPasswordPage;Forgot Password page;fmForgotPassword;FMRegistrationPageTemplate;fmForgotPassword;;;;
+;;FMForgotPasswordValidationPage;Forgot Password Validation page;fmForgotPasswordValidationPage;FMRegistrationPageTemplate;fmForgotPasswordValidationPage;;;;
+;;FMForgotPasswordResetPage;Forgot Password Reset page;fmForgotPasswordResetPage;FMRegistrationPageTemplate;fmForgotPasswordResetPage;;;;
+#;;FMForgotPasswordSecretQuestionPage;Forgot Password Secret Question page;fmForgotPasswordSecretQuestionPage;FMRegistrationPageTemplate;fmForgotPasswordSecretQuestionPage;;;;
+;;FMPageNotFoundPage;Page Not Found Page;pageNotFoundPage;FMRegistrationPageTemplate;pageNotFoundPage
+
+
+#;;ReturnHistoryPage;Return History Page;fmReturnHistoryPage;ManageUserPageTemplate;fmReturnHistoryPage;;;;
+#;;ReturnDetailsPage;Return Details Page;fmReturnDetailsPage;ManageUserPageTemplate;fmReturnDetailsPage;;;;
+#;;ReturnRequestPage;Return Request Page;fmReturnRequestPage;ManageUserPageTemplate;fmReturnRequestPage;;;;
+#;;ReturnRequestConfirmationPage;Return Request Confirmation Page;fmReturnRequestConfirmationPage;ManageUserPageTemplate;fmReturnRequestConfirmationPage;;;;
+
+;;TaxExemptionApprovalpage;TaxExemption Approval page;fmtaxexemptionapprovalpage;ManageUserPageTemplate;fmtaxexemptionapprovalpage;;;;
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='RegisterUserPage'];contentSlot(uid,$contentCV)[unique=true]
+#;;ManangeAccountSlot;ManangeAccount;;ManangeAccountSlot
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='ForgotPasswordPage'];contentSlot(uid,$contentCV)[unique=true]
+#;;ManangeAccountSlot;ManangeAccount;;ManangeAccountSlot
+
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV;uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='FMRegistrationPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogoSlot-RegisterUserPage;SiteLogo;;SiteLogoSlot;true
+;;HeaderLinksSlot-RegisterUserPage;HeaderLinks;;HeaderLinksSlot;true
+;;SearchBoxSlot-RegisterUserPage;SearchBox;;SearchBoxSlot;true
+;;MiniCartSlot-RegisterUserPage;MiniCart;;MiniCartSlot;true
+;;NavigationBar-RegisterUserPage;NavigationBar;;NavigationBarSlot;true
+;;FMBrandstripSlot-RegisterUserPage;FMBrandstrip;;FMBrandstripSlot;true
+;;FooterSlot-RegisterUserPage;Footer;;FooterSlot;true
+
+###################################### LOGIN PAGE TEMPLATE ############################################
+# Login Page Template
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='LoginPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+;TopContent;;;wide
+;SideContent;;;narrow
+;MerchantContact;;CMSParagraphComponent
+;Footer;;;footer
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active
+;;SiteLogoSlot;Default Site Logo Slot;true
+;;HomepageNavLinkSlot;Default Homepage Link;true
+;;HeaderLinksSlot;Header links;true
+;;SearchBoxSlot;Search Box;true
+;;MiniCartSlot;Mini Cart;true
+;;NavigationBarSlot;Navigation Bar;true
+;;TopContentSlot;Top Content;true
+;;SideContentSlot;Side Content;true
+;;MerchantContactSlot;MerchantContact;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LoginPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-LoginPage;SiteLogo;;SiteLogoSlot;true
+;;HomepageLink-LoginPage;HomepageNavLink;;HomepageNavLinkSlot;true
+;;HeaderLinks-LoginPage;HeaderLinks;;HeaderLinksSlot;true
+;;SearchBox-LoginPage;SearchBox;;SearchBoxSlot;true
+;;NavigationBar-LoginPage;NavigationBar;;NavigationBarSlot;true
+;;MiniCart-LoginPage;MiniCart;;MiniCartSlot;true
+;;Footer-LoginPage;Footer;;FooterSlot;true
+;;MerchantContactContent-LoginPage;MerchantContactContent;;MerchantContactSlot;true
+
+# Functional Content Pages
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false'];previewImage(code, $contentCV)[default='ContentPageModel__function_preview']
+;;login;Login Page;LoginPageTemplate;login
+
+
+#######################################   CSR HomePage    #############################################################
+
+# Basic Default Page Template
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='CSRPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+;FMBrandstrip;;;wide
+;Footer;;;footer
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);currentPosition
+;;SiteLogoSlot;Default Site Logo Slot;true;SiteLogoComponent
+;;HomepageNavLinkSlot;Default Homepage Link;true
+;;HeaderLinksSlot;Header links;true
+;;SearchBoxSlot;Search Box;true
+;;MiniCartSlot;Mini Cart;true;MiniCart
+;;NavigationBarSlot;Navigation Bar;true;eStoreHeaderNavBarComponent,catalogHeaderNavBarComponent,OnlineToolsHeaderNavBarComponent,SupportHeaderNavBarComponent,AboutUsHeaderNavBarComponent;NavigationBar
+#;;FMBrandstripSlot;FederalMogul BrandStrip;true;abex,anco,champion,felPro,fpDiesel,moog,sealedPower,speedPro,wagnerBrake,wagnerLighting;FMBrandstrip
+;;FMBrandstripSlot;FederalMogul BrandStrip;true;abex,anco,champion,felpro,fpdiesel,moog,sealedPower1,speedpro1,wagnerbrake,wagnerlighting;FMBrandstrip
+;;FooterSlot;footer;true;FMB2BFooterComponent,FMExtendedFooterComponent;Footer
+
+# Functional Content Pages
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;&pageRef;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;CSRHomePage;CSR Home Page;fmCSRHomePage;CSRPageTemplate;fmCSRHomePage;;;;
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='CSRHomePage'];contentSlot(uid,$contentCV)[unique=true]
+#;;ManangeAccountSlot;ManangeAccount;;ManangeAccountSlot
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV;uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='CSRPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogoSlot-CSRHomePage;SiteLogo;;SiteLogoSlot;true
+;;HeaderLinksSlot-CSRHomePage;HeaderLinks;;HeaderLinksSlot;true
+;;SearchBoxSlot-CSRHomePage;SearchBox;;SearchBoxSlot;true
+;;MiniCartSlot-CSRHomePage;MiniCart;;MiniCartSlot;true
+;;NavigationBar-CSRHomePage;NavigationBar;;NavigationBarSlot;true
+;;FMBrandstripSlot-CSRHomePage;FMBrandstrip;;FMBrandstripSlot;true
+;;FooterSlot-CSRHomePage;Footer;;FooterSlot;true
+
+
+######################################################ORDER HISTORY PAGE#############################################
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='OrderHistoryPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+;OrderUploadLinks;;;wide
+;OrderUploadImg1;;;wide
+;OrderUploadImg2;;;wide
+;OrderUploadSection;;;wide
+;FMBrandstrip;;;wide
+;Footer;;;footer
+
+######################################################ORDER HISTORY PAGE#############################################
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='OrderDetailsPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+;OrderUploadLinks;;;wide
+;OrderUploadImg1;;;wide
+;OrderUploadImg2;;;wide
+;OrderUploadSection;;;wide
+;FMBrandstrip;;;wide
+;Footer;;;footer
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);currentPosition
+;;SiteLogoSlot;Default Site Logo Slot;true;SiteLogoComponent
+;;HomepageNavLinkSlot;Default Homepage Link;true
+;;HeaderLinksSlot;Header links;true
+;;SearchBoxSlot;Search Box;true
+;;MiniCartSlot;Mini Cart;true;MiniCart
+;;NavigationBarSlot;Navigation Bar;true;eStoreHeaderNavBarComponent,catalogHeaderNavBarComponent,OnlineToolsHeaderNavBarComponent,SupportHeaderNavBarComponent,AboutUsHeaderNavBarComponent;NavigationBar
+;;OrderUploadLinksSlot;Order Upload Links;true
+;;OrderUploadImg1Slot;Order Upload Slot1;true;FMInsightsImage3;OrderUploadImg1
+;;OrderUploadImg2Slot;Order Upload Slot2;true;FMInsightsImage2;OrderUploadImg2
+;;OrderUploadSectionSlot;Order Upload Section;true
+;;FMBrandstripSlot;FederalMogul BrandStrip;true;abex,anco,champion,felpro,fpdiesel,moog,sealedPower1,speedpro1,wagnerbrake,wagnerlighting;FMBrandstrip
+;;FooterSlot;footer;true;FMB2BFooterComponent,FMExtendedFooterComponent;Footer
+
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;&pageRef;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false']
+;;OrderHistoryPage;Order History Page;fmOrderHistoryPage;OrderHistoryPageTemplate;fmOrderHistoryPage;;;;
+;;OrderDetailsPage;Order Details Page;fmOrderDetailsPage;OrderDetailsPageTemplate;fmOrderDetailsPage;;;;
+
+
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV;uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='OrderHistoryPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-OrderHistoryPage;SiteLogo;;SiteLogoSlot;true
+;;HomepageLink-OrderHistoryPage;HomepageNavLink;;HomepageNavLinkSlot;true
+;;HeaderLinks-OrderHistoryPage;HeaderLinks;;HeaderLinksSlot;true
+;;SearchBox-OrderHistoryPage;SearchBox;;SearchBoxSlot;true
+;;MiniCart-OrderHistoryPage;MiniCart;;MiniCartSlot;true
+;;NavigationBar-OrderHistoryPage;NavigationBar;;NavigationBarSlot;true
+;;FMBrandstripSlot-OrderHistoryPage;FMBrandstrip;;FMBrandstripSlot;true
+;;Footer-OrderHistoryPage;Footer;;FooterSlot;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV;uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='OrderDetailsPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-OrderDetailsPage;SiteLogo;;SiteLogoSlot;true
+;;HomepageLink-OrderDetailsPage;HomepageNavLink;;HomepageNavLinkSlot;true
+;;HeaderLinks-OrderDetailsPage;HeaderLinks;;HeaderLinksSlot;true
+;;SearchBox-OrderDetailsPage;SearchBox;;SearchBoxSlot;true
+;;MiniCart-OrderDetailsPage;MiniCart;;MiniCartSlot;true
+;;NavigationBar-OrderDetailsPage;NavigationBar;;NavigationBarSlot;true
+;;FMBrandstripSlot-OrderDetailsPage;FMBrandstrip;;FMBrandstripSlot;true
+;;Footer-OrderDetailsPage;Footer;;FooterSlot;true
+
+#Balaji LeadGeneration pages
+###############################################################    Lead Generation Call Back Page Template    ##################################################
+# Basic Default Page Template
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='LeadGenerationPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+;LeadGeneration;;;wide
+;LeadGenerationImg1;;;wide
+;LeadGenerationImg2;;;wide
+;LeadGenerationSection;;;wide
+;FMBrandstrip;;;wide
+;Footer;;;footer
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);currentPosition
+;;SiteLogoSlot;Default Site Logo Slot;true;SiteLogoComponent
+;;HomepageNavLinkSlot;Default Homepage Link;true
+;;HeaderLinksSlot;Header links;true
+;;SearchBoxSlot;Search Box;true
+;;MiniCartSlot;Mini Cart;true;MiniCart
+;;NavigationBarSlot;Navigation Bar;true;eStoreHeaderNavBarComponent,catalogHeaderNavBarComponent,OnlineToolsHeaderNavBarComponent,SupportHeaderNavBarComponent,AboutUsHeaderNavBarComponent;NavigationBar
+;;LeadGenerationSlot;Lead Generation;true
+;;LeadGenerationImg1Slot;Lead Generation Slot1;true;FMInsightsImage3;LeadGenerationImg1
+;;LeadGenerationImg2Slot;Lead Generation Slot2;true;FMInsightsImage2;LeadGenerationImg2
+;;LeadGenerationSectionSlot;Lead Generation Section;true
+#;;FMBrandstripSlot;FederalMogul BrandStrip;true;abex,anco,champion,felPro,fpDiesel,moog,sealedPower,speedPro,wagnerBrake,wagnerLighting;FMBrandstrip
+;;FMBrandstripSlot;FederalMogul BrandStrip;true;abex,anco,champion,felpro,fpdiesel,moog,sealedPower1,speedpro1,wagnerbrake,wagnerlighting;FMBrandstrip
+;;FooterSlot;footer;true;FMB2BFooterComponent,Facebook,Twitter,Linkedin,Youtube,FMExtendedFooterComponent;Footer
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;&pageRef;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='true']
+;;LeadGenerationCallBackPage;Lead Generation Call back Page;fmLeadGenerationCallBackPage;LeadGenerationPageTemplate;fmLeadGenerationCallBackPage;;;;
+
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV;uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='LeadGenerationPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-LeadGenerationCallBackPage;SiteLogo;;SiteLogoSlot;true
+;;HomepageLink-LeadGenerationCallBackPage;HomepageNavLink;;HomepageNavLinkSlot;true
+;;HeaderLinks-LeadGenerationCallBackPage;HeaderLinks;;HeaderLinksSlot;true
+;;SearchBox-LeadGenerationCallBackPage;SearchBox;;SearchBoxSlot;true
+;;MiniCart-LeadGenerationCallBackPage;MiniCart;;MiniCartSlot;true
+;;NavigationBar-LeadGenerationCallBackPage;NavigationBar;;NavigationBarSlot;true
+;;FMBrandstripSlot-LeadGenerationCallBackPage;FMBrandstrip;;FMBrandstripSlot;true
+;;Footer-LeadGenerationCallBackPage;Footer;;FooterSlot;true
+
+###############################################################    Lead Generation Call Back Page Template    ##################################################
+
+############################################################### Store Locator content  ##################################################
+
+# Store Finder/Locator Page Template
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='StoreFinderPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+;TopContent;;;wide
+;SideContent;;;narrow
+;Footer;;;footer
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='StoreFinderPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-StoreFinderPage;SiteLogo;;SiteLogoSlot;true
+;;HomepageLink-StoreFinderPage;HomepageNavLink;;HomepageNavLinkSlot;true
+;;HeaderLinks-StoreFinderPage;HeaderLinks;;HeaderLinksSlot;true
+;;SearchBox-StoreFinderPage;SearchBox;;SearchBoxSlot;true
+;;NavigationBar-StoreFinderPage;NavigationBar;;NavigationBarSlot;true
+;;MiniCart-StoreFinderPage;MiniCart;;MiniCartSlot;true
+;;Footer-StoreFinderPage;Footer;;FooterSlot;true
+
+# Functional Content Pages
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='false'];previewImage(code, $contentCV)[default='ContentPageModel__function_preview']
+;;storefinderPage;StoreFinder Page;StoreFinderPageTemplate;storefinder
+################################## CMS Paragraph Component (About Us--Company information)###
+
+INSERT_UPDATE  CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;title;content[lang=$lang]
+
+#culture and diversity page
+;;CultureDiversity;Culture and Diversity;CultureDiversity;;<h4>Our Corporate Culture Promotes Diversity</h4><p>Federal-Mogul Holdings Corporation fosters a growth-oriented, professional environment that promotes personal success and career satisfaction. We value diversity, and are committed to attracting and retaining talented employees from a wide range of backgrounds.</p><p>Federal-Mogul is a global supplier to many of the worldâs major automakers and a broad base of aftermarket customers. We believe that the diversity of our customers, suppliers and employees all over the world is key to our sustainable global profitable growth strategy.</p><p>At Federal-Mogul, we recognize the importance of diversity in our corporate culture. Our 45,000 employees work in facilities across the globe. We are committed to attracting and retaining talented employees from a wide range of backgrounds.</p><p>Through diversity, we enrich our business environment, creating more effective relationships with our employees, our customers, our supply base and the communities in which we live and work.</p><p>Federal-Mogul is committed to providing equal employment opportunities for all employees and applicants for employment based on individual qualifications, and without regard to race, color, religion, sex, age, national origin, sexual orientation, disability, veteran status, marital status or any other similarly protected status. It is our policy to comply with all applicable laws governing employment practices and not to discriminate on the basis of any unlawful criteria.</p><p>In accordance with our companyâs core values, Federal-Mogul seeks to cultivate a diverse, winning team of quality individuals who act with integrity and respect and are driven to be the best in all they do.</p>
+#About Us landing page
+;;CompanyInfo2;Company Overview;CompanyInfo2;;<h4>Company Overview</h4><p>Federal-Mogul Holdings Corporation is an innovative and diversified $6.8 billion global supplier of quality products, trusted brands and creative solutions to manufacturers of automotive, light commercial, heavy-duty and off-highway vehicles, as well as in power generation, aerospace, marine, rail and industrial. </p><p>Federal-Mogul operates with two business divisions, each with a chief executive officer reporting to Federal-Mogulâs Board of Directors.  Federal-Mogul Powertrain focuses on original equipment powertrain products for automotive, heavy-duty and industrial applications. Federal-Mogul Motorparts sells and distributes a broad portfolio of products in the global vehicle aftermarket, while also serving original equipment (OE/OES) manufacturers with vehicle products including brake friction, chassis, wipers and other components. </p><p>For more than a century, Federal-Mogul has developed the innovative products our customers need to produce the next generation of vehicles. The company continues to develop innovations to improve fuel economy, reduce emissions and enhance durability through global engineering, manufacturing, distribution and customer service programs.  Federal-Mogul is the preferred partner for its global customers.</p>
+
+
+######################################################INTERNAL lANDING PAGE#############################################
+
+
+# FederalMogul Landing Page Templates
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='InternalLandingPageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+;CompanySection;;;wide
+;InternalContentSection;;;wide
+;FMBrandstrip;;;wide
+;Footer;;;footer
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);currentPosition
+;;SiteLogoSlot;Default Site Logo Slot;true;SiteLogoComponent
+;;HomepageNavLinkSlot;Default Homepage Link;true
+;;HeaderLinksSlot;Header links;true
+;;SearchBoxSlot;Search Box;true;SearchBox
+;;MiniCartSlot;Mini Cart;true;MiniCart
+;;CompanySectionSlot;Company Section;true;CompanyInfo2,CultureDiversity;CompanySection
+#;;InternalContentSectionSlot2;Internal Content Section;true;;InternalContentSection
+;;NavigationBarSlot;Navigation Bar;true;eStoreHeaderNavBarComponent,catalogHeaderNavBarComponent,LearningHeaderNavBarComponent,SupportHeaderNavBarComponent,AboutUsHeaderNavBarComponent,FMSearchBox;NavigationBar
+;;FMBrandstripSlot;FederalMogul BrandStrip;true;wangerBrake,wangerLighting,champion,felPro,sealedPower,fpDiesel,speedPro;FMBrandstrip
+#;;FooterSlot;footer;true;FMFooterComponent,Facebook,Google,Linkedin,Twitter,FMExtendedFooterComponent;Footer
+
+
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;&pageRef;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='true']
+;;InternalLandingPage;Internal Landing Page;fmInternalLandingPage;InternalLandingPageTemplate;fmInternalLandingPage;;;;
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='InternalLandingPage'];contentSlot(uid,$contentCV)[unique=true]
+
+;;CompanySectionSlot-InternalLandingPage;CompanySection;;CompanySectionSlot
+
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV;uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='InternalLandingPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-InternalLandingPage;SiteLogo;;SiteLogoSlot;true
+;;HomepageLink-InternalLandingPage;HomepageNavLink;;HomepageNavLinkSlot;true
+;;HeaderLinks-InternalLandingPage;HeaderLinks;;HeaderLinksSlot;true
+;;SearchBox-InternalLandingPage;SearchBox;;SearchBoxSlot;true
+;;MiniCart-InternalLandingPage;MiniCart;;MiniCartSlot;true
+;;NavigationBar-InternalLandingPage;NavigationBar;;NavigationBarSlot;true
+;;FMBrandstripSlot-InternalLandingPage;FMBrandstrip;;FMBrandstripSlot;true
+;;Footer-InternalLandingPage;Footer;;FooterSlot;true
+
+
+#######################################################Part Interchange Landing Page#############################################
+
+# FederalMogul Landing Page Templates
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='PartInterchangePageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+;PartInterchangeSection;;;wide
+;FMBrandstrip;;;wide
+;Footer;;;footer
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef);currentPosition
+;;SiteLogoSlot;Default Site Logo Slot;true;SiteLogoComponent
+;;HomepageNavLinkSlot;Default Homepage Link;true
+;;HeaderLinksSlot;Header links;true
+;;SearchBoxSlot;Search Box;true;SearchBox
+;;MiniCartSlot;Mini Cart;true;MiniCart
+;;PartInterchangePageSection;Part Interchange Section;true;;PartInterchangeSection
+;;NavigationBarSlot;Navigation Bar;true;eStoreHeaderNavBarComponent,catalogHeaderNavBarComponent,LearningHeaderNavBarComponent,SupportHeaderNavBarComponent,AboutUsHeaderNavBarComponent,FMSearchBox;NavigationBar
+;;FMBrandstripSlot;FederalMogul BrandStrip;true;abex,anco,champion,felpro,fpdiesel,moog,sealedPower1,speedpro1,wagnerbrake,wagnerlighting;FMBrandstrip
+
+
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;&pageRef;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='true']
+;;PartInterchangeLandingPage;Part Interchange Landing Page;partInterchangePage;PartInterchangePageTemplate;partInterchangePage;;;;
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='PartInterchangeLandingPage'];contentSlot(uid,$contentCV)[unique=true]
+;;PartInterchangePageSection-LandingPage;PartInterchangeSection;;PartInterchangePageSection
+
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV;uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='PartInterchangePageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-PartInterchangeLandingPage;SiteLogo;;SiteLogoSlot;true
+;;HomepageLink-PartInterchangeLandingPage;HomepageNavLink;;HomepageNavLinkSlot;true
+;;HeaderLinks-PartInterchangeLandingPage;HeaderLinks;;HeaderLinksSlot;true
+;;SearchBox-PartInterchangeLandingPage;SearchBox;;SearchBoxSlot;true
+;;MiniCart-PartInterchangeLandingPage;MiniCart;;MiniCartSlot;true
+;;NavigationBar-PartInterchangeLandingPage;NavigationBar;;NavigationBarSlot;true
+;;FMBrandstripSlot-PartInterchangeLandingPage;FMBrandstrip;;FMBrandstripSlot;true
+;;Footer-PartInterchangeLandingPage;Footer;;FooterSlot;true

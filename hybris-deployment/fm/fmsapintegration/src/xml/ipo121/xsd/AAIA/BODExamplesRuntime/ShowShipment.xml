@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Automotive Aftermarket Industry Association (AAIA)
+	http://www.aftermarket.org
+	Internet Parts Ordering (IPO) Release 1.2.1, March 1, 2005
+	Business Object Document (BOD) Example
+	
+	Overlay for: 
+	Open Applications Group (http://www.openapplications.org)
+	OAGIS Release 8.0, 	April 05, 2002
+	
+	Name:		ShowShipment.xml (Runtime Version)
+	Comments:	The default name space is OAGIS. Therefore all AAIA elements require the aaia: prefix.
+				This example is identical to the full overylay example with the exception of the schema location.
+-->
+<aaia:ShowShipment xmlns="http://www.openapplications.org/oagis" xmlns:aaia="http://www.aftermarket.org/oagis" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.aftermarket.org/oagis ../Runtime/ShowShipment.xsd" revision="1.2.1" environment="Production" lang="en">
+	<!-- The ApplicationArea identifies the document and the sender.  -->
+	<ApplicationArea>
+		<Sender>
+			<ReferenceId>W0013</ReferenceId>
+			<Confirmation>1</Confirmation>
+		</Sender>
+		<CreationDateTime>2003-09-10T17:44:00-06:00</CreationDateTime>
+		<BODId>SH934</BODId>
+	</ApplicationArea>
+	<!-- The DataArea Header contains information that applies to the entire shipment. -->
+	<DataArea>
+		<Show confirm="Always"/>
+		<Shipment>
+			<Header>
+				<!-- These Header fields match the shipment to the buyer’s order. -->
+				<AlternateDocumentIds>
+					<CustomerDocumentId>
+						<Id>SO 3357</Id>
+					</CustomerDocumentId>
+					<SupplierDocumentId>
+						<Id>PO 11347</Id>
+						<Revision>002</Revision>
+					</SupplierDocumentId>
+				</AlternateDocumentIds>
+				<DocumentDate>2003-09-10T23:25:00Z</DocumentDate>
+				<LastModificationDateTime>2003-09-10T23:29:10Z</LastModificationDateTime>
+				<!-- These Header fields describe the shipment, shipping method, and associated charges. -->
+				<PartialShipmentInd>1</PartialShipmentInd>
+				<ShipUnitQuantity uom="box2">2</ShipUnitQuantity>
+				<TotalWeight uom="LB">41.7</TotalWeight>
+				<TransportationMethod>UPS</TransportationMethod>
+				<TransportationTerm>
+					<TermCode issuingAgency="ICC">FOB</TermCode>
+					<PlaceOfOwnershipTransfer>
+						<Description lang="en">OUR DOCK</Description>
+					</PlaceOfOwnershipTransfer>
+					<FreightTerms>prepaid</FreightTerms>
+				</TransportationTerm>
+				<!-- These Header fields match of the shipment to the buyer’s original RFQ and associated quote. -->
+				<DocumentReferences>
+					<RFQDocumentReference>
+						<DocumentIds>
+							<CustomerDocumentId>
+								<Id>RFQ3094</Id>
+							</CustomerDocumentId>
+						</DocumentIds>
+					</RFQDocumentReference>
+					<QuoteDocumentReference>
+						<DocumentIds>
+							<SupplierDocumentId>
+								<Id>Q04931</Id>
+							</SupplierDocumentId>
+						</DocumentIds>
+					</QuoteDocumentReference>
+				</DocumentReferences>
+				<CarrierServiceLevel>NEXT DAY AIR SAVER</CarrierServiceLevel>
+				<TotalAmount currency="USD">29.55</TotalAmount>
+				<FreightCost currency="USD">17.55</FreightCost>
+				<NeedDeliveryDateTime>2003-09-12T10:10:10Z</NeedDeliveryDateTime>
+				<PromisedDeliveryDateTime>2003-09-10T10:10:10Z</PromisedDeliveryDateTime>
+				<PromisedShipDateTime>2003-09-11T10:10:10Z</PromisedShipDateTime>
+				<!-- These Header fields describe each of the parties who are involved in the transaction. -->
+				<Parties>
+					<ShipToParty>
+						<PartyId>
+							<Id>TMA0003</Id>
+						</PartyId>
+						<Name lang="en">T&amp;M Amoco</Name>
+						<Addresses>
+							<Address>
+								<AddressLine>5035 Touhy Amoco</AddressLine>
+								<City>Skokie</City>
+								<StateOrProvince>IL</StateOrProvince>
+								<Country>US</Country>
+								<PostalCode>60077</PostalCode>
+								<Telephone>(847) 679-3515</Telephone>
+							</Address>
+						</Addresses>
+						<Contacts>
+							<Contact>
+								<Person>
+									<PersonName>
+										<GivenName>Mike</GivenName>
+									</PersonName>
+								</Person>
+							</Contact>
+						</Contacts>
+					</ShipToParty>
+					<ShipFromParty active="1" oneTime="0">
+						<PartyId>
+							<Id>CQ1004</Id>
+						</PartyId>
+						<Name lang="en">Carrquest Auto Parts</Name>
+						<Addresses>
+							<Address>
+								<AddressLine>4911 Dempster</AddressLine>
+								<City>Skokie</City>
+								<StateOrProvince>IL</StateOrProvince>
+								<Country>US</Country>
+								<PostalCode>60077</PostalCode>
+								<Telephone>847 575 4010</Telephone>
+							</Address>
+						</Addresses>
+					</ShipFromParty>
+					<aaia:HostParty>
+						<PartyId>
+							<Id>12345</Id>
+						</PartyId>
+					</aaia:HostParty>
+				</Parties>
+			</Header>
+			<!-- These lines identify the first ShipUnit. -->
+			<ShipUnit>
+				<ContainerType>BOX</ContainerType>
+				<ShippingTrackingId>D103-4700-928</ShippingTrackingId>
+				<ShipUnitSequence>1</ShipUnitSequence>
+				<ShipUnitTotalId>2</ShipUnitTotalId>
+				<HazardousMaterial>
+					<Code>1</Code>
+				</HazardousMaterial>
+				<!-- These lines describe the contents of the first ShipUnit, a case of penetrating oil in this example. -->
+				<aaia:ShipmentInventoryItem>
+					<aaia:ItemIds>
+						<CustomerItemId>
+							<Id>L112</Id>
+						</CustomerItemId>
+					</aaia:ItemIds>
+					<ItemQuantity uom="each">7</ItemQuantity>
+					<ExtendedPrice currency="USD">13.79</ExtendedPrice>
+					<ItemAmount currency="USD">1.97</ItemAmount>
+					<HazardousMaterial>
+						<Code>1</Code>
+					</HazardousMaterial>
+					<ItemDescription>LIQUIE WRENCH PENETRANT 11OZ</ItemDescription>
+					<aaia:PartialShipmentInd>1</aaia:PartialShipmentInd>
+					<aaia:BackOrderedQuantity uom="each">5</aaia:BackOrderedQuantity>
+					<aaia:OrderQuantity uom="Case12">1</aaia:OrderQuantity>
+				</aaia:ShipmentInventoryItem>
+			</ShipUnit>
+			<!-- These lines identify the second ShipUnit, a package containing three different tools. -->
+			<ShipUnit>
+				<ContainerType>BOX</ContainerType>
+				<ShippingTrackingId>D121-0583-741</ShippingTrackingId>
+				<ShipUnitSequence>2</ShipUnitSequence>
+				<ShipUnitTotalId>2</ShipUnitTotalId>
+				<!-- These lines describe the contents of the second ShipUnit. -->
+				<aaia:ShipmentInventoryItem>
+					<ItemIds>
+						<CustomerItemId>
+							<Id>EQ3110</Id>
+						</CustomerItemId>
+					</ItemIds>
+					<ItemQuantity uom="each">1</ItemQuantity>
+					<ExtendedPrice currency="USD">129.00</ExtendedPrice>
+					<ItemAmount currency="USD">129.00</ItemAmount>
+					<ItemDescription>EQUUS OBD II CODE READER</ItemDescription>
+					<aaia:OrderQuantity uom="EACH">1</aaia:OrderQuantity>
+				</aaia:ShipmentInventoryItem>
+				<aaia:ShipmentInventoryItem>
+					<ItemIds>
+						<CustomerItemId>
+							<Id>W80153</Id>
+						</CustomerItemId>
+					</ItemIds>
+					<ItemQuantity uom="each">1</ItemQuantity>
+					<ExtendedPrice currency="USD">19.99</ExtendedPrice>
+					<ItemAmount currency="USD">19.99</ItemAmount>
+					<ItemDescription>WILMAR DIGITAL MICROMETER</ItemDescription>
+					<aaia:OrderQuantity uom="each">1</aaia:OrderQuantity>
+				</aaia:ShipmentInventoryItem>
+				<aaia:ShipmentInventoryItem>
+					<ItemIds>
+						<CustomerItemId>
+							<Id>CP7678</Id>
+						</CustomerItemId>
+					</ItemIds>
+					<ItemQuantity uom="each">1</ItemQuantity>
+					<ExtendedPrice currency="USD">79.28</ExtendedPrice>
+					<ItemAmount currency="USD">79.28</ItemAmount>
+					<ItemDescription>ACTRON ENGINE ANALYZER</ItemDescription>
+					<aaia:OrderQuantity uom="EACH">1</aaia:OrderQuantity>
+				</aaia:ShipmentInventoryItem>
+			</ShipUnit>
+		</Shipment>
+	</DataArea>
+</aaia:ShowShipment>

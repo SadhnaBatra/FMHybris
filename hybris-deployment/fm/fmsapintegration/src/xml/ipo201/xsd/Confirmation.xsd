@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.aaiasoa.net/IPOv2" xmlns:cmn="http://www.aaiasoa.net/IPOv2/Common" targetNamespace="http://www.aaiasoa.net/IPOv2">
+	<xs:import namespace="http://www.aaiasoa.net/IPOv2/Common" schemaLocation="BaseSchemas/IPOv2Common.xsd"/>
+	<xs:include schemaLocation="BaseSchemas/Confirm.xsd"/>
+	<xs:element name="ConfirmSenderType" type="ConfirmSenderType"/>
+	<xs:complexType name="ConfirmSenderType">
+		<xs:sequence>
+			<xs:element name="ReferenceId" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>This element contains the GUID of the referenced document, providing an audit trail back to the original message.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Confirmation" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>This element contains a "1" if the trading partners are using either asynchronous communication with confirmation or synchronous communication with delayed response. The value should be "0" if trading partners are using asynchronous communication without confirmation or synchronous communication with immediate response - OR - when the element is present in a Confirmation document.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Confirmation" type="Confirmation"/>
+	<xs:complexType name="Confirmation">
+		<xs:sequence>
+			<xs:element name="ApplicationArea" type="ConfirmApplicationAreaType"/>
+			<xs:element name="DataArea" type="ConfirmationDataAreaType"/>
+		</xs:sequence>
+		<xs:attribute name="environment" type="cmn:EnvironmentEnum" use="optional"/>
+	</xs:complexType>
+	<xs:element name="ConfirmationDataAreaType" type="ConfirmationDataAreaType"/>
+	<xs:complexType name="ConfirmationDataAreaType">
+		<xs:sequence>
+			<xs:element name="Confirm" type="Confirm"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ConfirmApplicationAreaType" type="ConfirmApplicationAreaType"/>
+	<xs:complexType name="ConfirmApplicationAreaType">
+		<xs:sequence>
+			<xs:element name="Sender" type="ConfirmSenderType"/>
+			<xs:element name="CreationDateTime" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>The date and time when the document instance was created and sent, which is not necessarily identical to when the message content was created on the host application. It is formatted in the ISO 8601 extended format of YYYY-MM-DDThh:mm:ss followed by the difference between the local time and Coordinated Universal Time (UTC) represented as ±hh:mm, or the letter Z if the local time is identical to UTC. For example, to indicate 2:45 pm on August 18, 2003 for Central Standard Time, which is 6 hours behind UTC (formerly known as Greenwich Mean Time).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DocumentGUID" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>A Globally Unique Identifier (GUID) that makes each document instance uniquely identifiable. This is necessary to create legally binding transactions, to enable transaction logging and exception handling, and facilitate re-sending and receipt confirmation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

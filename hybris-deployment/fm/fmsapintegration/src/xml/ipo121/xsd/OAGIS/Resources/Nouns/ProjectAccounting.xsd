@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/ProjectAccounting.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Components.xsd"/>
+        <xs:complexType name="ProjectAccounting">
+                <xs:complexContent>
+                        <xs:extension base="Project"/>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:element name="ProjectAccounting" type="ProjectAccounting" substitutionGroup="Noun">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">This is used to enable all relevant sub-systems that submit single sided transactions to send information to a Project Accounting Application. This would include, but not necessarily be limited to: Accounts Payable, Accounts Receivable, Budget, Order Management, Purchasing, Time and Labor, Travel and Expense.
+
+ProjectAccounting is a synonym for Project, and the LoadProjectAccounting BOD has the effect of populating the Project's TotalCost field or the ProjectActivities' Cost fields.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+</xs:schema>

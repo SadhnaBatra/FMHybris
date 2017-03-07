@@ -1,0 +1,24 @@
+@charset "utf-8";
+/* ======================================
+    Support for Deprecated Versions of IE
+========================================= */
+/* IE8 */
+
+#header input.text {
+    padding-bottom: 4px;
+}
+
+#header button.button {
+    padding: 3px 12px 2px 12px;
+    width: 35px;
+}
+
+.opaque {
+    filter: alpha(opacity = 40);
+    zoom: 1;
+    /* BA 25/05/2011 To trigger "hasLayout" in IE if no width or height is set */
+} 
+
+.span-4.last .scroller h2 {
+    width: 116px;
+}

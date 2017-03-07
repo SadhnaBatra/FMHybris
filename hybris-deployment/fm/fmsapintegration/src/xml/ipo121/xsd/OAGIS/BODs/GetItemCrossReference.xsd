@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: GetItemCrossReference.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Resources/Verbs/Get.xsd"/>
+        <xs:include schemaLocation="../Resources/Nouns/ItemCrossReference.xsd"/>
+        <xs:element name="GetItemCrossReference" type="GetItemCrossReference">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The purpose of the GetItemCrossReference is to enable a business application module or system to request information concerning an Item cross-reference. Cross-references may be to other item identifiers to the same form fit and function, as well as references to item identifiers of other items (form fit and function).  In this document item relationships is used to refer to where the "to item" identifier, identifies a different form, fit and function to the "from item" identifier.  It should be noted that the item identifier that is "Primary" in one system may be a secondary identifier in another system.
+  
+For example, in the Application Integration space, the manufacturing system may regard the "Item Number" as the primary identifier.  The Order Management System may regard the Catalog number as the primary identifier. A company that manufacture hand held multi-meters may identify a given item in manufacturing with a 12 digit numeric code, 5432 123 12345.  The marketing and sales department may refer to the same item by it’s catalog number of FL 30/4.
+
+In the Business to Business case a supplier of hand held multi-meters may market their products through a catalog provider.  The supplier has an item identifier with a corresponding party specific cross reference to the catalog providers identifier for the same item.  The catalog provider has a item identifier for hand held multi-meters and a corresponding party specific cross reference to the suppliers item number.
+
+This BOD may be necessary to address Manufacturers, Distributor Resellers business ordering scenarios in a Order Management to Manufacturing application integration scenario.  It may also be necessary to address Component Supplier Management scenarios.  
+
+There are many possible business applications in several environments that may use this capability. For example, a PDM, MRP, Inventory, or Manufacturing business application could use this to communicate the requirement to synchronize an Item cross-reference.  Item cross-references may be specific to a given party.  Examples may include, (but are not limited to):
+·	Customers
+·	Suppliers
+·	Manufacturers
+·	Carriers
+·	Standards Associations
+
+Party specific cross-references include:
+·	Customer Part Number
+·	Supplier Part Number
+·	Manufacturers Part Number
+
+Cross-reference types may also be universal.  Universal item cross-reference types may include, (but are not limited to)
+·	Universal Packaging Code (UPC)
+·	European Article Number (EAN)
+·	Harmonized Schedule B number
+·	GTIN Number
+·	ISBN Number for Books
+
+The BOD may be used to relate item identifiers for item identifiers that identify different items (form fit and function).  The Relationship types may also be universal.  Universal item relationship types may include, (but are not limited to)
+·	Accessories
+·	Spares
+·	Consumables
+
+An example of this in a business to business context might be a customer letting a supplier know the valid substitutes that a supplier may supply to fulfill an order for a specific item number.  An example of this in a application integration context might be between a Product Data Management (PDM) system and an Order Management system for accessories that may be offered to a customer with the sales of a major item.  For example, if a designers of a video camera, have designed it to work with the following accessories;
+·	tripod, 
+·	extended life battery pack
+·	external microphone
+·	Head Cleaner
+
+The video camera may be designed to have the following spares replaced by the consumer
+·	Lens Cover
+·	Strap
+·	Handle
+
+The video camera may need the following consumable items on a recurring basis
+·	Video Cassettes
+·	Batteries
+·	Lens Cleaners
+the relationship between these items and the video camera may need to  represented to the Customer in Web Based ordering or Customer Service Rep (CSR), in desk based order entry.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="GetItemCrossReference">
+                <xs:complexContent>
+                        <xs:extension base="BusinessObjectDocument">
+                                <xs:sequence>
+                                        <xs:element name="DataArea" type="GetItemCrossReferenceDataArea">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is where the information that the BOD message carries is provided, in this case GetItemCrossReference. The information consists of a Verb and one or more Nouns. The verb (Get) indicates the action to be performed on the Noun (ItemCrossReference).</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="GetItemCrossReferenceDataArea">
+                <xs:complexContent>
+                        <xs:extension base="DataArea">
+                                <xs:sequence>
+                                        <xs:element ref="Get"/>
+                                        <xs:element ref="ItemCrossReference" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+</xs:schema>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/Credit.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Components.xsd"/>
+        <xs:complexType name="Credit">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The receiver of this BOD is always the credit management function.  If the sender is the accounts receivable application, the OpenItemAmount is the only required amount field.  When the sender is the customer order management application, the OrderAmount is the only required amount field</xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                        <xs:extension base="Noun">
+                                <xs:sequence>
+                                        <xs:element name="OpenItemAmounts" type="Amounts" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the total orders invoiced yet still considered open items in the receivables balance.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="OrderAmounts" type="Amounts" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the total of the sales order that is typically used to compare against a credit limit during credit checking.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="ApprovedOrderAmounts" type="Amounts" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the total amount of orders approved but not yet invoiced.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="AvailableAmounts" type="Amounts" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the credit amount available for a trading partner to make an additional order against.  This amount is typically a combination of orders approved but not yet invoiced and orders invoiced yet still considered open items in the receivables balance.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="OrderLimitAmounts" type="Amounts" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the credit limit of a single sales order used during credit checking.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="TotalCreditLimitAmounts" type="Amounts" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the total credit limit for a trading partner used during credit checking.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="DocumentDateTime" type="DateTime" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the timestamp in which the document was credit.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="EffectiveDateTime" type="DateTime" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Defines the date and time when a particular document or item takes effect or becomes valid.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="GLEntity" type="GLEntity" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the primary balancing segment of the GL Account structure.  Typically, this is the owning entity for the transaction.  A G/L entity is the smallest organizational unit for which individual financial statements must be drawn up according to relevant commercial law.  P&amp;L statements are required at this level. </xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element ref="Status" minOccurs="0"/>
+                                        <xs:element name="Approve" type="Indicator" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates whether an order has passed the credit checking criteria.
+Valid values are: 
+false = Order does not meet the accounts receivable application approval criteria. 
+
+true = Order meets the accounts receivable application approval criteria.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is a free-form description of the transaction or any portion of the transaction.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="Ledger" type="Id" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the financial ledger to be used when updating balances.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element ref="DocumentReferences" minOccurs="0"/>
+                                        <xs:element ref="Parties" minOccurs="0"/>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:element name="Credit" type="Credit" substitutionGroup="Noun">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Credit represents customer credit information, and is used in the context of credit checking new sales orders.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+</xs:schema>

@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Automotive Aftermarket Industry Association (AAIA)
+	http://www.aftermarket.org
+	Internet Parts Ordering (IPO) Release 1.2.1,  March 1, 2005
+	Business Object Document (BOD) Example
+	
+	Overlay for: 
+	Open Applications Group (http://www.openapplications.org)
+	OAGIS Release 8.0, 	April 05, 2002
+	
+	Name:		AddRequestForQuote.xml
+	Comments:	The default name space is OAGIS. Therefore all AAIA elements require the aaia: prefix.
+-->
+<aaia:AddRequestForQuote xmlns="http://www.openapplications.org/oagis" xmlns:aaia="http://www.aftermarket.org/oagis" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.aftermarket.org/oagis ../BODs/AddRequestForQuote.xsd" revision="1.2.1" environment="Production" lang="en">
+	<!-- The ApplicationArea identifies the document and the sender. -->
+	<ApplicationArea>
+		<Sender>
+			<ReferenceId>W0013</ReferenceId>
+			<Confirmation>1</Confirmation>
+		</Sender>
+		<CreationDateTime>2003-08-18T09:30:47-06:00</CreationDateTime>
+		<BODId>W0013</BODId>
+	</ApplicationArea>
+	<!--  The DataArea contains the business information to be processed by the receiver. -->
+	<DataArea>
+		<Add confirm="Always"/>
+		<RequestForQuote>
+			<!-- The DataArea Header contains information that applies to the entire request. -->
+			<aaia:Header>
+				<!-- These Header fields further identify the buyer’s RFQ. -->
+				<DocumentIds>
+					<CustomerDocumentId>
+						<Id>RFQ3094</Id>
+						<Revision>001</Revision>
+					</CustomerDocumentId>
+				</DocumentIds>
+				<LastModificationDateTime>2003-08-18T13:29:10Z</LastModificationDateTime>
+				<DocumentDateTime>2003-08-18T13:25:00Z</DocumentDateTime>
+				<!-- These Header fields explain how the request should be shipped. -->
+				<Note lang="en" author="mikeg" entryDateTime="2003-08-18T13:18:00Z">Send only unbroken packs!</Note>
+				<ShipNote lang="en" author="mikeg" entryDateTime="2003-08-18T13:29:10Z">Must ship today!</ShipNote>
+				<DropShipInd>0</DropShipInd>
+				<BackOrderedInd>1</BackOrderedInd>
+				<ShipPriorToDueDateInd>1</ShipPriorToDueDateInd>
+				<EarliestShipDate>2003-08-18</EarliestShipDate>
+				<NeedDeliveryDate>2003-08-19</NeedDeliveryDate>
+				<!-- These Header fields describe the buyer’s expectations about total cost of the order. -->
+				<ExtendedPrice currency="USD">204.53</ExtendedPrice>
+				<TotalAmount currency="USD">209.53</TotalAmount>
+				<!-- These Header fields describe the buyer’s expectations about freight and payment terms. -->
+				<TransportationTerm>
+					<TermCode issuingAgency="ICC">FOB</TermCode>
+					<PlaceOfOwnershipTransfer>
+						<Description lang="en" owner="mikeg">My shop</Description>
+					</PlaceOfOwnershipTransfer>
+					<FreightTerms>Prepaid</FreightTerms>
+				</TransportationTerm>
+				<aaia:PaymentTerms>
+					<TermId>Net 10</TermId>
+					<DueDate>2003-08-29</DueDate>
+					<aaia:PaymentMethod>Company Check</aaia:PaymentMethod>
+				</aaia:PaymentTerms>
+				<Charges>
+					<AdditionalCharge>
+						<Total currency="USD">0.00</Total>
+						<Description lang="en" owner="GO 2.3">Sales Tax</Description>
+					</AdditionalCharge>
+					<AdditionalCharge>
+						<Total currency="USD">5.00</Total>
+						<Description lang="en" owner="GO 2.3">Delivery</Description>
+					</AdditionalCharge>
+				</Charges>
+				<!-- These Header fields describe each of the parties who would be involved in the transaction. -->
+				<Parties>
+					<BillToParty>
+						<PartyId>
+							<Id>TMA0003</Id>
+						</PartyId>
+						<Name lang="en">T&amp;M Amoco</Name>
+						<TaxExemptInd>1</TaxExemptInd>
+						<TaxId>34-1039118</TaxId>
+						<Addresses>
+							<Address>
+								<AddressLine>P. O. Box 6308</AddressLine>
+								<City>Skokie</City>
+								<StateOrProvince>IL</StateOrProvince>
+								<Country>US</Country>
+								<PostalCode>60077</PostalCode>
+								<Telephone>(847) 677-2338</Telephone>
+							</Address>
+						</Addresses>
+						<Contacts>
+							<Contact>
+								<Person>
+									<PersonName>
+										<GivenName lang="en">Teresa</GivenName>
+										<FamilyName lang="en">Gidwitz</FamilyName>
+									</PersonName>
+								</Person>
+							</Contact>
+						</Contacts>
+					</BillToParty>
+					<ShipToParty>
+						<PartyId>
+							<Id>TMA0003</Id>
+						</PartyId>
+						<Name lang="en">T&amp;M Amoco</Name>
+						<Addresses>
+							<Address>
+								<AddressLine>5035 Touhy Avenue</AddressLine>
+								<City>Skokie</City>
+								<StateOrProvince>IL</StateOrProvince>
+								<Country>US</Country>
+								<PostalCode>60077</PostalCode>
+								<Telephone>(847) 679-3515</Telephone>
+							</Address>
+						</Addresses>
+						<Contacts>
+							<Contact>
+								<Person>
+									<PersonName>
+										<GivenName lang="en">Mike</GivenName>
+									</PersonName>
+								</Person>
+							</Contact>
+						</Contacts>
+					</ShipToParty>
+					<ShipFromParty active="1" oneTime="0">
+						<PartyId>
+							<Id>CQ1004</Id>
+						</PartyId>
+						<Name lang="en">Carquest Auto Parts</Name>
+						<Addresses>
+							<Address>
+								<AddressLine>4911 Dempster St</AddressLine>
+								<City>Skokie</City>
+								<StateOrProvince>IL</StateOrProvince>
+								<Country>US</Country>
+								<PostalCode>60077</PostalCode>
+								<Telephone>(847) 675-4010</Telephone>
+							</Address>
+						</Addresses>
+					</ShipFromParty>
+					<aaia:HostParty>
+						<PartyId>
+							<Id>12345</Id>
+						</PartyId>
+					</aaia:HostParty>
+				</Parties>
+				<!-- These Header fields describe the vehicle for which the parts are requested, if applicable. -->
+				<aaia:Vehicle>
+					<aaia:VehicleId>
+						<aaia:VIN>AB1234567890CD</aaia:VIN>
+					</aaia:VehicleId>
+					<aaia:Year>2005</aaia:Year>
+					<aaia:Make lang="en">Ford</aaia:Make>
+					<aaia:Model lang="en">Explorer</aaia:Model>
+					<aaia:SubModel>XLT</aaia:SubModel>
+					<aaia:Doors>4</aaia:Doors>
+					<aaia:ExteriorColorCode>BLK01</aaia:ExteriorColorCode>
+					<aaia:BodyStyle>Uniframe</aaia:BodyStyle>
+					<aaia:Engine>
+						<aaia:ConfigId>123456</aaia:ConfigId>
+						<aaia:BlockType>V</aaia:BlockType>
+						<aaia:Cylinders>8</aaia:Cylinders>
+						<aaia:Displacement uom="Liters">4.0</aaia:Displacement>
+						<aaia:FuelDelivery>Injected</aaia:FuelDelivery>
+						<aaia:Aspiration>None</aaia:Aspiration>
+					</aaia:Engine>
+					<aaia:FuelType>Unleaded</aaia:FuelType>
+					<aaia:Transmission>Automatic</aaia:Transmission>
+					<aaia:DriveType>4WD</aaia:DriveType>
+					<Note>Only the VIN is available at this time for this vehicle</Note>
+				</aaia:Vehicle>
+			</aaia:Header>
+			<!-- Each DataArea Line describes an item being requested. These fields describe the first item. -->
+			<aaia:Line>
+				<LineNumber>1</LineNumber>
+				<OrderItem>
+					<aaia:ItemIds>
+						<CustomerItemId>
+							<Id>1234</Id>
+						</CustomerItemId>
+						<aaia:SupplierItemId>
+							<Id>P40022</Id>
+						</aaia:SupplierItemId>
+						<aaia:ManufacturerItemId>
+							<Id>F5TZ19712A</Id>
+						</aaia:ManufacturerItemId>
+					</aaia:ItemIds>
+					<ItemCategoryId>13-104-6708</ItemCategoryId>
+					<ItemType>AC Condenser and Evaporator</ItemType>
+					<Description lang="en">A/C CONDENSER</Description>
+					<FeatureValue>
+						<NameValue name="af">afds</NameValue>
+						<Description>dafdsaf</Description>
+						<Note>afdsaf</Note>
+					</FeatureValue>
+				</OrderItem>
+				<OrderQuantity uom="Each">1</OrderQuantity>
+				<UnitPrice>
+					<Amount currency="USD">135.58</Amount>
+					<PerQuantity uom="Each">1</PerQuantity>
+				</UnitPrice>
+				<aaia:Vehicle>
+					<aaia:VehicleId>
+						<aaia:VIN>AB1234567890CD</aaia:VIN>
+					</aaia:VehicleId>
+				</aaia:Vehicle>
+			</aaia:Line>
+			<!-- These fields describe the second item. -->
+			<aaia:Line>
+				<LineNumber>2</LineNumber>
+				<OrderItem>
+					<aaia:ItemIds>
+						<CustomerItemId>
+							<Id>1234</Id>
+						</CustomerItemId>
+						<aaia:SupplierItemId>
+							<Id>20-3101-00</Id>
+						</aaia:SupplierItemId>
+						<aaia:ManufacturerItemId>
+							<Id>F5TZ13008B</Id>
+						</aaia:ManufacturerItemId>
+					</aaia:ItemIds>
+					<ItemCategoryId>7-180-2796</ItemCategoryId>
+					<ItemType>Lighting - Exterior</ItemType>
+					<Description lang="en">HEADLIGHT ASSY LH (DRIVER SIDE)</Description>
+				</OrderItem>
+				<OrderQuantity uom="Each">1</OrderQuantity>
+				<UnitPrice>
+					<Amount currency="USD">68.95</Amount>
+					<PerQuantity uom="Each">1</PerQuantity>
+				</UnitPrice>
+			</aaia:Line>
+		</RequestForQuote>
+	</DataArea>
+</aaia:AddRequestForQuote>

@@ -1,0 +1,318 @@
+/* =====================
+    Marketing
+======================== */
+
+/* Emulate Account Landing */
+.emulateAccount {
+    padding:0 0 5rem 0; 
+    border-bottom:1px solid @grey-lighter; 
+    border-bottom:0.1rem solid @grey-lighter;
+
+    h3 {
+        background-color: @grey-light;
+        padding: 10px 15px;
+        padding: 1rem 1.5rem;
+    }
+    .insightPanel {
+        margin-bottom:0;
+    }
+    .tab-content {
+        background-color: @grey-light;
+        padding: 15px;
+        padding: 1.5rem;
+        margin-top:-1px;
+    }
+    .userTable > table > tbody > tr > td{
+        background:@white;
+    }
+}
+
+/* Emulate Account Tabs */
+.ui-group-buttons {
+    display:inline-block;
+    vertical-align:middle;
+    &:after{
+        content:".";
+        display:block;
+        height:0;
+        clear:both;
+        visibility:hidden;
+    }
+    .btn {
+        float:left;
+        border-radius:0;
+        &:first-child {
+            margin-left:0;
+            border-top-left-radius:.25em;
+            border-bottom-left-radius:.25em;
+            padding-right:15px; 
+            padding-right:1.5rem;
+        }
+        &:last-child {
+            border-top-right-radius:.25em;
+            border-bottom-right-radius:.25em;
+            padding-left:15px;
+            padding-right:1.5rem;
+        }
+    }
+    .or {
+        position:relative;
+        float:left;
+        width:0.3em;
+        height:1.3em;
+        z-index:3;
+        font-size:12px; 
+        font-size:1.2rem;
+        &:after{
+            position:absolute;
+            top:0;
+            left:0;
+            content:' ';
+            width:.3em;
+            height:2.84em;
+            background-color:rgba(0,0,0,0);
+            border-top:.6em solid #5a5a5a;
+            border-bottom:.6em solid #5a5a5a;
+        }
+        &:before {
+            position:absolute;
+            top:50%;
+            left:50%;
+            content:'OR';
+            background-color:#5a5a5a;
+            margin-top:-.1em;
+            margin-left:-.9em;
+            width:1.8em;
+            height:1.8em;
+            line-height:2;
+            color:@white;
+            font-style:normal;
+            font-weight:400;
+            text-align:center;
+            border-radius:500px;
+            box-shadow:0 0 0 1px rgba(0,0,0,0.1);
+            box-sizing:border-box;
+        }
+    }
+
+}
+
+#accountNumberResult .userTable > table > tbody > tr:last-child > td,
+.userSearchTable .userTable > table > tbody > tr:last-child > td,
+.accountSearchTable .userTable > table > tbody > tr:last-child > td{border-bottom: none;}
+
+/* 
+    File Download
+===================== */
+fileDownloadTable > table > tbody > tr > td{
+    border-bottom:none;
+    border-top:none;
+    font-size: 14px;
+    font-size: 1.4rem;
+}
+
+.fileDownloadTbody .emptyRow td{
+    padding-top:0; padding-bottom:0; 
+    height: 25px; height: 2.5rem;
+}
+
+.fileDownloadPanel{
+    padding: 15px 20px 15px 25px;
+    padding: 1.5rem 2.0rem 1.5rem 2.5rem;
+    background:@white;
+}
+
+
+.fileDownloadSubHeading{
+    font-size: 12px;
+    font-size: 1.2rem;
+    padding:0;
+    margin-bottom: 15px;
+    margin-bottom: 1.5rem;
+}
+
+.fileDownloadSubHright{
+    font-size: 12px;
+    font-size: 1.2rem;
+}
+@media (max-width: 640px) {
+    .fileDownloadSubHright{padding:0;}  
+}
+.fileDownloadPanel .table{
+    margin-bottom: 74px;
+    margin-bottom: 7.4rem;
+}
+
+.fileDownloadHeading{
+    margin-top: 9px;
+    margin-top: 0.9rem;
+    margin-bottom: 14px;
+    margin-bottom: 1.4rem;
+}
+
+.fileDownloadSubHLeft{
+    margin-bottom: 8px;
+    margin-bottom: 0.8rem;
+}
+
+.fileDownloadThead{
+    border-bottom: 1px solid @grey-light;
+    border-bottom: 0.1rem solid @grey-light;
+}
+
+.fileDownloadPage{
+    background:@grey-lighter;
+}
+
+
+/*
+    Learning Panel 
+===================== */
+.learningPanel {
+    margin-top: 20px;
+    margin-top: 2rem; 
+    margin-bottom:56px;
+    margin-bottom:5.6rem;
+    .learningPanelTitle { 
+        margin:15px 0 14px; 
+        margin:1.5rem 0 1.4rem;
+    }
+    .panel-body {
+        box-sizing:content-box;
+    }
+    .panel-heading {
+        padding: 0;
+        h3 {
+            color:@grey-dark; 
+            font-size: 22px; 
+            font-size:2.2rem; 
+        }
+    }
+    .panel-title a {
+        background:none;
+        border-radius: 0;
+    }
+}
+
+.learningPanel .viewall a, 
+.insightPanelTitle .viewall a, 
+.trainingPanelTitle .viewall a, 
+.rewardsPanel .viewall a {
+    color: @blue; 
+}
+
+/*
+    Insight Panel 
+=================== */
+.insightPanel {
+    margin-top: 20px;
+    margin-top: 2rem; 
+    margin-bottom: 63px; 
+    margin-bottom: 6.3rem; 
+    .insightPanelTitle {
+        margin: 15px 0 14px;
+        margin: 1.5rem 0 1.4rem;
+    }
+    .panel-body {
+        box-sizing: content-box;
+    }
+    .panel-heading {
+        padding: 0;
+        h3 {
+            color:@grey-dark; 
+            font-size: 22px; 
+            font-size:2.2rem;    
+        }
+    }
+    .panel-title a {
+        background: none;
+        border-radius: 0;
+    }
+    .thumbnail {
+        border: 0;
+        padding: 0;
+    }
+}
+
+/*
+    Training Panel 
+=================== */
+.trainingPanel {
+    margin-top: 20px; margin-bottom: 63px; 
+    margin-top: 2rem; margin-bottom: 6.3rem; 
+    .panel-body{
+        box-sizing:content-box;
+    }
+    
+    .panel-heading {
+        padding:0;
+
+        h3 {
+            color: @grey-dark;
+            font-size: 22px;
+            font-size: 2.2rem;
+        }
+    }
+    .panel-title a {
+        background:none;
+        border-radius: 0;
+    }
+    .thumbnail { 
+        border:0; 
+        padding:0;
+    }
+    .trainingPanelTitle { 
+        margin:15px 0 14px; 
+        margin:1.5rem 0 1.4rem;
+    }
+}
+
+/* 
+    Troubleshooting Panel
+========================== */
+.panelTroubleShoot{
+    border-radius: 0; border:0;
+    .btn { margin-bottom: 5px; margin-bottom: 0.5rem; margin-top: 9px; margin-top: 0.9rem;}
+    .thumbnail{padding:0; border-radius:0; border:0;}
+    .thmbDesc{padding: 17px 0;padding: 1.7rem 0; min-height:70px; min-height:7rem;} 
+}
+  
+@media screen and (max-width: @bp_tablet_max) {
+    .panelTroubleShoot,.signupAndRegisterPanel {
+        margin-top: 20px; margin-top: 2rem;
+    }
+}
+@media screen and (max-width: @bp_mobile_max) {
+    .panelTroubleShoot {
+        margin-top: 10px; margin-top: 1rem;
+        .panel-body {
+            padding: 10px; padding:1rem;
+        }
+        .thmbDesc {
+            padding: 0;
+        }
+    }
+}
+@media screen and (max-width: @bp_small_mobile_max) {
+  .panelTroubleShoot{margin-top:20px;margin-top:2rem;}
+}
+
+/* 
+    Join Mailing 
+================== */
+.joinMailing {
+   background: @black none repeat scroll 0 0;
+   padding: 15px;
+}
+
+.joinMailingText {
+   color: @white;
+   font-size: 20px;
+   font-size: 2rem;
+   padding-right: 25px;
+}
+
+.joinMailingListBtn {
+   margin-top: -10px;
+}
+

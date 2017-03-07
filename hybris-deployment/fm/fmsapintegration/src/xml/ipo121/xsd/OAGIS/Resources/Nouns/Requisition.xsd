@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/Requisition.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" xmlns:saxon="http://icl.com/saxon" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="Order.xsd"/>
+        <xs:complexType name="Requisition">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Is a request for the purchase of goods or services.  Typically, a requisition leads to the creation of a purchase order to a specific supplier.</xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                        <xs:extension base="Order"/>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="RequisitionHeader">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">SalesOrderId subsumed into DocumentReferences</xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                        <xs:extension base="OrderHeader">
+                                <xs:sequence>
+                                        <xs:element ref="Requester" minOccurs="0"/>
+                                        <xs:element ref="Buyer" minOccurs="0"/>
+                                        <xs:element ref="Planner" minOccurs="0"/>
+                                        <xs:element name="ApprovalInd" type="Indicator" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates whether an order has passed the credit checking criteria.Valid values are: “0” = Order does not meet the accounts receivable application approval criteria.“1” = Order meets the accounts receivable application approval criteria.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="LoadingDock" type="LoadingDockCode" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the loading dock</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="PurchasingEntity" type="PurchasingEntityCode" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">The business entity that is responsible for a particular purchase order.  This entity is on the buying side and is responsible for all transactions regarding the purchase order.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element ref="Site" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifier of physical location. </xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="RequisitionLine">
+                <xs:complexContent>
+                        <xs:extension base="OrderLine">
+                                <xs:sequence>
+                                        <xs:element name="LoadingDock" type="LoadingDockCode" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the loading dock.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="PurchasingEntity" type="PurchasingEntityCode" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Origanizational entity that is responsible for purchasing the line item.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element ref="Site" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the location that is requisiting the line item to be purchased.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element ref="SubLine" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="RequisitionSubline">
+                <xs:complexContent>
+                        <xs:extension base="OrderLineBase">
+                                <xs:sequence>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:element name="Requisition" type="Requisition" substitutionGroup="Noun">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Is a request for the purchase of goods or services.  Typically, a requisition leads to the creation of a purchase order to a specific supplier.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Header" type="RequisitionHeader">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Information that applies to the Requisition.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Line" type="RequisitionLine">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Information that describes the requested item and its attributes.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="SubLine" type="RequisitionSubline">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Used if the item on the REQLINE needs to be divided into smaller units such as sub-components or subassemblies.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+</xs:schema>

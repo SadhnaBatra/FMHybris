@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema targetNamespace="http://www.aaiasoa.net/IPOv2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.aaiasoa.net/IPOv2">
+	<xs:element name="Confirm" type="Confirm"/>
+	<xs:complexType name="Confirm">
+		<xs:sequence>
+			<xs:element name="Header" type="HeaderType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="HeaderType" type="HeaderType"/>
+	<xs:complexType name="HeaderType">
+		<xs:sequence>
+			<xs:element name="OriginalApplicationArea" type="OriginalApplicationAreaType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Information takes from the ApplicationArea of the buyer's document</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OriginalDocumentReference" type="OriginalDocumentReferenceType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Information taken from the Header of the original Buyer's document</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DocumentSuccess" type="DocumentSuccessType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Document processing suscess messages</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DocumentFailure" type="DocumentFailureType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Document processing failure messages</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="OriginalDocumentReferenceType" type="OriginalDocumentReferenceType"/>
+	<xs:complexType name="OriginalDocumentReferenceType">
+		<xs:sequence>
+			<xs:element name="CustomerRFQDocumentId" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>This element contains a copy of CustomerRFQDocumentId from the Header of the buyer&#8217;s RequestForQuote document.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DocumentDateTime" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The DocumentDateTime taken from the Header of the buyer&#8217;s original document, if that field was present</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StatusCode" type="xs:token" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Contains one of five possible status messages - INVALID, VALIDATED, INPROCESS, REJECTED or EXCEPTED.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="DocumentSuccessType" type="DocumentSuccessType"/>
+	<xs:complexType name="DocumentSuccessType">
+		<xs:sequence>
+			<xs:element name="WarningMessage" type="WarningMessageType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Contains non-fatal messages</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="DocumentFailureType" type="DocumentFailureType"/>
+	<xs:complexType name="DocumentFailureType">
+		<xs:sequence>
+			<xs:element name="WarningMessage" type="WarningMessageType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Contains non-fatal messages</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ErrorMessage" type="ErrorMessageType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Contains fatal error messages</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="OriginalApplicationAreaType" type="OriginalApplicationAreaType"/>
+	<xs:complexType name="OriginalApplicationAreaType">
+		<xs:sequence>
+			<xs:element name="SenderReferenceId" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The DocumentGUID from the Buyer Add RequestForQuote document, which serves as a reference to this initial message. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CreationDateTime" type="xs:dateTime" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Date and time the original document instance was created and sent, formatted in the ISO 8601 extended format.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DocumentGUID" type="xs:string" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The Globally Unique Identifier (GUID) from the original document instance, in the form of an alphanumeric string.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="WarningMessageType" type="WarningMessageType"/>
+	<xs:complexType name="WarningMessageType">
+		<xs:sequence>
+			<xs:element name="Description" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Contains a text description of non-fatal problem(s) encountered while processing the buyer&amp;rsquo;s original document, i.e. &amp;ldquo;currency attribute missing from [TagName], USD assumed."</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ReasonCode" type="xs:token" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Contains an alphanumeric code corresponding to any non-fatal problem(s) encountered during the seller&#8217;s receipt and processing of the original document</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ErrorMessageType" type="ErrorMessageType"/>
+	<xs:complexType name="ErrorMessageType">
+		<xs:sequence>
+			<xs:element name="Description" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Describes any fatal error(s) encountered during processing the buyer&#8217;s original document.  Examples might include &#8220;Required field [TagName] missing,&#8221; &#8220;Improperly formatted data in [TagName],&#8221; or &#8220;Incorrect XML syntax."</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ReasonCode" type="xs:token" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Contains an alphanumeric code corresponding to any fatal error(s) encountered during the seller&#8217;s receipt and processing of the original document.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

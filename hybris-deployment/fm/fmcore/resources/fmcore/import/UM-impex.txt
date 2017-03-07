@@ -1,0 +1,53 @@
+INSERT_UPDATE FMCustomerAccount;uid[unique=true];description;locName;groups(uid)
+;16427113580;FM Root Organization;FM Root Organization
+;16427113581;FM B2C Organization;FM B2C Organization;16427113580
+;16427113582;FM Admin Account;FM Admin Account;16427113580
+
+INSERT_UPDATE SalesChannel;code[unique=true];name
+;C;WAREHOUSE DISTRIBUTOR
+;R;RETAIL
+;P;PERFORMANCE WAREHOUSE DISTRIBUTOR
+;E;PRODUCTION ENGINE REBUILDER
+;G;SMALL ORIGINAL EQUIP MFG OR JAX OE
+;5;NAT'L ACCOUNTS (NAPA, TRW, ETC.)
+;B;INDUSTRIAL DISTRIBUTOR
+;2;HEAVY DUTY DISTRIBUTOR
+;F;ENGINE SPECIALIST
+;D;DEALER DIRECT
+;A;AUTOMOTIVE JOBBER
+;H;ECOMMERCE
+;X;EXPORT ACCOUNT
+;M;ORIGINAL EQUIPMENT MANUFACTURER
+;S;ORIGINAL EQUIPMENT SERVICE
+;I;INTER-COMPANY
+;002;Warehouse Distributor – Light Vehicle
+;008;Warehouse Distributor – Commercial Vehicle
+;007;Retailer
+;037;Jobber/Part Store
+;038;Shop Owner/Technician
+;36;Install it for me/yourself
+
+$globalUnit=16427113580
+
+# Create B2BUserGroups
+INSERT_UPDATE B2BUserGroup;uid[unique=true];Unit(uid);members(uid);groups(uid)
+;FMAdminGroup;$globalUnit;;b2badmingroup,b2bcustomergroup
+;FMTaxAdminGroup;$globalUnit;;b2bcustomergroup
+
+;FMFullAccessGroup;$globalUnit;;b2bcustomergroup
+;FMViewOnlyGroup;$globalUnit;;b2bcustomergroup
+;FMNoInvoiceGroup;$globalUnit;;b2bcustomergroup
+
+;FMJobberGroup;$globalUnit;;b2bcustomergroup
+;FMInstallerGroup;$globalUnit;;b2bcustomergroup
+
+;FMDIYGroup;$globalUnit;;b2bcustomergroup
+;FMDIFMGroup;$globalUnit;;b2bcustomergroup
+
+
+;FMB2BB;$globalUnit;;b2bcustomergroup
+;FMB2C;$globalUnit;;b2bcustomergroup
+;FMB2SB;$globalUnit;;b2bcustomergroup
+
+;FMBUVOR;$globalUnit;;b2bcustomergroup,FMAdminGroup
+;FMCSR;$globalUnit;;b2bcustomergroup,FMAdminGroup

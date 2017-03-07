@@ -1,0 +1,600 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2000-2013 hybris AG
+ All rights reserved.
+
+ This software is the confidential and proprietary information of hybris
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with hybris.
+-->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
+
+	<!-- Add accelerator facades specific variantOption options -->
+	<enum class="com.federalmogul.facades.product.ProductVariantOption">
+		<value>URL</value>
+		<value>MEDIA</value>
+		<value>PRICE</value>
+		<value>STOCK</value>
+	</enum>
+
+	<bean class="com.federalmogul.facades.address.data.FMB2bAddressData" extends="de.hybris.platform.commercefacades.user.data.AddressData">
+		<property type="java.lang.String" name="companyFax" />
+		<property type="java.lang.String" name="companyUrl" />
+	</bean>
+	
+	<bean class="com.federalmogul.facades.user.data.FMTaxdocsData" >
+		<property type="java.lang.Object" name="taxdoc" />
+		<property type="java.lang.String" name="taxdocname" />
+		<property type="de.hybris.platform.commercefacades.user.data.RegionData" name="state" />
+		<property type="java.lang.String" name="validate" />
+		<property type="java.lang.String" name="userName" />
+	</bean>
+
+	<bean class="com.federalmogul.facades.user.data.FMTaxDocumentData">
+		<property type="java.lang.String" name="uploadedBy" />
+		<property type="de.hybris.platform.commercefacades.user.data.RegionData" name="state" />
+		<property type="java.lang.String" name="validate" />
+		<!-- <property type="com.federalmogul.core.enums.FmTaxValidationType" name="ValidateStatus" /> -->
+		<property type="java.lang.String" name="realFileName" />
+		<property type="java.lang.String" name="Code" />
+		<property type="java.lang.String" name="URL" />
+		<property type="java.lang.String" name="downloadURL" />
+		<property type="java.lang.String" name="docname" />
+		<property type="org.springframework.web.multipart.MultipartFile" name="file" />
+		<property type="com.federalmogul.facades.user.data.FMCustomerAccountData" name="fmCustomerAccountUnit" />
+	</bean>
+
+	<bean class="com.federalmogul.facades.user.data.FMCustomerAccountData"
+			extends="de.hybris.platform.b2bacceleratorfacades.order.data.B2BUnitData">
+		<!-- <property type="java.lang.Object" name="taxdoc" /> -->
+		<property type="java.lang.String" name="channelCode" />
+		<property type="java.lang.String" name="taxID" />
+		<property type="java.util.List&lt;com.federalmogul.facades.user.data.FMTaxDocumentData>" name="taxDocumentList" />
+		<property name="validate" type="java.lang.String" />
+		<property type="java.lang.String" name="prospectId" />
+		<property type="java.util.List&lt;com.federalmogul.facades.address.data.FMB2bAddressData>" name="unitAddress" />
+		<property type="java.lang.String" name="accComments" />
+		<property type="java.lang.String" name="accComments2" />
+		<property type="java.util.Date" name="creationTime" />
+		<property type="java.lang.String" name="nabsAccountCode" />
+		<property type="java.lang.String" name="distributionChannel" />
+		<property type="java.lang.String" name="salesorg" />
+		<property type="java.lang.String" name="division" />
+		<property type="com.federalmogul.facades.address.data.FMB2bAddressData" name="FMB2baddress" />			
+	</bean>
+
+	<bean class="com.federalmogul.facades.user.data.FMCsrAccountListData">
+		<property type="java.lang.String" name="accountNum" />
+		<property type="java.util.Date" name="date" />
+	</bean>
+
+	<bean class="com.federalmogul.facades.user.data.FMCustomerData" extends="de.hybris.platform.commercefacades.user.data.CustomerData">
+		<property type="com.federalmogul.core.enums.Fmusertype" name="userTypeDescription" />
+		<property type="java.lang.String" name="secretQuestion" />
+		<property type="java.lang.String" name="secretAnswer" />
+		<property type="java.lang.Boolean" name="newsLetterSubscription" />
+		<property type="java.lang.String" name="taxID" />
+		<!-- <property type="java.util.List&lt;com.federalmogul.facades.user.data.FMTaxdocsData>" name="taxDocument" /> -->
+		<property type="java.util.List&lt;com.federalmogul.facades.user.data.FMTaxDocumentData>" name="taxDocumentList" />
+		<property type="java.lang.Boolean" name="loyaltySignup" />
+		<property type="java.lang.String" name="login" />
+		<property type="java.lang.String" name="password" />
+		<property type="java.lang.Boolean" name="newProductAlerts" />
+		<property type="java.lang.Boolean" name="promotionInfoSubscription" />
+		<property type="java.lang.Boolean" name="techAcademySubscription" />
+		<property type="com.federalmogul.facades.address.data.FMB2bAddressData" name="B2baddress" />
+		<property type="java.lang.String" name="workContactNo" />
+		<property type="com.federalmogul.facades.user.data.FMCustomerAccountData" name="fmunit" />
+		<property type="java.lang.String" name="association" />
+		<property type="java.lang.String" name="b2cLoyaltyMembershipId" />
+		<property type="java.util.List&lt;com.federalmogul.facades.user.data.FMCsrAccountListData>" name="csrAccountList" />
+		<property type="java.lang.String" name="fromCronJob" />
+		<property type="java.lang.String" name="lmsSigninId" />
+		<property type="java.lang.String" name="crmContactId" />
+		<property type="java.lang.Boolean" name="isGarageRewardMember" />
+		<property type="java.lang.String" name="aboutShop" />
+		<property type="java.lang.String" name="shopType" />
+		<property type="java.lang.String" name="shopBays" />
+		<property type="java.lang.String" name="mostIntersted" />
+		<property type="java.lang.String" name="brands" />
+		<property type="java.lang.String" name="shopBanner" />
+		<property type="java.lang.String" name="referEmailId" />
+		<property type="java.lang.String" name="promoCode" />
+		<property type="java.lang.String" name="surveyStatus" />
+        <property type="java.util.List" name="uniqueID" />
+        <property type="java.lang.String" name="techType" />
+		<property type="java.lang.String" name="isLoyaltyRequestedMember" />
+		<property type="java.util.List&lt;com.federalmogul.facades.user.data.FMBrandCampaignData>" name="fmBrandCampaignList" />
+	</bean>
+		
+	<bean class="de.hybris.platform.commercefacades.user.data.CustomerData">
+       <property type="java.lang.Boolean" name="isLoginDisabled" />
+		<property type="java.lang.String" name="customerDataCustomerType" />
+    </bean>
+	
+	<bean class="com.federalmogul.facades.product.data.FMCorporateData">
+		<property type="java.lang.String" name="corpcode" />
+		<property type="java.lang.String" name="corpname" />
+		<property type="java.lang.Integer" name="corpid" />
+		<property type="java.lang.String" name="corptype" />
+		<property type="de.hybris.platform.commercefacades.product.data.ImageData" name="image" />
+	</bean>
+
+	<bean class="com.federalmogul.facades.product.data.FMFitmentData">
+		<property name="code" type="java.lang.String" />
+		<property name="make" type="java.lang.String" />
+		<property name="model" type="java.lang.String" />
+		<property name="year" type="java.lang.String" />
+		<property name="products" type="java.lang.String" />
+		<property name="partNumber" type="java.lang.String" />
+		<property name="mfrLabel" type="java.lang.String" />
+		<property name="position" type="java.lang.String" />
+		<property name="appQuantity" type="java.lang.String" />
+		<property name="engineBase" type="java.lang.String" />
+		<property name="engineDesignation" type="java.lang.String" />
+		<property name="engineVIN" type="java.lang.String" />
+		<property name="aspiration" type="java.lang.String" />
+		<property name="cylinderHeadType" type="java.lang.String" />
+		<property name="fuelType" type="java.lang.String" />
+		<property name="ignitionSystemType" type="java.lang.String" />
+		<property name="engineVersion" type="java.lang.String" />
+		<property name="fuelDeliveryType" type="java.lang.String" />
+		<property name="fuelDeliverySubType" type="java.lang.String" />
+		<property name="fuelSystemControlType" type="java.lang.String" />
+		<property name="fuelSystemDesign" type="java.lang.String" />
+		<property name="engineMfr" type="java.lang.String" />
+		<property name="engineValves" type="java.lang.String" />
+		<property name="powerOutput" type="java.lang.String" />
+		<property name="engineArrangementNumber" type="java.lang.String" />
+		<property name="engineSerialNumber" type="java.lang.String" />
+		<property name="engineCPLNumber" type="java.lang.String" />
+		<property name="vehicleType" type="java.lang.String" />
+		<property name="submodel" type="java.lang.String" />
+		<property name="region" type="java.lang.String" />
+		<property name="bodyNumDoors" type="java.lang.String" />
+		<property name="bodyType" type="java.lang.String" />
+		<property name="bedLength" type="java.lang.String" />
+		<property name="bedType" type="java.lang.String" />
+		<property name="driveType" type="java.lang.String" />
+		<property name="mfrBodyCode" type="java.lang.String" />
+		<property name="wheelBase" type="java.lang.String" />
+		<property name="frontBrakeType" type="java.lang.String" />
+		<property name="rearBrakeType" type="java.lang.String" />
+		<property name="brakeSystem" type="java.lang.String" />
+		<property name="brakeABS" type="java.lang.String" />
+		<property name="frontSpringType" type="java.lang.String" />
+		<property name="rearSpringType" type="java.lang.String" />
+		<property name="steeringType" type="java.lang.String" />
+		<property name="steeringSystem" type="java.lang.String" />
+		<property name="vehicleSeries" type="java.lang.String" />
+		<property name="transmissionNumSpeeds" type="java.lang.String" />
+		<property name="transmissionControlType" type="java.lang.String" />
+		<property name="transmissionMfrCode" type="java.lang.String" />
+		<property name="transmissionType" type="java.lang.String" />
+		<property name="comment1" type="java.lang.String" />
+		<property name="comment2" type="java.lang.String" />
+		<property name="comment3" type="java.lang.String" />
+		<property name="comment4" type="java.lang.String" />
+		<property name="comment5" type="java.lang.String" />
+		<property name="comment6" type="java.lang.String" />
+		<property name="comment7" type="java.lang.String" />
+		<property name="comment8" type="java.lang.String" />
+		<property name="comment9" type="java.lang.String" />
+		<property name="comment10" type="java.lang.String" />
+		<property name="interchangeNote1" type="java.lang.String" />
+		<property name="interchangeNote2" type="java.lang.String" />
+		<property name="interchangeNote3" type="java.lang.String" />
+		<property name="interchangeNote4" type="java.lang.String" />
+		<property name="interchangeNote5" type="java.lang.String" />
+		<property name="interchangeNote6" type="java.lang.String" />
+		<property name="interchangeNote7" type="java.lang.String" />
+		<property name="interchangeNote8" type="java.lang.String" />
+		<property name="interchangeNote9" type="java.lang.String" />
+		<property name="interchangeNote10" type="java.lang.String" />
+		<property name="applicationNote1" type="java.lang.String" />
+		<property name="applicationNote2" type="java.lang.String" />
+		<property name="applicationNote3" type="java.lang.String" />
+		<property name="applicationNote4" type="java.lang.String" />
+		<property name="applicationNote5" type="java.lang.String" />
+		<property name="applicationNote6" type="java.lang.String" />
+		<property name="applicationNote7" type="java.lang.String" />
+		<property name="applicationNote8" type="java.lang.String" />
+		<property name="applicationNote9" type="java.lang.String" />
+		<property name="applicationNote10" type="java.lang.String" />
+		<property name="assetLogicalName" type="java.lang.String" />
+		<property name="assetItemRef" type="java.lang.String" />
+		<property name="assetItemOrder" type="java.lang.String" />
+		<property name="assetFileName" type="java.lang.String" />
+		<property name="vehiclesegment" type="java.lang.String" />
+	</bean>
+
+	<bean class="de.hybris.platform.commercefacades.product.data.ProductData">
+		<property type="java.util.List&lt;com.federalmogul.facades.product.data.FMFitmentData>" name="partFitments" />
+		<property type="com.federalmogul.facades.product.data.FMCorporateData" name="brands" />
+		<property type="java.lang.String" name="partNumber" />
+		<property type="java.lang.String" name="rawPartNumber" />
+		<property type="java.lang.String" name="partFlag" />
+		<property type="java.lang.String" name="loyaltyPoints" />
+	</bean>
+	
+	<bean class="com.federalmogul.facades.product.data.FMPartProductData"
+			extends="de.hybris.platform.commercefacades.product.data.ProductData">
+		<property type="java.lang.String" name="sqshPtNbr" />
+		<property type="java.lang.String" name="alphaNumeric" />
+		<property type="java.util.Date" name="availableDate" />
+		<property type="java.lang.String" name="brandLabel" />
+		<property type="java.lang.String" name="squashedPartNumber" />
+		<property type="java.lang.String" name="alternatePartNumber" />
+		<property type="java.util.Date" name="priceSheetEffectiveDate" />
+		<property type="java.lang.Double" name="wdNetPrice" />
+		<property type="java.lang.Double" name="jobberPrice" />
+		<property type="java.lang.Double" name="listPrice" />
+		<property type="java.lang.String" name="longDescription" />
+		<property type="java.lang.String" name="popularityCode" />
+		<property type="java.lang.Long" name="vehicleRegistration" />
+		<property type="java.lang.Integer" name="minimumOrderQuantity" />
+		<property type="java.lang.Integer" name="quantityPerApplication" />
+		<property type="java.lang.String" name="applicationSummaryDescription" />
+		<property type="java.lang.String" name="countryOfOriginPrimary" />
+		<property type="java.lang.Long" name="itemLevelGTINUPC" />
+		<property type="java.lang.String" name="packageEachLevelGTINUPC" />
+		<property type="java.lang.String" name="pkgLevelGTINUPCInnerPackage" />
+		<property type="java.lang.String" name="pkgLevelGTINUPCCase" />
+		<property type="java.lang.String" name="productFlag" />
+		<property type="java.lang.String" name="priceSheetNumber" />
+		<property type="java.lang.String" name="supersededPriceSheetNumber" />
+		<property type="java.util.Date" name="priceSheetExpirationDate" />
+		<property type="java.util.Date" name="dateRecordAddedorChanged" />
+		<property type="java.lang.String" name="brandAAIAID" />
+		<property type="java.lang.String" name="aaiaPartTerminologyID" />
+		<property type="java.lang.Boolean" name="hazardousIndicator" />
+		<property type="java.lang.String" name="itemLevelGTINQualifier" />
+		<property type="java.lang.String" name="quantityPerApplicationQualifier" />
+		<property type="java.lang.String" name="quantityPerApplicationUOM" />
+		<property type="java.lang.String" name="packageUOM" />
+		<property type="java.lang.String" name="dimensionsUOM" />
+		<property type="java.lang.String" name="weightUOM" />
+		<property type="java.lang.String" name="freightClass" />
+		<property type="java.lang.String" name="minimumOrderQuantityUOM" />
+		<property type="java.lang.String" name="packageEachHeight" />
+		<property type="java.lang.String" name="packageEachWidth" />
+		<property type="java.lang.String" name="packageEachLength" />
+		<property type="java.lang.String" name="packageEachWeight" />
+		<property type="java.lang.Integer" name="quantityOfEachesEachPackage" />
+		<property type="java.lang.String" name="heightInnerPackage" />
+		<property type="java.lang.String" name="widthInnerPackage" />
+		<property type="java.lang.String" name="lengthInnerPackage" />
+		<property type="java.lang.String" name="weightInnerPackage" />
+		<property type="java.lang.String" name="qtyOfEachesinPkgInnerPackage" />
+		<property type="java.lang.String" name="heightCase" />
+		<property type="java.lang.String" name="widthCase" />
+		<property type="java.lang.String" name="lengthCase" />
+		<property type="java.lang.String" name="weightCase" />
+		<property type="java.lang.String" name="quantityOfEachesinPackageCase" />
+		<property type="java.lang.Integer" name="lifeCycleStatusCode" />
+		<property type="java.lang.String" name="lifeCycleStatusDescription" />
+		<property type="java.lang.String" name="harmonizedTariffCode" />
+		<property type="java.lang.Integer" name="emissionCode" />
+		<property type="java.lang.String" name="maxCasePerPalletLayer" />
+		<property type="java.lang.String" name="palletLayerMax" />
+		<property type="java.lang.String" name="palletFootprintSize" />
+		<property type="java.lang.String" name="palletFootprintSizeUOM" />
+		<property type="java.lang.String" name="digitalAssetURL" />
+		<property type="java.lang.Boolean" name="remanufacturedPart" />
+		<property type="java.lang.Boolean" name="applicationSpecific" />
+		<property type="java.lang.Boolean" name="carLightTruck" />
+		<property type="java.lang.Boolean" name="mediumDutyTruck" />
+		<property type="java.lang.Boolean" name="heavyDutyTruck" />
+		<property type="java.lang.Boolean" name="agriculturalEquipment" />
+		<property type="java.lang.Boolean" name="industrialOffHighwayEquipment" />
+		<property type="java.lang.Boolean" name="motorcycleATV" />
+		<property type="java.lang.Boolean" name="snowMobile" />
+		<property type="java.lang.Boolean" name="personalWatercraft" />
+		<property type="java.lang.Boolean" name="marine" />
+		<property type="java.lang.Boolean" name="smallEngine" />
+		<property type="java.lang.Boolean" name="highPerformance" />
+		<property type="java.lang.Boolean" name="engineSpecific" />
+		<property type="java.lang.Boolean" name="transmissionSpecific" />
+		<property type="java.lang.Boolean" name="nonVehicleSpecific" />
+		<property type="java.lang.Integer" name="itemQuantitySize" />
+		<property type="java.lang.String" name="itemQuantitySizeUOM" />
+		<property type="java.lang.String" name="containerType" />
+		<property type="java.lang.String" name="productGroupCode" />
+		<property type="java.lang.String" name="productSubGroupCode" />
+		<property type="java.lang.String" name="productCategoryCode" />
+		<property type="java.lang.String" name="partNumberOld" />
+		<property type="java.lang.String" name="partNumberSupersededTo" />
+		<property type="java.lang.String" name="hazardousClassCode" />
+		<property type="java.lang.String" name="hazardousMaterialDescription" />
+		<property type="java.lang.String" name="mSDSSheetNumber" />
+		<property type="java.lang.Boolean" name="mSDSSheetAvailable" />
+		<property type="java.lang.String" name="nationalPopularityCode" />
+		<property type="java.lang.Boolean" name="taxable" />
+		<property type="java.lang.String" name="eachPackageBarCodeCharacters" />
+		<property type="java.lang.String" name="caseBarCodeCharacters" />
+		<property type="java.lang.String" name="aAPSKUNumberAN68" />
+		<property type="java.lang.String" name="aAPPLANumberAN3" />
+		<property type="java.lang.String" name="aAPPartTypeIDsmandatoryAN250" />
+		<property type="java.lang.Boolean" name="advanceBuys" />
+		<property type="java.lang.Boolean" name="sentImagetoAdvance" />
+		<property type="java.lang.Boolean" name="allianceBuys" />
+		<property type="java.lang.Boolean" name="oReillyBuys" />
+		<property type="java.lang.Boolean" name="autoZoneBuys" />
+		<property type="java.lang.Boolean" name="autoZonePartNumber" />
+		<property type="java.lang.Boolean" name="nAPABuys" />
+		<property type="java.lang.Boolean" name="nAPAPartNumber" />
+		<property type="java.lang.String" name="otherCustomersifany" />
+		<property type="java.lang.Integer" name="pid" />
+		<property type="java.lang.String" name="upc" />
+		<property type="com.federalmogul.core.enums.PartStatus" name="partstatus" />
+		<property type="java.lang.String" name="flagcode" />
+		<property type="java.lang.String" name="flagname" />
+		<property type="java.lang.String" name="textcomment" />
+		<property type="java.lang.String" name="textnote" />
+		<property type="java.lang.String" name="textfootnote" />
+		<property type="java.lang.String" name="warranty" />
+		<property type="java.lang.String" name="warrantydescription" />
+		<property type="java.lang.String" name="faqQestion1" />
+		<property type="java.lang.String" name="faqQestion2" />
+		<property type="java.lang.String" name="faqQestion3" />
+		<property type="java.lang.String" name="faqQestion4" />
+		<property type="java.lang.String" name="faqQestion5" />
+		<property type="java.lang.String" name="faqAnswer1" />
+		<property type="java.lang.String" name="faqAnswer2" />
+		<property type="java.lang.String" name="faqAnswer3" />
+		<property type="java.lang.String" name="faqAnswer4" />
+		<property type="java.lang.String" name="faqAnswer5" />
+		<property type="java.util.Collection&lt;com.federalmogul.facades.product.data.FMCorporateData>" name="corporate" />
+	</bean>
+
+    <bean class="com.federalmogul.facades.order.data.DistrubtionCenterData">
+        <property type="java.lang.String" name="code" />
+        <property type="java.lang.String" name="rawpartNumber" />
+        <property type="java.lang.String" name="partNumber" />
+        <property type="java.lang.String" name="availableQTY" />
+        <property type="java.lang.String" name="distrubtionCenterDataCode" />
+        <property type="java.lang.String" name="distrubtionCenterDataName" />
+        <property type="java.lang.String" name="shippingMethod" />
+        <property type="java.lang.String" name="carrierName" />
+        <property type="java.lang.String" name="CarrierAccountCode" />
+      	<property type="java.util.Date" name="availableDate" />  
+      	<property type="java.lang.String" name="cutOffTime" />
+      	<property type="java.lang.String" name="backorderQTY" />
+      	<property type="java.lang.String" name="backorderQTYAll" />
+      	<property type="java.lang.String" name="backorderFlag" />
+      	<property type="java.lang.String" name="shippingMethodName" />
+      	<property type="java.lang.String" name="carrierDispName" />
+      	<property type="java.lang.Double" name="latitude" />
+      	<property type="java.lang.Double" name="longitude" />
+      	<property type="java.lang.Integer" name="distance" />
+      	<property type="java.lang.Boolean" name="gatpProposed" />
+      	<property type="java.lang.String" name="tscFlag" />
+      	<property type="java.math.BigDecimal" name="freightCost" />
+      	<property type="java.lang.String" name="freightCostCurrencyCode" />
+    </bean>
+    
+    <bean class="de.hybris.platform.commercefacades.order.data.OrderEntryData">
+        <property type="java.lang.String" name="errorMessage" />
+        <property type="java.lang.String" name="priceType" />
+        <property type="java.util.Map" name="multiSelect" />
+        <property type="java.util.List&lt;com.federalmogul.facades.order.data.DistrubtionCenterData>" name="distrubtionCenter" />
+    </bean>
+
+	<bean class="de.hybris.platform.commercefacades.order.data.AbstractOrderData">
+        <property type="java.lang.String" name="fmordertype" />
+        <property type="java.lang.String" name="sapordernumber" />
+        <property type="java.lang.String" name="custponumber" />
+        <property type="java.lang.String" name="ordercomments" />
+        <property type="java.lang.String" name="pocustid" />
+    </bean>
+
+    <bean class="com.federalmogul.facades.product.data.TSCLocationData">
+		<property type="java.lang.String" name="zipCode" />
+		<property type="java.lang.String" name="textLocation" />
+		<property type="java.lang.String" name="storeLocations" />
+		<property type="java.lang.String" name="distance" />
+		<property type="java.lang.String" name="storeAvailability" />
+	</bean>
+
+	<bean class="de.hybris.platform.commercefacades.order.data.DeliveryModeData">
+		<property type="java.lang.String" name="carrier" />
+	</bean>
+
+	<!-- Balaji Start Order Return --> 
+	<bean class="com.federalmogul.facades.order.data.FMReturnItemsData">
+		<property type="java.lang.String" name="itemDescription" />
+		<property type="java.lang.String" name="orderedqty" />
+		<property type="java.lang.String" name="returnqty" />
+		<property type="java.lang.String" name="partNumber" />
+		<property type="com.federalmogul.core.enums.FMUnit" name="unit" />
+	</bean>
+
+	<bean class="com.federalmogul.facades.order.data.FMReturnOrderData"
+		extends="de.hybris.platform.commercefacades.order.data.OrderData">
+		<property type="java.lang.String" name="returnDescription" />
+		<property type="java.lang.String" name="confirmationNumber" />
+		<property type="java.lang.String" name="invoiceNumber" />
+		<property type="java.lang.String" name="salesOrderNumber" />
+		<property type="java.lang.String" name="returnId" />
+		<property type="java.lang.String" name="returnCode" />
+		<property type="java.lang.String" name="reasonReturn" />
+		<property type="java.lang.String" name="billToAccount" />
+		<property type="java.lang.String" name="shiftToAccount" />
+		<property type="com.federalmogul.core.enums.FMReasonForReturn" name="reasonOfReturn" />
+		<property type="java.util.List&lt;com.federalmogul.facades.order.data.FMReturnItemsData>" name="returnItems" />
+	</bean>
+	<!-- Balaji End Order Return --> 
+
+	<!-- Balaji Start FM Lead Generation Call Back  -->
+	<bean class="com.federalmogul.facades.customer.data.FMLeadGenerationCallBackData"
+		extends="de.hybris.platform.commercefacades.user.data.CustomerData">
+		<property type="java.lang.String" name="callBackDescription" />
+		<property type="java.lang.String" name="leadSubjects" />
+		<property type="java.lang.String" name="bestWayToContact" />
+		<property type="java.util.List&lt;java.lang.String>" name="bestContactDays" />
+		<property type="java.util.List&lt;java.lang.String>" name="bestContactTimeOfDays" />
+		<property type="java.lang.String" name="bestContactTimeZone" />
+		<property type="java.lang.String" name="partNumber" />
+		<property type="java.lang.String" name="brand" />
+		<property type="java.lang.String" name="invoiceNumber" />
+		<property type="java.lang.String" name="orderNumber" />
+		<property type="java.lang.String" name="customerID" />
+	</bean>
+	<!-- Balaji End FM Lead Generation Call Back  -->
+	
+	<!-- Mahaveer Upload Order Start -->
+	<bean class="com.federalmogul.facades.upload.order.data.uploadOrderData">
+		<property type="java.lang.String" name="code" />
+		<property type="com.federalmogul.facades.user.data.FMCustomerAccountData" name="SoldToAccount" />
+		<property type="com.federalmogul.facades.user.data.FMCustomerAccountData" name="ShipToAccount" />
+		<property type="de.hybris.platform.commercefacades.user.data.AddressData" name="ShipToAddress" />
+		<property type="de.hybris.platform.commercefacades.user.data.AddressData" name="BillToAddress" />
+		<property type="java.lang.String" name="userFirstName" />
+		<property type="java.lang.String" name="userLastName" />
+		<property type="java.lang.String" name="sapordernumber" />
+		<property type="java.lang.String" name="PONumber" />
+		<property type="java.lang.String" name="ordercomments" />
+		<property type="java.lang.String" name="status" />
+		<property type="java.util.Date" name="updatedTime" />
+		<property type="org.springframework.web.multipart.MultipartFile" name="uploadfile" />
+		<property type="com.federalmogul.core.enums.UploadOrderStatus" name="uploadOrderStatus" />
+		<property type="java.util.List&lt;com.federalmogul.facades.upload.order.data.uploadOrderEntryData>" name="uploadOrderEntry" />
+		<property type="de.hybris.platform.core.model.media.MediaModel" name="uploadfilemedia" />
+		<property type="java.util.List&lt;com.federalmogul.facades.upload.order.data.UploadOrderHistoryData>" name="uploadOrderHistory" />
+	</bean>
+
+	<bean class="com.federalmogul.facades.upload.order.data.uploadOrderEntryData">
+		<property type="java.lang.String" name="entryNumber" />
+		<property type="com.federalmogul.facades.user.data.FMCustomerAccountData" name="Accountcode" />
+		<property type="java.lang.String" name="partNumber" />
+		<property type="java.lang.String" name="rawPartNumber" />
+		<property type="java.lang.Integer" name="quantity" />
+		<property type="java.lang.String" name="partResolutionMsg" />
+		<property type="java.lang.Double" name="basePrice" />
+		<property type="java.util.Date" name="createdTime" />
+		<property type="java.util.Date" name="updatedTime" />
+		<property type="java.lang.String" name="status" />
+		<property type="java.lang.String" name="productDescription" />
+		<property type="java.lang.String" name="productFlag" />
+		<property type="java.util.List&lt;com.federalmogul.facades.upload.order.data.UploadOrderHistoryData>" name="uploadOrderEntryHistory" />
+	</bean>
+
+	<bean class="com.federalmogul.facades.upload.order.data.UploadOrderHistoryData">
+		<property type="java.lang.String" name="user" />
+		<property type="java.lang.String" name="orderNumber" />
+		<property type="java.util.Date" name="updatedTime" />
+		<property type="java.lang.String" name="status" />
+		<property type="java.lang.String" name="modifiedValueTo" />
+		<property type="java.lang.String" name="modifiedValueFrom" />
+	</bean>
+	<!-- Mahaveer Upload Order End  -->
+
+	<bean class="com.federalmogul.facades.order.data.FMTempPdfViewData">
+		<property type="de.hybris.platform.commercefacades.order.data.OrderData" name="orderData" />
+		<property type="de.hybris.platform.commercefacades.user.data.AddressData" name="shipToAddress" />
+		<property type="de.hybris.platform.commercefacades.user.data.AddressData" name="soldToAddress" />
+		<property type="de.hybris.platform.b2bacceleratorfacades.order.data.B2BUnitData" name="shipToUnit" />
+		<property type="de.hybris.platform.b2bacceleratorfacades.order.data.B2BUnitData" name="soldToUnit" />
+		<property type="java.lang.String" name="sapOrderCode" />
+		<property type="de.hybris.platform.commercefacades.order.data.CartData" name="cartData" />
+		<property type="de.hybris.platform.core.model.order.CartModel" name="cartModel" />
+        <property type="java.lang.String" name="shipToLogin" />
+	</bean>
+
+	<bean class="com.federalmogul.facades.order.data.FMTempLoyaltyPdfViewData">
+		<property type="de.hybris.platform.commercefacades.order.data.OrderData" name="orderData" />
+		<property type="de.hybris.platform.commercefacades.user.data.AddressData" name="shipToAddress" />
+		<property type="de.hybris.platform.commercefacades.user.data.AddressData" name="soldToAddress" />
+		<property type="de.hybris.platform.b2bacceleratorfacades.order.data.B2BUnitData" name="shipToUnit" />
+		<property type="de.hybris.platform.b2bacceleratorfacades.order.data.B2BUnitData" name="soldToUnit" />
+		<property type="java.lang.String" name="redeemPoints" />
+		<property type="java.lang.String" name="availablePoints" />
+		<property type="de.hybris.platform.commercefacades.order.data.CartData" name="cartData" />
+		<property type="de.hybris.platform.core.model.order.CartModel" name="cartModel" />
+		<property type="java.lang.String" name="crmOrderConfNo" />
+		<property type="com.federalmogul.facades.user.data.FMCustomerData" name="fmCustomerData" />
+	</bean>
+	
+	<bean class="com.federalmogul.facades.loyalty.data.LoyaltyResponseList">
+		<property type="java.lang.String" name="points" />
+		<property type="java.lang.String" name="date" />
+	</bean>
+
+	<bean class="com.federalmogul.facades.loyalty.data.ReferAFriendBean">
+		<property type="java.lang.String" name="fName" />
+		<property type="java.lang.String" name="lName" />
+		<property type="java.lang.String" name="mailId" />
+	</bean>
+
+	<bean class="com.federalmogul.facades.loyalty.data.ReferAFriendBeanList">
+		<property type="java.util.List&lt;com.federalmogul.facades.loyalty.data.ReferAFriendBean>" name="referals" />
+	</bean>
+
+	<bean class="com.federalmogul.facades.user.data.FMSurveyData">
+		<property type="java.lang.String" name="contactPersonID" />
+		<property type="java.lang.String" name="prospectID" />
+		<property type="java.util.List" name="uniqueID" />
+		<property type="java.lang.String" name="productReviewFlag" />
+		<property type="java.lang.String" name="socialMediaFlag" />
+		<property type="java.lang.String" name="membershipId" />
+	</bean>
+
+	<!-- Adding data object for EMEA Enhancements -->	
+
+	<bean class="de.hybris.platform.commercefacades.user.data.AddressData">
+		<property type="java.lang.String" name="cellphone" />
+		<property type="java.lang.String" name="secondaryPhone" />
+		<property type="java.lang.String" name="line3" />    
+	</bean>	
+
+	<bean class="com.federalmogul.facades.storelocator.data.DistributorData">
+		<property type="java.lang.String" name="distributorName" />
+		<property type="java.lang.String" name="countryName" />
+		<property type="java.lang.String" name="regionName" />
+		<property type="java.lang.String" name="storeWebsite" />
+		<property type="java.lang.String" name="officePhone" />
+		<property type="java.lang.String" name="secondaryPhone" />
+		<property type="java.lang.String" name="cellPhone" />
+		<property type="java.lang.String" name="email" />
+		<property type="java.util.List&lt;java.lang.String>" name="brandList" />
+		<property type="de.hybris.platform.commercefacades.user.data.AddressData" name="address" />   
+	</bean>
+
+	<bean class="com.federalmogul.facades.storelocator.data.OnlineRetailerData">
+		<property type="java.lang.String" name="onlineRetailerName" />
+ 		<property type="java.lang.String" name="countryName" />
+		<property type="java.lang.String" name="regionName" />
+		<property type="java.lang.String" name="storeWebsite" />
+		<property type="java.lang.String" name="officePhone" />
+		<property type="java.lang.String" name="secondaryPhone" />
+		<property type="java.lang.String" name="cellPhone" />
+		<property type="java.lang.String" name="email" />
+		<property type="java.util.List&lt;java.lang.String>" name="brandList" />
+		<property type="de.hybris.platform.commercefacades.user.data.AddressData" name="address" />   
+	</bean>
+
+	<bean class="com.federalmogul.facades.storelocator.data.DealerLocatorMasterData">
+		<property type="java.lang.String" name="countryISO" />
+		<property type="java.lang.String" name="shopType" />
+		<property type="java.lang.String" name="brand" />
+	</bean>
+
+	<bean class="de.hybris.platform.commerceservices.storefinder.data.PointOfServiceDistanceData">
+		<property type="String" name="radiusMeasurementType" />
+	</bean>
+
+    <bean class="de.hybris.platform.commercefacades.product.data.ReviewData">
+	   <property name="fmAdminResponse" type="String"/>
+	   <property name="fmAdminResponseDate" type="java.util.Date"/>
+	</bean>
+	
+	<bean class="com.federalmogul.facades.user.data.FMBrandCampaignData">
+		<property type="java.lang.String" name="userid" />
+		<property type="java.lang.String" name="fmBrandCampaignID" />
+		<property type="java.lang.String" name="fmBrandCampaignInfo" />
+	</bean>
+
+</beans>

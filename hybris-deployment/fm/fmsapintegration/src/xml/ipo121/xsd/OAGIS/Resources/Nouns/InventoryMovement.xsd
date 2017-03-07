@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/InventoryMovement.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified">
+        <xs:include schemaLocation="../MfgComponents.xsd"/>
+<!--   -->
+        <xs:complexType name="InventoryMovement">
+                <xs:complexContent>
+                        <xs:extension base="Noun">
+                                <xs:sequence>
+                                        <xs:element ref="Header" minOccurs="0"/>
+                                        <xs:element ref="Line" minOccurs="0" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="InventoryMovementHeader">
+                <xs:sequence>
+                        <xs:element ref="DocumentId" minOccurs="0"/>
+                        <xs:element name="DocumentDateTime" type="DateTime" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the timestamp that indicates when the Movement document was created in the sending system.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="DocumentReferences" minOccurs="0"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="InventoryMovementLine">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the source and destination of the inventory being Movemented. Along with the quantities being moved.</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                        <xs:element name="LineNumber" type="LineNumber" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the LineNumber of the InventoryMovement.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="UnitValue" type="Amount" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">This identifies the unit value of the item transaction</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Note" type="Note" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is a free form note about the Movement.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">A description of the Movement.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="Source" minOccurs="0"/>
+                        <xs:element ref="Destination" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:element name="Header" type="InventoryMovementHeader">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the things common to the entire Movement.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Line" type="InventoryMovementLine">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the line items being Movemented providing information about the source and destination of the Movement.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="InventoryMovement" type="InventoryMovement" substitutionGroup="Noun">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Allows organizations to do quantity movement between locations, whether they are located in the same plant or across the country, or between countries.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Source" type="MovementItem">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Is the source of the inventory being Movemented.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Destination" type="MovementItem">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Is the destination of the inventory being Movementred.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="MovementItem">
+                <xs:sequence>
+                        <xs:element ref="Item" minOccurs="0"/>
+                        <xs:element name="ItemQuantity" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">The quantity of items that are involved in the transaction</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:group ref="ItemLotSerialIdentifier" minOccurs="0"/>
+                        <xs:element name="Note" type="Note" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is a note about the source location of the transfer.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="ReasonCode" type="ReasonCode" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the reason for the transfer.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="TransferType" type="TransferType" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">This is a free form field used to describe the item transfer</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="Site" minOccurs="0"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+</xs:schema>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/UnitOfMeasureGroup.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified">
+        <xs:include schemaLocation="../Components.xsd"/>
+<!--   -->
+        <xs:complexType name="UOMGroupHeader">
+                <xs:sequence>
+                        <xs:element name="UOMGroupId" type="Id" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the UOMGroup Identifier, that uniquely identifies the UOM relationship for the integrated environment.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="UOM" type="UOM" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Refers to the base or inventory stocking Unit-of-Measure and represents the smallest Unit-of-Measure that can be tracked by an inventory control application. </xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="UOMType" type="UOMType" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the type of the Unit-of-Measure.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is a drescription of the Unit-of-Measure relationship.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="UnitPackaging" type="UnitPackaging" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Descripes the packaging unit of the UOM in the UOM Group.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="UnitPackaging">
+                <xs:sequence>
+                        <xs:element name="PackingCode" type="Code" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is a code to identify the packing material</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Description of the unit packaging.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ShippingMaterialDescription" type="Description" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="ShippingMaterialIdentifier" type="Id" minOccurs="0"/>
+                        <xs:element name="Volume" type="Quantity" minOccurs="0"/>
+                        <xs:element name="Width" type="Quantity" minOccurs="0"/>
+                        <xs:element name="Weight" type="Quantity" minOccurs="0"/>
+                        <xs:element name="Length" type="Quantity" minOccurs="0"/>
+                        <xs:element name="Height" type="Quantity" minOccurs="0"/>
+                        <xs:element name="UPCPackagingLevel" type="Code" minOccurs="0"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="AlternateUOM">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Unit-of-Measure conversion flexibility permits alternate UOMs to be defined in terms relative to the ITEM's stocking UOM or relative to other alternate UOMs.
+
+Note that these conditions further require the first alternate UOM occurrence to always be expressed in terms relative to the stocking UOM.  This declaration methodology permits applications to construct a linked UOM conversion hierarchy and calculate a conversion factor between any given alternate and stocking UOM.</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                        <xs:element name="UOM" type="UOM" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Represents an alternate Unit-of-Measure for the item. </xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="UOMType" type="UOMType" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the type of the Unit-of-Measure.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="MultiplierQuantity" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Specifies both the quantity and UOM which are equivalent to the alternate Unit-of-Measure.   The value of the MultiplierQuantity compound may be any whole or fractional numeric value.  The UOM field within the MultiplierQuantity compound must contain either one of the following values:
+
+The ITEM's stocking UOM (as declared in the UOMGroup Header Component) or a previously declared alternate UOM. </xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="UPC" minOccurs="0"/>
+                        <xs:element name="UnitPackaging" type="UnitPackaging" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Descibes the packaging of the AlternateUOM.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="UOMGroup">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Unit-of-Measure conversion flexibility permits alternate UOMs to be defined in terms relative to the ITEM's stocking UOM or relative to other alternate UOMs.
+
+Note that these conditions further require the first alternate UOM occurrence to always be expressed in terms relative to the stocking UOM.  This declaration methodology permits applications to construct a linked UOM conversion hierarchy and calculate a conversion factor between any given alternate and stocking UOM.</xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                        <xs:extension base="Noun">
+                                <xs:sequence>
+                                        <xs:element ref="Header" minOccurs="0"/>
+                                        <xs:element ref="AlternateUOM" minOccurs="0" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:element name="UnitOfMeasureGroup" type="UOMGroup" substitutionGroup="Noun">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Unit-of-Measure Group is a set of related Units-of-Measure (UOMs). A UOMGROUP is typically defined by inventory control systems and assigned to many different ITEMs that otherwise share common handling, packaging or other physical inventory attributes.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Header" type="UOMGroupHeader">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Idenitifies the base UOM for this UOMGroup that the AlternateUOMs can be converted from.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="AlternateUOM" type="AlternateUOM">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the n number of different UOM that a given item's UOM may have.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+</xs:schema>

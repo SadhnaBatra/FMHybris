@@ -1,0 +1,101 @@
+@import (reference) "./variables.less";
+
+/* MIXINS */
+
+#fmmp-corporate-mixins {
+    // Default background colors with accompanying hover
+    .bg-grey-dark-to-grey-light() {
+        background-color: @grey-dark;
+        color: @white;
+        &:hover {
+            background-color: @grey-light;
+            color: @grey-dark;
+        }
+    }
+    .bg-grey-light-to-grey-dark() {
+        background-color: @grey-light;
+        color: @grey-dark;
+        &:hover {
+            background-color: @grey-dark;
+            color: @white;
+        }
+    }
+    .bg-primary-to-primary-dark() {
+        background-color: @red;
+        &:hover {
+            background-color: @red-dark;
+        }
+    }
+    .bg-secondary-to-secondary-dark() {
+        background-color: @grey;
+        &:hover {
+            background-color: @grey-dark;
+        }
+    }
+    .bg-black-to-secondary-dark() {
+        background-color: @black;
+        &:hover {
+            background-color: @grey-dark;
+        }
+    }
+    // White link style
+    .white-link() {
+        margin-right: -18px;
+        color: @white;
+        position:relative;
+        &:after {
+            color:@white;
+            margin-left: 5px;
+        }
+    }
+    /**
+     * Box Shadow default
+     *
+     * The color and alpha are separated in order to make color variables easier to plug-and-play without translating to RGB
+     * For posterity, following are the box-shadow values pulled straight from the corresponding PSD
+     *     - header simple            box-shadow: inset 0px 5px 50px 0px rgba(0, 0, 0, 0.5);
+     *     - cross sell               box-shadow: inset 0px 5px 125px 0px rgba(0, 0, 0, 0.6);
+     *     - fixed carousel three     box-shadow: inset 0px 0px 125px 0px rgba(0, 0, 0, 0.75);
+     *     - header with foreground   box-shadow: inset 0px 0px 125px 0px rgba(0, 0, 0, 0.75);
+     *     - social links             box-shadow: inset 0px 5px 125px 0px rgba(0, 0, 0, 0.5);
+     *     - latest tweet             box-shadow: inset 0px 5px 125px 0px rgba(0, 0, 0, 0.5);
+     *     - right rail               box-shadow: inset 0px 5px 125px 0px rgba(0, 0, 0, 0.5);
+     *     - tout no bg               box-shadow: inset 0px 5px 125px 0px rgba(0, 0, 0, 0.2);
+     *
+     * @param color The hex color value to use for the shadow
+     * @param alpha The percentage to fade the provided color
+     * @param blur The blur to give the box shadow, rarely used but very noticable in at least the case of a Simple Header
+     */
+    .box-shadow (@color: @black, @alpha: 50%, @blur: 125px) {
+        -webkit-box-shadow: inset 0px 5px @blur 0px fade(@color, @alpha);
+        box-shadow: inset 0px 5px @blur 0px fade(@color, @alpha);
+    }
+    // Form highlight
+    .form-select () {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-color: @white;
+        background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE2LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgd2lkdGg9IjI4NC45MjlweCIgaGVpZ2h0PSIyODQuOTI5cHgiIHZpZXdCb3g9IjAgMCAyODQuOTI5IDI4NC45MjkiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDI4NC45MjkgMjg0LjkyOTsiDQoJIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPGc+DQoJPHBhdGggZD0iTTI4Mi4wODIsNzYuNTExbC0xNC4yNzQtMTQuMjczYy0xLjkwMi0xLjkwNi00LjA5My0yLjg1Ni02LjU3LTIuODU2Yy0yLjQ3MSwwLTQuNjYxLDAuOTUtNi41NjMsMi44NTZMMTQyLjQ2NiwxNzQuNDQxDQoJCUwzMC4yNjIsNjIuMjQxYy0xLjkwMy0xLjkwNi00LjA5My0yLjg1Ni02LjU2Ny0yLjg1NmMtMi40NzUsMC00LjY2NSwwLjk1LTYuNTY3LDIuODU2TDIuODU2LDc2LjUxNUMwLjk1LDc4LjQxNywwLDgwLjYwNywwLDgzLjA4Mg0KCQljMCwyLjQ3MywwLjk1Myw0LjY2MywyLjg1Niw2LjU2NWwxMzMuMDQzLDEzMy4wNDZjMS45MDIsMS45MDMsNC4wOTMsMi44NTQsNi41NjcsMi44NTRzNC42NjEtMC45NTEsNi41NjItMi44NTRMMjgyLjA4Miw4OS42NDcNCgkJYzEuOTAyLTEuOTAzLDIuODQ3LTQuMDkzLDIuODQ3LTYuNTY1QzI4NC45MjksODAuNjA3LDI4My45ODQsNzguNDE3LDI4Mi4wODIsNzYuNTExeiIvPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPC9zdmc+DQo=");
+        background-position: 105%;
+        background-repeat: no-repeat;
+        background-size: 20% 20%;
+        color: @grey;
+        cursor: pointer;
+        font-size: 14px;
+        height: 42px;
+        margin: 15px 0 25px 0;
+        padding: 10px 35px 10px 13px;
+        width: 340px;
+
+        &:focus {
+            background-image: url("data:image/svg+xml;base64,PHN2ZyBpZD0iQ2FwYV8xIiBkYXRhLW5hbWU9IkNhcGEgMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMjg0LjkzIDE2Ni4xNyI+PHRpdGxlPmFycm93X3VwPC90aXRsZT48cGF0aCBkPSJNMjg0LjkzLDIwMS44NWE5LDksMCwwLDAtMi44NS02LjU3TDE0OSw2Mi4yNGE5LDksMCwwLDAtMTMuMTMsMGwtMTMzLDEzM2E5LDksMCwwLDAsMCwxMy4xM2wxNC4yNywxNC4yN2E5LDksMCwwLDAsMTMuMTMsMGwxMTIuMi0xMTIuMiwxMTIuMjEsMTEyLjJhOSw5LDAsMCwwLDEzLjEzLDBsMTQuMjctMTQuMjdBOSw5LDAsMCwwLDI4NC45MywyMDEuODVaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwIC01OS4zOCkiLz48L3N2Zz4=");
+            outline: none;
+            background-size: 12% 12%;
+            background-position: 100%;
+        }
+        &::-ms-expand {
+            display: none;
+        }
+    }
+}

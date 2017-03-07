@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: LoadPayable.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Resources/Verbs/Load.xsd"/>
+        <xs:include schemaLocation="../Resources/Nouns/Payable.xsd"/>
+        <xs:element name="LoadPayable" type="LoadPayable">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The purpose of the LoadPayable is to transmit data to create a payable open item in a payables application from the purchasing information generated in a purchasing application.  The LoadPayable may also update the General Ledger, depending on the specific architecture of the financial applications.
+
+The scope of the LoadPayable indicates that the supplier’s invoice is ready to be paid and has already been approved before the information moves to the accounts payable application.  An approved invoice is also known as the voucher.  OAGIS will define the scenario of invoices that get matched within the accounts payable application in a separate Business Service Request later.
+
+Some financial applications have the general ledger and accounts payable databases tightly integrated where updates to the accounts payable application are automatically reflected in the general ledger balances.
+</xs:documentation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The LoadPayable will transmit all information needed for both the accounts payable and the general ledger.
+
+Other applications allow the general ledger balances to be updated separately from the accounts payable.  The second model illustrates that the combination of the LoadPayable and PostJournalEntry will accomplish this scenario.
+</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="LoadPayable">
+                <xs:complexContent>
+                        <xs:extension base="BusinessObjectDocument">
+                                <xs:sequence>
+                                        <xs:element name="DataArea" type="LoadPayableDataArea">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is where the information that the BOD message carries is provided, in this case LoadPayable. The information consists of a Verb and one or more Nouns. The verb (Load) indicates the action to be performed on the Noun (Payable).</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="LoadPayableDataArea">
+                <xs:complexContent>
+                        <xs:extension base="DataArea">
+                                <xs:sequence>
+                                        <xs:element ref="Load"/>
+                                        <xs:element ref="Payable" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+</xs:schema>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/WIPStatus.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../MfgComponents.xsd"/>
+        <xs:complexType name="WIPStatus">
+                <xs:complexContent>
+                        <xs:extension base="Noun">
+                                <xs:sequence>
+                                        <xs:element ref="Header" minOccurs="0"/>
+                                        <xs:element ref="Operation" minOccurs="0" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="WIPStatusHeader">
+                <xs:sequence>
+                        <xs:element name="JobDueDate" type="DateTimeAny" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates when the job is due to be completed.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="ProductionOrderStatus" minOccurs="0"/>
+                        <xs:element name="ScheduledQuantity" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the number of items that was scheduled to be produced.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="DueQuantity" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">This is the number of items that is due for an order</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="DocumentReferences" minOccurs="0"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:element name="WIPStatus" type="WIPStatus" substitutionGroup="Noun">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">WIPSTATUS is used to notify a Manufacturing Application of the progress of a production order at a point in time.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Header" type="WIPStatusHeader"/>
+        <xs:element name="ProductionOrderStatus" type="Status">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the status of the production order.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+</xs:schema>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/WIPMerge.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../MfgComponents.xsd"/>
+        <xs:complexType name="WIPMerge">
+                <xs:complexContent>
+                        <xs:extension base="Noun">
+                                <xs:sequence>
+                                        <xs:element ref="Header" minOccurs="0"/>
+                                        <xs:element ref="Line" minOccurs="0" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="WIPMergeHeader">
+                <xs:sequence>
+                        <xs:element name="DocumentDateTime" type="DateTime" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the timestamp that indicates when the WIPMerge document was created on in the integrated envitonment.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ReasonCode" type="ReasonCode" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the reason code that caused the WIP Merge event to happen.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="ProductionOrderReference" minOccurs="0"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="WIPMergeLine">
+                <xs:sequence>
+                        <xs:element ref="Source" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="Destination" minOccurs="0"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:element name="WIPMerge" type="WIPMerge" substitutionGroup="Noun">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">WIPMerge is used to notify a Manufacturing Application of the creation of a single production lot from multiple production lots of a product being made on a production order.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Header" type="WIPMergeHeader">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Information describing the WIP Merge event</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Line" type="WIPMergeLine"/>
+        <xs:complexType name="WIPMergeDestination">
+                <xs:sequence>
+                        <xs:element name="ItemQuantity" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">The quantity of the item to be merged</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="ProductionOrderReference" minOccurs="0"/>
+                        <xs:element ref="OperationReference" minOccurs="0"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="WIPMergeSource">
+                <xs:sequence>
+                        <xs:element ref="ProductionOrderReference" minOccurs="0"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:element name="Source" type="WIPMergeSource">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the Source Orders to be merged.</xs:documentation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Information concerning the specific production order in the WIP Merge transaction to be processed.  Instances of this Component are the source (children) production orders from which to perform the merge transaction.  The resulting merged production order (specified in the WIPMergeDestination Component must also be specified as an instance of the WIPMergeDestination Component unless it is not an existing production order.  Note that all source production orders are assumed to be at the same standard operation sequence, intraoperation steps and departments for the merge transaction to be processed successfully.  This Component is mandatory and at least one occurrence of this Component is required for each WIPMergeLine Component.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Destination" type="WIPMergeDestination">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the Destination Order in which the Merger creates.</xs:documentation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Information concerning the specific production order in the WIP Merge transaction to be processed.  This Component specifies the end resulting production order (the target) to which to process the merge transaction.   This Component is mandatory for each occurrence of the WIPMergeLine for all BODs except the Request BODs (Get and GetList).</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+</xs:schema>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: CancelProductionOrder.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Resources/Verbs/Cancel.xsd"/>
+        <xs:include schemaLocation="../Resources/Nouns/ProductionOrder.xsd"/>
+        <xs:element name="CancelProductionOrder" type="CancelProductionOrder">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The purpose of the CancelProductionOrder is to notify a Manufacturing Application of the need to cancel a previous order to make a product in a specific quantity, for a specific need by date. This BOD may be used to cancel an entire Production Order, or a specific line on the production order.
+
+Processing Note:  
+
+This cancel must refer to the original document and/or item ordered.  To cancel the entire order, include only the Header information for the instance of the Production Order you wish to cancel.  To cancel a line or several lines, each line to be cancelled must be included in the request.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="CancelProductionOrder">
+                <xs:complexContent>
+                        <xs:extension base="BusinessObjectDocument">
+                                <xs:sequence>
+                                        <xs:element name="DataArea" type="CancelProductionOrderDataArea">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is where the information that the BOD message carries is provided, in this case CancelProductionOrder. The information consists of a Verb and one or more Nouns. The verb (Cancel) indicates the action to be performed on the Noun (ProductionOrder).</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="CancelProductionOrderDataArea">
+                <xs:complexContent>
+                        <xs:extension base="DataArea">
+                                <xs:sequence>
+                                        <xs:element ref="Cancel"/>
+                                        <xs:element ref="ProductionOrder" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+</xs:schema>

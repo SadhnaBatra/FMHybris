@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://www.aaiasoa.org/IPOv2" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" targetNamespace="http://www.aaiasoa.org/IPOv2" xmlns="http://schemas.xmlsoap.org/wsdl/">
+	<types>
+		<s:schema elementFormDefault="qualified" targetNamespace="http://www.aaiasoa.org/IPOv2">
+			<s:element name="Quote">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="AddRequestforQuoteBOD" type="s:string"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="QuoteResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="QuoteResult" type="s0:IPOQuoteResponse"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:complexType name="IPOQuoteResponse"/>
+			<s:complexType name="IPOQuoteConfirmResponse">
+				<s:complexContent mixed="false">
+					<s:extension base="s0:IPOQuoteResponse">
+						<s:sequence>
+							<s:element minOccurs="0" maxOccurs="1" name="ConfirmBOD" type="s:string"/>
+						</s:sequence>
+					</s:extension>
+				</s:complexContent>
+			</s:complexType>
+			<s:complexType name="IPOQuoteAddQuoteResponse">
+				<s:complexContent mixed="false">
+					<s:extension base="s0:IPOQuoteResponse">
+						<s:sequence>
+							<s:element minOccurs="0" maxOccurs="1" name="AddQuoteBOD" type="s:string"/>
+						</s:sequence>
+					</s:extension>
+				</s:complexContent>
+			</s:complexType>
+			<s:element name="QuoteStatus">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="GetQuoteBOD" type="s:string"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="QuoteStatusResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="QuoteStatusResult" type="s0:IPOQuoteStatusResponse"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:complexType name="IPOQuoteStatusResponse"/>
+			<s:complexType name="IPOQuoteStatusConfirmResponse">
+				<s:complexContent mixed="false">
+					<s:extension base="s0:IPOQuoteStatusResponse">
+						<s:sequence>
+							<s:element minOccurs="0" maxOccurs="1" name="ConfirmBOD" type="s:string"/>
+						</s:sequence>
+					</s:extension>
+				</s:complexContent>
+			</s:complexType>
+			<s:complexType name="IPOQuoteStatusShowQuoteResponse">
+				<s:complexContent mixed="false">
+					<s:extension base="s0:IPOQuoteStatusResponse">
+						<s:sequence>
+							<s:element minOccurs="0" maxOccurs="1" name="ShowQuoteBOD" type="s:string"/>
+						</s:sequence>
+					</s:extension>
+				</s:complexContent>
+			</s:complexType>
+			<s:element name="CreatePurchaseOrder">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="ProcessPurchaseOrderBOD" type="s:string"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="CreatePurchaseOrderResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="CreatePurchaseOrderResult" type="s0:IPOCreatePurchaseOrderResponse"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:complexType name="IPOCreatePurchaseOrderResponse"/>
+			<s:complexType name="IPOCreatePurchaseOrderConfirmResponse">
+				<s:complexContent mixed="false">
+					<s:extension base="s0:IPOCreatePurchaseOrderResponse">
+						<s:sequence>
+							<s:element minOccurs="0" maxOccurs="1" name="ConfirmBOD" type="s:string"/>
+						</s:sequence>
+					</s:extension>
+				</s:complexContent>
+			</s:complexType>
+			<s:complexType name="IPOCreatePurchaseOrderAcknowledgePurchaseOrderResponse">
+				<s:complexContent mixed="false">
+					<s:extension base="s0:IPOCreatePurchaseOrderResponse">
+						<s:sequence>
+							<s:element minOccurs="0" maxOccurs="1" name="AcknowledgePurchaseOrderBOD" type="s:string"/>
+						</s:sequence>
+					</s:extension>
+				</s:complexContent>
+			</s:complexType>
+			<s:element name="ChangePurchaseOrder">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="ChangePurchaseOrderBOD" type="s:string"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="ChangePurchaseOrderResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="ChangePurchaseOrderResult" type="s0:IPOChangePurchaseOrderResponse"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:complexType name="IPOChangePurchaseOrderResponse"/>
+			<s:complexType name="IPOChangePurchaseOrderConfirmResponse">
+				<s:complexContent mixed="false">
+					<s:extension base="s0:IPOChangePurchaseOrderResponse">
+						<s:sequence>
+							<s:element minOccurs="0" maxOccurs="1" name="ConfirmBOD" type="s:string"/>
+						</s:sequence>
+					</s:extension>
+				</s:complexContent>
+			</s:complexType>
+			<s:complexType name="IPOChangePurchaseOrderAcknowledgePurchaseOrderResponse">
+				<s:complexContent mixed="false">
+					<s:extension base="s0:IPOChangePurchaseOrderResponse">
+						<s:sequence>
+							<s:element minOccurs="0" maxOccurs="1" name="AcknowledgePurchaseOrderBOD" type="s:string"/>
+						</s:sequence>
+					</s:extension>
+				</s:complexContent>
+			</s:complexType>
+			<s:element name="PurchaseOrderStatus">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="GetPurchaseOrderBOD" type="s:string"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="PurchaseOrderStatusResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="PurchaseOrderStatusResult" type="s0:IPOPurchaseOrderStatusResponse"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:complexType name="IPOPurchaseOrderStatusResponse"/>
+			<s:complexType name="IPOPurchaseOrderStatusAcknowledgePurchaseOrderResponse">
+				<s:complexContent mixed="false">
+					<s:extension base="s0:IPOPurchaseOrderStatusResponse">
+						<s:sequence>
+							<s:element minOccurs="0" maxOccurs="1" name="AcknowlegePurchaseOrderBOD" type="s:string"/>
+						</s:sequence>
+					</s:extension>
+				</s:complexContent>
+			</s:complexType>
+			<s:complexType name="IPOPurchaseOrderStatusConfirmResponse">
+				<s:complexContent mixed="false">
+					<s:extension base="s0:IPOPurchaseOrderStatusResponse">
+						<s:sequence>
+							<s:element minOccurs="0" maxOccurs="1" name="ConfirmBOD" type="s:string"/>
+						</s:sequence>
+					</s:extension>
+				</s:complexContent>
+			</s:complexType>
+			<s:element name="ShipmentStatus">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="GetShipmentBOD" type="s:string"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="ShipmentStatusResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="ShipmentStatusResult" type="s0:IPOShipmentStatusResponse"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:complexType name="IPOShipmentStatusResponse"/>
+			<s:complexType name="IPOShipmentStatusShowShipmentResponse">
+				<s:complexContent mixed="false">
+					<s:extension base="s0:IPOShipmentStatusResponse">
+						<s:sequence>
+							<s:element minOccurs="0" maxOccurs="1" name="ShowShipmentBOD" type="s:string"/>
+						</s:sequence>
+					</s:extension>
+				</s:complexContent>
+			</s:complexType>
+			<s:complexType name="IPOShipmentStatusConfirmResponse">
+				<s:complexContent mixed="false">
+					<s:extension base="s0:IPOShipmentStatusResponse">
+						<s:sequence>
+							<s:element minOccurs="0" maxOccurs="1" name="ConfirmBOD" type="s:string"/>
+						</s:sequence>
+					</s:extension>
+				</s:complexContent>
+			</s:complexType>
+			<s:element name="CancelPurchaseOrder">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="CancelPurchaseOrderBOD" type="s:string"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="CancelPurchaseOrderResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="CancelPurchaseOrderResult" type="s0:IPOCancelPurchaseOrderResponse"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:complexType name="IPOCancelPurchaseOrderResponse">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1" name="ConfirmBOD" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+		</s:schema>
+	</types>
+	<message name="QuoteSoapIn">
+		<part name="parameters" element="s0:Quote"/>
+	</message>
+	<message name="QuoteSoapOut">
+		<part name="parameters" element="s0:QuoteResponse"/>
+	</message>
+	<message name="QuoteStatusSoapIn">
+		<part name="parameters" element="s0:QuoteStatus"/>
+	</message>
+	<message name="QuoteStatusSoapOut">
+		<part name="parameters" element="s0:QuoteStatusResponse"/>
+	</message>
+	<message name="CreatePurchaseOrderSoapIn">
+		<part name="parameters" element="s0:CreatePurchaseOrder"/>
+	</message>
+	<message name="CreatePurchaseOrderSoapOut">
+		<part name="parameters" element="s0:CreatePurchaseOrderResponse"/>
+	</message>
+	<message name="ChangePurchaseOrderSoapIn">
+		<part name="parameters" element="s0:ChangePurchaseOrder"/>
+	</message>
+	<message name="ChangePurchaseOrderSoapOut">
+		<part name="parameters" element="s0:ChangePurchaseOrderResponse"/>
+	</message>
+	<message name="PurchaseOrderStatusSoapIn">
+		<part name="parameters" element="s0:PurchaseOrderStatus"/>
+	</message>
+	<message name="PurchaseOrderStatusSoapOut">
+		<part name="parameters" element="s0:PurchaseOrderStatusResponse"/>
+	</message>
+	<message name="ShipmentStatusSoapIn">
+		<part name="parameters" element="s0:ShipmentStatus"/>
+	</message>
+	<message name="ShipmentStatusSoapOut">
+		<part name="parameters" element="s0:ShipmentStatusResponse"/>
+	</message>
+	<message name="CancelPurchaseOrderSoapIn">
+		<part name="parameters" element="s0:CancelPurchaseOrder"/>
+	</message>
+	<message name="CancelPurchaseOrderSoapOut">
+		<part name="parameters" element="s0:CancelPurchaseOrderResponse"/>
+	</message>
+	<portType name="InternetPartsOrderWebServiceSoap">
+		<operation name="Quote">
+			<documentation>Request for parts, price and availability  information.	This operation accepts an Add Request For Quote BOD and returns either an AddQuote BOD or a Confirm BOD</documentation>
+			<input message="s0:QuoteSoapIn"/>
+			<output message="s0:QuoteSoapOut"/>
+		</operation>
+		<operation name="QuoteStatus">
+			<documentation>Request the status of a pending quote. 	This opperation accepts a GetQuote  BOD and returns either an ShowQuote BOD or a Confirm BOD</documentation>
+			<input message="s0:QuoteStatusSoapIn"/>
+			<output message="s0:QuoteStatusSoapOut"/>
+		</operation>
+		<operation name="CreatePurchaseOrder">
+			<documentation>Process Purchase Order for parts.  This operation accepts a Process Purchase Order BOD and returns an Acknowledge Purchase Order BOD or a Confirm BOD</documentation>
+			<input message="s0:CreatePurchaseOrderSoapIn"/>
+			<output message="s0:CreatePurchaseOrderSoapOut"/>
+		</operation>
+		<operation name="ChangePurchaseOrder">
+			<documentation>Change an existing Purchase Order for parts.  This operation accepts a Change Purchase Order BOD and returns an Acknowledge Purchase Order BOD or a Confirm BOD</documentation>
+			<input message="s0:ChangePurchaseOrderSoapIn"/>
+			<output message="s0:ChangePurchaseOrderSoapOut"/>
+		</operation>
+		<operation name="PurchaseOrderStatus">
+			<documentation>Inquiry on status of  existing Purchase Order.		This operation accepts a Get Purchase Order BOD and returns  an Acknowledge Purchase Order BOD, or a Confim BOD.  In the demonstration web service pass "A" or   "B"  to see the different responses.</documentation>
+			<input message="s0:PurchaseOrderStatusSoapIn"/>
+			<output message="s0:PurchaseOrderStatusSoapOut"/>
+		</operation>
+		<operation name="ShipmentStatus">
+			<documentation>Inquiry on status of  existing Shipment.		This operation accepts a Get Shipment BOD and returns   a Show Shipment BOD or a Confim BOD.  In the demonstration web service pass "A" or   "B"    to see the different responses.</documentation>
+			<input message="s0:ShipmentStatusSoapIn"/>
+			<output message="s0:ShipmentStatusSoapOut"/>
+		</operation>
+		<operation name="CancelPurchaseOrder">
+			<documentation>Used by the buyer to cancel an accepted purchase order.  May be requested at any time, however, the supplier may have constraints after which time the cancel will not be accepted.  This operation accepts a Cancel Purchase Order BOD and returns a Confirm BOD</documentation>
+			<input message="s0:CancelPurchaseOrderSoapIn"/>
+			<output message="s0:CancelPurchaseOrderSoapOut"/>
+		</operation>
+	</portType>
+	<binding name="InternetPartsOrderWebServiceSoap" type="s0:InternetPartsOrderWebServiceSoap">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+		<operation name="Quote">
+			<soap:operation soapAction="http://www.aaiasoa.org/IPOv2/Quote" style="document"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="QuoteStatus">
+			<soap:operation soapAction="http://www.aaiasoa.org/IPOv2/QuoteStatus" style="document"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="CreatePurchaseOrder">
+			<soap:operation soapAction="http://www.aaiasoa.org/IPOv2/CreatePurchaseOrder" style="document"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ChangePurchaseOrder">
+			<soap:operation soapAction="http://www.aaiasoa.org/IPOv2/ChangePurchaseOrder" style="document"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="PurchaseOrderStatus">
+			<soap:operation soapAction="http://www.aaiasoa.org/IPOv2/PurchaseOrderStatus" style="document"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ShipmentStatus">
+			<soap:operation soapAction="http://www.aaiasoa.org/IPOv2/ShipmentStatus" style="document"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="CancelPurchaseOrder">
+			<soap:operation soapAction="http://www.aaiasoa.org/IPOv2/CancelPurchaseOrder" style="document"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="InternetPartsOrderWebService">
+		<documentation>This web service is a template for the standard AAIA IPO (Internet Parts Ordering) Web Service.</documentation>
+		<port name="InternetPartsOrderWebServiceSoap" binding="s0:InternetPartsOrderWebServiceSoap">
+			<soap:address location="http://localhost:8081/WOMIntegration/services/21/InternetPartsOrderWebService"/>
+		</port>
+	</service>
+</definitions>

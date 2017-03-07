@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: UpdateDeliveryReceipt.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Resources/Verbs/Update.xsd"/>
+        <xs:include schemaLocation="../Resources/Nouns/DeliveryReceipt.xsd"/>
+        <xs:element name="UpdateDeliveryReceipt" type="UpdateDeliveryReceipt">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The UpdateDeliveryReceipt may be used to update the receiver’s internal receiving and order management business applications to indicate that the requested material has arrived, including any unexpected quantity, condition or other exception discrepancies.
+
+There are many other possible business applications in several environments that may use this capability.  For example:
+1. A Purchasing application may use this BOD to notify an Accounts Payable application of a specific delivery.  This will enable the Accounts Payable application to accurately calculate the amount it needs to pay a business partner.
+
+2. A Purchasing application could use this to notify a MRP, Inventory, or Manufacturing business application that a delivery has occurred and the goods are available for use or inspection, etc.
+
+3. An MRP/Inventory system could use this BSR to communicate changes on a physical receipt in inventory to the Purchasing system.
+
+The UpdateDeliveryReceipt supports receipts at either the line item level and/or the ship unit level.  Intermediate transportation/logistics providers or freight forwarding partners can use this document to acknowledge the receipt of entire shipping units without detailing the corresponding contents.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="UpdateDeliveryReceipt">
+                <xs:complexContent>
+                        <xs:extension base="BusinessObjectDocument">
+                                <xs:sequence>
+                                        <xs:element name="DataArea" type="UpdateDeliveryReceiptDataArea">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is where the information that the BOD message carries is provided, in this case UpdateDeliveryReceipt. The information consists of a Verb and one or more Nouns. The verb (Update) indicates the action to be performed on the Noun (DeliveryReceipt).</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="UpdateDeliveryReceiptDataArea">
+                <xs:complexContent>
+                        <xs:extension base="DataArea">
+                                <xs:sequence>
+                                        <xs:element ref="Update"/>
+                                        <xs:element ref="DeliveryReceipt" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+</xs:schema>

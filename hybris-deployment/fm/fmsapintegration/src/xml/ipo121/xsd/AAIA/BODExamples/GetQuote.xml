@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Automotive Aftermarket Industry Association (AAIA)
+	http://www.aftermarket.org
+	Internet Parts Ordering (IPO) Release 1.2.1,  March 1, 2005
+	Business Object Document (BOD) Example
+	
+	Overlay for: 
+	Open Applications Group (http://www.openapplications.org)
+	OAGIS Release 8.0, 	April 05, 2002
+	
+	Name:		GetQuote.xml
+	Comments:	The default name space is OAGIS. Therefore all AAIA elements require the aaia: prefix.
+-->
+<aaia:GetQuote xmlns="http://www.openapplications.org/oagis" xmlns:aaia="http://www.aftermarket.org/oagis" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.aftermarket.org/oagis ../BODs/GetQuote.xsd" revision="1.2.1" environment="Production" lang="en">
+	<!-- The ApplicationArea identifies the document and the sender. -->
+	<ApplicationArea>
+		<Sender>
+			<ReferenceId>A001</ReferenceId>
+			<Confirmation>1</Confirmation>
+		</Sender>
+		<CreationDateTime>2003-08-18T10:02:13-06:00</CreationDateTime>
+		<BODId>023TH</BODId>
+	</ApplicationArea>
+	<!-- The DataArea contains the business information to be processed by the receiver. -->
+	<aaia:DataArea>
+		<aaia:Get confirm="Always"/>
+		<Quote>
+			<!-- The Header fields identify the RFQ that is awaiting a quote. -->
+			<Header>
+				<DocumentIds>
+					<CustomerDocumentId>
+						<Id>Q04931</Id>
+					</CustomerDocumentId>
+				</DocumentIds>
+				<DocumentDateTime>2003-08-18T09:32:58Z</DocumentDateTime>
+			</Header>
+			<!-- Line information is unnecessary here, having been provided through Add Request For Quote. -->
+			<aaia:Line/>
+		</Quote>
+	</aaia:DataArea>
+</aaia:GetQuote>

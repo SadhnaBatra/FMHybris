@@ -1,0 +1,16 @@
+# ImpEx for Importing Products stock levels into FederalMogul Store
+
+# Macros / Replacement Parameter definitions
+$productCatalog=federalmogulProductCatalog
+$productCatalogName=FederalMogul Product Catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+
+
+INSERT_UPDATE Vendor;code[unique=true];name[lang=en]
+
+
+INSERT_UPDATE Warehouse;code[unique=true];name[lang=en];vendor(code)[default=federalMogul];default[default=true]
+
+
+INSERT_UPDATE StockLevel;productCode[unique=true];warehouse(code)[unique=true,default=default];available;inStockStatus(code);maxPreOrder[default=1];maxStockLevelHistoryCount[default=-1];overSelling[default=0];preOrder[default=0];reserved[default=0]
+

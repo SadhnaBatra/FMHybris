@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: ShowDeliveryReceipt.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Resources/Verbs/Show.xsd"/>
+        <xs:include schemaLocation="../Resources/Nouns/DeliveryReceipt.xsd"/>
+        <xs:element name="ShowDeliveryReceipt" type="ShowDeliveryReceipt">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The ShowDeliveryReceipt may be used to obtain information about a specific expected (unreceived) or previously received goods delivery.   The ShowDeliveryReceipt may be issued in response to a GetDeliveryReceipt request, or emitted asynchronously for notification upon some business event.
+
+For expected deliveries, the ShowDeliveryReceipt document content may act as a receiving template or checklist to identify the quantity and shipping configuration of the expected goods.  In this manner the ShowDeliveryReceipt may be considered logically equivalent to the Advance Ship Notice information in a ShowShipment document.   This similarity is by design, as the receiver’s ShowDeliveryReceipt may be directly derived from shipper’s ShowShipment content after the receiver’s business logic has appropriately validated the Advance Ship Notification information.
+
+The ShowDeliveryReceipt supports describing shipment content at either the line item level and/or the ship unit level.  Intermediate transportation/logistics providers or freight forwarding partners can use this document to acknowledge the receipt of entire shipping units without detailing the corresponding contents.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="ShowDeliveryReceipt">
+                <xs:complexContent>
+                        <xs:extension base="BusinessObjectDocument">
+                                <xs:sequence>
+                                        <xs:element name="DataArea" type="ShowDeliveryReceiptDataArea">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is where the information that the BOD message carries is provided, in this case ShowDeliveryReceipt. The information consists of a Verb and one or more Nouns. The verb (Show) indicates the action to be performed on the Noun (DeliveryReceipt).</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="ShowDeliveryReceiptDataArea">
+                <xs:complexContent>
+                        <xs:extension base="DataArea">
+                                <xs:sequence>
+                                        <xs:element ref="Show"/>
+                                        <xs:element ref="DeliveryReceipt" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+</xs:schema>

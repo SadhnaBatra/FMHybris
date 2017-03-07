@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: UpdateInventoryBalance.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Resources/Verbs/Update.xsd"/>
+        <xs:include schemaLocation="../Resources/Nouns/InventoryBalance.xsd"/>
+<!-- BOD global type and global element definitions -->
+        <xs:element name="UpdateInventoryBalance" type="UpdateInventoryBalance">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The purpose of the ChangeInventoryBalance is to enable the communication of a Change in the InventoryBalance data that exists on separate Inventory databases.
+
+This data is not the master data that describes the attributes of the item such as dimensions, weight, or unit of measure.  
+
+This is data that describes the ITEM as it exists at a specific location. It is</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="UpdateInventoryBalance">
+                <xs:complexContent>
+                        <xs:extension base="BusinessObjectDocument">
+                                <xs:sequence>
+                                        <xs:element name="DataArea" type="UpdateInventoryBalanceDataArea">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is where the information that the BOD message carries is provided, in this case UpdateInventoryBalance. The information consists of a Verb and one or more Nouns. The verb (Update) indicates the action to be performed on the Noun (InventoryBalance).</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="UpdateInventoryBalanceDataArea">
+                <xs:complexContent>
+                        <xs:extension base="DataArea">
+                                <xs:sequence>
+                                        <xs:element ref="Update"/>
+                                        <xs:element ref="InventoryBalance" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+</xs:schema>

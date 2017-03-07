@@ -1,0 +1,47 @@
+#******************************This file is generated - please do not edit it. It will be regenerated after every build.********************************#
+# ImpEx template for Importing all Localisations for Products in the Apparel Store
+ 
+# Macros / Replacement Parameter definitions
+$lang=en
+$catalogVersion=catalogVersion(catalog(id[default='federalmogulloyaltyProductCatalog']),version[default='Staged'])[unique=true,default='federalmogulloyaltyProductCatalog:Staged']
+ 
+ 
+# Update allProducts with localisations
+UPDATE Product;code[unique=true];$catalogVersion;name[lang=$lang];summary[lang=$lang];description[lang=$lang];LoyaltyStyleVariantProduct.color[lang=$lang];LoyaltySizeVariantProduct.size[lang=$lang]
+#Wagner
+;10000;;Wagner Hat;;;black;
+;10001;;T-Shirt;;;black;
+;10002;;Bolle Safety Glasses;;;black;
+;10003;;Carhatt signature Tool Tol;;;black;
+;10004;;High Sierra Grizzly outdoor NFC Bluetooth Speaker;;;black;
+;10005;;OGIO Light Weight Jacket;;;black;
+#Moog
+;10006;;MOOG-NASCAR Hat;;;black;
+;10007;;Commemorative T-Shirt;;;black;
+;10008;;Stainless Steel Travel Mug;;;black;
+;10009;;Polo;;;black;
+;10010;;Duffle Bag;;;black;
+#FelPro
+;10011;;Scully;;;black;
+;10012;;Clean and Dry T-Shirt;;;black;
+;10013;;Ringer's Gloves;;;black;
+;10014;;Red Kap Blue Stripped Work Shirt;;;black;
+;10015;;Mechanic Tool Bag;;;black;
+;10016;;Red Kap Jacket;;;black;
+##anco
+;10017;;Snow Brush;;;black;
+;10018;;Tire Gauge/Seatbelt Cutter;;;;black;
+;10019;;Lighted Umbrella;;;;black;
+;10020;;Blanket;;;;black;
+;10021;;Rain Coat;;;;black;
+#champion
+;10022;;Youth Tee;;;black;
+;10023;;Trucker hat;;;black;
+;10024;;Classic Logo Tee;;;black;
+;10025;;Vintage Logo Tee ;;;black;
+;10026;;Favorite Spark Plug Tee;;;black;
+;10027;;Search for a Champion Tee;;;black;
+;10028;;Vintage 1908 Tee;;;black;
+;10029;;Original Chuck Hat;;;black;
+;10030;;Long Sleeve Tee;;;black;
+;10031;;Vintage Hoodie;;;black;

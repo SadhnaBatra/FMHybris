@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/PickList.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../MfgComponents.xsd"/>
+        <xs:complexType name="PickList">
+                <xs:complexContent>
+                        <xs:extension base="Noun">
+                                <xs:sequence>
+                                        <xs:element ref="Header" minOccurs="0"/>
+                                        <xs:element ref="Line" minOccurs="0" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="PickListHeader">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Information about the entire Picking List</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                        <xs:element ref="DocumentId" minOccurs="0"/>
+                        <xs:element name="DocumentDateTime" type="DateTime" minOccurs="0"/>
+                        <xs:element name="BillOfLadingId" type="Id" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the bill of lading identifier.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="DockId" type="Id" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Idenitifies the loading dock that the picklist is to be taken to for shipment or is coming from.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="RouteId" type="Id" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is an identifier than identifies the physical route the shipped material is taking.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Weight" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Total weight of the PickList.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Volume" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Total volume of the PickList.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="Parties" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">SAT - What is this for PARTNRID in header? need to check with duane</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:group ref="Temperatures" minOccurs="0"/>
+                        <xs:element name="ShipPoint" type="Id" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the location the goods are to be shipped.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="PickListLine">
+                <xs:sequence>
+                        <xs:element name="LineNumber" type="LineNumber" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the line number of the PickList.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="Item" minOccurs="0"/>
+                        <xs:group ref="ItemLotSerialIdentifier" minOccurs="0"/>
+                        <xs:element name="PickQuantity" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the Quantity to Pick.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ShippedQuantity" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the quantity that is shipped against the picklist</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ShipUnitQuantity" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">This represents the container(s), not the product shipped.  An example of this is “4 truck loads” or “2 wooden crates”.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="CarrierReference" minOccurs="0"/>
+                        <xs:element ref="Detail" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:element name="PickList" type="PickList" substitutionGroup="Noun">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Picking List is a document that lists material to be retrieved (“picked”) from various locations in a warehouse in order to fill a production order, sales order, or shipping order.  A picking list includes general identifying information (header information), as well as line item details.  Depending on the verb used, PickList may refer to header information only, or both header and detail information. </xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Header" type="PickListHeader">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Information about the entire Picking List</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Line" type="PickListLine">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Information about a line item on a Picking List.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Detail" type="PickLineDetail">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Detail information about particular line items</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="PickLineDetail">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Describes further details about a line item on a Picking List document that is generated in an ERP shipping module.</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                        <xs:element name="ShippedDateTime" type="DateTime" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the timestamp that indicates when the PickList shipped.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="LoadPointId" type="Id" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the location that shipped goods are to be loaded.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ShipPointId" type="Id" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the Shipping location that a PickList is to be shipped.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="TrackingId" type="Id" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is a unique identifier for the purpose of tracking an individual package or shipment.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="ShippingMaterial" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Description of the packaging</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="LoadingDateTime" type="DateTime" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the timestamp when the items are loaded.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="TotalMaterialWeight" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Total weight of the material being picked.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="NetMaterialWeight" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the net weight of the material being picked.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="MaterialVolume" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the volume of the material.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="NetContainerWeight" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the net container weight.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="MaximumContainerWeight" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the maximum weigth that the container can hold.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:group ref="Temperatures" minOccurs="0"/>
+                        <xs:group ref="Notes" minOccurs="0"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+</xs:schema>

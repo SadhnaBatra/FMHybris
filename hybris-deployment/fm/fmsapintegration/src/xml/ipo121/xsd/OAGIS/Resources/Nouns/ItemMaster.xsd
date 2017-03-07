@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/ItemMaster.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified">
+        <xs:include schemaLocation="../MfgComponents.xsd"/>
+<!--   -->
+        <xs:complexType name="ItemDetails">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Captures the common item information that is shared between the header and Item Location.</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                        <xs:element ref="ItemId" minOccurs="0"/>
+                        <xs:element name="Type" type="ItemType" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates whether the item is a good, a service, or a resource.  This is used to describe inventoried items.  Examples of this value include documents, jigs, fixtures, tools, or bulk items.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Variation" type="Variation" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is used to distinguish Items that have the same Item identifier.  It is intended to identify a lower level variation of the Item from the Item Revision.  This is usually used to describe a property of the Item that is most distinguishable.This is not meant to describe detail configurations of an Item or Bill of Material.  They are to be described in each of those BODs.  This is to be used for slight variations on a particular Routing.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="Status" minOccurs="0"/>
+                        <xs:element name="UOM" type="UOM" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the default UOM that the business refers to the item in. This is sometimes different from the unit of measure that is used to count a product as it is consumed, sold or accounted for.
+
+EXAMPLES: 
+Generic Quantity  (Each, Pair, Dozen, Gross, etc); 
+Weight (Ounce, Pound, Ton, Kilogram, etc); 
+Volume (Cup, Pint, Gallon, Liter, etc);
+Length (Inch, Foot, Yard, Meter, etc)</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="UOMType" type="UOMType" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the type of the Unit-of-Measure.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="OwnershipCode" type="OwnershipCode" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is used to identify who or which organization owns the item or part. The content is user defined based on a specific Customer or Supplier.
+
+SYNONYMS:  
+  Vendor Consignment ID
+  Supplier Consignment ID</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="SerialNumberSpecification" type="SerialNumberSpecification" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the business rules used to specify what constitutes a serial number</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:group ref="LotProperties" minOccurs="0"/>
+                        <xs:element name="OrganizationalUnit" type="OrganizationalUnit" minOccurs="0"/>
+                        <xs:element name="GLEntitySource" type="GLEntity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the owning entity of the Item.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="GLNominalAccount" type="GLAccount" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">GL Account associated with the Item in the Item Master.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="LastModifiedDateTime" type="DateTime" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the timestamp of the last modification to the Item Master for this Item.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="UnitPackaging" minOccurs="0"/>
+                        <xs:element ref="Property" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="Note" type="Note" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Free form notes describing the item.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="RoutingDisposition" minOccurs="0"/>
+                        <xs:element ref="HazardousMaterial" minOccurs="0"/>
+                        <xs:element name="UOMGroupId" type="Id" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is a UOMGroup Identifier, that identifies a set of related UOM's and their conversions from the Item's UOM</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="AlternateUOM" type="AlternateUOM" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies alternate unit of measures for an item that may be used.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="Value" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:group ref="References" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="ItemHeader">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies everything know about an item. Information at the header level applies to all locations unless indicated differently at a given location.</xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                        <xs:extension base="ItemDetails">
+                                <xs:sequence>
+                                        <xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Describes the Item.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="SerialControlInd" type="Indicator" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates if the item is a serialized item i.e. unique instances of the item are identified by unique serial numbers. Valid values are 0 for no, and 1 for yes</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="LotControlInd" type="Indicator" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates if the item is a lotted item. Valid values are 0 for no, and 1 for yes</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="ExpirationControlType" type="ControlType" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the type of control used to determine whether or not an item has expired or is no longer considered good to sale or consume.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="DocumentDateTime" type="DateTime" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifyies the timestamp that the Item Master record was created.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="CatchWeightInd" type="Indicator" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates that an ITEM requires special processing to determine the actual net or gross weight during certain inventory operations.  </xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="FreightClass" type="FreightClass" minOccurs="0">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Qualifies goods for purposes of freight cost calculation. An example would the qualifications used by National Motor Freight Carriers.
+
+EXAMPLES	National Motor Freight Carriers (NMFC) Class Code 
+
+Based on an evaluation of density, stowability, ease of handling and liability, the commodities are grouped into one of 18 classes.</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                        <xs:group ref="ItemFamilies" minOccurs="0"/>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="ItemValue">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the cost or value of an item.</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                        <xs:element name="ItemValue" type="AmountPerQuantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the value per quantity of the item. Represents the value of the item to the owning organization.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ItemCost" type="AmountPerQuantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the cost per unit to the owning organization that the item represents.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="CostType" type="CostType" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the methodology by which the value of an item is determined.
+
+Values are:
+ Standard
+ Moving Average
+ LIFO - For last in first out.
+ FIFO - For first in first out.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ValueClass" type="ValueClass" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is a grouping used to determine the General Ledger accounting effect. These are user defined values, with the exception of the values TOTAL, MATERIAL, LABOR, BURDEN, OVERHEAD, SUBCONTRACT.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="GLNominalAccount" type="GLAccount" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">The General Ledger Nominal Account that indicates what the item shows up on the accounting books as.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="GLEntity" type="GLEntity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the owning organzation of the item.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="EffectivePeriod" type="TimePeriod" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the starting date for effectivity period for the item value indicated by this occurance of Item Value.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Description of the Item Value.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Note" type="Note" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Free form note about the Item Value.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="ItemLocation">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the Item information that is specific to a location. For example a plant or site may keep different information about an item than the corporate office. The ItemId in the ItemLocation is the Id by which the Item is referred to within this location, if applicable</xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                        <xs:extension base="ItemDetails">
+                                <xs:sequence>
+                                        <xs:element ref="Site" minOccurs="0"/>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="AlternateUOM">
+                <xs:sequence>
+                        <xs:element name="Multiplier" type="Factor" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the multiple to make the conversion from the Inventory UOM to the the alternate UOM. </xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="UOM" type="UOM" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">The UOM here represents the alternate UOM. The the Mulitplier determines the conversion between the parent UOM and the UOM specified here in the allternate UOM.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="UnitPackaging" minOccurs="0"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="ItemMaster">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Represents any unique purchased part or manufactured product.  Item, as used here, refers to the basic information about an item, including its attributes, cost, and locations.  It does not include item quantities.  Compare to the noun InventoryBalance, which includes all quantities and other location-specific information.
+
+Item is used as the Item Master.</xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                        <xs:extension base="Noun">
+                                <xs:sequence>
+                                        <xs:element ref="Header" minOccurs="0"/>
+                                        <xs:element ref="ItemLocation" minOccurs="0" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:element name="ItemMaster" type="ItemMaster" substitutionGroup="Noun">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Represents any unique purchased part or manufactured product.  Item, as used here, refers to the basic information about an item, including its attributes, cost, and locations.  It does not include item quantities.  Compare to the noun InventoryBalance, which includes all quantities and other location-specific information.
+
+Item is used as the Item Master.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Header" type="ItemHeader">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies everything know about an item. Information at the header level applies to all locations unless indicated differently at a given location.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="ItemLocation" type="ItemLocation">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the Item information that is specific to a location. For example a plant or site may keep different information about an item than the corporate office.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Value" type="ItemValue">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the cost or value of the item.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="UnitPackaging" type="Packaging">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the packaging that the company generally references the Item in.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:simpleType name="SerialNumberSpecification">
+                <xs:restriction base="xs:string"/>
+        </xs:simpleType>
+        <xs:group name="ItemFamilies">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">This group identifies all the families an item may belong to</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                        <xs:element name="ClassificationId" type="Id" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">The ClassificationIds identify a single or hierarchical association of classifications. For example, Pump, Centrifugal would be represented by two ClassificationIds, the first one as Pump, the second as Centrifugal</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ClassificationStructureId" type="Id" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">This Id is a unique reference to a classification hierarchy. It can also be used to represent a concatenated set of associated classifications</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ProductLine" type="ProductLine" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">This is a grouping used to represent something that is sold either internally or externally.  It typically is a grouping of ITEMs.
+
+SYNONYMS:
+Commodity
+Product Family
+Kit</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="CommodityCode" type="Commodity" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">These are codes that identify user-defined groupings of items</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                </xs:sequence>
+        </xs:group>
+        <xs:group name="LotProperties">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">This identifies lot definition properties for lotted items</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                        <xs:element name="LotNumberSpecification" type="LotNumberSpecification" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the business rules used to specify what constitutes a lot</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="LotSizeMultiplier" type="Factor" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is commonly used with the MinimumLotSizeQuantity and MaximumLotSizeQuantity compounds.  It contains the multiplier between the minimum and maximum manufactured lot quantities.  For example, if the maximum lot quantity is 10,000 and the minimum lot quantity is 1000, the lot size multiplier could be 1000.  This means the ITEM may be manufactured in lot sizes starting at 1000 and going up to 10,000 by 1000 increments.
+
+For example, 1000, 2000, 3000, etc.  A lot of 4500, would not be allowed under these constraints</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="MinimumLotSizeQuantity" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the minimum quantity of an ITEM manufactured in a single lot.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="MaximumLotSizeQuantity" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Contains the maximum quantity of an ITEM manufactured in a single lot</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                </xs:sequence>
+        </xs:group>
+</xs:schema>

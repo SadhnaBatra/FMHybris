@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sch:schema xmlns="http://www.ascc.net/xml/schematron" xmlns:oa="http://www.openapplications.org/oagis" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ascc.net/xml/schematron ../../../Utility/Schematron/schematron1-5.xsd">
+	<sch:title>Schematron Validator for OAGI Constraints</sch:title>
+	<sch:ns prefix="oa" uri="http://www.openapplications.org/oagis"/>
+	<sch:pattern name="Get Bill Of Material">
+		<sch:rule context="oa:BillOfMaterial">
+			<sch:assert test="oa:Header">Get Bill Of Material must have a Header component specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Header">
+		<sch:rule context="oa:BillOfMaterial/oa:Header">
+			<sch:assert test="oa:DocumentId/oa:Id | oa:Name | oa:Type | oa:Item/oa:ItemId/oa:Id">The Header must have a "DocumentId" and "Id" or "Name" or "type" or "Item" and "ItemId" and "Id" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+</sch:schema>

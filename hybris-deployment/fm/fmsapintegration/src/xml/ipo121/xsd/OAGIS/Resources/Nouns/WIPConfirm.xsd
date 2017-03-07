@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/WIPConfirm.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../MfgComponents.xsd"/>
+        <xs:complexType name="WIPConfirm">
+                <xs:complexContent>
+                        <xs:extension base="Noun">
+                                <xs:sequence>
+                                        <xs:element ref="Header" minOccurs="0"/>
+                                        <xs:element ref="Line" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element ref="Distribution" minOccurs="0" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="ShopFloorControlHeader">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Provides information that is relavent for the entire WIPConfirm. DocumentReferences allow this document to reference other documents that this Work-in-Process is being performed to satisfy. This can be the result ot PurchaseOrders, MaintenanceOrders, SalesOrders, etc.</xs:documentation>
+                </xs:annotation>
+                <xs:sequence>
+                        <xs:element ref="DocumentId" minOccurs="0"/>
+                        <xs:element ref="DocumentReferences" minOccurs="0"/>
+                        <xs:element name="DocumentDateTime" type="DateTime" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the timestamp that the WIPConfirm document was created on the sending system.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Describes the WIPConfirm document.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="TransferType" type="TransferType" default="Complete" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">TransferType to be “Complete” or a return by specifying “Return” to indicate that the items are to be returned to inventory.  The Return is a very similar function to the Complete and just reserves the process.  When left unspecified, the default for this field is Complete.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="ShopFloorControlLine">
+                <xs:complexContent>
+                        <xs:extension base="ShopFloorControlLineBase">
+                                <xs:sequence>
+                                        <xs:element ref="ShopFloorControlSubLine" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element ref="ProductionOrderReference" minOccurs="0"/>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:element name="WIPConfirm" type="WIPConfirm" substitutionGroup="Noun">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Work-in-Progress confirmation represents confirmation of the movement of WIP materials. The noun refers to general information about the entire WIP transaction, as well as line item detail about the specific WIP operation or routing step.  This may apply to the movement of raw materials or finished products.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Header" type="ShopFloorControlHeader"/>
+        <xs:element name="Line" type="ShopFloorControlLine"/>
+        <xs:complexType name="ShopFloorControlLineBase">
+                <xs:sequence>
+                        <xs:element name="OperationId" type="OperationId" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the Operation identifier that the WIP Confirm is reporting against.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="OperationName" type="OperationName" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the name of the operation being reported against.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="OperationSequence" type="OperationSequenceCode" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the sequence code of the operation being reported against.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="SuffixId" type="Id" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">This identifies a sub-component of the Production Order, Job Order, or Work Order, etc. being performed. The sub-component may have been split from the original Order. For Example:An order for 30 widgets, where 20 can be billed as "completed" and the remaining 10 can be moved to a sub-component of the same Order to be finished and billed for at a later time.  The sub-component may identify one of many sub-components (each an Order in its own right) that may make up a "master" Order. Kind of a parent/child relationship related collection</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="StepId" type="StepId" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the step of the operation being reported against.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="StepType" type="StepType" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the type of step that the WIP Confirm is reporting against.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="Item" minOccurs="0"/>
+                        <xs:group ref="ItemLotSerialIdentifier" minOccurs="0"/>
+                        <xs:element name="OperationPeriod" type="TimePeriod" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the timeperiod in which the operation ran.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ReturnedQuantity" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the quantity of items returned to inventory.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="CompletedQuantity" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the quantity of resulting items from the operation that were completed.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ScrapQuantity" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the quantity of items scrapped.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="Status" minOccurs="0"/>
+                        <xs:element name="ReasonCode" type="ReasonCode" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is a code that indicates the reason for the event.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Kanban" type="Kanban" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the associated kanban information.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Decsribes the WIPConfirm Line.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="Attachments" minOccurs="0"/>
+                        <xs:element ref="ShopFloorControlResource" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="ShopFloorControlSubLine">
+                <xs:complexContent>
+                        <xs:extension base="ShopFloorControlLineBase">
+                                <xs:sequence>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="ShopFloorControlResourceBase">
+                <xs:sequence>
+                        <xs:choice minOccurs="0">
+                                <xs:element ref="Labor" minOccurs="0"/>
+                                <xs:element ref="Machine" minOccurs="0"/>
+                                <xs:element ref="Tool" minOccurs="0"/>
+                                <xs:element ref="Item" minOccurs="0"/>
+                        </xs:choice>
+                        <xs:element name="ResourceQuantity" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Number or resources needed for the operation.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ExecutionPeriod" type="TimePeriod" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">TimePeriod indicating when the resource executes the operation.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="LaborPeriod" type="TimePeriod" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">TimePeriod indicating the labor times.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ForecastPeriod" type="TimePeriod" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Forecasted start and finishing TimePeriod.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ResourceDownPeriod" type="TimePeriod" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">ResourceDown TimePeriod indicating the starting and finishing datetimes.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="SetupPeriod" type="TimePeriod" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">TimePeriod indicating setup time for the resource.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="TearDownPeriod" type="TimePeriod" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Timestamp indicating that teardown of the resource.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="WorkCenter" type="WorkCenter" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Workcenter in which the work is performed.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ReasonCode" type="ReasonCode" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates the reason code for the event.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="PrintInd" type="Indicator" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates whether or not to print the resource requirements.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="ShopFloorControlResource">
+                <xs:complexContent>
+                        <xs:extension base="ShopFloorControlResourceBase">
+                                <xs:sequence>
+                                        <xs:element ref="ShopFloorControlActivity" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="ShopFloorControlActivity">
+                <xs:complexContent>
+                        <xs:extension base="ShopFloorControlResourceBase">
+                                <xs:sequence>
+                                        <xs:element ref="UserArea" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:element name="ShopFloorControlResource" type="ShopFloorControlResource">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Information concerning the resources associated with a particular WIP operation or sub-operation within a routing.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="ShopFloorControlActivity" type="ShopFloorControlActivity">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Provides information about the steps or tasks that a resource performs during an operation.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="ShopFloorControlSubLine" type="ShopFloorControlSubLine">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Information concerning a sub operation within a routing</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+</xs:schema>

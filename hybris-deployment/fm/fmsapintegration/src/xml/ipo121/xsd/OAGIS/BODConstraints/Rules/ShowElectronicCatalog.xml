@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sch:schema xmlns="http://www.ascc.net/xml/schematron" xmlns:oa="http://www.openapplications.org/oagis" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ascc.net/xml/schematron ../../../Utility/Schematron/schematron1-5.xsd">
+	<sch:title>Schematron Validator for OAGI Constraints</sch:title>
+	<sch:ns prefix="oa" uri="http://www.openapplications.org/oagis"/>
+
+	<sch:pattern name="Show ElectronicCatalog">
+		<sch:rule context="oa:ElectronicCatalog">
+			<sch:assert test="oa:Header">Show ElectronicCatalog must have a Header component</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+
+	<sch:pattern name="Show ElectronicCatalog Header">
+		<sch:rule context="oa:ElectronicCatalog/oa:Header">
+			<sch:assert test="oa:DocumentId/oa:Id">The Show ElectronicCatalog Header must have a "DocumentId" and "Id" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+
+	<sch:pattern name="ElectronicCatalog Item Line">
+		<sch:rule context="oa:ElectronicCatalog/oa:CatalogItemLine">
+			<sch:assert test="oa:ItemId">The Catalog Line must have an "ItemId" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+</sch:schema>

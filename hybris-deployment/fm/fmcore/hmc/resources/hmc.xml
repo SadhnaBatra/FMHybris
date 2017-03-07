@@ -1,0 +1,1524 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2000-2013 hybris AG
+ All rights reserved.
+
+ This software is the confidential and proprietary information of hybris
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with hybris.
+-->
+<configuration xmlns="hybris.de/schemas/hmc/generic"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="hybris.de/schemas/hmc/generic hmc.xsd">
+
+
+	<type name="Order" mode="append">
+		<organizer>
+			<search mode="append">
+				<condition attribute="versionID" operator="is null" />
+			</search>
+		</organizer>
+	</type>
+	<explorertree>
+		<group name="federalmogul" description="group.fmcorporate.description">
+			<typeref type="FMCorporate" description="typeref.fmcorporate.description" />
+			<typeref type="FMFitment" description="typeref.fmfitment.description" />
+			<typeref type="FMYearMakeModelVehicleType" description="typeref.fmymm.description" />
+			<typeref type="fmcustomeraccount"/>
+			<typeref type="salesorganization"/>
+			<typeref type="saleschannel"/>
+			<typeref type="fmcustomer"/>
+			<typeref type="fmb2baddress"/>
+			<typeref type="fmtaxdocument"/>
+			<typeref type="fmCustomerPartnerFunction"/>
+			<typeref type="uploadorder"/>
+			<typeref type="uploadorderentry"/>
+			<typeref type="fmdccenter"/>
+			<typeref type="fmcsraccountlist"/>
+			<typeref type="FMZones"/>
+                        <typeref type="FMIPOTRACKING"/>
+			<typeref type="FMIPOTPACCOUNT"/>
+			<typeref type="FMtpcarriershipmethods"/>
+			<typeref type="FMIPOTRADINGPARTNER"/>
+			<typeref type="FMDCShipping"/>
+			<typeref type="FMShipperOrderTracking"/>
+			<typeref type="FMIPOOrder"/>
+			<typeref type="FMIPOOrderEntry"/>
+			<typeref type="FMReportLog"/>
+			
+		</group>
+	</explorertree>
+	<type name="FMCorporate" mode="append">
+		<organizer>
+			<search mode="replace">
+				<condition attribute="corpcode" />
+				<condition attribute="corpname" />
+			</search>
+			<result>
+				<listview mode="replace">
+					<itemlayout>
+						<attribute name="corpcode" width="80"/>
+						<attribute name="corpname"  width="120"/>
+						<attribute name="corptype" width="80"/>
+					</itemlayout>
+				</listview>
+			</result>
+			<editor>
+				<tab name="tab.fmcorporate.corporatedetails" position="1" mode="append">
+					<section name="section.fmcorporate.corporatedetails" mode="append">
+						<listlayout>
+							<attribute name="corpid" />
+							<attribute name="corpcode" />
+							<attribute name="corpname" />
+							<attribute name="corptype" />
+						</listlayout>
+					</section>
+				</tab>
+			</editor>
+		</organizer>
+	</type>
+	<type name="FMPart" mode="append">
+		<organizer mode="append"> 
+			<editor mode="append">
+				<tab name="tab.fmpart.properties" position="3" mode="append">
+					<section name="section.fmpart.description" mode="append">
+						<listlayout mode="append" width="">
+							<attribute name="partstatus" />
+							<attribute name="corporate" />
+							<attribute name="fitments" />
+						</listlayout>
+						<columnlayout>
+                  			<row>
+								<attribute name="partNumber"/>
+								<attribute name="pid" />
+							</row>
+							<row>
+								<attribute name="upc" />
+								<attribute name="flagcode" />
+							</row>
+							<row>
+								<attribute name="flagname" />
+								<attribute name="textcomment" />
+							</row>
+							<row>
+								<attribute name="textnote" />
+								<attribute name="textfootnote" />
+							</row>
+							<row>
+								<attribute name="warranty" />
+								<attribute name="warrantydescription" />
+							</row>
+						</columnlayout>
+					</section>
+					<section name="section.fmpartattribute.hazardous" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="hazardousClassCode"/>
+								<attribute name="hazardousMaterialDescription"/>
+							</row>
+							<row>
+								<attribute name="hazardousIndicator"/>
+								<attribute name="countryOfOriginPrimary"/>
+							</row>
+						</columnlayout>
+					</section>
+					<section name="section.fmpartattribute.package" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="packageEachLevelGTINUPC"/>
+								<attribute name="pkgLevelGTINUPCInnerPackage"/>
+							</row>
+							<row>
+								<attribute name="weightUOM"/>
+								<attribute name="packageUOM"/>
+							</row>
+							<row>
+								<attribute name="packageEachHeight"/>
+								<attribute name="packageEachWidth"/>
+							</row>
+							<row>
+								<attribute name="packageEachLength"/>
+								<attribute name="packageEachWeight"/>
+							</row>
+							<row>
+								<attribute name="heightInnerPackage"/>
+								<attribute name="widthInnerPackage"/>
+							</row>
+							<row>
+								<attribute name="lengthInnerPackage"/>
+								<attribute name="weightInnerPackage"/>
+							</row>
+							<row>
+								<attribute name="heightCase"/>
+								<attribute name="widthCase"/>
+							</row>
+							<row>
+								<attribute name="lengthCase"/>
+								<attribute name="weightCase"/>
+							</row>
+							<row>
+								<attribute name="quantityOfEachesEachPackage"/>
+								<attribute name="qtyOfEachesinPkgInnerPackage"/>
+							</row>
+							<row>
+								<attribute name="pkgLevelGTINUPCCase"/>
+								<attribute name="quantityOfEachesinPackageCase"/>
+							</row>
+							<row>
+								<attribute name="dimensionsUOM"/>
+							</row>
+						</columnlayout>
+					</section>
+					<section name="section.fmpartattribute.piesattrb" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="freightClass"/>
+								<attribute name="applicationSpecific"/>
+							</row>
+							<row>
+								<attribute name="carLightTruck"/>
+								<attribute name="mediumDutyTruck"/>
+							</row>
+							<row>
+								<attribute name="heavyDutyTruck"/>
+								<attribute name="agriculturalEquipment"/>
+							</row>
+							<row>
+								<attribute name="industrialOffHighwayEquipment"/>
+								<attribute name="motorcycleATV"/>
+							</row>
+							<row>
+								<attribute name="snowMobile"/>
+								<attribute name="personalWatercraft"/>
+							</row>
+							<row>
+								<attribute name="marine"/>
+								<attribute name="smallEngine"/>
+							</row>
+							<row>
+								<attribute name="highPerformance"/>
+								<attribute name="engineSpecific"/>
+							</row>
+							<row>
+								<attribute name="transmissionSpecific"/>
+								<attribute name="nonVehicleSpecific"/>
+							</row>
+						</columnlayout>
+					</section>
+					<section name="section.fmpartattribute.piesexpi" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="emissionCode"/>
+								<attribute name="remanufacturedPart"/>
+							</row>
+							<row>
+								<attribute name="mSDSSheetNumber"/>
+								<attribute name="mSDSSheetAvailable"/>
+							</row>
+							<row>
+								<attribute name="palletFootprintSize" />
+								<attribute name="palletFootprintSizeUOM" />
+							</row>
+							<row>
+								<attribute name="maxCasePerPalletLayer"/>
+								<attribute name="palletLayerMax"/>
+							</row>
+							<row>
+								<attribute name="harmonizedTariffCode"/>
+							</row>
+						</columnlayout>
+					</section>
+					<section name="section.fmpartattribute.pieitem" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="itemQuantitySize"/>
+								<attribute name="itemQuantitySizeUOM"/>
+							</row>
+							<row>
+								<attribute name="containerType"/>
+								<attribute name="itemLevelGTINUPC"/>
+							</row>
+							<row>
+								<attribute name="itemLevelGTINUPC"/>
+								<attribute name="itemLevelGTINQualifier"/>
+							</row>
+							
+						</columnlayout>
+					</section>
+					<section name="section.fmpartattribute.general" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="sqshPtNbr"/>
+								<attribute name="alphaNumeric"/>
+							</row>
+							<row>
+								<attribute name="availableDate"/>
+								<attribute name="brandLabel"/>
+							</row>
+							<row>
+								<attribute name="squashedPartNumber"/>
+								<attribute name="alternatePartNumber"/>
+							</row><row>	
+								<attribute name="priceSheetEffectiveDate"/>
+								<attribute name="wdNetPrice"/>
+							</row><row>
+								<attribute name="jobberPrice"/>
+								<attribute name="listPrice"/>
+							</row><row>	
+								<attribute name="longDescription"/>
+								<attribute name="popularityCode"/>
+							</row><row>	
+								<attribute name="vehicleRegistration"/>
+								<attribute name="quantityPerApplication"/>
+							</row><row>	
+								<attribute name="applicationSummaryDescription"/>
+								<attribute name="productFlag"/>
+							</row><row>	
+								<attribute name="priceSheetNumber"/>
+								<attribute name="supersededPriceSheetNumber"/>
+							</row><row>	
+								<attribute name="priceSheetExpirationDate"/>
+								<attribute name="dateRecordAddedorChanged"/>
+							</row><row>	
+								<attribute name="brandAAIAID"/>					
+								<attribute name="aaiaPartTerminologyID"/>
+							</row><row>
+								<attribute name="quantityPerApplicationQualifier"/>
+								<attribute name="quantityPerApplicationUOM"/>
+							</row><row>	
+								<attribute name="minimumOrderQuantityUOM"/>
+								<attribute name="lifeCycleStatusCode"/>
+							</row><row>	
+								<attribute name="lifeCycleStatusDescription"/>
+								<attribute name="productGroupCode"/>
+							</row><row>	
+								<attribute name="productSubGroupCode"/>
+								<attribute name="productCategoryCode"/>
+							</row><row>	
+								<attribute name="partNumberOld"/>
+								<attribute name="partNumberSupersededTo"/>
+							</row><row>	
+								<attribute name="nationalPopularityCode"/>
+								<attribute name="taxable"/>
+							</row><row>	
+								<attribute name="eachPackageBarCodeCharacters"/>
+								<attribute name="caseBarCodeCharacters"/>
+							</row><row>	
+								<attribute name="aAPSKUNumberAN68"/>
+								<attribute name="aAPPLANumberAN3"/>
+							</row><row>	
+								<attribute name="aAPPartTypeIDsmandatoryAN250"/>
+								<attribute name="advanceBuys"/>
+							</row><row>	
+								<attribute name="sentImagetoAdvance"/>
+								<attribute name="allianceBuys"/>
+							</row><row>	
+								<attribute name="oReillyBuys"/>
+								<attribute name="autoZoneBuys"/>
+							</row><row>	
+								<attribute name="autoZonePartNumber"/>
+								<attribute name="nAPABuys"/>
+							</row><row>	
+								<attribute name="nAPAPartNumber"/>
+								<attribute name="otherCustomersifany"/>
+							</row><row>	
+								<attribute name="position"/>
+								<attribute name="material"/>
+							</row><row>	
+								<attribute name="digitalAssetURL" />
+							</row>
+						</columnlayout>
+					</section>
+				</tab>
+			</editor>
+		</organizer>
+	</type>					
+
+	<type name="FMFitment" mode="append">
+		<organizer>
+			<search mode="replace">
+				<condition attribute="code" />
+				<condition attribute="ymmcode" />
+				<condition attribute="year" />
+				<condition attribute="make" />
+				<condition attribute="model" />
+			</search>
+			<result>
+				<listview mode="replace">
+					<itemlayout>
+						<attribute name="code" width="80"/>
+						<attribute name="ymmcode"  width="120"/>
+						<attribute name="vehiclesegment" width="150"/>
+						<attribute name="year" width="80"/>
+						<attribute name="make" width="80"/>
+						<attribute name="model" width="80"/>
+						<attribute name="partNumber" width="80"/>
+					</itemlayout>
+				</listview>
+			</result>
+			<editor>
+				<tab name="tab.fmfitment.fitments" position="1" mode="append">
+					<section name="section.fmfitment.fitments" mode="append">
+						<listlayout mode="append" width="">
+							<attribute name="parts" />
+						</listlayout>
+						<columnlayout>
+							<row>
+								<attribute name="code" />
+								<attribute name="ymmcode" />
+							</row><row>
+								<attribute name="vehiclesegment" />
+								<attribute name="year" />
+							</row><row>
+								<attribute name="make" />
+								<attribute name="model" />
+							</row><row>
+								<attribute name="partNumber" />
+								<attribute name="product" />
+							</row><row>
+								<attribute name="submodel" />
+								<attribute name="region" />
+							</row><row>
+								<attribute name="vehicleType" />
+								<attribute name="assetLogicalName" />
+							</row><row>
+								<attribute name="assetItemRef" />
+								<attribute name="assetItemOrder" />
+							</row><row>
+								<attribute name="assetFileName" />
+							</row>
+						</columnlayout>
+					</section>
+				</tab>
+				<tab name="tab.fmfitment.engine" position="2" mode="append">
+					<section name="section.fmfitment.engine" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="mfrLabel" />
+								<attribute name="position" />
+							</row><row>
+								<attribute name="appQuantity" />
+								<attribute name="engineBase" />
+							</row><row>
+								<attribute name="engineDesignation" />
+								<attribute name="engineVIN" />
+							</row><row>
+								<attribute name="engineVersion" />
+								<attribute name="engineMfr" />
+							</row><row>
+								<attribute name="engineValves" />
+								<attribute name="engineArrangementNumber" />
+							</row><row>
+								<attribute name="engineSerialNumber" />
+								<attribute name="engineCPLNumber" />
+							</row><row>
+								<attribute name="aspiration" />
+								<attribute name="engineCPLNumber" />
+							</row>
+						</columnlayout>
+					</section>
+				</tab>
+				<tab name="tab.fmfitment.fuel" position="3" mode="append">
+					<section name="section.fmfitment.fuel" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="cylinderHeadType" />
+								<attribute name="fuelType" />
+							</row><row>
+								<attribute name="ignitionSystemType" />
+								<attribute name="fuelDeliveryType" />
+							</row><row>
+								<attribute name="fuelDeliverySubType" />
+								<attribute name="fuelSystemControlType" />
+							</row><row>
+								<attribute name="fuelSystemDesign" />
+								<attribute name="powerOutput" />
+							</row><row>
+								<attribute name="bodyNumDoors" />
+							</row>
+						</columnlayout>
+					</section>
+				</tab>
+				<tab name="tab.fmfitment.brake" position="4" mode="append">
+					<section name="section.fmfitment.brake" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="bodyType" />
+								<attribute name="bedLength" />
+							</row><row>
+								<attribute name="bedType" />
+								<attribute name="driveType" />
+							</row><row>
+								<attribute name="mfrBodyCode" />
+								<attribute name="wheelBase" />
+							</row><row>
+								<attribute name="frontBrakeType" />
+								<attribute name="rearBrakeType" />
+							</row><row>
+								<attribute name="brakeSystem" />
+								<attribute name="brakeABS" />
+							</row><row>
+								<attribute name="frontSpringType" />
+								<attribute name="rearSpringType" />
+							</row><row>
+								<attribute name="rearSpringType" />
+								<attribute name="steeringType" />
+							</row><row>
+								<attribute name="steeringSystem" />
+								<attribute name="vehicleSeries" />
+							</row><row>
+								<attribute name="transmissionNumSpeeds" />
+								<attribute name="transmissionControlType" />
+							</row><row>
+								<attribute name="transmissionMfrCode" />
+								<attribute name="transmissionType" />
+							</row>
+						</columnlayout>
+					</section>
+				</tab>
+				<tab name="tab.fmfitment.textcomment" position="5" mode="append">
+					<section name="section.fmfitment.textcomment" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="comment1" />
+								<attribute name="comment2" />
+							</row><row>
+								<attribute name="comment3" />
+								<attribute name="comment4" />
+							</row><row>
+								<attribute name="comment5" />
+								<attribute name="comment6" />
+							</row><row>
+								<attribute name="comment7" />
+								<attribute name="comment8" />
+							</row><row>
+								<attribute name="comment9" />
+								<attribute name="comment10" />
+							</row>
+						</columnlayout>
+					</section>
+				</tab>
+				<tab name="tab.fmfitment.interchangenote" position="6" mode="append">
+					<section name="section.fmfitment.interchangenote" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="interchangeNote1" />
+								<attribute name="interchangeNote2" />
+							</row><row>
+								<attribute name="interchangeNote3" />
+								<attribute name="interchangeNote4" />
+							</row><row>
+								<attribute name="interchangeNote5" />
+								<attribute name="interchangeNote6" />
+							</row><row>
+								<attribute name="interchangeNote7" />
+								<attribute name="interchangeNote8" />
+							</row><row>
+								<attribute name="interchangeNote9" />
+								<attribute name="interchangeNote10" />
+							</row>
+						</columnlayout>
+					</section>
+				</tab>
+				<tab name="tab.fmfitment.applicationnote" position="6" mode="append">
+					<section name="section.fmfitment.applicationnote" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="applicationNote1" />
+								<attribute name="applicationNote2" />
+							</row><row>
+								<attribute name="applicationNote3" />
+								<attribute name="applicationNote4" />
+							</row><row>
+								<attribute name="applicationNote5" />
+								<attribute name="applicationNote6" />
+							</row><row>
+								<attribute name="applicationNote7" />
+								<attribute name="applicationNote8" />
+							</row><row>
+								<attribute name="applicationNote9" />
+								<attribute name="applicationNote10" />
+							</row>
+						</columnlayout>
+					</section>
+				</tab>
+			</editor>
+		</organizer>
+	</type>
+	
+	<type name="FMReportLog" mode="append">
+		<organizer>
+			<search mode="replace">
+				<condition attribute="checkCount" />
+				<condition attribute="user" />
+				<condition attribute="custAccount" />
+				<condition attribute="startDate" />
+				<condition attribute="endDate" />
+				<condition attribute="type" />
+			</search>
+			<result>
+				<listview mode="replace">
+					<itemlayout>
+						<attribute name="checkCount" width="80"/>
+						<attribute name="user"  width="120"/>
+						<attribute name="custAccount" width="80"/>
+						<attribute name="startDate" width="80"/>
+						<attribute name="endDate" width="80"/>
+						<attribute name="type" width="80"/>
+					</itemlayout>
+				</listview>
+			</result>
+			<editor>
+				<tab name="tab.FMReportLog.details" position="1" mode="append">
+					<section name="tab.FMReportLog.details" mode="append">
+						<listlayout>
+						<attribute name="checkCount" />
+						<attribute name="user"  />
+						<attribute name="custAccount"/>
+						<attribute name="startDate"/>
+						<attribute name="endDate"/>
+						<attribute name="type"/>
+						</listlayout>
+					</section>
+				</tab>
+			</editor>
+		</organizer>
+	</type>
+
+	<type name="FMYearMakeModelVehicleType" mode="append">
+		<organizer>
+			<search mode="replace">
+				<condition attribute="code" />
+				<condition attribute="year" />
+			</search>
+			<result>
+				<listview mode="replace">
+					<itemlayout>
+						<attribute name="vehicletype" width="80"/>
+						<attribute name="year"  width="120"/>
+						<attribute name="model" width="80"/>
+					</itemlayout>
+				</listview>
+			</result>
+			<editor>
+				<tab name="tab.fmymm.details" position="1" mode="append">
+					<section name="section.fmymm.details" mode="append">
+						<listlayout>
+							<attribute name="vehicletype" />
+							<attribute name="year" />
+							<attribute name="make" />
+							<attribute name="model" />
+						</listlayout>
+					</section>
+				</tab>
+			</editor>
+		</organizer>
+	</type>
+
+	<!-- Registration Page -->			
+
+	<type name="FMCustomerAccount" mode="append">
+		<organizer mode="append">
+			<editor mode="append">
+				<tab name="tab.fmcustomeraccount.properties" mode="append">
+					<section name="section.fmcustomeraccount.attributes" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="prospectuid"/>
+								<attribute name="channelCode"/>
+							</row>
+						
+							<row>
+								<attribute name="nabsCode"/>
+								<attribute name="taxID"/>
+							</row>
+							<row>
+								<attribute name="viewInvoiceFlag"/>
+								<attribute name="shippingCode"/>
+							</row>
+							<row>
+								<attribute name="freeFreightAmt"/>
+								<attribute name="creditCardFlag"/>
+							</row>
+							<row>
+								<attribute name="accComments"/>
+								<attribute name="accComments2"/>
+							</row>
+							<row>
+								<attribute name="buyingAffiliationCode"/>
+								<attribute name="buyingGroup"/>
+							</row>
+							<row>
+								<attribute name="customerRegion"/>
+								<attribute name="customerTerritory"/>
+							</row>
+							<row>
+								<attribute name="customerServiceTerritory"/>
+								<attribute name="customerAccountCode"/>
+							</row>		
+							<row>
+								<attribute name="fmtaxDocument"/>
+								<attribute name="association"/>
+							</row>
+							<row>
+								<attribute name="carrierAccountCode"/>
+								<attribute name="customerGroup"/>
+							</row>
+																																															<row>
+								<attribute name="division"/>
+								<attribute name="distributionChannel"/>
+							</row>	
+							<row>
+								<attribute name="salesorg"/>
+							</row>								
+						</columnlayout>
+					</section>
+				</tab>
+			</editor>
+		</organizer>
+	</type>	
+	<type name="SalesOrganization" mode="append">
+		<organizer mode="append">
+			<editor mode="append">
+				<tab name="tab.salesorganization.properties" mode="append">
+					<section name="section.salesorganization.attributes" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="salesOrgsId"/>
+							</row>
+							<row>
+								<attribute name="soldToAccount"/>
+								<attribute name="salesOrgCode"/>
+							</row>
+							<row>
+								<attribute name="salesDivisionCode"/>
+								<attribute name="salesChannelCode"/>
+							</row>
+						</columnlayout>
+					</section>
+				</tab>
+			</editor>
+		</organizer>
+	</type>
+	<type name="SalesChannel" mode="append">
+		<organizer mode="append">
+			<editor mode="append">
+				<tab name="tab.saleschannel.properties" mode="append">
+					<section name="section.saleschannel.attributes" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="code"/>
+								<attribute name="name"/>
+							</row>
+						</columnlayout>
+					</section>
+				</tab>
+			</editor>
+		</organizer>
+	</type>
+	<type name="FMCustomerPartnerFunction" mode="append">
+		<organizer mode="append">
+			<editor mode="append">
+				<tab name="tab.partnerfunction.properties" mode="append">
+					<section name="tab.partnerfunction.attributes" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="code"/>
+								<attribute name="soldtoaccountuid"/>
+							</row>
+							<row>
+								<attribute name="shiptoaccountuid"/>
+							</row>							
+						</columnlayout>
+					</section>
+				</tab>
+			</editor>
+		</organizer>
+	</type>	
+	<type name="FMCustomer" mode="append">
+		<organizer mode="append">
+			<editor mode="append">
+				<tab name="tab.fmcustomer.properties" mode="append">
+					<section name="section.fmcustomer.attributes" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="channelCode"/>
+								<attribute name="lastName"/>
+							</row>
+							<row>
+								<attribute name="techAcademySubscription"/>
+								<attribute name="newPrductAlerts"/>
+							</row>
+							<row>
+								<attribute name="loyaltySubscription"/>
+								<attribute name="promSubscription"/>
+							</row>
+							<row>
+								<attribute name="newsLetterSubscription"/>
+								<attribute name="fmUnit"/>
+							</row>
+							<row>
+								<attribute name="b2cLoyaltyMembershipId"/>
+								<attribute name="crmCustomerID"/>
+						
+							</row>
+							<row>
+								<attribute name="lmsSigninID"/>		
+							</row>										
+						</columnlayout>
+					</section>
+				</tab>
+			</editor>
+		</organizer>
+	</type>
+	<!-- Start Sai TaxDocument hmc Layout -->
+	
+	<type name="FMTaxDocument" mode="append">
+		<organizer mode="append">
+			<editor mode="append">
+				<tab name="tab.fmtaxdocument.properties" mode="append">
+					<section name="section.fmtaxdocument.attributes" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="docname"/>
+								<attribute name="uploadedBy"/>
+
+							</row>
+						
+							<row>
+								<attribute name="state"/>
+								<attribute name="validate"/>
+							</row>
+							<row>
+								<attribute name="approvedBy"/>
+								
+							</row>
+
+																																								
+						</columnlayout>
+					</section>
+				</tab>
+			</editor>
+		</organizer>
+	</type>
+	<type name="UploadOrderEntry" mode="append">
+		<organizer mode="append">
+			<search mode="replace">
+				<condition attribute="order" />
+			</search>
+			<result>
+				<listview mode="replace">
+					<itemlayout>
+						<attribute name="partNumber" width="80"/>
+						<attribute name="partResolutionMsg"  width="150"/>
+					</itemlayout>
+				</listview>
+			</result>
+			<editor mode="append">
+				<tab name="tab.UploadOrderEntry.properties" mode="append">
+					<section name="section.UploadOrderEntry.attributes" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="entryNumber"/>
+								<attribute name="partNumber"/>
+							</row>
+							<row>
+								<attribute name="rawPartNumber"/>
+								<attribute name="quantity"/>
+							</row>
+							<row>
+								<attribute name="Accountcode"/>
+							</row>
+							<row>
+								<attribute name="partResolutionMsg"/>
+							</row>
+							<row>
+								<attribute name="createdTime"/>
+								<attribute name="updatedTime"/>
+							</row>
+							<row>
+								<attribute name="basePrice"/>
+							</row>
+							<row>
+								<attribute name="order"/>
+							</row>
+						</columnlayout>
+					</section>
+					<section name="section.history.attributes" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="history"/>
+							</row>
+						</columnlayout>
+				  </section>
+				</tab>
+			</editor>
+		</organizer>
+	</type>
+	<type name="UploadOrder" mode="append">
+		<organizer mode="append">
+			<search mode="replace">
+				<condition attribute="code" />
+				<condition attribute="PONumber" />
+				<condition attribute="UploadOrderStatus" />
+			</search>
+			<result>
+				<listview mode="replace">
+					<itemlayout>
+						<attribute name="code" width="80"/>
+						<attribute name="PONumber"  width="120"/>
+					</itemlayout>
+				</listview>
+			</result>
+			<editor mode="append">
+				<tab name="tab.UploadOrder.properties" mode="append">
+					<section name="section.UploadOrder.attributes" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="code"/>
+								<attribute name="sapordernumber"/>
+							</row>
+							<row>
+								<attribute name="PONumber"/>
+								<attribute name="UploadOrderStatus"/>
+							</row>
+							<row>
+								<attribute name="entries"/>
+							</row>
+							
+							<row>
+								<attribute name="SoldToAccount"/>
+								<attribute name="ShipToAccount"/>
+							</row>
+							<row>
+								<attribute name="ShipToAddress"/>
+								<attribute name="BillToAddress"/>
+							</row>
+							<row>
+								<attribute name="userFirstName"/>
+								<attribute name="userLastName"/>
+							</row>
+							<row>
+								<attribute name="ordercomments"/>
+								<attribute name="updatedTime"/>
+							</row>
+						</columnlayout>
+					</section>
+					<section name="section.Uploadfile.attributes" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="uploadOrderFile"/>
+							</row>
+						</columnlayout>
+				  </section>
+				  <section name="section.history.attributes" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="history"/>
+							</row>
+						</columnlayout>
+				  </section>
+				</tab>
+			</editor>
+		</organizer>
+	</type>
+	<type name="UploadOrderHistory" mode="append">
+		<organizer mode="append">
+			<search mode="replace">
+				<condition attribute="order" />
+				<condition attribute="entry" />
+			</search>
+			<result>
+				<listview mode="replace">
+					<itemlayout>
+						<attribute name="updatedTime" width="80"/>
+						<attribute name="modifiedValueFrom"  width="100"/>
+						<attribute name="modifiedValueTo"  width="100"/>
+						<attribute name="status"  width="100"/>
+						<attribute name="FMCustomer"  width="100"/>
+					</itemlayout>
+				</listview>
+			</result>
+			<editor mode="append">
+				<tab name="tab.uploadorderhistory.properties" mode="append">
+					<section name="section.uploadorderhistory.attributes" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="order"/>
+								<attribute name="entry"/>
+							</row>
+							<row>
+								<attribute name="FMCustomer"/>
+								<attribute name="updatedTime"/>
+							</row>
+							<row>
+								<attribute name="modifiedattribute"/>
+								<attribute name="status"/>
+							</row>
+				
+							<row>
+								<attribute name="modifiedValueFrom"/>
+								<attribute name="modifiedValueTo"/>
+							</row>
+						</columnlayout>
+					</section>
+					
+				</tab>
+			</editor>
+		</organizer>
+	</type>
+	<type name="FMDCCenter" mode="append">
+		<organizer mode="append">
+			<search mode="replace">
+				<condition attribute="extSysCode" />
+				<condition attribute="dcCode" />
+				<condition attribute="dcName" />
+			</search>
+			<result>
+				<listview mode="replace">
+					<itemlayout>
+						<attribute name="extSysCode" width="80"/>
+						<attribute name="dcCode"  width="80"/>
+						<attribute name="dcName"  width="80"/>
+					</itemlayout>
+				</listview>
+			</result>
+			<editor mode="append">
+				<tab name="tab.dccenter.properties" mode="append">
+					<section name="section.dccenter.attributes" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="extSysCode"/>
+								<attribute name="marketCode"/>
+							</row>
+							<row>
+								<attribute name="dcCode"/>
+								<attribute name="dcName"/>
+							</row>
+							<row>
+								<attribute name="state"/>
+								<attribute name="isoCountryCode"/>
+							</row>
+							<row>
+								<attribute name="addressLine1"/>
+								<attribute name="city"/>
+							</row>
+							<row>
+								<attribute name="zipCode"/>
+								<attribute name="contactPhone"/>
+							</row>
+							<row>
+								<attribute name="locTimeZoneOffSet"/>
+								<attribute name="participateFlag"/>
+							</row>
+							<row>
+								<attribute name="emergencyCutOffTime"/>
+								<attribute name="tscFlag"/>
+							</row>
+						</columnlayout>
+					</section>
+					
+				</tab>
+			</editor>
+		</organizer>
+	</type>
+	<!-- End Sai TaxDocument hmc Layout -->
+
+	<type name="FMCsrAccountList" mode="append">
+		<organizer mode="append">
+			<editor mode="append">
+				<tab name="tab.fmcsraccountlist.properties" mode="append">
+					<section name="section.fmcsraccountlist.attributes" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="accountnum"/>
+								<attribute name="date"/>
+
+							</row>
+							<row>
+								<attribute name="csrUserID"/>
+								<attribute name="nabsAccountCode"/>
+							</row>
+																																																	
+						</columnlayout>
+					</section>
+				</tab>
+			</editor>
+		</organizer>
+	</type>
+	
+	<type name="FMZones" mode="append">
+		<organizer mode="append">
+			<editor mode="append">
+				<tab name="tab.fmzones.properties" mode="append">
+					<section name="section.fmzones.attributes" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="Code"/>
+								<attribute name="Name"/>
+
+							</row>
+						
+							<row>
+								<attribute name="Country"/>
+								<attribute name="Region"/>
+							</row>
+																																								
+						</columnlayout>
+					</section>
+				</tab>
+			</editor>
+		</organizer>
+	</type>
+
+
+<type name="FMIPOTRACKING" mode="append">
+		<organizer>
+			<search mode="replace">
+				<condition attribute="code" />
+				<condition attribute="ipoVersion" />
+				<condition attribute="masterOrderNumber" />
+				<condition attribute="customer" />
+				<condition attribute="createDate" />
+				<condition attribute="IPORequest" />
+				<condition attribute="IPOResponse" />
+			</search>
+			<result>
+				<listview mode="replace">
+					<itemlayout>
+						<attribute name="code" width="80"/>
+						<attribute name="ipoVersion"  width="120"/>
+						<attribute name="masterOrderNumber" width="80"/>
+						<attribute name="customer" width="80"/>
+						<attribute name="createDate" width="80"/>
+						<attribute name="IPORequest" width="120"/>
+						<attribute name="IPOResponse" width="120"/>
+					</itemlayout>
+				</listview>
+			</result>
+			<editor>
+				<tab name="tab.fmipotracking.code" position="1" mode="append">
+					<section name="section.fmipotracking.code" mode="append">
+						<listlayout>
+							<attribute name="code" />
+						<attribute name="ipoVersion"  />
+						<attribute name="masterOrderNumber"/>
+						<attribute name="customer"/>
+						<attribute name="createDate" />
+						<attribute name="IPORequest" />
+						<attribute name="IPOResponse"/>
+						</listlayout>
+					</section>
+				</tab>
+			</editor>
+		</organizer>
+	</type>
+<type name="FMIPOTPACCOUNT" mode="append">
+		<organizer>
+			<search mode="replace">
+				<condition attribute="TP_ACCT_ID" />
+				<condition attribute="TP_ID" />
+				<condition attribute="FM_BILLTO_ACCT_CD" />
+				<condition attribute="ACTIVE_FLG" />
+				<condition attribute="INACTIVE_FROM_DATE" />
+				<condition attribute="CREATE_USERID" />
+				<condition attribute="CREATE_TIMESTAMP" />
+				<condition attribute="UPDATE_USERID" />
+				<condition attribute="UPDATE_TIMESTAMP" />
+			</search>
+			<result>
+				<listview mode="replace">
+					<itemlayout>
+						<attribute name="TP_ACCT_ID" width="80"/>
+						<attribute name="TP_ID"  width="80"/>
+						<attribute name="FM_BILLTO_ACCT_CD" width="80"/>
+						<attribute name="ACTIVE_FLG" width="80"/>
+						<attribute name="INACTIVE_FROM_DATE" width="80"/>
+						<attribute name="CREATE_USERID" width="80"/>
+						<attribute name="CREATE_TIMESTAMP" width="80"/>
+						<attribute name="UPDATE_USERID" width="80"/>
+						<attribute name="UPDATE_TIMESTAMP" width="80"/>
+					</itemlayout>
+				</listview>
+			</result>
+			<editor>
+				<tab name="tab.fmipotpaaccount.tpacctid" position="1" mode="append">
+					<section name="section.fmipotpaaccount.tpacctid" mode="append">
+						<listlayout>
+							<attribute name="TP_ACCT_ID"/>
+						<attribute name="TP_ID"/>
+						<attribute name="FM_BILLTO_ACCT_CD"/>
+						<attribute name="ACTIVE_FLG"/>
+						<attribute name="INACTIVE_FROM_DATE"/>
+						<attribute name="CREATE_USERID" />
+						<attribute name="CREATE_TIMESTAMP"/>
+						<attribute name="UPDATE_USERID" />
+						<attribute name="UPDATE_TIMESTAMP"/>
+						</listlayout>
+					</section>
+				</tab>
+			</editor>
+		</organizer>
+	</type>
+	
+	
+	<type name="FMIPOTRADINGPARTNER" mode="append">
+		<organizer>
+			<search mode="replace">
+				<condition attribute="TP_ID" />
+				<condition attribute="TP_NAME" />
+				<condition attribute="IPO_SECURITY_KEY" />
+				<condition attribute="ACTIVE_FLG" />
+				<condition attribute="INACTIVE_FROM_DATE" />
+				<condition attribute="TP_GRP_CD" />
+				<condition attribute="CREATE_USERID" />
+				<condition attribute="CREATE_TIMESTAMP" />
+				<condition attribute="UPDATE_USERID" />
+				<condition attribute="UPDATE_TIMESTAMP" />
+			</search>
+			<result>
+				<listview mode="replace">
+					<itemlayout>
+						<attribute name="TP_ID" width="80"/>
+						<attribute name="TP_NAME"  width="80"/>
+						<attribute name="IPO_SECURITY_KEY" width="80"/>
+						<attribute name="ACTIVE_FLG" width="80"/>
+						<attribute name="INACTIVE_FROM_DATE" width="80"/>
+						<attribute name="TP_GRP_CD" width="80"/>
+						<attribute name="CREATE_USERID" width="80"/>
+						<attribute name="CREATE_TIMESTAMP" width="80"/>
+						<attribute name="UPDATE_USERID" width="80"/>
+						<attribute name="UPDATE_TIMESTAMP" width="80"/>
+					</itemlayout>
+				</listview>
+			</result>
+			<editor>
+				<tab name="tab.fmipotradingpartner.tpId" position="1" mode="append">
+					<section name="section.fmipotradingpartner.tpId" mode="append">
+						<listlayout>
+							<attribute name="TP_ID"/>
+						<attribute name="TP_NAME"/>
+						<attribute name="IPO_SECURITY_KEY"/>
+						<attribute name="ACTIVE_FLG"/>
+						<attribute name="INACTIVE_FROM_DATE"/>
+						<attribute name="TP_GRP_CD" />
+						<attribute name="CREATE_USERID"/>
+						<attribute name="CREATE_TIMESTAMP" />
+						<attribute name="UPDATE_USERID"/>
+						<attribute name="UPDATE_TIMESTAMP"/>
+						</listlayout>
+					</section>
+				</tab>
+			</editor>
+		</organizer>
+	</type>
+	
+	
+	<type name="FMtpcarriershipmethods" mode="append">
+		<organizer>
+			<search mode="replace">
+				<condition attribute="TP_CARRIER_SHIPMTHD_ID" />
+				<condition attribute="TP_ID" />
+				<condition attribute="CARRIER_SHIPMTHD_ID" />
+				<condition attribute="ACTIVE_FLG" />
+				<condition attribute="SCAC_CD" />
+				<condition attribute="CARRIER_CD" />
+				<condition attribute="SHIP_MTHD_CD" />
+				<condition attribute="TRNSPRT_MTHD_CD" />
+			</search>
+			<result>
+				<listview mode="replace">
+					<itemlayout>
+						<attribute name="TP_CARRIER_SHIPMTHD_ID" width="80"/>
+						<attribute name="TP_ID"  width="80"/>
+						<attribute name="CARRIER_SHIPMTHD_ID" width="80"/>
+						<attribute name="ACTIVE_FLG" width="80"/>
+						<attribute name="SCAC_CD" width="80"/>
+						<attribute name="CARRIER_CD" width="80"/>
+						<attribute name="SHIP_MTHD_CD" width="80"/>
+						<attribute name="TRNSPRT_MTHD_CD" width="80"/>
+					</itemlayout>
+				</listview>
+			</result>
+			<editor>
+				<tab name="tab.fmtpcarriershipmethods.carriershipmthidId" position="1" mode="append">
+					<section name="section.fmtpcarriershipmethods.carriershipmthidId" mode="append">
+						<listlayout>
+						<attribute name="TP_CARRIER_SHIPMTHD_ID"/>
+						<attribute name="TP_ID"/>
+						<attribute name="CARRIER_SHIPMTHD_ID"/>
+						<attribute name="ACTIVE_FLG"/>
+						<attribute name="SCAC_CD"/>
+						<attribute name="CARRIER_CD" />
+						<attribute name="SHIP_MTHD_CD"/>
+						<attribute name="TRNSPRT_MTHD_CD" />
+						</listlayout>
+					</section>
+				</tab>
+			</editor>
+		</organizer>
+	</type>
+	<!--  FMDCShipping entries Start -->
+		<type name="FMDCShipping" mode="append">
+		<organizer mode="append">
+			<search mode="replace">
+				<condition attribute="DIST_CNTR_CD" />
+				<condition attribute="DIST_CNTR_ID" />
+				<condition attribute="CARRIER_ID" />
+			</search>
+			<result>
+				<listview mode="replace">
+					<itemlayout>
+						<attribute name="DIST_CNTR_CD" width="80"/>
+						<attribute name="DIST_CNTR_ID"  width="80"/>
+						<attribute name="CARRIER_ID"  width="80"/>
+					</itemlayout>
+				</listview>
+			</result>
+			<editor mode="append">
+				<tab name="tab.fmdcshipping.properties" mode="append">
+					<section name="section.fmdcshipping.attributes" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="DIST_CNTR_CD"/>
+								<attribute name="DIST_CNTR_ID"/>
+							</row>
+							<row>
+								<attribute name="CARRIER_SHIPMTHD_ID"/>
+								<attribute name="DC_CARRIER_SHIPMTHD_ID"/>
+							</row>
+							<row>
+								<attribute name="CARRIER_ID"/>
+								<attribute name="DIST_CNTR_NAME"/>
+							</row>
+							<row>
+								<attribute name="CARRIER_CD"/>
+								<attribute name="SHIP_MTHD_CD"/>
+							</row>
+							<row>
+								<attribute name="SHIP_MTHD_DESC"/>
+								<attribute name="CARRIER_NAME"/>
+							</row>
+							<row>
+								<attribute name="FROM_ISO_CNTRY_CD"/>
+								<attribute name="TO_ISO_CNTRY_CD"/>
+							</row>
+							<row>
+								<attribute name="SORT_ORDER"/>
+								<attribute name="SAP_CARRIER_CD"/>
+							</row>
+							<row>
+								<attribute name="INCO_TERMS"/>
+								<attribute name="ROUTE"/>
+							</row>
+							<row>
+								<attribute name="ISO_CNTRY_CD"/>
+								<attribute name="EMERG_SHIP_CD"/>
+							</row>
+							<row>
+								<attribute name="NORMAL_SHIP_CD"/>
+								<attribute name="STOCK_SHIP_CD"/>
+							</row>
+						</columnlayout>
+					</section>
+					
+				</tab>
+			</editor>
+		</organizer>
+	</type>
+	<!--  FMDCShipping entries End-->
+	
+	<!--  FMShipperOrderTracking entries Start -->
+	
+	<type name="FMShipperOrderTracking" mode="append">
+		<organizer mode="append">
+			<search mode="replace">
+				<condition attribute="shipperCode" />
+				<condition attribute="shipperId" />
+				<condition attribute="ShipperName" />
+			</search>
+			<result>
+				<listview mode="replace">
+					<itemlayout>
+						<attribute name="shipperCode" width="80"/>
+						<attribute name="shipperId"  width="80"/>
+						<attribute name="ShipperName"  width="80"/>
+					</itemlayout>
+				</listview>
+			</result>
+			<editor mode="append">
+				<tab name="tab.fmdcshpperordertracing.properties" mode="append">
+					<section name="section.fmdcshpperordertracing.attributes" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="shipperCode"/>
+								<attribute name="shipperId"/>
+							</row>
+							<row>
+								<attribute name="ShipperName"/>
+								<attribute name="shipperURL"/>
+							</row>
+							<row>
+								<attribute name="activeFlag"/>								
+							</row>							
+						</columnlayout>
+					</section>
+					
+				</tab>
+			</editor>
+		</organizer>
+	</type>
+	<!--  FMShipperOrderTracking entries End-->
+
+		<!--  FMIPOOrder entries Start -->
+		<type name="FMIPOOrder" mode="append">
+		<organizer mode="append">
+			<search mode="replace">
+				<condition attribute="code" />
+				<condition attribute="billtoparty" />
+				<condition attribute="shiptoparty" />
+			</search>
+			<result>
+				<listview mode="replace">
+					<itemlayout>
+						<attribute name="code" width="80"/>
+						<attribute name="billtoparty"  width="80"/>
+						<attribute name="shiptoparty"  width="80"/>
+					</itemlayout>
+				</listview>
+			</result>
+			<editor mode="append">
+				<tab name="tab.fmipoorder.properties" mode="append">
+					<section name="section.fmipoorder.attributes" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="code"/>
+								<attribute name="billtoparty"/>
+							</row>
+							<row>
+								<attribute name="shiptoparty"/>
+								<attribute name="userFirstName"/>
+							</row>
+							<row>
+								<attribute name="PONumber"/>
+								<attribute name="partyid"/>									
+							</row>	
+							<row>
+								<attribute name="freightterms"/>
+								<attribute name="ordercomments"/>									
+							</row>							
+						</columnlayout>
+					</section>
+					
+				</tab>
+			</editor>
+		</organizer>
+	</type>
+	<!--  FMIPOOrder entries End-->
+	
+		<!--  FMIPOOrderEntry entries Start -->
+		<type name="FMIPOOrderEntry" mode="append">
+		<organizer mode="append">
+			<search mode="replace">
+				<condition attribute="orderentryNumber" />
+				<condition attribute="partNumber" />
+				<condition attribute="shipfromparty" />
+			</search>
+			<result>
+				<listview mode="replace">
+					<itemlayout>
+						<attribute name="orderentryNumber" width="80"/>
+						<attribute name="partNumber"  width="80"/>
+						<attribute name="shipfromparty"  width="80"/>
+					</itemlayout>
+				</listview>
+			</result>
+			<editor mode="append">
+				<tab name="tab.fmipoorderentry.properties" mode="append">
+					<section name="section.fmipoorderentry.attributes" mode="append">
+						<columnlayout>
+							<row>
+								<attribute name="orderentryNumber"/>
+								<attribute name="partNumber"/>
+							</row>
+							<row>
+								<attribute name="partFlag"/>
+								<attribute name="PromisedShipDate"/>
+							</row>
+							<row>
+								<attribute name="partDescription"/>
+								<attribute name="rawPartNumber"/>									
+							</row>	
+							<row>
+								<attribute name="quantity"/>
+								<attribute name="shipfromparty"/>									
+							</row>	
+							<row>
+								<attribute name="suppliercode"/>
+								<attribute name="manufacturercode"/>									
+							</row>	
+							<row>
+								<attribute name="brandAAIAId"/>
+								<attribute name="CommonCarrier"/>									
+							</row>		
+							<row>
+								<attribute name="ShippingMethod"/>
+								<attribute name="TransportationMethod"/>									
+							</row>	
+							<row>
+								<attribute name="CustomerItemId"/>
+								<attribute name="SupplierItemId"/>									
+							</row>		
+							<row>
+								<attribute name="basePrice"/>							
+							</row>						
+						</columnlayout>
+					</section>
+					
+				</tab>
+			</editor>
+		</organizer>
+	</type>
+	<!--  FMIPOOrderEntry entries End-->
+
+	<!--  Customer Review Entries Start -->
+	<type name="CustomerReview" mode="append"
+		icon="ext/customerreview/images/customer_review.gif">
+		<organizer>
+		   <result>
+				<listview>
+					<itemlayout>
+					    <attribute name="headline" mode="replace" width="150"/>
+						<attribute name="creationtime" mode="replace" width="150"/>
+                       	<attribute name="comment" mode="append" width="250"/>		
+                        <attribute name="approvalStatus" mode="replace" width="100"/>
+					  	<attribute name="language" mode="replace" width="110"/>   
+						<attribute name="brand" mode="append" width="100"/>					   						
+					</itemlayout>
+				</listview>
+		   </result>
+		   <editor mode="append">
+		     <tab name="customerreview.tabs.commons" position="6" mode="append">
+		       <section name="customerreview.sections.commons">
+						<listlayout>
+							<attribute name="fmAdminResponse" width="400">
+								<textareaeditor rows="10" cols="50"
+									expanded="true">
+								</textareaeditor>
+							</attribute>
+							<attribute name="fmAdminResponseDate" editable="false"
+							mode="replace"/>
+							<attribute name="brand" editable="false"/>
+                        </listlayout>	
+				</section>
+		     </tab>
+		   </editor>
+		</organizer>
+	</type>	
+	<!--  Customer Review Entries End -->
+
+
+</configuration>

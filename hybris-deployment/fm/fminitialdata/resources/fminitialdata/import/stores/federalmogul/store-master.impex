@@ -1,0 +1,12 @@
+# ImpEx for Importing Store Master configuration
+
+# This impex contains master data for all stores. Right now the file contains
+# master data for only 2 stores. This file will be updated as we get more data.
+# The total number of stores for which we will have master data is expected to 
+# be in the low 20's to start with. If the data size grows huge, then we will
+# consider writing a job to load the store master data or do hot-folder configuration.
+
+insert FMStoreMaster;storeCode[unique=true];storeName;storeUrl;scheduleAppointmentUrl
+;1;Pep Boys;https://www.pepboys.com/;https://www.pepboys.com/eserve/appointment
+;2;Firestone;http://www.firestone.com/;http://www.firestonecompleteautocare.com/locate/display-map
+ 

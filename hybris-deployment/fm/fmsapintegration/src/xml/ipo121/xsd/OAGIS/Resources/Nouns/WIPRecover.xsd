@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/WIPRecover.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../MfgComponents.xsd"/>
+        <xs:complexType name="WIPRecover">
+                <xs:complexContent>
+                        <xs:extension base="Noun">
+                                <xs:sequence>
+                                        <xs:element ref="Header" minOccurs="0"/>
+                                        <xs:element ref="Line" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element ref="Distribution" minOccurs="0"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="WIPRecoverHeader">
+                <xs:sequence>
+                        <xs:element name="DocumentDateTime" type="DateTime" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the datetime stamp that indicates when the WIPRecover document was originally created within the integrated environment.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="ProductionOrderReference" minOccurs="0"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:complexType name="WIPRecoverLine">
+                <xs:sequence>
+                        <xs:element name="ItemQuantity" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the number of Items in the WIPRecover document.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="Site" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the location that the WIPRecover is intended.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="OperationReference" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is a reference to the Operation in which the items are being recovered.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:element name="WIPRecover" type="WIPRecover" substitutionGroup="Noun">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">WIPRecover is used to notify a Manufacturing Application of the creation of usable production materials from material previously considered unsuitable for production use. This is most often likely to represent a return to production of scrap material.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Header" type="WIPRecoverHeader">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Information describing the recovered production order in the WIP Recovery/Bonus event.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Line" type="WIPRecoverLine">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Information describing the specific WIP Recovery/Bonus transaction to be processed.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+</xs:schema>

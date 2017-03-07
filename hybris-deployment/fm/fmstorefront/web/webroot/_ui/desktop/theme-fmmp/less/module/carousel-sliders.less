@@ -1,0 +1,573 @@
+/* ===================
+    Carousels/Sliders
+=================== */
+
+.carousel-control {
+  font-size: 20px;
+  font-size: 2rem;
+}
+
+.brandCarouselContent {
+    color: @white;
+    left: 234px;
+    position: absolute;
+    top: 19px;
+    width: 81%;
+
+    p {
+        margin-bottom: 15px;
+        margin-bottom: 1.5rem;
+    }
+}
+
+/* 
+    Product Detail Thumbnails
+============================== */
+
+#thumbnail-preview-indicators {
+  position: relative;
+  overflow: hidden;
+}
+
+#thumbnail-preview-indicators,
+#thumbnail-preview-indicators .slides,
+#thumbnail-preview-indicators .slides .slide-1, 
+#thumbnail-preview-indicators .slides .slide-2,
+#thumbnail-preview-indicators .slides .slide-3 {
+    height: 530px;
+    height: 53rem;
+}
+#thumbnail-preview-indicators .img-responsive, .thumbnail > img,
+#thumbnail-preview-indicators .thumbnail a > img,
+#thumbnail-preview-indicators .carousel-inner > .item > img ,
+#thumbnail-preview-indicators .carousel-inner > .item > a > img{
+margin: 0 auto;}
+#thumbnail-preview-indicators .carousel-inner {height: 450px;height: 45rem;}
+#thumbnail-preview-indicators .carousel-inner .item .carousel-caption {
+  top: 20%;
+  bottom: inherit;
+}
+#thumbnail-preview-indicators .carousel-indicators {
+  position: relative;
+  height:100px;
+  height:10rem;
+  bottom: 0;
+}
+#thumbnail-preview-indicators .carousel-indicators li,
+#thumbnail-preview-indicators .carousel-indicators li.active {
+  position: relative;
+  width: 70px;
+  width: 7rem;
+  height: 10px;  
+  height: 1rem;  
+  border:0;
+  background: none;
+  margin:0 5px;
+  margin:0 0.5rem;
+}
+#thumbnail-preview-indicators .carousel-indicators li > .thumbnail {  
+  top: 0;
+  width: 70px;
+  width: 7rem;
+  display: block;
+  opacity: 0.8;
+  left: 50%;
+  margin-top: 0;
+  border-radius:0;
+  border-color: @grey-light;
+}
+#thumbnail-preview-indicators .carousel-indicators li:hover > .thumbnail,
+#thumbnail-preview-indicators .carousel-indicators li.active > .thumbnail {
+  display: block;
+  opacity: 1;
+  border-width:2px;
+  border-width:0.2rem;
+  border-color: @red-dark;
+}
+#thumbnail-preview-indicators .carousel-indicators li.active > .thumbnail:hover{
+  opacity: 1;
+}
+#thumbnail-preview-indicators .carousel-control.left, #thumbnail-preview-indicators .carousel-control.right{background:none; width:10%}
+
+.prdDetailThumbCarousel .carousel-control{background:none; width:7%}
+#thumbnail-preview-indicators .carousel-control .fa-angle-left, 
+#thumbnail-preview-indicators .carousel-control .fa-angle-right,
+.prdDetailThumbCarousel .fa-angle-left,
+.prdDetailThumbCarousel .fa-angle-right { 
+    top: 50%; 
+    position:absolute; 
+    z-index:5; 
+    font-size:24px; 
+    font-size:2.4rem; 
+    height:34px; 
+    height:3.4rem; 
+    width:34px; 
+    width:3.4rem; 
+    background: @grey-dark; 
+    line-height:32px; 
+    line-height:3.2rem; 
+    left:0;
+}
+.prdDetailThumbCarousel .fa-angle-left,
+.prdDetailThumbCarousel .fa-angle-right { 
+    top: 28%; 
+}
+.rightCarousel {
+    margin-left: 31px !important;
+    margin-left: 3.1rem !important;
+}
+@media screen and (max-width : @bp_mobile_max) {   
+    #thumbnail-preview-indicators {
+        border-top: 0.1rem solid @grey-light;
+
+    }
+    .prodMainImg {
+    min-height:auto;
+  }
+  .prdDetailThumbnail .thumbnail,
+  .prdDetailThumbnail .thumbnail:hover {
+    width: 56px;
+    width: 5.6rem;
+    height: 56px;
+    height: 5.6rem;
+  }
+
+  .prdDetailThumbCarousel .carousel-control{width:10%}
+  .prdDetailThumbCarousel .fa-angle-left, .prdDetailThumbCarousel .fa-angle-right {
+    height: 24px;
+    height: 2.4rem;
+    width: 24px;
+    width: 2.4rem;
+    font-size: 24px ;
+    font-size: 2.4rem;
+    line-height: 22px;
+    line-height: 2.2rem;
+    top: 25%;
+  }
+  .prdDetailThumbnail {
+      width: 80%;
+  }
+}
+@media screen and (max-width: @bp_small_mobile_max) {   
+    .prodDetailDialog {
+        width: auto;
+    } 
+    #thumbnail-preview-indicators .carousel-indicators li,
+    #thumbnail-preview-indicators .carousel-indicators li.active {
+      width: 10px;
+      width: 1rem;
+      height: 10px;
+      height: 1rem;
+      position: relative;
+    }
+    #thumbnail-preview-indicators .carousel-indicators li {
+        background:@grey-light;
+    }
+    #thumbnail-preview-indicators .carousel-indicators li.active {
+        background:@red;
+    }
+    #thumbnail-preview-indicators .carousel-control.left, #thumbnail-preview-indicators .carousel-control.right{ width:13%}
+    #thumbnail-preview-indicators .carousel-indicators li > .thumbnail {
+       width: 50px;
+       width: 5rem;
+       left: 50%;
+       margin-top: -50px;
+       margin-top: -5rem;
+       margin-left: -25px;
+       margin-left: -2.5rem;
+    }
+    #thumbnail-preview-indicators .carousel-indicators {
+        left: 0;
+        width: auto;
+        margin:0 auto;
+    }
+    .rightCarousel {
+        margin-left: 0 !important;
+    }
+    #thumbnail-preview-indicators,
+    #thumbnail-preview-indicators .slides,
+    #thumbnail-preview-indicators .slides .slide-1, 
+    #thumbnail-preview-indicators .slides .slide-2,
+    #thumbnail-preview-indicators .slides .slide-3,
+    #thumbnail-preview-indicators .carousel-inner,
+    #thumbnail-preview-indicators .carousel-indicators {
+      height:auto;
+    }
+}
+
+.bx-wrapper img{
+    display: block;
+    margin-left: 20px;
+    margin-left: 0rem; 
+    max-width: 100%;
+}
+
+
+.prodDetailDialog .modal-header {
+    padding: 0 15px;
+    padding: 0 1.5rem;
+    border-bottom:0;
+}
+.prodDetailDialog .partNoNWarnty {
+    font-size:16px;
+    font-size: 1.6rem;
+}
+.prdDetailThumbCarousel .carousel-control{background:none; width:7%}
+
+.prdDetailThumbCarousel .fa-angle-left,
+.prdDetailThumbCarousel .fa-angle-right { 
+    top: 50%; 
+    position:absolute; 
+    z-index:5; 
+    font-size:24px; 
+    font-size:2.4rem; 
+    height:34px; 
+    height:3.4rem; 
+    width:34px; 
+    width:3.4rem; 
+    background: @grey-dark; 
+    line-height:32px; 
+    line-height:3.2rem; 
+    left:0;}
+.prdDetailThumbCarousel .fa-angle-left,
+.prdDetailThumbCarousel .fa-angle-right { 
+    top: 28%; 
+}
+.rightCarousel {
+    margin-left: 31px !important;
+    margin-left: 3.1rem !important;
+}
+
+
+/*
+    quote-carousel 
+==================== */
+#quote-carousel {  
+    padding: 0 10px 29px 10px;
+    padding: 0 1rem 2.9rem 1rem;
+    margin-top: 80px;
+    margin-top: 8rem;
+    .carousel-control {
+        background: none;
+        color: @black;
+        font-size: 32px;
+        font-size: 3.2rem;
+        text-shadow: none;
+        margin-top: 0;
+        width: 5%;
+    }
+    .carousel-indicators {
+        right: 50%;
+        top: auto;
+        bottom: 0;
+        margin-right: -19px;
+        margin-right: -1.9rem;
+    }
+}
+.quoteCarouselBriefTxt{
+    margin: 15px 0;
+    margin: 1.5rem 0;
+}
+
+/* Control buttons  */
+
+ 
+/* Previous button  */
+#quote-carousel .quoteCaroselControlArrow{position:absolute; top:35%}
+#quote-carousel .carousel-control.left {
+  left: -27px;
+  left: -2.7rem;
+}
+/* Next button  */
+#quote-carousel .carousel-control.right {
+  right: -27px;
+  right: -2.7rem;
+}
+/* Changes the color of the indicators */
+#quote-carousel .carousel-indicators li {
+  background: #c0c0c0;
+}
+#quote-carousel .carousel-indicators .active {
+  background: #333333;
+}
+.qualityCarousel{
+    margin-top: 20px;
+    margin-top:2rem;
+}
+@media screen and (max-width:@bp_mobile_max) {
+    .qualityCarousel {
+        margin-top: 0;
+    }
+}
+/* End carousel */
+
+/*responsive carousel/slider for home page*/
+.bx-wrapper {
+    margin: 0 auto 40px;
+    margin: 0 auto 4rem;
+    .bx-next {
+        right: -40px;
+        right: -4rem;
+        text-align: right;
+    }
+    .bx-pager {
+        display:none;
+    }
+    .bx-prev {
+        left: -40px;
+        left: -4rem;
+    }
+    .bx-viewport {
+        box-shadow: none;
+        border: none;
+        left: 0;
+        background: none;
+    }
+}
+@media screen and (max-width:@bp_tablet_max){
+    .bx-wrapper {
+        margin: 0 auto;
+        .bx-prev {
+            left: -24px;
+            left: -2.4rem;
+        }
+        .bx-next {
+            right:-24px;
+            right:-2.4rem;
+        }
+    }
+   
+    .qualityCarousel .slide {
+        margin:0 100px;
+    }
+}
+
+@media screen and (max-width:@bp_mobile_max){
+    .bx-wrapper {
+        .bx-prev {
+            left: 0;
+        }
+        .bx-next {
+            right: 0;
+        }
+    }
+    
+    .qualityCarousel .slide {
+        margin:0 auto;   
+    }
+}
+
+.qualityTitle {margin-top: 60px; margin-top:6rem;}
+.qualityContentTitle {/* min-height: 59px; min-height:5.9rem; */ }
+.qualityContent { min-height: 50px; /* min-height:6.4rem; margin-bottom:10px; margin-bottom: 1rem; */}
+.qualityContent > span { display:block}
+.quality{
+    background-color: @grey-lighter;
+}
+@media screen and (max-width: @bp_mobile_max) {
+    .quality, .learning{
+        background: url(../images/bg-2.jpg) repeat 0 0;
+    }
+}
+
+.quality h1{ color: @red; margin-bottom:0}
+.quality h2 {color: @grey; margin-top:0}
+
+.quality .qualityCarousel .bx-wrapper .well {
+    padding:0;
+
+}
+
+.bx-wrapper .well-qualityCarousel .rgtPad_0{
+    padding-left: 30px;
+}
+/***********************************
+  MEDIA QUERIES for quote-carousel 
+***********************************/
+@media (min-width:992px) { 
+#quote-carousel
+{
+    margin-top: 20px;
+    margin-top:2rem;
+}}
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+    #quote-carousel {margin-bottom: 0;  padding: 0 40px 30px 40px; padding: 0 4rem 3rem 4rem;}
+}
+
+/* Small devices (tablets, up to 768px) */
+@media (max-width: 768px) { 
+ #quote-carousel {margin-top: 10px; margin-top:1rem}
+    /* Make the indicators larger for easier clicking with fingers/thumb on mobile */
+      #quote-carousel .carousel-indicators {bottom: -20px !important;bottom: -2rem !important;}
+    #quote-carousel .carousel-indicators li {display: inline-block; margin: 0 5px; margin: 0 0.5rem; width: 15px; width: 1.5rem; height: 15px; height: 1.5rem;}
+    #quote-carousel .carousel-indicators li.active {margin: 0 5px;margin: 0 0.5rem; width: 20px; width: 2rem; height: 20px; height: 2rem;}
+}
+
+
+.well-qualityCarousel{
+    background: @white;
+    height: 180px;
+}
+
+
+/*
+
+    Promo
+*****************/
+.scroller.promo,
+.item_container_holder.promo {
+    margin-top: 5px;
+}
+
+.scroller.promo a,
+.item_container_holder.promo a {
+    line-height: normal;
+}
+
+.scroller.promo ul li p,
+.item_container_holder.promo ul li p {
+    margin-bottom: 5px;
+}
+
+/*
+
+    Scroller 
+*****************/
+.scroller,
+.item_container {
+    margin-bottom: 25px;
+    /*margin-top: 7px; allows for scoll title top to be visible*/
+    overflow: hidden; /* needs to be overflow to fix IE7*/
+}
+
+.scroller .title_holder,
+.item_container_holder .title_holder {
+    position: relative;
+    overflow: visible;
+}
+
+.scroller .title-top img,
+.item_container_holder .title-top img {
+    float: right;
+}
+
+.scroller ul li p {
+    margin: 0 0 7px 0;
+}
+
+.scroller ul li span {
+    display: block;
+}
+
+.scroller ul li h3 {
+    /*float: left; redundant float BA.2011.06.11 */
+    margin-bottom: 0;
+}
+
+.scroller.horizontal,
+.scroller.vertical {
+    position: relative;
+    overflow: visible;
+}
+
+/*
+
+    Scroller Lightbox
+*****************/
+.scroller.lightbox .scoller_content {
+    overflow: hidden;
+}
+
+.scroller.lightbox {
+    position: relative;
+    overflow: visible;
+}
+
+.scroller.lightbox ul {
+    margin: 0 auto;
+    width: 98px;
+    padding: 0;
+    overflow: auto;
+}
+
+.scroller.lightbox ul li span {
+    display: block;
+    width: 96px;
+    height: 96px;
+    margin-bottom: 10px;
+    margin-top: 7px;
+    text-align: center;
+}
+
+.scroller.lightbox ul li span img {
+    padding-top: 5px;
+}
+
+.scroller.lightbox ul li p {
+    margin: 0 0 7px 0;
+    clear: both;
+}
+
+.scroller.lightbox ul li:first-child {
+    margin-top: 12px;
+}
+
+.scroller.lightbox ul li h3 {
+    font-size: 1.0em;
+    font-weight: bold;
+}
+
+.scroller.lightbox .next,
+.scroller.lightbox .previous {
+    width: 121px;
+    height: 30px;
+    margin: 0 auto;
+}
+
+.scroller.lightbox .next a,
+.scroller.lightbox .previous a {
+    display: block;
+    height: 30px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.scroller.lightbox .title_holder {
+    position: relative;
+    overflow: visible;
+}
+
+.scroller.lightbox .title {
+    position: absolute;
+    max-width: 350px;
+    top: -11px;
+    left: 15px;
+    margin-left: 7px;
+    margin-right: 7px;
+    right: 0;
+    left: 0;
+}
+
+.scroller.lightbox .title-top img {
+    float: right;
+}
+
+.scroller.lightbox .title_holder h2 {
+    margin: 0 16px 0 16px;
+    padding: 0 20px 10px 20px;
+    text-align: center;
+    max-width: 292px; /* width with above l & r padding removed (332px)*/
+}
+@media (max-width: @bp_mobile_max) { 
+    .quality h1 {font-size: 15px;font-size: 1.5rem;}
+  .quality .qualitySubtitle {font-size: 12px;font-size: 1.2rem;}
+  .qualityContentTitle{font-size: 14px;font-size:1.4rem;}
+  .qualityContent {font-size: 12px;font-size: 1.2rem; }
+  .qualityCarousel #quote-carousel{padding:0}
+  #quote-carousel .carousel-control.left{left: -12px; left: -1.2rem}
+  #quote-carousel .carousel-control.right{right: -12px; right: -1.2rem}
+
+}
+
+

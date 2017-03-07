@@ -1,0 +1,75 @@
+<div>
+	<table width="100%" border="1" cellspacing="0" style="margin:0;padding:0;table-layout:fixed;border:1px solid #1E4EBF;">
+			<tr>
+				<td height="125px" width="25%" rowspan="2" class="structureViewSection">
+					<cockpit code="SiteLogo" />
+				</td>
+				<td class="structureViewSection">
+					<cockpit code="HeaderLinks" />
+					<cockpit code="SearchBox" />
+				</td>
+				<td width="15%" rowspan="2" class="structureViewSection">
+					<cockpit code="MiniCart" />
+				</td>
+				
+			</tr>
+			<tr>
+				<td height="89px" class="structureViewSection">
+					<div>Header</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" class="structureViewSection">
+					<cockpit code="NavigationBar" />
+					<div>NavigationBar</div>
+				</td>
+				
+			</tr>
+			
+			
+			<tr>
+				<td class="structureViewSection" style="vertical-align:top;">
+				<table height="170px" align="center" width="50%" border="1" cellpadding="2">
+					<tr>
+						<td width="40%" class="structureViewSection" height="100px"  style="vertical-align:top;">
+							
+							<cockpit code="NationalCompanySection" />
+						</td>
+					</tr>
+					
+				</table>
+			  </td>
+			  
+			  <td colspan="3" height="150px" class="structureViewSection">
+				<cockpit code="FMBannerSection" />
+					
+			  </td>
+			  <td colspan="3" height="150px" class="structureViewSection">
+				<cockpit code="NationalInternalContentSection" />
+					
+			  </td>
+			  
+			 
+			  
+			  
+			</tr>
+					
+			
+			<tr>
+				<td height="80px" colspan="3" class="structureViewSection">
+					<cockpit code="FMBrandstrip" />
+					<div>Brand Strip</div>
+				</td>
+			</tr>
+			<tr>
+				<td height="170px" colspan="3" class="structureViewSection">
+					<cockpit code="Footer" />
+					<div>Footer</div>
+				</td>
+			</tr>
+
+	</table>
+	<div style="width:100%; border-top: 2px solid #bbb" class="cmsContentEditor">
+		<cockpit code="editor" />
+	</div>
+</div>

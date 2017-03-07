@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Nouns/InventoryIssue.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified">
+        <xs:include schemaLocation="../MfgComponents.xsd"/>
+        <xs:include schemaLocation="Document.xsd"/>
+<!--   -->
+        <xs:element name="InventoryIssue" type="InventoryIssue" substitutionGroup="Noun">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The InventoryIssue can be used to request an application to process an issue or request information about an issue </xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="InventoryIssue">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The InventoryIssue can be used to request an application to process an issue or request information about an issue </xs:documentation>
+                </xs:annotation>
+                <xs:complexContent>
+                        <xs:extension base="Document"/>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="InventoryIssueHeader">
+                <xs:sequence>
+                        <xs:element ref="DocumentId" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the identifier of the InventoryIssue.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="DocumentDateTime" type="DateTime" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the timestamp that the InventoryIssue document was created on the sending system.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="DocumentReferences" minOccurs="0"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+        <xs:element name="Header" type="InventoryIssueHeader">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the common elments of the InventoryIssue.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:element name="Line" type="InventoryIssueLine">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">Identifies the lie items and quantities that are issued the InventoryIssue.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="InventoryIssueLine">
+                <xs:sequence>
+                        <xs:element name="LineNumber" type="LineNumber" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the Line Number of the given Line Coponent within the document. LineNumbers are assigned by the sending system.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="IssueType" type="IssueType" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">This can be used to indicate if the Issue transaction is an ISSUE or a RETURN. When left unspecified, the default for this field is assumed to be ISSUE</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="Item" minOccurs="0"/>
+                        <xs:group ref="ItemLotSerialIdentifier" minOccurs="0"/>
+                        <xs:element ref="Site" minOccurs="0"/>
+                        <xs:element name="ItemQuantity" type="Quantity" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">The quantity of items that are involved in the transaction</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="UnitValue" type="Amount" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">This identifies the unit value of the item transaction</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="Business" minOccurs="0"/>
+                        <xs:element name="GLEntity" type="GLEntity" minOccurs="0"/>
+                        <xs:element name="ReasonCode" type="ReasonCode" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is the reason for the issue</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="LotSerial" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="OperationReference" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="PrintInd" type="Indicator" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates whether the InventoryTransfer should be printed at the source.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="PrintControlInformation" type="Indicator" minOccurs="0">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Indicates whether the control information about the transfer should be printed.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Description" type="Description" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="Note" type="Note" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                        <xs:documentation source="http://www.openapplications.org/oagis">Is a note about the source location of the transfer.</xs:documentation>
+                                </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="Attachments" minOccurs="0"/>
+                        <xs:element ref="UserArea" minOccurs="0"/>
+                </xs:sequence>
+        </xs:complexType>
+</xs:schema>

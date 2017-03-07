@@ -1,0 +1,33 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure(2) do |config|
+
+  config.vm.box = "precise64"
+
+  config.vm.network "forwarded_port", guest: 9001, host: 9001
+  config.vm.network "forwarded_port", guest: 9002, host: 9002
+  config.vm.network "private_network", ip: "192.168.3.5"
+
+  config.vm.provider "virtualbox" do |vb|
+  
+    # Push the memory and cpus up if you can. 
+    # 16GB Mac users - suggestion for standalone hybris:
+    #   vb.memory = "8192"
+    # If running dispatcher, AEM, etc - don't overdo this!
+
+    vb.memory = "3072"
+    vb.cpus = "2"
+
+    # Must run a vagrant up or vagrant provision
+    # for changes to take effect
+
+  end
+
+  config.vm.provision "puppet" do |puppet|
+    puppet.manifests_path = "puppet/manifests"
+    puppet.manifest_file = "site.pp"
+    puppet.module_path = "puppet/modules"
+  end
+
+end

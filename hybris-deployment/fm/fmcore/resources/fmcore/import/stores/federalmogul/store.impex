@@ -1,0 +1,30 @@
+# 
+# Create the FederalMogul BaseStore
+#
+
+$productCatalog=federalmogulProductCatalog
+$classificationCatalog=federalmogulClassification
+$currencies=USD
+$net=true
+$storeUid=federalmogul
+$defaultCurrency=USD
+$languages=en,de,ja,zh
+$defaultLanguage=en
+$deliveryCountries=US,CA
+$submitOrderProcessCode=order-process
+$paymentProvider=Mockup
+
+INSERT_UPDATE PromotionGroup;Identifier[unique=true];
+;federalmogulPromoGrp;
+
+# Base Store
+INSERT_UPDATE BaseStore;uid[unique=true];catalogs(id);currencies(isocode);net;taxGroup(code);storelocatorDistanceUnit(code);defaultCurrency(isocode);languages(isocode);defaultLanguage(isocode);deliveryCountries(isocode);submitOrderProcessCode;paymentProvider;
+;$storeUid;$productCatalog,$classificationCatalog;$currencies;$net;us-taxes;miles;$defaultCurrency;$languages;$defaultLanguage;$deliveryCountries;$submitOrderProcessCode;$paymentProvider;
+
+INSERT_UPDATE BaseStore2DeliveryModeRel;source(uid)[unique=true];target(code)[unique=true]
+;federalmogul;premium-net
+;federalmogul;standard-net
+;federalmogul;premium-gross
+;federalmogul;standard-gross
+;federalmogul;free-standard-shipping
+

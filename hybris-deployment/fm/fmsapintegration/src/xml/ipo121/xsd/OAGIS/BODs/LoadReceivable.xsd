@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: LoadReceivable.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Resources/Verbs/Load.xsd"/>
+        <xs:include schemaLocation="../Resources/Nouns/Receivable.xsd"/>
+        <xs:element name="LoadReceivable" type="LoadReceivable">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The purpose of the LoadReceiveable is to transmit data to create a receivable open item in a receivable application from the billing information generated in an order management application.  The LoadReceiveable may also update the General Ledger, depending on the specific architecture of the accounting application.
+
+The scope of the LoadReceiveable is to create a BOD to recognize customer obligation (accounts receivable asset).  Specific transactions include:
+1.	Sales Invoice
+2.	Credit Memo
+3.	Debit Memo
+4.	Charge Back
+
+The LoadReceiveable may also be used for transaction that do not originate from an order management application.
+
+The following two models illustrate that the LoadReceiveable may, in some cases, be adequate to update the financial applications, i.e., Receivables and General Ledger, and in other cases, will also require the PostJournal Business Object Document (BOD) to assure the General Ledger account balances are updated.
+</xs:documentation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">In the model above, the receivable application is a sub-ledger of the general ledger.  Updates to G/L balances occur via the receivables module, therefore the Load Receivable contains both receivable and general ledger transaction information.</xs:documentation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">This other model illustrates the environment that sometime exists when General Ledger updates occur directly from the Order Management application.  The reconciliation between the receivable and general ledger is a function within the financial applications and not of the integration space.  This model allows the G/L balances to be updated in either detail or summarized form.
+
+The scope of the role of the receivable application includes functions such as:
+·	Allowing Cash Application
+·	Dunning
+·	Dispute management
+</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="LoadReceivable">
+                <xs:complexContent>
+                        <xs:extension base="BusinessObjectDocument">
+                                <xs:sequence>
+                                        <xs:element name="DataArea" type="LoadReceivableDataArea">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is where the information that the BOD message carries is provided, in this case LoadReceivable. The information consists of a Verb and one or more Nouns. The verb (Load) indicates the action to be performed on the Noun (Receivable).</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="LoadReceivableDataArea">
+                <xs:complexContent>
+                        <xs:extension base="DataArea">
+                                <xs:sequence>
+                                        <xs:element ref="Load"/>
+                                        <xs:element ref="Receivable" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+</xs:schema>

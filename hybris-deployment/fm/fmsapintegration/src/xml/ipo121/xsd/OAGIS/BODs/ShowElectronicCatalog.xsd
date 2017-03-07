@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: ShowElectronicCatalog.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Resources/Verbs/Show.xsd"/>
+        <xs:include schemaLocation="../Resources/Nouns/ElectronicCatalog.xsd"/>
+        <xs:element name="ShowElectronicCatalog" type="ShowElectronicCatalog">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The purpose of the ShowElectronicCatalog is to supply a business application module or system with requested catalog information.
+In communicating Catalog information, the ShowElectronicCatalogmay cause other information to be coordinated including, but not limited to
+·  Item Identifiers
+·  Specifications
+·  Pricing Information agreed on either
+  ·  Purchase Agreements
+  ·  Price Lists
+·  Availability and Delivery Information
+·  Related Items and accessories
+
+There are many possible business applications in several environments that may use this capability. Some examples of usage scenarios are:
+·  Manufacturer exchanging catalogs with distributors/ suppliers/ e-marketplaces
+·  Distributors/ Suppliers/ e-marketplaces exchanging catalogs with Buyers or other trading partners
+
+It may also be necessary to support Component Supplier Management (CSM) scenarios.  In this scenario a company will provide a service of sourcing and codifying the products of many companies and publishing a consolidated catalog. </xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="ShowElectronicCatalog">
+                <xs:complexContent>
+                        <xs:extension base="BusinessObjectDocument">
+                                <xs:sequence>
+                                        <xs:element name="DataArea" type="ShowElectronicCatalogDataArea">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is where the information that the BOD message carries is provided, in this case ShowElectronicCatalog. The information consists of a Verb and one or more Nouns. The verb (Show) indicates the action to be performed on the Noun (ElectronicCatalog).</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="ShowElectronicCatalogDataArea">
+                <xs:complexContent>
+                        <xs:extension base="DataArea">
+                                <xs:sequence>
+                                        <xs:element ref="Show"/>
+                                        <xs:element ref="ElectronicCatalog" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+</xs:schema>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: ListUnitOfMeasureGroup.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Resources/Verbs/List.xsd"/>
+        <xs:include schemaLocation="../Resources/Nouns/UnitOfMeasureGroup.xsd"/>
+        <xs:element name="ListUnitOfMeasureGroup" type="ListUnitOfMeasureGroup">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The purpose of the ListUnitOfMeasureGroup is to supply Unit-of-Measure Group summary information to another business application module.  This may be the result of a GetListUnitOfMeasureGroup request or some initiated by some other business event.
+
+When a receiving application receives this BOD, the information can be used as is or it may be used to initiate a selection of a specific UnitOfMeasureGroup through the GetUnitOfMeasureGroup request. The processing is designed to provide multiple occurrences of summary data.
+
+This BOD usually does not cause updates to occur.
+
+There are many possible business applications in several environments that may use this capability.  For example, an MRP, Inventory, or Manufacturing business application could use this to request alternate UOM information for one or more items.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="ListUnitOfMeasureGroup">
+                <xs:complexContent>
+                        <xs:extension base="BusinessObjectDocument">
+                                <xs:sequence>
+                                        <xs:element name="DataArea" type="ListUnitOfMeasureGroupDataArea">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is where the information that the BOD message carries is provided, in this case ListUnitOfMeasureGroup. The information consists of a Verb and one or more Nouns. The verb (List) indicates the action to be performed on the Noun (UnitOfMeasureGroup).</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="ListUnitOfMeasureGroupDataArea">
+                <xs:complexContent>
+                        <xs:extension base="DataArea">
+                                <xs:sequence>
+                                        <xs:element ref="List"/>
+                                        <xs:element ref="UnitOfMeasureGroup" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+</xs:schema>

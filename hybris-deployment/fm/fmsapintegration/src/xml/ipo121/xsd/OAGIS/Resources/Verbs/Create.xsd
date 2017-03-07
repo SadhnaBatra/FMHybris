@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: Verbs/Create.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="Verb.xsd"/>
+        <xs:complexType name="Create">
+                <xs:complexContent>
+                        <xs:extension base="ConfirmableVerb"/>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:element name="Create" type="Create" substitutionGroup="Verb">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The Create verb is used to describe specific processing in a more fine grained manner beyond add, change or delete processing.  This is generally used when the processing is initiating the building of a document, rather than moving a document from one system to another.  Examples of this include CREATE PRODORDER and CREATE BOM.
+In these cases, the documents have not been constructed and need to be.  This differs from the ADD PO or ADD REQUISITN processing as those requests refer to a document that has already been established and the document is being communicated to another business application.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+</xs:schema>

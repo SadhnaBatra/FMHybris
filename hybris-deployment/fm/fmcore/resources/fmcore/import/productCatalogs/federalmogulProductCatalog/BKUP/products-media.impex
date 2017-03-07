@@ -1,0 +1,30 @@
+# ImpEx for Importing Product Media into FederalMogul store
+  
+# Macros / Replacement Parameter definitions
+# ImpEx for Importing Product Media into FederalMogul store
+  
+# Macros / Replacement Parameter definitions
+$productCatalog=federalmogulProductCatalog
+$storeName=federalmogul
+  
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$media=@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator]
+$thumbnail=thumbnail(code, $catalogVersion)
+$picture=picture(code, $catalogVersion)
+$thumbnails=thumbnails(code, $catalogVersion)
+$detail=detail(code, $catalogVersion)
+$medias=medias(code, $catalogVersion)
+$galleryImages=galleryImages(qualifier, $catalogVersion)
+$siteResource=jar:com.fm.initialdata.setup.InitialDataSystemSetup&/FMinitialdata/import/productCatalogs/federalMogulProductCatalog
+  
+INSERT_UPDATE MediaFolder;qualifier[unique=true];path[unique=true]
+;images;images
+  
+ 
+# Create Media
+INSERT_UPDATE Media;mediaFormat(qualifier);code[unique=true];$media;mime[default='image/jpg'];$catalogVersion;folder(qualifier)[forceWrite=true]
+
+
+ 
+# Create Media Containers
+INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;$catalogVersion

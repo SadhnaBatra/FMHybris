@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sch:schema xmlns="http://www.ascc.net/xml/schematron" xmlns:oa="http://www.openapplications.org/oagis" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ascc.net/xml/schematron ../../../Utility/Schematron/schematron1-5.xsd">
+	<sch:title>Schematron Validator for OAGI Constraints</sch:title>
+	<sch:ns prefix="oa" uri="http://www.openapplications.org/oagis"/>
+	<sch:pattern name="Noun Level">
+		<sch:rule context="oa:Quote">
+			<sch:assert test="oa:Header">Must have a Header component.</sch:assert>
+			<sch:assert test="oa:Line">Must have at least one Line component.</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Header Level">
+		<sch:rule context="oa:Header">
+			<sch:assert test="oa:DocumentIds">Must have DocumentIds</sch:assert>
+			<sch:assert test="oa:Parties/oa:CustomerParty">Must have a Customer Party.</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Line Level">
+		<sch:rule context="oa:Line">
+			<sch:assert test="oa:LineNumber">Must identify the LineNumber of the Document</sch:assert>
+			<sch:assert test="oa:OrderItem ">Must have an Orderitem.</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="SubLine Level">
+		<sch:rule context="oa:SubLine">
+			<sch:assert test="oa:LineNumber">Must identify the LineNumber of the Document</sch:assert>
+			<sch:assert test="oa:OrderItem ">Must have an Orderitem.</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Schedule Level">
+		<sch:rule context="oa:Schedule">
+			<sch:assert test="oa:LineNumber">Must identify the LineNumber of the Document</sch:assert>
+			<sch:assert test="oa:PromisedDeliveryDate">Must have PromisedDeliveryDate</sch:assert>
+			<sch:assert test="oa:RequiredQuantity">Must have RequiredQuantity</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Party Level">
+		<sch:rule context="oa:Party | oa:SoldToParty">
+			<sch:assert test="oa:PartyId">Must have a Party Identifier.</sch:assert>
+			<sch:assert test="oa:Name">Must have a Party Name.</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Contact Level">
+		<sch:rule context="oa:Contact">
+			<sch:assert test="oa:Person">Contact must have a Person.</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Message Level">
+		<sch:rule context="oa:Message">
+			<sch:assert test="oa:MessageId">Must have a MessageId.</sch:assert>
+			<sch:assert test="oa:Sender">Must have a Sender.</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="SalesInformation Level">
+		<sch:rule context="oa:SalesInformation">
+			<sch:assert test="oa:SalesPerson">Must have a SalesPerson.</sch:assert>
+			<sch:assert test="oa:SalesPerson/oa:Person">Must identify a Person..</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+</sch:schema>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: SyncPersonnel.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Resources/Verbs/Sync.xsd"/>
+        <xs:include schemaLocation="../Resources/Nouns/Personnel.xsd"/>
+        <xs:element name="SyncPersonnel" type="SyncPersonnel">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The purpose of the SyncPersonnel is to enable the synchronization of employee data that exists on separate data bases between manufacturing and human resource applications.  The SyncPersonnel allows the adding of new employees and their relevant data as well as the modification of previously established employees.
+
+The SyncPersonnel is used to facilitate the maintenance of human resource data in a manufacturing work force planning module.  This enables the workforce planning module to use current personnel information when creating finite production schedules.  The SyncPersonnel can also be used by a project accounting application or a work order management application to assign qualified personnel or to perform resource planning.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="SyncPersonnel">
+                <xs:complexContent>
+                        <xs:extension base="BusinessObjectDocument">
+                                <xs:sequence>
+                                        <xs:element name="DataArea" type="SyncPersonnelDataArea">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is where the information that the BOD message carries is provided, in this case SyncPersonnel. The information consists of a Verb and one or more Nouns. The verb (Sync) indicates the action to be performed on the Noun (Personnel).</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="SyncPersonnelDataArea">
+                <xs:complexContent>
+                        <xs:extension base="DataArea">
+                                <xs:sequence>
+                                        <xs:element ref="Sync"/>
+                                        <xs:element ref="Personnel" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+</xs:schema>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sch:schema xmlns="http://www.ascc.net/xml/schematron" xmlns:oa="http://www.openapplications.org/oagis" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ascc.net/xml/schematron ../../../Utility/Schematron/schematron1-5.xsd">
+	<sch:title>Schematron Validator for OAGI Constraints</sch:title>
+	<sch:ns prefix="oa" uri="http://www.openapplications.org/oagis"/>
+	<sch:pattern name="Show WIPStatus">
+		<sch:rule context="oa:WIPStatus">
+			<sch:assert test="oa:Header">The Show WIPStatus must have a Header component specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Show WIPStatus Header">
+		<sch:rule context="oa:WIPStatus/oa:Header">
+			<sch:assert test="oa:DocumentReferences/oa:ProductionOrderReference">WIPStatus Header must have a Production Order Reference specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="ProductionOrderReference">
+		<sch:rule context="oa:WIPStatus/oa:Header/oa:ProductionOrderReference">
+			<sch:assert test="oa:DocumentId/oa:Id">The Production Order Rererence must have a "DocumentId" and an "Id" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Operation">
+		<sch:rule context="oa:WIPStatus/oa:Operation">
+			<sch:assert test="oa:OperationId">An Operation must have an "OperationId" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Step">
+		<sch:rule context="oa:WIPStatus/oa:Operation/oa:Step">
+			<sch:assert test="oa:Id">A Step must have an "Id" specified</sch:assert>
+			<sch:assert test="oa:StepType">A Step must have a "StepType" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+	<sch:pattern name="Resources">
+		<sch:rule context="oa:Resources/oa:MachineResource/oa:Machine">
+			<sch:assert test="oa:Id | oa:Classification">A Machine Resource must have a "Id"  or "Classification" specified</sch:assert>
+		</sch:rule>
+		<sch:rule context="oa:Resources/oa:LaborResource/oa:Labor">
+			<sch:assert test="oa:EmployeeId | oa:Category">A Labor Resource must have a "EmployeeId"  or "Category" specified</sch:assert>
+		</sch:rule>
+		<sch:rule context="oa:Resources/oa:ToolResource/oa:Tool">
+			<sch:assert test="oa:ToolId | oa:ToolClassification">A Tool Resource must have a "ToolId"  or "ToolClassification" specified</sch:assert>
+		</sch:rule>
+	</sch:pattern>
+</sch:schema>

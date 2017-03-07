@@ -1,0 +1,305 @@
+/* ====================
+  Modal & Popup Styles 
+===================== */
+.close {
+  font-size: 21px;
+  font-size: 1.2rem;
+  line-height: 1.4;
+}
+#fade {
+  display: none;
+  position:fixed;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  background-color: #ababab;
+  z-index: 1001;
+  -moz-opacity: 0.8;
+  opacity: .70;
+  filter: alpha(opacity=80);
+}
+
+#modal {
+  display: none;
+  position: absolute;
+  top: 45%;
+  left: 45%;
+  border-radius:20px;
+  border-radius:2rem;
+  z-index: 1002;
+  overflow: auto;
+}
+
+#quick_fade {
+    display: none;
+    position:fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    z-index: 1001;
+    -moz-opacity: 0.8;
+    opacity: .70;
+    filter: alpha(opacity=80);
+    background-color: @grey-light;
+}
+#quick_modal {
+    display: none;
+    position: absolute;
+    top: 45%;
+    left: 45%;
+    border-radius:20px;
+    border-radius:2rem;
+    z-index: 1002;
+    overflow: auto;
+}
+.prodDetailDialog .modal-header .close,
+.billingShippingPopUpB2B .close,
+.newAddressPopup .close,.inventoryPopup .close, .termsConditions .close {
+    background: none repeat scroll 0 0 black;
+    border: 1px solid @white;
+    border-radius: 20px;
+    border-radius: 2rem;
+    opacity: 1;
+    padding: 1px 5px;
+    padding: 0.1rem 0.5rem;
+    position:absolute;
+    top: 5px;
+    right: 5px;
+    color:@white;
+    font-size:14px;
+    font-size:1.4rem;
+    z-index: 10;
+    .fa {
+      color: @white;
+    }
+}
+
+.soldToModel, .shipToModel {
+  .modal-header {
+	padding: 0 15px;
+	padding: 0 1.5rem;
+  }
+}
+
+.fixedModalHeight {
+  overflow-y: initial !important;
+
+  .modal-body{
+	height: 400px;
+	overflow-y: auto;
+  }
+}
+
+
+
+/*
+  Back Order Pop Up 
+====================== */
+
+.backOrderWrapper {
+  width: 370px;
+  width: 37.0rem;
+  .backOrderInput{
+    margin-top:22px;
+    margin-top:2.2rem;
+  }
+  .modal-content {
+    border-radius: 0px;
+    border-radius: 0rem;
+    padding-left: 12px;
+    padding-left: 1.2rem;
+    padding-right: 15px;
+    padding-right: 1.5rem;
+    form-group{
+      margin-bottom:0;
+    }
+    h3{
+      margin-top:0;
+    }
+    .modal-body{
+      padding-top:0;
+    }
+    .modal-header{
+      border-bottom:0;
+      padding-bottom:0;
+      padding-right: 0;
+      .close{
+        margin-top:0; 
+        color :@grey;
+        opacity:1;
+      }
+    }
+  }
+}
+@media (max-width: @bp_small_mobile_max) { 
+  .backOrderWrapper {
+    width: 94%;
+  }
+}
+
+
+
+/* 
+  Shopping Cart Popup 
+==================== */
+#addToCartLayer {
+  display:none;
+  position:fixed;
+  top:35px;
+  z-index:200;
+  right:50%;
+  background:@white;
+  width:358px;
+  border:1px solid @grey-light;
+  border-width:1px;
+  padding:15px;
+  margin:0 -475px 0 0;
+}
+.miniCart {
+    position:relative;
+    z-index: 200;
+
+    a {
+      .count {
+        width:20px;
+        margin:0 5px;
+        font-size:1em;
+        display: inline-block;
+        text-align:center;
+      }
+      .price {
+        font-style:italic;
+      }
+    }
+    .miniCartProd {
+      padding: 15px 0;
+      padding: 1.5rem 0rem;
+      border-bottom:1px solid @grey-light;
+      border-bottom:0.1rem solid @grey-light;
+    }
+    .miniCartProdName {
+      margin-top:0;
+      .ff-primary-bold;
+    }
+    .miniCartQty {
+      .ff-primary-bold;
+    }
+    .miniCartRow {
+      padding-left:10px;
+      padding-left:1rem;
+    }
+    .miniCartRate {
+      .ff-primary-bold;
+    }
+    .miniCartTotal {
+      background-color:@grey-lighter;
+      height:42px;
+      height:4.2rem;
+      .ff-primary-bold;
+      padding:10px 20px 0px 0px;
+      padding:1rem 2rem 0rem 0rem;
+      font-size:18px;
+      font-size:1.8rem;
+    }
+    .miniCartBtn {
+      margin-top: 20px;
+      margin-top: 2rem;
+      margin-bottom: 20px;
+      margin-bottom: 2rem;
+    }
+    .miniCartfaTimes {
+      color: @grey;
+      font-size: 22px;
+      font-size: 2.2rem;
+      margin-top: 20px;
+      margin-top: 2rem;
+    }
+}
+.miniCartPopup {
+  display:none;
+  position:absolute;
+  right:0;
+  background:@white;
+  width:420px;
+  border:1px solid @grey-light;
+  border-width:1px;
+  padding:15px;
+  z-index: 1001;
+}
+
+#addToCartLayer,
+.miniCartPopup {
+    .banner {
+      margin: 10p 0;
+    }
+    .button.positive {
+      float:right;
+    }
+    .legend {
+      border-bottom: 1px solid @grey-lighter;
+      a {float:right;}
+    }
+    .links {
+      clear:both;
+    }
+    .popupCartItem {
+      border-bottom: 1px solid @grey-lighter;
+      clear:both;
+      min-height: 70px;
+      margin: 10px 0;
+      .itemDesc {
+        margin-left: 85px;
+        .itemPrice {
+          text-align:right;
+        }
+        label {
+          font-weight:bold;
+          margin: 0 5px 0 0;
+        }
+      }
+      .itemThumb {
+        float:left;
+        margin: 0 20px 0 0;
+      }
+    }
+    .total {
+      border-top: 1px solid @grey-lighter;
+      font-weight:bold;
+    }
+}
+/*Inventory Popup box */
+
+.inventoryPopup {
+  display:none; 
+  position:fixed;  
+  _position:absolute; 
+  height:300px;  
+  width:600px;  
+  background:@white;  
+  left: 300px;
+  top: 150px;
+  z-index: 1002;   
+  padding:15px;  
+  font-size:15px;  
+  border-radius:20px;
+  border-radius:2rem;
+  overflow:auto;
+}
+
+.inventoryPopup .close {
+    margin-top: 0.3rem;
+    margin-top: 0.03px;
+    margin-right:0px;
+    margin-right: 0rem;
+}
+.inventoryClose {
+    font-size:20px;  
+    line-height:15px;  
+    right:5px;  
+    top:5px;  
+    position:absolute;  
+    color:#6fa5e2;  
+    font-weight:500;      
+}

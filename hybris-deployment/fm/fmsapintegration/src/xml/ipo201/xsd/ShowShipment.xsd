@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.aaiasoa.net/IPOv2" xmlns:cmn="http://www.aaiasoa.net/IPOv2/Common" targetNamespace="http://www.aaiasoa.net/IPOv2" elementFormDefault="qualified">
+	<xs:import namespace="http://www.aaiasoa.net/IPOv2/Common" schemaLocation="BaseSchemas/IPOv2Common.xsd"/>
+	<xs:include schemaLocation="BaseSchemas/Shipment.xsd"/>
+	<xs:element name="ShowShipmentDataAreaType" type="ShowShipmentDataAreaType"/>
+	<xs:complexType name="ShowShipmentDataAreaType">
+		<xs:sequence>
+			<xs:element name="Shipment" type="Shipment"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ShowShipment" type="ShowShipment"/>
+	<xs:complexType name="ShowShipment">
+		<xs:sequence>
+			<xs:element name="ApplicationArea" type="cmn:ApplicationAreaType"/>
+			<xs:element name="DataArea" type="ShowShipmentDataAreaType"/>
+		</xs:sequence>
+		<xs:attribute name="environment" type="cmn:EnvironmentEnum" use="optional"/>
+	</xs:complexType>
+</xs:schema>

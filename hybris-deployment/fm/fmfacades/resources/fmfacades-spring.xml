@@ -1,0 +1,931 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- [y] hybris Platform Copyright (c) 2000-2014 hybris AG All rights reserved. 
+	This software is the confidential and proprietary information of hybris ("Confidential 
+	Information"). You shall not disclose such Confidential Information and shall 
+	use it only in accordance with the terms of the license agreement you entered 
+	into with hybris. -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Facades -->
+
+	<alias name="defaultB2BFlexibleSearchProductSearchFacade" alias="b2bProductFlexibleSearchFacade" />
+	<bean id="defaultB2BFlexibleSearchProductSearchFacade"
+		class="com.federalmogul.facades.search.impl.DefaultB2BFlexibleSearchProductSearchFacade"
+		parent="abstractB2BProductSearchFacade">
+		<property name="b2bFlexibleSearchProductSearchService" ref="b2bFlexibleSearchProductSearchService" />
+		<property name="flexibleSearchConverter" ref="b2bFlexibleSearchConverter" />
+	</bean>
+
+	<alias name="defaultB2BSolrProductSearchFacade" alias="b2bSolrProductSearchFacade" />
+	<bean id="defaultB2BSolrProductSearchFacade"
+		class="com.federalmogul.facades.search.impl.DefaultB2BSolrProductSearchFacade"
+		parent="abstractB2BProductSearchFacade">
+		<property name="productSearchFacade" ref="productSearchFacade" />
+	</bean>
+
+
+	<bean id="abstractB2BProductSearchFacade"
+		class="com.federalmogul.facades.search.AbstractB2BProductSearchFacade"
+		abstract="true">
+		<property name="productConfiguredPopulator" ref="b2bProductConfiguredPopulator" />
+		<property name="productFacade" ref="b2bProductFacade" />
+		<property name="productService" ref="productService" />
+	</bean>
+
+	<bean id="referAFriendEmailContext"
+		class="com.federalmogul.facades.process.email.context.ReferAFriendEmailContext"
+		parent="abstractEmailContext" scope="prototype">
+		<!-- <property name="customerConverter" ref="customerConverter" /> -->
+	</bean>
+
+	<alias alias="b2bSimpleSuggestionFacade" name="b2bDefaultSimpleSuggestionFacade" />
+	<bean id="b2bDefaultSimpleSuggestionFacade"
+		class="com.federalmogul.facades.suggestion.impl.DefaultSimpleSuggestionFacade">
+		<property name="b2bSimpleSuggestionService" ref="b2bSimpleSuggestionService" />
+		<property name="userService" ref="userService" />
+		<property name="categoryService" ref="categoryService" />
+		<property name="productPricePopulator" ref="productPricePopulator" />
+		<property name="productPrimaryImagePopulator" ref="productPrimaryImagePopulator" />
+		<property name="productConverter" ref="productConverter" />
+	</bean>
+
+	<alias alias="b2bFlexibleSearchConverter" name="defaultB2BFlexibleSearchConverter" />
+	<bean id="defaultB2BFlexibleSearchConverter"
+		class="com.federalmogul.facades.search.converters.impl.DefaultB2BFlexibleSearchConverter">
+		<property name="productConfiguredPopulator" ref="b2bProductConfiguredPopulator" />
+	</bean>
+
+	<bean id="b2bProductFacade" parent="defaultProductFacade">
+		<property name="productConfiguredPopulator" ref="b2bProductConfiguredPopulator" />
+	</bean>
+
+	<alias name="defaultProductPriceRangePopulator" alias="productPriceRangePopulator" />
+	<bean id="defaultProductPriceRangePopulator" parent="baseProductPopulator"
+		class="com.federalmogul.facades.product.populators.ProductPriceRangePopulator">
+		<property name="priceDataFactory" ref="priceDataFactory" />
+		<property name="priceService" ref="priceService" />
+	</bean>
+
+	<alias alias="loyaltySurveyFacade" name="loyaltySurveyFacade" />
+	<bean id="loyaltySurveyFacade"
+		class="com.federalmogul.facades.account.impl.LoyaltySurveyFacadeImpl">
+
+	</bean>
+
+	<alias name="defaultProductVariantMatrixPopulator" alias="productVariantMatrixPopulator" />
+	<bean id="defaultProductVariantMatrixPopulator"
+		class="com.federalmogul.facades.product.populators.ProductVariantMatrixPopulator">
+		<property name="modelService" ref="modelService" />
+		<property name="variantMatrixElementPopulator" ref="variantMatrixElementPopulator" />
+		<property name="valueCategoryComparator" ref="variantValueCategoryModelPriorityComparator" />
+	</bean>
+
+
+
+
+
+	<alias name="defaultVariantOptionPopulator" alias="variantOptionPopulator" />
+	<bean id="defaultVariantOptionPopulator"
+		class="de.hybris.platform.commercefacades.converter.impl.DefaultConfigurablePopulator">
+		<property name="populators">
+			<map key-type="com.federalmogul.facades.product.ProductVariantOption"
+				merge="true">
+				<entry key="STOCK" value-ref="variantOptionDataStockPopulator" />
+				<entry key="URL" value-ref="variantOptionDataUrlPopulator" />
+				<entry key="PRICE" value-ref="variantOptionDataPricePopulator" />
+				<entry key="MEDIA" value-ref="variantOptionDataMediaPopulator" />
+			</map>
+		</property>
+	</bean>
+
+	<alias name="defaultVariantOptionDataUrlPopulator" alias="variantOptionDataUrlPopulator" />
+	<bean id="defaultVariantOptionDataUrlPopulator"
+		class="com.federalmogul.facades.variant.populators.VariantOptionDataUrlPopulator">
+		<property name="productModelUrlResolver" ref="productModelUrlResolver" />
+	</bean>
+
+	<alias name="defaultVariantOptionDataStockPopulator" alias="variantOptionDataStockPopulator" />
+	<bean id="defaultVariantOptionDataStockPopulator"
+		class="com.federalmogul.facades.variant.populators.VariantOptionDataStockPopulator">
+	</bean>
+
+	<bean id="variantMatrixElementPopulator"
+		class="com.federalmogul.facades.product.populators.VariantMatrixElementPopulator" />
+
+	<alias name="defaultVariantOptionDataPricePopulator" alias="variantOptionDataPricePopulator" />
+	<bean id="defaultVariantOptionDataPricePopulator"
+		class="com.federalmogul.facades.variant.populators.VariantOptionDataPricePopulator">
+		<property name="commercePriceService" ref="commercePriceService" />
+		<property name="priceDataFactory" ref="priceDataFactory" />
+	</bean>
+
+	<alias name="defaultVariantOptionDataMediaPopulator" alias="variantOptionDataMediaPopulator" />
+	<bean id="defaultVariantOptionDataMediaPopulator"
+		class="com.federalmogul.facades.variant.populators.VariantOptionDataMediaPopulator">
+		<property name="acceleratorImageFormatMapping" ref="imageFormatMapping" />
+		<property name="imageFormats">
+			<list>
+				<value>zoom</value>
+				<value>product</value>
+				<value>thumbnail</value>
+				<value>cartIcon</value>
+				<value>styleSwatch</value>
+			</list>
+		</property>
+	</bean>
+
+
+	<bean id="b2bProductConfiguredPopulator" parent="defaultProductConfiguredPopulator">
+		<property name="populators">
+			<map key-type="de.hybris.platform.commercefacades.product.ProductOption"
+				merge="true">
+				<entry key="PRICE_RANGE" value-ref="productPriceRangePopulator" />
+				<entry key="VOLUME_PRICES" value-ref="productVolumePricesPopulator" />
+				<entry key="VARIANT_MATRIX" value-ref="productVariantMatrixPopulator" />
+				<entry key="VARIANT_MATRIX_BASE" value-ref="productVariantMatrixPopulator" />
+				<entry key="VARIANT_MATRIX_ALL_OPTIONS" value-ref="configVariantMatrixDataPopulator" />
+				<entry key="VARIANT_MATRIX_URL" value-ref="configVariantOptionDataUrlPopulator" />
+				<entry key="VARIANT_MATRIX_MEDIA" value-ref="configVariantOptionDataMediaPopulator" />
+				<entry key="VARIANT_MATRIX_PRICE" value-ref="configVariantOptionDataPricePopulator" />
+				<entry key="VARIANT_MATRIX_STOCK" value-ref="configVariantOptionDataStockPopulator" />
+				<entry key="URL" value-ref="productUrlPopulator" />
+				<entry key="IMAGES" value-ref="productPrimaryImagePopulator" />
+			</map>
+		</property>
+	</bean>
+
+
+	<bean id="configVariantOptionDataUrlPopulator" parent="configVariantMatrixDataPopulator">
+		<property name="productVariantOptionList">
+			<list>
+				<value>URL</value>
+			</list>
+		</property>
+	</bean>
+
+
+	<bean id="configVariantOptionDataStockPopulator" parent="configVariantMatrixDataPopulator">
+		<property name="productVariantOptionList">
+			<list>
+				<value>STOCK</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="configVariantOptionDataMediaPopulator" parent="configVariantMatrixDataPopulator">
+		<property name="productVariantOptionList">
+			<list>
+				<value>MEDIA</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="configVariantOptionDataPricePopulator" parent="configVariantMatrixDataPopulator">
+		<property name="productVariantOptionList">
+			<list>
+				<value>PRICE</value>
+			</list>
+		</property>
+	</bean>
+
+
+	<alias name="defaultConfigVariantMatrixDataPopulator" alias="configVariantMatrixDataPopulator" />
+	<bean id="defaultConfigVariantMatrixDataPopulator"
+		class="com.federalmogul.facades.product.populators.ProductVariantOptionDataPopulator">
+		<property name="modelService" ref="modelService" />
+		<property name="productVariantOptionList">
+			<list>
+				<value>URL</value>
+				<value>MEDIA</value>
+				<value>PRICE</value>
+				<value>STOCK</value>
+			</list>
+		</property>
+		<property name="variantOptionDataPopulator" ref="defaultVariantOptionPopulator" />
+	</bean>
+
+
+	<!-- Network Page -->
+
+	<alias name="fmNetworkFacade" alias="b2bCommerceFacade" />
+	<bean id="fmNetworkFacade"
+		class="com.federalmogul.facades.network.impl.FMNetworkFacadeImpl">
+		<property name="b2BUserConverter" ref="b2bUserConverter" />
+		<property name="companyB2BCommerceService" ref="companyB2BCommerceService" />
+		<property name="userService" ref="userService" />
+		<property name="unitTreeConverter" ref="b2bUnitNodeConverter" />
+		<property name="b2BUnitConverter" ref="b2bUnitConverter" />
+		<property name="b2BCostCenterConverter" ref="b2bCostCenterConverter" />
+		<property name="b2BCustomerConverter" ref="b2BCustomerConverter" />
+		<property name="b2BBudgetConverter" ref="b2bBudgetConverter" />
+		<property name="addressReversePopulator" ref="addressReversePopulator" />
+		<property name="b2BPermissionConverter" ref="b2bPermissionConverter" />
+		<property name="b2BUserGroupsLookUpStrategy" ref="b2bUserGroupsLookUpStrategy" />
+		<property name="b2BBudgetReversePopulator" ref="b2BBudgetReversePopulator" />
+		<property name="b2BCostCenterReversePopulator" ref="b2BCostCenterReversePopulator" />
+		<property name="b2BUserGroupConverter" ref="b2bUserGroupConverter" />
+		<property name="b2BPermissionTypeDataConverter" ref="permissionTypeEnumConverter" />
+		<property name="enumerationService" ref="enumerationService" />
+		<property name="b2BPermissionReversePopulator" ref="b2BPermissionReversePopulator" />
+		<property name="b2BCommerceBudgetService" ref="b2bCommerceBudgetService" />
+		<property name="b2BCommerceCostCenterService" ref="b2bCommerceCostCenterService" />
+		<property name="b2BCommercePermissionService" ref="b2bCommercePermissionService" />
+		<property name="b2BCommerceUnitService" ref="b2bCommerceUnitService" />
+		<property name="b2BCommerceUserService" ref="b2bCommerceUserService" />
+		<property name="b2BCommerceB2BUserGroupService" ref="b2bCommerceB2BUserGroupService" />
+		<property name="b2BCustomerReversePopulator" ref="b2BCustomerReversePopulator" />
+		<property name="b2BUnitReversePopulator" ref="b2BUnitReversePopulator" />
+		<property name="modelService" ref="modelService" />
+		<property name="baseStoreService" ref="baseStoreService" />
+	</bean>
+
+	<alias name="FMUserFacadeImpl" alias="userFacade" />
+	<bean id="FMUserFacadeImpl" class="com.federalmogul.facades.account.impl.FMUserFacadeImpl">
+
+		<property name="userService" ref="userService" />
+		<property name="customerAccountService" ref="customerAccountService" />
+		<property name="commerceCommonI18NService" ref="commerceCommonI18NService" />
+		<property name="commonI18NService" ref="commonI18NService" />
+		<property name="modelService" ref="modelService" />
+		<property name="cartService" ref="cartService" />
+
+		<property name="addressReversePopulator" ref="addressReversePopulator" />
+		<property name="addressConverter" ref="addressConverter" />
+		<property name="titleConverter" ref="titleConverter" />
+		<property name="creditCardPaymentInfoConverter" ref="creditCardPaymentInfoConverter" />
+		<property name="cardPaymentInfoReversePopulator" ref="cardPaymentInfoReversePopulator" />
+		<property name="checkoutCustomerStrategy" ref="checkoutCustomerStrategy" />
+		<!-- <property name="b2BUnitReversePopulator" ref="b2BUnitReversePopulator"/> -->
+
+	</bean>
+
+
+
+	<!-- accelerator Image Format Mappings -->
+	<alias name="acceleratorImageFormatMapping" alias="imageFormatMapping" />
+	<bean id="acceleratorImageFormatMapping" parent="defaultImageFormatMapping">
+		<property name="mapping">
+			<map>
+				<entry key="superZoom" value="1200Wx1200H" />
+				<entry key="zoom" value="515Wx515H" />
+				<entry key="store" value="365Wx246H" />
+				<entry key="product" value="300Wx300H" />
+				<entry key="thumbnail" value="96Wx96H" />
+				<entry key="cartIcon" value="65Wx65H" />
+				<entry key="styleSwatch" value="30Wx30H" />
+			</map>
+		</property>
+	</bean>
+
+	<alias name="acceleratorProductPrimaryImagePopulator" alias="productPrimaryImagePopulator" />
+	<bean id="acceleratorProductPrimaryImagePopulator" parent="defaultProductPrimaryImagePopulator">
+		<property name="imageFormats">
+			<list>
+				<value>zoom</value>
+				<value>product</value>
+				<value>thumbnail</value>
+				<value>cartIcon</value>
+			</list>
+		</property>
+	</bean>
+
+	<alias name="acceleratorProductGalleryImagesPopulator" alias="productGalleryImagesPopulator" />
+	<bean id="acceleratorProductGalleryImagesPopulator" parent="defaultProductGalleryImagesPopulator">
+		<property name="imageFormats">
+			<list>
+				<value>zoom</value>
+				<value>product</value>
+				<value>thumbnail</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Email -->
+
+	<alias alias="emailContextFactory" name="acceleratorEmailContextFactory" />
+	<bean id="acceleratorEmailContextFactory" parent="defaultEmailContextFactory">
+		<property name="contextResolutionStrategy" ref="b2bProcessContextResolutionStrategy" />
+		<property name="emailContextVariables">
+			<map merge="true">
+				<entry key="themeResourceUrl-powertools" value="{baseUrl}/_ui/{theme}" />
+			</map>
+		</property>
+	</bean>
+
+	<bean id="customerEmailContext"
+		class="com.federalmogul.facades.process.email.context.CustomerEmailContext"
+		parent="abstractEmailContext" scope="prototype">
+		<property name="customerConverter" ref="customerConverter" />
+	</bean>
+
+	<bean id="fmContactUsContext"
+		  class="com.federalmogul.facades.process.email.context.FMContactUsContext"
+		  parent="abstractEmailContext" scope="prototype">
+	</bean>
+
+
+	<!-- Custom EMAIL START -->
+	<bean id="fmCustomerRegistrationContext"
+		class="com.federalmogul.facades.process.email.context.FMCustomerRegistrationContext"
+		parent="abstractEmailContext" scope="prototype">
+		<property name="customerConverter" ref="customerConverter" />
+	</bean>
+
+	<bean id="fmCustomerAdminContext"
+		class="com.federalmogul.facades.process.email.context.FMCustomerAdminContext"
+		parent="abstractEmailContext" scope="prototype">
+		<property name="customerConverter" ref="customerConverter" />
+	</bean>
+
+	<bean id="fmAdminAddNewUserContext"
+		class="com.federalmogul.facades.process.email.context.FMAdminAddNewUserContext"
+		parent="abstractEmailContext" scope="prototype">
+		<property name="customerConverter" ref="customerConverter" />
+	</bean>
+
+
+
+	<bean id="fmB2BBRegistrationApprovalContext"
+		class="com.federalmogul.facades.process.email.context.FMB2BBRegistrationApprovalContext"
+		parent="abstractEmailContext" scope="prototype">
+		<property name="customerConverter" ref="customerConverter" />
+	</bean>
+
+	<bean id="fmB2SBTaxAdminApprovalContext"
+		class="com.federalmogul.facades.process.email.context.FMB2SBTaxAdminApprovalContext"
+		parent="abstractEmailContext" scope="prototype">
+		<property name="customerConverter" ref="customerConverter" />
+	</bean>
+
+
+	<bean id="fmB2SBTaxApprovalContext"
+		class="com.federalmogul.facades.process.email.context.FMB2SBTaxApprovalContext"
+		parent="abstractEmailContext" scope="prototype">
+		<property name="customerConverter" ref="customerConverter" />
+	</bean>
+
+
+	<bean id="loyaltyOrderConfirmationContext"
+		class="com.federalmogul.facades.process.email.context.LoyaltyOrderConfirmationContext"
+		parent="abstractEmailContext" scope="prototype">
+		<property name="customerConverter" ref="customerConverter" />
+	</bean>
+
+	<!-- Custom EMAIL END -->
+
+	<bean id="b2bForgottenPasswordEmailContext"
+		class="com.federalmogul.facades.process.email.context.ForgottenPasswordEmailContext"
+		parent="customerEmailContext" scope="prototype">
+		<property name="customerConverter" ref="customerConverter" />
+	</bean>
+
+	<bean id="orderReplenishmentEmailContext"
+		class="com.federalmogul.facades.process.email.context.OrderReplenishmentEmailContext"
+		parent="abstractEmailContext" scope="prototype">
+		<property name="scheduledCartConverter" ref="scheduledCartConverter" />
+	</bean>
+
+	<bean id="b2bOrderNotificationContext"
+		class="com.federalmogul.facades.process.email.context.OrderNotificationEmailContext"
+		parent="abstractEmailContext" scope="prototype">
+		<property name="orderConverter" ref="orderConverter" />
+	</bean>
+
+	<alias name="defaultB2BCheckoutFlowFacade" alias="b2bCheckoutFlowFacade" />
+	<bean id="defaultB2BCheckoutFlowFacade"
+		class="com.federalmogul.facades.flow.impl.DefaultB2BCheckoutFlowFacade"
+		parent="defaultB2BCheckoutFacade">
+		<property name="checkoutFlowStrategy" ref="b2bCheckoutFlowStrategy" />
+		<property name="checkoutPciStrategy" ref="b2bCheckoutPciStrategy" />
+	</bean>
+
+	<alias name="b2bDefaultStoreFinderFacade" alias="b2bStoreFinderFacade" />
+	<bean id="b2bDefaultStoreFinderFacade"
+		class="de.hybris.platform.commercefacades.storefinder.impl.DefaultStoreFinderFacade">
+		<property name="baseStoreService" ref="baseStoreService" />
+		<property name="storeFinderService" ref="storeFinderService" />
+		<property name="searchPagePointOfServiceDistanceConverter"
+			ref="b2bSearchPagePointOfServiceDistanceConverter" />
+		<property name="pointOfServiceConverter" ref="pointOfServiceConverter" />
+		<property name="pointOfServiceDistanceConverter" ref="pointOfServiceDistanceConverter" />
+	</bean>
+
+	<alias name="b2bDefaultSearchPagePointOfServiceDistanceConverter"
+		alias="b2bSearchPagePointOfServiceDistanceConverter" />
+	<bean id="b2bDefaultSearchPagePointOfServiceDistanceConverter"
+		parent="abstractPopulatingConverter">
+		<lookup-method name="createTarget" bean="storeFinderSearchPageData" />
+		<property name="populators">
+			<list>
+				<ref bean="b2bSearchPagePointOfServiceDistancePopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="yb2bacceleratorSearchPagePointOfServiceDistancePopulator"
+		alias="b2bSearchPagePointOfServiceDistancePopulator" />
+	<bean id="yb2bacceleratorSearchPagePointOfServiceDistancePopulator"
+		class="com.federalmogul.facades.storefinder.populators.SearchPagePointOfServiceDistancePopulator">
+		<property name="pointOfServiceDistanceConverter" ref="pointOfServiceDistanceConverter" />
+	</bean>
+
+	<alias name="variantCommerceSearchResultProductPopulator" alias="commerceSearchResultProductPopulator" />
+	<bean id="variantCommerceSearchResultProductPopulator"
+		class="com.federalmogul.facades.search.converters.populator.VariantSearchResultProductPopulator"
+		parent="defaultCommerceSearchResultProductPopulator">
+		<property name="categoryManager" ref="solrFirstVariantCategoryManager" />
+	</bean>
+
+	<alias name="fmCommerceSearchResultProductPopulator" alias="commerceSearchResultProductPopulator" />
+	<bean id="fmCommerceSearchResultProductPopulator"
+		class="com.federalmogul.facades.search.converters.populator.FMSearchResultProductPopulator"
+		parent="defaultCommerceSearchResultProductPopulator">
+		<property name="partService" ref="partService" />
+		<property name="fitmentConverter" ref="fitmentConverter" />
+	</bean>
+
+	<alias name="fmCartPopulator" alias="cartPopulator" />
+	<bean id="fmCartPopulator"
+		class="com.federalmogul.facades.order.converters.populator.FMCartPopulator"
+		parent="defaultCartPopulator" />
+
+	<alias name="fmOrderPopulator" alias="orderPopulator" />
+	<bean id="fmOrderPopulator"
+		class="com.federalmogul.facades.order.converters.populator.FMOrderPopulator"
+		parent="defaultOrderPopulator" />
+
+	<alias name="fmdefaultOrderEntryPopulator" alias="orderEntryPopulator" />
+	<bean id="fmdefaultOrderEntryPopulator"
+		class="com.federalmogul.facades.order.converters.populator.FMOrderEntryPopulator"
+		parent="defaultOrderEntryPopulator" />
+
+	<alias name="defaultFMDeliveryModePopulator" alias="deliveryModePopulator" />
+	<bean id="defaultFMDeliveryModePopulator"
+		class="com.federalmogul.facades.order.converters.populator.FMDeliveryModePopulator"
+		parent="defaultDeliveryModePopulator" />
+
+	<alias name="defaultFitmentPopulator" alias="fitmentPopulator" />
+	<bean id="defaultFitmentPopulator"
+		class="com.federalmogul.facades.product.populators.FMFitmentPopulator" />
+
+	<alias name="defaultFitmentConverter" alias="fitmentConverter" />
+	<bean id="defaultFitmentConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass"
+			value="com.federalmogul.facades.product.data.FMFitmentData" />
+		<property name="populators">
+			<list>
+				<ref bean="fitmentPopulator" />
+			</list>
+		</property>
+	</bean>
+	<bean id="defaultFMCompetitorFacade"
+		class="com.federalmogul.facades.search.impl.DefaultFMCompetitorFacade"
+		scope="tenant">
+		<property name="fmCompetitorDAO" ref="defaultFMCompetitorDAO"></property>
+	</bean>
+
+	<bean id="defaultFMFitmentSearchFacade"
+		class="com.federalmogul.facades.search.impl.DefaultFMFitmentSearchFacade"
+		scope="tenant">
+		<property name="fmFitmentSearchDAO" ref="defaultFMFitmentSearchDAO"></property>
+		<property name="fmYearMakeModelVehicleTypeDAO" ref="defaultFMYearMakeModelVehicleTypeDAO"></property>
+	</bean>
+	<bean id="fmPartProductData" class="com.federalmogul.facades.product.data.FMPartProductData"
+		scope="prototype" />
+	<bean id="fmPartProductPopulator"
+		class="com.federalmogul.facades.product.populators.FMPartProductPopulator">
+		<property name="fitmentConverter" ref="fitmentConverter" />
+	</bean>
+
+	<!--Start populator for Loyalty Points -->
+
+	<!-- <alias name="loyaltySearchResultProductPopulator" alias="commerceSearchResultProductPopulator" 
+		/> <bean id="loyaltySearchResultProductPopulator" class="com.federalmogul.facades.product.populators.loyalty.LoyaltyProductPopulator" 
+		parent="defaultCommerceSearchResultProductPopulator"> </bean> -->
+
+
+	<!-- <bean id="productData" class="de.hybris.platform.commercefacades.product.data.ProductData" 
+		scope="prototype" /> -->
+	<!-- <bean id="loyaltyProductPopulator" parent="defaultProductPopulator" 
+		class="com.federalmogul.facades.product.loyalty.populators.LoyaltyProductPopulator"> 
+		<property name="loyaltyConverter" ref="loyaltyProductConverter" /> </bean> -->
+
+	<!-- <alias name="defaultLoyaltyProductConverter" alias="loyaltyProductConverter" 
+		/> <bean id="defaultLoyaltyProductConverter" parent="abstractPopulatingConverter"> 
+		<lookup-method name="createTarget" bean="productData" /> <property name="populators"> 
+		<list merge="true"> <ref bean="loyaltyProductPopulator" /> </list> </property> 
+		</bean> -->
+
+	<!--End populator for Loyalty Points -->
+
+	<alias name="defaultFMPartProductConverter" alias="productConverter" />
+	<bean id="defaultFMPartProductConverter" parent="abstractPopulatingConverter">
+		<lookup-method name="createTarget" bean="fmPartProductData" />
+		<property name="populators">
+			<list merge="true">
+				<ref bean="fmPartProductPopulator" />
+				<ref bean="productPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- Registration Page -->
+
+
+
+	<alias name="defaultFMCustomerConverter" alias="fmCustomerConverter" />
+	<bean id="defaultFMCustomerConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass"
+			value="com.federalmogul.facades.user.data.FMCustomerData" />
+		<property name="populators">
+			<list>
+				<ref bean="fmCustomerPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultFMCurrentCustomerConverter" alias="fmCurrentCustomerConverter" />
+	<bean id="defaultFMCurrentCustomerConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass"
+			value="com.federalmogul.facades.user.data.FMCustomerData" />
+		<property name="populators">
+			<list>
+				<ref bean="fmCustomerPopulator" />
+			</list>
+		</property>
+	</bean>
+	
+	<alias name="defaultFMB2bAddressConverter" alias="fmB2bAddressConverter" />
+    <bean id="defaultFMB2bAddressConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass" value="com.federalmogul.facades.address.data.FMB2bAddressData" />
+ 		<property name="populators">
+			 <list>
+				<ref bean="fmb2bAddressPopulator" />
+			</list>
+		</property>
+    </bean>
+
+	<alias name="defaultFMCustomerPopulator" alias="fmCustomerPopulator" />
+	<bean id="defaultFMCustomerPopulator"
+		class="com.federalmogul.facades.fmpopulator.FMCustomerPopulator">
+		<property name="addressConverter" ref="addressConverter" />
+		<property name="regionConverter" ref="regionConverter" />
+		<property name="fmCustomerConverter" ref="fmCustomerConverter" />
+		<property name="fmB2bAddressConverter" ref="fmB2bAddressConverter" />
+	</bean>
+
+	<alias name="defaultFMB2bAddressReverseConverter" alias="addressReverseConverter" />
+	<bean id="defaultFMB2bAddressReverseConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass"
+			value="de.hybris.platform.core.model.user.AddressModel" />
+		<property name="populators">
+			<list>
+				<ref bean="fmb2baddressReversePopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultFMB2bAddressReversePopulator" alias="fmb2baddressReversePopulator" />
+	<bean id="defaultFMB2bAddressReversePopulator"
+		class="com.federalmogul.facades.user.converters.populator.FmB2bAddressReversepopulator">
+		<property name="flexibleSearchService" ref="flexibleSearchService" />
+		<property name="commonI18NService" ref="commonI18NService" />
+	</bean>
+
+	<alias name="defaultFMB2bAddressPopulator" alias="fmb2bAddressPopulator" />
+	<bean id="defaultFMB2bAddressPopulator"
+		class="com.federalmogul.facades.user.converters.populator.FMB2BAddressPopulator">
+		<property name="flexibleSearchService" ref="flexibleSearchService" />
+		<property name="commonI18NService" ref="commonI18NService" />
+	</bean>
+
+	<bean id="defaultFMCustomerAccountDAO"
+		class="com.federalmogul.core.customer.account.dao.impl.DefaultFMCustomerAccountDAO">
+		<property name="flexibleSearchService" ref="flexibleSearchService"></property>
+	</bean>
+
+	<alias name="fmCustomerFacade" alias="customerFacade" />
+	<bean id="fmCustomerFacade"
+		class="com.federalmogul.facades.account.impl.FMCustomerFacadeImpl">
+		<property name="userService" ref="userService" />
+		<property name="customerAccountService" ref="customerAccountService" />
+		<property name="commonI18NService" ref="commonI18NService" />
+		<property name="modelService" ref="modelService" />
+		<property name="cartService" ref="cartService" />
+		<property name="commerceCartService" ref="commerceCartService" />
+		<property name="sessionService" ref="sessionService" />
+		<property name="storeSessionFacade" ref="storeSessionFacade" />
+		<property name="userFacade" ref="userFacade" />
+
+		<property name="addressReversePopulator" ref="addressReversePopulator" />
+		<property name="customerReversePopulator" ref="customerReversePopulator" />
+		<property name="customerConverter" ref="customerConverter" />
+		<property name="addressConverter" ref="addressConverter" />
+		<property name="titleConverter" ref="titleConverter" />
+		<property name="creditCardPaymentInfoConverter" ref="creditCardPaymentInfoConverter" />
+		<property name="fmCustomerConverter" ref="fmCustomerConverter" />
+		<property name="fmCurrentCustomerConverter" ref="fmCurrentCustomerConverter" />
+		<property name="b2BUnitConverter" ref="b2bUnitConverter" />
+		<property name="addressPopulator" ref="addressPopulator" />
+		<property name="fmb2bAddressPopulator" ref="fmb2bAddressPopulator" />
+
+		<property name="customerNameStrategy" ref="customerNameStrategy" />
+		<property name="passwordEncoderService" ref="passwordEncoderService" />
+		<property name="orderFacade" ref="orderFacade" />
+		<property name="fmb2baddressReversePopulator" ref="fmb2baddressReversePopulator" />
+		<property name="commerceCommonI18NService" ref="commerceCommonI18NService" />
+		<property name="defaultFMCustomerAccountDAO" ref="defaultFMCustomerAccountDAO" />
+		<property name="fmCustomerAccountPopulator" ref="fmCustomerAccountPopulator" />
+		<property name="fmCustomerAccountConverter" ref="fmCustomerAccountConverter" />
+	</bean>
+
+	<bean id="defaultFMDistrubtionCenterFacade"
+		class="com.federalmogul.facades.order.impl.DefaultFMDistrubtionCenterFacade"
+		scope="tenant">
+		<property name="fmCheckoutDAO" ref="fmCheckoutDAO"></property>
+	</bean>
+
+	<!-- Cybersource Integration -->
+	<alias name="fmCheckoutFacade" alias="checkoutFacade" />
+	<bean id="fmCheckoutFacade" class="com.federalmogul.hybris.facades.order.FMCheckoutFacade"
+		parent="defaultCheckoutFacade" scope="tenant">
+		<property name="fmCommonServices" ref="fmCommonServices" />
+		<property name="cartConverter" ref="cartConverter" />
+	</bean>
+	<alias alias="fmstoreFinderFacades" name="fmstoreFinderFacades" />
+	<bean id="fmstoreFinderFacades" parent="b2bDefaultStoreFinderFacade"
+		class="com.federalmogul.facades.store.finder.FMStoreFinderFacadesImpl">
+		<property name="distributorConverter" ref="distributorConverter" />
+		<property name="onlineRetailerConverter" ref="onlineRetailerConverter" />
+	</bean>
+
+
+	<alias alias="tsclookupService" name="tsclookupServiceImpl" />
+	<bean id="tsclookupServiceImpl" class="com.federalmogul.core.tsclookup.TSCLookupServiceImpl">
+	</bean>
+
+	<alias name="fmCustomerAccountReturnOrderFacade" alias="customerAccountReturnOrderFacade" />
+	<bean id="fmCustomerAccountReturnOrderFacade"
+		class="com.federalmogul.facades.account.impl.FMCustomerAccountReturnOrderFacadeImpl">
+		<property name="modelService" ref="modelService" />
+		<property name="addressConverter" ref="addressConverter" />
+		<property name="commonI18NService" ref="commonI18NService" />
+		<property name="creditCardPaymentInfoConverter" ref="creditCardPaymentInfoConverter" />
+		<property name="deliveryModeConverter" ref="deliveryModeConverter" />
+		<property name="deliveryService" ref="deliveryService" />
+		<property name="orderEntryConverter" ref="orderEntryConverter" />
+		<property name="priceDataFactory" ref="priceDataFactory" />
+		<property name="principalConverter" ref="principalConverter" />
+		<property name="promotionResultConverter" ref="promotionResultConverter" />
+		<property name="promotionsService" ref="promotionsService" />
+		<property name="typeService" ref="typeService" />
+		<property name="zoneDeliveryModeConverter" ref="zoneDeliveryModeConverter" />
+	</bean>
+
+	<alias name="fmLeadGenerationCallBackFacade" alias="leadGenerationCallBackFacade" />
+	<bean id="fmLeadGenerationCallBackFacade"
+		class="com.federalmogul.facades.account.impl.FMLeadGenerationCallBackFacadeImpl">
+		<property name="userService" ref="userService" />
+		<property name="customerAccountService" ref="customerAccountService" />
+		<property name="commonI18NService" ref="commonI18NService" />
+		<property name="modelService" ref="modelService" />
+		<property name="cartService" ref="cartService" />
+		<property name="commerceCartService" ref="commerceCartService" />
+		<property name="sessionService" ref="sessionService" />
+		<property name="storeSessionFacade" ref="storeSessionFacade" />
+		<property name="userFacade" ref="userFacade" />
+
+		<property name="addressReversePopulator" ref="addressReversePopulator" />
+		<property name="customerReversePopulator" ref="customerReversePopulator" />
+		<property name="customerConverter" ref="customerConverter" />
+		<property name="addressConverter" ref="addressConverter" />
+		<property name="titleConverter" ref="titleConverter" />
+		<property name="creditCardPaymentInfoConverter" ref="creditCardPaymentInfoConverter" />
+
+
+		<property name="customerNameStrategy" ref="customerNameStrategy" />
+		<property name="passwordEncoderService" ref="passwordEncoderService" />
+		<property name="orderFacade" ref="orderFacade" />
+
+	</bean>
+
+	<bean id="defaultFMUserOnlineToolsDAO"
+		class="com.federalmogul.core.customer.account.dao.impl.DefaultFMUserOnlineToolsDAO">
+		<property name="flexibleSearchService" ref="flexibleSearchService"></property>
+		<property name="modelService" ref="modelService" />
+	</bean>
+
+	<bean id="fmUserOnlineToolsFacade"
+		class="com.federalmogul.facades.account.impl.DefaultFMUserOnlineToolsFacade"
+		scope="tenant">
+		<property name="defaultFMUserOnlineToolsDAO" ref="defaultFMUserOnlineToolsDAO"></property>
+	</bean>
+	<alias name="defaultUploadOrderFacade" alias="uploadOrderFacade" />
+	<bean id="defaultUploadOrderFacade"
+		class="com.federalmogul.facades.uploadorder.impl.DefaultUploadOrderFacade"
+		scope="tenant">
+
+	</bean>
+	<bean id="fmUploadOrderEmailContext"
+		class="com.federalmogul.facades.process.email.context.FMUploadOrderEmailContext"
+		parent="abstractEmailContext" scope="prototype">
+
+	</bean>
+	<!-- VIN Lookup -->
+	<alias name="fmVinLookupFacade" alias="vinLookupFacade" />
+	<bean id="fmVinLookupFacade"
+		class="com.federalmogul.facades.account.impl.FMVinLookupFacadeImpl">
+
+	</bean>
+
+	<alias name="defaultPartResolutionFacade" alias="partResolutionFacade" />
+	<bean id="defaultPartResolutionFacade"
+		class="com.federalmogul.facades.wom.impl.DefaultPartResolutionFacade"
+		scope="tenant">
+
+	</bean>
+
+	<!-- Added as part of the FederalMogul Offices locations -->
+	<bean id="defaultFederalMogulLocationsDAO"
+		class="com.federalmogul.core.locations.dao.impl.DefaultFederalMogulLocationsDAO">
+		<property name="flexibleSearchService" ref="flexibleSearchService"></property>
+		<property name="modelService" ref="modelService" />
+	</bean>
+
+	<bean id="federalMogulLocationsFacades"
+		class="com.federalmogul.facades.locations.impl.DefaultFederalMogulLocationsFacades"
+		scope="tenant">
+		<property name="federalMogulLocationsDAO" ref="defaultFederalMogulLocationsDAO"></property>
+	</bean>
+	<bean id="fmCustomerBulkUploadJob" class="com.federalmogul.facades.jobs.FMCustomerBulkUploadJob"
+		autowire="byName">
+
+	</bean>
+	<!-- For Reviews -->
+	<alias name="fmReviewFacade" alias="productFacade" />
+	<bean id="fmReviewFacade"
+		class="com.federalmogul.facades.account.impl.FMReviewFacadeImpl"
+		parent="defaultProductFacade">
+	</bean>
+	<!-- For Review Email Context -->
+	<bean id="fmCustomerReviewContext"
+		class="com.federalmogul.facades.process.email.context.FMCustomerReviewContext"
+		parent="abstractEmailContext" scope="prototype">
+	</bean>
+
+
+	<alias name="defaultB2BUserGroupsLookUpStrategy" alias="b2bUserGroupsLookUpStrategy" />
+	<bean name="defaultB2BUserGroupsLookUpStrategy"
+		class="de.hybris.platform.b2bacceleratorservices.strategies.impl.DefaultB2BUserGroupsLookUpStrategy">
+		<property name="groups">
+			<list>
+				<value>b2badmingroup</value>
+				<value>b2bcustomergroup</value>
+				<value>b2bmanagergroup</value>
+				<value>b2bapprovergroup</value>
+				<value>FMB2BB</value>
+				<value>FMBUVOR</value>
+				<value>FMCSR</value>
+				<value>FMB2T</value>
+				<value>FMNoInvoiceGroup</value>
+				<value>FMFullAccessGroup</value>
+				<value>FMViewOnlyGroup</value>
+				<value>FMB2SB</value>
+				<value>FMB2C</value>
+
+			</list>
+		</property>
+	</bean>
+
+	<alias name="fmb2bCustomerPopulator" alias="b2bCustomerPopulator" />
+	<bean id="fmb2bCustomerPopulator"
+		class="com.federalmogul.facades.fmpopulator.FMB2BCustomerPopulator">
+		<property name="b2bUnitService" ref="b2bUnitService" />
+		<property name="commonI18NService" ref="commonI18NService" />
+		<property name="currencyConverter" ref="currencyConverter" />
+		<property name="b2BPermissionConverter" ref="b2bPermissionConverter" />
+		<property name="b2BUserGroupsLookUpStrategy" ref="b2bUserGroupsLookUpStrategy" />
+	</bean>
+	<bean id="fmBatchLoadErrorEmailContext"
+		class="com.federalmogul.facades.process.email.context.FMBatchLoadErrorEmailContext"
+		parent="abstractEmailContext" scope="prototype">
+		<property name="customerConverter" ref="customerConverter" />
+	</bean>
+
+	<bean id="fmBatchLoadSuccessEmailContext"
+		class="com.federalmogul.facades.process.email.context.FMBatchLoadSuccessEmailContext"
+		parent="abstractEmailContext" scope="prototype">
+		<property name="customerConverter" ref="customerConverter" />
+	</bean>
+	<!--FMCustomerAccountPopulator Start -->
+	<alias name="defaultFMCustomerAccountConverter" alias="fmCustomerAccountConverter" />
+	<bean id="defaultFMCustomerAccountConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass"
+			value="com.federalmogul.facades.user.data.FMCustomerAccountData" />
+		<property name="populators">
+			<list>
+				<ref bean="fmCustomerAccountPopulator" />
+			</list>
+		</property>
+	</bean>
+	<alias name="defaultFMCustomerAccountPopulator" alias="fmCustomerAccountPopulator" />
+	<bean id="defaultFMCustomerAccountPopulator"
+		class="com.federalmogul.facades.fmpopulator.FMCustomerAccountPopulator">
+		<property name="fmb2bAddressPopulator" ref="fmb2bAddressPopulator" />
+	</bean>
+
+	<!--<alias name="defaultFMCustomerAccountPopulator" alias="b2bUnitPopulator" 
+		/> <bean id="defaultFMCustomerAccountPopulator" class="com.federalmogul.facades.fmpopulator.FMCustomerAccountPopulator" 
+		parent="defaultB2BUnitPopulator"> <property name="fmb2bAddressPopulator" 
+		ref="fmb2bAddressPopulator" /> </bean> -->
+	<!--FMCustomerAccountPopulator End -->
+
+	<!-- convertor populator definitions for new EMEA models -->
+
+	<alias name="defaultFmAddressConverter" alias="fmAddressConverter" />
+	<bean id="defaultFmAddressConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass"
+			value="de.hybris.platform.commercefacades.user.data.AddressData" />
+		<property name="populators">
+			<list>
+				<ref bean="fmAddressPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultFmAddressPopulator" alias="fmAddressPopulator" />
+	<bean id="defaultFmAddressPopulator"
+		class="com.federalmogul.facades.user.converters.populator.FMAddressPopulator"
+		parent="addressPopulator">
+		<property name="addressFormatConverterMap">
+			<map>
+				<entry key="US" value-ref="usSingleLineAddressFormatConverter" />
+			</map>
+		</property>
+	</bean>
+
+
+	<alias name="defaultDistributorConverter" alias="distributorConverter" />
+	<bean id="defaultDistributorConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass"
+			value="com.federalmogul.facades.storelocator.data.DistributorData" />
+		<property name="populators">
+			<list>
+				<ref bean="distributorPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultDistributorPopulator" alias="distributorPopulator" />
+	<bean id="defaultDistributorPopulator"
+		class="com.federalmogul.facades.storefinder.populators.DistributorPopulator">
+		<property name="addressConverter" ref="fmAddressConverter" />
+	</bean>
+
+	<alias name="defaultOnlineRetailerConverter" alias="onlineRetailerConverter" />
+	<bean id="defaultOnlineRetailerConverter" parent="abstractPopulatingConverter">
+		<property name="targetClass"
+			value="com.federalmogul.facades.storelocator.data.OnlineRetailerData" />
+		<property name="populators">
+			<list>
+				<ref bean="onlineRetailerPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultOnlineRetailerPopulator" alias="onlineRetailerPopulator" />
+	<bean id="defaultOnlineRetailerPopulator"
+		class="com.federalmogul.facades.storefinder.populators.OnlineRetailerPopulator">
+		<property name="addressConverter" ref="fmAddressConverter" />
+	</bean>
+
+	<alias name="fmPointOfServiceDistanceDataPopulator" alias="pointOfServiceDistanceDataPopulator" />
+	<bean id="fmPointOfServiceDistanceDataPopulator"
+		class="com.federalmogul.facades.storefinder.populators.FMPointOfServiceDistanceDataPopulator">
+	</bean>
+
+	<alias name="customUSSingleLineAddressFormatPopulator" alias="usSingleLineAddressFormatPopulator" />
+	<bean id="customUSSingleLineAddressFormatPopulator"
+		class="de.hybris.platform.commercefacades.address.converters.populator.SingleLineAddressFormatPopulator"
+		parent="defaultUsSingleLineAddressFormatPopulator">
+		<property name="addressFormatList">
+			<list>
+				<value>line1</value>
+				<value>line2</value>
+				<value>town</value>
+				<value>postalcode</value>
+			</list>
+		</property>
+	</bean>
+
+        <alias name="fmCustomerReviewPopulator" alias="customerReviewPopulator"/>
+	<bean id="fmCustomerReviewPopulator"
+	      class="com.federalmogul.facades.fmpopulator.FMCustomerReviewPopulator">
+           <property name="principalConverter" ref="principalConverter"/>
+	</bean>
+
+</beans>

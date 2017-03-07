@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: ListDeliveryReceipt.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Resources/Verbs/List.xsd"/>
+        <xs:include schemaLocation="../Resources/Nouns/DeliveryReceipt.xsd"/>
+        <xs:element name="ListDeliveryReceipt" type="ListDeliveryReceipt">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The ListDeliveryReceipt document may be used to obtain limited information listing about a expected (unreceived) or previously received goods deliveries that match certain selection criteria in a GetListDeliveryReceipt request.
+Additional information about a specific DeliveryReceipt may be obtained through ShowDeliveryReceipt by using the listing information to populate a GetDeliveryReceipt request.</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="ListDeliveryReceipt">
+                <xs:complexContent>
+                        <xs:extension base="BusinessObjectDocument">
+                                <xs:sequence>
+                                        <xs:element name="DataArea" type="ListDeliveryReceiptDataArea">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is where the information that the BOD message carries is provided, in this case ListDeliveryReceipt. The information consists of a Verb and one or more Nouns. The verb (List) indicates the action to be performed on the Noun (DeliveryReceipt).</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="ListDeliveryReceiptDataArea">
+                <xs:complexContent>
+                        <xs:extension base="DataArea">
+                                <xs:sequence>
+                                        <xs:element ref="List"/>
+                                        <xs:element ref="DeliveryReceipt" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+</xs:schema>

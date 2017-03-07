@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:sch="http://services.fm.com" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://services.fm.com" targetNamespace="http://services.fm.com">
+	<wsdl:types>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:tns1="http://services.fm.com" elementFormDefault="qualified"
+			targetNamespace="http://services.fm.com">
+			<xs:element name="pointofserviceRequest">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="pointofserviceInfo" nillable="true"
+							type="tns1:pointofserviceRequestType" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="pointofserviceResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="pointofserviceResponseInfo"
+							nillable="true" type="tns1:pointofserviceResponseType" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			
+
+			<xs:complexType name="pointofserviceRequestType">
+				<xs:sequence>
+					<xs:element maxOccurs="1" minOccurs="0" name="country"
+						type="xs:string" />
+					<xs:element maxOccurs="1" minOccurs="1" name="zipcode"
+						type="xs:string" />
+						<xs:element maxOccurs="1" minOccurs="1" name="brand"
+						type="xs:string" />
+						<xs:element maxOccurs="1" minOccurs="1" name="shopType"
+						type="xs:string" />
+						<xs:element maxOccurs="1" minOccurs="1" name="radius"
+						type="xs:string" />
+						<xs:element maxOccurs="1" minOccurs="1" name="showNearest"
+						type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			
+			<xs:complexType name="pointofserviceResponseType">
+				<xs:sequence>
+					<xs:element name="msgCode" type="xs:string" />
+					<xs:element name="msgDesc" type="xs:string" />
+					<xs:element name="totalStores" type="xs:int" />
+					<xs:element name="Store" maxOccurs="unbounded">
+					<xs:complexType>
+					<xs:sequence>
+						<xs:element name="pointofserviceName" type="xs:string" />
+						<xs:element name="streetName" type="xs:string" />
+						<xs:element name="streetNumber" type="xs:string" />
+						<xs:element name="postalcode" type="xs:string" />
+						<xs:element name="town" type="xs:string" />
+						<xs:element name="state" type="xs:string" />
+						<xs:element name="latitude" type="xs:string" />
+						<xs:element name="longitude" type="xs:string" />
+						<xs:element name="brand" type="xs:string" />
+						<xs:element name="shopType" type="xs:string" />
+					</xs:sequence>
+					</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="pointofserviceResponse">
+		<wsdl:part name="parameters" element="tns:pointofserviceResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="pointofserviceRequest">
+		<wsdl:part name="parameters" element="tns:pointofserviceRequest">
+		</wsdl:part>
+	</wsdl:message>
+	
+	<wsdl:portType name="pointofservice_PortType">
+		<wsdl:operation name="pointofservice_PortType_pointofserviceDetails">
+			<wsdl:input message="tns:pointofserviceRequest" name="pointofserviceRequest">
+			</wsdl:input>
+			<wsdl:output message="tns:pointofserviceResponse"
+				name="pointofserviceResponse">
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="FMpointofserviceWSSoap11" type="tns:pointofservice_PortType">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="pointofservice_PortType_pointofserviceDetails">
+			<soap:operation soapAction="pointofservice" />
+			<wsdl:input name="pointofserviceRequest">
+				<soap:body parts="parameters" use="literal" />
+				
+			</wsdl:input>
+			<wsdl:output name="pointofserviceResponse">
+				<soap:body parts="parameters" use="literal" />
+				
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="FMpointofserviceWSService">
+		<wsdl:port binding="tns:FMpointofserviceWSSoap11" name="FMpointofserviceWSSoap11">
+			<soap:address location="http://localhost:9001/fmwebservice/soap" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,22 @@
+The following are notes for the corresponding release date
+
+Import scripts for the next release:
+FM20-257 /fm-hybris/hybris-deployment/fm/fmcore/resources/fmcore/import/contentCatalogs/federalmogulContentCatalog/FM20-257.impex
+
+Import scripts for 12/8/2016 release:
+FM20-258: /fm-hybris/hybris-deployment/fm/fmcore/resources/fmcore/import/contentCatalogs/federalmogulContentCatalog/FM20-258.impex
+FM20-267: /fm-hybris/hybris-deployment/fm/fmcore/resources/fmcore/import/contentCatalogs/federalmogulContentCatalog/FM20-267.impex
+
+CMS Setup for the first 2017 release:
+- FM20-209 (note that setup needs to apply to all Hybris servers on that environment):
+  1) Log into the Hybris HMC.
+  2) Navigate to WCMS --> Components
+  3) Search for ID contains "B2BquickLinksParagraph"
+  4) For each result (should only be 2):
+     a) Double click the entry to open for editing.
+     b) For each of the Quick Links (Order Status, Quick Order, Order History, Online Tools):
+        i) Click on the link.
+        ii) Click the chain link icon.
+        iii) Change the Target setting to "Open in parent window / frame (_parent)"
+        iv) Click "Update"
+     c) When finished be sure to save the entry.

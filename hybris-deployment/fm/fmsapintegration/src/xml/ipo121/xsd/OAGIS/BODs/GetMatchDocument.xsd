@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    License information for this file is provided in LICENSE.TXT
+    For support, more information, or to report implementation bugs, 
+    please contact the Open Applications Group at xml@openapplications.org 
+     
+    ** Revision: 8.0 **
+    ** Date: 05 April 2002 **
+    Open Applications Group XSD
+    Copyright 1998-2002, All Rights Reserved
+    
+    Name: GetMatchDocument.xsd
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openapplications.org/oagis" targetNamespace="http://www.openapplications.org/oagis" elementFormDefault="qualified" attributeFormDefault="unqualified">
+        <xs:include schemaLocation="../Resources/Verbs/Get.xsd"/>
+        <xs:include schemaLocation="../Resources/Nouns/MatchDocument.xsd"/>
+        <xs:element name="GetMatchDocument" type="GetMatchDocument">
+                <xs:annotation>
+                        <xs:documentation source="http://www.openapplications.org/oagis">The purpose of the GetMatchDocument is to enable a business application module to request information concerning invoice matching  from another business application.  The reply to this BOD is the ShowMatchDocument.
+
+This BOD does not usually cause updates to occur. There are several possible business applications in several environments that may use this capability. The description and the pictures below visualize the possible use of this BOD.
+
+In certain application suites, purchase order and invoice matching functionality exists in the purchasing application, while in other suites this functionality exists in the accounts payable application.
+
+The invoice matching process may include several document types, including the following:
+
+Two way match - Purchase Order and the Invoice 
+
+ Three way match - Purchase Order, Invoice, and the Receipt 
+
+Four way match – Purchase Order, Invoice, Receipt, and Inspection results 
+
+Note:  For the four way match, it is assumed that inspection results have been updated on the Purchase Order for visibility in matching.
+
+When matching takes place in the purchasing application, the purchasing application may have to request the accounts payable application to provide the supplier invoice to which purchasing transactions (purchase orders, goods receiving notes and inspection tickets) are to be matched.  This is the generally the situation when the invoice is initially entered into the accounts payable application.
+
+Note that in some situations, accounts payable will send invoices to the purchasing application unsolicited. In others, invoices are entered directly into the purchase order application or are created by the purchase order application when using evaluated receipt settlement (ERS) and in this instance, it is not necessary to perform the separate integration described in these chapters.
+
+When matching takes place in the accounts payable application, the purchasing application must inform the accounts payable application of the purchasing transactions (purchase orders, goods receiving notes and inspection tickets) to which the invoice (in accounts payable) is to be matched. Alternatively, the accounts payable application can request the information.
+
+The purpose of the GetMatchDocument is to enable both the accounts payable application and the purchasing application to request the transactions that are required to be matched.  In both cases, the receiving application will use the ShowMatchDocument to return the requested information.
+
+</xs:documentation>
+                </xs:annotation>
+        </xs:element>
+        <xs:complexType name="GetMatchDocument">
+                <xs:complexContent>
+                        <xs:extension base="BusinessObjectDocument">
+                                <xs:sequence>
+                                        <xs:element name="DataArea" type="GetMatchDocumentDataArea">
+                                                <xs:annotation>
+                                                        <xs:documentation source="http://www.openapplications.org/oagis">Is where the information that the BOD message carries is provided, in this case GetMatchDocument. The information consists of a Verb and one or more Nouns. The verb (Get) indicates the action to be performed on the Noun (MatchDocument).</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:element>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+        <xs:complexType name="GetMatchDocumentDataArea">
+                <xs:complexContent>
+                        <xs:extension base="DataArea">
+                                <xs:sequence>
+                                        <xs:element ref="Get"/>
+                                        <xs:element ref="MatchDocument" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                        </xs:extension>
+                </xs:complexContent>
+        </xs:complexType>
+</xs:schema>

@@ -1,0 +1,16 @@
+# ImpEx for Importing Categories into Apparel Store
+
+# Macros / Replacement Parameter definitions
+$productCatalog=federalmogulloyaltyProductCatalog
+$catalogVersion=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$categories=target(code, $catalogVersion)[unique=true]
+$supercategories=source(code, $catalogVersion)[unique=true]
+
+# Create Categories
+INSERT_UPDATE Category;code[unique=true];name;$catalogVersion;supercategories(code,$catalogVersion);allowedPrincipals(uid)[default='customergroup'];
+;Apparel;Apparel;;
+;Hats;Hats;;
+;Decals;Decals;;
+;GiftCards;Gift Cards;;
+;ToolsAndAccessories;Tools & Accessories;;
+
